@@ -2,6 +2,8 @@ local db = CA_Database
 local criterias = CA_Criterias
 local loc = SexyLib:Localization('Classic Achievements')
 
+local delays = {}
+
 CA_Loader = {
     ForTab = function(self, tab, offset)
         local offsetter
@@ -61,6 +63,30 @@ CA_Loader = {
                 end
                 return nil
             end,
+            Criteria = function(that, type, data, quantity)
+                return {
+                    criteria = criterias:Create(nil, type, data, quantity, offsetter:getNextCriteriaID()),
+                    Build = function(self)
+                        return self.criteria
+                    end,
+                    Name = function(self, name, localize, ...)
+                        if localize then name = loc:Get(name, ...) end
+                        self.criteria.name = name
+                        return self
+                    end,
+                    ItemName = function(self, itemID)
+                        local item = Item:CreateFromItemID(itemID)
+                        item:ContinueOnItemLoad(function()
+                            self.criteria.name = item:GetItemName()
+                        end)
+                        return self
+                    end,
+                    SetQuantityFormatter = function(self, formatter)
+                        self.criteria:SetQuantityFormatter(formatter)
+                        return self
+                    end
+                }
+            end,
             Achievement = function(self, category, points, icon, forceID)
                 return {
                     ach = category:CreateAchievement('Unknown Name', 'Unknown Description', points, icon, forceID or offsetter:getNextAchievementID()),
@@ -112,6 +138,10 @@ CA_Loader = {
                                     self.criteria.name = item:GetItemName()
                                 end)
                                 return self
+                            end,
+                            SetQuantityFormatter = function(self, formatter)
+                                self.criteria:SetQuantityFormatter(formatter)
+                                return self
                             end
                         }
                     end,
@@ -142,13 +172,12 @@ CA_Loader = {
                 return nil
             end,
             Delay = function(self, delayID, callback)
-                if not self.delays then self.delays = {} end
-                self.delays[delayID] = callback
+                delays[delayID] = callback
             end,
             Call = function(self, delayID)
-                if not self.delays or not self.delays[delayID] then return end
-                self.delays[delayID]()
-                self.delays[delayID] = nil
+                if not delays[delayID] then return end
+                delays[delayID]()
+                delays[delayID] = nil
             end
         }
     end

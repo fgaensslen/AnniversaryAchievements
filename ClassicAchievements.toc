@@ -1,16 +1,20 @@
-## Interface: 11306
+## Interface: 11507
 ## Title: Classic Achievements
 ## Notes: Introduces achievements for WoW Classic
-## Notes-ruRU: Добавляет достижения в мир WoW Classic
 ## Author: Konstantin Shandurenko
-## Version: 1.0.12
-## RequiredDeps: SexyLib-Network, SexyLib-Localization, LibStub, LibDeflate
+## Version: 1.1.5.0
+## RequiredDeps: SexyLib-Network, SexyLib-Localization
 ## OptionalDeps: DBM-Core, ElvUI, Bartender4
 ## SavedVariables: CA_Settings
-## SavedVariablesPerCharacter: CA_LocalData, CA_FirstLogin
+## SavedVariablesPerCharacter: CA_LocalData, CA_Flags
+
+#@no-lib-strip@
+Libs\libs.xml
+#@end-no-lib-strip@
 
 localization/stubs.lua
 localization/en.lua
+localization/de.lua
 localization/ru.lua
 localization/fr.lua
 
@@ -18,6 +22,7 @@ DB/AreaTable.lua
 DB/AreaTableLocale_ruRU.lua
 DB/AreaTableLocale_frFR.lua
 DB/AreaTableLocale_enUS.lua
+DB/AreaTableLocale_deDE.lua
 
 Settings.lua
 
@@ -29,15 +34,20 @@ Triggers.lua
 ChatLink.lua
 
 Data/Loader.lua
-Data/1.lua
-Data/2.lua
+Data/vanilla_1.lua
+Data/vanilla_2.lua
+Data/tbc_general.lua
+Data/tbc_quests.lua
+Data/tbc_pve.lua
+Data/tbc_reputations.lua
+Data/tbc_exploration.lua
+Data/tbc_professions.lua
+Data/tbc_pvp.lua
+Data/tbc_pve_2.lua
 Data/Guild.lua
 Data/PostLoad.lua
 
 BlizzardStuff/ApiMocks.lua
-BlizzardStuff/NineSlice.lua
-BlizzardStuff/Backdrop.lua
-BlizzardStuff/Backdrop.xml
 BlizzardStuff/AchievementUtil.lua
 BlizzardStuff/AchievementUI.lua
 BlizzardStuff/AchievementUI.xml

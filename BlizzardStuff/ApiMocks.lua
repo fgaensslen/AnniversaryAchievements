@@ -28,15 +28,15 @@ function GetStatisticsCategoryList()
 end
 
 local function IsAchievementVisible(achievement, includeAll)
-    if not achievement:IsFactionValid() then return false end
+    if not achievement:IsAvailable() then return false end
     if includeAll then return true end
     local completion = cmanager:GetLocal()
-    if achievement.points == 0 then return completion:IsAchievementCompleted(achievement.id) end
     if completion:IsAchievementCompleted(achievement.id) then
         local nextID = achievement:GetNextID()
         if not nextID then return true end
         return not completion:IsAchievementCompleted(nextID)
     end
+    if achievement.points == 0 then return false end
     local previousID = achievement:GetPreviousID()
     if not previousID then return true end
     return completion:IsAchievementCompleted(previousID)
@@ -73,6 +73,13 @@ function GetCategoryInfo(categoryID)
     return '', -1, 0
 end
 
+local function defaultAchievementOrderComparator(a, b)
+    local aPriority = a.priority or 0
+    local bPriority = b.priority or 0
+    if aPriority ~= bPriority then return aPriority < bPriority end
+    return a.id < b.id
+end
+
 -- id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy = GetAchievementInfo(achievementID or categoryID, index)
 -- 1	id	Number	Achievement ID.
 -- 2	name	String	The Name of the Achievement.
@@ -105,7 +112,7 @@ function GetAchievementInfo(id, index)
             if index <= #achs then
                 table.sort(achs, function(a, b)
                     local completedA, completedB = completion:IsAchievementCompleted(a.id), completion:IsAchievementCompleted(b.id)
-                    if completedA and completedB then return a.id < b.id end
+                    if completedA and completedB then return defaultAchievementOrderComparator(a, b) end
                     if completedA then return true end
                     if completedB then return false end
                     local previousA, previousB = a:GetPreviousID(), b:GetPreviousID()
@@ -114,7 +121,7 @@ function GetAchievementInfo(id, index)
                     if completedA and completedB then return previousA < previousB end
                     if completedA then return true end
                     if completedB then return false end
-                    return a.id < b.id
+                    return defaultAchievementOrderComparator(a, b)
                 end)
                 ach = achs[index]
             end
@@ -270,10 +277,9 @@ end
 function GetAchievementCriteriaInfo(achievementID, criteriaIndex)
     local achievement = db:GetAchievement(achievementID)
     if achievement then
-        local index = 0
-        for _, criteria in pairs(achievement:GetCriterias()) do
-            index = index + 1
-            if index == criteriaIndex then return _GetAchievementCriteria(achievementID, criteria) end
+        local criterias = achievement:GetCriteriasSorted()
+        if criteriaIndex <= #criterias then
+            return _GetAchievementCriteria(achievementID, criterias[criteriaIndex])
         end
     end
     return _GetAchievementCriteria()

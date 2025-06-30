@@ -1,5 +1,6 @@
 local addon = 'Classic Achievements'
 local loc = SexyLib:Localization(addon)
+CA_Flags = CA_Flags or 0
 
 SexyLib:InitLogger(addon, '&6')
 
@@ -12,7 +13,8 @@ local options = {
             type = 'toggle',
             width = 2,
             set = function(info, val) CA_Settings.sharing = val end,
-            get = function(info) return CA_Settings.sharing end
+            get = function(info) return CA_Settings.sharing end,
+            order = 1
         },
         enableMicrobutton = {
             name = loc:Get('OPTION_MICROBUTTON'),
@@ -20,14 +22,16 @@ local options = {
             type = 'toggle',
             width = 2,
             set = function(info, val) CA_Settings.microbutton = val end,
-            get = function(info) return CA_IsMicrobuttonEnabled() end
+            get = function(info) return CA_IsMicrobuttonEnabled() end,
+            order = 2
         },
         updateMapExploration = {
             name = loc:Get('OPTION_UPDATE_MAP_EXPLORATION'),
             desc = loc:Get('OPTION_UPDATE_MAP_EXPLORATION_DESC'),
             type = 'execute',
             width = 2,
-            func = function() ClassicAchievements_UpdateExploredAreas() end
+            func = function() CA_UpdateExploredAreas() end,
+            order = 3
         },
         resetAchievements = {
             name = loc:Get('OPTION_RESET_ACHIEVEMENTS'),
@@ -36,8 +40,9 @@ local options = {
             width = 2,
             func = function()
                 CA_CompletionManager:GetLocal():Reset()
-                ClassicAchievements_performInitialCheck()
-            end
+                CA_performInitialCheck()
+            end,
+            order = 4
         }
     }
 }
@@ -55,11 +60,25 @@ SexyLib:Util():AfterLogin(function()
 end)
 
 C_Timer.After(2, function()
-    CA_FirstLogin = false
+    -- CA_Flags: 0x01: Whether first login with this addon installed happened
+    --           0x02: Whether first login into TBCC with this addon installed happened
+    --           0x04: PvP achievements update
+    CA_Flags = bit.bor(CA_Flags, 1)
+    if bit.band(CA_Flags, 2) == 0 then
+        CA_Flags = bit.bor(CA_Flags, 2)
+        CA_Flags = bit.bor(CA_Flags, 4)
+        local cmanager = CA_CompletionManager:GetLocal()
+        cmanager:TakeIncompleteAchievements()
+        cmanager:UpdateNewCriteriasOfOldType()
+    elseif bit.band(CA_Flags, 4) == 0 then
+        CA_Flags = bit.bor(CA_Flags, 4)
+        local cmanager = CA_CompletionManager:GetLocal()
+        cmanager:TakeIncompleteAchievements()
+    end
 end)
 
 function CA_IsSharingAchievementsInChat()
-    return CA_Settings.sharing and not CA_FirstLogin
+    return CA_Settings.sharing and bit.band(CA_Flags, 1) == 1
 end
 
 function CA_IsMicrobuttonEnabled()
