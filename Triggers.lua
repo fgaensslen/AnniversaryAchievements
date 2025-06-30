@@ -25,6 +25,20 @@ local function updateBankSlots()
     trigger(TYPE.BANK_SLOTS, nil, bankSlots, true)
 end
 
+function CountLearnedCookingRecipes()
+    local cookingSkillName = GetSpellInfo(2550)
+    local skillName = GetTradeSkillLine()
+
+    if skillName ~= cookingSkillName then
+        return
+    end
+    
+    local numTotalRecipes = GetNumTradeSkills()
+	
+	--Trigger achievement
+    CA_Criterias:Trigger(CA_Criterias.TYPE.LEARN_PROFESSION_RECIPES, { ClassicAchievementsProfessions.COOKING[1] }, numTotalRecipes, true)
+end
+
 local function updateReputations()
     local totals = {}
     for factionIndex = 1, GetNumFactions() do
@@ -168,31 +182,6 @@ local function updateGear()
     end
 end
 
-local function checkForThanks()
-    local name, server = UnitFullName('player')
-    local thanks = {
-        -- me
-        ['Махич-Пламегор'] = true,
-        ['Коровобог-Пламегор'] = true,
-        ['Злобняша-Пламегор'] = true,
-        ['Шелкопрядица-Пламегор'] = true,
-        ['Аъя-Пламегор'] = true,
-
-        -- r41dboss (Профессия)
-        ['Профессия-Пламегор'] = true,
-        ['Элеутерококк-Пламегор'] = true,
-
-        -- Leonard
-        ['Фаерлайт-Хроми'] = true,
-
-        -- Qwaser (french translator)
-        ['Qwaser-Auberdine'] = true
-    }
-    if thanks[name .. '-' .. server] then
-        trigger(TYPE.SPECIAL, {5}, 1, true)
-    end
-end
-
 local AREA_COORD_ADDITION = 0.01
 local updatingExploredAreas = false
 
@@ -262,7 +251,6 @@ function CA_performInitialCheck()
     updateProfessions()
     updateItemsInInventory()
     updateGear()
-    checkForThanks()
 
     CA_CompletionManager:GetLocal():RecheckAchievements()
 end
@@ -440,8 +428,12 @@ local events = {
     PLAYERBANKBAGSLOTS_CHANGED = function()
         C_Timer.After(1, updateBankSlots)
     end,
+	--check for cooking recipes when cooking window is opened
+	TRADE_SKILL_SHOW = function()
+		CountLearnedCookingRecipes()
+	end,
 	BANKFRAME_OPENED = function()
-    updateBankSlots()
+		updateBankSlots()
 	end,
     UPDATE_FACTION = function()
         C_Timer.After(1, updateReputations)
