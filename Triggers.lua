@@ -53,11 +53,13 @@ ClassicAchievementsProfessions = {
     BLACKSMITHING = {9, true},
     HERBALISM = {10, true},
     MINING = {11, true},
-    SKINNING = {12, true}
+    SKINNING = {12, true},
+    JEWELCRAFTING = {14, true}
 }
 
 ClassicAchievementsSkills = {
-    UNARMED = 13
+    UNARMED = 13,
+    RIDING = 15
 }
 
 for idx, data in pairs(ClassicAchievementsProfessions) do
@@ -86,7 +88,7 @@ local function updateProfessions()
     for i = 1, GetNumSkillLines() do
         local skillName, isHeader, _, points, tempPoints = GetSkillLineInfo(i)
         if not isHeader then
-            points = min(300, points - tempPoints)
+            points = min(375, points - tempPoints)
             for idx, data in pairs(ClassicAchievementsProfessions) do
                 if data[3] == skillName then
                     for ps = 1, points do trigger(TYPE.REACH_PROFESSION_LEVEL, {data[1], ps}, 1, true) end
@@ -112,15 +114,21 @@ end
 
 local function updateItemsInInventory()
     local items = {}
-    for i = 0, NUM_BAG_SLOTS do
-        for j = 1, GetContainerNumSlots(i) do
-            local _, quantity, _, _, _, _, _, _, _, itemID = GetContainerItemInfo(i, j)
-            if itemID and quantity then
-                if not items[itemID] then items[itemID] = 0 end
-                items[itemID] = items[itemID] + quantity
-            end
-        end
-    end
+	
+    local function processBag(bagID)
+		for i = 1, C_Container.GetContainerNumSlots(bagID) do
+			local itemInfo = C_Container.GetContainerItemInfo(bagID, i)
+			if itemInfo and itemInfo.itemID and itemInfo.stackCount then
+				if not items[itemInfo.itemID] then items[itemInfo.itemID] = 0 end
+				items[itemInfo.itemID] = items[itemInfo.itemID] + itemInfo.stackCount
+			end
+		end
+	end
+    
+    for i = 0, NUM_BAG_SLOTS do 
+		processBag(i) 
+	end
+	
     for id, quantity in pairs(items) do
         trigger(TYPE.OBTAIN_ITEM, {id}, quantity, true)
         if id == 22589 or id == 22630 or id == 22631 or id == 22632 then
@@ -160,6 +168,31 @@ local function updateGear()
     end
 end
 
+local function checkForThanks()
+    local name, server = UnitFullName('player')
+    local thanks = {
+        -- me
+        ['Махич-Пламегор'] = true,
+        ['Коровобог-Пламегор'] = true,
+        ['Злобняша-Пламегор'] = true,
+        ['Шелкопрядица-Пламегор'] = true,
+        ['Аъя-Пламегор'] = true,
+
+        -- r41dboss (Профессия)
+        ['Профессия-Пламегор'] = true,
+        ['Элеутерококк-Пламегор'] = true,
+
+        -- Leonard
+        ['Фаерлайт-Хроми'] = true,
+
+        -- Qwaser (french translator)
+        ['Qwaser-Auberdine'] = true
+    }
+    if thanks[name .. '-' .. server] then
+        trigger(TYPE.SPECIAL, {5}, 1, true)
+    end
+end
+
 local AREA_COORD_ADDITION = 0.01
 local updatingExploredAreas = false
 
@@ -178,7 +211,7 @@ local function updateExploredAreas(mapIDs)
     end
 end
 
-function ClassicAchievements_UpdateExploredAreas()
+function CA_UpdateExploredAreas()
     if updatingExploredAreas then return end
     updatingExploredAreas = true
 
@@ -189,15 +222,18 @@ function ClassicAchievements_UpdateExploredAreas()
     end
 
     local mapIDs = {}
-    for mapID = 1411, 1458 do
-        mapIDs[#mapIDs + 1] = mapID
-        if #mapIDs == 10 then
-            local batch = mapIDs
-            mapIDs = {}
-            local previous = callback
-            callback = function()
-                updateExploredAreas(batch)
-                C_Timer.After(1, previous)
+    local ranges = {{1411, 1458}, {1941, 1955}, {1957, 1957}}
+    for _, range in pairs(ranges) do
+        for mapID = range[1], range[2] do
+            mapIDs[#mapIDs + 1] = mapID
+            if #mapIDs == 10 then
+                local batch = mapIDs
+                mapIDs = {}
+                local previous = callback
+                callback = function()
+                    updateExploredAreas(batch)
+                    C_Timer.After(1, previous)
+                end
             end
         end
     end
@@ -210,7 +246,7 @@ function ClassicAchievements_UpdateExploredAreas()
     end
 end
 
-function ClassicAchievements_performInitialCheck()
+function CA_performInitialCheck()
     local kills, _, maxRank = GetPVPLifetimeStats()
     local _, maxRank = GetPVPRankInfo(maxRank)
     trigger(TYPE.KILL_PLAYERS, nil, kills, true)
@@ -226,30 +262,58 @@ function ClassicAchievements_performInitialCheck()
     updateProfessions()
     updateItemsInInventory()
     updateGear()
+    checkForThanks()
 
     CA_CompletionManager:GetLocal():RecheckAchievements()
 end
 
-C_Timer.After(5, ClassicAchievements_performInitialCheck)
+C_Timer.After(5, CA_performInitialCheck)
 
-local ITEM_CREATION_PATTERN = LOOT_ITEM_CREATED_SELF:gsub("%%s","%(.*%)")
-local ITEM_CREATION_PATTERN_MULTIPLE = LOOT_ITEM_CREATED_SELF_MULTIPLE:gsub('%%s', '%(.*%)'):gsub('%%d', '%(%%d%+%)')
+local function toPattern(message)
+    local pattern = message:gsub('%.', '%%.')
+    :gsub('\124%d%-%d%(.*%)', '(.*)')
+    :gsub('\1244.*:.*;', '.*')
 
-local ZONE_EXPLORED_PATTERN = ERR_ZONE_EXPLORED:gsub('%%s', '%(.*%)')
-local ZONE_EXPLORED2_PATTERN = ERR_ZONE_EXPLORED_XP:gsub('%%s', '%(.*%)'):gsub('%%d', '%%d')
+    for i = 1, 100 do
+        local result, count = pattern:gsub('%%' .. i .. '$s', '(.*)')
+        if count == 0 then break end
+        pattern = result
+    end
+    pattern = pattern:gsub('%%s', '(.*)'):gsub('%%d', '(%%d%+)')
+    return pattern
+end
 
-local DUEL_VICTORY_PATTERN = DUEL_WINNER_KNOCKOUT:gsub('%%1$s', '%(.*%)'):gsub('\1243%-4%(%%2$s%)%.', '.*')
+local ITEM_CREATION_PATTERN = toPattern(LOOT_ITEM_CREATED_SELF)
+local ITEM_CREATION_PATTERN_MULTIPLE = toPattern(LOOT_ITEM_CREATED_SELF_MULTIPLE)
 
-local EMOTE_LOVE = loc:Get('EMOTE_LOVE'):gsub('%%s', '%(.*%)')
-local EMOTE_PAT = loc:Get('EMOTE_PAT'):gsub('%%s', '%(.*%)')
+local ZONE_EXPLORED_PATTERN = toPattern(ERR_ZONE_EXPLORED)
+local ZONE_EXPLORED2_PATTERN = toPattern(ERR_ZONE_EXPLORED_XP)
+
+local DUEL_VICTORY_PATTERN = toPattern(DUEL_WINNER_KNOCKOUT)
+
+local function getEmoteLocalizations(emote)
+    local result = {}
+    for i = 1, 100 do
+        if not loc:IsPresent(emote .. i) then break end
+        result[#result + 1] = loc:Get(emote .. i):gsub('%%s', '%(.*%)')
+    end
+    return result
+end
+local EMOTE_LOVE = getEmoteLocalizations('EMOTE_LOVE')
+local EMOTE_PAT = getEmoteLocalizations('EMOTE_PAT')
 
 local canGetBattlegroundsAchievement = false
-local alteracID, warsongID, arathiID = 1459, 1460, 1461
+local alteracID, warsongID, arathiID, bgEyeID = 1459, 1460, 1461, 1956
 
 local killingTracker = CA_CreatureKillingTracker
 killingTracker:AddHandler(function(targetID) return true end, function(targetID)
     trigger(TYPE.KILL_NPC, {targetID}, 1)
     trigger(TYPE.KILL_NPCS, nil, 1)
+
+    local difficultyID = GetDungeonDifficultyID()
+    local _, _, isHeroic = GetDifficultyInfo(difficultyID)
+    if isHeroic then trigger(TYPE.KILL_NPC_HEROIC, {targetID}, 1) end
+    if time() < 1643871600 then trigger(TYPE.P3_FIRST_WEEK, {targetID}, 1) end
 end)
 
 local leeroy = {}
@@ -337,6 +401,27 @@ killingTracker:AddPlayerHandler(function(targetGUID)
     local _, className, _, raceName = GetPlayerInfoByGUID(targetGUID)
     trigger(TYPE.KILL_PLAYER_OF_CLASS, {string.upper(className)}, 1)
     trigger(TYPE.KILL_PLAYER_OF_RACE, {string.upper(raceName)}, 1)
+
+    local mapID = C_Map.GetBestMapForUnit('player')
+    if mapID == bgEyeID then
+        local berserker = false
+        for i = 1, 64 do
+            local name, _, _, _, _, _, _, _, _, id = UnitAura('player', i, 'HARMFUL')
+            if not name then break end
+            if id == 24378 then
+                berserker = true
+                break
+            end
+        end
+        if berserker then
+            trigger(TYPE.BG_EYE_BERSERK)
+        end
+    end
+end)
+
+local alteracValleyMineCaptures = 0
+killingTracker:AddHandler({11677, 13086, 13088}, function(targetID)
+    alteracValleyMineCaptures = alteracValleyMineCaptures + 1
 end)
 
 local events = {
@@ -355,6 +440,9 @@ local events = {
     PLAYERBANKBAGSLOTS_CHANGED = function()
         C_Timer.After(1, updateBankSlots)
     end,
+	BANKFRAME_OPENED = function()
+    updateBankSlots()
+	end,
     UPDATE_FACTION = function()
         C_Timer.After(1, updateReputations)
     end,
@@ -400,12 +488,12 @@ local events = {
         canGetBattlegroundsAchievement = false
         
         local mapID = C_Map.GetBestMapForUnit('player')
-        if mapID ~= alteracID and mapID ~= warsongID and mapID ~= arathiID then return end
+        if mapID ~= alteracID and mapID ~= warsongID and mapID ~= arathiID and mapID ~= bgEyeID then return end
 
         local numStats, numScores = GetNumBattlefieldStats(), GetNumBattlefieldScores()
         local myName = UnitName('player')
         for i = 1, numScores do
-            local name, killingBlows, honorableKills = GetBattlefieldScore(i)
+            local name, killingBlows, honorableKills, deaths = GetBattlefieldScore(i)
             if name == myName then
                 local scores = {killingBlows, honorableKills}
                 for j = 1, numStats do
@@ -417,23 +505,37 @@ local events = {
                     trigger(TYPE.BATTLEFIELD_SCORE_MAX, {mapID, j}, score, true)
                     trigger(TYPE.BATTLEFIELDS_SCORE, {j}, score)
                 end
+                if mapID == bgEyeID then
+                    if GetBattlefieldStatData(i, 1) >= 3 and deaths == 0 then
+                        trigger(TYPE.BG_EYE_GLORY)
+                    end
+                end
                 break
             end
         end
+
+        trigger(TYPE.ALTERAC_VALLEY_MINE_CAPTURE_MAX, nil, alteracValleyMineCaptures, true)
+        alteracValleyMineCaptures = 0
 
         local seconds = GetBattlefieldInstanceRunTime() / 1000
 
         local myFaction = UnitFactionGroup('player')
         if myFaction == 'Horde' then myFaction = 0 else myFaction = 1 end
+
+        local myFactionPoints = GetBattlegroundPoints(myFaction)
+        local enemyFactionPoints = GetBattlegroundPoints(1 - myFaction)
+
+        trigger(TYPE.BG_POINTS, {mapID, myFactionPoints, enemyFactionPoints})
+
         if winner == myFaction then
             trigger(TYPE.BATTLEFIELD_WINS, {mapID}, 1)
             if seconds ~= 0 then
-                if (mapID == alteracID or mapID == arathiID) and seconds <= 360 or mapID == warsongID and seconds <= 420 then
+                if (mapID == alteracID or mapID == arathiID or mapID == bgEyeID) and seconds <= 360 or mapID == warsongID and seconds <= 420 then
                     trigger(TYPE.BATTLEFIELD_FAST_WIN, {mapID})
                 end
             end
         end
-        if UnitLevel('player') == 60 then
+        if UnitLevel('player') == 70 then
             trigger(TYPE.BATTLEFIELD_MAX_LEVEL_PARTICIPATION)
         end
     end,
@@ -453,6 +555,7 @@ local events = {
     end,
     PLAYER_ENTERING_WORLD = function()
         canGetBattlegroundsAchievement = true
+        alteracValleyMineCaptures = 0
     end,
     TRADE_SKILL_UPDATE = function()
         local profession = GetTradeSkillLine()
@@ -489,11 +592,24 @@ local events = {
         local unitID = floor(split[6])
         if unitID == 0 then return end
 
-        if msg:match(EMOTE_LOVE) then
-            trigger(TYPE.EMOTE, {'LOVE', unitID})
-        elseif msg:match(EMOTE_PAT) then
-            trigger(TYPE.EMOTE, {'PAT', unitID})
+        local matched = false
+        for _, pattern in pairs(EMOTE_LOVE) do
+            if msg:match(pattern) then
+                trigger(TYPE.EMOTE, {'LOVE', unitID})
+                matched = true
+                break
+            end
         end
+        if matched then return end
+
+        for _, pattern in pairs(EMOTE_PAT) do
+            if msg:match(pattern) then
+                trigger(TYPE.EMOTE, {'PAT', unitID})
+                matched = true
+                break
+            end
+        end
+        if matched then return end
     end,
     PLAYER_REGEN_ENABLED = function()
         bossesWithMobsCache = {}
