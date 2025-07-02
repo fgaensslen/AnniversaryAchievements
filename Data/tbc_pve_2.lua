@@ -39,7 +39,13 @@ do
                 :Criteria(TYPE.COMPLETE_ACHIEVEMENT, { btSecondWing.id }):Name(btSecondWing.name):Build()
                 :Criteria(TYPE.COMPLETE_ACHIEVEMENT, { btLastWing.id }):Name(btLastWing.name):Build()
                 :Reward('AR_BLACK_TEMPLE', true)
-                :Build()
+                :Build()				
+	
+    L:Achievement(pve, 20, '-Inv_Helmet_103')
+     :NameDesc('AN_TBC_PHASE_3', 'AD_TBC_PHASE_3', true)
+     :Criteria(TYPE.COMPLETE_ACHIEVEMENT, { hyjal.id }):Name(hyjal.name):Build()
+     :Criteria(TYPE.COMPLETE_ACHIEVEMENT, { bt.id }):Name(bt.name):Build()
+     :Build()			
 
     L:Achievement(featsOfStrength, 0, '-Inv_Weapon_Glave_01')
      :NameDesc('AN_AZZINOTH', 'AD_AZZINOTH', true)
