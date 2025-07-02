@@ -69,14 +69,14 @@ L:Achievement(fishing, 10, '-Inv_Misc_Fish_14')
 :Criteria(TYPE.FISH_AN_ITEM, {27388}):Build()
 :Build()
 
-local builder = L:Achievement(fishing, 10, '-Inv_Misc_Fish_37')
-:NameDesc('AN_FISHING_OUTLAND_COLLECTION', 'AD_FISHING_OUTLAND_COLLECTION', true)
+--local builder = L:Achievement(fishing, 10, '-Inv_Misc_Fish_37')
+--:NameDesc('AN_FISHING_OUTLAND_COLLECTION', 'AD_FISHING_OUTLAND_COLLECTION', true)
 
-for _, itemID in pairs({35285, 27422, 27439, 27438, 27437, 27429, 27425, 27435, 33824, 33823, 35286}) do
-    builder:Criteria(TYPE.FISH_AN_ITEM, {itemID}):ItemName(itemID):Build()
-end
+--for _, itemID in pairs({35285, 27422, 27439, 27438, 27437, 27429, 27425, 27435, 33824, 33823, 35286}) do
+--    builder:Criteria(TYPE.FISH_AN_ITEM, {itemID}):ItemName(itemID):Build()
+--end
 
-builder:Build()
+--builder:Build()
 
 do
     local function create(name, icon, itemID, count)
@@ -92,8 +92,8 @@ do
         return ach
     end
 
-    create('FISHERMANS_FEAST', '-Inv_Misc_Food_88_RavagerNuggets', 33052, 100)
-    create('SPICY_HOT_TALBUK', '-Inv_Misc_Food_84_RoastcleftHoof', 33872, 100)
-    create('SKULLFISH_SOUP', '-Inv_Misc_Food_63', 33825, 100)
-    create('RAVAGER_DOG', '-Inv_Misc_Food_53', 27655, 100)
+    --create('FISHERMANS_FEAST', '-Inv_Misc_Food_88_RavagerNuggets', 33052, 100)
+    --create('SPICY_HOT_TALBUK', '-Inv_Misc_Food_84_RoastcleftHoof', 33872, 100)
+    --create('SKULLFISH_SOUP', '-Inv_Misc_Food_63', 33825, 100)
+    --create('RAVAGER_DOG', '-Inv_Misc_Food_53', 27655, 100)
 end

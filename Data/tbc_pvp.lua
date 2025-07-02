@@ -69,12 +69,13 @@ L:Achievement(bgEye, 10, 'bg_eye_fast_win')
 
 local ach = L:Achievement(bgEye, 10, '-Spell_Nature_EyeoftheStorm')
 :NameDesc('AN_EYE_BOSS', 'AD_EYE_BOSS', true)
+:CompleteAchievementCriteria(486)
 :CompleteAchievementCriteria(488)
+:CompleteAchievementCriteria(490)
 :CompleteAchievementCriteria(491)
 :CompleteAchievementCriteria(492)
 :CompleteAchievementCriteria(493)
-:CompleteAchievementCriteria(494)
-:CompleteAchievementCriteria(495)
+
 :Build()
 
 L:GetAchievementByID(354):AddCriteria(L:Criteria(TYPE.COMPLETE_ACHIEVEMENT, {ach.id}):Name(ach.name):Build())
