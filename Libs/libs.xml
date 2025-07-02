@@ -1,4 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
 	<Include file="AceGUI-3.0\AceGUI-3.0.xml" />
 	<Include file="AceConfig-3.0\AceConfig-3.0.xml" />
+	<Include file="SexyLib-Core\core.lua" />
+	<Include file="SexyLib-Localization\localization.lua" />
+	<Include file="SexyLib-Network\network.lua" />
 </Ui>
