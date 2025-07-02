@@ -25,18 +25,95 @@ local function updateBankSlots()
     trigger(TYPE.BANK_SLOTS, nil, bankSlots, true)
 end
 
-function CountLearnedCookingRecipes()
-    local cookingSkillName = GetSpellInfo(2550)
-    local skillName = GetTradeSkillLine()
+function CheckDungeonQuests()
+	local bossQuestMap = {
+		-- Ragefire Chasm
+		[5728] = { type = CA_Criterias.TYPE.KILL_NPC, data = {11518} }, -- Jergosh der Herbeirufer
 
-    if skillName ~= cookingSkillName then
-        return
-    end
-    
-    local numTotalRecipes = GetNumTradeSkills()
+		-- Wailing Caverns
+		[6981] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3654} }, -- Mutanus the Devourer
+
+		-- Deadmines
+		[166] = { type = CA_Criterias.TYPE.KILL_NPC, data = {639} }, -- Edwin VanCleef
+
+		-- Shadowfang Keep
+		[1014] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4275} }, -- Archmage Arugal
+
+		-- Blackfathom Deeps
+		[1200] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4829} }, -- Twilight-Lord Kelris
+		[6561] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4829} }, -- Twilight-Lord Kelris
+
+		-- Stormwind Stockade
+		[387] = { type = CA_Criterias.TYPE.KILL_NPC, data = {1666} }, -- Bazil Thredd
+
+		-- Gnomeregan
+		[2929] = { type = CA_Criterias.TYPE.KILL_NPC, data = {7800} }, -- Mekgineer Thermaplugg
+		[2841] = { type = CA_Criterias.TYPE.KILL_NPC, data = {7800} }, -- Mekgineer Thermaplugg
+
+		-- Razorfen Kraul
+		[1101] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4421} }, -- Charlga Razorflank
+		[1102] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4421} }, -- Charlga Razorflank
+
+		-- Razorfen Downs
+		[3636] = { type = CA_Criterias.TYPE.KILL_NPC, data = {7358} }, -- Amnennar the Coldbringer
+		[3636] = { type = CA_Criterias.TYPE.KILL_NPC, data = {7356} }, -- Plaguemaw der Faulende
+		[3341] = { type = CA_Criterias.TYPE.KILL_NPC, data = {7358} }, -- Amnennar the Coldbringer
+		[3341] = { type = CA_Criterias.TYPE.KILL_NPC, data = {7356} }, -- Plaguemaw der Faulende
+
+		-- Scarlet Monastery
+		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4543} }, -- Alle vier Bosse
+		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {6487} }, -- Alle vier Bosse
+		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3975} }, -- Alle vier Bosse
+		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3977} }, -- Alle vier Bosse
+		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4543} }, -- Alle vier Bosse
+		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {6487} }, -- Alle vier Bosse
+		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3975} }, -- Alle vier Bosse
+		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3977} }, -- Alle vier Bosse
+
+		-- Uldaman
+		[2278] = { type = CA_Criterias.TYPE.KILL_NPC, data = {2748} }, -- Archaedas 
+
+		-- Zul'Farrak
+		[3527] = { type = CA_Criterias.TYPE.KILL_NPC, data = {7267} }, -- Häuptling Ukorz Sandscalp
+
+		-- Maraudon
+		[7064] = { type = CA_Criterias.TYPE.KILL_NPC, data = {12201} }, -- Princess Theradras
+		[7065] = { type = CA_Criterias.TYPE.KILL_NPC, data = {12201} }, -- Princess Theradras
+
+		-- Sunken Temple (Temple of Atal'Hakkar)
+		[3373] = { type = CA_Criterias.TYPE.KILL_NPC, data = {5709} }, -- Shade of Eranikus
+
+		-- Blackrock Depths
+		[4003] = { type = CA_Criterias.TYPE.KILL_NPC, data = {9019} }, -- Emperor Dagran Thaurissan
+		[4362] = { type = CA_Criterias.TYPE.KILL_NPC, data = {9019} }, -- Emperor Dagran Thaurissan
+
+		-- Lower Blackrock Spire
+		[4903] = { type = CA_Criterias.TYPE.KILL_NPC, data = {9568} }, -- 	Oberanführer Wyrmthalak 
+		[5081] = { type = CA_Criterias.TYPE.KILL_NPC, data = {9568} }, -- 	Oberanführer Wyrmthalak 
+
+		-- Upper Blackrock Spire
+		[5102] = { type = CA_Criterias.TYPE.KILL_NPC, data = {10363} }, -- General Drakkisath
+		[6602] = { type = CA_Criterias.TYPE.KILL_NPC, data = {10363} }, -- General Drakkisath
+		[6502] = { type = CA_Criterias.TYPE.KILL_NPC, data = {10363} }, -- General Drakkisath
+
+		-- Scholomance
+		[5382] = { type = CA_Criterias.TYPE.KILL_NPC, data = {1853} }, -- Darkmaster Gandling
+
+		-- Stratholme
+		[5262] = { type = CA_Criterias.TYPE.KILL_NPC, data = {10813} }, -- Balnazzar
+		[5263] = { type = CA_Criterias.TYPE.KILL_NPC, data = {10440} }, -- Baron Rivendare
+
+		-- Dire Maul
+		[7461] = { type = CA_Criterias.TYPE.KILL_NPC, data = {11492} }, -- Immol'thar
+		[7461] = { type = CA_Criterias.TYPE.KILL_NPC, data = {11486} }, -- Prinz Tortheldrin
+	}
 	
-	--Trigger achievement
-    CA_Criterias:Trigger(CA_Criterias.TYPE.LEARN_PROFESSION_RECIPES, { ClassicAchievementsProfessions.COOKING[1] }, numTotalRecipes, true)
+	for questID, criteriaInfo in pairs(bossQuestMap) do
+        if C_QuestLog.IsQuestFlaggedCompleted(questID) then
+            CA_Criterias:Trigger(criteriaInfo.type, criteriaInfo.data)
+        end
+    end
+	
 end
 
 local function updateReputations()
@@ -124,6 +201,28 @@ local function updateProfessions()
     end
     triggerProfessions(main, TYPE.REACH_MAIN_PROFESSION_LEVEL)
     triggerProfessions(secondary, TYPE.REACH_SECONDARY_PROFESSION_LEVEL)
+end
+
+function CountLearnedCookingRecipes()
+	local profession = GetTradeSkillLine()
+	for _, data in pairs(ClassicAchievementsProfessions) do
+		if profession == GetSpellInfo(2550) then
+			local total = 0
+			for i = 1, GetNumTradeSkills() do
+				local _, type = GetTradeSkillInfo(i)
+				if type ~= 'header' then
+					total = total + 1
+					local link = GetTradeSkillItemLink(i)
+					if link then
+						local id = getItemIdFromLink(link)
+						if id then trigger(TYPE.LEARN_PROFESSION_RECIPE, {data[1], id}) end
+					end
+				end
+			end
+			trigger(TYPE.LEARN_PROFESSION_RECIPES, {ClassicAchievementsProfessions.COOKING[1]}, total, true)
+			break
+		end
+	end
 end
 
 local function updateItemsInInventory()
@@ -251,6 +350,7 @@ function CA_performInitialCheck()
     updateProfessions()
     updateItemsInInventory()
     updateGear()
+	CheckDungeonQuests()
 
     CA_CompletionManager:GetLocal():RecheckAchievements()
 end
@@ -428,10 +528,6 @@ local events = {
     PLAYERBANKBAGSLOTS_CHANGED = function()
         C_Timer.After(1, updateBankSlots)
     end,
-	--check for cooking recipes when cooking window is opened
-	TRADE_SKILL_SHOW = function()
-		CountLearnedCookingRecipes()
-	end,
 	BANKFRAME_OPENED = function()
 		updateBankSlots()
 	end,
@@ -549,26 +645,12 @@ local events = {
         canGetBattlegroundsAchievement = true
         alteracValleyMineCaptures = 0
     end,
+	--check for cooking recipes when cooking window is opened
+	TRADE_SKILL_SHOW = function()
+		CountLearnedCookingRecipes()	
+	end,
     TRADE_SKILL_UPDATE = function()
-        local profession = GetTradeSkillLine()
-        for _, data in pairs(ClassicAchievementsProfessions) do
-            if profession == data[3] then
-                local total = 0
-                for i = 1, GetNumTradeSkills() do
-                    local _, type = GetTradeSkillInfo(i)
-                    if type ~= 'header' then
-                        total = total + 1
-                        local link = GetTradeSkillItemLink(i)
-                        if link then
-                            local id = getItemIdFromLink(link)
-                            if id then trigger(TYPE.LEARN_PROFESSION_RECIPE, {data[1], id}) end
-                        end
-                    end
-                end
-                trigger(TYPE.LEARN_PROFESSION_RECIPES, {data[1]}, total, true)
-                break
-            end
-        end
+		CountLearnedCookingRecipes()        
     end,
     CHAT_MSG_SYSTEM = function(msg)
         local winner = msg:match(DUEL_VICTORY_PATTERN)
