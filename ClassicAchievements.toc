@@ -23,14 +23,14 @@ DB/AreaTableLocale_frFR.lua
 DB/AreaTableLocale_enUS.lua
 DB/AreaTableLocale_deDE.lua
 
-Settings.lua
+util/Settings.lua
 
-structures/Completion.lua
-structures/Achievements.lua
-structures/Criterias.lua
-KillingTracker.lua
-Triggers.lua
-ChatLink.lua
+api/Completion.lua
+api/Achievements.lua
+api/Criterias.lua
+util/KillingTracker.lua
+util/Triggers.lua
+util/ChatLink.lua
 
 Data/Loader.lua
 Data/vanilla_1.lua
@@ -53,10 +53,10 @@ BlizzardStuff/AchievementUI.xml
 
 BlizzardStuff/Microbutton.xml
 BlizzardStuff/Microbutton.lua
-Minimap.lua
+util/Minimap.lua
 
-Network.lua
-Comparison.lua
+util/Network.lua
+util/Comparison.lua
 
 Integrations/DBM.lua
 Integrations/Bartender4.lua
