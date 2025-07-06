@@ -63,7 +63,6 @@ SexyLib:Util():AfterLogin(function()
 		MainMenuBarPerformanceBarFrame:SetMovable(1)
 		MainMenuBarPerformanceBarFrame:SetUserPlaced(true)
 		MainMenuBarPerformanceBarFrame:ClearAllPoints()
-		MainMenuBarPerformanceBarFrame.ClearAllPoints = function() end       --Tbh idk if that's necessary
 		MainMenuBarPerformanceBarFrame:SetPoint("RIGHT", -235, -4)
 		move(MainMenuBarPerformanceBarFrame, -width)
     end)

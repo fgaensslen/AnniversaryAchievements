@@ -1173,7 +1173,7 @@ SexyLib:InitLocalization('Classic Achievements', {
     AC_KILL_NAJENTUS = 'Oberster Kriegsfürst Naj\'entus',
     AC_KILL_SUPREMUS = 'Supremus',
 
-    AN_BT_SECOND_WING = 'Akolyte von Karabor ',
+    AN_BT_SECOND_WING = 'Akolyth von Karabor ',
     AD_BT_SECOND_WING = 'Reinigt die Hallen des Schwarzen Tempels, indem ihr nachfolgende Bosse bezwingt.',
     AC_KILL_SHADOW_OF_AKAMA = 'Akamas Schemen',
     AC_KILL_THERON = 'Teron Blutschatten',

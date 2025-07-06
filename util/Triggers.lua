@@ -116,6 +116,19 @@ function CheckDungeonQuests()
 	
 end
 
+local function checkUnexploredAreas()
+	local subZone = GetSubZoneText()
+	if not subZone or subZone == "" then
+		subZone = GetZoneText()
+	end
+	for areaID, name in pairs(AreaTableLocale) do
+		if name == subZone then
+			trigger(TYPE.EXPLORE_AREA, {areaID}, 1, true)
+			break
+		end
+	end
+end
+
 local function updateReputations()
     local totals = {}
     for factionIndex = 1, GetNumFactions() do
@@ -627,17 +640,12 @@ local events = {
             trigger(TYPE.BATTLEFIELD_MAX_LEVEL_PARTICIPATION)
         end
     end,
-    UI_INFO_MESSAGE = function(type, message)
-        if type ~= 372 then return end
-        local areaName = message:match(ZONE_EXPLORED_PATTERN)
-        if not areaName then areaName = message:match(ZONE_EXPLORED2_PATTERN) end
-        if not areaName then return end
-        for areaID, name in pairs(AreaTableLocale) do
-            if name == areaName then
-                trigger(TYPE.EXPLORE_AREA, {areaID}, 1, true)
-            end
-        end
-    end,
+	ZONE_CHANGED_NEW_AREA = function()
+		checkUnexploredAreas()
+	end,
+	ZONE_CHANGED = function()		
+		checkUnexploredAreas()
+	end,
     PLAYER_EQUIPMENT_CHANGED = function()
         C_Timer.After(1, updateGear)
     end,
