@@ -21,12 +21,7 @@ function CA_InitializeMicrobutton()
     
     AchievementMicroButton:SetScript('OnClick', function(self, button)
         if button == 'RightButton' then
-            if InterfaceOptionsFrame:IsShown() then
-                InterfaceOptionsFrame:Hide()
-            else
-                InterfaceOptionsFrame_OpenToCategory('Classic Achievements')
-                InterfaceOptionsFrame_OpenToCategory('Classic Achievements') -- not a bug, two calls required
-            end
+            Settings.OpenToCategory("Classic Achievements")
         else
             AchievementFrame_ToggleAchievementFrame()
         end
@@ -64,7 +59,13 @@ SexyLib:Util():AfterLogin(function()
     MainMenuBarTexture2:SetWidth(MainMenuBarTexture2:GetWidth() + width)
     AchievementMicroButton:SetFrameStrata('HIGH')
     C_Timer.After(0.01, function()
-        move(MainMenuBarPerformanceBarFrame, -width)
+        MainMenuBarPerformanceBarFrame:SetClampedToScreen(false)  
+		MainMenuBarPerformanceBarFrame:SetMovable(1)
+		MainMenuBarPerformanceBarFrame:SetUserPlaced(true)
+		MainMenuBarPerformanceBarFrame:ClearAllPoints()
+		MainMenuBarPerformanceBarFrame.ClearAllPoints = function() end       --Tbh idk if that's necessary
+		MainMenuBarPerformanceBarFrame:SetPoint("RIGHT", -235, -4)
+		move(MainMenuBarPerformanceBarFrame, -width)
     end)
     move(MainMenuBarBackpackButton, -width)
     
