@@ -23,7 +23,6 @@ SexyLib:Localization('Classic Achievements'):Add({
     UPDATING_EXPLORED_AREAS = 'Обновляю информацию об исследованных локациях. Это займет несколько секунд.',
     UPDATED_EXPLORED_AREAS = '&aИнформация об исследованных локациях обновлена!',
 
-    NOT_WORKING = 'не работает',
 
     GEAR_SLOT_HEAD = 'Головной убор',
     GEAR_SLOT_NECK = 'Ожерелье',

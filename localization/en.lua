@@ -22,7 +22,6 @@ SexyLib:InitLocalization('Classic Achievements', {
     UPDATING_EXPLORED_AREAS = 'Updating locations exploration data. This action will take a few seconds.',
     UPDATED_EXPLORED_AREAS = '&aInformation about explored locations has been updated!',
 
-    NOT_WORKING = 'not working',
 
     GEAR_SLOT_HEAD = 'Headdress',
     GEAR_SLOT_NECK = 'Necklace',

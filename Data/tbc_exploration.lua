@@ -17,11 +17,7 @@ local function create(zoneName, zoneID, subzoneIDs, category)
     :Name(loc:Get('EXPLORE_OUTLAND_NAME_PATTERN', AreaTableLocale[zoneID]))
     :Desc('AD_EXPLORE_' .. string.upper(zoneName), true)
     for _, subzoneID in pairs(subzoneIDs) do
-        if subzoneID < 0 then
-            builder:Criteria(TYPE.NOT_WORKING):Name(AreaTableLocale[-subzoneID] .. ' (' .. loc:Get('NOT_WORKING') .. ')'):Build()
-        else
-            builder:Criteria(TYPE.EXPLORE_AREA, {subzoneID}):Name(AreaTableLocale[subzoneID]):Build()
-        end
+		builder:Criteria(TYPE.EXPLORE_AREA, {subzoneID}):Name(AreaTableLocale[subzoneID]):Build()
     end
     return builder:Build()
 end

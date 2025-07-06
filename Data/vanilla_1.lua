@@ -585,11 +585,7 @@ do
         local areaName = AreaTableLocale[areaID]
         ach = explorationKalimdor:CreateAchievement(areaName, loc:Get('AD_EXPLORE', areaName), 10, icon or string.lower(AreaTable[areaID][3]))
         for _, childrenID in pairs(areaIDs) do
-            if childrenID < 0 then
-                ach:AddCriteria(criterias:Create(AreaTableLocale[-childrenID] .. ' (' .. loc:Get('NOT_WORKING') .. ')', TYPE.NOT_WORKING))
-            else
-                ach:AddCriteria(criterias:Create(AreaTableLocale[childrenID], TYPE.EXPLORE_AREA, {childrenID}))
-            end
+			ach:AddCriteria(criterias:Create(AreaTableLocale[childrenID], TYPE.EXPLORE_AREA, {childrenID}))
         end
         global:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
     end
@@ -619,11 +615,7 @@ do
         local areaName = AreaTableLocale[areaID]
         ach = explorationEasternKingdoms:CreateAchievement(areaName, loc:Get('AD_EXPLORE', areaName), 10, icon or string.lower(AreaTable[areaID][3]))
         for _, childrenID in pairs(areaIDs) do
-            if childrenID < 0 then
-                ach:AddCriteria(criterias:Create(AreaTableLocale[-childrenID] .. ' (' .. loc:Get('NOT_WORKING') .. ')', TYPE.NOT_WORKING))
-            else
                 ach:AddCriteria(criterias:Create(AreaTableLocale[childrenID], TYPE.EXPLORE_AREA, {childrenID}))
-            end
         end
         global:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
     end

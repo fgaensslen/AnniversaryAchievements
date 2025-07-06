@@ -6,7 +6,6 @@ SexyLib:Localization('Classic Achievements'):Add({
     achievement_earned = '&aHaut fait obtenu par %s le %d/%d/%d',
     achievement_in_progress = '&7Haut fait en cours par %s',
 	
-	NOT_WORKING = 'ne fonctionne pas',
 	
 	-- ##################
 	-- Icon in buttom bar
