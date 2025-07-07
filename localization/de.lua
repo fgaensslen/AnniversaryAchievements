@@ -2,16 +2,16 @@ SexyLib:InitLocalization('Classic Achievements', {
     achievement_earned = '&aAchievement earned by %s on %d/%d/%d',
     achievement_in_progress = '&7Achievement in progress by %s',
 
-    ICON_DESCRIPTION = '&7Left mouse button: &eopen/hide achievements window\n&7Right mouse button: &eopen Classic Achievements settings\n\n&3With love from Maxich :)',
+    ICON_DESCRIPTION = '&7Linksklick: &eErfolge anzeigen oder schließen\n&7Rechtsklick: &eEinstellungen öffnen\n',
 
     OPTION_SHARING = 'Erfolge teilen',
-    OPTION_SHARING_DESC = 'Whether to write messages in chats when receiving new achievement.',
-    OPTION_MICROBUTTON = 'Micromenu button',
+    OPTION_SHARING_DESC = 'Neue Erfolge werden im Chat geteilt.',
+    OPTION_MICROBUTTON = 'Minimap Button',
     OPTION_MICROBUTTON_DESC = 'If enabled, an addon button will be added to the micromenu, and the interface may break if you are using any addon to modify it. If disabled, the icon will be added to the minimap. Toggling this option requires you to do /reload or rejoin your character.',
-    OPTION_UPDATE_MAP_EXPLORATION = 'Check explored locations',
-    OPTION_UPDATE_MAP_EXPLORATION_DESC = 'Counts already explored locations for achievements.',
-    OPTION_RESET_ACHIEVEMENTS = 'Reset achievements',
-    OPTION_RESET_ACHIEVEMENTS_DESC = 'Reset all achievements progressions on this character. This can not be undone!',
+    OPTION_UPDATE_MAP_EXPLORATION = 'Erkundete Gebiete überprüfen',
+    OPTION_UPDATE_MAP_EXPLORATION_DESC = 'Überprüft alle bereits erkundeten Gebiete für Erfolge.',
+    OPTION_RESET_ACHIEVEMENTS = 'Erfolge zurücksetzen',
+    OPTION_RESET_ACHIEVEMENTS_DESC = 'Setzt alle Erfolge auf diesem Charakter zurück. Dies kann nicht rückgängig gemacht werden!',
 
     GOT_ACHIEVEMENT_MESSAGE_MALE = 'I\'ve just earned achievement %s!',
     GOT_ACHIEVEMENT_MESSAGE_FEMALE = 'I\'ve just earned achievement %s!',
@@ -601,7 +601,7 @@ SexyLib:InitLocalization('Classic Achievements', {
 
     PROF_FIRST_AID = 'Erste Hilfe',
     PROF_FISHING = 'Angeln',
-    PROF_COOKING = 'Kochen',
+    PROF_COOKING = 'Kochkunst',
     PROF_ENCHANTING = 'Verzauberkunst',
     PROF_TAILORING = 'Schneiderei',
     PROF_ENGINEERING = 'Ingenierskunst',
