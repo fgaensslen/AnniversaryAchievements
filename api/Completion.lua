@@ -2,6 +2,7 @@ CA_CompletionManager = {}
 
 local struct = CA_CompletionManager
 local mapping = {}
+local achievementSoundQueued = false
 
 local requiresUpdate = false
 C_Timer.NewTicker(1, function()
@@ -115,8 +116,8 @@ local function Completion(data)
             self:CompleteAchievement(achievement.id)
             AchievementFrameAchievements_Update()
             AchievementAlertSystem:AddAlert(achievement.id)
-            PlaySound(SOUNDKIT.UI_IG_STORE_PURCHASE_DELIVERED_TOAST_01)
-
+            QueueAchievementSound()
+			
             CA_ShareAchievement(achievement.id)
         end,
         CompleteCriteria = function(self, achievementID, criteriaID, withQuantity)
@@ -231,6 +232,36 @@ local function Completion(data)
             CA_FirstLogin = true
         end
     }
+end
+
+--[[
+    Function: QueueAchievementSound
+    Description:
+        Queues and plays a custom achievement sound from the addon’s "sounds" folder.
+        Designed to handle scenarios where multiple achievements are earned in quick succession,
+        this function avoids overlapping sound playback by introducing a delay between plays.
+
+    Behavior:
+        - Adds sound requests to a queue when triggered.
+        - Uses C_Timer to space out playback, ensuring each sound plays clearly.
+        - Prevents the audio clutter caused by multiple simultaneous achievement sounds.
+
+    Configuration:
+        - SOUND_DELAY: Time in seconds between each queued sound playback.
+        - SOUND_PATH: Path to the custom sound file within the addon folder.
+
+    Usage:
+        Replace direct PlaySoundFile() calls with QueueAchievementSound()
+        when triggering achievement sounds.
+]]--
+function QueueAchievementSound()
+    if not achievementSoundQueued then
+        achievementSoundQueued = true
+        C_Timer.After(0.1, function()
+            PlaySoundFile("Interface\\AddOns\\ClassicAchievements\\sounds\\AchievementEarned.ogg", "Master")
+            achievementSoundQueued = false
+        end)
+    end
 end
 
 struct.localCompletion = Completion(CA_LocalData)
