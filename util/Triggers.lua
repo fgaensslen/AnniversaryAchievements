@@ -1,5 +1,5 @@
 local TYPE = CA_Criterias.TYPE
-local loc = SexyLib:Localization('Classic Achievements')
+local loc = SexyLib:Localization('Anniversary Achievements')
 
 local function trigger(...)
     CA_Criterias:Trigger(...)
@@ -316,10 +316,10 @@ function CA_UpdateExploredAreas()
     if updatingExploredAreas then return end
     updatingExploredAreas = true
 
-    SexyLib:Logger('Classic Achievements'):LogInfoL('UPDATING_EXPLORED_AREAS')
+    SexyLib:Logger('Anniversary Achievements'):LogInfoL('UPDATING_EXPLORED_AREAS')
     local callback = function()
         updatingExploredAreas = false
-        SexyLib:Logger('Classic Achievements'):LogInfoL('UPDATED_EXPLORED_AREAS')
+        SexyLib:Logger('Anniversary Achievements'):LogInfoL('UPDATED_EXPLORED_AREAS')
     end
 
     local mapIDs = {}

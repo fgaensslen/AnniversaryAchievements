@@ -1,7 +1,7 @@
 CA_Database = {}
 
 local struct = CA_Database
-local loc = SexyLib:Localization('Classic Achievements')
+local loc = SexyLib:Localization('Anniversary Achievements')
 
 struct.tabs = {}
 struct.categories = {}

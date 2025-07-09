@@ -1,7 +1,7 @@
 local tab = CA_Database:GetTab(CA_Database.TAB_ID_PLAYER)
 local L = CA_Loader:ForTab(tab)
 local TYPE = CA_Criterias.TYPE
-local loc = SexyLib:Localization('Classic Achievements')
+local loc = SexyLib:Localization('Anniversary Achievements')
 local ach, previous
 
 local pvp = L:GetCategoryByName('PvP')

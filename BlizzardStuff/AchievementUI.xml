@@ -130,21 +130,21 @@
 						<Anchor point="RIGHT" x="-5" y="3"/>
 					</Anchors>
 				</FontString>
-				<Texture name="$parentLeft" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+				<Texture name="$parentLeft" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
 					<Size x="32" y="48"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" x="-15" y="16"/>
 					</Anchors>
 					<TexCoords left="0.423828125" right="0.486" top="0.56640625" bottom="0.75"/>
 				</Texture>
-				<Texture name="$parentRight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+				<Texture name="$parentRight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
 					<Size x="32" y="48"/>
 					<Anchors>
 						<Anchor point="TOPRIGHT" x="15" y="16"/>
 					</Anchors>
 					<TexCoords right="0.423828125" left="0.486" bottom="0.75" top="0.56640625"/>
 				</Texture>
-				<Texture name="$parentMiddle" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+				<Texture name="$parentMiddle" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentLeft" relativePoint="TOPRIGHT"/>
 						<Anchor point="BOTTOMRIGHT" relativeTo="$parentRight" relativePoint="BOTTOMLEFT"/>
@@ -169,21 +169,21 @@
 					<Frame name="$parentHighlight" setAllPoints="true" hidden="true">
 						<Layers>
 							<Layer level="OVERLAY">
-								<Texture name="$parentLeft" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-StatusBar-Highlight" alphaMode="ADD">
+								<Texture name="$parentLeft" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-StatusBar-Highlight" alphaMode="ADD">
 									<Size x="32" y="32"/>
 									<Anchors>
 										<Anchor point="TOPLEFT" x="-7" y="8"/>
 									</Anchors>
 									<TexCoords left="0" right="1" top="0" bottom="1"/>
 								</Texture>
-								<Texture name="$parentRight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-StatusBar-Highlight" alphaMode="ADD">
+								<Texture name="$parentRight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-StatusBar-Highlight" alphaMode="ADD">
 									<Size x="32" y="32"/>
 									<Anchors>
 										<Anchor point="TOPRIGHT" x="7" y="8"/>
 									</Anchors>
 									<TexCoords right="0" left="1" top="0" bottom="1"/>
 								</Texture>
-								<Texture name="$parentMiddle" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-StatusBar-Highlight" alphaMode="ADD">
+								<Texture name="$parentMiddle" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-StatusBar-Highlight" alphaMode="ADD">
 									<Anchors>
 										<Anchor point="TOPLEFT" relativeTo="$parentLeft" relativePoint="TOPRIGHT"/>
 										<Anchor point="BOTTOMRIGHT" relativeTo="$parentRight" relativePoint="BOTTOMLEFT"/>
@@ -276,63 +276,63 @@
         <Size x="115" y="32"/>
         <Layers>
         	<Layer level="BACKGROUND">
-        		<Texture name="$parentLeftDisabled" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+        		<Texture name="$parentLeftDisabled" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
         			<Size x="21" y="59"/>
         			<Anchors>
         				<Anchor point="TOPLEFT" x="0" y="5"/>
         			</Anchors>
 					<TexCoords left="0.47265625" right="0.513671875" top="0.76953125" bottom="1.0"/>
         		</Texture>
-				<Texture name="$parentMiddleDisabled" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+				<Texture name="$parentMiddleDisabled" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
         			<Size x="88" y="59"/>
         			<Anchors>
         				<Anchor point="LEFT" relativeTo="$parentLeftDisabled" relativePoint="RIGHT"/>
         			</Anchors>
 					<TexCoords left="0.513671875" right="0.685546875" top="0.76953125" bottom="1.0"/>
         		</Texture>
-				<Texture name="$parentRightDisabled" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+				<Texture name="$parentRightDisabled" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
         			<Size x="18" y="59"/>
         			<Anchors>
         				<Anchor point="LEFT" relativeTo="$parentMiddleDisabled" relativePoint="RIGHT"/>
         			</Anchors>
 					<TexCoords left="0.685546875" right="0.720703125" top="0.76953125" bottom="1.0"/>
         		</Texture>
-				<Texture name="$parentLeft" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+				<Texture name="$parentLeft" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
         			<Size x="21" y="49"/>
         			<Anchors>
         				<Anchor point="TOPLEFT"/>
         			</Anchors>
 					<TexCoords left="0.47265625" right="0.513671875" top="0.76953125" bottom="1.0"/>
         		</Texture>
-				<Texture name="$parentMiddle" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+				<Texture name="$parentMiddle" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
         			<Size x="88" y="49"/>
         			<Anchors>
         				<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
 					</Anchors>
 					<TexCoords left="0.513671875" right="0.685546875" top="0.76953125" bottom="1.0"/>
         		</Texture>
-				<Texture name="$parentRight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+				<Texture name="$parentRight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
         			<Size x="18" y="49"/>
         			<Anchors>
         				<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
         			</Anchors>
 					<TexCoords left="0.685546875" right="0.720703125" top="0.76953125" bottom="1.0"/>
         		</Texture>
-				<Texture name="$parentLeftHighlight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header" hidden="true" alphaMode="ADD" parentKey="leftHighlight">
+				<Texture name="$parentLeftHighlight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header" hidden="true" alphaMode="ADD" parentKey="leftHighlight">
         			<Size x="32" y="49"/>
         			<Anchors>
         				<Anchor point="TOPLEFT" x="-3" y="-1"/>
         			</Anchors>
 					<TexCoords left="0.720703125" right="0.783203125" top="0.76953125" bottom="1.0"/>
         		</Texture>
-				<Texture name="$parentRightHighlight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header" hidden="true" alphaMode="ADD" parentKey="rightHighlight">
+				<Texture name="$parentRightHighlight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header" hidden="true" alphaMode="ADD" parentKey="rightHighlight">
         			<Size x="18" y="49"/>
         			<Anchors>
         				<Anchor point="TOPRIGHT" x="-4" y="-1"/>
         			</Anchors>
 					<TexCoords left="0.923828125" right="0.986328125" top="0.76953125" bottom="1.0"/>
         		</Texture>
-				<Texture name="$parentMiddleHighlight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header" hidden="true" alphaMode="ADD" parentKey="middleHighlight">
+				<Texture name="$parentMiddleHighlight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header" hidden="true" alphaMode="ADD" parentKey="middleHighlight">
         			<Size x="88" y="49"/>
         			<Anchors>
         				<Anchor point="LEFT" relativeTo="$parentLeftHighlight" relativePoint="RIGHT"/>
@@ -391,7 +391,7 @@
 		<Size x="72" y="128"/>
 		<Layers>
 			<Layer level="BACKGROUND">
-				<Texture name="$parentBackground" file="Interface\AddOns\ClassicAchievements\textures\GuildTabard" parentKey="background">
+				<Texture name="$parentBackground" file="Interface\AddOns\AnniversaryAchievements\textures\GuildTabard" parentKey="background">
 					<Size x="72" y="128"/>
 					<Anchors>
 						<Anchor point="TOP" x="0" y="0"/>
@@ -400,7 +400,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="BORDER">
-				<Texture name="$parentBorder" file="Interface\AddOns\ClassicAchievements\textures\GuildTabard" parentKey="border">
+				<Texture name="$parentBorder" file="Interface\AddOns\AnniversaryAchievements\textures\GuildTabard" parentKey="border">
 					<Size x="56" y="121"/>
 					<Anchors>
 						<Anchor point="TOP" x="0" y="0"/>
@@ -433,7 +433,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="BORDER">
-				<Texture name="$parentBorder" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Progressive-IconBorder" parentKey="border">
+				<Texture name="$parentBorder" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Progressive-IconBorder" parentKey="border">
 					<Anchors>
 						<Anchor point="TOPLEFT"/>
 						<Anchor point="BOTTOMRIGHT"/>
@@ -442,7 +442,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="ARTWORK">
-				<Texture name="$parentShield" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Progressive-Shield" parentKey="shield">
+				<Texture name="$parentShield" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Progressive-Shield" parentKey="shield">
 					<Anchors>
 						<Anchor point="TOPLEFT" x="12" y="-12"/>
 						<Anchor point="BOTTOMRIGHT" x="16" y="-16"/>
@@ -502,7 +502,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="BORDER">
-				<Texture name="$parentBorder" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Progressive-IconBorder" parentKey="border">
+				<Texture name="$parentBorder" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Progressive-IconBorder" parentKey="border">
 					<Size x="30" y="30"/>
 					<Anchors>
 						<Anchor point="TOPLEFT"/>
@@ -511,7 +511,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="ARTWORK">
-				<Texture name="$parentCheck" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Criteria-Check" parentKey="check">
+				<Texture name="$parentCheck" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Criteria-Check" parentKey="check">
 					<Size x="20" y="16"/>
 					<Anchors>
 						<Anchor point="RIGHT" relativePoint="LEFT" x="0" y="0"/>
@@ -569,7 +569,7 @@
 				</FontString>
 			</Layer>
 			<Layer level="ARTWORK">
-				<Texture name="$parentBorderLeft" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-ProgressBar-Border">
+				<Texture name="$parentBorderLeft" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-ProgressBar-Border">
 					<Size x="16" y="0"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" x="-6" y="5"/>
@@ -577,7 +577,7 @@
 					</Anchors>
 					<TexCoords left="0" right="0.0625" top="0" bottom="0.75"/>
 				</Texture>
-				<Texture name="$parentBorderRight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-ProgressBar-Border">
+				<Texture name="$parentBorderRight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-ProgressBar-Border">
 					<Size x="16" y="0"/>
 					<Anchors>
 						<Anchor point="TOPRIGHT" x="6" y="5"/>
@@ -585,7 +585,7 @@
 					</Anchors>
 					<TexCoords left="0.812" right="0.8745" top="0" bottom="0.75"/>
 				</Texture>
-				<Texture name="$parentBorderCenter" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-ProgressBar-Border">
+				<Texture name="$parentBorderCenter" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-ProgressBar-Border">
 					<Size x="16"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentBorderLeft" relativePoint="TOPRIGHT"/>
@@ -624,21 +624,21 @@
 						<Anchor point="RIGHT" x="-5" y="3"/>
 					</Anchors>
 				</FontString>
-				<Texture name="$parentLeft" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+				<Texture name="$parentLeft" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
 					<Size x="32" y="48"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" x="-15" y="16"/>
 					</Anchors>
 					<TexCoords left="0.423828125" right="0.486" top="0.56640625" bottom="0.75"/>
 				</Texture>
-				<Texture name="$parentRight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+				<Texture name="$parentRight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
 					<Size x="32" y="48"/>
 					<Anchors>
 						<Anchor point="TOPRIGHT" x="15" y="16"/>
 					</Anchors>
 					<TexCoords right="0.423828125" left="0.486" bottom="0.75" top="0.56640625"/>
 				</Texture>
-				<Texture name="$parentMiddle" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+				<Texture name="$parentMiddle" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentLeft" relativePoint="TOPRIGHT"/>
 						<Anchor point="BOTTOMRIGHT" relativeTo="$parentRight" relativePoint="BOTTOMLEFT"/>
@@ -661,7 +661,7 @@
 		<Size x="158" y="24"/>
 		<Layers>
 			<Layer level="BACKGROUND">
-				<Texture name="$parentBackground" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Category-Background" parentKey="background">
+				<Texture name="$parentBackground" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Category-Background" parentKey="background">
 					<Size x="170" y="32"/>
 					<Anchors>
 						<Anchor point="TOPLEFT"/>
@@ -696,7 +696,7 @@
 				GameTooltip:Hide();
 			</OnLeave>
 		</Scripts>
-		<HighlightTexture file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Category-Highlight" alphaMode="ADD">
+		<HighlightTexture file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Category-Highlight" alphaMode="ADD">
 			<Anchors>
 				<Anchor point="TOPLEFT" x="0" y="0"/>
 				<Anchor point="BOTTOMRIGHT" x="-1" y="-7"/>
@@ -708,7 +708,7 @@
 	<Frame name="AchievementIconFrameTemplate" virtual="true">
 		<Layers>
 			<Layer level="BORDER">
-				<Texture name="$parentBling" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Bling" hidden="true" parentKey="bling">
+				<Texture name="$parentBling" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Bling" hidden="true" parentKey="bling">
 					<Anchors>
 						<Anchor point="CENTER" x="-1" y="1"/>
 					</Anchors>
@@ -724,7 +724,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="OVERLAY">
-				<Texture name="$parentOverlay" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-IconFrame" parentKey="frame">
+				<Texture name="$parentOverlay" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-IconFrame" parentKey="frame">
 					<Anchors>
 						<Anchor point="CENTER" x="-1" y="2"/>
 					</Anchors>
@@ -744,7 +744,7 @@
 		<Size x="350" y="15"/>
 		<Layers>
 			<Layer level="ARTWORK">
-				<Texture name="$parentCheck" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Criteria-Check" parentKey="check">
+				<Texture name="$parentCheck" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Criteria-Check" parentKey="check">
 					<Size x="20" y="16"/>
 					<Anchors>
 						<Anchor point="LEFT" x="0" y="-3"/>
@@ -773,7 +773,7 @@
 		<Size x="434" y="142"/>
 		<Layers>
 			<Layer level="BACKGROUND">
-				<Texture name="$parentBackground" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Parchment-Horizontal" parentKey="background">
+				<Texture name="$parentBackground" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Parchment-Horizontal" parentKey="background">
 					<Anchors>
 						<Anchor point="TOPLEFT" x="3" y="-3"/>
 						<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
@@ -781,7 +781,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="BORDER">
-				<Texture name="$parentBottomLeftTsunami" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Tsunami-Corners">
+				<Texture name="$parentBottomLeftTsunami" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Tsunami-Corners">
 					<Size x="32" y="32"/>
 					<Anchors>
 						<Anchor point="BOTTOMLEFT" x="-2" y="-2"/>
@@ -789,7 +789,7 @@
 					<Color r="1" g="1" b="1" a=".2"/>
 					<TexCoords left="0" right=".5" top="0" bottom="1"/>
 				</Texture>
-				<Texture name="$parentBottomRightTsunami" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Tsunami-Corners">
+				<Texture name="$parentBottomRightTsunami" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Tsunami-Corners">
 					<Size x="32" y="32"/>
 					<Anchors>
 						<Anchor point="BOTTOMRIGHT" x="2" y="-2"/>
@@ -797,7 +797,7 @@
 					<Color r="1" g="1" b="1" a=".2"/>
 					<TexCoords left=".5" right="1" top="0" bottom="1"/>
 				</Texture>
-				<Texture name="$parentTopLeftTsunami" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Tsunami-Corners">
+				<Texture name="$parentTopLeftTsunami" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Tsunami-Corners">
 					<Size x="32" y="32"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" x="-2" y="-20"/>
@@ -805,7 +805,7 @@
 					<Color r="1" g="1" b="1" a=".1"/>
 					<TexCoords left="1" right=".5" top="1" bottom="0"/>
 				</Texture>
-				<Texture name="$parentTopRightTsunami" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Tsunami-Corners">
+				<Texture name="$parentTopRightTsunami" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Tsunami-Corners">
 					<Size x="32" y="32"/>
 					<Anchors>
 						<Anchor point="TOPRIGHT" x="2" y="-20"/>
@@ -813,7 +813,7 @@
 					<Color r="1" g="1" b="1" a=".1"/>
 					<TexCoords left=".5" right="0" top="1" bottom="0"/>
 				</Texture>
-				<Texture name="$parentBottomTsunami1" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Borders">
+				<Texture name="$parentBottomTsunami1" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Borders">
 					<Size x="370" y="16"/>
 					<Anchors>
 						<Anchor point="BOTTOMLEFT" relativeTo="$parentBottomLeftTsunami" relativePoint="BOTTOMRIGHT" x="0" y="3"/>
@@ -822,7 +822,7 @@
 					<Color r="1" g="1" b="1" a=".35"/>
 					<TexCoords left="0" right="0.72265" top="0.51953125" bottom="0.58203125"/>
 				</Texture>
-				<Texture name="$parentTopTsunami1" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Borders">
+				<Texture name="$parentTopTsunami1" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Borders">
 					<Size x="370" y="16"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentTopLeftTsunami" relativePoint="TOPRIGHT" x="0" y="-3"/>
@@ -833,7 +833,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="ARTWORK">
-				<Texture name="$parentTitleBackground" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Borders" parentKey="titleBar">
+				<Texture name="$parentTitleBackground" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Borders" parentKey="titleBar">
 					<Size x="0" y="24"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" x="5" y="-4"/>
@@ -842,7 +842,7 @@
 					<TexCoords left="0" right="0.9765625" top="0.66015625" bottom="0.73828125"/>
 					<Color r="1" g="1" b="1" a=".8"/>
 				</Texture>
-				<Texture name="$parentGlow" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Borders" parentKey="glow">
+				<Texture name="$parentGlow" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Borders" parentKey="glow">
 					<Size x="10" y="64"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentTitleBackground" relativePoint="BOTTOMLEFT" x="0" y="4"/>
@@ -850,7 +850,7 @@
 					</Anchors>
 					<TexCoords left="0" right="1" top="0.00390625" bottom="0.25390625"/>
 				</Texture>
-				<Texture name="$parentRewardBackground" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Reward-Background" hidden="true" parentKey="rewardBackground">
+				<Texture name="$parentRewardBackground" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Reward-Background" hidden="true" parentKey="rewardBackground">
 					<Size x="384" y="24"/>
 					<Anchors>
 						<Anchor point="BOTTOMLEFT" x="5" y="-2"/>
@@ -859,14 +859,14 @@
 					</Anchors>
 					<TexCoords left="0" right=".69" top="0" bottom=".75"/>
 				</Texture>
-				<Texture name="$parentGuildCornerL" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Guild" parentKey="guildCornerL" hidden="true">
+				<Texture name="$parentGuildCornerL" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Guild" parentKey="guildCornerL" hidden="true">
 					<Size x="54" y="53"/>
 					<Anchors>
 						<Anchor point="BOTTOMLEFT" x="-1" y="-1"/>
 					</Anchors>
 					<TexCoords left="0.89062500" right="0.99609375" top="0.08593750" bottom="0.18945313"/>
 				</Texture>
-				<Texture name="$parentGuildCornerR" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Guild" parentKey="guildCornerR" hidden="true">
+				<Texture name="$parentGuildCornerR" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Guild" parentKey="guildCornerR" hidden="true">
 					<Size x="54" y="53"/>
 					<Anchors>
 						<Anchor point="BOTTOMRIGHT" x="1" y="-1"/>
@@ -906,7 +906,7 @@
 					</Anchors>
 					<TexCoords left="0" right="1" top="0" bottom="1"/>
 				</Texture>
-				<Texture name="$parentPlusMinus" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-PlusMinus" hidden="true" parentKey="plusMinus">
+				<Texture name="$parentPlusMinus" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-PlusMinus" hidden="true" parentKey="plusMinus">
 					<Size x="15" y="15"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" x="72" y="-9"/>
@@ -1013,7 +1013,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="BACKGROUND">
-						<Texture name="$parentIcon" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Shields" parentKey="icon">
+						<Texture name="$parentIcon" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Shields" parentKey="icon">
 							<Size x="66" y="64"/>
 							<Anchors>
 								<Anchor point="TOPRIGHT" x="0" y="-6"/>
@@ -1068,7 +1068,7 @@
 		<Size x="498" y="50"/>
 		<Layers>
 			<Layer level="BACKGROUND">
-				<Texture name="$parentBackground" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Parchment-Horizontal" parentKey="background">
+				<Texture name="$parentBackground" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Parchment-Horizontal" parentKey="background">
 					<Anchors>
 						<Anchor point="TOPLEFT" x="3" y="-3"/>
 						<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
@@ -1077,7 +1077,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="ARTWORK">
-				<Texture name="$parentTitleBackground" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Borders" parentKey="titleBar">
+				<Texture name="$parentTitleBackground" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Borders" parentKey="titleBar">
 					<Size x="0" y="20"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" x="5" y="-4"/>
@@ -1086,7 +1086,7 @@
 					<TexCoords left="0" right="0.9765625" top="0.66015625" bottom="0.73828125"/>
 					<Color r="1" g="1" b="1" a=".8"/>
 				</Texture>
-				<Texture name="$parentGlow" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Borders" parentKey="glow">
+				<Texture name="$parentGlow" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Borders" parentKey="glow">
 					<Size x="10" y="64"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentTitleBackground" relativePoint="BOTTOMLEFT" x="0" y="2"/>
@@ -1127,7 +1127,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="BORDER">
-						<Texture name="$parentBling" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Bling" hidden="true" parentKey="bling">
+						<Texture name="$parentBling" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Bling" hidden="true" parentKey="bling">
 							<Anchors>
 								<Anchor point="CENTER" x="-1" y="1"/>
 							</Anchors>
@@ -1143,7 +1143,7 @@
 						</Texture>
 					</Layer>
 					<Layer level="OVERLAY">
-						<Texture name="$parentOverlay" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-IconFrame" parentKey="frame">
+						<Texture name="$parentOverlay" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-IconFrame" parentKey="frame">
 							<Anchors>
 								<Anchor point="CENTER" x="-1" y="2"/>
 							</Anchors>
@@ -1165,7 +1165,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="BACKGROUND">
-						<Texture name="$parentIcon" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Shields" parentKey="icon">
+						<Texture name="$parentIcon" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Shields" parentKey="icon">
 							<Size x="48" y="48"/>
 							<Anchors>
 								<Anchor point="TOPRIGHT" x="0" y="0"/>
@@ -1292,7 +1292,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="BACKGROUND">
-						<Texture name="$parentBackground" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Parchment-Horizontal" parentKey="background">
+						<Texture name="$parentBackground" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Parchment-Horizontal" parentKey="background">
 							<Anchors>
 								<Anchor point="TOPLEFT" x="3" y="-3"/>
 								<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
@@ -1301,7 +1301,7 @@
 						</Texture>
 					</Layer>
 					<Layer level="ARTWORK">
-						<Texture name="$parentTitleBackground" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Borders" parentKey="titleBar">
+						<Texture name="$parentTitleBackground" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Borders" parentKey="titleBar">
 							<Size x="0" y="20"/>
 							<Anchors>
 								<Anchor point="TOPLEFT" x="5" y="-4"/>
@@ -1310,7 +1310,7 @@
 							<TexCoords left="0.3" right="0.575" top="0.66015625" bottom="0.73828125"/>
 							<Color r="1" g="1" b="1" a=".8"/>
 						</Texture>
-						<Texture name="$parentGlow" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Borders" parentKey="glow">
+						<Texture name="$parentGlow" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Borders" parentKey="glow">
 							<Size x="10" y="64"/>
 							<Anchors>
 								<Anchor point="TOPLEFT" relativeTo="$parentTitleBackground" relativePoint="BOTTOMLEFT" x="0" y="2"/>
@@ -1335,7 +1335,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="BORDER">
-								<Texture name="$parentBling" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Bling" hidden="true" parentKey="bling">
+								<Texture name="$parentBling" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Bling" hidden="true" parentKey="bling">
 									<Anchors>
 										<Anchor point="CENTER" x="-1" y="1"/>
 									</Anchors>
@@ -1351,7 +1351,7 @@
 								</Texture>
 							</Layer>
 							<Layer level="OVERLAY">
-								<Texture name="$parentOverlay" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-IconFrame" parentKey="frame">
+								<Texture name="$parentOverlay" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-IconFrame" parentKey="frame">
 									<Anchors>
 										<Anchor point="CENTER" x="-1" y="2"/>
 									</Anchors>
@@ -1371,7 +1371,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="BACKGROUND">
-								<Texture name="$parentIcon" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Shields" parentKey="icon">
+								<Texture name="$parentIcon" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Shields" parentKey="icon">
 									<Size x="40" y="40"/>
 									<Anchors>
 										<Anchor point="TOPRIGHT" x="0" y="0"/>
@@ -1404,22 +1404,22 @@
 		<Size x="511" y="24"/>
 		<Layers>
 			<Layer level="BACKGROUND">
-				<Texture name="$parentBG" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Stat-Buttons" setAllPoints="true" hidden="true" parentKey="background"/>
-				<Texture name="$parentHeaderLeft" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="left">
+				<Texture name="$parentBG" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Stat-Buttons" setAllPoints="true" hidden="true" parentKey="background"/>
+				<Texture name="$parentHeaderLeft" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="left">
 					<Size x="23" y="23"/>
 					<Anchors>
 						<Anchor point="BOTTOMLEFT" x="0" y="-1"/>
 					</Anchors>
 					<TexCoords left="0" right="0.08984375" top="0" bottom="0.1796875"/>
 				</Texture>
-				<Texture name="$parentHeaderRight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="right">
+				<Texture name="$parentHeaderRight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="right">
 					<Size x="23" y="23"/>
 					<Anchors>
 						<Anchor point="BOTTOMRIGHT" x="0" y="-1"/>
 					</Anchors>
 					<TexCoords left="0.91015625" right="1" top="0" bottom="0.1796875"/>
 				</Texture>
-				<Texture name="$parentHeaderMiddle" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="middle">
+				<Texture name="$parentHeaderMiddle" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="middle">
 					<Size x="0" y="23"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentHeaderLeft" relativePoint="TOPRIGHT" x="0" y="0"/>
@@ -1458,7 +1458,7 @@
 			</Anchors>
 		</ButtonText>
 		<NormalFont style="GameFontHighlightLeft"/>
-		<HighlightTexture file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Stat-Buttons" alphaMode="ADD">
+		<HighlightTexture file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Stat-Buttons" alphaMode="ADD">
 			<TexCoords left="0" right="1" top="0.5546875" bottom="0.7265625"/>
 		</HighlightTexture>
 	</Button>
@@ -1467,22 +1467,22 @@
 		<Size x="511" y="24"/>
 		<Layers>
 			<Layer level="BACKGROUND">
-				<Texture name="$parentBG" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Stat-Buttons" setAllPoints="true" hidden="true" parentKey="background"/>
-				<Texture name="$parentHeaderLeft" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="left">
+				<Texture name="$parentBG" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Stat-Buttons" setAllPoints="true" hidden="true" parentKey="background"/>
+				<Texture name="$parentHeaderLeft" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="left">
 					<Size x="23" y="23"/>
 					<Anchors>
 						<Anchor point="BOTTOMLEFT" x="0" y="-1"/>
 					</Anchors>
 					<TexCoords left="0" right="0.08984375" top="0" bottom="0.1796875"/>
 				</Texture>
-				<Texture name="$parentHeaderRight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="right">
+				<Texture name="$parentHeaderRight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="right">
 					<Size x="23" y="23"/>
 					<Anchors>
 						<Anchor point="BOTTOMRIGHT" x="-135" y="-1"/>
 					</Anchors>
 					<TexCoords left="0.91015625" right="1" top="0" bottom="0.1796875"/>
 				</Texture>
-				<Texture name="$parentHeaderMiddle" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="middle">
+				<Texture name="$parentHeaderMiddle" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="middle">
 					<Size x="0" y="23"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentHeaderLeft" relativePoint="TOPRIGHT" x="0" y="0"/>
@@ -1490,21 +1490,21 @@
 					</Anchors>
 					<TexCoords left="0.08984375" right="0.91015625" top="0" bottom="0.1796875"/>
 				</Texture>
-				<Texture name="$parentHeaderLeft2" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="left2">
+				<Texture name="$parentHeaderLeft2" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="left2">
 					<Size x="23" y="23"/>
 					<Anchors>
 						<Anchor point="LEFT" relativeTo="$parentHeaderRight" relativePoint="RIGHT" x="5" y="0"/>
 					</Anchors>
 					<TexCoords left="0" right="0.08984375" top="0" bottom="0.1796875"/>
 				</Texture>
-				<Texture name="$parentHeaderRight2" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="right2">
+				<Texture name="$parentHeaderRight2" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="right2">
 					<Size x="23" y="23"/>
 					<Anchors>
 						<Anchor point="BOTTOMRIGHT" x="4" y="-1"/>
 					</Anchors>
 					<TexCoords left="0.91015625" right="1" top="0" bottom="0.1796875"/>
 				</Texture>
-				<Texture name="$parentHeaderMiddle2" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="middle2">
+				<Texture name="$parentHeaderMiddle2" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Stat-Buttons" parentKey="middle2">
 					<Size x="0" y="23"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentHeaderLeft2" relativePoint="TOPRIGHT" x="0" y="0"/>
@@ -1591,21 +1591,21 @@
 				</Texture>
 			</Layer>
 			<Layer level="ARTWORK">
-				<Texture name="$parentMetalBorderLeft" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-MetalBorder-Left">
+				<Texture name="$parentMetalBorderLeft" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-MetalBorder-Left">
 					<Size x="16" y="436"/>
 					<Anchors>
 						<Anchor point="LEFT" x="14" y="0"/>
 					</Anchors>
 					<TexCoords left="0" right="1" top="0" bottom=".87"/>
 				</Texture>
-				<Texture name="$parentMetalBorderRight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-MetalBorder-Left">
+				<Texture name="$parentMetalBorderRight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-MetalBorder-Left">
 					<Size x="16" y="436"/>
 					<Anchors>
 						<Anchor point="RIGHT" x="-13" y="0"/>
 					</Anchors>
 					<TexCoords left="1" right="0" top=".87" bottom="0"/>
 				</Texture>
-				<Texture name="$parentMetalBorderBottom" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-MetalBorder-Top">
+				<Texture name="$parentMetalBorderBottom" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-MetalBorder-Top">
 					<Size x="450" y="16"/>
 					<Anchors>
 						<Anchor point="BOTTOMLEFT" x="28" y="13"/>
@@ -1613,7 +1613,7 @@
 					</Anchors>
 					<TexCoords left="0" right=".87" top="1.0" bottom="0"/>
 				</Texture>
-				<Texture name="$parentMetalBorderTop" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-MetalBorder-Top">
+				<Texture name="$parentMetalBorderTop" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-MetalBorder-Top">
 					<Size x="450" y="16"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" x="28" y="-12"/>
@@ -1621,7 +1621,7 @@
 					</Anchors>
 					<TexCoords left=".87" right="0" top="0" bottom="1"/>
 				</Texture>
-				<Texture name="$parentCategoriesBG" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Parchment">
+				<Texture name="$parentCategoriesBG" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Parchment">
 					<Size x="195" y="0"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" x="25" y="-23"/>
@@ -1631,7 +1631,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="OVERLAY">
-				<Texture name="$parentWaterMark" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-AchievementWatermark">
+				<Texture name="$parentWaterMark" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-AchievementWatermark">
 					<Size x="256" y="256"/>
 					<Anchors>
 						<Anchor point="BOTTOMLEFT" relativeTo="$parentCategoriesBG" x="0" y="0"/>
@@ -1651,56 +1651,56 @@
 					</Anchors>
 					<TexCoords left="0" right="0.7" top="0.15" bottom="0.85"/>
 				</Texture>
-				<Texture name="$parentMetalBorderTopLeft" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-MetalBorder-Joint">
+				<Texture name="$parentMetalBorderTopLeft" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-MetalBorder-Joint">
 					<Size x="32" y="32"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" x="9" y="-7"/>
 					</Anchors>
 					<TexCoords left="1" right="0" top="1" bottom="0"/>
 				</Texture>
-				<Texture name="$parentMetalBorderTopRight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-MetalBorder-Joint">
+				<Texture name="$parentMetalBorderTopRight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-MetalBorder-Joint">
 					<Size x="32" y="32"/>
 					<Anchors>
 						<Anchor point="TOPRIGHT" x="-8" y="-7"/>
 					</Anchors>
 					<TexCoords left="0" right="1" top="1" bottom="0"/>
 				</Texture>
-				<Texture name="$parentMetalBorderBottomLeft" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-MetalBorder-Joint">
+				<Texture name="$parentMetalBorderBottomLeft" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-MetalBorder-Joint">
 					<Size x="32" y="32"/>
 					<Anchors>
 						<Anchor point="BOTTOMLEFT" x="9" y="8"/>
 					</Anchors>
 					<TexCoords left="1" right="0" top="0" bottom="1"/>
 				</Texture>
-				<Texture name="$parentMetalBorderBottomRight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-MetalBorder-Joint">
+				<Texture name="$parentMetalBorderBottomRight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-MetalBorder-Joint">
 					<Size x="32" y="32"/>
 					<Anchors>
 						<Anchor point="BOTTOMRIGHT" x="-8" y="8"/>
 					</Anchors>
 					<TexCoords left="0" right="1" top="0" bottom="1"/>
 				</Texture>
-				<Texture name="$parentWoodBorderTopLeft" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-WoodBorder-Corner">
+				<Texture name="$parentWoodBorderTopLeft" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-WoodBorder-Corner">
 					<Size x="64" y="64"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" x="4" y="-2"/>
 					</Anchors>
 					<TexCoords left="0" right="1" top="0" bottom="1"/>
 				</Texture>
-				<Texture name="$parentWoodBorderTopRight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-WoodBorder-Corner">
+				<Texture name="$parentWoodBorderTopRight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-WoodBorder-Corner">
 					<Size x="64" y="64"/>
 					<Anchors>
 						<Anchor point="TOPRIGHT" x="-4" y="-2"/>
 					</Anchors>
 					<TexCoords left="1" right="0" top="0" bottom="1"/>
 				</Texture>
-				<Texture name="$parentWoodBorderBottomLeft" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-WoodBorder-Corner">
+				<Texture name="$parentWoodBorderBottomLeft" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-WoodBorder-Corner">
 					<Size x="64" y="64"/>
 					<Anchors>
 						<Anchor point="BOTTOMLEFT" x="4" y="3"/>
 					</Anchors>
 					<TexCoords left="0" right="1" top="1" bottom="0"/>
 				</Texture>
-				<Texture name="$parentWoodBorderBottomRight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-WoodBorder-Corner">
+				<Texture name="$parentWoodBorderBottomRight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-WoodBorder-Corner">
 					<Size x="64" y="64"/>
 					<Anchors>
 						<Anchor point="BOTTOMRIGHT" x="-4" y="3"/>
@@ -1717,14 +1717,14 @@
 				</Anchors>
 				<Layers>
 					<Layer level="BACKGROUND">
-						<Texture name="$parentLeft" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+						<Texture name="$parentLeft" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
 							<Size x="512" y="106"/>
 							<Anchors>
 								<Anchor point="BOTTOMLEFT"/>
 							</Anchors>
 							<TexCoords left="0" right="1" top="0" bottom="0.4140625"/>
 						</Texture>
-						<Texture name="$parentRight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+						<Texture name="$parentRight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
 							<Size x="215" y="100"/>
 							<Anchors>
 								<Anchor point="BOTTOMLEFT" relativeTo="$parentLeft" relativePoint="BOTTOMRIGHT" x="0" y="-6"/>
@@ -1733,7 +1733,7 @@
 						</Texture>
 					</Layer>
 					<Layer level="BORDER">
-						<Texture name="$parentPointBorder" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+						<Texture name="$parentPointBorder" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
 							<Size x="133" y="39"/>
 							<Anchors>
 								<Anchor point="BOTTOM" relativeTo="AchievementFrameHeader" relativePoint="BOTTOM" x="20" y="16"/>
@@ -1746,13 +1746,13 @@
 								<Anchor point="TOP" relativeTo="AchievementFrameHeaderPointBorder" relativePoint="TOP" x="0" y="7"/>
 							</Anchors>
 						</FontString>
-						<Texture name="$parentLeftDDLInset" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-RightDDLInset" hidden="true">
+						<Texture name="$parentLeftDDLInset" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-RightDDLInset" hidden="true">
 							<Size x="128" y="32"/>
 							<Anchors>
 								<Anchor point="TOPLEFT" x="112" y="-56"/>
 							</Anchors>
 						</Texture>
-						<Texture name="$parentRightDDLInset" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-RightDDLInset" hidden="false">
+						<Texture name="$parentRightDDLInset" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-RightDDLInset" hidden="false">
 							<Size x="128" y="32"/>
 							<Anchors>
 								<Anchor point="TOPRIGHT" x="-76" y="-56"/>
@@ -1766,7 +1766,7 @@
 								<Anchor point="TOP" relativeTo="AchievementFrameHeaderPointBorder" relativePoint="TOP" x="0" y="-13"/>
 							</Anchors>
 						</FontString>
-						<Texture name="$parentShield" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-TinyShield">
+						<Texture name="$parentShield" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-TinyShield">
 							<Size x="20" y="20"/>
 							<Anchors>
 								<Anchor point="LEFT" relativeTo="$parentPoints" relativePoint="RIGHT" x="3" y="-1"/>
@@ -1816,7 +1816,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="BACKGROUND">
-						<Texture name="$parentBackground" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-AchievementBackground">
+						<Texture name="$parentBackground" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-AchievementBackground">
 							<Anchors>
 								<Anchor point="TOPLEFT" x="3" y="-3"/>
 								<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
@@ -1888,7 +1888,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="BACKGROUND">
-								<Texture file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-StatsBackground">
+								<Texture file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-StatsBackground">
 									<Anchors>
 										<Anchor point="TOPLEFT" x="0" y="0"/>
 										<Anchor point="BOTTOMRIGHT" x="0" y="0"/>
@@ -1925,7 +1925,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="BACKGROUND">
-						<Texture name="$parentBackground" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-AchievementBackground">
+						<Texture name="$parentBackground" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-AchievementBackground">
 							<Anchors>
 								<Anchor point="TOPLEFT" x="3" y="-3"/>
 								<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
@@ -1960,7 +1960,7 @@
 								</Anchors>
 								<Layers>
 									<Layer level="BACKGROUND">
-										<Texture name="$parentHeader" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-RecentHeader">
+										<Texture name="$parentHeader" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-RecentHeader">
 											<Anchors>
 												<Anchor point="TOPLEFT" x="-20" y="0"/>
 												<Anchor point="BOTTOMRIGHT" x="20" y="0"/>
@@ -1993,7 +1993,7 @@
 								</Anchors>
 								<Layers>
 									<Layer level="BACKGROUND">
-										<Texture name="$parentTexture" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-RecentHeader">
+										<Texture name="$parentTexture" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-RecentHeader">
 											<Anchors>
 												<Anchor point="TOPLEFT" x="-20" y="0"/>
 												<Anchor point="BOTTOMRIGHT" x="20" y="0"/>
@@ -2027,21 +2027,21 @@
 												<Anchor point="RIGHT" x="-5" y="3"/>
 											</Anchors>
 										</FontString>
-										<Texture name="$parentLeft" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+										<Texture name="$parentLeft" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
 											<Size x="32" y="48"/>
 											<Anchors>
 												<Anchor point="TOPLEFT" x="-15" y="16"/>
 											</Anchors>
 											<TexCoords left="0.423828125" right="0.486" top="0.56640625" bottom="0.75"/>
 										</Texture>
-										<Texture name="$parentRight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+										<Texture name="$parentRight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
 											<Size x="32" y="48"/>
 											<Anchors>
 												<Anchor point="TOPRIGHT" x="15" y="16"/>
 											</Anchors>
 											<TexCoords right="0.423828125" left="0.486" bottom="0.75" top="0.56640625"/>
 										</Texture>
-										<Texture name="$parentMiddle" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Header">
+										<Texture name="$parentMiddle" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
 											<Size x="218" y="48"/>
 											<Anchors>
 												<Anchor point="TOPLEFT" relativeTo="$parentLeft" relativePoint="TOPRIGHT"/>
@@ -2145,7 +2145,7 @@
 						<Size x="190" y="57"/>
 						<Layers>
 							<Layer level="ARTWORK">
-								<Texture name="$parentBG" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-ComparisonHeader">
+								<Texture name="$parentBG" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-ComparisonHeader">
 									<Anchors>
 										<Anchor point="TOPLEFT"/>
 										<Anchor point="BOTTOMRIGHT"/>
@@ -2183,7 +2183,7 @@
 										<Anchor point="TOPLEFT" relativeTo="$parentName" relativePoint="BOTTOMLEFT" x="4" y="-3"/>
 									</Anchors>
 								</FontString>
-								<Texture name="$parentShield" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-TinyShield">
+								<Texture name="$parentShield" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-TinyShield">
 									<Size x="20" y="20"/>
 									<Anchors>
 										<Anchor point="LEFT" relativeTo="$parentPoints" relativePoint="RIGHT" x="2" y="-2"/>
@@ -2216,7 +2216,7 @@
 								</KeyValues>
 								<Layers>
 									<Layer level="BACKGROUND">
-										<Texture name="$parentBackground" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Parchment-Horizontal">
+										<Texture name="$parentBackground" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Parchment-Horizontal">
 											<Anchors>
 												<Anchor point="TOPLEFT" x="3" y="-3"/>
 												<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
@@ -2245,7 +2245,7 @@
 								</KeyValues>
 								<Layers>
 									<Layer level="BACKGROUND">
-										<Texture name="$parentBackground" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Parchment-Horizontal">
+										<Texture name="$parentBackground" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Parchment-Horizontal">
 											<Anchors>
 												<Anchor point="TOPLEFT" x="3" y="-3"/>
 												<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
@@ -2318,7 +2318,7 @@
 				</Frames>
 				<Layers>
 					<Layer level="BACKGROUND">
-						<Texture name="$parentBackground" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-AchievementBackground">
+						<Texture name="$parentBackground" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-AchievementBackground">
 							<Anchors>
 								<Anchor point="TOPLEFT" x="3" y="-3"/>
 								<Anchor point="BOTTOMRIGHT" x="-3" y="3"/>
@@ -2335,7 +2335,7 @@
 							</Anchors>
 							<Color r="0" g="0" b="0" a="0.75"/>
 						</Texture>
-						<Texture name="$parentWatermark" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-StatsComparisonBackground">
+						<Texture name="$parentWatermark" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-StatsComparisonBackground">
 							<Size x="160" y="0"/>
 							<Anchors>
 								<Anchor point="TOPRIGHT" x="0" y="-3"/>
@@ -2638,7 +2638,7 @@
 						</FontString>
 					</Layer>
 					<Layer level="ARTWORK">
-						<Texture parentKey="borderLeft" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-ProgressBar-Border">
+						<Texture parentKey="borderLeft" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-ProgressBar-Border">
 							<Size x="16" y="0"/>
 							<Anchors>
 								<Anchor point="TOPLEFT" x="-6" y="5"/>
@@ -2646,7 +2646,7 @@
 							</Anchors>
 							<TexCoords left="0" right="0.0625" top="0" bottom="0.75"/>
 						</Texture>
-						<Texture parentKey="borderRight" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-ProgressBar-Border">
+						<Texture parentKey="borderRight" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-ProgressBar-Border">
 							<Size x="16" y="0"/>
 							<Anchors>
 								<Anchor point="TOPRIGHT" x="6" y="5"/>
@@ -2654,7 +2654,7 @@
 							</Anchors>
 							<TexCoords left="0.812" right="0.8745" top="0" bottom="0.75"/>
 						</Texture>
-						<Texture parentKey="borderCenter" file="Interface\AddOns\ClassicAchievements\textures\UI-Achievement-ProgressBar-Border">
+						<Texture parentKey="borderCenter" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-ProgressBar-Border">
 							<Size x="16"/>
 							<Anchors>
 								<Anchor point="TOPLEFT" relativeKey="$parent.borderLeft" relativePoint="TOPRIGHT"/>

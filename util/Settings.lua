@@ -1,4 +1,4 @@
-local addon = 'Classic Achievements'
+local addon = 'Anniversary Achievements'
 local loc = SexyLib:Localization(addon)
 CA_Flags = CA_Flags or 0
 

@@ -1,5 +1,5 @@
 <Bindings>
-	<Binding name="Toggle Achievements" category="Classic Achievements">
+	<Binding name="Toggle Achievements" category="Anniversary Achievements">
 		AchievementFrame_ToggleAchievementFrame()
 	</Binding>
 </Bindings>

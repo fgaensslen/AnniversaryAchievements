@@ -1,5 +1,5 @@
 function CA_InitializeMicrobutton()
-    BINDING_NAME_CLASSIC_ACHIEVEMENT = 'Classic Achievements'
+    BINDING_NAME_CLASSIC_ACHIEVEMENT = 'Anniversary Achievements'
     
     local microButtons = {}
     for _, value in pairs(MICRO_BUTTONS) do
@@ -21,7 +21,7 @@ function CA_InitializeMicrobutton()
     
     AchievementMicroButton:SetScript('OnClick', function(self, button)
         if button == 'RightButton' then
-            Settings.OpenToCategory("Classic Achievements")
+            Settings.OpenToCategory("Anniversary Achievements")
         else
             AchievementFrame_ToggleAchievementFrame()
         end

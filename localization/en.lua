@@ -1,8 +1,8 @@
-SexyLib:InitLocalization('Classic Achievements', {
+SexyLib:InitLocalization('Anniversary Achievements', {
     achievement_earned = '&aAchievement earned by %s on %d/%d/%d',
     achievement_in_progress = '&7Achievement in progress by %s',
 
-    ICON_DESCRIPTION = '&7Left mouse button: &eopen/hide achievements window\n&7Right mouse button: &eopen Classic Achievements settings\n\n&3With love from Maxich :)',
+    ICON_DESCRIPTION = '&7Left mouse button: &eopen/hide achievements window\n&7Right mouse button: &eopen Anniversary Achievements settings\n\n&3With love from Maxich :)',
 
     OPTION_SHARING = 'Share achievements',
     OPTION_SHARING_DESC = 'Whether to write messages in chats when receiving new achievement.',

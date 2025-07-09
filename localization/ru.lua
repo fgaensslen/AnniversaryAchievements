@@ -1,9 +1,9 @@
 if GetLocale() ~= 'ruRU' then return end
-SexyLib:Localization('Classic Achievements'):Add({
+SexyLib:Localization('Anniversary Achievements'):Add({
     achievement_earned = '&aДостижение получено %s %d/%d/%d',
     achievement_in_progress = '&7%s работает над получением достижения',
 
-    ICON_DESCRIPTION = '&7Левая кнопка мыши: &eоткрыть/скрыть окно достижений\n&7Правая кнопка мыши: &eоткрыть настройки Classic Achievements\n\n&3С любовью от Махича :)',
+    ICON_DESCRIPTION = '&7Левая кнопка мыши: &eоткрыть/скрыть окно достижений\n&7Правая кнопка мыши: &eоткрыть настройки Anniversary Achievements\n\n&3С любовью от Махича :)',
 
     OPTION_SHARING = 'Делиться достижениями',
     OPTION_SHARING_DESC = 'Писать ли в чаты сообщения при получении очередного достижения.',

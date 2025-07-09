@@ -1,7 +1,7 @@
 CA_Criterias = {}
 
 local struct = CA_Criterias
-local loc = SexyLib:Localization('Classic Achievements')
+local loc = SexyLib:Localization('Anniversary Achievements')
 
 struct.TYPE = {
     KILL_NPC = 1,

@@ -133,7 +133,7 @@ function AchievementFrame_DisplayComparison (unit)
 		AchievementFrameComparison_SetUnit(unit);
 		AchievementFrameComparison_ForceUpdate();
 	end, function()
-		SexyLib:Logger('Classic Achievements'):LogErrorL('TARGET_DOES_NOT_HAVE_ADDON')
+		SexyLib:Logger('Anniversary Achievements'):LogErrorL('TARGET_DOES_NOT_HAVE_ADDON')
 	end)
 end
 
@@ -151,7 +151,7 @@ function AchievementFrame_OnLoad (self)
 end
 
 function AchievementFrame_OnShow (self)
-	PlaySoundFile("Interface\\AddOns\\ClassicAchievements\\sounds\\AchievementMenuOpen.ogg", "Master")
+	PlaySoundFile("Interface\\AddOns\\AnniversaryAchievements\\sounds\\AchievementMenuOpen.ogg", "Master")
 	AchievementFrameHeaderPoints:SetText(BreakUpLargeNumbers(GetTotalAchievementPoints()));
 	if ( not AchievementFrame.wasShown ) then
 		AchievementFrame.wasShown = true;
@@ -162,7 +162,7 @@ function AchievementFrame_OnShow (self)
 end
 
 function AchievementFrame_OnHide (self)
-	PlaySoundFile("Interface\\AddOns\\ClassicAchievements\\sounds\\AchievementMenuClose.ogg", "Master")
+	PlaySoundFile("Interface\\AddOns\\AnniversaryAchievements\\sounds\\AchievementMenuClose.ogg", "Master")
 	AchievementFrame_HideSearchPreview();
 	self.searchResults:Hide();
 	self.searchBox:SetText("");
@@ -389,7 +389,7 @@ end
 function AchievementFrameCategories_OnEvent (self, event, ...)
 	if ( event == "ADDON_LOADED" ) then
 		local addonName = ...;
-		if ( addonName and addonName ~= "ClassicAchievements" ) then
+		if ( addonName and addonName ~= "AnniversaryAchievements" ) then
 			return;
 		end
 
@@ -1318,9 +1318,9 @@ function AchievementButton_DisplayAchievement (button, category, achievement, se
 		end
 
 		if ( points > 0 ) then
-			button.shield.icon:SetTexture([[Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Shields]]);
+			button.shield.icon:SetTexture([[Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Shields]]);
 		else
-			button.shield.icon:SetTexture([[Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Shields-NoPoints]]);
+			button.shield.icon:SetTexture([[Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Shields-NoPoints]]);
 		end
 
 		if ( isGuild ) then
@@ -1685,10 +1685,10 @@ function AchievementObjectives_DisplayProgressiveAchievement (objectivesFrame, i
 		if ( points > 0 ) then
 			miniAchievement.points:SetText(points);
 			miniAchievement.points:Show();
-			miniAchievement.shield:SetTexture([[Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Progressive-Shield]]);
+			miniAchievement.shield:SetTexture([[Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Progressive-Shield]]);
 		else
 			miniAchievement.points:Hide();
-			miniAchievement.shield:SetTexture([[Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Progressive-Shield-NoPoints]]);
+			miniAchievement.shield:SetTexture([[Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Progressive-Shield-NoPoints]]);
 		end
 
 		miniAchievement.numCriteria = 0;
@@ -2381,9 +2381,9 @@ function AchievementFrameSummary_UpdateAchievements(...)
 			button.description:SetText(description);
 			AchievementShield_SetPoints(points, button.shield.points, GameFontNormal, GameFontNormalSmall);
 			if ( points > 0 ) then
-				button.shield.icon:SetTexture([[Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Shields]]);
+				button.shield.icon:SetTexture([[Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Shields]]);
 			else
-				button.shield.icon:SetTexture([[Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Shields-NoPoints]]);
+				button.shield.icon:SetTexture([[Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Shields-NoPoints]]);
 			end
 
 			if ( isGuild ) then
@@ -2428,9 +2428,9 @@ function AchievementFrameSummary_UpdateAchievements(...)
 					button.description:SetText(description);
 					AchievementShield_SetPoints(points, button.shield.points, GameFontNormal, GameFontNormalSmall);
 					if ( points > 0 ) then
-						button.shield.icon:SetTexture([[Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Shields]]);
+						button.shield.icon:SetTexture([[Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Shields]]);
 					else
-						button.shield.icon:SetTexture([[Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Shields-NoPoints]]);
+						button.shield.icon:SetTexture([[Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Shields-NoPoints]]);
 					end
 					button.shield.wasEarnedByMe = not (completed and not wasEarnedByMe);
 					button.shield.earnedBy = earnedBy;
@@ -3065,11 +3065,11 @@ function AchievementFrameComparison_DisplayAchievement (button, category, index)
 		friend.icon.texture:SetTexture(icon);
 
 		if ( points > 0 ) then
-			player.shield.icon:SetTexture([[Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Shields]]);
-			friend.shield.icon:SetTexture([[Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Shields]]);
+			player.shield.icon:SetTexture([[Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Shields]]);
+			friend.shield.icon:SetTexture([[Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Shields]]);
 		else
-			player.shield.icon:SetTexture([[Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Shields-NoPoints]]);
-			friend.shield.icon:SetTexture([[Interface\AddOns\ClassicAchievements\textures\UI-Achievement-Shields-NoPoints]]);
+			player.shield.icon:SetTexture([[Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Shields-NoPoints]]);
+			friend.shield.icon:SetTexture([[Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Shields-NoPoints]]);
 		end
 		AchievementShield_SetPoints(points, player.shield.points, ACHIEVEMENTCOMPARISON_PLAYERSHIELDFONT1, ACHIEVEMENTCOMPARISON_PLAYERSHIELDFONT2);
 		AchievementShield_SetPoints(points, friend.shield.points, ACHIEVEMENTCOMPARISON_FRIENDSHIELDFONT1, ACHIEVEMENTCOMPARISON_FRIENDSHIELDFONT2);

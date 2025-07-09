@@ -1,6 +1,6 @@
 local db = CA_Database
 local cmanager = CA_CompletionManager
-local loc = SexyLib:Localization('Classic Achievements')
+local loc = SexyLib:Localization('Anniversary Achievements')
 
 function SwitchAchievementSearchTab(index)
     db:SetSelectedTab(index)
@@ -135,7 +135,7 @@ function GetAchievementInfo(id, index)
         if strsub(icon, 1, 1) == '-' then
             icon = [[Interface\ICONS\]] .. strsub(icon, 2, strlen(icon))
         else
-            icon = [[Interface\AddOns\ClassicAchievements\textures\icons\]] .. icon
+            icon = [[Interface\AddOns\AnniversaryAchievements\textures\icons\]] .. icon
         end
         local completed, earnedBy = false, nil
         local month, day, year

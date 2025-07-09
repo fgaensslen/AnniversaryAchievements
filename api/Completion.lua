@@ -258,7 +258,7 @@ function QueueAchievementSound()
     if not achievementSoundQueued then
         achievementSoundQueued = true
         C_Timer.After(0.1, function()
-            PlaySoundFile("Interface\\AddOns\\ClassicAchievements\\sounds\\AchievementEarned.ogg", "Master")
+            PlaySoundFile("Interface\\AddOns\\AnniversaryAchievements\\sounds\\AchievementEarned.ogg", "Master")
             achievementSoundQueued = false
         end)
     end

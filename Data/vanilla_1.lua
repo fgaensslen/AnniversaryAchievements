@@ -1,6 +1,6 @@
 local db = CA_Database
 local criterias = CA_Criterias
-local loc = SexyLib:Localization('Classic Achievements')
+local loc = SexyLib:Localization('Anniversary Achievements')
 
 local tab = db:GetTab(db.TAB_ID_PLAYER)
 local ach, previous = nil

@@ -1,5 +1,5 @@
 if GetLocale() ~= 'frFR' then return end
-SexyLib:Localization('Classic Achievements'):Add({
+SexyLib:Localization('Anniversary Achievements'):Add({
 	-- #######
 	-- Generic
 	-- #######
@@ -947,7 +947,7 @@ SexyLib:Localization('Classic Achievements'):Add({
     AD_RED_SCARAB = 'Obtenir un cristal de résonance qiraji rouge.',
 
     AN_THANKS = 'Je suis moi-même, tu sais, un développeur',
-    AD_THANKS = 'A été particulièrement utile pour développer, tester, traduire ou promouvoir Classic Achievements.',
+    AD_THANKS = 'A été particulièrement utile pour développer, tester, traduire ou promouvoir Anniversary Achievements.',
     AR_THANKS = 'Une gratitude infinie :)',
 
     AN_RIDING_75 = 'En selle !',

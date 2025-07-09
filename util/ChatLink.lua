@@ -1,6 +1,6 @@
 local db = CA_Database
 local cmanager = CA_CompletionManager
-local loc = SexyLib:Localization('Classic Achievements')
+local loc = SexyLib:Localization('Anniversary Achievements')
 
 function GetAchievementLink(achievementID)
     local ach = db:GetAchievement(achievementID)
@@ -21,7 +21,7 @@ function GetAchievementLink(achievementID)
         end
         index = index + 1
     end
-    return string.format('[ClassicAchievement:%d:%s:%d:%d:%d:%d:%d]', achievementID, UnitGUID('player'), finished, month, day, year, criterias)
+    return string.format('[AnniversaryAchievement:%d:%s:%d:%d:%d:%d:%d]', achievementID, UnitGUID('player'), finished, month, day, year, criterias)
 end
 
 local function strstartsWith(str, prefix)
@@ -33,7 +33,7 @@ local function filterFunc(_, event, msg, player, l, cs, t, flag, channelId, ...)
 
     local newMsg, remaining, done = '', msg, false
     repeat
-        local start, finish, data = remaining:find('%[ClassicAchievement:(%d+:[^%]]+:%d:%d+:%d+:%d+:%d+)%]')
+        local start, finish, data = remaining:find('%[AnniversaryAchievement:(%d+:[^%]]+:%d:%d+:%d+:%d+:%d+)%]')
         if data then
             local link
             local aid, guid, finished, month, day, year, criterias = strsplit(':', data)
@@ -110,7 +110,7 @@ hooksecurefunc('SetItemRef', function(link)
     if IsShiftKeyDown() then
         local editbox = GetCurrentKeyBoardFocus()
         if editbox then
-            editbox:Insert('[ClassicAchievements: ' .. ach.name .. ']')
+            editbox:Insert('[AnniversaryAchievements: ' .. ach.name .. ']')
         end
     else
         if shownAchievementID == aid and ItemRefTooltip:IsVisible() then
@@ -190,7 +190,7 @@ function CA_ShareAchievement(achievementID)
         if gender > 1 then
             if gender == 2 then gender = 'MALE'
             else gender = 'FEMALE' end
-            local message = SexyLib:Localization('Classic Achievements'):Get('GOT_ACHIEVEMENT_MESSAGE_' .. gender, GetAchievementLink(achievementID))
+            local message = SexyLib:Localization('Anniversary Achievements'):Get('GOT_ACHIEVEMENT_MESSAGE_' .. gender, GetAchievementLink(achievementID))
             if SexyLib:Util():IsInGuild() then SendChatMessage(message, 'GUILD') end
             if IsInRaid() then SendChatMessage(message, 'RAID')
             elseif IsInGroup() then SendChatMessage(message, 'PARTY')

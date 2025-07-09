@@ -1,14 +1,14 @@
 SexyLib:Util():AfterLogin(function()
     if CA_IsMicrobuttonEnabled() then return end
 
-    local tooltip = CreateFrame("GameTooltip", "ClassicAchievementsMinimapTooltip", UIParent, "GameTooltipTemplate")
+    local tooltip = CreateFrame("GameTooltip", "AnniversaryAchievementsMinimapTooltip", UIParent, "GameTooltipTemplate")
     tooltip:ClearLines()
     tooltip:AddFontStrings(tooltip:CreateFontString("$parentTextLeft1", nil, "GameTooltipText"), tooltip:CreateFontString("$parentTextRight1", nil, "GameTooltipText"))
     
-    local button = CreateFrame("Button", "ClassicAchievementsMinimapButton", Minimap)
+    local button = CreateFrame("Button", "AnniversaryAchievementsMinimapButton", Minimap)
     LoadMicroButtonTextures(button, "Achievement")
 	button.tooltipText = MicroButtonTooltipText(ACHIEVEMENT_BUTTON, "CLASSIC_ACHIEVEMENT")
-	button.newbieText = SexyLib:Localization('Classic Achievements'):Get('ICON_DESCRIPTION')
+	button.newbieText = SexyLib:Localization('Anniversary Achievements'):Get('ICON_DESCRIPTION')
 
     button:SetParent(Minimap)
     button:EnableMouse(true)
@@ -55,7 +55,7 @@ SexyLib:Util():AfterLogin(function()
         tooltip:ClearLines()
         tooltip:SetOwner(button, "ANCHOR_LEFT")
         tooltip:SetText(MicroButtonTooltipText(ACHIEVEMENT_BUTTON, "CLASSIC_ACHIEVEMENT"))
-        tooltip:AddLine(SexyLib:Localization('Classic Achievements'):Get('ICON_DESCRIPTION'))
+        tooltip:AddLine(SexyLib:Localization('Anniversary Achievements'):Get('ICON_DESCRIPTION'))
         tooltip:Show()
     end)
     button:SetScript('OnClick', function(self, button)
@@ -63,8 +63,8 @@ SexyLib:Util():AfterLogin(function()
             if InterfaceOptionsFrame:IsShown() then
                 InterfaceOptionsFrame:Hide()
             else
-                InterfaceOptionsFrame_OpenToCategory('Classic Achievements')
-                InterfaceOptionsFrame_OpenToCategory('Classic Achievements') -- not a bug, two calls required
+                InterfaceOptionsFrame_OpenToCategory('Anniversary Achievements')
+                InterfaceOptionsFrame_OpenToCategory('Anniversary Achievements') -- not a bug, two calls required
             end
         else
             AchievementFrame_ToggleAchievementFrame()

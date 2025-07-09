@@ -12,7 +12,7 @@
 			<OnLoad>
 				LoadMicroButtonTextures(self, "Achievement")
 				self.tooltipText = MicroButtonTooltipText(ACHIEVEMENT_BUTTON, "CLASSIC_ACHIEVEMENT")
-				self.newbieText = SexyLib:Localization('Classic Achievements'):Get('ICON_DESCRIPTION')
+				self.newbieText = SexyLib:Localization('Anniversary Achievements'):Get('ICON_DESCRIPTION')
 			</OnLoad>
 			<OnEvent>
 				self.tooltipText = MicroButtonTooltipText(ACHIEVEMENT_BUTTON, "CLASSIC_ACHIEVEMENT")

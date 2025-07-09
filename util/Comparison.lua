@@ -4,12 +4,12 @@ UnitPopupButtons['CLASSIC_ACHIEVEMENTS_TITLE'] = {
     isSubsection = true,
     isUninteractable = true,
     isTitle = true,
-    text = 'Classic Achievements',
+    text = 'Anniversary Achievements',
     isSubsectionSeparator = true,
     isSubsectionTitle = true
 }
 UnitPopupButtons['CLASSIC_ACHIEVEMENTS_COMPARISON'] = {
-    text = SexyLib:Localization('Classic Achievements'):Get('COMPARE_ACHIEVEMENTS')
+    text = SexyLib:Localization('Anniversary Achievements'):Get('COMPARE_ACHIEVEMENTS')
 }
 
 local function addToMenu(menuName)
