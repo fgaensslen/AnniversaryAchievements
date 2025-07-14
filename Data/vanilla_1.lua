@@ -8,11 +8,38 @@ local ach, previous = nil
 local L = CA_Loader:ForTab(tab)
 local TYPE = criterias.TYPE
 
-local featsOfStrength = tab:CreateCategory('CATEGORY_FEATS_OF_STRENGTH', nil, true, 99)
-
--- GENERAL --
+-- CATEGORIES -- 
 local general = tab:CreateCategory('CATEGORY_GENERAL', nil, true)
 
+local quests = tab:CreateCategory('CATEGORY_QUESTS', nil, true)
+local questsKalimdor = tab:CreateCategory('CATEGORY_KALIMDOR', quests.id, true)
+local questsEasternKingdoms = tab:CreateCategory('CATEGORY_EASTERN_KINGDOMS', quests.id, true)
+
+local exploration = tab:CreateCategory('CATEGORY_EXPLORATION', nil, true)
+local explorationKalimdor = tab:CreateCategory('CATEGORY_KALIMDOR', exploration.id, true)
+local explorationEasternKingdoms = tab:CreateCategory('CATEGORY_EASTERN_KINGDOMS', exploration.id, true)
+
+local pvp = tab:CreateCategory('CATEGORY_PVP', nil, true)
+local openWorldPVP = tab:CreateCategory('CATEGORY_OPEN_WORLD', pvp.id, true)
+local alterac = tab:CreateCategory('CATEGORY_BG_ALTERAC', pvp.id, true)
+local warsong = tab:CreateCategory('CATEGORY_BG_WARSONG', pvp.id, true)
+local arathi = tab:CreateCategory('CATEGORY_BG_ARATHI', pvp.id, true)
+local bgEye = tab:CreateCategory('CATEGORY_BG_EYE', pvp.id, true)
+
+local pve = tab:CreateCategory('CATEGORY_PVE', nil, true)
+local instances = tab:CreateCategory('CATEGORY_VANILLA', pve.id, true)
+
+local professions = tab:CreateCategory('CATEGORY_PROFESSIONS', nil, true)
+local cooking = tab:CreateCategory('PROF_COOKING', professions.id, true)
+local fishing = tab:CreateCategory('PROF_FISHING', professions.id, true)
+local firstAid = tab:CreateCategory('PROF_FIRST_AID', professions.id, true)
+
+local reputation = tab:CreateCategory('CATEGORY_REPUTATION', nil, true)
+local vanillaReputation = tab:CreateCategory('CATEGORY_VANILLA', reputation.id, true)
+
+local featsOfStrength = tab:CreateCategory('CATEGORY_FEATS_OF_STRENGTH', nil, true)
+
+-- GENERAL --
 do
     for i = 1, 6 do
         local lvl = i * 10
@@ -21,12 +48,10 @@ do
         if previous then previous:SetNext(ach) end
         previous = ach
     end
-end
 
-ach = general:CreateAchievement('AN_BANK', 'AD_BANK', 10, 'bank', true)
-ach:AddCriteria(criterias:Create('AC_BANK', TYPE.BANK_SLOTS, nil, 6))
+	ach = general:CreateAchievement('AN_BANK', 'AD_BANK', 10, 'bank', 7)
+	ach:AddCriteria(criterias:Create('AC_BANK', TYPE.BANK_SLOTS, nil, 6))
 
-do
     previous = nil
     for i, count in pairs({100, 1000, 5000, 10000, 25000, 50000, 100000}) do
         ach = general:CreateAchievement(loc:Get('AN_MOB_KILLS_' .. i), loc:Get('AD_MOB_KILLS', count), 10, 'mob_kills_' .. i)
@@ -34,11 +59,63 @@ do
         if previous then previous:SetNext(ach) end
         previous = ach
     end
+	
+    ach = general:CreateAchievement('AN_UNARMED_SKILL', 'AD_UNARMED_SKILL', 10, '-Ability_GolemThunderClap', true)
+    ach:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsSkills.UNARMED[1], 350}))
+
+    local function add(previous, qualityName, quality, icon)
+        local ach = general:CreateAchievement('AN_' .. qualityName .. '_GEAR', 'AD_' .. qualityName .. '_GEAR', 10, icon, true)
+        for idx, name in pairs(criterias.GEAR_SLOT) do
+            ach:AddCriteria(criterias:CreateL('GEAR_SLOT_' .. name, TYPE.GEAR_QUALITY, {idx, quality}))
+        end
+        if previous then previous:SetNext(ach) end
+        return ach
+    end
+
+    ach = add(nil, 'UNCOMMON', 2, '-Inv_Enchant_EssenceNetherSmall')
+    ach = add(ach, 'RARE', 3, '-Spell_Frost_WizardMark')
+    ach = add(ach, 'EPIC', 4, '-Inv_Enchant_ShardNexusLarge')
+		
+	--Sets
+	local function add(name, subtitle, icon, ids)
+        local ach = general:CreateAchievement('AN_' .. name, subtitle, 20, icon, true)
+        if #ids == 1 then
+            ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, ids))
+        else
+            for _, itemID in pairs(ids) do
+                local criteria = criterias:Create('itemID ' .. itemID, TYPE.OBTAIN_ITEM, {itemID})
+                ach:AddCriteria(criteria)
+				criteria.name = GetItemInfo(itemID)
+			end
+		end
+	end
+
+	local playerClass, englishClass = UnitClass('player')
+	
+	--T2
+	if englishClass == 'DRUID' then		
+		add('DRUID_T2', 'AD_SET_T2', '-inv_helmet_09', {16903, 16898, 16904, 16897, 16900, 16899, 16901, 16902})	
+	elseif englishClass == 'WARLOCK' then
+		add('WARLOCK_T2', 'AD_SET_T2', '-inv_helmet_08', {16933, 16927, 16934, 16928, 16930, 16931, 16929, 16932})	
+	elseif englishClass == 'PRIEST' then
+		add('PRIEST_T2', 'AD_SET_T2', '-inv_helmet_24', {16925, 16926, 16919, 16921, 16920, 16922, 16924, 16923})	
+	elseif englishClass == 'MAGE' then
+		add('MAGE_T2', 'AD_SET_T2', '-inv_helmet_70', {16818, 16918, 16912, 16914, 16917, 16913, 16915, 16916})
+	elseif englishClass == 'ROGUE' then
+		add('ROGUE_T2', 'AD_SET_T2', '-inv_helmet_41', {16910, 16906, 16911, 16905, 16907, 16908, 16909, 16832})
+	elseif englishClass == 'HUNTER' then
+		add('HUNTER_T2', 'AD_SET_T2', '-inv_helmet_05', {16936, 16935, 16942, 16940, 16941, 16939, 16938, 16937})
+	elseif englishClass == 'PALADIN' then
+		add('PALADIN_T2', 'AD_SET_T2', '-inv_helmet_74', {16952, 16951, 16958, 16955, 16956, 16954, 16957, 16953})
+	elseif englishClass == 'WARRIOR' then
+		add('WARRIOR_T2', 'AD_SET_T2', '-inv_helmet_71', {16959, 16966, 16964, 16963, 16962, 16961, 16965, 16960})
+	elseif englishClass == 'SHAMAN' then
+		add('SHAMAN_T2', 'AD_SET_T2', '-inv_helmet_69', {16944, 16943, 16950, 16945, 16948, 16949, 16947, 16946})
+	end
+
 end
 
 -- QUESTS --
-local quests = tab:CreateCategory('CATEGORY_QUESTS', nil, true)
-
 do
     previous = nil
     for i, count in pairs({50, 100, 250, 500, 750, 1000}) do
@@ -61,35 +138,32 @@ do
         if previous then previous:SetNext(ach) end
         previous = ach
     end
-end
 
-local function addZoneQuests(continent, parent, zoneName, questIDs, points)
-    if type(questIDs) ~= 'table' then questIDs = {questIDs} end
-    local zname1, zname2 = loc:Get(zoneName .. '_1'), loc:Get(zoneName .. '_2')
-    local name = loc:Get('AN_QUESTS_ZONE', zname2)
-    local description
-    if #questIDs == 1 then
-        description = loc:Get('AD_QUESTS_ZONE', loc:Get('QUEST_' .. questIDs[1]), zname1)
-    else
-        description = loc:Get('AD_QUESTS_ZONE_MULTI', zname1)
-    end
+	local function addZoneQuests(continent, parent, zoneName, questIDs, points)
+		if type(questIDs) ~= 'table' then questIDs = {questIDs} end
+		local zname1, zname2 = loc:Get(zoneName .. '_1'), loc:Get(zoneName .. '_2')
+		local name = loc:Get('AN_QUESTS_ZONE', zname2)
+		local description
+		if #questIDs == 1 then
+			description = loc:Get('AD_QUESTS_ZONE', loc:Get('QUEST_' .. questIDs[1]), zname1)
+		else
+			description = loc:Get('AD_QUESTS_ZONE_MULTI', zname1)
+		end
 
-    local ach = continent:CreateAchievement(name, description, points or 10, string.lower(zoneName))
-    if #questIDs == 1 then
-        ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, questIDs))
-    else
-        for _, questID in pairs(questIDs) do
-            ach:AddCriteria(criterias:Create(loc:Get('AC_QUESTS_ZONE', loc:Get('QUEST_' .. questID)), TYPE.COMPLETE_QUEST, {questID}))
-        end
-    end
+		local ach = continent:CreateAchievement(name, description, points or 10, string.lower(zoneName))
+		if #questIDs == 1 then
+			ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, questIDs))
+		else
+			for _, questID in pairs(questIDs) do
+				ach:AddCriteria(criterias:Create(loc:Get('AC_QUESTS_ZONE', loc:Get('QUEST_' .. questID)), TYPE.COMPLETE_QUEST, {questID}))
+			end
+		end
 
-    parent:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+		parent:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
 
-    return ach
-end
-
-do
-    local questsKalimdor = tab:CreateCategory('CATEGORY_KALIMDOR', quests.id, true)
+		return ach
+	end
+   
     local kach = questsKalimdor:CreateAchievement('AN_WISDOM_KEEPER_KALIMDOR', 'AD_WISDOM_KEEPER_KALIMDOR', 20, 'kalimdor', true)
     questsKalimdor.add = function(self, ...) return addZoneQuests(self, kach, ...) end
     
@@ -104,9 +178,8 @@ do
     questsKalimdor:add('UNGORO', {3962, 4245, 4292})
     questsKalimdor:add('AZSHARA', 3602)
     questsKalimdor:add('WINTERSPRING', {975, 5082, 5121, 5163, 4842})
-    questsKalimdor:add('SILITHUS', {8287, 8352, 8321, 8281})
+    questsKalimdor:add('SILITHUS', {8287, 8352, 8321, 8281})    
     
-    local questsEasternKingdoms = tab:CreateCategory('CATEGORY_EASTERN_KINGDOMS', quests.id, true)
     local ekach = questsEasternKingdoms:CreateAchievement('AN_WISDOM_KEEPER_EASTERN_KINGDOMS', 'AD_WISDOM_KEEPER_EASTERN_KINGDOMS', 20, 'eastern_kingdoms', true)
     questsEasternKingdoms.add = function(self, ...) return addZoneQuests(self, ekach, ...) end
 
@@ -122,162 +195,94 @@ do
     ach = quests:CreateAchievement('AN_WISDOM_KEEPER_AZEROTH', 'AD_WISDOM_KEEPER_AZEROTH', 30, '-Inv_Misc_Book_09', true)
     ach:AddCriteria(criterias:Create(kach.name, TYPE.COMPLETE_ACHIEVEMENT, {kach.id}))
     ach:AddCriteria(criterias:Create(ekach.name , TYPE.COMPLETE_ACHIEVEMENT, {ekach.id}))
+	
+	ach = questsEasternKingdoms:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 20, '-inv_misc_key_11', true)
+	ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {13704}))
 end
 
-local pve = tab:CreateCategory('CATEGORY_PVE', nil, true)
+-- EXPLORATION --
+do
+	local exploreAzeroth = exploration:CreateAchievement('AN_EXPLORE_AZEROTH', 'AD_EXPLORE_AZEROTH', 30, '-Inv_Misc_Map_01', true)
 
-local createPvE = function(category)
-    return function(instanceName, icon, npcIDs, points)
-        ach = category:CreateAchievement('AN_' .. instanceName, 'AD_' .. instanceName, points or 10, icon, true)
-        if type(npcIDs) == 'table' then
-            for i, npcID in pairs(npcIDs) do
-                if npcID > 0 then
-                    ach:AddCriteria(criterias:CreateL('AC_' .. instanceName .. i, TYPE.KILL_NPC, {npcID}))
-                else
-                    ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {-npcID}))
-                end
-            end
-        else
-            ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {npcIDs}))
+    local global = exploration:CreateAchievement('AN_EXPLORE_KALIMDOR', 'AD_EXPLORE_KALIMDOR', 20, string.lower('kalimdor'), true)
+    local function add(areaID, areaIDs, icon)
+        local areaName = AreaTableLocale[areaID]
+        ach = explorationKalimdor:CreateAchievement(areaName, loc:Get('AD_EXPLORE', areaName), 10, icon or string.lower(AreaTable[areaID][3]))
+        for _, childrenID in pairs(areaIDs) do
+			ach:AddCriteria(criterias:Create(AreaTableLocale[childrenID], TYPE.EXPLORE_AREA, {childrenID}))
         end
-        return ach
+        global:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
     end
+
+    add(331, {441, 414, 2301, 413, 417, 416, 424, 415, 421, 418, 426, 419, 431, 422, 438, 430, 434, 437})
+    add(16, {1228, 1230, 2497, 1229, 1226, 1219, 1220, 1225, 1216, 1237, 1236, 1235, 1221, 1231, 1232, 1234, 1256, 1233, 1227})
+    add(148, {443, 444, 456, 446, 447, 448, 450, 449, 442})
+    add(405, {608, 603, 599, 2407, 609, 2405, 607, 596, 2408, 606, 602, 604, 2198, 2406, 2404})
+    add(14, {367, 366, 368, 372, 362, 816, 369, 370, 817, 1637, 363})
+    add(15, {502, 496, 2302, 509, 511, 2079, 513}, 'dustwallow')
+    add(361, {1998, 1762, 2618, 1767, 1765, 1766, 2481, 1763, 2479, 2480, 2478, 1761})
+    add(357, {1137, 1111, 1114, 1113, 1108, 1119, 1105, 2577, 2522, 1106, 1099, 1101, 1103, 1100, 1121, 1120})
+    add(493, {656}, '-Spell_Arcane_TeleportMoonglade')
+    add(215, {818, 220, 396, 222, 360, 821, 820, 224, 404, 397, 819, 225, 1638, 398})
+    add(1377, {3425, 2743, 2744, 2737, 2740})
+    add(406, {2537, 2539, 1076, 2540, 2541, 461, 460, 465, 464, 467, 2538}, 'stonetalon')
+    add(440, {979, 976, 977, 1937, 1336, 986, 1939, 985, 982, 1938, 1940, 983, 984, 981, 992, 987, 980, 990, 2300, 978})
+    add(141, {736, 186, 261, 259, 478, 260, 264, 266, 1657, 702, 188}, 'darnassus')
+    add(17, {382, 1703, 384, 383, 386, 1702, 1704, 379, 1699, 380, 388, 392, 391, 385, 1697, 387, 1700, 1698, 378, 390, 1701, 359, 1717, 1316, 381}, 'barrens')
+    add(400, {2097, 483, 484, 481, 2303, 439, 480, 482, 485}, 'thousand_needles')
+    add(490, {543, 539, 540, 1942, 1943, 538, 537}, 'ungoro')
+    add(618, {2243, 2251, 2253, 2245, 2255, 2250, 2247, 2244, 2242, 2241, 2249, 2256, 2246})
+    exploreAzeroth:AddCriteria(criterias:Create(global.name, TYPE.COMPLETE_ACHIEVEMENT, {global.id}))
+
+    global = exploration:CreateAchievement('AN_EXPLORE_EASTERN_KINGDOMS', 'AD_EXPLORE_EASTERN_KINGDOMS', 20, string.lower('eastern_kingdoms'), true)
+    add = function(areaID, areaIDs, icon)
+        local areaName = AreaTableLocale[areaID]
+        ach = explorationEasternKingdoms:CreateAchievement(areaName, loc:Get('AD_EXPLORE', areaName), 10, icon or string.lower(AreaTable[areaID][3]))
+        for _, childrenID in pairs(areaIDs) do
+                ach:AddCriteria(criterias:Create(AreaTableLocale[childrenID], TYPE.EXPLORE_AREA, {childrenID}))
+        end
+        global:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+    end
+
+    add(36, {1679, 282, 279, 1682, 1357, 1677, 1683, 278, 1681, 281, 1678, 280, 1680, 284, 1684}, 'alterac_mountains')
+    add(45, {313, 334, 1857, 1858, 327, 324, 880, 335, 320, 316, 317, 336, 315, 314, 321, 333}, 'arathi')
+    add(3, {342, 339, 1879, 345, 337, 344, 1878, 340, 338, 1877, 346, 1898, 341, 1897})
+    add(4, {1457, 1438, 1440, 72, 1441, 1439, 73, 2517, 1437}, 'blasted_lands')
+    add(46, {2418, 249, 2417, 2420, 253, 250, 2421, 252, 254, 255}, 'burning_steppes')
+    add(41, {2561, 2562, 2697}, 'deadwind_pass')
+    add(1, {801, 800, 131, 802, 804, 138, 212, 803, 808, 134, 137, 135, 136, 77, 211, 806, 809, 133}, 'dun_morogh')
+    add(10, {536, 94, 492, 93, 856, 245, 242, 241, 121, 42, 1098, 799, 1097})
+    add(139, {2260, 2261, 2263, 2258, 2262, 2622, 2264, 2621, 2266, 2268, 2623, 2270, 2271, 2624, 2272, 2273, 2275, 2276, 2627, 2277, 2279, 2619}, 'eastern_plaguelands')
+    add(12, {87, 9, 1519, 57, 797, 60, 62, 91, 798, 88, 86, 18}, 'elwynn_forest')
+    add(267, {272, 1056, 290, 275, 294, 289, 286, 271, 288, 295, 896, 285}, 'hillsbrad')
+    add(38, {146, 143, 149, 807, 147, 142, 936, 144, 923, 924, 556}, 'loch_modan')
+    add(44, {68, 1002, 1001, 95, 97, 70, 997, 996, 71, 1000, 69}, 'redridge_mountains')
+    add(51, {246, 1957, 1444, 1958, 247, 1959, 1442}, 'searing_gorge')
+    add(130, {927, 240, 226, 928, 172, 237, 228, 213, 229, 233, 236, 204, 230, 231, 238}, 'silverpine_forest')
+    add(33, {100, 117, 99, 101, 43, 1738, 1737, 1739, 311, 477, 310, 128, 1741, 103, 127, 129, 105, 1740, 37, 125, 123, 104, 122, 102, 297, 19, 35}, 'stranglethorn_valley')
+    add(8, {116, 657, 1780, 1798, 75, 74, 1797, 1778, 76, 300, 1777}, 'swamp_of_sorrows')
+    add(47, {1882, 348, 350, 1885, 1883, 353, 1886, 1884, 356, 355, 1917, 351, 307, 354}, 'hinterlands')
+    add(85, {156, 154, 810, 157, 166, 811, 164, 159, 165, 162, 459, 167, 812, 160, 1497, 152}, 'tirisfal_glades')
+    add(28, {2298, 197, 193, 813, 199, 200, 202, 192, 190, 201, 198, 2620, 2297}, 'western_plaguelands')
+    add(40, {107, 108, 916, 109, 918, 111, 917, 113, 219, 20, 115, 921, 922, 920})
+    add(11, {1018, 1022, 118, 1024, 1023, 309, 205, 1036, 836, 1025, 1020, 1016, 1017, 1037, 150}, 'wetlands')
+    exploreAzeroth:AddCriteria(criterias:Create(global.name, TYPE.COMPLETE_ACHIEVEMENT, {global.id}))
+	
+	ach = L:Achievement(exploration, 20, 'love')
+		:NameDesc('AN_LOVE', 'AD_LOVE', true)
+		for _, creatureID in pairs({3444, 620, 1420, 13321, 2620, 9600, 5951, 9699, 4953, 721, 9700, 15476, 2914, 16030, 4075, 1412, 7390, 15475, 15010, 4076, 13016, 14881, 2110, 4166, 1933, 890, 2098, 2442, 6368, 10582, 385, 10685, 3300}) do
+			ach:Criteria(TYPE.EMOTE, {'LOVE', creatureID}):Name('NPC_' .. creatureID, true):Build()
+		end
+		ach:Build().priority = 1
 end
 
-local instances = tab:CreateCategory('CATEGORY_VANILLA', pve.id, true)
-
-local brd, brs, defender
+-- PVP -- 
 do
-    local create = createPvE(instances)
-    local rc = create('RAGEFIRE_CHASM', '-Racial_Orc_BerserkerStrength', 11518).id
-    local wc = create('WAILING_CAVERNS', 'wailing_caverns', 3654).id
-    local dm = create('DEAD_MINES', '-Inv_Pick_03', 639).id
-    local sk = create('SHADOWFANG_KEEP', '-Inv_Weapon_Hand_01', 4275).id
-    local bfd = create('BLACKFATHOM_DEEPS', 'blackfathom_deeps', 4829).id
-    local jail = create('JAIL', '-Spell_Holy_Sealofprotection', 1666).id
-    local gnom = create('GNOMREGAN', 'gnomregan', 7800).id
-    local rk = create('RAZORFEN_KRAUL', 'razorfen_kraul', 4421).id
-    local sm = create('SCARLET_MONASTERY', '-Spell_Holy_Resurrection', {4543, 6487, 3975, 3977}, 20).id
-    local rd = create('RAZORFEN_DOWNS', 'razorfen_downs', {7358, 7356}).id
-    local uldaman = create('ULDAMAN', 'uldaman', 2748).id
-    local zf = create('ZULFARRAK', 'zulfarrak', 7267).id
-    local mara = create('MARAUDON', 'maraudon', 12201).id
-    local st = create('SUNKEN_TEMPLE', 'sunken_temple', 5709).id
+	local alteracID = 1459
+	local warsongID = 1460
+	local arathiID = 1461
+	--local bgEyeID = 1956
 
-    local id1 = create('NEW_EMPEROR', 'new_emperor', 9019).id
-    local id2 = create('BLACKROCK_DEPTHS', '-Spell_Fire_Lavaspawn', {9018, 9319, 9033, 8983, 9017, 9041, 9016}, 20).id
-    local id3 = create('BLACKROCK_PARTY', '-Inv_Misc_Food_31', {9543, 9499, 9537, 9502}, 10).id
-    ach = instances:CreateAchievement('AN_ARMOR_SWORD', 'AD_ARMOR_SWORD', 10, '-Inv_Sword_47', true)
-    ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {11786}))
-    local id4 = ach.id
-    ach = instances:CreateAchievement('AN_BLACKROCK_DEPTHS_FULL', 'AD_BLACKROCK_DEPTHS_FULL', 10, '-Inv_Misc_AhnQirajTrinket_03', true)
-    ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_DEPTHS', TYPE.COMPLETE_ACHIEVEMENT, {id2}))
-    ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_PARTY', TYPE.COMPLETE_ACHIEVEMENT, {id3}))
-    ach:AddCriteria(criterias:CreateL('AN_NEW_EMPEROR', TYPE.COMPLETE_ACHIEVEMENT, {id1}))
-    ach:AddCriteria(criterias:CreateL('AN_ARMOR_SWORD', TYPE.COMPLETE_ACHIEVEMENT, {id4}))
-    brd = ach.id
-
-    id1 = create('BLACKROCK_SPIRE_BOTTOM', 'lbrs', 9568).id
-    id2 = create('BLACKROCK_SPIRE_UPPER', 'ubrs', 10363).id
-    ach = instances:CreateAchievement('AN_BLACKROCK_SPIRE', 'AD_BLACKROCK_SPIRE', 10, '-Inv_Sword_48', true)
-    ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_SPIRE_BOTTOM', TYPE.COMPLETE_ACHIEVEMENT, {id1}))
-    ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_SPIRE_UPPER', TYPE.COMPLETE_ACHIEVEMENT, {id2}))
-    brs = ach.id
-
-    local direm = create('DIRE_MAUL', '-Ability_Warrior_DecisiveStrike', {11492, 11486, 11501}).id
-
-    id1 = create('STRATHOLME_LIVE', '-Inv_Jewelry_Necklace_01', 10813).id
-    id2 = create('STRATHOLME_DEAD', '-Inv_Jewelry_Necklace_19', 10440).id
-    ach = instances:CreateAchievement('AN_STRATHOLME', 'AD_STRATHOLME', 10, '-Inv_Shield_01', true)
-    ach:AddCriteria(criterias:CreateL('AN_STRATHOLME_LIVE', TYPE.COMPLETE_ACHIEVEMENT, {id1}))
-    ach:AddCriteria(criterias:CreateL('AN_STRATHOLME_DEAD', TYPE.COMPLETE_ACHIEVEMENT, {id2}))
-    local strat = ach.id
-
-    local scholo = create('SCHOLOMANCE', '-Spell_Holy_Senseundead', 1853, 20).id
-
-    ach = instances:CreateAchievement('AN_YOUNG_DEFENDER', 'AD_YOUNG_DEFENDER', 20, '-Inv_Helmet_03', true)
-    ach:AddCriteria(criterias:CreateL('AN_RAGEFIRE_CHASM', TYPE.COMPLETE_ACHIEVEMENT, {rc}))
-    ach:AddCriteria(criterias:CreateL('AN_WAILING_CAVERNS', TYPE.COMPLETE_ACHIEVEMENT, {wc}))
-    ach:AddCriteria(criterias:CreateL('AN_DEAD_MINES', TYPE.COMPLETE_ACHIEVEMENT, {dm}))
-    ach:AddCriteria(criterias:CreateL('AN_SHADOWFANG_KEEP', TYPE.COMPLETE_ACHIEVEMENT, {sk}))
-    ach:AddCriteria(criterias:CreateL('AN_BLACKFATHOM_DEEPS', TYPE.COMPLETE_ACHIEVEMENT, {bfd}))
-    ach:AddCriteria(criterias:CreateL('AN_JAIL', TYPE.COMPLETE_ACHIEVEMENT, {jail}))
-    ach:AddCriteria(criterias:CreateL('AN_GNOMREGAN', TYPE.COMPLETE_ACHIEVEMENT, {gnom}))
-    ach:AddCriteria(criterias:CreateL('AN_RAZORFEN_KRAUL', TYPE.COMPLETE_ACHIEVEMENT, {rk}))
-    ach:AddCriteria(criterias:CreateL('AN_SCARLET_MONASTERY', TYPE.COMPLETE_ACHIEVEMENT, {sm}))
-    ach:AddCriteria(criterias:CreateL('AN_RAZORFEN_DOWNS', TYPE.COMPLETE_ACHIEVEMENT, {rd}))
-    ach:AddCriteria(criterias:CreateL('AN_ULDAMAN', TYPE.COMPLETE_ACHIEVEMENT, {uldaman}))
-    ach:AddCriteria(criterias:CreateL('AN_ZULFARRAK', TYPE.COMPLETE_ACHIEVEMENT, {zf}))
-    ach:AddCriteria(criterias:CreateL('AN_MARAUDON', TYPE.COMPLETE_ACHIEVEMENT, {mara}))
-    ach:AddCriteria(criterias:CreateL('AN_SUNKEN_TEMPLE', TYPE.COMPLETE_ACHIEVEMENT, {st}))
-    
-    id1 = ach.id
-    ach = pve:CreateAchievement('AN_DEFENDER', 'AD_DEFENDER', 20, '-Inv_Helmet_01', true)
-    ach:AddCriteria(criterias:CreateL('AN_YOUNG_DEFENDER', TYPE.COMPLETE_ACHIEVEMENT, {id1}))
-    ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_DEPTHS_FULL', TYPE.COMPLETE_ACHIEVEMENT, {brd}))
-    ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_SPIRE', TYPE.COMPLETE_ACHIEVEMENT, {brs}))
-    ach:AddCriteria(criterias:CreateL('AN_DIRE_MAUL', TYPE.COMPLETE_ACHIEVEMENT, {direm}))
-    ach:AddCriteria(criterias:CreateL('AN_STRATHOLME', TYPE.COMPLETE_ACHIEVEMENT, {strat}))
-    ach:AddCriteria(criterias:CreateL('AN_SCHOLOMANCE', TYPE.COMPLETE_ACHIEVEMENT, {scholo}))
-    ach:SetRewardText(loc:Get('AR_DEFENDER'))
-    defender = ach.id
-end
-
-tab:SkipCategories(1)
-
-do
-    local create = createPvE(instances)
-
-    local onyxia = create('ONYXIA', 'onyxia', 10184).id
-    local aq20 = create('AQ20', 'aq20', 15339).id
-    local zg = create('ZULGURUB', 'zulgurub', 14834).id
-    local ragnaros = create('RAGNAROS', 'ragnaros', 11502, 20).id
-    local bwl = create('BLACK_WING_LAIR', 'bwl', 11583, 20).id
-    local aq40 = create('AQ40', 'aq40', 15727, 20).id
-    local nx1 = create('NAXXRAMAS_SPIDERS', '-Inv_Trinket_Naxxramas04', 15952).id
-    local nx2 = create('NAXXRAMAS_PLAGUE', '-Spell_Shadow_Deathcoil', 16011).id
-    local nx3 = create('NAXXRAMAS_MILITARY', '-Inv_Sword_2h_AshbringerCorrupt', {-16062, -16063, -16064, -16065}).id
-    local nx4 = create('NAXXRAMAS_CONSTRUCT', '-Ability_Creature_Poison_01', 15928).id
-    local nx5 = create('NAXXRAMAS_LAIR', 'kelthuzad', 15990).id
-    ach = instances:CreateAchievement('AN_NAXXRAMAS', 'AD_NAXXRAMAS', 10, 'naxxramas', true)
-    ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_SPIDERS', TYPE.COMPLETE_ACHIEVEMENT, {nx1}))
-    ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_PLAGUE', TYPE.COMPLETE_ACHIEVEMENT, {nx2}))
-    ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_MILITARY', TYPE.COMPLETE_ACHIEVEMENT, {nx3}))
-    ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_CONSTRUCT', TYPE.COMPLETE_ACHIEVEMENT, {nx4}))
-    ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_LAIR', TYPE.COMPLETE_ACHIEVEMENT, {nx5}))
-    local nx = ach.id
-
-    ach = pve:CreateAchievement('AN_YOUNG_HERO', 'AD_YOUNG_HERO', 20, 'young_hero', true)
-    ach:AddCriteria(criterias:CreateL('AN_ONYXIA', TYPE.COMPLETE_ACHIEVEMENT, {onyxia}))
-    ach:AddCriteria(criterias:CreateL('AN_AQ20', TYPE.COMPLETE_ACHIEVEMENT, {aq20}))
-    ach:AddCriteria(criterias:CreateL('AN_ZULGURUB', TYPE.COMPLETE_ACHIEVEMENT, {zg}))
-    local id = ach.id
-
-    ach = instances:CreateAchievement('AN_BLACKROCK_MASTER', 'AD_BLACKROCK_MASTER', 20, 'blackrock_master', true)
-    ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_DEPTHS_FULL', TYPE.COMPLETE_ACHIEVEMENT, {brd}))
-    ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_SPIRE', TYPE.COMPLETE_ACHIEVEMENT, {brs}))
-    ach:AddCriteria(criterias:CreateL('AN_RAGNAROS', TYPE.COMPLETE_ACHIEVEMENT, {ragnaros}))
-    ach:AddCriteria(criterias:CreateL('AN_BLACK_WING_LAIR', TYPE.COMPLETE_ACHIEVEMENT, {bwl}))
-
-    ach = pve:CreateAchievement('AN_HERO', 'AD_HERO', 20, 'hero', true)
-    ach:AddCriteria(criterias:CreateL('AN_YOUNG_HERO', TYPE.COMPLETE_ACHIEVEMENT, {id}))
-    ach:AddCriteria(criterias:CreateL('AN_RAGNAROS', TYPE.COMPLETE_ACHIEVEMENT, {ragnaros}))
-    ach:AddCriteria(criterias:CreateL('AN_BLACK_WING_LAIR', TYPE.COMPLETE_ACHIEVEMENT, {bwl}))
-    ach:AddCriteria(criterias:CreateL('AN_AQ40', TYPE.COMPLETE_ACHIEVEMENT, {aq40}))
-    ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS', TYPE.COMPLETE_ACHIEVEMENT, {nx}))
-    ach:SetRewardText(loc:Get('AR_HERO'))
-    id = ach.id
-
-    ach = pve:CreateAchievement('AN_GREAT_HERO', 'AD_GREAT_HERO', 20, 'great_hero', true)
-    ach:AddCriteria(criterias:CreateL('AN_DEFENDER', TYPE.COMPLETE_ACHIEVEMENT, {defender}))
-    ach:AddCriteria(criterias:CreateL('AN_HERO', TYPE.COMPLETE_ACHIEVEMENT, {id}))
-    ach:SetRewardText(loc:Get('AR_GREAT_HERO'))
-end
-
-local pvp = tab:CreateCategory('PvP')
-local openWorldPVP = L:Category(27):Name('CATEGORY_OPEN_WORLD', true):Parent(pvp):Build()
-
-do
     previous = nil
     local factionLetter
     if UnitFactionGroup('player') == 'Horde' then
@@ -294,118 +299,15 @@ do
 
     local previous = pvp:CreateAchievement('AN_PVP_FIRST_KILL', 'AD_PVP_FIRST_KILL', 10, 'pvp_kills_1', true)
     previous:AddCriteria(criterias:CreateL('AC_PVP_FIRST_KILL', TYPE.KILL_PLAYERS, nil, 1))
-    for i, count in pairs({100, 250, 500, 1000, 2000, 5000, 10000}) do
+    for i, count in pairs({100, 250, 500, 1000, 2000, 5000, 10000, 25000, 50000, 100000}) do
         ach = pvp:CreateAchievement(loc:Get('AN_PVP_KILLS', count), loc:Get('AD_PVP_KILLS', count), 10, 'pvp_kills_' .. (i + 1))
         ach:AddCriteria(criterias:Create(loc:Get('AC_PVP_KILLS', count), TYPE.KILL_PLAYERS, nil, count))
-        previous:SetNext(ach)
-        previous = ach
-    end
-    L:Delay(1, function()
-        for i, count in pairs({25000, 50000, 100000}) do
-            previous = L:Achievement(pvp, 10, 'pvp_kills_8')
-            :NameDesc('AN_PVP_KILLS', 'AD_PVP_KILLS', true, count)
-            :Criteria(TYPE.KILL_PLAYERS, nil, count):Name('AC_PVP_KILLS', true, count):Build()
-            :Previous(previous)
-            :Build()
-        end
-    end)
-end
-
-local professions = tab:CreateCategory('CATEGORY_PROFESSIONS', nil, true)
-local cooking = tab:CreateCategory('PROF_COOKING', professions.id, true, 17)
-local fishing = tab:CreateCategory('PROF_FISHING', professions.id, true, 18)
-local firstAid = tab:CreateCategory('PROF_FIRST_AID', professions.id, true, 19)
-
-do
-    ach = professions:CreateAchievement(loc:Get('AN_PROFS_ONE'), loc:Get('AD_PROFS_ONE'), 10, '-Inv_Misc_Note_01')
-    ach:AddCriteria(criterias:Create(nil, TYPE.REACH_MAIN_PROFESSION_LEVEL, {300}))
-
-    local twoMains = professions:CreateAchievement(loc:Get('AN_PROFS_TWO'), loc:Get('AD_PROFS_TWO'), 10, '-Inv_Misc_Note_02')
-    twoMains:AddCriteria(criterias:Create(loc:Get('AC_PROFS_TWO'), TYPE.REACH_MAIN_PROFESSION_LEVEL, {300}, 2))
-
-    local firstAidAch = firstAid:CreateAchievement('AN_FIRST_AID_MASTER', 'AD_FIRST_AID_MASTER', 10, '-Inv_Fabric_Wool_01', true)
-    firstAidAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.FIRST_AID[1], 300}))
-
-    local fishingAch = fishing:CreateAchievement('AN_FISHING_MASTER', 'AD_FISHING_MASTER', 10, 'profs_fishing', true)
-    fishingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.FISHING[1], 300}))
-
-    local cookingAch = cooking:CreateAchievement('AN_COOKING_MASTER', 'AD_COOKING_MASTER', 10, 'profs_cooking', true)
-    cookingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.COOKING[1], 300}))
-
-    local secondary = professions:CreateAchievement(loc:Get('AN_PROFS_SECONDARY'), loc:Get('AD_PROFS_SECONDARY'), 10, '-Inv_Scroll_03')
-    secondary:AddCriteria(criterias:Create(firstAidAch.name, TYPE.COMPLETE_ACHIEVEMENT, {firstAidAch.id}))
-    secondary:AddCriteria(criterias:Create(fishingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {fishingAch.id}))
-    secondary:AddCriteria(criterias:Create(cookingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {cookingAch.id}))
-    
-    ach = professions:CreateAchievement(loc:Get('AN_PROFS_FIVE'), loc:Get('AD_PROFS_FIVE'), 20, '-Spell_Magic_GreaterBlessingOfKings')
-    ach:AddCriteria(criterias:Create(twoMains.name, TYPE.COMPLETE_ACHIEVEMENT, {twoMains.id}))
-    ach:AddCriteria(criterias:Create(secondary.name, TYPE.COMPLETE_ACHIEVEMENT, {secondary.id}))
-end
-
-local reputation = tab:CreateCategory('CATEGORY_REPUTATION', nil, true)
-local vanillaReputation = tab:CreateCategory('CATEGORY_VANILLA', reputation.id, true, 20)
-
-do
-    previous = nil
-    for i, count in pairs({1, 2, 4, 8, 12, 16, 20}) do
-        local desc, cname
-        if i == 1 then
-            desc = loc:Get('AD_REPS_1')
-            cname = loc:Get('AC_REPS_1')
-        else
-            desc = loc:Get('AD_REPS', count)
-            cname = loc:Get('AC_REPS', count)
-        end
-        local icon
-        if i == 1 or i == 2 then icon = 'reps_1'
-        elseif i == 3 or i == 4 then icon = 'reps_2'
-        else icon = 'reps_' .. (i - 2) end
-        ach = reputation:CreateAchievement(loc:Get('AN_REPS_' .. i), desc, 10, icon)
-        ach:AddCriteria(criterias:Create(cname, TYPE.REACH_ANY_REPUTATION, {8}, count))
-        if i > 2 then ach:SetRewardText(loc:Get('AR_REPS')) end
-        if previous then previous:SetNext(ach) end
+        if previous then previous:SetNext(ach) print(i) end
         previous = ach
     end
 
-    ach = reputation:CreateAchievement(loc:Get('AN_HORDE_REPS'), loc:Get('AD_HORDE_REPS'), 30, 'reps_horde')
-    for i, fid in pairs({76, 530, 68, 81}) do
-        ach:AddCriteria(criterias:Create(loc:Get('AC_HORDE_REPS_' .. i), TYPE.REACH_REPUTATION, {fid, 8}))
-    end
-    ach:SetHordeOnly()
-
-    ach = reputation:CreateAchievement(loc:Get('AN_ALLIANCE_REPS'), loc:Get('AD_ALLIANCE_REPS'), 30, 'reps_alliance')
-    for i, fid in pairs({72, 69, 54, 47}) do
-        ach:AddCriteria(criterias:Create(loc:Get('AC_ALLIANCE_REPS_' .. i), TYPE.REACH_REPUTATION, {fid, 8}))
-    end
-    ach:SetAllianceOnly()
-
-    local function add(factionID, factionName, points, icon, reputationLevel)
-        local ach = vanillaReputation:CreateAchievement(loc:Get('AN_' .. factionName), loc:Get('AD_' .. factionName), points or 10, icon or string.lower(factionName))
-        ach:AddCriteria(criterias:Create(nil, TYPE.REACH_REPUTATION, {factionID, reputationLevel or 8}))
-    end
-
-    add(749, 'HYDRAXIANS')
-    add(270, 'ZANDALAR_TRIBE')
-    add(609, 'CENARION_CIRCLE')
-    add(910, 'BROOD_OF_NOZDORMU', 20, '-Inv_Misc_Head_Dragon_Bronze')
-    add(529, 'ARGENT_DAWN', 20)
-    add(576, 'TIMBERMAW_HOLD')
-    add(909, 'DARKMOON_FAIRE', 20, '-Inv_Misc_MissileLarge_Red')
-    add(87, 'PIRATES', 30, '-Inv_Helmet_66', 6)
-    add(809, 'SHENDRALAR', 30)
-end
-
-local alterac = tab:CreateCategory('CATEGORY_BG_ALTERAC', pvp.id, true)
-local alteracID = 1459
-local warsong = tab:CreateCategory('CATEGORY_BG_WARSONG', pvp.id, true)
-local warsongID = 1460
-local arathi = tab:CreateCategory('CATEGORY_BG_ARATHI', pvp.id, true)
-local arathiID = 1461
-local bgEye = tab:CreateCategory('CATEGORY_BG_EYE', pvp.id, true, 26)
-local bgEyeID = 1956
-
-do
-    local function add(category, factionID, factionName, points, icon)
+	
+	local function add(category, factionID, factionName, points, icon)
         local ach = category:CreateAchievement(loc:Get('AN_' .. factionName), loc:Get('AD_' .. factionName), points or 10, icon or string.lower(factionName))
         ach:AddCriteria(criterias:Create(nil, TYPE.REACH_REPUTATION, {factionID, 8}))
         return ach
@@ -496,10 +398,8 @@ do
         ach:AddCriteria(criterias:CreateL('AC_' .. class .. '_KILLED', TYPE.KILL_PLAYER_OF_CLASS, {class}))
     end
     ach:SetAllianceOnly()
-end
-
-do
-    local function _add(category, mapID, mapName, typeName, type, additionalParam, amounts, icon)
+	
+	local function _add(category, mapID, mapName, typeName, type, additionalParam, amounts, icon)
         previous = nil
         for _, amount in pairs(amounts) do
             local name, desc
@@ -534,9 +434,9 @@ do
     add(warsong, warsongID, 'WARSONG', '-Inv_Axe_16')
     add(arathi, arathiID, 'ARATHI', '-Inv_Sword_39')
 
-    L:Delay('bg_eye', function()
-        _add(bgEye, bgEyeID, 'EYE', 'WIN', TYPE.BATTLEFIELD_WINS, nil, {1, 5, 10, 25, 50}, 'bg_eye_win')
-    end)
+    --L:Delay('bg_eye', function()
+    --    _add(bgEye, bgEyeID, 'EYE', 'WIN', TYPE.BATTLEFIELD_WINS, nil, {1, 5, 10, 25, 50}, 'bg_eye_win')
+    --end)
 
     add = function(typeName, type, additionalParam, amounts, icon)
         return _add(alterac, alteracID, 'ALTERAC', typeName, type, additionalParam, amounts, icon)
@@ -570,119 +470,354 @@ do
 
     add('KILLING_BLOW', TYPE.BATTLEFIELDS_SCORE, 1, {100, 250, 500, 750, 1000}, '-Spell_Shadow_Unholyfrenzy')
     add('KILL', TYPE.BATTLEFIELDS_SCORE, 2, {100, 250, 500, 750, 1000}, '-Ability_Warrior_Innerrage')
+	
+	ach = L:Achievement(openWorldPVP, 10, '-Inv_Misc_ArmorKit_14')
+		:NameDesc('AN_GURUBASHI_1', 'AD_GURUBASHI_1', true)
+		:Criteria(TYPE.COMPLETE_QUEST, {7810}):Build()
+		:Build()
+		ach.priority = 2
+
+	L:Achievement(openWorldPVP, 10, '-Inv_Misc_ArmorKit_04')
+		:NameDesc('AN_GURUBASHI_2', 'AD_GURUBASHI_2', true)
+		:Criteria(TYPE.OBTAIN_ITEM, {19024}):Build()
+		:Previous(ach)
+		:Build()
+		.priority = 2	
+	
+	ach = L:Achievement(pvp, 10, 'duels')
+		:NameDesc('AN_DUEL', 'AD_DUEL', true)
+		:Criteria(TYPE.DUELS):Build()
+		:Build()
+		
+	for _, wins in pairs({10, 25, 100}) do
+    ach = L:Achievement(pvp, 10, 'duels')
+            :Name('AN_DUELS_' .. wins, true)
+            :Desc('AD_DUELS', true, wins)
+            :Criteria(TYPE.DUELS, nil, wins):Name('AC_DUELS', true, wins):Build()
+            :Previous(ach)
+            :Build()
+	end
+	
+	ach = nil
+	for _, bgs in pairs({10, 50, 100}) do
+		ach = L:Achievement(pvp, 10, '-Inv_Musket_02')
+				:Name('AN_PARTICIPATE_IN_BGS', true)
+				:Desc('AD_PARTICIPATE_IN_BGS', true, bgs)
+				:Criteria(TYPE.BATTLEFIELD_MAX_LEVEL_PARTICIPATION, nil, bgs):Name('AC_PARTICIPATE_IN_BGS', true, bgs):Build()
+				:Previous(ach)
+				:Build()
+	end
+	
+	L:Achievement(arathi, 10, 'arathi_cats')
+		:NameDesc('AN_ARATHI_CATS', 'AD_ARATHI_CATS', true)
+		:Criteria(TYPE.EMOTE, {'PAT', 15071}):Name('NPC_15071', true):Build()
+		:Criteria(TYPE.EMOTE, {'PAT', 15066}):Name('NPC_15066', true):Build()
+		:Build()
+
+	L:Achievement(alterac, 10, 'alterac_fast_win')
+		:NameDesc('AN_ALTERAC_FAST_WIN', 'AD_ALTERAC_FAST_WIN', true)
+		:Criteria(TYPE.BATTLEFIELD_FAST_WIN, {alteracID}):Build()
+		:Build()
+
+	L:Achievement(warsong, 10, 'warsong_fast_win')
+		:NameDesc('AN_WARSONG_FAST_WIN', 'AD_WARSONG_FAST_WIN', true)
+		:Criteria(TYPE.BATTLEFIELD_FAST_WIN, {warsongID}):Build()
+		:Build()
+
+	L:Achievement(arathi, 10, 'arathi_fast_win')
+		:NameDesc('AN_ARATHI_FAST_WIN', 'AD_ARATHI_FAST_WIN', true)
+		:Criteria(TYPE.BATTLEFIELD_FAST_WIN, {arathiID}):Build()
+		:Build()
+
+	local function add(category, mapID, statID, name, icon, count)
+		L:Achievement(category, 10, icon)
+			:Name('AN_' .. name .. '_TOTAL', true)
+			:Desc('AD_' .. name .. '_TOTAL', true, count)
+			:Criteria(TYPE.BATTLEFIELD_STAT, {mapID, statID}, count):Name('AD_' .. name .. '_TOTAL', true, count):Build()
+			:Build()
+	end
+
+	add(alterac, alteracID, 4, 'ALTERAC_TOWER_DEFEND', 'alterac_towers', 50)
+	add(alterac, alteracID, 1, 'ALTERAC_GRAVEYARD_ASSAULT', 'arathi_graveyards', 50)
+	add(warsong, warsongID, 1, 'WARSONG_FLAG_CAPTURE', 'warsong_flags', 50)
+	add(warsong, warsongID, 2, 'WARSONG_FLAG_RETURN', 'warsong_returns', 50)
+	add(arathi, arathiID, 1, 'ARATHI_BASE_ASSAULT', 'arathi_flags', 50)
+	add(arathi, arathiID, 2, 'ARATHI_BASE_DEFEND', 'arathi_defends', 50)
+
+	L:Achievement(alterac, 10, '-Inv_Misc_Horn_01')
+		:NameDesc('AN_ALTERAC_MOUNT_HORDE', 'AD_ALTERAC_MOUNT_HORDE', true)
+		:Criteria(TYPE.OBTAIN_ITEM, {19029}):Build()
+		:Build():SetHordeOnly()
+
+	L:Achievement(alterac, 10, '-Ability_Mount_MountainRam')
+		:NameDesc('AN_ALTERAC_MOUNT_ALLIANCE', 'AD_ALTERAC_MOUNT_ALLIANCE', true)
+		:Criteria(TYPE.OBTAIN_ITEM, {19030}):Build()
+		:Build():SetAllianceOnly()	
+
+	local function add(category, name, icon, ids)
+		ach = L:Achievement(category, 10, icon)
+				:NameDesc('AN_' .. name, 'AD_' .. name, true)
+		
+		for _, id in pairs(ids) do 
+			ach:CompleteAchievementCriteria(id) 		
+		end	
+		
+		return ach:Build()
+	end
+	
+	--for id, ach in pairs(db.achievements or {}) do
+	--	print("Achievement:", ach.name, "ID:", id)
+	--end
+
+	local alteracBoss = add(alterac, 'ALTERAC_BOSS', '-Inv_Sword_03', {220, 223, 224, 181, 147, 161, 165, 169, 177, 173})
+	local warsongBoss = add(warsong, 'WARSONG_BOSS', 'warsong_master', {226, 225, 221, 152, 185, 188, 191})
+	local arathiBoss = add(arathi, 'ARATHI_BOSS', '-Inv_Sword_56', {228, 227, 222, 199, 157, 219, 195})
+
+	L:Achievement(pvp, 20, 'battlemaster')
+		:NameDesc('AN_BATTLEMASTER', 'AD_BATTLEMASTER', true)
+		:CompleteAchievementCriteria(alteracBoss)
+		:CompleteAchievementCriteria(warsongBoss)
+		:CompleteAchievementCriteria(arathiBoss)
+		:Reward('AR_BATTLEMASTER', true)
+		:Build()
 end
 
-local exploration = tab:CreateCategory('CATEGORY_EXPLORATION', nil, true)
-
-local exploreAzeroth = exploration:CreateAchievement('AN_EXPLORE_AZEROTH', 'AD_EXPLORE_AZEROTH', 30, '-Inv_Misc_Map_01', true)
-exploreAzeroth:SetUnavailable()
-local explorationKalimdor = tab:CreateCategory('CATEGORY_KALIMDOR', exploration.id, true)
-local explorationEasternKingdoms = tab:CreateCategory('CATEGORY_EASTERN_KINGDOMS', exploration.id, true)
-
+-- PVE --
 do
-    local global = exploration:CreateAchievement('AN_EXPLORE_KALIMDOR', 'AD_EXPLORE_KALIMDOR', 20, string.lower('kalimdor'), true)
-    local function add(areaID, areaIDs, icon)
-        local areaName = AreaTableLocale[areaID]
-        ach = explorationKalimdor:CreateAchievement(areaName, loc:Get('AD_EXPLORE', areaName), 10, icon or string.lower(AreaTable[areaID][3]))
-        for _, childrenID in pairs(areaIDs) do
-			ach:AddCriteria(criterias:Create(AreaTableLocale[childrenID], TYPE.EXPLORE_AREA, {childrenID}))
+	local createPvE = function(category)
+		return function(instanceName, icon, npcIDs, points)
+			ach = category:CreateAchievement('AN_' .. instanceName, 'AD_' .. instanceName, points or 10, icon, true)
+			if type(npcIDs) == 'table' then
+				for i, npcID in pairs(npcIDs) do
+					if npcID > 0 then
+						ach:AddCriteria(criterias:CreateL('AC_' .. instanceName .. i, TYPE.KILL_NPC, {npcID}))
+					else
+						ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {-npcID}))
+					end
+				end
+			else
+				ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {npcIDs}))
+			end
+			return ach
+		end
+	end
+
+	local brd, brs, defender
+
+	local create = createPvE(instances)
+	local rc = create('RAGEFIRE_CHASM', '-Racial_Orc_BerserkerStrength', 11518).id
+	local wc = create('WAILING_CAVERNS', 'wailing_caverns', 3654).id
+	local dm = create('DEAD_MINES', '-Inv_Pick_03', 639).id
+	local sk = create('SHADOWFANG_KEEP', '-Inv_Weapon_Hand_01', 4275).id
+	local bfd = create('BLACKFATHOM_DEEPS', 'blackfathom_deeps', 4829).id
+	local jail = create('JAIL', '-Spell_Holy_Sealofprotection', 1666).id
+	local gnom = create('GNOMREGAN', 'gnomregan', 7800).id
+	local rk = create('RAZORFEN_KRAUL', 'razorfen_kraul', 4421).id
+	local sm = create('SCARLET_MONASTERY', '-Spell_Holy_Resurrection', {4543, 6487, 3975, 3977}, 20).id
+	local rd = create('RAZORFEN_DOWNS', 'razorfen_downs', {7358, 7356}).id
+	local uldaman = create('ULDAMAN', 'uldaman', 2748).id
+	local zf = create('ZULFARRAK', 'zulfarrak', 7267).id
+	local mara = create('MARAUDON', 'maraudon', 12201).id
+	local st = create('SUNKEN_TEMPLE', 'sunken_temple', 5709).id
+
+	local id1 = create('NEW_EMPEROR', 'new_emperor', 9019).id
+	local id2 = create('BLACKROCK_DEPTHS', '-Spell_Fire_Lavaspawn', {9018, 9319, 9033, 8983, 9017, 9041, 9016}, 20).id
+	local id3 = create('BLACKROCK_PARTY', '-Inv_Misc_Food_31', {9543, 9499, 9537, 9502}, 10).id
+	ach = instances:CreateAchievement('AN_ARMOR_SWORD', 'AD_ARMOR_SWORD', 10, '-Inv_Sword_47', true)
+	ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {11786}))
+	local id4 = ach.id
+	ach = instances:CreateAchievement('AN_BLACKROCK_DEPTHS_FULL', 'AD_BLACKROCK_DEPTHS_FULL', 10, '-Inv_Misc_AhnQirajTrinket_03', true)
+	ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_DEPTHS', TYPE.COMPLETE_ACHIEVEMENT, {id2}))
+	ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_PARTY', TYPE.COMPLETE_ACHIEVEMENT, {id3}))
+	ach:AddCriteria(criterias:CreateL('AN_NEW_EMPEROR', TYPE.COMPLETE_ACHIEVEMENT, {id1}))
+	ach:AddCriteria(criterias:CreateL('AN_ARMOR_SWORD', TYPE.COMPLETE_ACHIEVEMENT, {id4}))
+	brd = ach.id
+
+	id1 = create('BLACKROCK_SPIRE_BOTTOM', 'lbrs', 9568).id
+	id2 = create('BLACKROCK_SPIRE_UPPER', 'ubrs', 10363).id
+	ach = instances:CreateAchievement('AN_BLACKROCK_SPIRE', 'AD_BLACKROCK_SPIRE', 10, '-Inv_Sword_48', true)
+	ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_SPIRE_BOTTOM', TYPE.COMPLETE_ACHIEVEMENT, {id1}))
+	ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_SPIRE_UPPER', TYPE.COMPLETE_ACHIEVEMENT, {id2}))
+	brs = ach.id
+
+	local direm = create('DIRE_MAUL', '-Ability_Warrior_DecisiveStrike', {11492, 11486, 11501}).id
+
+	id1 = create('STRATHOLME_LIVE', '-Inv_Jewelry_Necklace_01', 10813).id
+	id2 = create('STRATHOLME_DEAD', '-Inv_Jewelry_Necklace_19', 10440).id
+	ach = instances:CreateAchievement('AN_STRATHOLME', 'AD_STRATHOLME', 10, '-Inv_Shield_01', true)
+	ach:AddCriteria(criterias:CreateL('AN_STRATHOLME_LIVE', TYPE.COMPLETE_ACHIEVEMENT, {id1}))
+	ach:AddCriteria(criterias:CreateL('AN_STRATHOLME_DEAD', TYPE.COMPLETE_ACHIEVEMENT, {id2}))
+	local strat = ach.id
+
+	local scholo = create('SCHOLOMANCE', '-Spell_Holy_Senseundead', 1853, 20).id
+
+	ach = instances:CreateAchievement('AN_YOUNG_DEFENDER', 'AD_YOUNG_DEFENDER', 20, '-Inv_Helmet_03', true)
+	ach:AddCriteria(criterias:CreateL('AN_RAGEFIRE_CHASM', TYPE.COMPLETE_ACHIEVEMENT, {rc}))
+	ach:AddCriteria(criterias:CreateL('AN_WAILING_CAVERNS', TYPE.COMPLETE_ACHIEVEMENT, {wc}))
+	ach:AddCriteria(criterias:CreateL('AN_DEAD_MINES', TYPE.COMPLETE_ACHIEVEMENT, {dm}))
+	ach:AddCriteria(criterias:CreateL('AN_SHADOWFANG_KEEP', TYPE.COMPLETE_ACHIEVEMENT, {sk}))
+	ach:AddCriteria(criterias:CreateL('AN_BLACKFATHOM_DEEPS', TYPE.COMPLETE_ACHIEVEMENT, {bfd}))
+	ach:AddCriteria(criterias:CreateL('AN_JAIL', TYPE.COMPLETE_ACHIEVEMENT, {jail}))
+	ach:AddCriteria(criterias:CreateL('AN_GNOMREGAN', TYPE.COMPLETE_ACHIEVEMENT, {gnom}))
+	ach:AddCriteria(criterias:CreateL('AN_RAZORFEN_KRAUL', TYPE.COMPLETE_ACHIEVEMENT, {rk}))
+	ach:AddCriteria(criterias:CreateL('AN_SCARLET_MONASTERY', TYPE.COMPLETE_ACHIEVEMENT, {sm}))
+	ach:AddCriteria(criterias:CreateL('AN_RAZORFEN_DOWNS', TYPE.COMPLETE_ACHIEVEMENT, {rd}))
+	ach:AddCriteria(criterias:CreateL('AN_ULDAMAN', TYPE.COMPLETE_ACHIEVEMENT, {uldaman}))
+	ach:AddCriteria(criterias:CreateL('AN_ZULFARRAK', TYPE.COMPLETE_ACHIEVEMENT, {zf}))
+	ach:AddCriteria(criterias:CreateL('AN_MARAUDON', TYPE.COMPLETE_ACHIEVEMENT, {mara}))
+	ach:AddCriteria(criterias:CreateL('AN_SUNKEN_TEMPLE', TYPE.COMPLETE_ACHIEVEMENT, {st}))
+	
+	id1 = ach.id
+	ach = pve:CreateAchievement('AN_DEFENDER', 'AD_DEFENDER', 20, '-Inv_Helmet_01', true)
+	ach:AddCriteria(criterias:CreateL('AN_YOUNG_DEFENDER', TYPE.COMPLETE_ACHIEVEMENT, {id1}))
+	ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_DEPTHS_FULL', TYPE.COMPLETE_ACHIEVEMENT, {brd}))
+	ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_SPIRE', TYPE.COMPLETE_ACHIEVEMENT, {brs}))
+	ach:AddCriteria(criterias:CreateL('AN_DIRE_MAUL', TYPE.COMPLETE_ACHIEVEMENT, {direm}))
+	ach:AddCriteria(criterias:CreateL('AN_STRATHOLME', TYPE.COMPLETE_ACHIEVEMENT, {strat}))
+	ach:AddCriteria(criterias:CreateL('AN_SCHOLOMANCE', TYPE.COMPLETE_ACHIEVEMENT, {scholo}))
+	ach:SetRewardText(loc:Get('AR_DEFENDER'))
+	defender = ach.id	
+
+    local create = createPvE(instances)
+    local onyxia = create('ONYXIA', 'onyxia', 10184).id
+    local aq20 = create('AQ20', 'aq20', 15339).id
+    local zg = create('ZULGURUB', 'zulgurub', 14834).id
+    local ragnaros = create('RAGNAROS', 'ragnaros', 11502, 20).id
+    local bwl = create('BLACK_WING_LAIR', 'bwl', 11583, 20).id
+    local aq40 = create('AQ40', 'aq40', 15727, 20).id
+    local nx1 = create('NAXXRAMAS_SPIDERS', '-Inv_Trinket_Naxxramas04', 15952).id
+    local nx2 = create('NAXXRAMAS_PLAGUE', '-Spell_Shadow_Deathcoil', 16011).id
+    local nx3 = create('NAXXRAMAS_MILITARY', '-Inv_Sword_2h_AshbringerCorrupt', {-16062, -16063, -16064, -16065}).id
+    local nx4 = create('NAXXRAMAS_CONSTRUCT', '-Ability_Creature_Poison_01', 15928).id
+    local nx5 = create('NAXXRAMAS_LAIR', 'kelthuzad', 15990).id
+    ach = instances:CreateAchievement('AN_NAXXRAMAS', 'AD_NAXXRAMAS', 10, 'naxxramas', true)
+    ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_SPIDERS', TYPE.COMPLETE_ACHIEVEMENT, {nx1}))
+    ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_PLAGUE', TYPE.COMPLETE_ACHIEVEMENT, {nx2}))
+    ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_MILITARY', TYPE.COMPLETE_ACHIEVEMENT, {nx3}))
+    ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_CONSTRUCT', TYPE.COMPLETE_ACHIEVEMENT, {nx4}))
+    ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_LAIR', TYPE.COMPLETE_ACHIEVEMENT, {nx5}))
+    local nx = ach.id
+
+    ach = pve:CreateAchievement('AN_YOUNG_HERO', 'AD_YOUNG_HERO', 20, 'young_hero', true)
+    ach:AddCriteria(criterias:CreateL('AN_ONYXIA', TYPE.COMPLETE_ACHIEVEMENT, {onyxia}))
+    ach:AddCriteria(criterias:CreateL('AN_AQ20', TYPE.COMPLETE_ACHIEVEMENT, {aq20}))
+    ach:AddCriteria(criterias:CreateL('AN_ZULGURUB', TYPE.COMPLETE_ACHIEVEMENT, {zg}))
+    local id = ach.id
+
+    ach = instances:CreateAchievement('AN_BLACKROCK_MASTER', 'AD_BLACKROCK_MASTER', 20, 'blackrock_master', true)
+    ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_DEPTHS_FULL', TYPE.COMPLETE_ACHIEVEMENT, {brd}))
+    ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_SPIRE', TYPE.COMPLETE_ACHIEVEMENT, {brs}))
+    ach:AddCriteria(criterias:CreateL('AN_RAGNAROS', TYPE.COMPLETE_ACHIEVEMENT, {ragnaros}))
+    ach:AddCriteria(criterias:CreateL('AN_BLACK_WING_LAIR', TYPE.COMPLETE_ACHIEVEMENT, {bwl}))
+
+    ach = pve:CreateAchievement('AN_HERO', 'AD_HERO', 20, 'hero', true)
+    ach:AddCriteria(criterias:CreateL('AN_YOUNG_HERO', TYPE.COMPLETE_ACHIEVEMENT, {id}))
+    ach:AddCriteria(criterias:CreateL('AN_RAGNAROS', TYPE.COMPLETE_ACHIEVEMENT, {ragnaros}))
+    ach:AddCriteria(criterias:CreateL('AN_BLACK_WING_LAIR', TYPE.COMPLETE_ACHIEVEMENT, {bwl}))
+    ach:AddCriteria(criterias:CreateL('AN_AQ40', TYPE.COMPLETE_ACHIEVEMENT, {aq40}))
+    ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS', TYPE.COMPLETE_ACHIEVEMENT, {nx}))
+    ach:SetRewardText(loc:Get('AR_HERO'))
+    id = ach.id
+
+    ach = pve:CreateAchievement('AN_GREAT_HERO', 'AD_GREAT_HERO', 20, 'great_hero', true)
+    ach:AddCriteria(criterias:CreateL('AN_DEFENDER', TYPE.COMPLETE_ACHIEVEMENT, {defender}))
+    ach:AddCriteria(criterias:CreateL('AN_HERO', TYPE.COMPLETE_ACHIEVEMENT, {id}))
+    ach:SetRewardText(loc:Get('AR_GREAT_HERO'))
+	
+	local function add(name, creatureID, icon, fos)
+        local category, points
+        if fos then
+            category = featsOfStrength
+            points = 0
+        else
+            category = instances
+            points = 10
         end
-        global:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+        return L:Achievement(category, points, icon)
+                :NameDesc('AN_WB_' .. name, 'AD_WB_' .. name, true)
+                :Criteria(TYPE.KILL_NPC, {creatureID}):Build()
+                :Build()
     end
 
-    add(331, {441, 414, 2301, 413, 417, 416, 424, 415, 421, 418, 426, 419, 431, 422, 438, 430, 434, 437})
-    add(16, {1228, 1230, 2497, 1229, 1226, 1219, 1220, 1225, 1216, 1237, 1236, 1235, 1221, 1231, 1232, 1234, 1256, 1233, 1227})
-    add(148, {443, 444, 456, 446, 447, 448, 450, 449, 442})
-    add(405, {608, 603, 599, 2407, 609, 2405, 607, 596, 2408, 606, 602, 604, 2198, 2406, 2404})
-    add(14, {367, 366, 368, 372, 362, 816, 369, 370, 817, 1637, 363})
-    add(15, {502, 496, 2302, 509, 511, 2079, 513}, 'dustwallow')
-    add(361, {1998, 1762, 2618, 1767, 1765, 1766, 2481, 1763, 2479, 2480, 2478, 1761})
-    add(357, {1137, 1111, 1114, 1113, 1108, 1119, 1105, 2577, 2522, 1106, 1099, 1101, 1103, 1100, 1121, 1120})
-    add(493, {656}, '-Spell_Arcane_TeleportMoonglade')
-    add(215, {818, 220, 396, 222, 360, 821, 820, 224, 404, 397, 819, 225, 1638, 398})
-    add(1377, {3425, 2743, 2744, 2737, 2740})
-    add(406, {2537, 2539, 1076, 2540, 2541, 461, 460, 465, 464, 467, 2538}, 'stonetalon')
-    add(440, {979, 976, 977, 1937, 1336, 986, 1939, 985, 982, 1938, 1940, 983, 984, 981, 992, 987, 980, 990, 2300, 978})
-    add(141, {736, 186, 261, 259, 478, 260, 264, 266, 1657, 702, 188}, 'darnassus')
-    add(17, {382, 1703, 384, 383, 386, 1702, 1704, 379, 1699, 380, 388, 392, 391, 385, 1697, 387, 1700, 1698, 378, 390, 1701, 359, 1717, 1316, 381}, 'barrens')
-    add(400, {2097, 483, 484, 481, 2303, 439, 480, 482, 485}, 'thousand_needles')
-    add(490, {543, 539, 540, 1942, 1943, 538, 537}, 'ungoro')
-    add(618, {2243, 2251, 2253, 2245, 2255, 2250, 2247, 2244, 2242, 2241, 2249, 2256, 2246})
-    exploreAzeroth:AddCriteria(criterias:Create(global.name, TYPE.COMPLETE_ACHIEVEMENT, {global.id}))
+    add('AZUREGOS', 6109, 'azuregos')
+    add('KAZZAK', 12397, 'kazzak', true)
+    local ysondre = add('YSONDRE', 14887, 'ysondre')
+    local lethon = add('LETHON', 14888, 'lethon')
+    local emeriss = add('EMERISS', 14889, 'emeriss')
+    local taerar = add('TAERAR', 14890, 'taerar')
+	
+    ach = L:Achievement(pve, 20, 'dragons_of_nightmare')
+            :NameDesc('AN_WB_EMERALD_DRAGONS', 'AD_WB_EMERALD_DRAGONS', true)
+            :CompleteAchievementCriteria(ysondre)
+            :CompleteAchievementCriteria(lethon)
+            :CompleteAchievementCriteria(emeriss)
+            :CompleteAchievementCriteria(taerar)
+            :Reward('AR_WB_EMERALD_DRAGONS', true)
+            :Build()			
+			
+	L:Achievement(instances, 20, 'drake_red')
+		:NameDesc('AN_LEEROY', 'AD_LEEROY', true)
+		:Criteria(TYPE.SPECIAL, {1}):Build()
+		:Reward('AR_LEEROY', true)
+		:Build()
 
-    global = exploration:CreateAchievement('AN_EXPLORE_EASTERN_KINGDOMS', 'AD_EXPLORE_EASTERN_KINGDOMS', 20, string.lower('eastern_kingdoms'), true)
-    add = function(areaID, areaIDs, icon)
-        local areaName = AreaTableLocale[areaID]
-        ach = explorationEasternKingdoms:CreateAchievement(areaName, loc:Get('AD_EXPLORE', areaName), 10, icon or string.lower(AreaTable[areaID][3]))
-        for _, childrenID in pairs(areaIDs) do
-                ach:AddCriteria(criterias:Create(AreaTableLocale[childrenID], TYPE.EXPLORE_AREA, {childrenID}))
-        end
-        global:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
-    end
+	L:Achievement(instances, 20, 'drake_twilight')
+		:NameDesc('AN_BWL_DUO', 'AD_BWL_DUO', true)
+		:Criteria(TYPE.SPECIAL, {2}):Build()
+		:Build()
 
-    add(36, {1679, 282, 279, 1682, 1357, 1677, 1683, 278, 1681, 281, 1678, 280, 1680, 284, 1684}, 'alterac_mountains')
-    add(45, {313, 334, 1857, 1858, 327, 324, 880, 335, 320, 316, 317, 336, 315, 314, 321, 333}, 'arathi')
-    add(3, {342, 339, 1879, 345, 337, 344, 1878, 340, 338, 1877, 346, 1898, 341, 1897})
-    add(4, {1457, 1438, 1440, 72, 1441, 1439, 73, 2517, 1437}, 'blasted_lands')
-    add(46, {2418, 249, 2417, 2420, 253, 250, 2421, 252, 254, 255}, 'burning_steppes')
-    add(41, {2561, 2562, 2697}, 'deadwind_pass')
-    add(1, {801, 800, 131, 802, 804, 138, 212, 803, 808, 134, 137, 135, 136, 77, 211, 806, 809, 133}, 'dun_morogh')
-    add(10, {536, 94, 492, 93, 856, 245, 242, 241, 121, 42, 1098, 799, 1097})
-    add(139, {2260, 2261, 2263, 2258, 2262, 2622, 2264, 2621, 2266, 2268, 2623, 2270, 2271, 2624, 2272, 2273, 2275, 2276, 2627, 2277, 2279, 2619}, 'eastern_plaguelands')
-    add(12, {87, 9, 1519, 57, 797, 60, 62, 91, 798, 88, 86, 18}, 'elwynn_forest')
-    add(267, {272, 1056, 290, 275, 294, 289, 286, 271, 288, 295, 896, 285}, 'hillsbrad')
-    add(38, {146, 143, 149, 807, 147, 142, 936, 144, 923, 924, 556}, 'loch_modan')
-    add(44, {68, 1002, 1001, 95, 97, 70, 997, 996, 71, 1000, 69}, 'redridge_mountains')
-    add(51, {246, 1957, 1444, 1958, 247, 1959, 1442}, 'searing_gorge')
-    add(130, {927, 240, 226, 928, 172, 237, 228, 213, 229, 233, 236, 204, 230, 231, 238}, 'silverpine_forest')
-    add(33, {100, 117, 99, 101, 43, 1738, 1737, 1739, 311, 477, 310, 128, 1741, 103, 127, 129, 105, 1740, 37, 125, 123, 104, 122, 102, 297, 19, 35}, 'stranglethorn_valley')
-    add(8, {116, 657, 1780, 1798, 75, 74, 1797, 1778, 76, 300, 1777}, 'swamp_of_sorrows')
-    add(47, {1882, 348, 350, 1885, 1883, 353, 1886, 1884, 356, 355, 1917, 351, 307, 354}, 'hinterlands')
-    add(85, {156, 154, 810, 157, 166, 811, 164, 159, 165, 162, 459, 167, 812, 160, 1497, 152}, 'tirisfal_glades')
-    add(28, {2298, 197, 193, 813, 199, 200, 202, 192, 190, 201, 198, 2620, 2297}, 'western_plaguelands')
-    add(40, {107, 108, 916, 109, 918, 111, 917, 113, 219, 20, 115, 921, 922, 920})
-    add(11, {1018, 1022, 118, 1024, 1023, 309, 205, 1036, 836, 1025, 1020, 1016, 1017, 1037, 150}, 'wetlands')
-    exploreAzeroth:AddCriteria(criterias:Create(global.name, TYPE.COMPLETE_ACHIEVEMENT, {global.id}))
+	L:Achievement(instances, 10, 'anubrekhan_without_mobs')
+		:NameDesc('AN_ANUBREKHAN_WITHOUT_MOBS', 'AD_ANUBREKHAN_WITHOUT_MOBS', true)
+		:Criteria(TYPE.BOSS_WITHOUT_MOBS, {15956}):Build()
+		:Build()
+
+	L:Achievement(instances, 10, 'faerlina_without_mobs')
+		:NameDesc('AN_FAERLINA_WITHOUT_MOBS', 'AD_FAERLINA_WITHOUT_MOBS', true)
+		:Criteria(TYPE.BOSS_WITHOUT_MOBS, {15953}):Build()
+		:Build()
+
+	L:Achievement(instances, 10, 'arachnophobia')
+		:NameDesc('AN_ARACHNOPHOBIA', 'AD_ARACHNOPHOBIA', true)
+		:Criteria(TYPE.SPECIAL, {3}):Build()
+		:Build()
+
+	L:Achievement(instances, 10, 'four_together')
+		:NameDesc('AN_FOUR_TOGETHER', 'AD_FOUR_TOGETHER', true)
+		:Criteria(TYPE.SPECIAL, {4}):Build()
+		:Build()
+
+	L:Achievement(instances, 20, 'sapphirone_with_all_alive')
+		:NameDesc('AN_SAPPHIRONE_WITH_ALL_ALIVE', 'AD_SAPPHIRONE_WITH_ALL_ALIVE', true)
+		:Criteria(TYPE.BOSS_WITH_ALL_ALIVE, {15989}):Build()
+		:Build()
 end
 
+-- PROFESSIONS --
 do
-    ach = featsOfStrength:CreateAchievement('AN_SULFURAS', 'AD_SULFURAS', 0, '-Inv_Hammer_Unique_Sulfuras', true)
-    ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {17182}))
+    ach = professions:CreateAchievement(loc:Get('AN_PROFS_ONE'), loc:Get('AD_PROFS_ONE'), 10, '-Inv_Misc_Note_01')
+    ach:AddCriteria(criterias:Create(nil, TYPE.REACH_MAIN_PROFESSION_LEVEL, {300}))
 
-    ach = featsOfStrength:CreateAchievement('AN_THUNDER_FURY', 'AD_THUNDER_FURY', 0, '-Inv_Sword_39', true)
-    ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {19019}))
+    local twoMains = professions:CreateAchievement(loc:Get('AN_PROFS_TWO'), loc:Get('AD_PROFS_TWO'), 10, '-Inv_Misc_Note_02')
+    twoMains:AddCriteria(criterias:Create(loc:Get('AC_PROFS_TWO'), TYPE.REACH_MAIN_PROFESSION_LEVEL, {300}, 2))
 
-    ach = featsOfStrength:CreateAchievement('AN_BLACK_SCARAB', 'AD_BLACK_SCARAB', 0, '-Inv_Misc_QirajiCrystal_05', true)
-    ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {21176}))
+    local firstAidAch = firstAid:CreateAchievement('AN_FIRST_AID_MASTER', 'AD_FIRST_AID_MASTER', 10, '-Inv_Fabric_Wool_01', true)
+    firstAidAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.FIRST_AID[1], 300}))
 
-    ach = featsOfStrength:CreateAchievement('AN_RED_SCARAB', 'AD_RED_SCARAB', 0, '-Inv_Misc_QirajiCrystal_02', true)
-    ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {21321}))
+    local fishingAch = fishing:CreateAchievement('AN_FISHING_MASTER', 'AD_FISHING_MASTER', 10, 'profs_fishing', true)
+    fishingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.FISHING[1], 300}))
 
-    ach = featsOfStrength:CreateAchievement('AN_ATIESH', 'AD_ATIESH', 0, '-Inv_Staff_Medivh', true)
-    ach:AddCriteria(criterias:Create(nil, TYPE.ATIESH))
-end
+    local cookingAch = cooking:CreateAchievement('AN_COOKING_MASTER', 'AD_COOKING_MASTER', 10, 'profs_cooking', true)
+    cookingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.COOKING[1], 300}))
 
-do
-    ach = general:CreateAchievement('AN_UNARMED_SKILL', 'AD_UNARMED_SKILL', 10, '-Ability_GolemThunderClap', true)
-    ach:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsSkills.UNARMED[1], 350}))
-
-    local function add(previous, qualityName, quality, icon)
-        local ach = general:CreateAchievement('AN_' .. qualityName .. '_GEAR', 'AD_' .. qualityName .. '_GEAR', 10, icon, true)
-        for idx, name in pairs(criterias.GEAR_SLOT) do
-            ach:AddCriteria(criterias:CreateL('GEAR_SLOT_' .. name, TYPE.GEAR_QUALITY, {idx, quality}))
-        end
-        if previous then previous:SetNext(ach) end
-        return ach
-    end
-
-    ach = add(nil, 'UNCOMMON', 2, '-Inv_Enchant_EssenceNetherSmall')
-    ach = add(ach, 'RARE', 3, '-Spell_Frost_WizardMark')
-    ach = add(ach, 'EPIC', 4, '-Inv_Enchant_ShardNexusLarge')
-end
-
-tab:SkipCategories(3)
-
-do
+    local secondary = professions:CreateAchievement(loc:Get('AN_PROFS_SECONDARY'), loc:Get('AD_PROFS_SECONDARY'), 10, '-Inv_Scroll_03')
+    secondary:AddCriteria(criterias:Create(firstAidAch.name, TYPE.COMPLETE_ACHIEVEMENT, {firstAidAch.id}))
+    secondary:AddCriteria(criterias:Create(fishingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {fishingAch.id}))
+    secondary:AddCriteria(criterias:Create(cookingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {cookingAch.id}))
+    
+    ach = professions:CreateAchievement(loc:Get('AN_PROFS_FIVE'), loc:Get('AD_PROFS_FIVE'), 20, '-Spell_Magic_GreaterBlessingOfKings')
+    ach:AddCriteria(criterias:Create(twoMains.name, TYPE.COMPLETE_ACHIEVEMENT, {twoMains.id}))
+    ach:AddCriteria(criterias:Create(secondary.name, TYPE.COMPLETE_ACHIEVEMENT, {secondary.id}))
+	
     ach = professions:CreateAchievement('AN_PROFS_JOURNEYMAN', 'AD_PROFS_JOURNEYMAN', 10, '-Inv_Misc_Note_01', true)
     ach:AddCriteria(criterias:Create(nil, TYPE.REACH_MAIN_PROFESSION_LEVEL, {75}))
     previous = ach
@@ -795,39 +930,71 @@ do
     add('CHOPS', '-Inv_Misc_Food_65', 21023, 20, 20)
 end
 
-tab:SkipCategories(1)
-
+-- REPUTATION --
 do
-    local function add(name, creatureID, icon, fos)
-        local category, points
-        if fos then
-            category = featsOfStrength
-            points = 0
+    previous = nil
+    for i, count in pairs({1, 2, 4, 8, 12, 16, 20}) do
+        local desc, cname
+        if i == 1 then
+            desc = loc:Get('AD_REPS_1')
+            cname = loc:Get('AC_REPS_1')
         else
-            category = instances
-            points = 10
+            desc = loc:Get('AD_REPS', count)
+            cname = loc:Get('AC_REPS', count)
         end
-        return L:Achievement(category, points, icon)
-                :NameDesc('AN_WB_' .. name, 'AD_WB_' .. name, true)
-                :Criteria(TYPE.KILL_NPC, {creatureID}):Build()
-                :Build()
+        local icon
+        if i == 1 or i == 2 then icon = 'reps_1'
+        elseif i == 3 or i == 4 then icon = 'reps_2'
+        else icon = 'reps_' .. (i - 2) end
+        ach = reputation:CreateAchievement(loc:Get('AN_REPS_' .. i), desc, 10, icon)
+        ach:AddCriteria(criterias:Create(cname, TYPE.REACH_ANY_REPUTATION, {8}, count))
+        if i > 2 then ach:SetRewardText(loc:Get('AR_REPS')) end
+        if previous then previous:SetNext(ach) end
+        previous = ach
     end
 
-    add('AZUREGOS', 6109, 'azuregos')
-    add('KAZZAK', 12397, 'kazzak', true)
-    local ysondre = add('YSONDRE', 14887, 'ysondre')
-    local lethon = add('LETHON', 14888, 'lethon')
-    local emeriss = add('EMERISS', 14889, 'emeriss')
-    local taerar = add('TAERAR', 14890, 'taerar')
-    ach = L:Achievement(pve, 20, 'dragons_of_nightmare')
-            :NameDesc('AN_WB_EMERALD_DRAGONS', 'AD_WB_EMERALD_DRAGONS', true)
-            :CompleteAchievementCriteria(ysondre)
-            :CompleteAchievementCriteria(lethon)
-            :CompleteAchievementCriteria(emeriss)
-            :CompleteAchievementCriteria(taerar)
-            :Reward('AR_WB_EMERALD_DRAGONS', true)
-            :Build()
+    ach = reputation:CreateAchievement(loc:Get('AN_HORDE_REPS'), loc:Get('AD_HORDE_REPS'), 30, 'reps_horde')
+    for i, fid in pairs({76, 530, 68, 81}) do
+        ach:AddCriteria(criterias:Create(loc:Get('AC_HORDE_REPS_' .. i), TYPE.REACH_REPUTATION, {fid, 8}))
+    end
+    ach:SetHordeOnly()
+
+    ach = reputation:CreateAchievement(loc:Get('AN_ALLIANCE_REPS'), loc:Get('AD_ALLIANCE_REPS'), 30, 'reps_alliance')
+    for i, fid in pairs({72, 69, 54, 47}) do
+        ach:AddCriteria(criterias:Create(loc:Get('AC_ALLIANCE_REPS_' .. i), TYPE.REACH_REPUTATION, {fid, 8}))
+    end
+    ach:SetAllianceOnly()
+
+    local function add(factionID, factionName, points, icon, reputationLevel)
+        local ach = vanillaReputation:CreateAchievement(loc:Get('AN_' .. factionName), loc:Get('AD_' .. factionName), points or 10, icon or string.lower(factionName))
+        ach:AddCriteria(criterias:Create(nil, TYPE.REACH_REPUTATION, {factionID, reputationLevel or 8}))
+    end
+
+    add(749, 'HYDRAXIANS')
+    add(270, 'ZANDALAR_TRIBE')
+    add(609, 'CENARION_CIRCLE')
+    add(910, 'BROOD_OF_NOZDORMU', 20, '-Inv_Misc_Head_Dragon_Bronze')
+    add(529, 'ARGENT_DAWN', 20)
+    add(576, 'TIMBERMAW_HOLD')
+    add(909, 'DARKMOON_FAIRE', 20, '-Inv_Misc_MissileLarge_Red')
+    add(87, 'PIRATES', 30, '-Inv_Helmet_66', 6)
+    add(809, 'SHENDRALAR', 30)
 end
 
-L:Call(1)
-tab:SkipCategories(1)
+-- FEATS OF STRENGTH --
+do
+    ach = featsOfStrength:CreateAchievement('AN_SULFURAS', 'AD_SULFURAS', 0, '-Inv_Hammer_Unique_Sulfuras', true)
+    ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {17182}))
+
+    ach = featsOfStrength:CreateAchievement('AN_THUNDER_FURY', 'AD_THUNDER_FURY', 0, '-Inv_Sword_39', true)
+    ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {19019}))
+
+    ach = featsOfStrength:CreateAchievement('AN_BLACK_SCARAB', 'AD_BLACK_SCARAB', 0, '-Inv_Misc_QirajiCrystal_05', true)
+    ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {21176}))
+
+    ach = featsOfStrength:CreateAchievement('AN_RED_SCARAB', 'AD_RED_SCARAB', 0, '-Inv_Misc_QirajiCrystal_02', true)
+    ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {21321}))
+
+    ach = featsOfStrength:CreateAchievement('AN_ATIESH', 'AD_ATIESH', 0, '-Inv_Staff_Medivh', true)
+    ach:AddCriteria(criterias:Create(nil, TYPE.ATIESH))
+end

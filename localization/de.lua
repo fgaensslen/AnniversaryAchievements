@@ -1,26 +1,27 @@
+if GetLocale() ~= 'deDE' then return end
 SexyLib:InitLocalization('Anniversary Achievements', {
-    achievement_earned = '&aAchievement earned by %s on %d/%d/%d',
-    achievement_in_progress = '&7Achievement in progress by %s',
+    achievement_earned = '&Erfolg erhalten von %s am %d/%d/%d',
+    achievement_in_progress = '&7Erfolg in Bearbeitung von %s',
 
     ICON_DESCRIPTION = '&7Linksklick: &eErfolge anzeigen oder schließen\n&7Rechtsklick: &eEinstellungen öffnen\n',
 
     OPTION_SHARING = 'Erfolge teilen',
     OPTION_SHARING_DESC = 'Neue Erfolge werden im Chat geteilt.',
-    OPTION_MICROBUTTON = 'Minimap Button',
-    OPTION_MICROBUTTON_DESC = 'If enabled, an addon button will be added to the micromenu, and the interface may break if you are using any addon to modify it. If disabled, the icon will be added to the minimap. Toggling this option requires you to do /reload or rejoin your character.',
+    OPTION_MICROBUTTON = 'Micromenu Button',
+    OPTION_MICROBUTTON_DESC = 'Wird diese Option aktiviert, so wird ein Addon Button im Menü an der unteren Leiste angezeigt. Dies kann zu Anzeigefehlern führen, wenn andere Addons das Interface verändern. Alternativ wird ein Button an der Minimap angezeigt. Ändern dieser Option benötigt ein /reload des Interface!',
     OPTION_UPDATE_MAP_EXPLORATION = 'Erkundete Gebiete überprüfen',
     OPTION_UPDATE_MAP_EXPLORATION_DESC = 'Überprüft alle bereits erkundeten Gebiete für Erfolge.',
     OPTION_RESET_ACHIEVEMENTS = 'Erfolge zurücksetzen',
     OPTION_RESET_ACHIEVEMENTS_DESC = 'Setzt alle Erfolge auf diesem Charakter zurück. Dies kann nicht rückgängig gemacht werden!',
 
-    GOT_ACHIEVEMENT_MESSAGE_MALE = 'I\'ve just earned achievement %s!',
-    GOT_ACHIEVEMENT_MESSAGE_FEMALE = 'I\'ve just earned achievement %s!',
+    GOT_ACHIEVEMENT_MESSAGE_MALE = 'Ich habe folgenden Erfolg erhalten %s!',
+    GOT_ACHIEVEMENT_MESSAGE_FEMALE = 'Ich habe folgenden Erfolg erhalten %s!',
 
-    COMPARE_ACHIEVEMENTS = 'Compare achievements',
-    TARGET_DOES_NOT_HAVE_ADDON = 'Target does not have this addon installed.',
+    COMPARE_ACHIEVEMENTS = 'Erfolge vergleichen',
+    TARGET_DOES_NOT_HAVE_ADDON = 'Ziel hat das Addon nicht installiert.',
 
-    UPDATING_EXPLORED_AREAS = 'Updating locations exploration data. This action will take a few seconds.',
-    UPDATED_EXPLORED_AREAS = '&aInformation about explored locations has been updated!',
+    UPDATING_EXPLORED_AREAS = 'Aktualisieren der erkundeten Gebiete. Dies kann ein paar Sekunden dauern.',
+    UPDATED_EXPLORED_AREAS = '&Erkundete Gebiete wurden aktualisiert!',
 
     GEAR_SLOT_HEAD = 'Kopf',
     GEAR_SLOT_NECK = 'Hals',
@@ -76,6 +77,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     CATEGORY_GENERAL = 'Allgemein',
     CATEGORY_QUESTS = 'Quests',
+	CATEGORY_PVP = 'Spieler gegen Spieler',
     CATEGORY_KALIMDOR = 'Kalimdor',
     CATEGORY_EASTERN_KINGDOMS = 'Östliche Königreiche',
     CATEGORY_OUTLAND = 'Scherbenwelt',
@@ -93,6 +95,17 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_REPUTATION = 'Ruf',
     CATEGORY_FEATS_OF_STRENGTH = 'Heldentaten',
     CATEGORY_EVENTS = 'Weltereignisse',
+	
+	AN_DRUID_T2 = 'Gewänder des Stormrage',
+	AN_WARLOCK_T2 = 'Roben der Nemesis',
+	AN_PRIEST_T2 = 'Gewänder der Erhabenheit',
+	AN_MAGE_T2 = 'Ornat des Netherwinds',
+	AN_ROGUE_T2 = 'Blutfangrüstung',
+	AN_HUNTER_T2 = 'Rüstung des Drachenjägers',
+	AN_PALADIN_T2 = 'Rüstung des Richturteils',
+	AN_WARRIOR_T2 = 'Schlachtrüstung des Zorns',
+	AN_SHAMAN_T2 = 'Die zehn Stürme',
+	AD_SET_T2 = 'Sammelt alle Gegenstände des genannten Sets.',		
 
     AN_LVL = 'Level %d',
     AD_LVL = 'Erreicht Level %d.',
@@ -235,6 +248,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_WISDOM_KEEPER_OUTLAND = 'Meister der Lehren der Scherbenwelt',
     AD_WISDOM_KEEPER_OUTLAND = 'Schließt die unten aufgelisteten Questerfolge in der Scherbenwelt ab.',
     AR_WISDOM_KEEPER = 'Titel \'Meister der Lehren\'.',
+	
+	AN_SKELETON_KEY = 'Feuerfeder geschmiedet',
+	AD_SKELETON_KEY = 'Erhaltet den Schlüssel zu Scholomance.',
 
     AN_RAGEFIRE_CHASM = 'Ragefireabgrund',
     AD_RAGEFIRE_CHASM = 'Bezwingt Jergosh den Herbeirufer',

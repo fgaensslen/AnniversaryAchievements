@@ -5,7 +5,7 @@ local ach, previous
 local pve = L:GetCategoryByName('CATEGORY_PVE', true)
 local instances = L:GetCategoryByName('CATEGORY_VANILLA', true)
 
-local pvp = L:GetCategoryByName('PvP')
+local pvp = L:GetCategoryByName('CATEGORY_PVP', true)
 local openWorldPVP = L:GetCategoryByID(27)
 local alterac = L:GetCategoryByName('CATEGORY_BG_ALTERAC', true)
 local alteracID = 1459

@@ -78,6 +78,7 @@ SexyLib:Localization('Anniversary Achievements'):Add({
 
     CATEGORY_GENERAL = 'Общее',
     CATEGORY_QUESTS = 'Задания',
+	CATEGORY_PVP = 'Игрок против игрока',
     CATEGORY_KALIMDOR = 'Калимдор',
     CATEGORY_EASTERN_KINGDOMS = 'Восточные королевства',
     CATEGORY_OUTLAND = 'Запределье',
