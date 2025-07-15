@@ -20,11 +20,11 @@ local explorationKalimdor = tab:CreateCategory('CATEGORY_KALIMDOR', exploration.
 local explorationEasternKingdoms = tab:CreateCategory('CATEGORY_EASTERN_KINGDOMS', exploration.id, true)
 
 local pvp = tab:CreateCategory('CATEGORY_PVP', nil, true)
-local openWorldPVP = tab:CreateCategory('CATEGORY_OPEN_WORLD', pvp.id, true)
 local alterac = tab:CreateCategory('CATEGORY_BG_ALTERAC', pvp.id, true)
 local warsong = tab:CreateCategory('CATEGORY_BG_WARSONG', pvp.id, true)
 local arathi = tab:CreateCategory('CATEGORY_BG_ARATHI', pvp.id, true)
 local bgEye = tab:CreateCategory('CATEGORY_BG_EYE', pvp.id, true)
+local openWorldPVP = tab:CreateCategory('CATEGORY_OPEN_WORLD', pvp.id, true)
 
 local pve = tab:CreateCategory('CATEGORY_PVE', nil, true)
 local instances = tab:CreateCategory('CATEGORY_VANILLA', pve.id, true)
@@ -40,7 +40,7 @@ local vanillaReputation = tab:CreateCategory('CATEGORY_VANILLA', reputation.id, 
 local featsOfStrength = tab:CreateCategory('CATEGORY_FEATS_OF_STRENGTH', nil, true)
 
 -- GENERAL --
-do
+do 
     for i = 1, 6 do
         local lvl = i * 10
         ach = general:CreateAchievement(loc:Get('AN_LVL', lvl), loc:Get('AD_LVL', lvl), 10, 'level_' .. lvl)
@@ -49,7 +49,7 @@ do
         previous = ach
     end
 
-	ach = general:CreateAchievement('AN_BANK', 'AD_BANK', 10, 'bank', 7)
+	ach = general:CreateAchievement('AN_BANK', 'AD_BANK', 10, 'bank', true)
 	ach:AddCriteria(criterias:Create('AC_BANK', TYPE.BANK_SLOTS, nil, 6))
 
     previous = nil
@@ -112,7 +112,7 @@ do
 	elseif englishClass == 'SHAMAN' then
 		add('SHAMAN_T2', 'AD_SET_T2', '-inv_helmet_69', {16944, 16943, 16950, 16945, 16948, 16949, 16947, 16946})
 	end
-
+	
 end
 
 -- QUESTS --
@@ -302,10 +302,10 @@ do
     for i, count in pairs({100, 250, 500, 1000, 2000, 5000, 10000, 25000, 50000, 100000}) do
         ach = pvp:CreateAchievement(loc:Get('AN_PVP_KILLS', count), loc:Get('AD_PVP_KILLS', count), 10, 'pvp_kills_' .. (i + 1))
         ach:AddCriteria(criterias:Create(loc:Get('AC_PVP_KILLS', count), TYPE.KILL_PLAYERS, nil, count))
-        if previous then previous:SetNext(ach) print(i) end
+        previous:SetNext(ach)
         previous = ach
     end
-
+	previous = nil
 	
 	local function add(category, factionID, factionName, points, icon)
         local ach = category:CreateAchievement(loc:Get('AN_' .. factionName), loc:Get('AD_' .. factionName), points or 10, icon or string.lower(factionName))
@@ -430,9 +430,9 @@ do
         return _add(category, mapID, mapName, 'WIN', TYPE.BATTLEFIELD_WINS, nil, {1, 5, 10, 25, 50}, icon)
     end
 
-    add(alterac, alteracID, 'ALTERAC', '-Spell_Frost_Frostbrand')
-    add(warsong, warsongID, 'WARSONG', '-Inv_Axe_16')
-    add(arathi, arathiID, 'ARATHI', '-Inv_Sword_39')
+    local alteracWins = add(alterac, alteracID, 'ALTERAC', '-Spell_Frost_Frostbrand')
+    local warsongWins = add(warsong, warsongID, 'WARSONG', '-Inv_Axe_16')
+    local arathiWins = add(arathi, arathiID, 'ARATHI', '-Inv_Sword_39')
 
     --L:Delay('bg_eye', function()
     --    _add(bgEye, bgEyeID, 'EYE', 'WIN', TYPE.BATTLEFIELD_WINS, nil, {1, 5, 10, 25, 50}, 'bg_eye_win')
@@ -442,29 +442,108 @@ do
         return _add(alterac, alteracID, 'ALTERAC', typeName, type, additionalParam, amounts, icon)
     end
 
-    add('KILLING_BLOW', TYPE.BATTLEFIELD_SCORE_MAX, 1, {10, 25, 50, 100}, '-Spell_Shadow_Summonimp')
-    add('GRAVEYARD_ASSAULT', TYPE.BATTLEFIELD_STAT_MAX, 1, {1, 2, 3, 4}, '-Spell_Holy_Divinespirit')
-    add('GRAVEYARD_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 2, 5, 8}, '-Spell_Holy_Prayerofspirit')
-    add('TOWER_ASSAULT', TYPE.BATTLEFIELD_STAT_MAX, 3, {1, 2, 3, 4}, '-Ability_Thunderbolt')
-    add('TOWER_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 4, {1, 2, 4, 6}, '-Inv_Shield_05')
-    _add(alterac, nil, 'ALTERAC', 'MINE_CAPTURE', TYPE.ALTERAC_VALLEY_MINE_CAPTURE_MAX, nil, {1, 2, 3, 4}, '-Inv_Pick_01')
+    local alterac1 = add('KILLING_BLOW', TYPE.BATTLEFIELD_SCORE_MAX, 1, {10, 25, 50, 100}, '-Spell_Shadow_Summonimp')
+    local alterac2 = add('GRAVEYARD_ASSAULT', TYPE.BATTLEFIELD_STAT_MAX, 1, {1, 2, 3, 4}, '-Spell_Holy_Divinespirit')
+    local alterac3 = add('GRAVEYARD_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 2, 5, 8}, '-Spell_Holy_Prayerofspirit')
+    local alterac4 = add('TOWER_ASSAULT', TYPE.BATTLEFIELD_STAT_MAX, 3, {1, 2, 3, 4}, '-Ability_Thunderbolt')
+    local alterac5 = add('TOWER_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 4, {1, 2, 4, 6}, '-Inv_Shield_05')
+    local alterac6 = _add(alterac, nil, 'ALTERAC', 'MINE_CAPTURE', TYPE.ALTERAC_VALLEY_MINE_CAPTURE_MAX, nil, {1, 2, 3, 4}, '-Inv_Pick_01')
+	local alterac7 = L:Achievement(alterac, 10, 'alterac_fast_win')
+		:NameDesc('AN_ALTERAC_FAST_WIN', 'AD_ALTERAC_FAST_WIN', true)
+		:Criteria(TYPE.BATTLEFIELD_FAST_WIN, {alteracID}):Build()
+		:Build()
 
     add = function(typeName, type, additionalParam, amounts, icon)
         return _add(warsong, warsongID, 'WARSONG', typeName, type, additionalParam, amounts, icon)
     end
 
-    add('KILL', TYPE.BATTLEFIELD_SCORE_MAX, 2, {10, 25, 50, 75}, '-Ability_Rogue_Eviscerate')
-    add('FLAG_CAPTURE', TYPE.BATTLEFIELD_STAT_MAX, 1, {1, 2, 3}, '-Inv_Banner_03')
-    add('FLAG_RETURN', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 3, 5}, '-Spell_Nature_Reincarnation')
+    local warsong1 = add('KILL', TYPE.BATTLEFIELD_SCORE_MAX, 2, {10, 25, 50, 75}, '-Ability_Rogue_Eviscerate')
+    local warsong2 = add('FLAG_CAPTURE', TYPE.BATTLEFIELD_STAT_MAX, 1, {1, 2, 3}, '-Inv_Banner_03')
+    local warsong3 = add('FLAG_RETURN', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 3, 5}, '-Spell_Nature_Reincarnation')
+	local warsong4 = L:Achievement(warsong, 10, 'warsong_fast_win')
+		:NameDesc('AN_WARSONG_FAST_WIN', 'AD_WARSONG_FAST_WIN', true)
+		:Criteria(TYPE.BATTLEFIELD_FAST_WIN, {warsongID}):Build()
+		:Build()
 
     add = function(typeName, type, additionalParam, amounts, icon)
         return _add(arathi, arathiID, 'ARATHI', typeName, type, additionalParam, amounts, icon)
     end
 
-    add('BASE_ASSAULT', TYPE.BATTLEFIELD_STAT_MAX, 1, {1, 2, 3, 4}, '-Ability_Eyeoftheowl')
-    add('BASE_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 2, 4, 6}, '-Inv_Shield_06')
+    local arathi1 = add('BASE_ASSAULT', TYPE.BATTLEFIELD_STAT_MAX, 1, {1, 2, 3, 4}, '-Ability_Eyeoftheowl')
+    local arathi2 = add('BASE_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 2, 4, 6}, '-Inv_Shield_06')	
+	local arathi3 = L:Achievement(arathi, 10, 'arathi_cats')
+		:NameDesc('AN_ARATHI_CATS', 'AD_ARATHI_CATS', true)
+		:Criteria(TYPE.EMOTE, {'PAT', 15071}):Name('NPC_15071', true):Build()
+		:Criteria(TYPE.EMOTE, {'PAT', 15066}):Name('NPC_15066', true):Build()
+		:Build()
+	local arathi4 = L:Achievement(arathi, 10, 'arathi_fast_win')
+		:NameDesc('AN_ARATHI_FAST_WIN', 'AD_ARATHI_FAST_WIN', true)
+		:Criteria(TYPE.BATTLEFIELD_FAST_WIN, {arathiID}):Build()
+		:Build()
 
-    add = function(typeName, type, param, amounts, icon)
+	local function add(category, mapID, statID, name, icon, count)
+		local temp_ach = 
+			L:Achievement(category, 10, icon)
+				:Name('AN_' .. name .. '_TOTAL', true)
+				:Desc('AD_' .. name .. '_TOTAL', true, count)
+				:Criteria(TYPE.BATTLEFIELD_STAT, {mapID, statID}, count):Name('AD_' .. name .. '_TOTAL', true, count):Build()
+				:Build()
+			
+		return temp_ach
+	end
+
+	local alterac8 = add(alterac, alteracID, 4, 'ALTERAC_TOWER_DEFEND', 'alterac_towers', 50)
+	local alterac9 = add(alterac, alteracID, 1, 'ALTERAC_GRAVEYARD_ASSAULT', 'arathi_graveyards', 50)
+	local warsong5 = add(warsong, warsongID, 1, 'WARSONG_FLAG_CAPTURE', 'warsong_flags', 50)
+	local warsong6 = add(warsong, warsongID, 2, 'WARSONG_FLAG_RETURN', 'warsong_returns', 50)
+	local arathi5 = add(arathi, arathiID, 1, 'ARATHI_BASE_ASSAULT', 'arathi_flags', 50)
+	local arathi6 = add(arathi, arathiID, 2, 'ARATHI_BASE_DEFEND', 'arathi_defends', 50)
+
+	L:Achievement(alterac, 10, '-Inv_Misc_Horn_01')
+		:NameDesc('AN_ALTERAC_MOUNT_HORDE', 'AD_ALTERAC_MOUNT_HORDE', true)
+		:Criteria(TYPE.OBTAIN_ITEM, {19029}):Build()
+		:Build():SetHordeOnly()
+
+	L:Achievement(alterac, 10, '-Ability_Mount_MountainRam')
+		:NameDesc('AN_ALTERAC_MOUNT_ALLIANCE', 'AD_ALTERAC_MOUNT_ALLIANCE', true)
+		:Criteria(TYPE.OBTAIN_ITEM, {19030}):Build()
+		:Build():SetAllianceOnly()	
+
+	local function add(category, name, icon, ids)
+		ach = L:Achievement(category, 10, icon)
+				:NameDesc('AN_' .. name, 'AD_' .. name, true)
+		
+		for _, id in pairs(ids) do 
+			ach:CompleteAchievementCriteria(id) 		
+		end	
+		
+		return ach:Build()
+	end
+
+	local alteracBoss = add(alterac, 'ALTERAC_BOSS', '-Inv_Sword_03', {alteracWins.id, alterac1.id, alterac2.id, alterac3.id, alterac4.id, alterac5.id, alterac6.id, alterac7.id, alterac8.id, alterac9.id})
+	local warsongBoss = add(warsong, 'WARSONG_BOSS', 'warsong_master', {warsongWins.id, warsong1.id, warsong2.id, warsong3.id, warsong4.id, warsong5.id, warsong6.id})
+	local arathiBoss = add(arathi, 'ARATHI_BOSS', '-Inv_Sword_56', {arathiWins.id, arathi1.id, arathi2.id, arathi3.id, arathi4.id, arathi5.id, arathi6.id})
+
+	L:Achievement(pvp, 20, 'battlemaster')
+		:NameDesc('AN_BATTLEMASTER', 'AD_BATTLEMASTER', true)
+		:CompleteAchievementCriteria(alteracBoss)
+		:CompleteAchievementCriteria(warsongBoss)
+		:CompleteAchievementCriteria(arathiBoss)
+		:Reward('AR_BATTLEMASTER', true)
+		:Build()		
+		
+	--MISC	
+	ach = nil
+	for _, bgs in pairs({10, 50, 100}) do
+		ach = L:Achievement(pvp, 10, '-Inv_Musket_02')
+				:Name('AN_PARTICIPATE_IN_BGS', true)
+				:Desc('AD_PARTICIPATE_IN_BGS', true, bgs)
+				:Criteria(TYPE.BATTLEFIELD_MAX_LEVEL_PARTICIPATION, nil, bgs):Name('AC_PARTICIPATE_IN_BGS', true, bgs):Build()
+				:Previous(ach)
+				:Build()
+	end
+	
+	add = function(typeName, type, param, amounts, icon)
         return _add(pvp, param, 'BGS', typeName, type, nil, amounts, icon)
     end
 
@@ -497,89 +576,6 @@ do
             :Previous(ach)
             :Build()
 	end
-	
-	ach = nil
-	for _, bgs in pairs({10, 50, 100}) do
-		ach = L:Achievement(pvp, 10, '-Inv_Musket_02')
-				:Name('AN_PARTICIPATE_IN_BGS', true)
-				:Desc('AD_PARTICIPATE_IN_BGS', true, bgs)
-				:Criteria(TYPE.BATTLEFIELD_MAX_LEVEL_PARTICIPATION, nil, bgs):Name('AC_PARTICIPATE_IN_BGS', true, bgs):Build()
-				:Previous(ach)
-				:Build()
-	end
-	
-	L:Achievement(arathi, 10, 'arathi_cats')
-		:NameDesc('AN_ARATHI_CATS', 'AD_ARATHI_CATS', true)
-		:Criteria(TYPE.EMOTE, {'PAT', 15071}):Name('NPC_15071', true):Build()
-		:Criteria(TYPE.EMOTE, {'PAT', 15066}):Name('NPC_15066', true):Build()
-		:Build()
-
-	L:Achievement(alterac, 10, 'alterac_fast_win')
-		:NameDesc('AN_ALTERAC_FAST_WIN', 'AD_ALTERAC_FAST_WIN', true)
-		:Criteria(TYPE.BATTLEFIELD_FAST_WIN, {alteracID}):Build()
-		:Build()
-
-	L:Achievement(warsong, 10, 'warsong_fast_win')
-		:NameDesc('AN_WARSONG_FAST_WIN', 'AD_WARSONG_FAST_WIN', true)
-		:Criteria(TYPE.BATTLEFIELD_FAST_WIN, {warsongID}):Build()
-		:Build()
-
-	L:Achievement(arathi, 10, 'arathi_fast_win')
-		:NameDesc('AN_ARATHI_FAST_WIN', 'AD_ARATHI_FAST_WIN', true)
-		:Criteria(TYPE.BATTLEFIELD_FAST_WIN, {arathiID}):Build()
-		:Build()
-
-	local function add(category, mapID, statID, name, icon, count)
-		L:Achievement(category, 10, icon)
-			:Name('AN_' .. name .. '_TOTAL', true)
-			:Desc('AD_' .. name .. '_TOTAL', true, count)
-			:Criteria(TYPE.BATTLEFIELD_STAT, {mapID, statID}, count):Name('AD_' .. name .. '_TOTAL', true, count):Build()
-			:Build()
-	end
-
-	add(alterac, alteracID, 4, 'ALTERAC_TOWER_DEFEND', 'alterac_towers', 50)
-	add(alterac, alteracID, 1, 'ALTERAC_GRAVEYARD_ASSAULT', 'arathi_graveyards', 50)
-	add(warsong, warsongID, 1, 'WARSONG_FLAG_CAPTURE', 'warsong_flags', 50)
-	add(warsong, warsongID, 2, 'WARSONG_FLAG_RETURN', 'warsong_returns', 50)
-	add(arathi, arathiID, 1, 'ARATHI_BASE_ASSAULT', 'arathi_flags', 50)
-	add(arathi, arathiID, 2, 'ARATHI_BASE_DEFEND', 'arathi_defends', 50)
-
-	L:Achievement(alterac, 10, '-Inv_Misc_Horn_01')
-		:NameDesc('AN_ALTERAC_MOUNT_HORDE', 'AD_ALTERAC_MOUNT_HORDE', true)
-		:Criteria(TYPE.OBTAIN_ITEM, {19029}):Build()
-		:Build():SetHordeOnly()
-
-	L:Achievement(alterac, 10, '-Ability_Mount_MountainRam')
-		:NameDesc('AN_ALTERAC_MOUNT_ALLIANCE', 'AD_ALTERAC_MOUNT_ALLIANCE', true)
-		:Criteria(TYPE.OBTAIN_ITEM, {19030}):Build()
-		:Build():SetAllianceOnly()	
-
-	local function add(category, name, icon, ids)
-		ach = L:Achievement(category, 10, icon)
-				:NameDesc('AN_' .. name, 'AD_' .. name, true)
-		
-		for _, id in pairs(ids) do 
-			ach:CompleteAchievementCriteria(id) 		
-		end	
-		
-		return ach:Build()
-	end
-	
-	--for id, ach in pairs(db.achievements or {}) do
-	--	print("Achievement:", ach.name, "ID:", id)
-	--end
-
-	local alteracBoss = add(alterac, 'ALTERAC_BOSS', '-Inv_Sword_03', {220, 223, 224, 181, 147, 161, 165, 169, 177, 173})
-	local warsongBoss = add(warsong, 'WARSONG_BOSS', 'warsong_master', {226, 225, 221, 152, 185, 188, 191})
-	local arathiBoss = add(arathi, 'ARATHI_BOSS', '-Inv_Sword_56', {228, 227, 222, 199, 157, 219, 195})
-
-	L:Achievement(pvp, 20, 'battlemaster')
-		:NameDesc('AN_BATTLEMASTER', 'AD_BATTLEMASTER', true)
-		:CompleteAchievementCriteria(alteracBoss)
-		:CompleteAchievementCriteria(warsongBoss)
-		:CompleteAchievementCriteria(arathiBoss)
-		:Reward('AR_BATTLEMASTER', true)
-		:Build()
 end
 
 -- PVE --
@@ -794,58 +790,64 @@ end
 
 -- PROFESSIONS --
 do
-    ach = professions:CreateAchievement(loc:Get('AN_PROFS_ONE'), loc:Get('AD_PROFS_ONE'), 10, '-Inv_Misc_Note_01')
-    ach:AddCriteria(criterias:Create(nil, TYPE.REACH_MAIN_PROFESSION_LEVEL, {300}))
-
-    local twoMains = professions:CreateAchievement(loc:Get('AN_PROFS_TWO'), loc:Get('AD_PROFS_TWO'), 10, '-Inv_Misc_Note_02')
-    twoMains:AddCriteria(criterias:Create(loc:Get('AC_PROFS_TWO'), TYPE.REACH_MAIN_PROFESSION_LEVEL, {300}, 2))
-
-    local firstAidAch = firstAid:CreateAchievement('AN_FIRST_AID_MASTER', 'AD_FIRST_AID_MASTER', 10, '-Inv_Fabric_Wool_01', true)
-    firstAidAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.FIRST_AID[1], 300}))
-
-    local fishingAch = fishing:CreateAchievement('AN_FISHING_MASTER', 'AD_FISHING_MASTER', 10, 'profs_fishing', true)
-    fishingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.FISHING[1], 300}))
-
-    local cookingAch = cooking:CreateAchievement('AN_COOKING_MASTER', 'AD_COOKING_MASTER', 10, 'profs_cooking', true)
-    cookingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.COOKING[1], 300}))
-
-    local secondary = professions:CreateAchievement(loc:Get('AN_PROFS_SECONDARY'), loc:Get('AD_PROFS_SECONDARY'), 10, '-Inv_Scroll_03')
-    secondary:AddCriteria(criterias:Create(firstAidAch.name, TYPE.COMPLETE_ACHIEVEMENT, {firstAidAch.id}))
-    secondary:AddCriteria(criterias:Create(fishingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {fishingAch.id}))
-    secondary:AddCriteria(criterias:Create(cookingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {cookingAch.id}))
-    
-    ach = professions:CreateAchievement(loc:Get('AN_PROFS_FIVE'), loc:Get('AD_PROFS_FIVE'), 20, '-Spell_Magic_GreaterBlessingOfKings')
-    ach:AddCriteria(criterias:Create(twoMains.name, TYPE.COMPLETE_ACHIEVEMENT, {twoMains.id}))
-    ach:AddCriteria(criterias:Create(secondary.name, TYPE.COMPLETE_ACHIEVEMENT, {secondary.id}))
-	
+	--FIRST MAIN PROFESSION
     ach = professions:CreateAchievement('AN_PROFS_JOURNEYMAN', 'AD_PROFS_JOURNEYMAN', 10, '-Inv_Misc_Note_01', true)
     ach:AddCriteria(criterias:Create(nil, TYPE.REACH_MAIN_PROFESSION_LEVEL, {75}))
     previous = ach
+	
     ach = professions:CreateAchievement('AN_PROFS_EXPERT', 'AD_PROFS_EXPERT', 10, '-Inv_Misc_Note_01', true)
     ach:AddCriteria(criterias:Create(nil, TYPE.REACH_MAIN_PROFESSION_LEVEL, {150}))
     previous:SetNext(ach)
     previous = ach
+	
     ach = professions:CreateAchievement('AN_PROFS_ARTISAN', 'AD_PROFS_ARTISAN', 10, '-Inv_Misc_Note_01', true)
     ach:AddCriteria(criterias:Create(nil, TYPE.REACH_MAIN_PROFESSION_LEVEL, {225}))
     previous:SetNext(ach)
-    ach:SetNext(db:GetAchievement(116))
+	previous = ach
+	
+	ach = professions:CreateAchievement(loc:Get('AN_PROFS_ONE'), loc:Get('AD_PROFS_ONE'), 10, '-Inv_Misc_Note_01')
+    ach:AddCriteria(criterias:Create(nil, TYPE.REACH_MAIN_PROFESSION_LEVEL, {300}))
+	previous:SetNext(ach)	
     previous = nil
+	
+	--SECOND MAIN PROFESSION
+	local twoMains = professions:CreateAchievement(loc:Get('AN_PROFS_TWO'), loc:Get('AD_PROFS_TWO'), 10, '-Inv_Misc_Note_02')
+    twoMains:AddCriteria(criterias:Create(loc:Get('AC_PROFS_TWO'), TYPE.REACH_MAIN_PROFESSION_LEVEL, {300}, 2))
 
-    local levels = {{'JOURNEYMAN', 75}, {'EXPERT', 150}, {'ARTISAN', 225}}
-    local function add(category, name, icon, masterID)
-        local previous
+	--SECONDARY PROFESSIONS
+    local levels = {{'JOURNEYMAN', 75}, {'EXPERT', 150}, {'ARTISAN', 225}, {'MASTER', 300}}
+    local function add(category, name, icon)
+		local ach
         for _, level in pairs(levels) do
-            local ach = category:CreateAchievement('AN_' .. name .. '_' .. level[1], 'AD_' .. name .. '_' .. level[1], 10, icon, true)
+            ach = category:CreateAchievement('AN_' .. name .. '_' .. level[1], 'AD_' .. name .. '_' .. level[1], 10, icon, true)
             ach:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions[name][1], level[2]}))
             if previous then previous:SetNext(ach) end
             previous = ach
         end
-        previous:SetNext(db:GetAchievement(masterID))
+        previous = nil
+		
+		return ach
     end
-    add(firstAid, 'FIRST_AID', '-Inv_Fabric_Wool_01', 118)
-    add(fishing, 'FISHING', 'profs_fishing', 119)
-    add(cooking, 'COOKING', 'profs_cooking', 120)
-
+    local firstAidAch = add(firstAid, 'FIRST_AID', '-Inv_Fabric_Wool_01')
+		firstAidAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.FIRST_AID[1], 300}))
+    local fishingAch = add(fishing, 'FISHING', 'profs_fishing')
+	    fishingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.FISHING[1], 300}))
+    local cookingAch = add(cooking, 'COOKING', 'profs_cooking')
+		cookingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.COOKING[1], 300}))
+	previous = nil
+	
+	--ALL SECONDARY PROFESSIONS
+	local secondary = professions:CreateAchievement(loc:Get('AN_PROFS_SECONDARY'), loc:Get('AD_PROFS_SECONDARY'), 10, '-Inv_Scroll_03')
+    secondary:AddCriteria(criterias:Create(firstAidAch.name, TYPE.COMPLETE_ACHIEVEMENT, {firstAidAch.id}))
+    secondary:AddCriteria(criterias:Create(fishingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {fishingAch.id}))
+    secondary:AddCriteria(criterias:Create(cookingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {cookingAch.id}))
+    
+	--5 PROFESSIONS
+    ach = professions:CreateAchievement(loc:Get('AN_PROFS_FIVE'), loc:Get('AD_PROFS_FIVE'), 20, '-Spell_Magic_GreaterBlessingOfKings')
+    ach:AddCriteria(criterias:Create(twoMains.name, TYPE.COMPLETE_ACHIEVEMENT, {twoMains.id}))
+    ach:AddCriteria(criterias:Create(secondary.name, TYPE.COMPLETE_ACHIEVEMENT, {secondary.id}))
+		
+	-- FIRST AID
     ach = firstAid:CreateAchievement('AN_STOCKING_UP', 'AD_STOCKING_UP', 10, '-Inv_Misc_Bandage_12', true)
     ach:AddCriteria(criterias:CreateL('AC_STOCKING_UP', TYPE.CRAFT_ITEM, {14530}, 100))
     previous = ach
@@ -854,6 +856,7 @@ do
     previous:SetNext(ach)
     previous = nil
 
+	--FISHING
     ach = fishing:CreateAchievement('AN_FISHING_ROD', 'AD_FISHING_ROD', 10, '-Inv_FishingPole_01', true)
     ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {19970}))
     ach = fishing:CreateAchievement('AN_FISHING_TRINKET', 'AD_FISHING_TRINKET', 10, '-Trade_Fishing', true)
@@ -877,6 +880,7 @@ do
         return ach
     end
 
+	--COOKING
     add('COLLECTION', '-Inv_Misc_MonsterHead_01', {19975, 6291, 6643, 6645, 6522, 6358, 21071, 6359, 8365, 21153, 13755, 13422, 13757, 13754, 13758, 13756, 13760, 13759, 13890, 13889, 13893, 13888, 12238, 19806, 19805, 19803})
     add('WATER', '-Spell_Nature_Acid_01', {7080})
     add('RUM', '-Inv_Drink_04', {21151, 20709})
@@ -998,3 +1002,10 @@ do
     ach = featsOfStrength:CreateAchievement('AN_ATIESH', 'AD_ATIESH', 0, '-Inv_Staff_Medivh', true)
     ach:AddCriteria(criterias:Create(nil, TYPE.ATIESH))
 end
+
+--print(db:GetAllAchievements())
+--[[
+	for id, ach in pairs(db.achievements or {}) do
+		print("Achievement:", ach.name, "ID:", id)
+	end
+--]]

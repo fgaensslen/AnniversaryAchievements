@@ -21,7 +21,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     TARGET_DOES_NOT_HAVE_ADDON = 'Ziel hat das Addon nicht installiert.',
 
     UPDATING_EXPLORED_AREAS = 'Aktualisieren der erkundeten Gebiete. Dies kann ein paar Sekunden dauern.',
-    UPDATED_EXPLORED_AREAS = '&Erkundete Gebiete wurden aktualisiert!',
+    UPDATED_EXPLORED_AREAS = '&aErkundete Gebiete wurden aktualisiert!',
 
     GEAR_SLOT_HEAD = 'Kopf',
     GEAR_SLOT_NECK = 'Hals',
@@ -865,7 +865,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_EYE_BOSS = 'Schließt die unten aufgelisteten Erfolge im Auge des Sturms ab.',
     AN_BATTLEMASTER = 'Kampfmeister',
     AD_BATTLEMASTER = 'Schließt die unten aufgelisteten Schlachtfeld-Erfolge ab.',
-    AR_BATTLEMASTER = 'Title \Kampfmeister\'.',
+    AR_BATTLEMASTER = 'Titel \'Kampfmeister\'.',
 
     AN_LEEROY = 'Leeeeeeeeeeeeeeeroy!',
     AD_LEEROY = 'Tötet 50 Krähenhorstwelpen innerhalb von 15 Sekunden.',
