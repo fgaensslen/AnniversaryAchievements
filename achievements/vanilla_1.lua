@@ -80,7 +80,6 @@ do
     ach = add(ach, 'RARE', 3, '-Spell_Frost_WizardMark')
     ach = add(ach, 'EPIC', 4, '-Inv_Enchant_ShardNexusLarge')
 
-    --[[
         L:Delay('riding', function()
             local function riding(icon, skillPoints, previous)
                 local builder = L:Achievement(general, 10, icon)
@@ -98,7 +97,6 @@ do
                 {'-Ability_Mount_RocketMount', 300}
             }) do ach = riding(data[1], data[2], ach) end
         end)
-    ]]--
 		
 	-- SETS --
 	local function add(name, subtitle, icon, ids)
@@ -1192,7 +1190,7 @@ do
 	
     ach = professions:CreateAchievement('AN_PROFS_ARTISAN', 'AD_PROFS_ARTISAN', 10, '-Inv_Misc_Note_01', true)
         ach:AddCriteria(criterias:Create(nil, TYPE.REACH_MAIN_PROFESSION_LEVEL, {225}))
-        previous:SetNext(ach)
+		previous:SetNext(ach)
 	previous = ach
 	
 	ach = professions:CreateAchievement(loc:Get('AN_PROFS_ONE'), loc:Get('AD_PROFS_ONE'), 10, '-Inv_Misc_Note_01')
@@ -1201,18 +1199,19 @@ do
     previous = ach
     
     ach = professions:CreateAchievement(loc:Get('AN_PROFS_ONE_OUTLAND'), loc:Get('AD_PROFS_ONE_OUTLAND'), 10, '-Inv_Misc_Note_01')
-        ach:AddCriteria(criterias:Create(nil, TYPE.REACH_MAIN_PROFESSION_LEVEL, {375}))
-	previous:SetNext(ach)    
+		ach:AddCriteria(criterias:Create(nil, TYPE.REACH_MAIN_PROFESSION_LEVEL, {375}))
+		previous:SetNext(ach) 
+	previous = nil		
 	
 	--SECOND MAIN PROFESSION
 	local twoMains = professions:CreateAchievement(loc:Get('AN_PROFS_TWO'), loc:Get('AD_PROFS_TWO'), 10, '-Inv_Misc_Note_02')
-        twoMains:AddCriteria(criterias:Create(loc:Get('AC_PROFS_TWO'), TYPE.REACH_MAIN_PROFESSION_LEVEL, {300}, 2))
-    previous = twoMains
+		twoMains:AddCriteria(criterias:Create(loc:Get('AC_PROFS_TWO'), TYPE.REACH_MAIN_PROFESSION_LEVEL, {300}, 2))
+		previous = twoMains
 
     local twoMainsOutland = professions:CreateAchievement(loc:Get('AN_PROFS_TWO_OUTLAND'), loc:Get('AD_PROFS_TWO_OUTLAND'), 10, '-Inv_Misc_Note_02')
-        twoMains:AddCriteria(criterias:Create(loc:Get('AC_PROFS_TWO_OUTLAND'), TYPE.REACH_MAIN_PROFESSION_LEVEL, {375}, 2))
+        twoMainsOutland:AddCriteria(criterias:Create(loc:Get('AC_PROFS_TWO_OUTLAND'), TYPE.REACH_MAIN_PROFESSION_LEVEL, {375}, 2))
         previous:SetNext(twoMainsOutland)
-    previous = nil
+	previous = nil
 
 	--SECONDARY PROFESSIONS
     local levels = {{'JOURNEYMAN', 75}, {'EXPERT', 150}, {'ARTISAN', 225}, {'MASTER', 300}}
@@ -1234,6 +1233,13 @@ do
 	    fishingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.FISHING[1], 300}))
     local cookingAch = add(cooking, 'COOKING', 'profs_cooking')
 		cookingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.COOKING[1], 300}))
+		
+	--ALL SECONDARY PROFESSIONS
+	local secondary = professions:CreateAchievement(loc:Get('AN_PROFS_SECONDARY'), loc:Get('AD_PROFS_SECONDARY'), 10, '-Inv_Scroll_03')
+        secondary:AddCriteria(criterias:Create(firstAidAch.name, TYPE.COMPLETE_ACHIEVEMENT, {firstAidAch.id}))
+        secondary:AddCriteria(criterias:Create(fishingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {fishingAch.id}))
+        secondary:AddCriteria(criterias:Create(cookingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {cookingAch.id}))
+    local previousSecondary = secondary
 
     levels = {{'OUTLAND_MASTER', 375}}
     firstAidAch = add(firstAid, 'FIRST_AID', '-Inv_Fabric_Wool_01')
@@ -1243,24 +1249,17 @@ do
     cookingAch = add(cooking, 'COOKING', 'profs_cooking')
         cookingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.COOKING[1], 375}))
 
-	--ALL SECONDARY PROFESSIONS
-	local secondary = professions:CreateAchievement(loc:Get('AN_PROFS_SECONDARY'), loc:Get('AD_PROFS_SECONDARY'), 10, '-Inv_Scroll_03')
-        secondary:AddCriteria(criterias:Create(firstAidAch.name, TYPE.COMPLETE_ACHIEVEMENT, {firstAidAch.id}))
-        secondary:AddCriteria(criterias:Create(fishingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {fishingAch.id}))
-        secondary:AddCriteria(criterias:Create(cookingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {cookingAch.id}))
-    previous = secondary
-
     local secondaryOutland = professions:CreateAchievement(loc:Get('AN_PROFS_SECONDARY_OUTLAND'), loc:Get('AD_PROFS_SECONDARY_OUTLAND'), 10, '-Inv_Scroll_03')
-        secondary:AddCriteria(criterias:Create(firstAidAch.name, TYPE.COMPLETE_ACHIEVEMENT, {firstAidAch.id}))
-        secondary:AddCriteria(criterias:Create(fishingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {fishingAch.id}))
-        secondary:AddCriteria(criterias:Create(cookingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {cookingAch.id}))
-        previous:SetNext(secondaryOutland)
+		secondaryOutland:AddCriteria(criterias:Create(firstAidAch.name, TYPE.COMPLETE_ACHIEVEMENT, {firstAidAch.id}))
+		secondaryOutland:AddCriteria(criterias:Create(fishingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {fishingAch.id}))
+		secondaryOutland:AddCriteria(criterias:Create(cookingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {cookingAch.id}))
+		previousSecondary:SetNext(secondaryOutland)
     
 	--5 PROFESSIONS
     ach = professions:CreateAchievement(loc:Get('AN_PROFS_FIVE'), loc:Get('AD_PROFS_FIVE'), 20, '-Spell_Magic_GreaterBlessingOfKings')
         ach:AddCriteria(criterias:Create(twoMains.name, TYPE.COMPLETE_ACHIEVEMENT, {twoMains.id}))
         ach:AddCriteria(criterias:Create(secondary.name, TYPE.COMPLETE_ACHIEVEMENT, {secondary.id}))
-    previous = ach
+	previous = ach
     
     ach = professions:CreateAchievement(loc:Get('AN_PROFS_FIVE_OUTLAND'), loc:Get('AD_PROFS_FIVE'), 20, '-Spell_Magic_GreaterBlessingOfKings')
         ach:AddCriteria(criterias:Create(twoMainsOutland.name, TYPE.COMPLETE_ACHIEVEMENT, {twoMainsOutland.id}))
@@ -1321,12 +1320,12 @@ do
         :Build()
 
     --[[
-        local builder = L:Achievement(fishing, 10, '-Inv_Misc_Fish_37')
-            :NameDesc('AN_FISHING_OUTLAND_COLLECTION', 'AD_FISHING_OUTLAND_COLLECTION', true)
-            for _, itemID in pairs({35285, 27422, 27439, 27438, 27437, 27429, 27425, 27435, 33824, 33823, 35286}) do
-                builder:Criteria(TYPE.FISH_AN_ITEM, {itemID}):ItemName(itemID):Build()
-            end
-            builder:Build()
+	local builder = L:Achievement(fishing, 10, '-Inv_Misc_Fish_37')
+		:NameDesc('AN_FISHING_OUTLAND_COLLECTION', 'AD_FISHING_OUTLAND_COLLECTION', true)
+		for _, itemID in pairs({35285, 27422, 27439, 27438, 27437, 27429, 27425, 27435, 33824, 33823, 35286}) do
+			builder:Criteria(TYPE.FISH_AN_ITEM, {itemID}):ItemName(itemID):Build()
+		end
+		builder:Build()
     ]]
 
 	--COOKING
