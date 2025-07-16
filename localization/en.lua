@@ -489,7 +489,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_CAIRNE_SLAYER = 'Head Cow',
     AD_CAIRNE_SLAYER = 'Defeat Cairne Bloodhoof in Thunder Bluff.',
     AN_LORTHEMAR_SLAYER = 'Killed in Quel\'Thalas',
-    AD_LORTHERMAR_SLAYER = 'Kill Lor\'themar Theron.',
+    AD_LORTHEMAR_SLAYER = 'Kill Lor\'themar Theron.',
 
     AN_HORDE_KINGS_SLAYER = 'Horde Leaders',
     AD_HORDE_KINGS_SLAYER = 'Defeat the leaders of the Horde listed below.',

@@ -507,7 +507,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_CAIRNE_SLAYER = 'Blutender Bluthuf',
     AD_CAIRNE_SLAYER = 'Tötet Cairne Bluthuf.',
     AN_LORTHEMAR_SLAYER = 'In Quel\'Thalas getötet',
-    AD_LORTHERMAR_SLAYER = 'Tötet Lor\'themar Theron.',
+    AD_LORTHEMAR_SLAYER = 'Tötet Lor\'themar Theron.',
 
     AN_HORDE_KINGS_SLAYER = 'Für die Allianz!',
     AD_HORDE_KINGS_SLAYER = 'Tötet die Anführer der Horde.',
