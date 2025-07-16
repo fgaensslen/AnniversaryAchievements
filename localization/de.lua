@@ -82,7 +82,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_EASTERN_KINGDOMS = 'Östliche Königreiche',
     CATEGORY_OUTLAND = 'Scherbenwelt',
     CATEGORY_VANILLA = 'Classic',
-    CATEGORY_TBC = 'Scherbenwelt',
+    CATEGORY_TBC = 'The Burning Crusade',
     CATEGORY_EXPLORATION = 'Erkundung',
     CATEGORY_PVE = 'Dungeons & Schlachtzüge',
     CATEGORY_BATTLEGROUNDS = 'Schlachtfelder',
@@ -111,8 +111,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_LVL = 'Erreicht Level %d.',
 
     AN_BANK = 'Sicher angelegt',
-    AD_BANK = 'Kauft 6 zusätzliche Bankplätze.',
-    AC_BANK = 'Kauft 6 zusätzliche Bankplätze.',
+    AD_BANK = 'Kauft 7 zusätzliche Bankplätze.',
+    AC_BANK = 'Kauft 7 zusätzliche Bankplätze.',
 
     AN_QUESTS = '%d Quests',
     AD_QUESTS = 'Schließt %d Quests ab.',
@@ -249,8 +249,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_WISDOM_KEEPER_OUTLAND = 'Schließt die unten aufgelisteten Questerfolge in der Scherbenwelt ab.',
     AR_WISDOM_KEEPER = 'Titel \'Meister der Lehren\'.',
 	
-	AN_SKELETON_KEY = 'Feuerfeder geschmiedet',
-	AD_SKELETON_KEY = 'Erhaltet den Schlüssel zu Scholomance.',
+	AN_SKELETON_KEY = 'Der Schlüssel zur Scholomance',
+	AD_SKELETON_KEY = 'Erhaltet den Skelettschlüssel.',
 
     AN_RAGEFIRE_CHASM = 'Ragefireabgrund',
     AD_RAGEFIRE_CHASM = 'Bezwingt Jergosh den Herbeirufer',
@@ -683,13 +683,13 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	
     AN_PROFS_SECONDARY = 'Außergewöhnliche Fähigkeiten',
     AD_PROFS_SECONDARY = 'Werdet gleichzeitig Fachmann des Angelns, der Ersten Hilfe und der Kochkunst.',
-    AN_PROFS_SECONDARY_OUTLAND = 'Außergewöhnliche Fähigkeiten, auch in der Scherbenwelt',
+    AN_PROFS_SECONDARY_OUTLAND = 'Außergewöhnliche Fähigkeiten in der Scherbenwelt',
     AD_PROFS_SECONDARY_OUTLAND = 'Werdet gleichzeitig Meister des Angelns, der Ersten Hilfe und der Kochkunst.',
     AN_PROFS_FIVE = 'Genie',
     AN_PROFS_FIVE_OUTLAND = 'Genie der Scherbenwelt',
     AD_PROFS_FIVE = 'Erlangt die unten aufgelisteten Berufserfolge.',
     AN_UNARMED_SKILL = 'Hat jemand ein Veilchen bestellt?',
-    AD_UNARMED_SKILL = 'Erreicht eine unbewaffnete Fertigkeit von 300.',
+    AD_UNARMED_SKILL = 'Erreicht eine unbewaffnete Fertigkeit von 350.',
 
     AN_EXPLORE_AZEROTH = 'Erforscher von Azeroth',
     AD_EXPLORE_AZEROTH = 'Erkundet die Welt von Azeroth!',

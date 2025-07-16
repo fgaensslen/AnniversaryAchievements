@@ -33,7 +33,7 @@ util/Triggers.lua
 util/ChatLink.lua
 
 util/Loader.lua
-achievements/vanilla_1.lua
+achievements/achievements.lua
 util/Guild.lua
 util/PostLoad.lua
 
