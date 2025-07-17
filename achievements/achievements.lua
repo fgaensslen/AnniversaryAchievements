@@ -913,7 +913,7 @@ do
     local nx3 = create('NAXXRAMAS_MILITARY', '-Inv_Sword_2h_AshbringerCorrupt', {-16062, -16063, -16064, -16065}).id
     local nx4 = create('NAXXRAMAS_CONSTRUCT', '-Ability_Creature_Poison_01', 15928).id
     local nx5 = create('NAXXRAMAS_LAIR', '-achievement_boss_kelthuzad_01', 15990).id
-    ach = instances:CreateAchievement('AN_NAXXRAMAS', 'AD_NAXXRAMAS', 10, 'naxxramas', true)
+    ach = instances:CreateAchievement('AN_NAXXRAMAS', 'AD_NAXXRAMAS', 10, '-inv_misc_frostemblem_01', true)
     ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_SPIDERS', TYPE.COMPLETE_ACHIEVEMENT, {nx1}))
     ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_PLAGUE', TYPE.COMPLETE_ACHIEVEMENT, {nx2}))
     ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_MILITARY', TYPE.COMPLETE_ACHIEVEMENT, {nx3}))
@@ -962,14 +962,14 @@ do
                 :Build()
     end
 
-    add('AZUREGOS', 6109, 'azuregos')
+    add('AZUREGOS', 6109, '-achievement_boss_cyanigosa')
     add('KAZZAK', 12397, 'kazzak', true)
-    local ysondre = add('YSONDRE', 14887, 'ysondre')
-    local lethon = add('LETHON', 14888, 'lethon')
-    local emeriss = add('EMERISS', 14889, 'emeriss')
-    local taerar = add('TAERAR', 14890, 'taerar')
+    local ysondre = add('YSONDRE', 14887, '-achievement_boss_valithradreamwalker')
+    local lethon = add('LETHON', 14888, '-Achievement_boss_aeonus_01')
+    local emeriss = add('EMERISS', 14889, '-Achievement_boss_malygos_01')
+    local taerar = add('TAERAR', 14890, '-Achievement_boss_eregos')
 	
-    ach = L:Achievement(pve, 20, '-achievement_boss_valithradreamwalker')
+    ach = L:Achievement(pve, 20, '-inv_misc_shadowegg')
             :NameDesc('AN_WB_EMERALD_DRAGONS', 'AD_WB_EMERALD_DRAGONS', true)
             :CompleteAchievementCriteria(ysondre)
             :CompleteAchievementCriteria(lethon)
@@ -978,33 +978,33 @@ do
             :Reward('AR_WB_EMERALD_DRAGONS', true)
             :Build()			
 			
-	L:Achievement(instances, 20, 'drake_red')
+	L:Achievement(instances, 20, '-ability_mount_drake_red')
 		:NameDesc('AN_LEEROY', 'AD_LEEROY', true)
 		:Criteria(TYPE.SPECIAL, {1}):Build()
 		:Reward('AR_LEEROY', true)
 		:Build()
 
-	L:Achievement(instances, 20, 'drake_twilight')
+	L:Achievement(instances, 20, '-ability_mount_drake_twilight')
 		:NameDesc('AN_BWL_DUO', 'AD_BWL_DUO', true)
 		:Criteria(TYPE.SPECIAL, {2}):Build()
 		:Build()
 
-	L:Achievement(instances, 10, 'anubrekhan_without_mobs')
+	L:Achievement(instances, 10, '-achievement_boss_anubarak')
 		:NameDesc('AN_ANUBREKHAN_WITHOUT_MOBS', 'AD_ANUBREKHAN_WITHOUT_MOBS', true)
 		:Criteria(TYPE.BOSS_WITHOUT_MOBS, {15956}):Build()
 		:Build()
 
-	L:Achievement(instances, 10, 'faerlina_without_mobs')
+	L:Achievement(instances, 10, '-achievement_dungeon_naxxramas_25man')
 		:NameDesc('AN_FAERLINA_WITHOUT_MOBS', 'AD_FAERLINA_WITHOUT_MOBS', true)
 		:Criteria(TYPE.BOSS_WITHOUT_MOBS, {15953}):Build()
 		:Build()
 
-	L:Achievement(instances, 10, 'arachnophobia')
+	L:Achievement(instances, 10, '-achievement_halloween_spider_01')
 		:NameDesc('AN_ARACHNOPHOBIA', 'AD_ARACHNOPHOBIA', true)
 		:Criteria(TYPE.SPECIAL, {3}):Build()
 		:Build()
 
-	L:Achievement(instances, 10, 'four_together')
+	L:Achievement(instances, 10, '-achievement_boss_fourhorsemen')
 		:NameDesc('AN_FOUR_TOGETHER', 'AD_FOUR_TOGETHER', true)
 		:Criteria(TYPE.SPECIAL, {4}):Build()
 		:Build()
@@ -1456,19 +1456,19 @@ do
 
     --CLASSIC
     local function add(factionID, factionName, points, icon, reputationLevel)
-        local ach = vanillaReputation:CreateAchievement(loc:Get('AN_' .. factionName), loc:Get('AD_' .. factionName), points or 10, icon or string.lower(factionName))
+        local ach = vanillaReputation:CreateAchievement(loc:Get('AN_' .. factionName), loc:Get('AD_' .. factionName), points, icon)
         ach:AddCriteria(criterias:Create(nil, TYPE.REACH_REPUTATION, {factionID, reputationLevel or 8}))
     end
 
     add(749, 'HYDRAXIANS', 20, '-spell_frost_summonwaterelemental_2')
-    add(270, 'ZANDALAR_TRIBE')
+    add(270, 'ZANDALAR_TRIBE', 20, '-achievement_boss_trollgore')
     add(609, 'CENARION_CIRCLE', 20, '-inv_misc_bag_satchelofcenarius')
     add(910, 'BROOD_OF_NOZDORMU', 20, '-Inv_Misc_Head_Dragon_Bronze')
-    add(529, 'ARGENT_DAWN', 20)
-    add(576, 'TIMBERMAW_HOLD')
+    add(529, 'ARGENT_DAWN', 20, '-achievement_reputation_argentcrusader')
+    add(576, 'TIMBERMAW_HOLD', 20, '-achievement_reputation_timbermaw')
     add(909, 'DARKMOON_FAIRE', 20, '-Inv_Misc_MissileLarge_Red')
     add(87, 'PIRATES', 30, '-Inv_Helmet_66', 6)
-    add(809, 'SHENDRALAR', 30)
+    add(809, 'SHENDRALAR', 30, '-inv_misc_book_11')
 
     --TBC
     local builder = L:Achievement(tbcReputations, 20, '-Spell_Fire_FelfireWard')
