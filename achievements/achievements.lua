@@ -410,7 +410,7 @@ do
     add(3433, {3488, 3489, 3490, 3491, 3494, 3493, 3495, 3496, 3502, 3500, 3517, 3508, 3492, 3501, 3856, 3861}, '-achievement_zone_ghostlands')
     exploreAzeroth:AddCriteria(criterias:Create(global.name, TYPE.COMPLETE_ACHIEVEMENT, {global.id}))
 	
-	ach = L:Achievement(exploration, 20, 'love')
+	ach = L:Achievement(exploration, 20, '-inv_jewelcrafting_crimsonhare')
 		:NameDesc('AN_LOVE', 'AD_LOVE', true)
 		for _, creatureID in pairs({3444, 620, 1420, 13321, 2620, 9600, 5951, 9699, 4953, 721, 9700, 15476, 2914, 16030, 4075, 1412, 7390, 15475, 15010, 4076, 13016, 14881, 2110, 4166, 1933, 890, 2098, 2442, 6368, 10582, 385, 10685, 3300}) do
 			ach:Criteria(TYPE.EMOTE, {'LOVE', creatureID}):Name('NPC_' .. creatureID, true):Build()
@@ -537,7 +537,7 @@ do
     ach1:SetHordeOnly()
     ach2 = add(2784, 'MAGNI', '-Achievement_leader_king_magni_bronzebeard')
     ach2:SetHordeOnly()
-    ach3 = add(7937, 'MEKKATORQUE', '-Inv_Misc_Wrench_01')
+    ach3 = add(7937, 'MEKKATORQUE', '-achievement_character_gnome_male')
     ach3:SetHordeOnly()
     local ach4 = add(7999, 'TYRANDE', '-achievement_leader_tyrande_whisperwind')
     ach4:SetHordeOnly()
@@ -554,7 +554,7 @@ do
 
     ach1 = add(4949, 'THRALL', '-Achievement_leader_-thrall')
     ach1:SetAllianceOnly()
-    ach2 = add(10540, 'VOLJIN', '-Spell_Nature_Astralrecalgroup')
+    ach2 = add(10540, 'VOLJIN', '-achievement_character_troll_male')
     ach2:SetAllianceOnly()
     ach3 = add(10181, 'SYLVANAS', '-Achievement_leader_sylvanas')
     ach3:SetAllianceOnly()
@@ -874,7 +874,7 @@ do
 
 	local scholo = create('SCHOLOMANCE', '-Spell_Holy_Senseundead', 1853, 20).id
 
-	ach = instances:CreateAchievement('AN_YOUNG_DEFENDER', 'AD_YOUNG_DEFENDER', 20, '-Inv_Helmet_03', true)
+	ach = instances:CreateAchievement('AN_YOUNG_DEFENDER', 'AD_YOUNG_DEFENDER', 20, '-spell_holy_revivechampion', true)
 	ach:AddCriteria(criterias:CreateL('AN_RAGEFIRE_CHASM', TYPE.COMPLETE_ACHIEVEMENT, {rc}))
 	ach:AddCriteria(criterias:CreateL('AN_WAILING_CAVERNS', TYPE.COMPLETE_ACHIEVEMENT, {wc}))
 	ach:AddCriteria(criterias:CreateL('AN_DEAD_MINES', TYPE.COMPLETE_ACHIEVEMENT, {dm}))
@@ -891,7 +891,7 @@ do
 	ach:AddCriteria(criterias:CreateL('AN_SUNKEN_TEMPLE', TYPE.COMPLETE_ACHIEVEMENT, {st}))
 	
 	id1 = ach.id
-	ach = pve:CreateAchievement('AN_DEFENDER', 'AD_DEFENDER', 20, '-Inv_Helmet_01', true)
+	ach = pve:CreateAchievement('AN_DEFENDER', 'AD_DEFENDER', 20, '-achievement_dungeon_classicraider', true)
 	ach:AddCriteria(criterias:CreateL('AN_YOUNG_DEFENDER', TYPE.COMPLETE_ACHIEVEMENT, {id1}))
 	ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_DEPTHS_FULL', TYPE.COMPLETE_ACHIEVEMENT, {brd}))
 	ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_SPIRE', TYPE.COMPLETE_ACHIEVEMENT, {brs}))
@@ -921,19 +921,19 @@ do
     ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_LAIR', TYPE.COMPLETE_ACHIEVEMENT, {nx5}))
     local nx = ach.id
 
-    ach = pve:CreateAchievement('AN_YOUNG_HERO', 'AD_YOUNG_HERO', 20, 'young_hero', true)
+    ach = pve:CreateAchievement('AN_YOUNG_HERO', 'AD_YOUNG_HERO', 20, '-Achievement_dungeon_gloryofthehero', true)
     ach:AddCriteria(criterias:CreateL('AN_ONYXIA', TYPE.COMPLETE_ACHIEVEMENT, {onyxia}))
     ach:AddCriteria(criterias:CreateL('AN_AQ20', TYPE.COMPLETE_ACHIEVEMENT, {aq20}))
     ach:AddCriteria(criterias:CreateL('AN_ZULGURUB', TYPE.COMPLETE_ACHIEVEMENT, {zg}))
     local id = ach.id
 
-    ach = instances:CreateAchievement('AN_BLACKROCK_MASTER', 'AD_BLACKROCK_MASTER', 20, 'blackrock_master', true)
+    ach = instances:CreateAchievement('AN_BLACKROCK_MASTER', 'AD_BLACKROCK_MASTER', 20, '-achievement_dungeon_classicdungeonmaster', true)
     ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_DEPTHS_FULL', TYPE.COMPLETE_ACHIEVEMENT, {brd}))
     ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_SPIRE', TYPE.COMPLETE_ACHIEVEMENT, {brs}))
     ach:AddCriteria(criterias:CreateL('AN_RAGNAROS', TYPE.COMPLETE_ACHIEVEMENT, {ragnaros}))
     ach:AddCriteria(criterias:CreateL('AN_BLACK_WING_LAIR', TYPE.COMPLETE_ACHIEVEMENT, {bwl}))
 
-    ach = pve:CreateAchievement('AN_HERO', 'AD_HERO', 20, 'hero', true)
+    ach = pve:CreateAchievement('AN_HERO', 'AD_HERO', 20, '-Achievement_dungeon_heroic_gloryoftheraider', true)
     ach:AddCriteria(criterias:CreateL('AN_YOUNG_HERO', TYPE.COMPLETE_ACHIEVEMENT, {id}))
     ach:AddCriteria(criterias:CreateL('AN_RAGNAROS', TYPE.COMPLETE_ACHIEVEMENT, {ragnaros}))
     ach:AddCriteria(criterias:CreateL('AN_BLACK_WING_LAIR', TYPE.COMPLETE_ACHIEVEMENT, {bwl}))
@@ -942,7 +942,7 @@ do
     ach:SetRewardText(loc:Get('AR_HERO'))
     id = ach.id
 
-    ach = pve:CreateAchievement('AN_GREAT_HERO', 'AD_GREAT_HERO', 20, 'great_hero', true)
+    ach = pve:CreateAchievement('AN_GREAT_HERO', 'AD_GREAT_HERO', 20, '-Achievement_dungeon_gloryoftheraider', true)
     ach:AddCriteria(criterias:CreateL('AN_DEFENDER', TYPE.COMPLETE_ACHIEVEMENT, {defender}))
     ach:AddCriteria(criterias:CreateL('AN_HERO', TYPE.COMPLETE_ACHIEVEMENT, {id}))
     ach:SetRewardText(loc:Get('AR_GREAT_HERO'))
@@ -969,7 +969,7 @@ do
     local emeriss = add('EMERISS', 14889, 'emeriss')
     local taerar = add('TAERAR', 14890, 'taerar')
 	
-    ach = L:Achievement(pve, 20, 'dragons_of_nightmare')
+    ach = L:Achievement(pve, 20, '-achievement_boss_valithradreamwalker')
             :NameDesc('AN_WB_EMERALD_DRAGONS', 'AD_WB_EMERALD_DRAGONS', true)
             :CompleteAchievementCriteria(ysondre)
             :CompleteAchievementCriteria(lethon)
@@ -1069,7 +1069,7 @@ do
     create('mechanar', 19220)
     local ending = create('arcatraz', 20912)
 
-    local builder = L:Achievement(pve, 20, '-Ability_Creature_Cursed_02')
+    local builder = L:Achievement(pve, 20, '-achievement_dungeon_outland_dungeon_hero')
     :NameDesc('AN_TBC_DUNGEONS', 'AD_TBC_DUNGEONS', true)
     
     for i = starting.id, ending.id, 2 do
@@ -1442,13 +1442,13 @@ do
         previous = ach
     end
 
-    ach = reputation:CreateAchievement(loc:Get('AN_HORDE_REPS'), loc:Get('AD_HORDE_REPS'), 30, 'reps_horde')
+    ach = reputation:CreateAchievement(loc:Get('AN_HORDE_REPS'), loc:Get('AD_HORDE_REPS'), 30, '-achievement_pvp_o_h')
     for i, fid in pairs({76, 530, 68, 81, 911}) do
         ach:AddCriteria(criterias:Create(loc:Get('AC_HORDE_REPS_' .. i), TYPE.REACH_REPUTATION, {fid, 8}))
     end
     ach:SetHordeOnly()
 
-    ach = reputation:CreateAchievement(loc:Get('AN_ALLIANCE_REPS'), loc:Get('AD_ALLIANCE_REPS'), 30, 'reps_alliance')
+    ach = reputation:CreateAchievement(loc:Get('AN_ALLIANCE_REPS'), loc:Get('AD_ALLIANCE_REPS'), 30, '-achievement_pvp_o_a')
     for i, fid in pairs({72, 69, 54, 47, 930}) do
         ach:AddCriteria(criterias:Create(loc:Get('AC_ALLIANCE_REPS_' .. i), TYPE.REACH_REPUTATION, {fid, 8}))
     end
