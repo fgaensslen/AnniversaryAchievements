@@ -298,42 +298,42 @@ do
 	wisdomAlliance:SetAllianceOnly()
 
     --ATTUNEMENT    
-	L:Achievement(outlandQuests, 10, 'shattered_halls')
+	L:Achievement(outlandQuests, 10, '-inv_misc_key_02')
         :NameDesc('AN_ATTUNE_SHATTERED_HALLS', 'AD_ATTUNE_SHATTERED_HALLS', true)
         :Criteria(TYPE.OBTAIN_ITEM, {28395}):Build()
         :Build()
 		
-	L:Achievement(outlandQuests, 10, 'arcatraz')
+	L:Achievement(outlandQuests, 10, '-inv_datacrystal03')
         :NameDesc('AN_ATTUNE_ARCATRAZ', 'AD_ATTUNE_ARCATRAZ', true)
         :Criteria(TYPE.OBTAIN_ITEM, {31084}):Build()
         :Build()
 		
-	L:Achievement(outlandQuests, 10, 'karazhan')
+	L:Achievement(outlandQuests, 10, '-inv_misc_key_07')
         :NameDesc('AN_ATTUNE_KARAZHAN', 'AD_ATTUNE_KARAZHAN', true)
         :Criteria(TYPE.OBTAIN_ITEM, {24490}):Build()
         :Build()
 		
-	L:Achievement(outlandQuests, 10, '-Inv_Misc_Head_Dragon_Blue')
+	L:Achievement(outlandQuests, 10, '-inv_misc_urn_01')
         :NameDesc('AN_ATTUNE_NIGHT_BANE', 'AD_ATTUNE_NIGHT_BANE', true)
         :Criteria(TYPE.OBTAIN_ITEM, {24140}):Build()
         :Build()
 		
-	L:Achievement(outlandQuests, 10, 'ssc')
+	L:Achievement(outlandQuests, 10, '-inv_trinket_naxxramas01')
         :NameDesc('AN_ATTUNE_SSC', 'AD_ATTUNE_SSC', true)
         :Criteria(TYPE.COMPLETE_QUEST, {10901}):Build()
         :Build()
 		
-	L:Achievement(outlandQuests, 10, 'the_eye')
+	L:Achievement(outlandQuests, 10, '-inv_datacrystal11')
         :NameDesc('AN_ATTUNE_EYE', 'AD_ATTUNE_EYE', true)
         :Criteria(TYPE.OBTAIN_ITEM, {31704}):Build()
         :Build()
 		
-    L:Achievement(outlandQuests, 10, 'hyjal')
+    L:Achievement(outlandQuests, 10, '-inv_potion_101')
         :NameDesc('AN_ATTUNE_HYJAL', 'AD_ATTUNE_HYJAL', true)
         :Criteria(TYPE.COMPLETE_QUEST, {10445}):Build()
         :Build()
 		
-	L:Achievement(outlandQuests, 10, 'black_temple')
+	L:Achievement(outlandQuests, 10, '-inv_jewelry_amulet_04')
         :NameDesc('AN_ATTUNE_BLACK_TEMPLE', 'AD_ATTUNE_BLACK_TEMPLE', true)
         :Criteria(TYPE.OR, {L:Criteria(TYPE.OBTAIN_ITEM, {32649}):Build(), L:Criteria(TYPE.OBTAIN_ITEM, {32757}):Build()}):Build()
         :Build()    
