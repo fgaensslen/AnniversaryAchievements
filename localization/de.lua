@@ -707,8 +707,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_ATIESH = 'Träger von Atiesh, Hohestab des Wächters.',
     AN_BLACK_SCARAB = 'Skarabäusfürst',
     AD_BLACK_SCARAB = 'Die Tore von Ahn\'Qiraj geöffnet.',
-    AN_RED_SCARAB = 'Warum? Weil es rot ist!',
-    AD_RED_SCARAB = 'Besitzer eines Roter Qirajiresonanzkristall.',
+    AN_RED_SCARAB = 'Warum? Weil er rot ist!',
+    AD_RED_SCARAB = 'Erhaltet einen roten Qirajiresonanzkristall.',
     
     AN_UNCOMMON_GEAR = 'Selten',
     AD_UNCOMMON_GEAR = 'Legt an jedem Platz einen Gegenstand von seltener Qualität an.',
@@ -765,11 +765,11 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_FISHING_BIG_SIZE = 'Schließt die unten aufgelisteten Angel-Erfolge ab.',
     AR_FISHING_BIG_SIZE = 'Titel \'größter Angler von Azeroth\'.',
 
-    AN_COOKING_RECIPES_30 = 'Freizeitkoch',
-    AN_COOKING_RECIPES_50 = 'Commis de Cuisine',
-    AN_COOKING_RECIPES_60 = 'Chef de Partie',
-    AN_COOKING_RECIPES_70 = 'Sous Chef',
-    AN_COOKING_RECIPES_80 = 'Chef de Cuisine',
+    AN_COOKING_RECIPES_5 = 'Freizeitkoch',
+    AN_COOKING_RECIPES_10 = 'Commis de Cuisine',
+    AN_COOKING_RECIPES_25 = 'Chef de Partie',
+    AN_COOKING_RECIPES_50 = 'Sous Chef',
+    AN_COOKING_RECIPES_75 = 'Chef de Cuisine',
     AR_COOKING_RECIPES = 'Titel \'Chefkoch\'.',
     AD_COOKING_RECIPES = 'Lernt %d Kochrezepte.',
     AC_COOKING_RECIPES = 'Lernt %d Kochrezepte',
@@ -1049,7 +1049,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     FACTION_935 = 'Die Sha\'tar',
 
     AN_TBC_DUNGEON_REPUTATIONS = 'Der brennende Kreuzritter',
-    AD_TBC_DUNGEON_REPUTATIONS = 'Bringt alle \'Burning Crusade\'-Dungeonrufe auf ehrfürchtig.',
+    AD_TBC_DUNGEON_REPUTATIONS = 'Bringt alle Rufe der Burning-Crusade-Dungeons auf Ehrfürchtig.',
 
     AN_SHATTRATH_REP = 'Geteiltes Shattrath',
     AD_SHATTRATH_REP = 'Erreicht bei den Sehern oder den Aldor den Status ehrfürchtig.',

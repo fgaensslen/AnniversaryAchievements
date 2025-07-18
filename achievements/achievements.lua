@@ -836,7 +836,7 @@ do
 	local jail = create('JAIL', '-Achievement_boss_bazil_thredd', 1666).id
 	local gnom = create('GNOMREGAN', 'gnomeregan', 7800).id
 	local rk = create('RAZORFEN_KRAUL', '-Achievement_boss_charlgarazorflank', 4421).id
-	local sm = create('SCARLET_MONASTERY', '-Spell_Holy_Resurrection', {4543, 6487, 3975, 3977}, 20).id
+	local sm = create('SCARLET_MONASTERY', '-inv_helmet_52', {4543, 6487, 3975, 3977}, 20).id
 	local rd = create('RAZORFEN_DOWNS', '-achievement_boss_amnennar_the_coldbringer', {7358, 7356}).id
 	local uldaman = create('ULDAMAN', '-achievement_boss_archaedas', 2748).id
 	local zf = create('ZULFARRAK', '-Achievement_boss_chiefukorzsandscalp', 7267).id
@@ -963,7 +963,7 @@ do
     end
 
     add('AZUREGOS', 6109, '-achievement_boss_cyanigosa')
-    add('KAZZAK', 12397, 'kazzak', true)
+    add('KAZZAK', 12397, '-ability_warlock_demonicempowerment', true)
     local ysondre = add('YSONDRE', 14887, '-achievement_boss_valithradreamwalker')
     local lethon = add('LETHON', 14888, '-Achievement_boss_aeonus_01')
     local emeriss = add('EMERISS', 14889, '-Achievement_boss_malygos_01')
@@ -1009,18 +1009,18 @@ do
 		:Criteria(TYPE.SPECIAL, {4}):Build()
 		:Build()
 
-	L:Achievement(instances, 20, 'sapphirone_with_all_alive')
+	L:Achievement(instances, 20, '-spell_frost_icestorm')
 		:NameDesc('AN_SAPPHIRONE_WITH_ALL_ALIVE', 'AD_SAPPHIRONE_WITH_ALL_ALIVE', true)
 		:Criteria(TYPE.BOSS_WITH_ALL_ALIVE, {15989}):Build()
 		:Build()
 
     --TBC
-    local function preBuilder(zoneName, bossIDs, isHeroic)
+    local function preBuilder(zoneName, bossIDs, isHeroic, icon)
         local points
         if isHeroic then points = 20
         else points = 10 end
     
-        local builder = L:Achievement(tbcInstances, points, zoneName)
+        local builder = L:Achievement(tbcInstances, points, icon)
     
         local upperZoneName = string.upper(zoneName)
         local achievementName = loc:Get('AN_' .. upperZoneName)
@@ -1047,27 +1047,27 @@ do
         return builder
     end
 
-    local function create(zoneName, bossIDs)
-        local normal = preBuilder(zoneName, bossIDs, false):Build()
+    local function create(zoneName, bossIDs, icon)
+        local normal = preBuilder(zoneName, bossIDs, false, icon):Build()
         local heroic = preBuilder(zoneName, bossIDs, true):Previous(normal):Build()
         return heroic
     end
 
-    local starting = create('hellfire_ramparts', {17308, 17537})
-    create('blood_furnace', 17377)
-    create('slave_pens', 17942)
-    create('underbog', 17882)
-    create('mana_tombs', 18344)
-    create('auchenai_crypts', 18373)
-    create('old_hillsbrad', 18096)
-    create('sethekk_halls', 18473)
-    create('steamvault', 17798)
-    create('shadow_labyrinth', 18708)
-    create('shattered_halls', 16808)
-    create('black_morass', 17881)
-    create('botanica', 17977)
-    create('mechanar', 19220)
-    local ending = create('arcatraz', 20912)
+    local starting = create('hellfire_ramparts', {17308, 17537}, '-Achievement_boss_omartheunscarred_01')
+    create('blood_furnace', 17377, '-Achievement_boss_kelidanthebreaker')
+    create('slave_pens', 17942, '-Achievement_boss_quagmirran')
+    create('underbog', 17882, '-Achievement_boss_theblackstalker')
+    create('mana_tombs', 18344, '-achievement_boss_nexus_prince_shaffar')
+    create('auchenai_crypts', 18373, '-Achievement_boss_exarch_maladaar')
+    create('old_hillsbrad', 18096, '-Achievement_boss_epochhunter')
+    create('sethekk_halls', 18473, '-Achievement_boss_talonkingikiss')
+    create('steamvault', 17798, '-Achievement_boss_warlord_kalithresh')
+    create('shadow_labyrinth', 18708, '-achievement_boss_murmur')
+    create('shattered_halls', 16808, '-Achievement_boss_kargathbladefist_01')
+    create('black_morass', 17881, '-Achievement_boss_aeonus_01')
+    create('botanica', 17977, '-achievement_boss_warpsplinter')
+    create('mechanar', 19220, '-achievement_boss_pathaleonthecalculator')
+    local ending = create('arcatraz', 20912, '-achievement_boss_harbinger_skyriss')
 
     local builder = L:Achievement(pve, 20, '-achievement_dungeon_outland_dungeon_hero')
     :NameDesc('AN_TBC_DUNGEONS', 'AD_TBC_DUNGEONS', true)
@@ -1082,12 +1082,12 @@ do
         :Criteria(TYPE.OBTAIN_ITEM, {32768}):Build()
         :Build()
 
-    L:Achievement(tbcInstances, 10, 'kazzak')
+    L:Achievement(tbcInstances, 10, '-spell_shadow_shadowbolt')
         :NameDesc('AN_WB_KAZZAK_OUTLAND', 'AD_WB_KAZZAK_OUTLAND', true)
         :Criteria(TYPE.KILL_NPC, {18728}):Build()
         :Build()
         
-    L:Achievement(tbcInstances, 10, '-Inv_Misc_EngGizmos_06')
+    L:Achievement(tbcInstances, 10, '-spell_fire_felflamebreath')
         :NameDesc('AN_WB_DOOMWALKER', 'AD_WB_DOOMWALKER', true)
         :Criteria(TYPE.KILL_NPC, {17711}):Build()
         :Build()
@@ -1354,11 +1354,19 @@ do
 
 	--COOKING
     previous = nil
-    for _, count in pairs({30, 50, 60, 70, 80}) do
-        local ach = cooking:CreateAchievement(loc:Get('AN_COOKING_RECIPES_' .. count), loc:Get('AD_COOKING_RECIPES', count), 10, '-Inv_Misc_Food_14')
+    for _, count in pairs({5, 10, 25, 50, 75}) do
+		local cookingIcon
+		
+		if count == 1 then cookingIcon = '-inv_misc_food_66'
+		elseif count == 10 then cookingIcon = '-inv_misc_food_65'
+		elseif count == 25 then cookingIcon = '-inv_misc_food_60'
+		elseif count == 50 then cookingIcon = '-inv_misc_food_13'
+		else cookingIcon = '-inv_misc_food_92_lobster' end
+	
+        local ach = cooking:CreateAchievement(loc:Get('AN_COOKING_RECIPES_' .. count), loc:Get('AD_COOKING_RECIPES', count), 10, cookingIcon)
         ach:AddCriteria(criterias:Create(loc:Get('AC_COOKING_RECIPES', count), TYPE.LEARN_PROFESSION_RECIPES, {ClassicAchievementsProfessions.COOKING[1]}, count))
         if previous then previous:SetNext(ach) end
-        if count == 80 then
+        if count == 75 then
             ach:SetRewardText(loc:Get('AR_COOKING_RECIPES'))
         end
         previous = ach
@@ -1461,10 +1469,10 @@ do
     end
 
     add(749, 'HYDRAXIANS', 20, '-spell_frost_summonwaterelemental_2')
-    add(270, 'ZANDALAR_TRIBE', 20, '-achievement_boss_trollgore')
+    add(270, 'ZANDALAR_TRIBE', 20, '-inv_bijou_green')
     add(609, 'CENARION_CIRCLE', 20, '-inv_misc_bag_satchelofcenarius')
     add(910, 'BROOD_OF_NOZDORMU', 20, '-Inv_Misc_Head_Dragon_Bronze')
-    add(529, 'ARGENT_DAWN', 20, '-achievement_reputation_argentcrusader')
+    add(529, 'ARGENT_DAWN', 20, '-inv_jewelry_talisman_07')
     add(576, 'TIMBERMAW_HOLD', 20, '-achievement_reputation_timbermaw')
     add(909, 'DARKMOON_FAIRE', 20, '-Inv_Misc_MissileLarge_Red')
     add(87, 'PIRATES', 30, '-Inv_Helmet_66', 6)
@@ -1479,11 +1487,11 @@ do
 		builder:Build():SetHordeOnly()
 
     builder = L:Achievement(tbcReputations, 20, '-Spell_Fire_FelfireWard')
-    :NameDesc('AN_TBC_DUNGEON_REPUTATIONS', 'AD_TBC_DUNGEON_REPUTATIONS', true)
-    for _, factionID in pairs({946, 942, 1011, 989, 935}) do
-        builder:Criteria(TYPE.REACH_REPUTATION, {factionID, 8}):Name('FACTION_' .. factionID, true):Build()
-    end
-    builder:Build():SetAllianceOnly()
+		:NameDesc('AN_TBC_DUNGEON_REPUTATIONS', 'AD_TBC_DUNGEON_REPUTATIONS', true)
+		for _, factionID in pairs({946, 942, 1011, 989, 935}) do
+			builder:Criteria(TYPE.REACH_REPUTATION, {factionID, 8}):Name('FACTION_' .. factionID, true):Build()
+		end
+		builder:Build():SetAllianceOnly()
 
     local function create(factionName, factionID, icon, points)
         return L:Achievement(tbcReputations, points or 10, icon or factionName)
@@ -1507,14 +1515,14 @@ do
     create('kurenai', 978, '-Inv_Misc_Foot_Centaur', 15):SetAllianceOnly()
     create('netherwings', 1015, '-Ability_Mount_NetherdrakePurple')
 
-    L:Achievement(tbcReputations, 10, '-inv_misc_crop_01')
+    L:Achievement(tbcReputations, 10, '-Ability_Mount_NetherdrakePurple')
         :NameDesc('AN_SKYSHATTERED', 'AD_SKYSHATTERED', true)
         :Criteria(TYPE.COMPLETE_QUEST, {11071}):Build()
         :Build()
 
     create('amethyst_eye', 967, '-Spell_Holy_Mindsooth')
     create('scale_of_the_sands', 990, '-Inv_Enchant_DustIllusion')
-    create('ashtongue_deathsworn', 1012)
+    create('ashtongue_deathsworn', 1012, '-achievement_reputation_ashtonguedeathsworn')
     create('shattered_sun', 1077, '-Inv_Shield_48')
 end
 
@@ -1526,7 +1534,7 @@ do
     ach = featsOfStrength:CreateAchievement('AN_THUNDER_FURY', 'AD_THUNDER_FURY', 0, '-Inv_Sword_39', true)
 		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {19019}))
 
-    ach = featsOfStrength:CreateAchievement('AN_BLACK_SCARAB', 'AD_BLACK_SCARAB', 0, '-Inv_Misc_QirajiCrystal_05', true)
+    ach = featsOfStrength:CreateAchievement('AN_BLACK_SCARAB', 'AD_BLACK_SCARAB', 0, '-achievement_zone_silithus_01', true)
 		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {21176}))
 
     ach = featsOfStrength:CreateAchievement('AN_RED_SCARAB', 'AD_RED_SCARAB', 0, '-Inv_Misc_QirajiCrystal_02', true)
@@ -1536,7 +1544,7 @@ do
 		ach:AddCriteria(criterias:Create(nil, TYPE.ATIESH))
 
     --TBC
-    L:Achievement(featsOfStrength, 0, 'prepatch_quest')
+    L:Achievement(featsOfStrength, 0, '-inv_shirt_guildtabard_01')
         :NameDesc('AN_PREPATCH_QUEST', 'AD_PREPATCH_QUEST', true)
         :Criteria(TYPE.COMPLETE_QUEST, {10259}):Build()
         :Build()
