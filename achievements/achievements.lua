@@ -549,13 +549,13 @@ do
     ach.priority = 1
     ach:SetHordeOnly()
 
-    ach1 = add(4949, 'THRALL', '-Achievement_leader_-thrall')
+    ach1 = add(4949, 'THRALL', 'Achievement_Leader_ Thrall')
     ach1:SetAllianceOnly()
     ach3 = add(10181, 'SYLVANAS', '-Achievement_leader_sylvanas')
     ach3:SetAllianceOnly()
-    ach4 = add(3057, 'CAIRNE', '-achievement_leader_cairne-bloodhoof')
+    ach4 = add(3057, 'CAIRNE', 'Achievement_Leader_Cairne Bloodhoof')
     ach4:SetAllianceOnly()
-    ach5 = add(16802, 'LORTHEMAR', '-achievement_leader_lorthemar_theron-')
+    ach5 = add(16802, 'LORTHEMAR', 'Achievement_Leader_Lorthemar_Theron')
     ach5:SetAllianceOnly()
     ach = openWorldPVP:CreateAchievement(loc:Get('AN_HORDE_KINGS_SLAYER'), loc:Get('AD_HORDE_KINGS_SLAYER'), 20, '-inv_bannerpvp_02')
     ach:AddCriteria(criterias:Create(ach1.name, TYPE.COMPLETE_ACHIEVEMENT, {ach1.id}))

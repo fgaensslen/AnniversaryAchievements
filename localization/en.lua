@@ -95,6 +95,20 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_REPUTATION = 'Reputations',
     CATEGORY_FEATS_OF_STRENGTH = 'Feats of Strength',
     CATEGORY_EVENTS = 'Game Events',
+	
+	AN_DRUID_T2 = 'Stormrage Raiment',
+	AN_WARLOCK_T2 = 'Nemesis Raiment',
+	AN_PRIEST_T2 = 'Vestments of Transcendence',
+	AN_MAGE_T2 = 'Netherwind Regalia',
+	AN_ROGUE_T2 = 'Bloodfang Armor',
+	AN_HUNTER_T2 = 'Dragonstalker Armor',
+	AN_PALADIN_T2 = 'Judgement Armor',
+	AN_WARRIOR_T2 = 'Battlegear of Wrath',
+	AN_SHAMAN_T2 = 'The Ten Storms',
+	AD_SET_T2 = 'Collect all items of the mentioned set.',	
+	
+	AN_SKELETON_KEY = 'The Key to Scholomance',
+	AD_SKELETON_KEY = 'Obtain the Skeleton Key.',
 
     AN_LVL = 'Level %d',
     AD_LVL = 'Reach level %d.',
@@ -1020,8 +1034,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_TBC_PHASE_1 = 'Complete the Burning Crusade phase one raid achievements listed below.',
     AN_TBC_PHASE_2 = 'Outland Phase Two Raider',
     AD_TBC_PHASE_2 = 'Complete the Burning Crusade phase two raid achievements listed below.',
-    AN_TBC_PHASE_2 = 'Outland Phase Three Raider',
-    AD_TBC_PHASE_2 = 'Complete the Burning Crusade phase three raid achievements listed below.',
+    AN_TBC_PHASE_3 = 'Outland Phase Three Raider',
+    AD_TBC_PHASE_3 = 'Complete the Burning Crusade phase three raid achievements listed below.',
 
     FACTION_946 = 'Honor Hold',
     FACTION_947 = 'Thrallmar',

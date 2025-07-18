@@ -60,12 +60,7 @@ SexyLib:Util():AfterLogin(function()
     end)
     button:SetScript('OnClick', function(self, button)
         if button == 'RightButton' then
-            if InterfaceOptionsFrame:IsShown() then
-                InterfaceOptionsFrame:Hide()
-            else
-                InterfaceOptionsFrame_OpenToCategory('Anniversary Achievements')
-                InterfaceOptionsFrame_OpenToCategory('Anniversary Achievements') -- not a bug, two calls required
-            end
+            Settings.OpenToCategory("Anniversary Achievements")
         else
             AchievementFrame_ToggleAchievementFrame()
         end
