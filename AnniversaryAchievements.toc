@@ -1,6 +1,6 @@
 ## Interface: 11507
 ## Title: Anniversary Achievements
-## Notes: Introduces achievements to WoW Classic
+## Notes: Achievements for WoW Classic
 ## Author: Florian Gaensslen
 ## Version: 1.0
 ## OptionalDeps: DBM-Core, ElvUI, Bartender4

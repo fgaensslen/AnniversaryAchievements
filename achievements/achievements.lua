@@ -1043,7 +1043,7 @@ do
 
     local function create(zoneName, bossIDs, icon)
         local normal = preBuilder(zoneName, bossIDs, false, icon):Build()
-        local heroic = preBuilder(zoneName, bossIDs, true):Previous(normal):Build()
+        local heroic = preBuilder(zoneName, bossIDs, true, icon):Previous(normal):Build()
         return heroic
     end
 
@@ -1061,6 +1061,7 @@ do
     create('black_morass', 17881, '-Achievement_boss_aeonus_01')
     create('botanica', 17977, '-achievement_boss_warpsplinter')
     create('mechanar', 19220, '-achievement_boss_pathaleonthecalculator')
+	create('magisters_terrace', 24664, '-achievement_character_bloodelf_male')
     local ending = create('arcatraz', 20912, '-achievement_boss_harbinger_skyriss')
 
     local builder = L:Achievement(pve, 20, '-achievement_dungeon_outland_dungeon_hero')
@@ -1173,7 +1174,29 @@ do
         :NameDesc('AN_TBC_PHASE_3', 'AD_TBC_PHASE_3', true)
         :Criteria(TYPE.COMPLETE_ACHIEVEMENT, {hyjal.id}):Name(hyjal.name):Build()
         :Criteria(TYPE.COMPLETE_ACHIEVEMENT, {bt.id}):Name(bt.name):Build()
-        :Build()    
+        :Build()
+		
+	--RAIDS P4
+	local zulAman = L:Achievement(tbcInstances, 20, '-achievement_boss_zuljin')
+        :NameDesc('AN_ZULAMAN', 'AD_ZULAMAN', true)
+        :Criteria(TYPE.KILL_NPC, { 23863 }):Build()
+        :Build()	
+		
+	L:Achievement(pve, 20, '-inv_helmet_112')
+        :NameDesc('AN_TBC_PHASE_4', 'AD_TBC_PHASE_4', true)
+		:Criteria(TYPE.COMPLETE_ACHIEVEMENT, {zulAman.id}):Name(zulAman.name):Build()
+        :Build()  
+		
+	--RAIDS P5
+	local sunwell = L:Achievement(tbcInstances, 20, '-achievement_boss_kiljaedan')
+        :NameDesc('AN_SUNWELL', 'AD_SUNWELL', true)
+        :Criteria(TYPE.KILL_NPC, { 25315 }):Build()
+        :Build()
+	
+	L:Achievement(pve, 20, '-inv_helmet_92')
+        :NameDesc('AN_TBC_PHASE_5', 'AD_TBC_PHASE_5', true)
+		:Criteria(TYPE.COMPLETE_ACHIEVEMENT, {sunwell.id}):Name(sunwell.name):Build()
+        :Build()  		
 end
 
 -- PROFESSIONS --

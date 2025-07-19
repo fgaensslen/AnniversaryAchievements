@@ -1014,6 +1014,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_ARCATRAZ = 'The Arcatraz',
     AD_ARCATRAZ = 'Defeat Harbringer Skyriss',
+	
+	AN_MAGISTERS_TERRACE = 'Magisters\' Terrace',
+    AD_MAGISTERS_TERRACE = 'Defeat Kael\'thas Sunstrider',
 
     AN_TBC_DUNGEONS = 'Outland Dungeon Hero',
     AD_TBC_DUNGEONS = 'Complete the Burning Crusade Heroic dungeon achievements listed below.',
@@ -1029,6 +1032,12 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_MAGTHERIDON = 'Magtheridon\'s Lair',
     AD_MAGTHERIDON = 'Defeat Magtheridon in Magtheridon\'s Lair.',
+	
+	AN_ZULAMAN = 'Zul\'Aman',
+	AD_ZULAMAN = 'Defeat Zul\'jin in Zul\'Aman.',
+	
+	AN_SUNWELL = 'Sunwell Plateau',
+	AD_SUNWELL = 'Defeat Kil\'jaeden in Sunwell Plateau.',
 
     AN_TBC_PHASE_1 = 'Outland Phase One Raider',
     AD_TBC_PHASE_1 = 'Complete the Burning Crusade phase one raid achievements listed below.',
@@ -1036,6 +1045,10 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_TBC_PHASE_2 = 'Complete the Burning Crusade phase two raid achievements listed below.',
     AN_TBC_PHASE_3 = 'Outland Phase Three Raider',
     AD_TBC_PHASE_3 = 'Complete the Burning Crusade phase three raid achievements listed below.',
+	AN_TBC_PHASE_4 = 'Outland Phase Four Raider',
+    AD_TBC_PHASE_4 = 'Complete the Burning Crusade phase four raid achievements listed below.',
+	AN_TBC_PHASE_5 = 'Outland Phase Five Raider',
+    AD_TBC_PHASE_5 = 'Complete the Burning Crusade phase five raid achievements listed below.',
 
     FACTION_946 = 'Honor Hold',
     FACTION_947 = 'Thrallmar',

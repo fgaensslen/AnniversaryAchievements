@@ -1018,6 +1018,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_ARCATRAZ = 'Die Arkatraz',
     AD_ARCATRAZ = 'Bezwingt Herold Horizontiss',
+	
+	AN_MAGISTERS_TERRACE = 'Terrasse der Magister',
+    AD_MAGISTERS_TERRACE = 'Bezwingt Kael\'thas Sonnenwanderer',
 
     AN_TBC_DUNGEONS = 'Dungeonheld der Scherbenwelt',
     AD_TBC_DUNGEONS = 'Schließt die unten aufgelisteten heroischen "Burning Crusade"-Dungeonerfolge ab.',
@@ -1033,6 +1036,12 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_MAGTHERIDON = 'Magtheridons Kammer',
     AD_MAGTHERIDON = 'Bezwingt Magtheridon in Magtheridons Kammer.',
+	
+	AN_ZULAMAN = 'Zul\'Aman',
+	AD_ZULAMAN = 'Bezwingt Zul\'jin in Zul\'Aman.',
+	
+	AN_SUNWELL = 'Das Sonnenbrunnenplateau',
+	AD_SUNWELL = 'Bezwingt Kil\'jaeden auf dem Sonnenbrunnenplateau.',
 
     AN_TBC_PHASE_1 = 'Scherbenwelt-Schlachtzugsmeister - Phase 1',
     AD_TBC_PHASE_1 = 'Schließt die unten aufgelisteten Schlachtzugserfolge der Scherbenwelt ab.',
@@ -1040,7 +1049,11 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_TBC_PHASE_2 = 'Schließt die unten aufgelisteten Schlachtzugserfolge der Scherbenwelt ab.',
     AN_TBC_PHASE_3 = 'Scherbenwelt-Schlachtzugsmeister - Phase 3',
     AD_TBC_PHASE_3 = 'Schließt die unten aufgelisteten Schlachtzugserfolge der Scherbenwelt ab.',
-
+	AN_TBC_PHASE_4 = 'Scherbenwelt-Schlachtzugsmeister - Phase 4',
+    AD_TBC_PHASE_4 = 'Schließt die unten aufgelisteten Schlachtzugserfolge der Scherbenwelt ab.',
+	AN_TBC_PHASE_5 = 'Scherbenwelt-Schlachtzugsmeister - Phase 5',
+    AD_TBC_PHASE_5 = 'Schließt die unten aufgelisteten Schlachtzugserfolge der Scherbenwelt ab.',
+	
     FACTION_946 = 'Ehrenfeste',
     FACTION_947 = 'Thrallmar',
     FACTION_942 = 'Expedition des Cenarius',
