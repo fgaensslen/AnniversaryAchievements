@@ -78,6 +78,7 @@ SexyLib:Localization('Anniversary Achievements'):Add({
 
     CATEGORY_GENERAL = 'Общее',
     CATEGORY_QUESTS = 'Задания',
+	CATEGORY_PVP = 'Игрок против игрока',
     CATEGORY_KALIMDOR = 'Калимдор',
     CATEGORY_EASTERN_KINGDOMS = 'Восточные королевства',
     CATEGORY_OUTLAND = 'Запределье',
@@ -489,7 +490,7 @@ SexyLib:Localization('Anniversary Achievements'):Add({
     AN_CAIRNE_SLAYER = 'Главная корова',
     AD_CAIRNE_SLAYER = 'Одолейте Кэрна Кровавое Копыто в Громовом Утесе.',
     AN_LORTHEMAR_SLAYER = 'Убийство в Кель\'Таласе',
-    AD_LORTHERMAR_SLAYER = 'Одолейте Лор\'темара Терона.',
+    AD_LORTHEMAR_SLAYER = 'Одолейте Лор\'темара Терона.',
 
     AN_HORDE_KINGS_SLAYER = 'Предводители Орды',
     AD_HORDE_KINGS_SLAYER = 'Одолейте перечисленных ниже предводителей Орды.',

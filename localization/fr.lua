@@ -41,6 +41,7 @@ SexyLib:Localization('Anniversary Achievements'):Add({
 	-- #######################
     CATEGORY_GENERAL = 'Général',
     CATEGORY_QUESTS = 'Quêtes',
+	CATEGORY_PVP = 'Joueur contre Joueur',
     CATEGORY_KALIMDOR = 'Kalimdor',
     CATEGORY_EASTERN_KINGDOMS = 'Royaumes de l\'Est',
     CATEGORY_EXPLORATION = 'Exploration',

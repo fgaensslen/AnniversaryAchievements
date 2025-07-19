@@ -225,11 +225,11 @@ function CountLearnedCookingRecipes()
 				local _, type = GetTradeSkillInfo(i)
 				if type ~= 'header' then
 					total = total + 1
-					local link = GetTradeSkillItemLink(i)
-					if link then
-						local id = getItemIdFromLink(link)
-						if id then trigger(TYPE.LEARN_PROFESSION_RECIPE, {data[1], id}) end
-					end
+					--local link = GetTradeSkillItemLink(i)
+					--if link then
+					--	local id = getItemIdFromLink(link)
+					--	if id then trigger(TYPE.LEARN_PROFESSION_RECIPE, {data[1], id}) end
+					--end
 				end
 			end
 			trigger(TYPE.LEARN_PROFESSION_RECIPES, {ClassicAchievementsProfessions.COOKING[1]}, total, true)
