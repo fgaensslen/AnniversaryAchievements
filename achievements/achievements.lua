@@ -1451,13 +1451,14 @@ do
         end		
 		
         local icon
-        if i < 5 then icon = '-achievement_reputation_01'
-		elseif i >= 5 and i < 10 then icon = '-achievement_reputation_02'
-		elseif i >= 10 and i < 15 then icon = '-achievement_reputation_03'
-		elseif i >= 15 and i < 20 then icon = '-achievement_reputation_04'
-		elseif i >= 20 and i < 25 then icon = '-achievement_reputation_05'
-		elseif i >= 25 and i < 30 then icon = '-achievement_reputation_06'
-		elseif i >= 30 then icon = '-achievement_reputation_07'
+        if i == 1 then icon = '-achievement_reputation_01'
+        elseif i >= 1 and i < 5 then icon = '-achievement_reputation_02'
+		elseif i >= 5 and i < 10 then icon = '-achievement_reputation_03'
+		elseif i >= 10 and i < 15 then icon = '-achievement_reputation_04'
+		elseif i >= 15 and i < 20 then icon = '-achievement_reputation_05'
+		elseif i >= 20 and i < 25 then icon = '-achievement_reputation_06'
+		elseif i >= 25 and i < 30 then icon = '-achievement_reputation_07'
+		elseif i >= 30 then icon = '-achievement_reputation_08'
 		end
 		
         ach = reputation:CreateAchievement(loc:Get('AN_REPS_' .. i), desc, 10, icon)
@@ -1560,6 +1561,21 @@ do
 
     ach = featsOfStrength:CreateAchievement('AN_ATIESH', 'AD_ATIESH', 0, '-Inv_Staff_Medivh', true)
 		ach:AddCriteria(criterias:Create(nil, TYPE.ATIESH))
+		
+	ach = featsOfStrength:CreateAchievement('AN_TIGER_MOUNT', 'AD_TIGER_MOUNT', 0, '-ability_mount_jungletiger', true)
+		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {19902}))
+		
+	ach = featsOfStrength:CreateAchievement('AN_RAPTOR_MOUNT', 'AD_RAPTOR_MOUNT', 0, '-ability_mount_raptor', true)
+		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {19872}))
+		
+	ach = featsOfStrength:CreateAchievement('AN_BARON_MOUNT', 'AD_BARON_MOUNT', 0, '-ability_mount_undeadhorse', true)
+		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {13335}))
+	
+	ach = featsOfStrength:CreateAchievement('AN_SABER_MOUNT', 'AD_SABER_MOUNT', 0, '-ability_mount_pinktiger', true)
+		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {13086}))
+		
+	ach = featsOfStrength:CreateAchievement('AN_BEAR_MOUNT', 'AD_BEAR_MOUNT', 0, '-ability_druid_challangingroar', true)
+		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {33809}))
 
     --TBC
     L:Achievement(featsOfStrength, 0, '-inv_shirt_guildtabard_01')
