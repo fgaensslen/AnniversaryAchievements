@@ -146,8 +146,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     DESOLACE_2 = 'Desolace',
     QUEST_6027 = 'Buch der Uralten',
 
-    DUSTWALLOW_1 = 'Marschen von Dustwallow',
-    DUSTWALLOW_2 = 'Marschen von Dustwallow',
+    DUSTWALLOW_1 = 'Düstermarschen',
+    DUSTWALLOW_2 = 'Düstermarschen',
     QUEST_1203 = 'Jarl braucht eine Klinge',
 
     SILITHUS_1 = 'Silithus',
@@ -683,7 +683,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	
     AN_PROFS_SECONDARY = 'Außergewöhnliche Fähigkeiten',
     AD_PROFS_SECONDARY = 'Werdet gleichzeitig Fachmann des Angelns, der Ersten Hilfe und der Kochkunst.',
-    AN_PROFS_SECONDARY_OUTLAND = 'Außergewöhnliche Fähigkeiten in der Scherbenwelt',
+    AN_PROFS_SECONDARY_OUTLAND = 'Außergewöhnliche Fähigkeiten der Scherbenwelt',
     AD_PROFS_SECONDARY_OUTLAND = 'Werdet gleichzeitig Meister des Angelns, der Ersten Hilfe und der Kochkunst.',
     AN_PROFS_FIVE = 'Genie',
     AN_PROFS_FIVE_OUTLAND = 'Genie der Scherbenwelt',

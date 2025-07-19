@@ -1204,11 +1204,11 @@ do
 	previous = nil		
 	
 	--SECOND MAIN PROFESSION
-	local twoMains = professions:CreateAchievement(loc:Get('AN_PROFS_TWO'), loc:Get('AD_PROFS_TWO'), 10, '-Inv_Misc_Note_02')
+	local twoMains = professions:CreateAchievement(loc:Get('AN_PROFS_TWO'), loc:Get('AD_PROFS_TWO'), 10, '-Inv_Scroll_03')
 		twoMains:AddCriteria(criterias:Create(loc:Get('AC_PROFS_TWO'), TYPE.REACH_MAIN_PROFESSION_LEVEL, {300}, 2))
 		previous = twoMains
 
-    local twoMainsOutland = professions:CreateAchievement(loc:Get('AN_PROFS_TWO_OUTLAND'), loc:Get('AD_PROFS_TWO_OUTLAND'), 10, '-Inv_Misc_Note_02')
+    local twoMainsOutland = professions:CreateAchievement(loc:Get('AN_PROFS_TWO_OUTLAND'), loc:Get('AD_PROFS_TWO_OUTLAND'), 10, '-Inv_Scroll_03')
         twoMainsOutland:AddCriteria(criterias:Create(loc:Get('AC_PROFS_TWO_OUTLAND'), TYPE.REACH_MAIN_PROFESSION_LEVEL, {375}, 2))
         previous:SetNext(twoMainsOutland)
 	previous = nil
@@ -1235,7 +1235,7 @@ do
 		cookingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.COOKING[1], 300}))
 		
 	--ALL SECONDARY PROFESSIONS
-	local secondary = professions:CreateAchievement(loc:Get('AN_PROFS_SECONDARY'), loc:Get('AD_PROFS_SECONDARY'), 10, '-Inv_Scroll_03')
+	local secondary = professions:CreateAchievement(loc:Get('AN_PROFS_SECONDARY'), loc:Get('AD_PROFS_SECONDARY'), 10, '-Inv_Misc_Note_02')
         secondary:AddCriteria(criterias:Create(firstAidAch.name, TYPE.COMPLETE_ACHIEVEMENT, {firstAidAch.id}))
         secondary:AddCriteria(criterias:Create(fishingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {fishingAch.id}))
         secondary:AddCriteria(criterias:Create(cookingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {cookingAch.id}))
@@ -1249,7 +1249,7 @@ do
     cookingAch = add(cooking, 'COOKING', '-inv_misc_food_15')
         cookingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.COOKING[1], 375}))
 
-    local secondaryOutland = professions:CreateAchievement(loc:Get('AN_PROFS_SECONDARY_OUTLAND'), loc:Get('AD_PROFS_SECONDARY_OUTLAND'), 10, '-Inv_Scroll_03')
+    local secondaryOutland = professions:CreateAchievement(loc:Get('AN_PROFS_SECONDARY_OUTLAND'), loc:Get('AD_PROFS_SECONDARY_OUTLAND'), 10, '-Inv_Misc_Note_02')
 		secondaryOutland:AddCriteria(criterias:Create(firstAidAch.name, TYPE.COMPLETE_ACHIEVEMENT, {firstAidAch.id}))
 		secondaryOutland:AddCriteria(criterias:Create(fishingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {fishingAch.id}))
 		secondaryOutland:AddCriteria(criterias:Create(cookingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {cookingAch.id}))
