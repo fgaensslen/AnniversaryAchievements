@@ -421,7 +421,7 @@ do
 	global = exploration:CreateAchievement('AN_EXPLORE_OUTLAND', 'AD_EXPLORE_OUTLAND', 20, '-achievement_zone_outland_01', true)
     add = function(areaID, areaIDs, icon)
         local areaName = AreaTableLocale[areaID]
-        ach = outlandExploration:CreateAchievement(areaName, loc:Get('AD_EXPLORE', areaName), 10, icon or string.lower(AreaTable[areaID][3]))
+        ach = outlandExploration:CreateAchievement(areaName, loc:Get('AD_EXPLORE', areaName), 10, icon)
         for _, childrenID in pairs(areaIDs) do
                 ach:AddCriteria(criterias:Create(AreaTableLocale[childrenID], TYPE.EXPLORE_AREA, {childrenID}))
         end
@@ -435,6 +435,7 @@ do
     add(3522, {3864, 3867, 3773, 3777, 3776, 3863, 3775, 3831, 3787, 3784, 3785, 3781, 3774, 3768, 3844, 3830, 3833, 3828, 3866, 3772, 3865, 3769, 3782, 3829, 3827, 3832}, 'blades_edge_mtns')
     add(3523, {3712, 3726, 3730, 3734, 3722, 3736, 3741, 3842, 3729, 3723, 3737, 3732, 3850, 3725, 3837, 3738, 3868, 3874, 3877, 3878, 3742, 3739}, 'netherstorm')
     add(3520, {3750, 3822, 3743, 3759, 3744, 3840, 3748, 3746, 3821, 3745, 3754, 3752, 3758}, 'shadowmoon')
+    add(4080, {4087, 4089, 4091, 4092, 4094, 4095}, '-achievement_zone_isleofqueldanas')
 	
 	exploreAzeroth:AddCriteria(criterias:Create(global.name, TYPE.COMPLETE_ACHIEVEMENT, {global.id}))  
     exploreAzeroth:SetRewardText(loc:Get('AR_EXPLORER'))  
@@ -1528,8 +1529,8 @@ do
     create('ogrila', 1038, '-Inv_Misc_Apexis_Crystal')
     create('sporeggar', 970, '-Inv_Mushroom_11')
     create('consortium', 933, '-Inv_Enchant_ShardPrismaticLarge')
-    create('maghar', 941, '-Inv_Misc_Foot_Centaur', 15):SetHordeOnly()
-    create('kurenai', 978, '-Inv_Misc_Foot_Centaur', 15):SetAllianceOnly()
+    create('maghar', 941, '-Inv_Misc_Foot_Centaur'):SetHordeOnly()
+    create('kurenai', 978, '-Inv_Misc_Foot_Centaur'):SetAllianceOnly()
     create('netherwings', 1015, '-Ability_Mount_NetherdrakePurple')
 
     L:Achievement(tbcReputations, 10, '-Ability_Mount_NetherdrakePurple')
