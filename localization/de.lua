@@ -717,8 +717,6 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_BARON_MOUNT = 'Erhaltet die Zügel des Todesstreitrosses von Totenschwur in Stratholme.',
 	AN_SABER_MOUNT = 'Frostsäbler aus Winterquell',
     AD_SABER_MOUNT = 'Erhaltet einen Frostsäbler aus Winterquell.',
-	AN_BEAR_MOUNT = 'Kriegsbär der Amani',
-    AD_BEAR_MOUNT = 'Besitzer des Kriegsbären der Amani.',
     
     AN_UNCOMMON_GEAR = 'Selten',
     AD_UNCOMMON_GEAR = 'Legt an jedem Platz einen Gegenstand von seltener Qualität an.',
@@ -1221,8 +1219,16 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_AZZINOTH = 'Kriegsgleven von Azzinoth',
     AD_AZZINOTH = 'Träger eines Sets der Kriegsgleven von Azzinoth.',
+	AN_THORIDAL = 'Thori\'dal, Furor der Sterne',
+    AD_THORIDAL = 'Träger von Thori\'dal, Furor der Sterne.',
     AC_OBTAIN_MAINHAND_AZZINOTH = 'Rechte Kriegsgleve von Azzinoth',
     AC_OBTAIN_OFFHAND_AZZINOTH = 'Linke Kriegsgleve von Azzinoth',
+	AN_BEAR_MOUNT = 'Kriegsbär der Amani',
+    AD_BEAR_MOUNT = 'Besitzer des Kriegsbären der Amani.',
+	AN_HAWK_MOUNT = 'Schneller weißer Falkenschreiter',
+    AD_HAWK_MOUNT = 'Erhaltet den schnellen weißen Falkenschreiter von Kael\'thas Sonnenwanderer auf der Terrasse der Magister.',
+	AN_ALAR_MOUNT = 'Al\'ars Asche',
+    AD_ALAR_MOUNT = 'Erhaltet Al\'ars Asche von Kael\'thas Sonnenwanderer in der Festung der Stürme.',
 
     AN_P3_FIRST_WEEK = 'Eroberer der Scherbenwelt',
     AD_P3_FIRST_WEEK = 'Bezwingt Archimonde und Illidan Sturmgrimm in der ersten Woche von Phase 3.',

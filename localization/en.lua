@@ -710,8 +710,6 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_BARON_MOUNT = 'Obtain the Deathcharger\'s Reins from Rivendare in Stratholme.',
 	AN_SABER_MOUNT = 'Winterspring Frostsaber',
     AD_SABER_MOUNT = 'Obtain a Winterspring Frostsaber.',
-	AN_BEAR_MOUNT = 'Amani War Bear',
-    AD_BEAR_MOUNT = 'Owner of Amani War Bear.',
     
     AN_UNCOMMON_GEAR = 'Not so ordinary anymore',
     AD_UNCOMMON_GEAR = 'Equip yourself with items of uncommon or higher quality.',
@@ -1216,8 +1214,16 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_AZZINOTH = 'Warglaives of Azzinoth',
     AD_AZZINOTH = 'Wielder of the Warglaives of Azzinoth.',
+	AN_THORIDAL = 'Thori\'dal, the Stars\' Fury',
+    AD_THORIDAL = 'Wielder of Thori\'dal, the Stars\' Fury.',
     AC_OBTAIN_MAINHAND_AZZINOTH = 'Right blade of Azzinoth',
     AC_OBTAIN_OFFHAND_AZZINOTH = 'Left blade of Azzinoth',
+	AN_BEAR_MOUNT = 'Amani War Bear',
+    AD_BEAR_MOUNT = 'Owner of Amani War Bear.',
+	AN_HAWK_MOUNT = 'Swift White Hawkstrider',
+    AD_HAWK_MOUNT = 'Obtain the Swift White Hawkstrider from Kael\'thas Sunstrider in Magister\'s Terrace.',
+	AN_ALAR_MOUNT = 'Ashes of Al\'ar',
+    AD_ALAR_MOUNT = 'Obtain the Ashes of Al\'ar from Kael\'thas Sunstrider in Tempest Keep.',
 
     AN_P3_FIRST_WEEK = 'Conqueror of the Outland',
     AD_P3_FIRST_WEEK = 'Defeat Archimonde and Illidan Stormrage in their respective raids within the first week of the release of phase three.',

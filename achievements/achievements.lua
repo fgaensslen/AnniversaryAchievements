@@ -1573,9 +1573,6 @@ do
 	
 	ach = featsOfStrength:CreateAchievement('AN_SABER_MOUNT', 'AD_SABER_MOUNT', 0, '-ability_mount_pinktiger', true)
 		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {13086}))
-		
-	ach = featsOfStrength:CreateAchievement('AN_BEAR_MOUNT', 'AD_BEAR_MOUNT', 0, '-ability_druid_challangingroar', true)
-		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {33809}))
 
     --TBC
     L:Achievement(featsOfStrength, 0, '-inv_shirt_guildtabard_01')
@@ -1588,6 +1585,20 @@ do
         :Criteria(TYPE.OBTAIN_ITEM, { 32837 }):Name('AC_OBTAIN_MAINHAND_AZZINOTH', true):Build()
         :Criteria(TYPE.OBTAIN_ITEM, { 32838 }):Name('AC_OBTAIN_OFFHAND_AZZINOTH', true):Build()
         :Build()
+		
+	L:Achievement(featsOfStrength, 0, '-inv_weapon_bow_39')
+        :NameDesc('AN_THORIDAL', 'AD_THORIDAL', true)
+        :Criteria(TYPE.OBTAIN_ITEM, { 34334 }):Build()
+        :Build()
+		
+	ach = featsOfStrength:CreateAchievement('AN_BEAR_MOUNT', 'AD_BEAR_MOUNT', 0, '-ability_druid_challangingroar', true)
+		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {33809}))
+		
+	ach = featsOfStrength:CreateAchievement('AN_HAWK_MOUNT', 'AD_HAWK_MOUNT', 0, '-ability_mount_cockatricemountelite_green', true)
+		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {35513}))
+		
+	ach = featsOfStrength:CreateAchievement('AN_ALAR_MOUNT', 'AD_ALAR_MOUNT', 0, '-inv_misc_summerfest_brazierorange', true)
+		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {32458}))
 
     L:Achievement(featsOfStrength, 0, '-Inv_Helmet_96')
         :NameDesc('AN_P3_FIRST_WEEK', 'AD_P3_FIRST_WEEK', true)
