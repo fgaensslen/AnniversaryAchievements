@@ -98,14 +98,11 @@ do
 	-- SETS --
 	local function add(name, subtitle, icon, ids)
         local ach = generalClassic:CreateAchievement('AN_' .. name, subtitle, 20, icon, true)
-        if #ids == 1 then
-            ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, ids))
-        else
-            for _, itemID in pairs(ids) do
-                local criteria = criterias:Create('itemID ' .. itemID, TYPE.OBTAIN_ITEM, {itemID})
-                ach:AddCriteria(criteria)
-				criteria.name = GetItemInfo(itemID)
-			end
+
+		for _, itemID in pairs(ids) do
+			local criteria = criterias:Create('itemID ' .. itemID, TYPE.OBTAIN_ITEM, {itemID})
+			ach:AddCriteria(criteria)
+			criteria.name = GetItemInfo(itemID)
 		end
 	end
 
@@ -390,12 +387,12 @@ do
     add(4, {1457, 1438, 1440, 72, 1441, 1439, 73, 2517, 1437}, '-achievement_zone_blastedlands_01')
     add(46, {2418, 249, 2417, 2420, 253, 250, 2421, 252, 254, 255}, '-achievement_zone_burningsteppes_01')
     add(41, {2561, 2562, 2697}, '-achievement_zone_deadwindpass')
-    add(1, {801, 800, 131, 802, 804, 138, 212, 803, 808, 134, 137, 135, 136, 77, 211, 806, 809, 133}, '-achievement_zone_dunmorogh')
+    add(1, {801, 800, 802, 804, 138, 212, 803, 808, 134, 137, 135, 136, 211, 806, 809, 133}, '-achievement_zone_dunmorogh')
     add(10, {536, 94, 492, 93, 856, 245, 242, 241, 121, 42, 1098, 799, 1097}, '-achievement_zone_duskwood')
     add(139, {2260, 2261, 2263, 2258, 2262, 2622, 2264, 2621, 2266, 2268, 2623, 2270, 2271, 2624, 2272, 2273, 2275, 2276, 2627, 2277, 2279, 2619}, '-achievement_zone_easternplaguelands')
     add(12, {87, 9, 1519, 57, 797, 60, 62, 91, 798, 88, 86, 18}, '-achievement_zone_elwynnforest')
     add(267, {272, 1056, 290, 275, 294, 289, 286, 271, 288, 295, 896, 285}, '-achievement_zone_hillsbradfoothills')
-    add(38, {146, 143, 149, 807, 147, 142, 936, 144, 923, 924, 556}, '-achievement_zone_lochmodan')
+    add(38, {146, 143, 149, 838, 147, 142, 936, 144, 923, 924, 556}, '-achievement_zone_lochmodan')
     add(44, {68, 1002, 1001, 95, 97, 70, 997, 996, 71, 1000, 69}, '-achievement_zone_redridgemountains')
     add(51, {246, 1957, 1444, 1958, 247, 1959, 1442}, '-achievement_zone_searinggorge_01')
     add(130, {927, 240, 226, 928, 172, 237, 228, 213, 229, 233, 236, 204, 230, 231, 238}, '-achievement_zone_silverpine_01')
@@ -403,7 +400,7 @@ do
     add(8, {116, 657, 1780, 1798, 75, 74, 1797, 1778, 76, 300, 1777}, '-achievement_zone_swampsorrows_01')
     add(47, {1882, 348, 350, 1885, 1883, 353, 1886, 1884, 356, 355, 1917, 351, 307, 354}, '-achievement_zone_hinterlands_01')
     add(85, {156, 154, 810, 157, 166, 811, 164, 159, 165, 162, 459, 167, 812, 160, 1497, 152}, '-achievement_zone_tirisfalglades_01')
-    add(28, {2298, 197, 193, 813, 199, 200, 202, 192, 190, 201, 198, 2620, 2297}, '-achievement_zone_westernplaguelands_01')
+    add(28, {197, 193, 813, 199, 200, 202, 192, 190, 201, 198, 2620, 2297}, '-achievement_zone_westernplaguelands_01')
     add(40, {107, 108, 916, 109, 918, 111, 917, 113, 219, 20, 115, 921, 922, 920}, '-achievement_zone_westfall_01')
     add(11, {1018, 1022, 118, 1024, 1023, 309, 205, 1036, 836, 1025, 1020, 1016, 1017, 1037, 150}, '-achievement_zone_wetlands_01')
     add(3430, {3431, 3533, 3466, 3461, 3465, 3467, 3464, 3470, 3480, 3462, 3471, 3476, 3474, 3487, 3472, 3558, 3912, 3473, 3913, 3914, 3468, 3460, 3469, 3911, 3475}, '-achievement_zone_eversongwoods')
@@ -1441,11 +1438,13 @@ do
     --GENERAL
     previous = nil
     for i, count in pairs({1, 5, 10, 15, 20, 25, 30}) do
-        local desc, cname
+        local name, desc, cname
         if i == 1 then
+			name = loc:Get('AN_REPS_1')
             desc = loc:Get('AD_REPS_1')
             cname = loc:Get('AC_REPS_1')
         else
+			name = count .. loc:Get('AN_REPS_X')
             desc = loc:Get('AD_REPS', count)
             cname = loc:Get('AC_REPS', count)
         end		
@@ -1461,7 +1460,7 @@ do
 		elseif i >= 30 then icon = '-achievement_reputation_08'
 		end
 		
-        ach = reputation:CreateAchievement(loc:Get('AN_REPS_' .. i), desc, 10, icon)
+        ach = reputation:CreateAchievement(name, desc, 10, icon)
 			ach:AddCriteria(criterias:Create(cname, TYPE.REACH_ANY_REPUTATION, {8}, count))
 			
         if i > 2 then ach:SetRewardText(loc:Get('AR_REPS')) end

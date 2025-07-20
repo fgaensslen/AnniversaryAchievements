@@ -247,7 +247,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_WISDOM_KEEPER_EASTERN_KINGDOMS = 'Schließt die unten aufgelisteten Questerfolge in den Östlichen Königreichen ab.',
     AN_WISDOM_KEEPER_OUTLAND = 'Meister der Lehren der Scherbenwelt',
     AD_WISDOM_KEEPER_OUTLAND = 'Schließt die unten aufgelisteten Questerfolge in der Scherbenwelt ab.',
-    AR_WISDOM_KEEPER = 'Titel \'Meister der Lehren\'.',
+    AR_WISDOM_KEEPER = '\'Meister der Lehren\'.',
 	
 	AN_SKELETON_KEY = 'Der Schlüssel zur Scholomance',
 	AD_SKELETON_KEY = 'Erhaltet den Skelettschlüssel.',
@@ -334,7 +334,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_YOUNG_DEFENDER = 'Schließt die unten aufgelisteten Dungeon-Erfolge ab.',
     AN_DEFENDER = 'Verteidiger von Azeroth',
     AD_DEFENDER = 'Schließt die unten aufgelisteten Dungeon-Erfolge ab.',
-    AR_DEFENDER = 'Titel \'Verteidiger von Azeroth\'.',
+    AR_DEFENDER = '\'Verteidiger von Azeroth\'.',
 
     AN_ONYXIA = 'Onyxias Hort',
     AD_ONYXIA = 'Bezwingt Onyxia.',
@@ -366,10 +366,10 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_BLACKROCK_MASTER = 'Schließt die unten aufgelisteten Erfolge im Blackrock ab.',
     AN_HERO = 'Held von Azeroth',
     AD_HERO = 'Schließt die unten aufgelisteten Schlachtzugserfolge ab.',
-    AR_HERO = 'Titel \'Held von Azeroth\'.',
+    AR_HERO = '\'Held von Azeroth\'.',
     AN_GREAT_HERO = 'Großartiger Held von Azeroth',
     AD_GREAT_HERO = 'Schließt die unten aufgelisteten Dungeon- und Schlachtzugserfolge ab.',
-    AR_GREAT_HERO = 'Titel \'Großartiger Held von Azeroth\'.',
+    AR_GREAT_HERO = '\'Großartiger Held von Azeroth\'.',
 
     AN_PVP_RANK_A1 = 'Gefreiter',
     AN_PVP_RANK_A2 = 'Fußknecht',
@@ -420,16 +420,10 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_REPS_1 = 'Jemand mag mich!',
     AD_REPS_1 = 'Erreicht einen ehrfürchtigen Ruf.',
     AC_REPS_1 = 'Erreicht einen ehrfürchtigen Ruf',
-    AN_REPS_2 = 'Zwei Fraktionen',
-    AN_REPS_3 = 'Liebling',
-    AN_REPS_4 = 'Bewundert',
-    AN_REPS_5 = 'Ehrfürchtig',
-    AN_REPS_6 = 'Verehrenswert',
-    AN_REPS_7 = 'Hoch angesehen',
-    AN_REPS_MORE = '%d Fraktionen ehrfürchtig',
+    AN_REPS_X = ' ehrfürchtige Fraktionen',
     AD_REPS = 'Erreicht bei %d Fraktionen einen ehrfürchtigen Ruf.',
     AC_REPS = 'Erreicht bei %d Fraktionen einen ehrfürchtigen Ruf.',
-    AR_REPS = 'Titel \'der Ehrfurchtgebietende\'',
+    AR_REPS = '\'Der Ehrfurchtgebietende\'',
 
     AN_HORDE_REPS = 'Botschafter der Horde',
     AD_HORDE_REPS = 'Erreicht einen ehrfürchtigen Ruf in 5 Heimatstädten.',
@@ -771,14 +765,14 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_FISHING_LOBSTER = '%d-pfündiger Hummer',
     AN_FISHING_BIG_SIZE = 'Der größte Angler von Azeroth',
     AD_FISHING_BIG_SIZE = 'Schließt die unten aufgelisteten Angel-Erfolge ab.',
-    AR_FISHING_BIG_SIZE = 'Titel \'größter Angler von Azeroth\'.',
+    AR_FISHING_BIG_SIZE = '\'Der größte Angler von Azeroth\'.',
 
     AN_COOKING_RECIPES_5 = 'Freizeitkoch',
     AN_COOKING_RECIPES_10 = 'Commis de Cuisine',
     AN_COOKING_RECIPES_25 = 'Chef de Partie',
     AN_COOKING_RECIPES_50 = 'Sous Chef',
     AN_COOKING_RECIPES_75 = 'Chef de Cuisine',
-    AR_COOKING_RECIPES = 'Titel \'Chefkoch\'.',
+    AR_COOKING_RECIPES = '\'Chefkoch\'.',
     AD_COOKING_RECIPES = 'Lernt %d Kochrezepte.',
     AC_COOKING_RECIPES = 'Lernt %d Kochrezepte',
 
@@ -815,7 +809,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_WB_TAERAR = 'Bezwingt Taerar.',
     AN_WB_EMERALD_DRAGONS = 'Smaragdgrüner Wächter',
     AD_WB_EMERALD_DRAGONS = 'Bezwingt alle Drachen des Smaragdgrünen Albtraums.',
-    AR_WB_EMERALD_DRAGONS = 'Titel \'Smaragdgrüner Wächter\'.',
+    AR_WB_EMERALD_DRAGONS = '\'Smaragdgrüner Wächter\'.',
 
     AN_DUEL = 'Duell-ikat',
     AD_DUEL = 'Gewinnt ein Duell gegen einen anderen Spieler.',
@@ -873,11 +867,11 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_EYE_BOSS = 'Schließt die unten aufgelisteten Erfolge im Auge des Sturms ab.',
     AN_BATTLEMASTER = 'Kampfmeister',
     AD_BATTLEMASTER = 'Schließt die unten aufgelisteten Schlachtfeld-Erfolge ab.',
-    AR_BATTLEMASTER = 'Titel \'Kampfmeister\'.',
+    AR_BATTLEMASTER = '\'Kampfmeister\'.',
 
     AN_LEEROY = 'Leeeeeeeeeeeeeeeroy!',
     AD_LEEROY = 'Tötet 50 Krähenhorstwelpen innerhalb von 15 Sekunden.',
-    AR_LEEROY = 'Titel \'Jenkins\'',
+    AR_LEEROY = '\'Jenkins\'',
     AN_BWL_DUO = 'Doppelter Atem',
     AD_BWL_DUO = 'Bezwingt Schattenschwinge und Flammenmaul innerhalb von 45 Sekunden.',
     AN_ANUBREKHAN_WITHOUT_MOBS = 'Eine große Spinne',
@@ -1115,7 +1109,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_EXPLORE_OUTLAND = 'Erkundet die Regionen der Scherbenwelt.',
     AN_EXPLORER = 'Weltenbummler',
     AD_EXPLORER = 'Erkundet die Östlichen Königreiche, Kalimdor und die Scherbenwelt.',
-    AR_EXPLORER = 'Titel \'Erkunder\'.',
+    AR_EXPLORER = '\'Erkunder\'.',
 
     AD_EXPLORE_EVERSONG_WOODS = 'Erkundet Immersangwald.',
     AD_EXPLORE_GHOSTLANDS = 'Erkundet Geisterlande.',
@@ -1215,7 +1209,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_BLACK_TEMPLE = 'Der Schwarze Tempel',
     AD_BLACK_TEMPLE = 'Schließt die unten aufgelisteten Erfolge im Schwarzen Tempel ab.',
-    AR_BLACK_TEMPLE = 'Titel \'Bezwinger des Schwarzen Tempels\'.',
+    AR_BLACK_TEMPLE = '\'Bezwinger des Schwarzen Tempels\'.',
 
     AN_AZZINOTH = 'Kriegsgleven von Azzinoth',
     AD_AZZINOTH = 'Träger eines Sets der Kriegsgleven von Azzinoth.',
@@ -1233,6 +1227,6 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_P3_FIRST_WEEK = 'Eroberer der Scherbenwelt',
     AD_P3_FIRST_WEEK = 'Bezwingt Archimonde und Illidan Sturmgrimm in der ersten Woche von Phase 3.',
     AC_KILL_ARCHIMONDE = 'Archimonde',
-    AR_P3_FIRST_WEEK = 'Titel \'Eroberer der Scherbenwelt\'.'
+    AR_P3_FIRST_WEEK = '\'Eroberer der Scherbenwelt\'.'
 
 })
