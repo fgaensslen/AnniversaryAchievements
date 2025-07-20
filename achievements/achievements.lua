@@ -343,7 +343,7 @@ do
     local global = exploration:CreateAchievement('AN_EXPLORE_KALIMDOR', 'AD_EXPLORE_KALIMDOR', 20, '-achievement_zone_kalimdor_01', true)
     local function add(areaID, areaIDs, icon)
         local areaName = AreaTableLocale[areaID]
-        ach = explorationKalimdor:CreateAchievement(areaName, loc:Get('AD_EXPLORE', areaName), 10, icon)
+        ach = explorationKalimdor:CreateAchievement(loc:Get('AN_EXPLORE', areaName), loc:Get('AD_EXPLORE', areaName), 10, icon)
         for _, childrenID in pairs(areaIDs) do
 			ach:AddCriteria(criterias:Create(AreaTableLocale[childrenID], TYPE.EXPLORE_AREA, {childrenID}))
         end
@@ -374,7 +374,7 @@ do
     global = exploration:CreateAchievement('AN_EXPLORE_EASTERN_KINGDOMS', 'AD_EXPLORE_EASTERN_KINGDOMS', 20, '-achievement_zone_easternkingdoms_01', true)
     add = function(areaID, areaIDs, icon)
         local areaName = AreaTableLocale[areaID]
-        ach = explorationEasternKingdoms:CreateAchievement(areaName, loc:Get('AD_EXPLORE', areaName), 10, icon)
+        ach = explorationEasternKingdoms:CreateAchievement(loc:Get('AN_EXPLORE', areaName), loc:Get('AD_EXPLORE', areaName), 10, icon)
         for _, childrenID in pairs(areaIDs) do
                 ach:AddCriteria(criterias:Create(AreaTableLocale[childrenID], TYPE.EXPLORE_AREA, {childrenID}))
         end
@@ -418,7 +418,7 @@ do
 	global = exploration:CreateAchievement('AN_EXPLORE_OUTLAND', 'AD_EXPLORE_OUTLAND', 20, '-achievement_zone_outland_01', true)
     add = function(areaID, areaIDs, icon)
         local areaName = AreaTableLocale[areaID]
-        ach = outlandExploration:CreateAchievement(areaName, loc:Get('AD_EXPLORE', areaName), 10, icon)
+        ach = outlandExploration:CreateAchievement(loc:Get('AN_EXPLORE', areaName), loc:Get('AD_EXPLORE', areaName), 10, icon)
         for _, childrenID in pairs(areaIDs) do
                 ach:AddCriteria(criterias:Create(AreaTableLocale[childrenID], TYPE.EXPLORE_AREA, {childrenID}))
         end

@@ -686,12 +686,13 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_UNARMED_SKILL = 'Erreicht eine unbewaffnete Fertigkeit von 350.',
 
     AN_EXPLORE_AZEROTH = 'Erforscher von Azeroth',
-    AD_EXPLORE_AZEROTH = 'Erkundet die Welt von Azeroth!',
-    AN_EXPLORE_KALIMDOR = 'Erforscher Kalimdors',
-    AD_EXPLORE_KALIMDOR = 'Erkundet die Regionen Kalimdors.',
-    AN_EXPLORE_EASTERN_KINGDOMS = 'Erforscher der Östlichen Königreiche',
-    AD_EXPLORE_EASTERN_KINGDOMS = 'Erkundet die Regionen der Östlichen Königreiche.',
-    AD_EXPLORE = 'Erkundet %s.',
+    AD_EXPLORE_AZEROTH = 'Erforscht die Welt von Azeroth!',
+    AN_EXPLORE_KALIMDOR = 'Erforscht Kalimdor',
+    AD_EXPLORE_KALIMDOR = 'Erforscht die Regionen Kalimdors.',
+    AN_EXPLORE_EASTERN_KINGDOMS = 'Erforscht die östlichen Königreiche',
+    AD_EXPLORE_EASTERN_KINGDOMS = 'Erforscht die Regionen der östlichen Königreiche.',
+	AN_EXPLORE = 'Erforscht %s',
+    AD_EXPLORE = 'Erforscht %s und enthüllt die verdeckten Gebiete auf der Weltkarte.',
 
     AN_SULFURAS = 'Sulfuras, Hand von Ragnaros',
     AD_SULFURAS = 'Träger von Sulfuras, Hand von Ragnaros.',
@@ -1105,16 +1106,11 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_MR_PINCHY = 'Dr. Zwicky!',
     AD_MR_PINCHY = 'Angelt Dr. Zwicky in der Scherbenwelt.',
 
-    AN_EXPLORE_OUTLAND = 'Erforscher der Scherbenwelt',
-    AD_EXPLORE_OUTLAND = 'Erkundet die Regionen der Scherbenwelt.',
+    AN_EXPLORE_OUTLAND = 'Erforscht die Scherbenwelt',
+    AD_EXPLORE_OUTLAND = 'Erforscht die Regionen der Scherbenwelt.',
     AN_EXPLORER = 'Weltenbummler',
     AD_EXPLORER = 'Erkundet die Östlichen Königreiche, Kalimdor und die Scherbenwelt.',
     AR_EXPLORER = '\'Erkunder\'.',
-
-    AD_EXPLORE_EVERSONG_WOODS = 'Erkundet Immersangwald.',
-    AD_EXPLORE_GHOSTLANDS = 'Erkundet Geisterlande.',
-    AD_EXPLORE_AZUREMYST_ISLE = 'Erkundet Azurmythosinsel.',
-    AD_EXPLORE_BLOODMYST_ISLE = 'Erkundet Blutmythosinsel.',
 
     AN_MIDDLE_RARE = 'Ziemlich selten',
     AD_MIDDLE_RARE = 'Tötet eine der unten aufgelisteten, extrem seltenen und schwer zu findenden Kreaturen der Scherbenwelt.',

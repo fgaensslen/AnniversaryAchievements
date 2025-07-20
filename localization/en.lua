@@ -684,7 +684,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_EXPLORE_KALIMDOR = 'Explore locations of Kalimdor listed below.',
     AN_EXPLORE_EASTERN_KINGDOMS = 'Eastern Kingdoms Explorer',
     AD_EXPLORE_EASTERN_KINGDOMS = 'Explore locations of Eastern Kingdoms listed below.',
-    AD_EXPLORE = 'Explore %s.',
+	AN_EXPLORE = 'Explore %s',
+    AD_EXPLORE = 'Explore %s, revealing the covered areas of the world map.',
 
     AN_SULFURAS = 'Sulfuras, Hand of Ragnaros',
     AD_SULFURAS = 'Wielder of Sulfuras, Hand of Ragnaros.',
@@ -1106,11 +1107,6 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_EXPLORER = 'Universal Explorer',
     AD_EXPLORER = 'Explore all the lands of Azeroth and Outland.',
     AR_EXPLORER = 'The unspoken title of The Explorer.',
-
-    AD_EXPLORE_EVERSONG_WOODS = 'Explore Eversong Woods, revealing the covered areas of the world map.',
-    AD_EXPLORE_GHOSTLANDS = 'Explore Ghostlands, revealing the covered areas of the world map.',
-    AD_EXPLORE_AZUREMYST_ISLE = 'Explore Azuremyst Isle, revealing the covered areas of the world map.',
-    AD_EXPLORE_BLOODMYST_ISLE = 'Explore Bloodmyst Isle, revealing the covered areas of the world map.',
 
     AN_MIDDLE_RARE = 'Medium Rare',
     AD_MIDDLE_RARE = 'Kill one of the extremely rare and hard to find Outland creatures listed below.',
