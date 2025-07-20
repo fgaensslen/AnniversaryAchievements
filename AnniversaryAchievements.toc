@@ -11,17 +11,13 @@
 Libs\libs.xml
 #@end-no-lib-strip@
 
-localization/stubs.lua
+util/stubs.lua
 localization/en.lua
 localization/de.lua
-localization/ru.lua
-localization/fr.lua
 
-DB/AreaTable.lua
-DB/AreaTableLocale_ruRU.lua
-DB/AreaTableLocale_frFR.lua
-DB/AreaTableLocale_enUS.lua
-DB/AreaTableLocale_deDE.lua
+util/AreaTable.lua
+localization/AreaTableLocale_enUS.lua
+localization/AreaTableLocale_deDE.lua
 
 util/Settings.lua
 
