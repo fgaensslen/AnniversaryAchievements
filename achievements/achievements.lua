@@ -350,7 +350,7 @@ do
         global:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
     end
 
-    add(331, {441, 414, 2301, 413, 417, 416, 424, 415, 421, 418, 426, 419, 431, 422, 438, 430, 434, 437}, '-achievement_zone_ashenvale_01')
+    add(331, {441, 414, 2301, 413, 417, 416, 424, 415, 421, 418, 426, 419, 422, 438, 430, 434, 437}, '-achievement_zone_ashenvale_01')
     add(16, {1228, 1230, 2497, 1229, 1226, 1219, 1220, 1225, 1216, 1237, 1236, 1235, 1221, 1231, 1232, 1234, 1256, 1233, 1227}, '-achievement_zone_azshara_01')
     add(148, {443, 444, 456, 446, 447, 448, 450, 449, 442}, '-achievement_zone_darkshore_01')
     add(405, {608, 603, 599, 2407, 609, 2405, 607, 596, 2408, 606, 602, 604, 2198, 2406, 2404}, '-achievement_zone_desolace')
@@ -402,7 +402,7 @@ do
     add(85, {156, 154, 810, 157, 166, 811, 164, 159, 165, 162, 459, 167, 812, 160, 1497, 152}, '-achievement_zone_tirisfalglades_01')
     add(28, {197, 193, 813, 199, 200, 202, 192, 190, 201, 198, 2620, 2297}, '-achievement_zone_westernplaguelands_01')
     add(40, {107, 108, 916, 109, 918, 111, 917, 113, 219, 20, 115, 921, 922, 920}, '-achievement_zone_westfall_01')
-    add(11, {1018, 1022, 118, 1024, 1023, 309, 205, 1036, 836, 1025, 1020, 1016, 1017, 1037, 150}, '-achievement_zone_wetlands_01')
+    add(11, {1018, 1022, 118, 1024, 1023, 309, 205, 1036, 1025, 1020, 1016, 1017, 150}, '-achievement_zone_wetlands_01')
     add(3430, {3431, 3533, 3466, 3461, 3465, 3467, 3464, 3470, 3480, 3462, 3471, 3476, 3474, 3487, 3472, 3558, 3912, 3473, 3913, 3914, 3468, 3460, 3469, 3911, 3475}, '-achievement_zone_eversongwoods')
     add(3433, {3488, 3489, 3490, 3491, 3494, 3493, 3495, 3496, 3502, 3500, 3517, 3508, 3492, 3501, 3856, 3861}, '-achievement_zone_ghostlands')
     exploreAzeroth:AddCriteria(criterias:Create(global.name, TYPE.COMPLETE_ACHIEVEMENT, {global.id}))
@@ -820,16 +820,16 @@ do
 	local brd, brs, defender
 
 	local create = createPvE(instances)
-	local rc = create('RAGEFIRE_CHASM', '-Racial_Orc_BerserkerStrength', 11518).id
+	local rc = create('RAGEFIRE_CHASM', '-spell_shadow_summonfelguard', 11520).id
 	local wc = create('WAILING_CAVERNS', '-Achievement_boss_mutanus_the_devourer', 3654).id
 	local dm = create('DEAD_MINES', '-achievement_boss_edwinvancleef', 639).id
 	local sk = create('SHADOWFANG_KEEP', '-achievement_boss_archmagearugal', 4275).id
 	local bfd = create('BLACKFATHOM_DEEPS', '-achievement_boss_bazil_akumai', 4829).id
-	local jail = create('JAIL', '-Achievement_boss_bazil_thredd', 1666).id
+	local jail = create('JAIL', '-Achievement_boss_bazil_thredd', 1716).id
 	local gnom = create('GNOMREGAN', 'gnomeregan', 7800).id
 	local rk = create('RAZORFEN_KRAUL', '-Achievement_boss_charlgarazorflank', 4421).id
-	local sm = create('SCARLET_MONASTERY', '-inv_helmet_52', {4543, 6487, 3975, 3977}, 20).id
-	local rd = create('RAZORFEN_DOWNS', '-achievement_boss_amnennar_the_coldbringer', {7358, 7356}).id
+	local sm = create('SCARLET_MONASTERY', '-inv_helmet_52', {4543, 6487, 3975, 3976, 3977}, 20).id
+	local rd = create('RAZORFEN_DOWNS', '-achievement_boss_amnennar_the_coldbringer', 7358).id
 	local uldaman = create('ULDAMAN', '-achievement_boss_archaedas', 2748).id
 	local zf = create('ZULFARRAK', '-Achievement_boss_chiefukorzsandscalp', 7267).id
 	local mara = create('MARAUDON', '-Achievement_boss_princesstheradras', 12201).id
@@ -855,16 +855,11 @@ do
 	ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_SPIRE_UPPER', TYPE.COMPLETE_ACHIEVEMENT, {id2}))
 	brs = ach.id
 
-	local direm = create('DIRE_MAUL', '-Ability_Warrior_DecisiveStrike', {11492, 11486, 11501}).id
+	local direm = create('DIRE_MAUL', '-Ability_Warrior_DecisiveStrike', {11492, 11496, 11501}).id
 
-	id1 = create('STRATHOLME_LIVE', '-Inv_Jewelry_Necklace_01', 10813).id
-	id2 = create('STRATHOLME_DEAD', '-Inv_Jewelry_Necklace_19', 10440).id
-	ach = instances:CreateAchievement('AN_STRATHOLME', 'AD_STRATHOLME', 10, '-Inv_Shield_01', true)
-	ach:AddCriteria(criterias:CreateL('AN_STRATHOLME_LIVE', TYPE.COMPLETE_ACHIEVEMENT, {id1}))
-	ach:AddCriteria(criterias:CreateL('AN_STRATHOLME_DEAD', TYPE.COMPLETE_ACHIEVEMENT, {id2}))
-	local strat = ach.id
+	local strat = create('STRATHOLME', '-spell_deathknight_armyofthedead', {10813, 10440})
 
-	local scholo = create('SCHOLOMANCE', '-Spell_Holy_Senseundead', 1853, 20).id
+	local scholo = create('SCHOLOMANCE', '-Spell_Holy_Senseundead', {1853, 10508}).id
 
 	ach = instances:CreateAchievement('AN_YOUNG_DEFENDER', 'AD_YOUNG_DEFENDER', 20, '-spell_holy_revivechampion', true)
 	ach:AddCriteria(criterias:CreateL('AN_RAGEFIRE_CHASM', TYPE.COMPLETE_ACHIEVEMENT, {rc}))
@@ -996,7 +991,7 @@ do
 		:Criteria(TYPE.SPECIAL, {3}):Build()
 		:Build()
 
-	L:Achievement(instances, 10, '-achievement_boss_fourhorsemen')
+	L:Achievement(instances, 10, '-spell_deathknight_summondeathcharger')
 		:NameDesc('AN_FOUR_TOGETHER', 'AD_FOUR_TOGETHER', true)
 		:Criteria(TYPE.SPECIAL, {4}):Build()
 		:Build()

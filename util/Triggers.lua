@@ -28,7 +28,7 @@ end
 function CheckDungeonQuests()
 	local bossQuestMap = {
 		-- Ragefire Chasm
-		[5728] = { type = CA_Criterias.TYPE.KILL_NPC, data = {11518} }, -- Jergosh der Herbeirufer
+		[5761] = { type = CA_Criterias.TYPE.KILL_NPC, data = {11520} }, -- Jergosh der Herbeirufer
 
 		-- Wailing Caverns
 		[6981] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3654} }, -- Mutanus the Devourer
@@ -44,7 +44,7 @@ function CheckDungeonQuests()
 		[6561] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4829} }, -- Twilight-Lord Kelris
 
 		-- Stormwind Stockade
-		[387] = { type = CA_Criterias.TYPE.KILL_NPC, data = {1666} }, -- Bazil Thredd
+		[391] = { type = CA_Criterias.TYPE.KILL_NPC, data = {1716} }, -- Bazil Thredd
 
 		-- Gnomeregan
 		[2929] = { type = CA_Criterias.TYPE.KILL_NPC, data = {7800} }, -- Mekgineer Thermaplugg
@@ -56,9 +56,7 @@ function CheckDungeonQuests()
 
 		-- Razorfen Downs
 		[3636] = { type = CA_Criterias.TYPE.KILL_NPC, data = {7358} }, -- Amnennar the Coldbringer
-		[3636] = { type = CA_Criterias.TYPE.KILL_NPC, data = {7356} }, -- Plaguemaw der Faulende
 		[3341] = { type = CA_Criterias.TYPE.KILL_NPC, data = {7358} }, -- Amnennar the Coldbringer
-		[3341] = { type = CA_Criterias.TYPE.KILL_NPC, data = {7356} }, -- Plaguemaw der Faulende
 
 		-- Scarlet Monastery
 		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4543} }, -- Alle vier Bosse
@@ -104,7 +102,7 @@ function CheckDungeonQuests()
 		[5263] = { type = CA_Criterias.TYPE.KILL_NPC, data = {10440} }, -- Baron Rivendare
 
 		-- Dire Maul
-		[7461] = { type = CA_Criterias.TYPE.KILL_NPC, data = {11492} }, -- Immol'thar
+		[7461] = { type = CA_Criterias.TYPE.KILL_NPC, data = {11496} }, -- Immol'thar
 		[7461] = { type = CA_Criterias.TYPE.KILL_NPC, data = {11486} }, -- Prinz Tortheldrin
 	}
 	
