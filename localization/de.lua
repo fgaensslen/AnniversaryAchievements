@@ -367,7 +367,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AR_HERO = '\'Held von Azeroth\'.',
     AN_GREAT_HERO = 'Großartiger Held von Azeroth',
     AD_GREAT_HERO = 'Schließt die unten aufgelisteten Dungeon- und Schlachtzugserfolge ab.',
-    AR_GREAT_HERO = '\'Großartiger Held von Azeroth\'.',
+    AR_GREAT_HERO = 'Großartiger Held von Azeroth.',
 
     AN_PVP_RANK_A1 = 'Gefreiter',
     AN_PVP_RANK_A2 = 'Fußknecht',
@@ -421,7 +421,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_REPS_X = ' ehrfürchtige Fraktionen',
     AD_REPS = 'Erreicht bei %d Fraktionen einen ehrfürchtigen Ruf.',
     AC_REPS = 'Erreicht bei %d Fraktionen einen ehrfürchtigen Ruf.',
-    AR_REPS = '\'Der Ehrfurchtgebietende\'',
+    AR_REPS = 'Der Ehrfurchtgebietende',
 
     AN_HORDE_REPS = 'Botschafter der Horde',
     AD_HORDE_REPS = 'Erreicht einen ehrfürchtigen Ruf in 5 Heimatstädten.',
@@ -443,8 +443,6 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_ARGENT_DAWN = 'Erreicht bei der Argentumdämmerung den Status ehrfürchtig.',
     AN_BROOD_OF_NOZDORMU = 'Brut von Nozdormu',
     AD_BROOD_OF_NOZDORMU = 'Erreicht bei der Brut Nozdormus den Status ehrfürchtig.',
-    AN_CENARION_CIRCLE = 'Zirkel des Cenarius',
-    AD_CENARION_CIRCLE = 'Erreicht beim Zirkel des Cenarius den Status ehrfürchtig.',
     AN_DARKMOON_FAIRE = 'Dunkelmond-Jahrmarkt',
     AD_DARKMOON_FAIRE = 'Erreicht beim Dunkelmond-Jahrmarkt den Status ehrfürchtig.',
     AN_ZANDALAR_TRIBE = 'Stamm der Zandalar',
@@ -977,6 +975,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_HELLFIRE_RAMPARTS = 'Bezwingt die Anführer im Höllenfeuerbollwerk',
     AC_BOSS_17308 = 'Omor den Narbenlosen',
     AC_BOSS_17537 = 'Vazruden der Herold',
+	AC_BOSS_17536 = 'Nazan',
 
     AN_BLOOD_FURNACE = 'Der Blutkessel',
     AD_BLOOD_FURNACE = 'Bezwingt Keli\'dan den Zerstörer',
@@ -1022,9 +1021,12 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	
 	AN_MAGISTERS_TERRACE = 'Terrasse der Magister',
     AD_MAGISTERS_TERRACE = 'Bezwingt Kael\'thas Sonnenwanderer',
+	
+	AN_TBC_DUNGEONS = 'Dungeonmeister der Scherbenwelt',
+    AD_TBC_DUNGEONS = 'Schließt die unten aufgelisteten "Burning Crusade"-Dungeonerfolge ab.',
 
-    AN_TBC_DUNGEONS = 'Dungeonheld der Scherbenwelt',
-    AD_TBC_DUNGEONS = 'Schließt die unten aufgelisteten heroischen "Burning Crusade"-Dungeonerfolge ab.',
+    AN_TBC_DUNGEONS_HERO = 'Dungeonheld der Scherbenwelt',
+    AD_TBC_DUNGEONS_HERO = 'Schließt die unten aufgelisteten heroischen "Burning Crusade"-Dungeonerfolge ab.',
 
     AN_RAVEN_LORD = 'Die Zügel des Rabenfürsten',
     AD_RAVEN_LORD = 'Erhaltet die Zügel des Rabenfürsten von Anzu in den Sethekkhallen.',
@@ -1061,9 +1063,13 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     FACTION_1011 = 'Unteres Viertel ',
     FACTION_989 = 'Hüter der Zeit ',
     FACTION_935 = 'Die Sha\'tar',
+	FACTION_609 = 'Zirkel des Cenarius',
 
     AN_TBC_DUNGEON_REPUTATIONS = 'Der brennende Kreuzritter',
     AD_TBC_DUNGEON_REPUTATIONS = 'Bringt alle Rufe der Burning-Crusade-Dungeons auf Ehrfürchtig.',
+	
+	AN_CENARION_CIRCLE = 'Wächter des Cenarius',
+    AD_CENARION_CIRCLE = 'Erreicht beim Zirkel des Cenarius und der Expedition des Cenarius den Status ehrfürchtig.',
 
     AN_SHATTRATH_REP = 'Geteiltes Shattrath',
     AD_SHATTRATH_REP = 'Erreicht bei den Sehern oder den Aldor den Status ehrfürchtig.',

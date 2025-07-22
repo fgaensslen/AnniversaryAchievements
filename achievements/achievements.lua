@@ -155,7 +155,7 @@ do
     end
 	
 	-- KEYs
-	ach = quests:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 20, '-inv_misc_key_11', true)
+	ach = quests:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 10, '-inv_misc_key_11', true)
 	    ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {13704}))
 
     --ZONE QUESTS
@@ -184,7 +184,7 @@ do
 		return ach
 	end
    
-    local kach = questsKalimdor:CreateAchievement('AN_WISDOM_KEEPER_KALIMDOR', 'AD_WISDOM_KEEPER_KALIMDOR', 20, '-achievement_zone_kalimdor_01', true)
+    local kach = questsKalimdor:CreateAchievement('AN_WISDOM_KEEPER_KALIMDOR', 'AD_WISDOM_KEEPER_KALIMDOR', 10, '-achievement_zone_kalimdor_01', true)
     questsKalimdor.add = function(self, ...) return addZoneQuests(self, kach, ...) end
     
     questsKalimdor:add('DUROTAR', 835, 10, '-achievement_zone_durotar')
@@ -200,7 +200,7 @@ do
     questsKalimdor:add('WINTERSPRING', {975, 5082, 5121, 5163, 4842}, 10, '-achievement_zone_winterspring')
     questsKalimdor:add('SILITHUS', {8287, 8352, 8321, 8281}, 10, '-achievement_zone_silithus_01')    
     
-    local ekach = questsEasternKingdoms:CreateAchievement('AN_WISDOM_KEEPER_EASTERN_KINGDOMS', 'AD_WISDOM_KEEPER_EASTERN_KINGDOMS', 20, '-achievement_zone_easternkingdoms_01', true)
+    local ekach = questsEasternKingdoms:CreateAchievement('AN_WISDOM_KEEPER_EASTERN_KINGDOMS', 'AD_WISDOM_KEEPER_EASTERN_KINGDOMS', 10, '-achievement_zone_easternkingdoms_01', true)
     questsEasternKingdoms.add = function(self, ...) return addZoneQuests(self, ekach, ...) end
 
     questsEasternKingdoms:add('ARATHI', 652, 10, '-achievement_zone_arathihighlands_01')
@@ -212,7 +212,7 @@ do
     questsEasternKingdoms:add('EASTERN_PLAGUELANDS', {5942, 6041, 5265}, 10, '-achievement_zone_easternplaguelands')
     questsEasternKingdoms:add('BLACK_ROCK', 8996, 20, '-achievement_zone_blackrock_01')
 
-    local wisdomAzeroth = quests:CreateAchievement('AN_WISDOM_KEEPER_AZEROTH', 'AD_WISDOM_KEEPER_AZEROTH', 30, '-Inv_Misc_Book_09', true)
+    local wisdomAzeroth = quests:CreateAchievement('AN_WISDOM_KEEPER_AZEROTH', 'AD_WISDOM_KEEPER_AZEROTH', 20, '-Inv_Misc_Book_09', true)
         wisdomAzeroth:AddCriteria(criterias:Create(kach.name, TYPE.COMPLETE_ACHIEVEMENT, {kach.id}))
         wisdomAzeroth:AddCriteria(criterias:Create(ekach.name , TYPE.COMPLETE_ACHIEVEMENT, {ekach.id}))
 
@@ -265,7 +265,7 @@ do
     local shadow = create('shadowmoon', {{10744, 10745}, 11052, {10645, 10639}, {10651, 10692}, 10588, 10679, 10808})
     
     local function create(questIDs)
-        local builder = L:Achievement(outlandQuests, 20, '-achievement_zone_outland_01')
+        local builder = L:Achievement(outlandQuests, 10, '-achievement_zone_outland_01')
 			:NameDesc('AN_WISDOM_KEEPER_OUTLAND', 'AD_WISDOM_KEEPER_OUTLAND', true)
         
 		for _, achID in pairs(questIDs) do 
@@ -281,14 +281,14 @@ do
     local allianceOutlandQuests = create({hellfireAlliance.id, zangarAlliance.id, terrorkarAlliance.id, nagrandAlliance.id, bladesAlliance.id, nether.id, shadow.id})
     allianceOutlandQuests:SetAllianceOnly()
   
-    local wisdomHorde = quests:CreateAchievement('AN_WISDOM_KEEPER', 'AD_WISDOM_KEEPER', 40, '-Inv_Misc_Book_07', true)
+    local wisdomHorde = quests:CreateAchievement('AN_WISDOM_KEEPER', 'AD_WISDOM_KEEPER', 30, '-Inv_Misc_Book_07', true)
         wisdomHorde:AddCriteria(criterias:Create(wisdomAzeroth.name, TYPE.COMPLETE_ACHIEVEMENT, {wisdomAzeroth.id}))
         wisdomHorde:AddCriteria(criterias:Create(hordeOutlandQuests.name , TYPE.COMPLETE_ACHIEVEMENT, {hordeOutlandQuests.id}))
         hordeOutlandQuests:SetHordeOnly()
         wisdomHorde:SetRewardText(loc:Get('AR_WISDOM_KEEPER')) 
 	wisdomHorde:SetHordeOnly()
 	
-    local wisdomAlliance = quests:CreateAchievement('AN_WISDOM_KEEPER', 'AD_WISDOM_KEEPER', 40, '-Inv_Misc_Book_07', true)
+    local wisdomAlliance = quests:CreateAchievement('AN_WISDOM_KEEPER', 'AD_WISDOM_KEEPER', 30, '-Inv_Misc_Book_07', true)
         wisdomAlliance:AddCriteria(criterias:Create(wisdomAzeroth.name, TYPE.COMPLETE_ACHIEVEMENT, {wisdomAzeroth.id}))
         wisdomAlliance:AddCriteria(criterias:Create(allianceOutlandQuests.name , TYPE.COMPLETE_ACHIEVEMENT, {allianceOutlandQuests.id}))
         wisdomAlliance:SetRewardText(loc:Get('AR_WISDOM_KEEPER'))		
@@ -340,7 +340,7 @@ end
 do
 	local exploreAzeroth = exploration:CreateAchievement('AN_EXPLORE_AZEROTH', 'AD_EXPLORE_AZEROTH', 30, '-Inv_Misc_Map_01', true)
 
-    local global = exploration:CreateAchievement('AN_EXPLORE_KALIMDOR', 'AD_EXPLORE_KALIMDOR', 20, '-achievement_zone_kalimdor_01', true)
+    local global = exploration:CreateAchievement('AN_EXPLORE_KALIMDOR', 'AD_EXPLORE_KALIMDOR', 25, '-achievement_zone_kalimdor_01', true)
     local function add(areaID, areaIDs, icon)
         local areaName = AreaTableLocale[areaID]
         ach = explorationKalimdor:CreateAchievement(loc:Get('AN_EXPLORE', areaName), loc:Get('AD_EXPLORE', areaName), 10, icon)
@@ -371,7 +371,7 @@ do
     add(3525, {3597, 3593, 3594, 3585, 3612, 3584, 3600, 3602, 3908, 3910, 3592, 3601, 3591, 3599, 3603, 3604, 3906, 3589, 3588, 3595, 3596, 3909, 3586, 3587, 3907, 3608, 3590, 3598}, '-achievement_zone_bloodmystisle_01')
     exploreAzeroth:AddCriteria(criterias:Create(global.name, TYPE.COMPLETE_ACHIEVEMENT, {global.id}))
 
-    global = exploration:CreateAchievement('AN_EXPLORE_EASTERN_KINGDOMS', 'AD_EXPLORE_EASTERN_KINGDOMS', 20, '-achievement_zone_easternkingdoms_01', true)
+    global = exploration:CreateAchievement('AN_EXPLORE_EASTERN_KINGDOMS', 'AD_EXPLORE_EASTERN_KINGDOMS', 25, '-achievement_zone_easternkingdoms_01', true)
     add = function(areaID, areaIDs, icon)
         local areaName = AreaTableLocale[areaID]
         ach = explorationEasternKingdoms:CreateAchievement(loc:Get('AN_EXPLORE', areaName), loc:Get('AD_EXPLORE', areaName), 10, icon)
@@ -407,7 +407,7 @@ do
     add(3433, {3488, 3489, 3490, 3491, 3494, 3493, 3495, 3496, 3502, 3500, 3517, 3508, 3492, 3501, 3856, 3861}, '-achievement_zone_ghostlands')
     exploreAzeroth:AddCriteria(criterias:Create(global.name, TYPE.COMPLETE_ACHIEVEMENT, {global.id}))
 	
-	ach = L:Achievement(exploration, 20, '-inv_jewelcrafting_crimsonhare')
+	ach = L:Achievement(exploration, 10, '-inv_jewelcrafting_crimsonhare')
 		:NameDesc('AN_LOVE', 'AD_LOVE', true)
 		for _, creatureID in pairs({3444, 620, 1420, 13321, 2620, 9600, 5951, 9699, 4953, 721, 9700, 15476, 2914, 16030, 4075, 1412, 7390, 15475, 15010, 4076, 13016, 14881, 2110, 4166, 1933, 890, 2098, 2442, 6368, 10582, 385, 10685, 3300}) do
 			ach:Criteria(TYPE.EMOTE, {'LOVE', creatureID}):Name('NPC_' .. creatureID, true):Build()
@@ -415,7 +415,7 @@ do
 		ach:Build().priority = 1
 
     --TBC		
-	global = exploration:CreateAchievement('AN_EXPLORE_OUTLAND', 'AD_EXPLORE_OUTLAND', 20, '-achievement_zone_outland_01', true)
+	global = exploration:CreateAchievement('AN_EXPLORE_OUTLAND', 'AD_EXPLORE_OUTLAND', 25, '-achievement_zone_outland_01', true)
     add = function(areaID, areaIDs, icon)
         local areaName = AreaTableLocale[areaID]
         ach = outlandExploration:CreateAchievement(loc:Get('AN_EXPLORE', areaName), loc:Get('AD_EXPLORE', areaName), 10, icon)
@@ -1002,45 +1002,54 @@ do
 		:Build()
 
     --TBC
+	local builderNormalTBC = L:Achievement(pve, 10, '-spell_holy_summonchampion')
+		:NameDesc('AN_TBC_DUNGEONS', 'AD_TBC_DUNGEONS', true)
+	
+	local builderHeroicTBC = L:Achievement(pve, 20, '-ability_creature_cursed_02')
+		:NameDesc('AN_TBC_DUNGEONS_HERO', 'AD_TBC_DUNGEONS_HERO', true)
+	
     local function preBuilder(zoneName, bossIDs, isHeroic, icon)
-        local points
-        if isHeroic then points = 20
-        else points = 10 end
+        local points = 10
     
-        local builder = L:Achievement(tbcInstances, points, icon)
-    
+        local ach = L:Achievement(tbcInstances, points, icon)
+
         local upperZoneName = string.upper(zoneName)
         local achievementName = loc:Get('AN_' .. upperZoneName)
         local achievementDesc = loc:Get('AD_' .. upperZoneName)
         if isHeroic then
-            builder:NameDesc(loc:Get('HEROIC_NAME_PATTERN', achievementName), loc:Get('HEROIC_DESCRIPTION_PATTERN', achievementDesc) .. '.')
+            ach:NameDesc(loc:Get('HEROIC_NAME_PATTERN', achievementName), loc:Get('HEROIC_DESCRIPTION_PATTERN', achievementDesc) .. '.')
             if type(bossIDs) == 'table' then
                 for _, bossID in pairs(bossIDs) do
-                    builder:Criteria(TYPE.KILL_NPC_HEROIC, {bossID}):Name('AC_BOSS_' .. bossID, true):Build()
+                    ach:Criteria(TYPE.KILL_NPC_HEROIC, {bossID}):Name('AC_BOSS_' .. bossID, true):Build()
                 end
             else
-                builder:Criteria(TYPE.KILL_NPC_HEROIC, {bossIDs}):Build()
+                ach:Criteria(TYPE.KILL_NPC_HEROIC, {bossIDs}):Build()
             end
         else
-            builder:NameDesc(achievementName, achievementDesc .. '.')
+            ach:NameDesc(achievementName, achievementDesc .. '.')
             if type(bossIDs) == 'table' then
                 for _, bossID in pairs(bossIDs) do
-                    builder:Criteria(TYPE.KILL_NPC, {bossID}):Name('AC_BOSS_' .. bossID, true):Build()
+                    ach:Criteria(TYPE.KILL_NPC, {bossID}):Name('AC_BOSS_' .. bossID, true):Build()
                 end
             else
-                builder:Criteria(TYPE.KILL_NPC, {bossIDs}):Build()
+                ach:Criteria(TYPE.KILL_NPC, {bossIDs}):Build()
             end
         end
-        return builder
+		
+        return ach
     end
 
     local function create(zoneName, bossIDs, icon)
         local normal = preBuilder(zoneName, bossIDs, false, icon):Build()
-        local heroic = preBuilder(zoneName, bossIDs, true, icon):Previous(normal):Build()
-        return heroic
+		builderNormalTBC:Criteria(TYPE.COMPLETE_ACHIEVEMENT, {normal.id}):Name(normal.name):Build()
+		
+        local heroic = preBuilder(zoneName, bossIDs, true, icon):Build()
+		builderHeroicTBC:Criteria(TYPE.COMPLETE_ACHIEVEMENT, {heroic.id}):Name(heroic.name):Build()
+		
+		normal:SetNext(heroic)
     end
 
-    local starting = create('hellfire_ramparts', {17308, 17537}, '-Achievement_boss_omartheunscarred_01')
+    create('hellfire_ramparts', {17308, 17537, 17536}, '-Achievement_boss_omartheunscarred_01')
     create('blood_furnace', 17377, '-Achievement_boss_kelidanthebreaker')
     create('slave_pens', 17942, '-Achievement_boss_quagmirran')
     create('underbog', 17882, '-Achievement_boss_theblackstalker')
@@ -1054,16 +1063,12 @@ do
     create('black_morass', 17881, '-Achievement_boss_aeonus_01')
     create('botanica', 17977, '-achievement_boss_warpsplinter')
     create('mechanar', 19220, '-achievement_boss_pathaleonthecalculator')
-	create('magisters_terrace', 24664, '-achievement_character_bloodelf_male')
-    local ending = create('arcatraz', 20912, '-achievement_boss_harbinger_skyriss')
-
-    local builder = L:Achievement(pve, 20, '-achievement_dungeon_outland_dungeon_hero')
-    :NameDesc('AN_TBC_DUNGEONS', 'AD_TBC_DUNGEONS', true)
-    
-    for i = starting.id, ending.id, 2 do
-        builder:Criteria(TYPE.COMPLETE_ACHIEVEMENT, {i}):Name(L:GetAchievementByID(i).name):Build()
-    end
-    builder:Build()
+	create('arcatraz', 20912, '-achievement_boss_harbinger_skyriss')
+	create('magisters_terrace', 24664, '-achievement_character_bloodelf_male')    	
+	
+	builderNormalTBC = builderNormalTBC:Build()
+	builderHeroicTBC = builderHeroicTBC:Build()
+	builderNormalTBC:SetNext(builderHeroicTBC)
 
     L:Achievement(tbcInstances, 20, '-Inv-Mount_Raven_54')
         :NameDesc('AN_RAVEN_LORD', 'AD_RAVEN_LORD', true)
@@ -1463,13 +1468,13 @@ do
         previous = ach
     end
 
-    ach = reputation:CreateAchievement(loc:Get('AN_HORDE_REPS'), loc:Get('AD_HORDE_REPS'), 30, '-achievement_pvp_o_h')
+    ach = reputation:CreateAchievement(loc:Get('AN_HORDE_REPS'), loc:Get('AD_HORDE_REPS'), 10, '-achievement_pvp_o_h')
     for i, fid in pairs({76, 530, 68, 81, 911}) do
         ach:AddCriteria(criterias:Create(loc:Get('AC_HORDE_REPS_' .. i), TYPE.REACH_REPUTATION, {fid, 8}))
     end
     ach:SetHordeOnly()
 
-    ach = reputation:CreateAchievement(loc:Get('AN_ALLIANCE_REPS'), loc:Get('AD_ALLIANCE_REPS'), 30, '-achievement_pvp_o_a')
+    ach = reputation:CreateAchievement(loc:Get('AN_ALLIANCE_REPS'), loc:Get('AD_ALLIANCE_REPS'), 10, '-achievement_pvp_o_a')
     for i, fid in pairs({72, 69, 54, 47, 930}) do
         ach:AddCriteria(criterias:Create(loc:Get('AC_ALLIANCE_REPS_' .. i), TYPE.REACH_REPUTATION, {fid, 8}))
     end
@@ -1481,15 +1486,14 @@ do
         ach:AddCriteria(criterias:Create(nil, TYPE.REACH_REPUTATION, {factionID, reputationLevel or 8}))
     end
 
-    add(749, 'HYDRAXIANS', 20, '-spell_frost_summonwaterelemental_2')
-    add(270, 'ZANDALAR_TRIBE', 20, '-inv_bijou_green')
-    add(609, 'CENARION_CIRCLE', 20, '-inv_misc_bag_satchelofcenarius')
-    add(910, 'BROOD_OF_NOZDORMU', 20, '-Inv_Misc_Head_Dragon_Bronze')
-    add(529, 'ARGENT_DAWN', 20, '-inv_jewelry_talisman_07')
-    add(576, 'TIMBERMAW_HOLD', 20, '-achievement_reputation_timbermaw')
-    add(909, 'DARKMOON_FAIRE', 20, '-Inv_Misc_MissileLarge_Red')
-    add(87, 'PIRATES', 30, '-Inv_Helmet_66', 6)
-    add(809, 'SHENDRALAR', 30, '-inv_misc_book_11')
+    add(749, 'HYDRAXIANS', 10, '-spell_frost_summonwaterelemental_2')
+    add(270, 'ZANDALAR_TRIBE', 10, '-inv_bijou_green')
+    add(910, 'BROOD_OF_NOZDORMU', 10, '-Inv_Misc_Head_Dragon_Bronze')
+    add(529, 'ARGENT_DAWN', 15, '-inv_jewelry_talisman_07')
+    add(576, 'TIMBERMAW_HOLD', 15, '-achievement_reputation_timbermaw')
+    add(909, 'DARKMOON_FAIRE', 10, '-Inv_Misc_MissileLarge_Red')
+    add(87, 'PIRATES', 10, '-Inv_Helmet_66', 6)
+    add(809, 'SHENDRALAR', 10, '-inv_misc_book_11')
 
     --TBC
     local builder = L:Achievement(tbcReputations, 20, '-Spell_Fire_FelfireWard')
@@ -1521,11 +1525,17 @@ do
         }):Build()
         :Build()
 
+	L:Achievement(tbcReputations, 25, '-ability_racial_ultravision')
+        :NameDesc('AN_CENARION_CIRCLE', 'AD_CENARION_CIRCLE', true)
+		:Criteria(TYPE.REACH_REPUTATION, {609, 8}):Name('FACTION_609', true):Build()
+		:Criteria(TYPE.REACH_REPUTATION, {942, 8}):Name('FACTION_942', true):Build()
+		:Build()
+		
     create('ogrila', 1038, '-Inv_Misc_Apexis_Crystal')
-    create('sporeggar', 970, '-Inv_Mushroom_11')
+    create('sporeggar', 970, '-Inv_Mushroom_11', 15)
     create('consortium', 933, '-Inv_Enchant_ShardPrismaticLarge')
-    create('maghar', 941, '-Inv_Misc_Foot_Centaur'):SetHordeOnly()
-    create('kurenai', 978, '-Inv_Misc_Foot_Centaur'):SetAllianceOnly()
+    create('maghar', 941, '-Inv_Misc_Foot_Centaur', 15):SetHordeOnly()
+    create('kurenai', 978, '-Inv_Misc_Foot_Centaur', 15):SetAllianceOnly()
     create('netherwings', 1015, '-Ability_Mount_NetherdrakePurple')
 
     L:Achievement(tbcReputations, 10, '-Ability_Mount_NetherdrakePurple')
