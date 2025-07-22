@@ -405,6 +405,7 @@ do
     add(11, {1018, 1022, 118, 1024, 1023, 309, 205, 1036, 1025, 1020, 1016, 1017, 150}, '-achievement_zone_wetlands_01')
     add(3430, {3431, 3533, 3466, 3461, 3465, 3467, 3464, 3470, 3480, 3462, 3471, 3476, 3474, 3487, 3472, 3558, 3912, 3473, 3913, 3914, 3468, 3460, 3469, 3911, 3475}, '-achievement_zone_eversongwoods')
     add(3433, {3488, 3489, 3490, 3491, 3494, 3493, 3495, 3496, 3502, 3500, 3517, 3508, 3492, 3501, 3856, 3861}, '-achievement_zone_ghostlands')
+	add(4080, {4087, 4089, 4091, 4092, 4094, 4095}, '-achievement_zone_isleofqueldanas')
     exploreAzeroth:AddCriteria(criterias:Create(global.name, TYPE.COMPLETE_ACHIEVEMENT, {global.id}))
 	
 	ach = L:Achievement(exploration, 10, '-inv_jewelcrafting_crimsonhare')
@@ -432,7 +433,6 @@ do
     add(3522, {3864, 3867, 3773, 3777, 3776, 3863, 3775, 3831, 3787, 3784, 3785, 3781, 3774, 3768, 3844, 3830, 3833, 3828, 3866, 3772, 3865, 3769, 3782, 3829, 3827, 3832}, 'blades_edge_mtns')
     add(3523, {3712, 3726, 3730, 3734, 3722, 3736, 3741, 3842, 3729, 3723, 3737, 3732, 3850, 3725, 3837, 3738, 3868, 3874, 3877, 3878, 3742, 3739}, 'netherstorm')
     add(3520, {3750, 3822, 3743, 3759, 3744, 3840, 3748, 3746, 3821, 3745, 3754, 3752, 3758}, 'shadowmoon')
-    add(4080, {4087, 4089, 4091, 4092, 4094, 4095}, '-achievement_zone_isleofqueldanas')
 	
 	exploreAzeroth:AddCriteria(criterias:Create(global.name, TYPE.COMPLETE_ACHIEVEMENT, {global.id}))  
     exploreAzeroth:SetRewardText(loc:Get('AR_EXPLORER'))  
@@ -976,22 +976,22 @@ do
 		:Criteria(TYPE.SPECIAL, {2}):Build()
 		:Build()
 
-	L:Achievement(instances, 10, '-achievement_boss_anubarak')
+	L:Achievement(instances, 20, '-achievement_boss_anubarak')
 		:NameDesc('AN_ANUBREKHAN_WITHOUT_MOBS', 'AD_ANUBREKHAN_WITHOUT_MOBS', true)
 		:Criteria(TYPE.BOSS_WITHOUT_MOBS, {15956}):Build()
 		:Build()
 
-	L:Achievement(instances, 10, '-achievement_dungeon_naxxramas_25man')
+	L:Achievement(instances, 20, '-achievement_dungeon_naxxramas_25man')
 		:NameDesc('AN_FAERLINA_WITHOUT_MOBS', 'AD_FAERLINA_WITHOUT_MOBS', true)
 		:Criteria(TYPE.BOSS_WITHOUT_MOBS, {15953}):Build()
 		:Build()
 
-	L:Achievement(instances, 10, '-achievement_halloween_spider_01')
+	L:Achievement(instances, 20, '-achievement_halloween_spider_01')
 		:NameDesc('AN_ARACHNOPHOBIA', 'AD_ARACHNOPHOBIA', true)
 		:Criteria(TYPE.SPECIAL, {3}):Build()
 		:Build()
 
-	L:Achievement(instances, 10, '-spell_deathknight_summondeathcharger')
+	L:Achievement(instances, 20, '-spell_deathknight_summondeathcharger')
 		:NameDesc('AN_FOUR_TOGETHER', 'AD_FOUR_TOGETHER', true)
 		:Criteria(TYPE.SPECIAL, {4}):Build()
 		:Build()
