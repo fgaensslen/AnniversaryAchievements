@@ -1361,21 +1361,12 @@ do
         :Criteria(TYPE.FISH_AN_ITEM, {27388}):Build()
         :Build()
 
-    --[[
-	local builder = L:Achievement(fishing, 10, '-Inv_Misc_Fish_37')
-		:NameDesc('AN_FISHING_OUTLAND_COLLECTION', 'AD_FISHING_OUTLAND_COLLECTION', true)
-		for _, itemID in pairs({35285, 27422, 27439, 27438, 27437, 27429, 27425, 27435, 33824, 33823, 35286}) do
-			builder:Criteria(TYPE.FISH_AN_ITEM, {itemID}):ItemName(itemID):Build()
-		end
-		builder:Build()
-    ]]
-
 	--COOKING
     previous = nil
     for _, count in pairs({5, 10, 25, 50, 75}) do
 		local cookingIcon
 		
-		if count == 1 then cookingIcon = '-inv_misc_food_66'
+		if count == 5 then cookingIcon = '-inv_misc_food_66'
 		elseif count == 10 then cookingIcon = '-inv_misc_food_65'
 		elseif count == 25 then cookingIcon = '-inv_misc_food_60'
 		elseif count == 50 then cookingIcon = '-inv_misc_food_13'
@@ -1413,27 +1404,6 @@ do
     ach:AddCriteria(criterias:Create(dumplings.name, TYPE.COMPLETE_ACHIEVEMENT, {dumplings.id}))
 
     add('CHOPS', '-Inv_Misc_Food_65', 21023, 20, 20)
-
-    --TBC
-    do
-        local function create(name, icon, itemID, count)
-            local ach = L:Achievement(cooking, 10, icon)
-            :Name('AN_COOKING_' .. name, true)
-            :Desc('create itemID ' .. itemID)
-            :Criteria(TYPE.CRAFT_ITEM, {itemID}, count):Name(loc:Get('AC_COOKING_CREATE', count)):Build()
-            :Build()
-            local item = Item:CreateFromItemID(itemID)
-            item:ContinueOnItemLoad(function()
-                ach.description = loc:Get('AD_COOKING_CREATE', item:GetItemName(), count)
-            end)
-            return ach
-        end
-    
-        --create('FISHERMANS_FEAST', '-Inv_Misc_Food_88_RavagerNuggets', 33052, 100)
-        --create('SPICY_HOT_TALBUK', '-Inv_Misc_Food_84_RoastcleftHoof', 33872, 100)
-        --create('SKULLFISH_SOUP', '-Inv_Misc_Food_63', 33825, 100)
-        --create('RAVAGER_DOG', '-Inv_Misc_Food_53', 27655, 100)
-    end
 end
 
 -- REPUTATION --
