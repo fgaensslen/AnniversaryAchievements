@@ -223,6 +223,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     QUEST_613 = 'Cracking Maury\'s Foot',
     QUEST_628 = 'Excelsior',
     QUEST_338 = 'The Green Hills of Stranglethorn',
+	
+	AN_NESINGWARY = 'The Green Hills of Stranglethorn',
+	AD_NESINGWARY = 'Complete all of Hemet Nesingwary quests in Stranglethorn Vale up to and including The Green Hills of Stranglethorn and Big Game Hunter.',
 
     WESTERN_PLAGUELANDS_1 = 'Western Plaguelands',
     WESTERN_PLAGUELANDS_2 = 'Western Plaguelands',

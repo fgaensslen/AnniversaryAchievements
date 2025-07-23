@@ -215,7 +215,10 @@ do
     local wisdomAzeroth = quests:CreateAchievement('AN_WISDOM_KEEPER_AZEROTH', 'AD_WISDOM_KEEPER_AZEROTH', 20, '-Inv_Misc_Book_09', true)
         wisdomAzeroth:AddCriteria(criterias:Create(kach.name, TYPE.COMPLETE_ACHIEVEMENT, {kach.id}))
         wisdomAzeroth:AddCriteria(criterias:Create(ekach.name , TYPE.COMPLETE_ACHIEVEMENT, {ekach.id}))
-
+		
+	local nesingwaryQuests = quests:CreateAchievement('AN_NESINGWARY', 'AD_NESINGWARY', 10, '-ability_mount_whitetiger', true)
+		nesingwaryQuests:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {338, 208}))	
+	
     --TBC
     local function create(zoneName, questIDs)
         local builder = L:Achievement(outlandQuests, 10, zoneName)

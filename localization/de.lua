@@ -221,6 +221,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     QUEST_613 = 'Maurys Fuß aufbrechen',
     QUEST_628 = 'Exzelsior',
     QUEST_338 = 'Die Grünen Hügel des Schlingendorntals',
+	
+	AN_NESINGWARY = 'Die Grünen Hügel des Schlingendorntals',
+	AD_NESINGWARY = 'Schließt alle Hemet Nesingwary-Quests im Schlingendorntal ab, bis hin zu \'Die Grünen Hügel des Schlingendorntals\' und \'Großwildjäger\'.',
 
     WESTERN_PLAGUELANDS_1 = 'Westliche Pestländer',
     WESTERN_PLAGUELANDS_2 = 'Westliche Pestländer',
