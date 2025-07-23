@@ -54,7 +54,7 @@ do
         previous = ach
     end
 
-	ach = general:CreateAchievement('AN_BANK', 'AD_BANK', 10, '-inv_misc_bag_26_spellfire', true)
+	ach = general:CreateAchievement('AN_BANK', 'AD_BANK', 10, '-inv_box_01', true)
 	ach:AddCriteria(criterias:Create('AC_BANK', TYPE.BANK_SLOTS, nil, 7))
 
     previous = nil
@@ -857,7 +857,7 @@ do
 
 	local direm = create('DIRE_MAUL', '-Ability_Warrior_DecisiveStrike', {11492, 11496, 11501}).id
 
-	local strat = create('STRATHOLME', '-spell_deathknight_armyofthedead', {10813, 10440})
+	local strat = create('STRATHOLME', '-spell_deathknight_armyofthedead', {10813, 10440}).id
 
 	local scholo = create('SCHOLOMANCE', '-Spell_Holy_Senseundead', {1853, 10508}).id
 
@@ -896,11 +896,11 @@ do
     local bwl = create('BLACK_WING_LAIR', '-Achievement_boss_nefarion', 11583, 20).id
     local aq40 = create('AQ40', '-Achievement_boss_cthun', 15727, 20).id
     local nx1 = create('NAXXRAMAS_SPIDERS', '-Inv_Trinket_Naxxramas04', 15952).id
-    local nx2 = create('NAXXRAMAS_PLAGUE', '-Spell_Shadow_Deathcoil', 16011).id
-    local nx3 = create('NAXXRAMAS_MILITARY', '-Inv_Sword_2h_AshbringerCorrupt', {-16062, -16063, -16064, -16065}).id
-    local nx4 = create('NAXXRAMAS_CONSTRUCT', '-Ability_Creature_Poison_01', 15928).id
-    local nx5 = create('NAXXRAMAS_LAIR', '-achievement_boss_kelthuzad_01', 15990).id
-    ach = instances:CreateAchievement('AN_NAXXRAMAS', 'AD_NAXXRAMAS', 10, '-inv_misc_frostemblem_01', true)
+    local nx2 = create('NAXXRAMAS_PLAGUE', '-inv_misc_cauldron_nature', 16011).id
+    local nx3 = create('NAXXRAMAS_MILITARY', '-spell_deathknight_classicon', {-16062, -16063, -16064, -16065}).id
+    local nx4 = create('NAXXRAMAS_CONSTRUCT', '-ability_rogue_deviouspoisons', 15928).id
+    local nx5 = create('NAXXRAMAS_LAIR', '-inv_trinket_naxxramas06', 15990).id
+    ach = instances:CreateAchievement('AN_NAXXRAMAS', 'AD_NAXXRAMAS', 10, '-achievement_dungeon_naxxramas_10man', true)
     ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_SPIDERS', TYPE.COMPLETE_ACHIEVEMENT, {nx1}))
     ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_PLAGUE', TYPE.COMPLETE_ACHIEVEMENT, {nx2}))
     ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_MILITARY', TYPE.COMPLETE_ACHIEVEMENT, {nx3}))
@@ -981,7 +981,7 @@ do
 		:Criteria(TYPE.BOSS_WITHOUT_MOBS, {15956}):Build()
 		:Build()
 
-	L:Achievement(instances, 20, '-achievement_dungeon_naxxramas_25man')
+	L:Achievement(instances, 20, '-spell_shadow_curseofmannoroth')
 		:NameDesc('AN_FAERLINA_WITHOUT_MOBS', 'AD_FAERLINA_WITHOUT_MOBS', true)
 		:Criteria(TYPE.BOSS_WITHOUT_MOBS, {15953}):Build()
 		:Build()
