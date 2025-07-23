@@ -10,7 +10,6 @@ local TYPE = criterias.TYPE
 
 -- CATEGORIES -- 
 local general = tab:CreateCategory('CATEGORY_GENERAL', nil, true)
-local generalClassic = tab:CreateCategory('CATEGORY_VANILLA', general.id, true)
 
 local quests = tab:CreateCategory('CATEGORY_QUESTS', nil, true)
 local questsKalimdor = tab:CreateCategory('CATEGORY_KALIMDOR', quests.id, true)
@@ -97,37 +96,80 @@ do
 		
 	-- SETS --
 	local function add(name, subtitle, icon, ids)
-        local ach = generalClassic:CreateAchievement('AN_' .. name, subtitle, 20, icon, true)
+        local ach = general:CreateAchievement('AN_' .. name, subtitle, 20, icon, true)
 
 		for _, itemID in pairs(ids) do
 			local criteria = criterias:Create('itemID ' .. itemID, TYPE.OBTAIN_ITEM, {itemID})
-			ach:AddCriteria(criteria)
-			criteria.name = GetItemInfo(itemID)
+				ach:AddCriteria(criteria)
+				criteria.name = GetItemInfo(itemID)
 		end
 	end
 
 	local playerClass, englishClass = UnitClass('player')
 	
+	--T1
+	if englishClass == 'DRUID' then		
+		add('DRUID_T1', 'AD_SET', '-inv_helmet_09', {16828, 16829, 16830, 16833, 16831, 16834, 16835, 16836})	
+	elseif englishClass == 'WARLOCK' then
+		add('WARLOCK_T1', 'AD_SET', '-inv_helmet_08', {16806, 16804, 16805, 16810, 16809, 16807, 16808, 16803})	
+	elseif englishClass == 'PRIEST' then
+		add('PRIEST_T1', 'AD_SET', '-inv_helmet_34', {16811, 16813, 16817, 16812, 16814, 16816, 16815, 16819})	
+	elseif englishClass == 'MAGE' then
+		add('MAGE_T1', 'AD_SET', '-inv_helmet_53', {16795, 16797, 16798, 16796, 16801, 16800, 16802, 16799})
+	elseif englishClass == 'ROGUE' then
+		add('ROGUE_T1', 'AD_SET', '-inv_helmet_41', {16821, 16823, 16820, 16822, 16826, 16824, 16825, 16827})
+	elseif englishClass == 'HUNTER' then
+		add('HUNTER_T1', 'AD_SET', '-inv_helmet_05', {16846, 16848, 16845, 16847, 16852, 16849, 16851, 16850})
+	elseif englishClass == 'PALADIN' then
+		add('PALADIN_T1', 'AD_SET', '-inv_helmet_05', {16854, 16856, 16853, 16855, 16860, 16859, 16858, 16857})
+	elseif englishClass == 'WARRIOR' then
+		add('WARRIOR_T1', 'AD_SET', '-inv_helmet_09', {16866, 16868, 16865, 16867, 16863, 16862, 16864, 16861})
+	elseif englishClass == 'SHAMAN' then
+		add('SHAMAN_T1', 'AD_SET', '-inv_helmet_09', {16837, 16839, 16838, 16840, 16844, 16841, 16843, 16842})
+	end	
+	
 	--T2
 	if englishClass == 'DRUID' then		
-		add('DRUID_T2', 'AD_SET_T2', '-inv_helmet_09', {16903, 16898, 16904, 16897, 16900, 16899, 16901, 16902})	
+		add('DRUID_T2', 'AD_SET', '-inv_helmet_09', {16903, 16898, 16904, 16897, 16900, 16899, 16901, 16902})	
 	elseif englishClass == 'WARLOCK' then
-		add('WARLOCK_T2', 'AD_SET_T2', '-inv_helmet_08', {16933, 16927, 16934, 16928, 16930, 16931, 16929, 16932})	
+		add('WARLOCK_T2', 'AD_SET', '-inv_helmet_08', {16933, 16927, 16934, 16928, 16930, 16931, 16929, 16932})	
 	elseif englishClass == 'PRIEST' then
-		add('PRIEST_T2', 'AD_SET_T2', '-inv_helmet_24', {16925, 16926, 16919, 16921, 16920, 16922, 16924, 16923})	
+		add('PRIEST_T2', 'AD_SET', '-inv_helmet_24', {16925, 16926, 16919, 16921, 16920, 16922, 16924, 16923})	
 	elseif englishClass == 'MAGE' then
-		add('MAGE_T2', 'AD_SET_T2', '-inv_helmet_70', {16818, 16918, 16912, 16914, 16917, 16913, 16915, 16916})
+		add('MAGE_T2', 'AD_SET', '-inv_helmet_70', {16818, 16918, 16912, 16914, 16917, 16913, 16915, 16916})
 	elseif englishClass == 'ROGUE' then
-		add('ROGUE_T2', 'AD_SET_T2', '-inv_helmet_41', {16910, 16906, 16911, 16905, 16907, 16908, 16909, 16832})
+		add('ROGUE_T2', 'AD_SET', '-inv_helmet_41', {16910, 16906, 16911, 16905, 16907, 16908, 16909, 16832})
 	elseif englishClass == 'HUNTER' then
-		add('HUNTER_T2', 'AD_SET_T2', '-inv_helmet_05', {16936, 16935, 16942, 16940, 16941, 16939, 16938, 16937})
+		add('HUNTER_T2', 'AD_SET', '-inv_helmet_05', {16936, 16935, 16942, 16940, 16941, 16939, 16938, 16937})
 	elseif englishClass == 'PALADIN' then
-		add('PALADIN_T2', 'AD_SET_T2', '-inv_helmet_74', {16952, 16951, 16958, 16955, 16956, 16954, 16957, 16953})
+		add('PALADIN_T2', 'AD_SET', '-inv_helmet_74', {16952, 16951, 16958, 16955, 16956, 16954, 16957, 16953})
 	elseif englishClass == 'WARRIOR' then
-		add('WARRIOR_T2', 'AD_SET_T2', '-inv_helmet_71', {16959, 16966, 16964, 16963, 16962, 16961, 16965, 16960})
+		add('WARRIOR_T2', 'AD_SET', '-inv_helmet_71', {16959, 16966, 16964, 16963, 16962, 16961, 16965, 16960})
 	elseif englishClass == 'SHAMAN' then
-		add('SHAMAN_T2', 'AD_SET_T2', '-inv_helmet_69', {16944, 16943, 16950, 16945, 16948, 16949, 16947, 16946})
+		add('SHAMAN_T2', 'AD_SET', '-inv_helmet_69', {16944, 16943, 16950, 16945, 16948, 16949, 16947, 16946})
 	end	
+	
+	--T3
+	if englishClass == 'DRUID' then		
+		add('DRUID_T3', 'AD_SET', '-inv_helmet_15', {22490, 22491, 22488, 22489, 22492, 22494, 22493, 22495, 23064})	
+	elseif englishClass == 'WARLOCK' then
+		add('WARLOCK_T3', 'AD_SET', '-inv_crown_01', {22506, 22507, 22504, 22505, 22508, 22510, 22509, 22511, 23063})	
+	elseif englishClass == 'PRIEST' then
+		add('PRIEST_T3', 'AD_SET', '-inv_crown_01', {22518, 22519, 22514, 22517, 22513, 22512, 22516, 22515, 23061})	
+	elseif englishClass == 'MAGE' then
+		add('MAGE_T3', 'AD_SET', '-inv_crown_01', {22498, 22499, 22496, 22497, 22500, 22502, 22501, 22503, 23062})
+	elseif englishClass == 'ROGUE' then
+		add('ROGUE_T3', 'AD_SET', '-inv_helmet_58', {22478, 22479, 22476, 22477, 22480, 22482, 22481, 22483, 23060})
+	elseif englishClass == 'HUNTER' then
+		add('HUNTER_T3', 'AD_SET', '-inv_helmet_15', {22438, 22439, 22436, 22437, 22441, 22442, 22440, 22443, 23067})
+	elseif englishClass == 'PALADIN' then
+		add('PALADIN_T3', 'AD_SET', '-inv_helmet_15', {22428, 22429, 22426, 22427, 22430, 22424, 22431, 22425, 23066})
+	elseif englishClass == 'WARRIOR' then
+		add('WARRIOR_T3', 'AD_SET', '-inv_helmet_58', {22418, 22419, 22416, 22417, 22420, 22422, 22421, 22423, 23059})
+	elseif englishClass == 'SHAMAN' then
+		add('SHAMAN_T3', 'AD_SET', '-inv_helmet_15', {22466, 22467, 22464, 22465, 22468, 22470, 22469, 22471, 23065})
+	end
+	
 end
 
 -- QUESTS --

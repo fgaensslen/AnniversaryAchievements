@@ -95,6 +95,16 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_FEATS_OF_STRENGTH = 'Heldentaten',
     CATEGORY_EVENTS = 'Weltereignisse',
 	
+	AN_DRUID_T1 = 'Gewänder des Cenarius',
+	AN_WARLOCK_T1 = 'Teufelsherzroben',
+	AN_PRIEST_T1 = 'Gewänder der Prophezeiung',
+	AN_MAGE_T1 = 'Ornat des Arkanisten',
+	AN_ROGUE_T1 = 'Der Nachtmeuchler',
+	AN_HUNTER_T1 = 'Rüstung des Riesenjägers',
+	AN_PALADIN_T1 = 'Rüstung der Gerechtigkeit',
+	AN_WARRIOR_T1 = 'Schlachtrüstung der Macht',
+	AN_SHAMAN_T1 = 'Die Wut der Erde',
+	
 	AN_DRUID_T2 = 'Gewänder des Stormrage',
 	AN_WARLOCK_T2 = 'Roben der Nemesis',
 	AN_PRIEST_T2 = 'Gewänder der Erhabenheit',
@@ -104,7 +114,18 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AN_PALADIN_T2 = 'Rüstung des Richturteils',
 	AN_WARRIOR_T2 = 'Schlachtrüstung des Zorns',
 	AN_SHAMAN_T2 = 'Die zehn Stürme',
-	AD_SET_T2 = 'Sammelt alle Gegenstände des genannten Sets.',		
+	
+	AN_DRUID_T3 = 'Gewandung des Traumwandlers',
+	AN_WARLOCK_T3 = 'Roben des verseuchten Herzens',
+	AN_PRIEST_T3 = 'Gewänder des Glaubens',
+	AN_MAGE_T3 = 'Frostfeuerornat',
+	AN_ROGUE_T3 = 'Rüstung der Knochensense',
+	AN_HUNTER_T3 = 'Rüstung des Gruftpirschers',
+	AN_PALADIN_T3 = 'Rüstung der Erlösung',
+	AN_WARRIOR_T3 = 'Schlachtrüstung des Schreckenspanzers',
+	AN_SHAMAN_T3 = 'Der Erdspalter',
+	
+	AD_SET = 'Sammelt alle Gegenstände des genannten Sets.',		
 
     AN_LVL = 'Level %d',
     AD_LVL = 'Erreicht Level %d.',

@@ -94,6 +94,16 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_FEATS_OF_STRENGTH = 'Feats of Strength',
     CATEGORY_EVENTS = 'World Events',
 	
+	AN_DRUID_T1 = 'Cenarion Raiment',
+	AN_WARLOCK_T1 = 'Felheart Raiment',
+	AN_PRIEST_T1 = 'Vestments of Prophecy',
+	AN_MAGE_T1 = 'Arcanist Regalia',
+	AN_ROGUE_T1 = 'Nightslayer Armor',
+	AN_HUNTER_T1 = 'Giantstalker Armor',
+	AN_PALADIN_T1 = 'Lawbringer Armor',
+	AN_WARRIOR_T1 = 'Battlegear of Might',
+	AN_SHAMAN_T1 = 'Earthfury Raiment',
+	
 	AN_DRUID_T2 = 'Stormrage Raiment',
 	AN_WARLOCK_T2 = 'Nemesis Raiment',
 	AN_PRIEST_T2 = 'Vestments of Transcendence',
@@ -103,7 +113,18 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AN_PALADIN_T2 = 'Judgement Armor',
 	AN_WARRIOR_T2 = 'Battlegear of Wrath',
 	AN_SHAMAN_T2 = 'The Ten Storms',
-	AD_SET_T2 = 'Collect all items of the mentioned set.',	
+
+	AN_DRUID_T3 = 'Dreamwalker Raiment',
+	AN_WARLOCK_T3 = 'Plagueheart Raiment',
+	AN_PRIEST_T3 = 'Vestments of Faith',
+	AN_MAGE_T3 = 'Frostfire Regalia',
+	AN_ROGUE_T3 = 'Bonescythe Armor',
+	AN_HUNTER_T3 = 'Cryptstalker Armor',
+	AN_PALADIN_T3 = 'Redemption Armor',
+	AN_WARRIOR_T3 = 'Dreadnaught\'s Battlegear',
+	AN_SHAMAN_T3 = 'The Earthshatterer',	
+	
+	AD_SET = 'Collect all items of the mentioned set.',
 	
 	AN_SKELETON_KEY = 'The Key to Scholomance',
 	AD_SKELETON_KEY = 'Obtain the Skeleton Key.',
