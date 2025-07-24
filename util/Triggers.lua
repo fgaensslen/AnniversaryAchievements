@@ -214,27 +214,27 @@ local function updateProfessions()
     triggerProfessions(secondary, TYPE.REACH_SECONDARY_PROFESSION_LEVEL)
 end
 
+local previousCookingRecipeCount = 0  -- Cache to store the last counted number
+
 function CountLearnedCookingRecipes()
 	local profession = GetTradeSkillLine()
-	for _, data in pairs(ClassicAchievementsProfessions) do
-		if profession == GetSpellInfo(2550) then
-			local total = 0
-			for i = 1, GetNumTradeSkills() do
-				local _, type = GetTradeSkillInfo(i)
-				if type ~= 'header' then
-					total = total + 1
-					--local link = GetTradeSkillItemLink(i)
-					--if link then
-					--	local id = getItemIdFromLink(link)
-					--	if id then trigger(TYPE.LEARN_PROFESSION_RECIPE, {data[1], id}) end
-					--end
-				end
-			end
-			trigger(TYPE.LEARN_PROFESSION_RECIPES, {ClassicAchievementsProfessions.COOKING[1]}, total, true)
-			break
+	if profession ~= GetSpellInfo(2550) then return end  -- Only proceed if it's cooking
+
+	local total = 0
+	for i = 1, GetNumTradeSkills() do
+		local _, type = GetTradeSkillInfo(i)
+		if type ~= 'header' then
+			total = total + 1
 		end
 	end
+	
+	-- Only trigger if count has increased
+	if total > previousCookingRecipeCount then
+		trigger(TYPE.LEARN_PROFESSION_RECIPES, {ClassicAchievementsProfessions.COOKING[1]}, total, true)
+		previousCookingRecipeCount = total
+	end
 end
+
 
 local function updateItemsInInventory()
     local items = {}
@@ -655,9 +655,9 @@ local events = {
 	TRADE_SKILL_SHOW = function()
 		CountLearnedCookingRecipes()	
 	end,
-    TRADE_SKILL_UPDATE = function()
-		CountLearnedCookingRecipes()        
-    end,
+    --TRADE_SKILL_UPDATE = function()
+		--CountLearnedCookingRecipes()        
+    --end,
     CHAT_MSG_SYSTEM = function(msg)
         local winner = msg:match(DUEL_VICTORY_PATTERN)
         if winner and UnitName('player') == winner then

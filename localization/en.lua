@@ -272,7 +272,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_WISDOM_KEEPER_EASTERN_KINGDOMS = 'Complete the Eastern Kingdoms quest achievements in listed below.',
     AN_WISDOM_KEEPER_OUTLAND = 'Loremaster of Outland',
     AD_WISDOM_KEEPER_OUTLAND = 'Complete the Outland quest achievements listed below.',
-    AR_WISDOM_KEEPER = 'The Loremaster.',
+    AR_WISDOM_KEEPER = 'The Loremaster',
 
     AN_RAGEFIRE_CHASM = 'Ragefire Chasm',
     AD_RAGEFIRE_CHASM = 'Defeat Taragaman the Hungerer.',
