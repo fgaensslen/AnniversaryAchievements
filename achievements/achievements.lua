@@ -101,7 +101,11 @@ do
 		for _, itemID in pairs(ids) do
 			local criteria = criterias:Create('itemID ' .. itemID, TYPE.OBTAIN_ITEM, {itemID})
 				ach:AddCriteria(criteria)
-				criteria.name = GetItemInfo(itemID)
+				
+			local item = Item:CreateFromItemID(itemID)
+			item:ContinueOnItemLoad(function()
+				criteria.name = item:GetItemName()
+			end)
 		end
 	end
 
