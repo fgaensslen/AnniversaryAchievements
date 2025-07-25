@@ -726,15 +726,17 @@ do
 	local arathi5 = add(arathi, arathiID, 1, 'ARATHI_BASE_ASSAULT', '-achievement_bg_takexflags_ab', 50)
 	local arathi6 = add(arathi, arathiID, 2, 'ARATHI_BASE_DEFEND', '-ability_warrior_victoryrush', 50)
 
-	L:Achievement(alterac, 10, '-inv_jewelry_frostwolftrinket_01')
+	local frostwolf = L:Achievement(alterac, 10, '-inv_jewelry_frostwolftrinket_01')
 		:NameDesc('AN_ALTERAC_MOUNT_HORDE', 'AD_ALTERAC_MOUNT_HORDE', true)
 		:Criteria(TYPE.OBTAIN_ITEM, {19029}):Build()
-		:Build():SetHordeOnly()
+		:Build()
+	frostwolf:SetHordeOnly()			
 
-	L:Achievement(alterac, 10, '-inv_jewelry_stormpiketrinket_01')
+	local stormpike = L:Achievement(alterac, 10, '-inv_jewelry_stormpiketrinket_01')
 		:NameDesc('AN_ALTERAC_MOUNT_ALLIANCE', 'AD_ALTERAC_MOUNT_ALLIANCE', true)
 		:Criteria(TYPE.OBTAIN_ITEM, {19030}):Build()
-		:Build():SetAllianceOnly()	
+		:Build()		
+	stormpike:SetAllianceOnly()	
 
 	local function add(category, name, icon, ids)
 		ach = L:Achievement(category, 10, icon)
@@ -786,7 +788,12 @@ do
         :Criteria(TYPE.BATTLEFIELD_FAST_WIN, {eyeID}):Build()
         :Build()
 
-	local alteracBoss = add(alterac, 'ALTERAC_BOSS', '-inv_jewelry_necklace_21', {alteracWins.id, alterac1.id, alterac2.id, alterac3.id, alterac4.id, alterac5.id, alterac6.id, alterac7.id, alterac8.id, alterac9.id})
+	local alteracBoss
+	if factionLetter == 'H' then	
+		alteracBoss = add(alterac, 'ALTERAC_BOSS', '-inv_jewelry_necklace_21', {alteracWins.id, alterac1.id, alterac2.id, alterac3.id, alterac4.id, alterac5.id, alterac6.id, alterac7.id, alterac8.id, alterac9.id, frostwolf.id})
+	else
+		alteracBoss = add(alterac, 'ALTERAC_BOSS', '-inv_jewelry_necklace_21', {alteracWins.id, alterac1.id, alterac2.id, alterac3.id, alterac4.id, alterac5.id, alterac6.id, alterac7.id, alterac8.id, alterac9.id, stormpike.id})
+	end
 	local warsongBoss = add(warsong, 'WARSONG_BOSS', '-inv_misc_rune_07', {warsongWins.id, warsong1.id, warsong2.id, warsong3.id, warsong4.id, warsong5.id, warsong6.id})
 	local arathiBoss = add(arathi, 'ARATHI_BOSS', '-inv_jewelry_amulet_07', {arathiWins.id, arathi1.id, arathi2.id, arathi3.id, arathi4.id, arathi5.id, arathi6.id})
     local eyeBoss = add(bgEye, 'EYE_BOSS', '-Spell_Nature_EyeoftheStorm', {eyeWins.id, eye1.id, eye2.id, eye3.id, eye4.id, eye5.id})
