@@ -621,9 +621,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_EYE_IDEAL_VICTORY = 'Gewinnt im Auge des Sturms mit einem Ergebnis von 1.600 zu 0.',
 
     AN_BGS_KILLING_BLOWS = 'Todbringer',
-    AD_BGS_KILLING_BLOWS = 'Erringt %d Todesstöße auf einem Schlachtfeld und bleibt bis zum Ende der Schlacht.',
+    AD_BGS_KILLING_BLOWS = 'Erringt %d Todesstöße auf einem beliebigen Schlachtfeld.',
     AN_BGS_KILLS = 'Todesengel',
-    AD_BGS_KILLS = 'Erringt %d ehrenhafte Siege in einer einzigen Schlacht auf einem beliebigen Schlachtfeld.',
+    AD_BGS_KILLS = 'Erringt %d ehrenhafte Siege auf einem beliebigen Schlachtfeld.',
 
     PROF_FIRST_AID = 'Erste Hilfe',
     PROF_FISHING = 'Angeln',
