@@ -40,8 +40,8 @@ function CheckDungeonQuests()
 		[1014] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4275} }, -- Archmage Arugal
 
 		-- Blackfathom Deeps
-		[1200] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4829} }, -- Twilight-Lord Kelris
-		[6561] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4829} }, -- Twilight-Lord Kelris
+		[1200] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4832} }, -- Twilight-Lord Kelris
+		[6561] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4832} }, -- Twilight-Lord Kelris
 
 		-- Stormwind Stockade
 		[391] = { type = CA_Criterias.TYPE.KILL_NPC, data = {1716} }, -- Bazil Thredd
@@ -59,14 +59,16 @@ function CheckDungeonQuests()
 		[3341] = { type = CA_Criterias.TYPE.KILL_NPC, data = {7358} }, -- Amnennar the Coldbringer
 
 		-- Scarlet Monastery
-		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4543} }, -- Alle vier Bosse
-		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {6487} }, -- Alle vier Bosse
-		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3975} }, -- Alle vier Bosse
-		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3977} }, -- Alle vier Bosse
-		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4543} }, -- Alle vier Bosse
-		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {6487} }, -- Alle vier Bosse
-		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3975} }, -- Alle vier Bosse
-		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3977} }, -- Alle vier Bosse
+		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4543} }, -- Alle fünf Bosse für Horde
+		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {6487} },
+		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3975} },
+		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3976} },
+		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3977} },
+		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4543} }, -- Alle fünf Bosse für Allianz
+		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {6487} },
+		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3975} },
+		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3976} }, 
+		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3977} },
 
 		-- Uldaman
 		[2278] = { type = CA_Criterias.TYPE.KILL_NPC, data = {2748} }, -- Archaedas 
@@ -96,6 +98,7 @@ function CheckDungeonQuests()
 
 		-- Scholomance
 		[5382] = { type = CA_Criterias.TYPE.KILL_NPC, data = {1853} }, -- Darkmaster Gandling
+		[5466] = { type = CA_Criterias.TYPE.KILL_NPC, data = {10508} }, -- Ras Frostraunen
 
 		-- Stratholme
 		[5262] = { type = CA_Criterias.TYPE.KILL_NPC, data = {10813} }, -- Balnazzar
@@ -218,7 +221,7 @@ local previousCookingRecipeCount = 0  -- Cache to store the last counted number
 
 function CountLearnedCookingRecipes()
 	local profession = GetTradeSkillLine()
-	if profession ~= GetSpellInfo(2550) then return end  -- Only proceed if it's cooking
+	if profession ~= loc:Get('PROF_COOKING') then return end  -- Only proceed if it's cooking
 
 	local total = 0
 	for i = 1, GetNumTradeSkills() do
@@ -634,7 +637,7 @@ local events = {
                 end
             end
         end
-        if UnitLevel('player') == 70 then
+        if UnitLevel('player') == 60 then
             trigger(TYPE.BATTLEFIELD_MAX_LEVEL_PARTICIPATION)
         end
     end,
