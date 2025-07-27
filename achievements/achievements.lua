@@ -669,7 +669,7 @@ do
         return _add(alterac, alteracID, 'ALTERAC', typeName, type, additionalParam, amounts, icon)
     end
 
-    local alterac1 = add('KILLING_BLOW', TYPE.BATTLEFIELD_SCORE_MAX, 1, {10, 25, 50, 100}, '-Spell_Shadow_Summonimp')
+    local alterac1 = add('KILLING_BLOW', TYPE.BATTLEFIELD_SCORE_MAX, 1, {5, 10, 25, 40}, '-Spell_Shadow_Summonimp')
     local alterac2 = add('GRAVEYARD_ASSAULT', TYPE.BATTLEFIELD_STAT_MAX, 1, {1, 2, 3, 4}, '-Spell_Holy_Divinespirit')
     local alterac3 = add('GRAVEYARD_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 2, 3, 4}, '-Spell_Holy_Prayerofspirit')
     local alterac4 = add('TOWER_ASSAULT', TYPE.BATTLEFIELD_STAT_MAX, 3, {1, 2, 3, 4}, '-Ability_Thunderbolt')
@@ -684,7 +684,7 @@ do
         return _add(warsong, warsongID, 'WARSONG', typeName, type, additionalParam, amounts, icon)
     end
 
-    local warsong1 = add('KILL', TYPE.BATTLEFIELD_SCORE_MAX, 2, {10, 25, 50, 100}, '-Ability_Rogue_Eviscerate')
+    local warsong1 = add('KILL', TYPE.BATTLEFIELD_SCORE_MAX, 2, {10, 25, 50, 75}, '-Ability_Rogue_Eviscerate')
     local warsong2 = add('FLAG_CAPTURE', TYPE.BATTLEFIELD_STAT_MAX, 1, {1, 2, 3}, '-Inv_Banner_03')
     local warsong3 = add('FLAG_RETURN', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 2, 3}, '-Spell_Nature_Reincarnation')
 	local warsong4 = L:Achievement(warsong, 10, '-achievement_bg_winwsg_underxminutes')
