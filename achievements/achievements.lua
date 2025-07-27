@@ -671,10 +671,10 @@ do
 
     local alterac1 = add('KILLING_BLOW', TYPE.BATTLEFIELD_SCORE_MAX, 1, {10, 25, 50, 100}, '-Spell_Shadow_Summonimp')
     local alterac2 = add('GRAVEYARD_ASSAULT', TYPE.BATTLEFIELD_STAT_MAX, 1, {1, 2, 3, 4}, '-Spell_Holy_Divinespirit')
-    local alterac3 = add('GRAVEYARD_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 2, 5, 8}, '-Spell_Holy_Prayerofspirit')
+    local alterac3 = add('GRAVEYARD_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 2, 3, 4}, '-Spell_Holy_Prayerofspirit')
     local alterac4 = add('TOWER_ASSAULT', TYPE.BATTLEFIELD_STAT_MAX, 3, {1, 2, 3, 4}, '-Ability_Thunderbolt')
-    local alterac5 = add('TOWER_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 4, {1, 2, 4, 6}, '-Inv_Shield_05')
-    local alterac6 = _add(alterac, nil, 'ALTERAC', 'MINE_CAPTURE', TYPE.ALTERAC_VALLEY_MINE_CAPTURE_MAX, nil, {1, 2, 3, 4}, '-Inv_Pick_01')
+    local alterac5 = add('TOWER_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 4, {1, 2, 3, 4}, '-Inv_Shield_05')
+    local alterac6 = _add(alterac, nil, 'ALTERAC', 'MINE_CAPTURE', TYPE.ALTERAC_VALLEY_MINE_CAPTURE_MAX, nil, {1, 2}, '-Inv_Pick_01')
 	local alterac7 = L:Achievement(alterac, 10, '-achievement_bg_winav_underxminutes')
 		:NameDesc('AN_ALTERAC_FAST_WIN', 'AD_ALTERAC_FAST_WIN', true)
 		:Criteria(TYPE.BATTLEFIELD_FAST_WIN, {alteracID}):Build()
@@ -684,9 +684,9 @@ do
         return _add(warsong, warsongID, 'WARSONG', typeName, type, additionalParam, amounts, icon)
     end
 
-    local warsong1 = add('KILL', TYPE.BATTLEFIELD_SCORE_MAX, 2, {10, 25, 50, 75}, '-Ability_Rogue_Eviscerate')
+    local warsong1 = add('KILL', TYPE.BATTLEFIELD_SCORE_MAX, 2, {10, 25, 50, 100}, '-Ability_Rogue_Eviscerate')
     local warsong2 = add('FLAG_CAPTURE', TYPE.BATTLEFIELD_STAT_MAX, 1, {1, 2, 3}, '-Inv_Banner_03')
-    local warsong3 = add('FLAG_RETURN', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 3, 5}, '-Spell_Nature_Reincarnation')
+    local warsong3 = add('FLAG_RETURN', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 2, 3}, '-Spell_Nature_Reincarnation')
 	local warsong4 = L:Achievement(warsong, 10, '-achievement_bg_winwsg_underxminutes')
 		:NameDesc('AN_WARSONG_FAST_WIN', 'AD_WARSONG_FAST_WIN', true)
 		:Criteria(TYPE.BATTLEFIELD_FAST_WIN, {warsongID}):Build()
@@ -697,7 +697,7 @@ do
     end
 
     local arathi1 = add('BASE_ASSAULT', TYPE.BATTLEFIELD_STAT_MAX, 1, {1, 2, 3, 4}, '-Ability_Eyeoftheowl')
-    local arathi2 = add('BASE_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 2, 4, 6}, '-Inv_Shield_06')	
+    local arathi2 = add('BASE_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 2, 3, 4}, '-Inv_Shield_06')	
 	local arathi3 = L:Achievement(arathi, 10, '-ability_hunter_catlikereflexes')
 		:NameDesc('AN_ARATHI_CATS', 'AD_ARATHI_CATS', true)
 		:Criteria(TYPE.EMOTE, {'PAT', 15071}):Name('NPC_15071', true):Build()

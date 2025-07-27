@@ -637,9 +637,9 @@ local events = {
                 end
             end
         end
-        if UnitLevel('player') == 60 then
-            trigger(TYPE.BATTLEFIELD_MAX_LEVEL_PARTICIPATION)
-        end
+        
+        trigger(TYPE.BATTLEFIELD_MAX_LEVEL_PARTICIPATION)
+        
     end,
 	ZONE_CHANGED_NEW_AREA = function()
 		checkUnexploredAreas()
