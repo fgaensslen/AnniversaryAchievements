@@ -674,7 +674,7 @@ do
     local alterac3 = add('GRAVEYARD_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 2, 3, 4}, '-Spell_Holy_Prayerofspirit')
     local alterac4 = add('TOWER_ASSAULT', TYPE.BATTLEFIELD_STAT_MAX, 3, {1, 2, 3, 4}, '-Ability_Thunderbolt')
     local alterac5 = add('TOWER_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 4, {1, 2, 3, 4}, '-Inv_Shield_05')
-    local alterac6 = _add(alterac, nil, 'ALTERAC', 'MINE_CAPTURE', TYPE.ALTERAC_VALLEY_MINE_CAPTURE_MAX, nil, {1, 2}, '-Inv_Pick_01')
+    local alterac6 = _add(alterac, nil, 'ALTERAC', 'MINE_CAPTURE', TYPE.ALTERAC_VALLEY_MINE_CAPTURE_MAX, nil, {1, 2, 3, 4}, '-Inv_Pick_01')
 	local alterac7 = L:Achievement(alterac, 10, '-achievement_bg_winav_underxminutes')
 		:NameDesc('AN_ALTERAC_FAST_WIN', 'AD_ALTERAC_FAST_WIN', true)
 		:Criteria(TYPE.BATTLEFIELD_FAST_WIN, {alteracID}):Build()
