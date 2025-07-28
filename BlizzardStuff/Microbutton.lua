@@ -51,8 +51,9 @@ SexyLib:Util():AfterLogin(function()
         thing:SetPoint(point, relativeTo, relativePoint, xOf or xOfs, yOf or yOfs)
     end
     
+    move(MainMenuBarTexture1, -width + 1.5)
     move(MainMenuBarPageNumber, -width + 1.5)
-    move(MainMenuBarTexture2, -width / 2)
+    move(MainMenuBarTexture2, -width / 2 - 1.5)
     MainMenuBarTexture2:SetWidth(MainMenuBarTexture2:GetWidth() + width)
     AchievementMicroButton:SetFrameStrata('HIGH')
     C_Timer.After(0.01, function()
