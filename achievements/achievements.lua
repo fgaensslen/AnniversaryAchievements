@@ -260,7 +260,11 @@ do
     questsEasternKingdoms:add('SEARING_GORGE', 3481, 10, '-achievement_zone_searinggorge_01')
     questsEasternKingdoms:add('BLASTED_LANDS', 3628, 10, '-achievement_zone_blastedlands_01')
     questsEasternKingdoms:add('WESTERN_PLAGUELANDS', {5944, 5051, 4985}, 10, '-achievement_zone_westernplaguelands_01')
-    questsEasternKingdoms:add('EASTERN_PLAGUELANDS', {5942, 6041, 5265}, 10, '-achievement_zone_easternplaguelands')
+	if UnitFactionGroup('player') == 'Horde' then
+		questsEasternKingdoms:add('EASTERN_PLAGUELANDS', {5942, 6148, 5265}, 10, '-achievement_zone_easternplaguelands')
+    else
+		questsEasternKingdoms:add('EASTERN_PLAGUELANDS', {5942, 6187, 5265}, 10, '-achievement_zone_easternplaguelands')
+    end    
     questsEasternKingdoms:add('BLACK_ROCK', 8996, 20, '-achievement_zone_blackrock_01')
 
     local wisdomAzeroth = quests:CreateAchievement('AN_WISDOM_KEEPER_AZEROTH', 'AD_WISDOM_KEEPER_AZEROTH', 20, '-Inv_Misc_Book_09', true)
@@ -1351,12 +1355,12 @@ do
 		
 	-- FIRST AID
     ach = firstAid:CreateAchievement('AN_STOCKING_UP', 'AD_STOCKING_UP', 10, '-Inv_Misc_Bandage_12', true)
-    ach:AddCriteria(criterias:CreateL('AC_STOCKING_UP', TYPE.CRAFT_ITEM, {14530}, 100))
+		ach:AddCriteria(criterias:CreateL('AC_STOCKING_UP', TYPE.CRAFT_ITEM, {14530}, 100))
     previous = ach
 
     ach = firstAid:CreateAchievement('AN_STOCKING_UP_2', 'AD_STOCKING_UP_2', 10, '-Inv_Misc_Bandage_12', true)
-    ach:AddCriteria(criterias:CreateL('AC_STOCKING_UP_2', TYPE.CRAFT_ITEM, {14530}, 500))
-    previous:SetNext(ach)
+		ach:AddCriteria(criterias:CreateL('AC_STOCKING_UP_2', TYPE.CRAFT_ITEM, {14530}, 500))
+		previous:SetNext(ach)
     previous = nil
 
     --TBC

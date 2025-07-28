@@ -228,7 +228,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     EASTERN_PLAGUELANDS_1 = 'Östliche Pestländer',
     EASTERN_PLAGUELANDS_2 = 'Östliche Pestländer',
     QUEST_5942 = 'Versteckte Schätze',
-    QUEST_6041 = 'When Smokey Sings, I Get Violent',
+    QUEST_6148 = 'Das Scharlachrote Orakel Demetria',
+    QUEST_6187 = 'Ordnung muss wieder hergestellt werden',
     QUEST_5265 = 'Der Argentumtresor',
 
     BLASTED_LANDS_1 = 'Verwüstete Lande',

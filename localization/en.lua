@@ -230,7 +230,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     EASTERN_PLAGUELANDS_1 = 'Eastern Plaguelands',
     EASTERN_PLAGUELANDS_2 = 'Eastern Plaguelands',
     QUEST_5942 = 'Hidden Treasures',
-    QUEST_6041 = 'When Smokey Sings, I Get Violent',
+    QUEST_6148 = 'The Scarlet Oracle, Demetria',
+    QUEST_6187 = 'Order Must Be Restored',
     QUEST_5265 = 'The Argent Hold',
 
     BLASTED_LANDS_1 = 'Blasted Lands',
