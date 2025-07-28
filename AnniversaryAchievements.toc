@@ -34,7 +34,6 @@ util/Guild.lua
 util/PostLoad.lua
 
 BlizzardStuff/ApiMocks.lua
-BlizzardStuff/AchievementUtil.lua
 BlizzardStuff/AchievementUI.lua
 BlizzardStuff/AchievementUI.xml
 
