@@ -201,8 +201,13 @@ do
     end
 	
 	-- KEYs
-	ach = quests:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 10, '-inv_misc_key_11', true)
-	    ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {13704}))
+    if UnitFactionGroup('player') == 'Horde' then
+		ach = quests:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 10, '-inv_misc_key_11', true)
+	    ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {5511}))
+    else
+		ach = quests:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 10, '-inv_misc_key_11', true)
+	    ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {5505}))
+    end	
 
     --ZONE QUESTS
 	local function addZoneQuests(continent, parent, zoneName, questIDs, points, logo)
@@ -389,7 +394,7 @@ end
 do
 	local exploreAzeroth = exploration:CreateAchievement('AN_EXPLORE_AZEROTH', 'AD_EXPLORE_AZEROTH', 30, '-Inv_Misc_Map_01', true)
 
-    local global = exploration:CreateAchievement('AN_EXPLORE_KALIMDOR', 'AD_EXPLORE_KALIMDOR', 25, '-achievement_zone_kalimdor_01', true)
+    local global = exploration:CreateAchievement('AN_EXPLORE_KALIMDOR', 'AD_EXPLORE_KALIMDOR', 20, '-achievement_zone_kalimdor_01', true)
     local function add(areaID, areaIDs, icon)
         local areaName = AreaTableLocale[areaID]
         ach = explorationKalimdor:CreateAchievement(loc:Get('AN_EXPLORE', areaName), loc:Get('AD_EXPLORE', areaName), 10, icon)
@@ -420,7 +425,7 @@ do
     add(3525, {3597, 3593, 3594, 3585, 3612, 3584, 3600, 3602, 3908, 3910, 3592, 3601, 3591, 3599, 3603, 3604, 3906, 3589, 3588, 3595, 3596, 3909, 3586, 3587, 3907, 3608, 3590, 3598}, '-achievement_zone_bloodmystisle_01')
     exploreAzeroth:AddCriteria(criterias:Create(global.name, TYPE.COMPLETE_ACHIEVEMENT, {global.id}))
 
-    global = exploration:CreateAchievement('AN_EXPLORE_EASTERN_KINGDOMS', 'AD_EXPLORE_EASTERN_KINGDOMS', 25, '-achievement_zone_easternkingdoms_01', true)
+    global = exploration:CreateAchievement('AN_EXPLORE_EASTERN_KINGDOMS', 'AD_EXPLORE_EASTERN_KINGDOMS', 20, '-achievement_zone_easternkingdoms_01', true)
     add = function(areaID, areaIDs, icon)
         local areaName = AreaTableLocale[areaID]
         ach = explorationEasternKingdoms:CreateAchievement(loc:Get('AN_EXPLORE', areaName), loc:Get('AD_EXPLORE', areaName), 10, icon)
@@ -465,7 +470,7 @@ do
 		ach:Build().priority = 1
 
     --TBC		
-	global = exploration:CreateAchievement('AN_EXPLORE_OUTLAND', 'AD_EXPLORE_OUTLAND', 25, '-achievement_zone_outland_01', true)
+	global = exploration:CreateAchievement('AN_EXPLORE_OUTLAND', 'AD_EXPLORE_OUTLAND', 20, '-achievement_zone_outland_01', true)
     add = function(areaID, areaIDs, icon)
         local areaName = AreaTableLocale[areaID]
         ach = outlandExploration:CreateAchievement(loc:Get('AN_EXPLORE', areaName), loc:Get('AD_EXPLORE', areaName), 10, icon)
@@ -499,7 +504,7 @@ do
     local ach = preBuild('MIDDLE_RARE', 10):Build()
     ach:SetAnyCompletable()
 
-    preBuild('BLOODY_RARE', 25):Previous(ach):Build()
+    preBuild('BLOODY_RARE', 20):Previous(ach):Build()
 end
 
 -- PVP -- 
@@ -1515,8 +1520,8 @@ do
     add(749, 'HYDRAXIANS', 10, '-spell_frost_summonwaterelemental_2')
     add(270, 'ZANDALAR_TRIBE', 10, '-inv_bijou_green')
     add(910, 'BROOD_OF_NOZDORMU', 10, '-Inv_Misc_Head_Dragon_Bronze')
-    add(529, 'ARGENT_DAWN', 15, '-inv_jewelry_talisman_07')
-    add(576, 'TIMBERMAW_HOLD', 15, '-achievement_reputation_timbermaw')
+    add(529, 'ARGENT_DAWN', 10, '-inv_jewelry_talisman_07')
+    add(576, 'TIMBERMAW_HOLD', 10, '-achievement_reputation_timbermaw')
     add(909, 'DARKMOON_FAIRE', 10, '-Inv_Misc_MissileLarge_Red')
     add(87, 'PIRATES', 10, '-Inv_Helmet_66', 6)
     add(809, 'SHENDRALAR', 10, '-inv_misc_book_11')
@@ -1551,17 +1556,17 @@ do
         }):Build()
         :Build()
 
-	L:Achievement(tbcReputations, 25, '-ability_racial_ultravision')
+	L:Achievement(tbcReputations, 20, '-ability_racial_ultravision')
         :NameDesc('AN_CENARION_CIRCLE', 'AD_CENARION_CIRCLE', true)
 		:Criteria(TYPE.REACH_REPUTATION, {609, 8}):Name('FACTION_609', true):Build()
 		:Criteria(TYPE.REACH_REPUTATION, {942, 8}):Name('FACTION_942', true):Build()
 		:Build()
 		
     create('ogrila', 1038, '-Inv_Misc_Apexis_Crystal')
-    create('sporeggar', 970, '-Inv_Mushroom_11', 15)
+    create('sporeggar', 970, '-Inv_Mushroom_11', 10)
     create('consortium', 933, '-Inv_Enchant_ShardPrismaticLarge')
-    create('maghar', 941, '-Inv_Misc_Foot_Centaur', 15):SetHordeOnly()
-    create('kurenai', 978, '-Inv_Misc_Foot_Centaur', 15):SetAllianceOnly()
+    create('maghar', 941, '-Inv_Misc_Foot_Centaur', 10):SetHordeOnly()
+    create('kurenai', 978, '-Inv_Misc_Foot_Centaur', 10):SetAllianceOnly()
     create('netherwings', 1015, '-Ability_Mount_NetherdrakePurple')
 
     L:Achievement(tbcReputations, 10, '-Ability_Mount_NetherdrakePurple')
