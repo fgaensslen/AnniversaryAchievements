@@ -784,6 +784,10 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_FISHING_BIG_SIZE = 'Der größte Angler von Azeroth',
     AD_FISHING_BIG_SIZE = 'Schließt die unten aufgelisteten Angel-Erfolge ab.',
     AR_FISHING_BIG_SIZE = 'Der größte Angler von Azeroth',
+	
+	AN_FISHING_COUNT = '%d Fische',
+	AC_FISHING_COUNT = 'Angelt %d Gegenstände oder Fische.',
+	AD_FISHING_COUNT = 'Angelt %d Gegenstände oder Fische.',
 
     AN_COOKING_RECIPES_5 = 'Freizeitkoch',
     AN_COOKING_RECIPES_10 = 'Commis de Cuisine',

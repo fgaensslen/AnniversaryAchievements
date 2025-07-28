@@ -782,6 +782,10 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_FISHING_BIG_SIZE = 'Azeroth\'s Greatest Angler',
     AD_FISHING_BIG_SIZE = 'Complete the following fishing achievements listed below.',
     AR_FISHING_BIG_SIZE = 'Azeroth\'s Greatest Angler',
+	
+	AN_FISHING_COUNT = '%d Fish',
+	AC_FISHING_COUNT = 'Fish up %d items.',
+	AD_FISHING_COUNT = 'Fish up %d items.',
 
     AN_COOKING_RECIPES_5 = 'Lunch Lady',
     AN_COOKING_RECIPES_10 = 'Short Order Cook',

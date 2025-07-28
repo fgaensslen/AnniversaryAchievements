@@ -578,7 +578,10 @@ local events = {
                 local link = GetLootSlotLink(slot)
                 if link then
                     local id = getItemIdFromLink(link)
-                    if id then trigger(TYPE.FISH_AN_ITEM, {id}, quantity) end
+                    if id then 
+						trigger(TYPE.FISH_AN_ITEM, {id}, quantity)
+						trigger(TYPE.FISH_ANY_ITEM, {-1}, quantity)
+					end
                 end
             end
         end

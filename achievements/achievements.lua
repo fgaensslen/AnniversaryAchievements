@@ -1416,6 +1416,20 @@ do
 		ach:AddCriteria(criterias:Create(salmon.name, TYPE.COMPLETE_ACHIEVEMENT, {salmon.id}))
 		ach:AddCriteria(criterias:Create(lobster.name, TYPE.COMPLETE_ACHIEVEMENT, {lobster.id}))
 		ach:SetRewardText(loc:Get('AR_FISHING_BIG_SIZE'))
+	
+    local function fishingAchievements()
+		local ach
+		local lastID = 516
+        for _, count in pairs({25, 50, 100, 250, 500, 1000}) do
+			ach = fishing:CreateAchievement(loc:Get('AN_FISHING_COUNT', count), loc:Get('AD_FISHING_COUNT', count), 10, '-inv_misc_fish_50', false, lastID)
+			ach:AddCriteria(criterias:Create(loc:Get('AC_FISHING_COUNT', count), TYPE.FISH_ANY_ITEM, {-1}, count))				
+		if previous then previous:SetNext(ach) end
+            previous = ach
+			lastID = lastID+1
+        end
+        previous = nil		
+    end	
+	fishingAchievements()
 
     --TBC
     L:Achievement(fishing, 10, '-Inv_Misc_Fish_14')
