@@ -51,9 +51,6 @@ SexyLib:Util():AfterLogin(function()
         thing:SetPoint(point, relativeTo, relativePoint, xOf or xOfs, yOf or yOfs)
     end
     
-    move(MainMenuBarLeftEndCap, -width)
-    move(MainMenuBarTexture0, -width)
-    move(MainMenuBarTexture1, -width)
     move(MainMenuBarPageNumber, -width + 1.5)
     move(MainMenuBarTexture2, -width / 2)
     MainMenuBarTexture2:SetWidth(MainMenuBarTexture2:GetWidth() + width)

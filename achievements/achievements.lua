@@ -818,7 +818,7 @@ do
 		
 	--MISC	
 	ach = nil
-	for _, bgs in pairs({10, 50, 100}) do
+	for _, bgs in pairs({10, 25, 50}) do
 		ach = L:Achievement(pvp, 10, '-Inv_Musket_02')
 				:Name('AN_PARTICIPATE_IN_BGS', true)
 				:Desc('AD_PARTICIPATE_IN_BGS', true, bgs)
