@@ -51,6 +51,7 @@ SexyLib:Util():AfterLogin(function()
         thing:SetPoint(point, relativeTo, relativePoint, xOf or xOfs, yOf or yOfs)
     end
     
+	move(MainMenuBarTexture0, -width + 1.5)
     move(MainMenuBarTexture1, -width + 1.5)
     move(MainMenuBarPageNumber, -width + 1.5)
     move(MainMenuBarTexture2, -width / 2 - 1.5)
