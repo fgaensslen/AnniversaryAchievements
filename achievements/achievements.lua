@@ -396,7 +396,7 @@ end
 
 -- EXPLORATION --
 do
-	local exploreAzeroth = exploration:CreateAchievement('AN_EXPLORE_AZEROTH', 'AD_EXPLORE_AZEROTH', 30, '-Inv_Misc_Map_01', true)
+	local exploreAzeroth = exploration:CreateAchievement('AN_EXPLORE_AZEROTH', 'AD_EXPLORE_AZEROTH', 30, '-inv_misc_map02', true)
 
     local global = exploration:CreateAchievement('AN_EXPLORE_KALIMDOR', 'AD_EXPLORE_KALIMDOR', 20, '-achievement_zone_kalimdor_01', true)
     local function add(areaID, areaIDs, icon)
@@ -1290,11 +1290,11 @@ do
 	previous = nil		
 	
 	--SECOND MAIN PROFESSION
-	local twoMains = professions:CreateAchievement(loc:Get('AN_PROFS_TWO'), loc:Get('AD_PROFS_TWO'), 10, '-Inv_Scroll_03')
+	local twoMains = professions:CreateAchievement(loc:Get('AN_PROFS_TWO'), loc:Get('AD_PROFS_TWO'), 10, '-ability_repair')
 		twoMains:AddCriteria(criterias:Create(loc:Get('AC_PROFS_TWO'), TYPE.REACH_MAIN_PROFESSION_LEVEL, {300}, 2))
 		previous = twoMains
 
-    local twoMainsOutland = professions:CreateAchievement(loc:Get('AN_PROFS_TWO_OUTLAND'), loc:Get('AD_PROFS_TWO_OUTLAND'), 10, '-Inv_Scroll_03')
+    local twoMainsOutland = professions:CreateAchievement(loc:Get('AN_PROFS_TWO_OUTLAND'), loc:Get('AD_PROFS_TWO_OUTLAND'), 10, '-ability_repair')
         twoMainsOutland:AddCriteria(criterias:Create(loc:Get('AC_PROFS_TWO_OUTLAND'), TYPE.REACH_MAIN_PROFESSION_LEVEL, {375}, 2))
         previous:SetNext(twoMainsOutland)
 	previous = nil
@@ -1407,8 +1407,8 @@ do
     add('SKULL', '-Inv_Misc_Bone_DwarfSkull_01', {6301})
 	
 	local snapper = add('SNAPPER', '-inv_misc_fish_32', {6292, 6294, 6295})
-    local seaBass = add('SEA_BASS', '-inv_misc_fish_03', {13876, 13877, 13878, 13879, 13880})
-    local salmon = add('SALMON', '-inv_misc_fish_20', {13901, 13902, 13903, 13904, 13905, 13906})
+    local seaBass = add('SEA_BASS', '-inv_misc_fish_06', {13876, 13877, 13878, 13879, 13880})
+    local salmon = add('SALMON', '-inv_misc_fish_02', {13901, 13902, 13903, 13904, 13905, 13906})
     local lobster = add('LOBSTER', '-Inv_Misc_Fish_14', {13907, 13908, 13909, 13910, 13911, 13912, 13913})
     ach = fishing:CreateAchievement('AN_FISHING_BIG_SIZE', 'AD_FISHING_BIG_SIZE', 10, '-inv_misc_fish_09', true)
 		ach:AddCriteria(criterias:Create(snapper.name, TYPE.COMPLETE_ACHIEVEMENT, {snapper.id}))
@@ -1479,7 +1479,8 @@ do
     ach:AddCriteria(criterias:Create(squid.name, TYPE.COMPLETE_ACHIEVEMENT, {squid.id}))
     ach:AddCriteria(criterias:Create(dumplings.name, TYPE.COMPLETE_ACHIEVEMENT, {dumplings.id}))
 
-    add('CHOPS', '-Inv_Misc_Food_65', 21023, 20, 10)
+	--Change into TBC cake: https://www.wowhead.com/wotlk/achievement=877/the-cake-is-not-a-lie
+    add('CHOPS', '-Inv_Misc_Food_65', 21023, 20):SetUnavailable()
 end
 
 -- REPUTATION --

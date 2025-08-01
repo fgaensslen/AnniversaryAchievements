@@ -702,8 +702,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_UNARMED_SKILL = 'Hat jemand ein Veilchen bestellt?',
     AD_UNARMED_SKILL = 'Erreicht eine unbewaffnete Fertigkeit von 350.',
 
-    AN_EXPLORE_AZEROTH = 'Erforscher von Azeroth',
-    AD_EXPLORE_AZEROTH = 'Erforscht die Welt von Azeroth',
+    AN_EXPLORE_AZEROTH = 'Weltenbummler',
+    AD_EXPLORE_AZEROTH = 'Erforscht die östlichen Königreiche, Kalimdor und die Scherbenwelt.',
+	AR_EXPLORER = 'Entdecker',
     AN_EXPLORE_KALIMDOR = 'Erforscht Kalimdor',
     AD_EXPLORE_KALIMDOR = 'Erforscht die Regionen Kalimdors.',
     AN_EXPLORE_EASTERN_KINGDOMS = 'Erforscht die östlichen Königreiche',
@@ -737,16 +738,16 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_EPIC_GEAR = 'Episch',
     AD_EPIC_GEAR = 'Legt an jedem Platz einen epischen Gegenstand an.',
 
-    AN_STOCKING_UP = 'Vorräte aufstocken',
+    AN_STOCKING_UP = 'Vorrat aufstocken',
     AD_STOCKING_UP = 'Stellt 100 schwere Runenstoffverbände her.',
     AC_STOCKING_UP = 'Stellt 100 schwere Runenstoffverbände her',
-    AN_STOCKING_UP_2 = 'Doppelte Vorratshaltung',
+    AN_STOCKING_UP_2 = 'Vorrat aufstocken',
     AD_STOCKING_UP_2 = 'Stellt 500 schwere Runenstoffverbände her.',
     AC_STOCKING_UP_2 = 'Stellt 500 schwere Runenstoffverbände her',
     AN_STOCKING_UP_OUTLAND = 'Vorbereitung für die Leere',
     AD_STOCKING_UP_OUTLAND = 'Stellt 100 schwere Netherstoffverbände her.',
     AC_STOCKING_UP_OUTLAND = 'Stellt 100 schwere Netherstoffverbände her',
-    AN_STOCKING_UP_2_OUTLAND = 'Ernsthafte Vorbereitung für die Leere',
+    AN_STOCKING_UP_2_OUTLAND = 'Vorbereitung für die Leere',
     AD_STOCKING_UP_2_OUTLAND = 'Stellt 500 schwere Netherstoffverbände her.',
     AC_STOCKING_UP_2_OUTLAND = 'Stellt 500 schwere Netherstoffverbände her',
 
@@ -1136,10 +1137,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_MR_PINCHY = 'Angelt Dr. Zwicky in der Scherbenwelt.',
 
     AN_EXPLORE_OUTLAND = 'Erforscht die Scherbenwelt',
-    AD_EXPLORE_OUTLAND = 'Erforscht die Regionen der Scherbenwelt.',
-    AN_EXPLORER = 'Weltenbummler',
-    AD_EXPLORER = 'Erkundet die Östlichen Königreiche, Kalimdor und die Scherbenwelt.',
-    AR_EXPLORER = 'Erkunder',
+    AD_EXPLORE_OUTLAND = 'Erforscht die Regionen der Scherbenwelt.',    
 
     AN_MIDDLE_RARE = 'Ziemlich selten',
     AD_MIDDLE_RARE = 'Tötet eine der unten aufgelisteten, extrem seltenen und schwer zu findenden Kreaturen der Scherbenwelt.',
