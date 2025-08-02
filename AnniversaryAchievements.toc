@@ -15,7 +15,6 @@ util/stubs.lua
 localization/en.lua
 localization/de.lua
 
-util/AreaTable.lua
 localization/AreaTableLocale_enUS.lua
 localization/AreaTableLocale_deDE.lua
 
