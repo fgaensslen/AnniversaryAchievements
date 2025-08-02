@@ -5,11 +5,11 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     ICON_DESCRIPTION = '&7Left mouse button: &eopen/hide achievements window\n&7Right mouse button: &eopen Anniversary Achievements settings',
 
     OPTION_SHARING = 'Share achievements',
-    OPTION_SHARING_DESC = 'Write messages in chats when receiving a new achievement.',
+    OPTION_SHARING_DESC = 'Write messages in chat when completing a new achievement.',
     OPTION_MICROBUTTON = 'Micromenu button',
-    OPTION_MICROBUTTON_DESC = 'If enabled, an addon button will be added to the micromenu, and the interface may break if you are using any addon to modify it. If disabled, the icon will be added to the minimap. Toggling this option requires you to do /reload or rejoin your character.',
-    OPTION_UPDATE_MAP_EXPLORATION = 'Check explored locations',
-    OPTION_UPDATE_MAP_EXPLORATION_DESC = 'Counts already explored locations for achievements.',
+    OPTION_MICROBUTTON_DESC = 'If enabled, an addon button will be added to the micromenu, and the interface may break if you are using any addon to modify it. If disabled, the icon will be added to the minimap. Toggling this option requires you to do /reload your interface.',
+    OPTION_UPDATE_MAP_EXPLORATION = 'Check explored areas',
+    OPTION_UPDATE_MAP_EXPLORATION_DESC = 'Counts already explored areas for achievements.',
     OPTION_RESET_ACHIEVEMENTS = 'Reset achievements',
     OPTION_RESET_ACHIEVEMENTS_DESC = 'Reset all achievements progressions on this character. This can not be undone!',
 
@@ -19,8 +19,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     COMPARE_ACHIEVEMENTS = 'Compare achievements',
     TARGET_DOES_NOT_HAVE_ADDON = 'Target does not have this addon installed.',
 
-    UPDATING_EXPLORED_AREAS = 'Updating location exploration data. This action will take a few seconds.',
-    UPDATED_EXPLORED_AREAS = '&aInformation about explored locations has been updated!',
+    UPDATING_EXPLORED_AREAS = 'Updating area exploration data. This action will take a few seconds.',
+    UPDATED_EXPLORED_AREAS = '&aInformation about explored areas has been updated!',
 
     GEAR_SLOT_HEAD = 'Head',
     GEAR_SLOT_NECK = 'Neck',

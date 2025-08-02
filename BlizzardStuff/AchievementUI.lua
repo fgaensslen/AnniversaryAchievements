@@ -819,6 +819,14 @@ function AchievementFrameAchievements_OnEvent (self, event, ...)
 		RegisterCustomEvent("ACHIEVEMENT_SEARCH_UPDATED");
 
 		updateTrackedAchievements(GetTrackedAchievements());
+		
+		AchievementFrame:HookScript("OnShow", function(self)
+			if CA_Settings and CA_Settings.AchievementFramePosition then
+				local pos = CA_Settings.AchievementFramePosition
+				self:ClearAllPoints()
+				self:SetPoint(pos.point or "CENTER", UIParent, pos.relativePoint or "CENTER", pos.x or 0, pos.y or 0)
+			end
+		end)
 	elseif ( event == "ACHIEVEMENT_EARNED" ) then
 		local achievementID = ...;
 		AchievementFrameCategories_GetCategoryList(ACHIEVEMENTUI_CATEGORIES);
@@ -864,6 +872,25 @@ function AchievementFrameAchievements_OnEvent (self, event, ...)
 		AchievementFrame.searchBox.fullSearchFinished = true;
 		AchievementFrame_UpdateSearch(self);
 	end
+	
+	AchievementFrame:SetMovable(true)
+	AchievementFrame:SetClampedToScreen(true)
+	AchievementFrame:RegisterForDrag("LeftButton")
+	AchievementFrame:SetScript("OnDragStart", function(self)
+		self:StartMoving()
+	end)
+	AchievementFrame:SetScript("OnDragStop", function(self)
+		self:StopMovingOrSizing()
+		local point, _, relativePoint, xOfs, yOfs = self:GetPoint()
+
+		CA_Settings = CA_Settings or {}
+		CA_Settings.AchievementFramePosition = {
+			point = point,
+			relativePoint = relativePoint,
+			x = xOfs,
+			y = yOfs,
+		}
+	end)	
 end
 
 function AchievementFrameAchievementsBackdrop_OnLoad (self)

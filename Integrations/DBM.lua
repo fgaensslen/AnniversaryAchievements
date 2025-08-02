@@ -1,7 +1,6 @@
 if not DBM or not DBM.LoadMod then return end
 
 local countPulls = {}
-countPulls['449'] = true -- balnazzar from living statholme is bugged in dbm
 
 hooksecurefunc(DBM, 'LoadMod', function(that, initialMod)
     if type(initialMod) ~= 'table' then return end
