@@ -351,6 +351,9 @@ do
         wisdomAlliance:AddCriteria(criterias:Create(allianceOutlandQuests.name , TYPE.COMPLETE_ACHIEVEMENT, {allianceOutlandQuests.id}))
         wisdomAlliance:SetRewardText(loc:Get('AR_WISDOM_KEEPER'))		
 	wisdomAlliance:SetAllianceOnly()
+	
+	ach = outlandQuests:CreateAchievement('AN_HEMET_QUESTS_NAGRAND', 'AD_HEMET_QUESTS_NAGRAND', 10, '-ability_mount_ridingelekk', true, 526)
+		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9852}))
 
     --ATTUNEMENT    
 	L:Achievement(outlandQuests, 10, '-inv_misc_key_02')
@@ -360,12 +363,12 @@ do
 		
 	L:Achievement(outlandQuests, 10, '-inv_datacrystal03')
         :NameDesc('AN_ATTUNE_ARCATRAZ', 'AD_ATTUNE_ARCATRAZ', true)
-        :Criteria(TYPE.OBTAIN_ITEM, {31084}):Build()
+        :Criteria(TYPE.COMPLETE_QUEST, {10704}):Build()
         :Build()
 		
 	L:Achievement(outlandQuests, 10, '-inv_misc_key_07')
         :NameDesc('AN_ATTUNE_KARAZHAN', 'AD_ATTUNE_KARAZHAN', true)
-        :Criteria(TYPE.OBTAIN_ITEM, {24490}):Build()
+        :Criteria(TYPE.COMPLETE_QUEST, {9837}):Build()
         :Build()
 		
 	L:Achievement(outlandQuests, 10, '-inv_misc_urn_01')
@@ -380,7 +383,7 @@ do
 		
 	L:Achievement(outlandQuests, 10, '-inv_datacrystal11')
         :NameDesc('AN_ATTUNE_EYE', 'AD_ATTUNE_EYE', true)
-        :Criteria(TYPE.OBTAIN_ITEM, {31704}):Build()
+        :Criteria(TYPE.COMPLETE_QUEST, {10888}):Build()
         :Build()
 		
     L:Achievement(outlandQuests, 10, '-inv_potion_101')
@@ -466,12 +469,11 @@ do
 	add(4080, {4087, 4089, 4091, 4092, 4094, 4095}, '-achievement_zone_isleofqueldanas')
     exploreAzeroth:AddCriteria(criterias:Create(global.name, TYPE.COMPLETE_ACHIEVEMENT, {global.id}))
 	
-	ach = L:Achievement(exploration, 10, '-inv_jewelcrafting_crimsonhare')
+	ach = L:Achievement(general, 10, '-inv_jewelcrafting_crimsonhare')
 		:NameDesc('AN_LOVE', 'AD_LOVE', true)
 		for _, creatureID in pairs({3444, 620, 1420, 13321, 2620, 9600, 5951, 9699, 4953, 721, 9700, 15476, 2914, 16030, 4075, 1412, 7390, 15475, 15010, 4076, 13016, 14881, 2110, 4166, 1933, 890, 2098, 2442, 6368, 10582, 385, 10685, 3300}) do
 			ach:Criteria(TYPE.EMOTE, {'LOVE', creatureID}):Name('NPC_' .. creatureID, true):Build()
 		end
-		ach:Build().priority = 1
 
     --TBC		
 	global = exploration:CreateAchievement('AN_EXPLORE_OUTLAND', 'AD_EXPLORE_OUTLAND', 20, '-achievement_zone_outland_01', true)
@@ -1135,7 +1137,7 @@ do
 	builderHeroicTBC = builderHeroicTBC:Build()
 	builderNormalTBC:SetNext(builderHeroicTBC)
 
-    L:Achievement(tbcInstances, 20, '-Inv-Mount_Raven_54')
+    L:Achievement(featsOfStrength, 0, '-Inv-Mount_Raven_54')
         :NameDesc('AN_RAVEN_LORD', 'AD_RAVEN_LORD', true)
         :Criteria(TYPE.OBTAIN_ITEM, {32768}):Build()
         :Build()
@@ -1400,7 +1402,7 @@ do
         return ach
     end
 	
-	add('COLLECTION', '-inv_misc_fish_08', {19975, 6291, 6643, 6645, 6522, 6358, 21071, 6359, 8365, 21153, 13755, 13422, 13757, 13754, 13758, 13756, 13760, 13759, 13890, 13889, 13893, 13888, 12238, 19806, 19805, 19803})
+	add('COLLECTION', '-inv_misc_fish_08', {19975, 6291, 6643, 6645, 6522, 6358, 21071, 6359, 8365, 21153, 13755, 13422, 13757, 13754, 13758, 13756, 13760, 13759, 13890, 13889, 13893, 13888, 12238, 19806, 19805, 19803, 19807, 6299, 6458})
     add('WATER', '-Spell_Nature_Acid_01', {7080})
     add('RUM', '-Inv_Drink_04', {21151, 21114, 20709})
     add('RING', '-Inv_Jewelry_Ring_03', {8350})
@@ -1479,7 +1481,7 @@ do
     ach:AddCriteria(criterias:Create(squid.name, TYPE.COMPLETE_ACHIEVEMENT, {squid.id}))
     ach:AddCriteria(criterias:Create(dumplings.name, TYPE.COMPLETE_ACHIEVEMENT, {dumplings.id}))
 
-	--Change into TBC cake: https://www.wowhead.com/wotlk/achievement=877/the-cake-is-not-a-lie
+	--TODO: Change into TBC cake: https://www.wowhead.com/wotlk/achievement=877/the-cake-is-not-a-lie
     add('CHOPS', '-Inv_Misc_Food_65', 21023, 20):SetUnavailable()
 end
 
@@ -1542,7 +1544,7 @@ do
     add(529, 'ARGENT_DAWN', 10, '-inv_jewelry_talisman_07')
     add(576, 'TIMBERMAW_HOLD', 10, '-achievement_reputation_timbermaw')
     add(909, 'DARKMOON_FAIRE', 10, '-Inv_Misc_MissileLarge_Red')
-    add(87, 'PIRATES', 10, '-Inv_Helmet_66', 6)
+    add(59, 'THORIUM', 10, '-inv_enchant_dustsoul')
     add(809, 'SHENDRALAR', 10, '-inv_misc_book_11')
 
     --TBC
@@ -1627,6 +1629,16 @@ do
 	
 	ach = featsOfStrength:CreateAchievement('AN_SABER_MOUNT', 'AD_SABER_MOUNT', 0, '-ability_mount_pinktiger', true)
 		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {13086}))
+		
+	ach = featsOfStrength:CreateAchievement('AN_PIRATES_HAT', 'AD_PIRATES_HAT', 0, '-inv_helmet_66', true, 523)
+		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {4621}))
+		ach:SetRewardText(loc:Get('AR_PIRATES_HAT'))
+		
+	ach = featsOfStrength:CreateAchievement('AN_WARLOCK_MOUNT', 'AD_WARLOCK_MOUNT', 0, '-ability_mount_dreadsteed', true, 524)
+		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {7631}))
+		
+	ach = featsOfStrength:CreateAchievement('AN_PALADIN_MOUNT', 'AD_PALADIN_MOUNT', 0, '-ability_mount_charger', true, 525)
+		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {7647}))
 
     --TBC
     L:Achievement(featsOfStrength, 0, '-inv_shirt_guildtabard_01')
@@ -1660,6 +1672,25 @@ do
         :Criteria(TYPE.P3_FIRST_WEEK, { 22917 }):Name('AC_KILL_ILLIDAN', true):Build()
         :Reward('AR_P3_FIRST_WEEK', true)
         :Build()
+
+	ach = featsOfStrength:CreateAchievement('AN_FLIGHFORM', 'AD_FLIGHFORM', 0, '-ability_druid_flightform', true, 522)
+		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {11001}))	
+		
+	ach = featsOfStrength:CreateAchievement('AN_HORSEMAN_MOUNT', 'AD_HORSEMAN_MOUNT', 0, '-inv_belt_12', true, 527)
+		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {37012}))		
+		
+	ach = featsOfStrength:CreateAchievement('AN_HERO_SHATTRATH', 'AD_HERO_SHATTRATH', 0, '-spell_arcane_teleportshattrath', true, 528)
+		ach:AddCriteria(criterias:Create(loc:Get('AN_HERO_ALDOR'), TYPE.REACH_REPUTATION, {932, 8}))	
+		ach:AddCriteria(criterias:Create(loc:Get('AN_HERO_SCRYER'), TYPE.REACH_REPUTATION, {934, 8}))
+		
+	ach = featsOfStrength:CreateAchievement('AN_CHAMPION_NAARU', 'AD_CHAMPION_NAARU', 0, '-inv_mace_51', true, 529)
+		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {10901}))
+		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {10888}))
+		ach:SetRewardText(loc:Get('AR_CHAMPION_NAARU'))	
+		
+	ach = featsOfStrength:CreateAchievement('AN_HAND_ADAL', 'AD_HAND_ADAL', 0, '-inv_mace_25', true, 530)
+		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {10445}))
+		ach:SetRewardText(loc:Get('AR_HAND_ADAL'))
 end
 
 --print(db:GetAllAchievements())

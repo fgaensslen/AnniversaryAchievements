@@ -474,8 +474,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_HYDRAXIANS = 'Earn exalted status with the Hydraxian Waterlords.',
     AN_TIMBERMAW_HOLD = 'They Love Me In That Tunnel',
     AD_TIMBERMAW_HOLD = 'Earn exalted status with Timbermaw Hold.',
-    AN_PIRATES = 'Yar-r-r!',
-    AD_PIRATES = 'Raise your reputation to Honored with the Bloodsail Buccaneers',
+    AN_THORIUM = 'I love the smell of Thorium',
+    AD_THORIUM = 'Earn exalted status with the Thorium Brotherhood.',
     AN_SHENDRALAR = 'Agent of the Shen\'dralar',
     AD_SHENDRALAR = 'Earn exalted status with Shen\'dralar.',
 
@@ -905,6 +905,14 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_ARACHNOPHOBIA = 'Kill Maexxna in Naxxramas within 20 minutes of Anub\'Rekhan\'s death in 25-player mode.',
     AN_FOUR_TOGETHER = 'And they would all go down together',
     AD_FOUR_TOGETHER = 'Defeat the 4 Horsemen in Naxxramas, ensuring that they all die within 15 seconds of each other.',
+	
+	AN_PIRATES_HAT = 'Avast Ye, Admiral!',
+	AD_PIRATES_HAT = 'Obtain the Bloodsail Admiral\'s Hat... and try to get some fresh air every now and then.',
+	AR_PIRATES_HAT = 'Bloodsail Admiral',	
+	AN_PALADIN_MOUNT = 'Charger',
+	AD_PALADIN_MOUNT = 'Completed the paladin quest to obtain a Charger.',
+	AN_WARLOCK_MOUNT = 'Dreadsteed of Xoroth',
+	AD_WARLOCK_MOUNT = 'Completed the Dreadsteed of Xoroth warlock quest.',
 
 	--TBC
     AN_QUESTS_HELLFIRE_PENINSULA = 'To Hellfire and Back',
@@ -991,6 +999,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     TBC_QUEST_10588 = 'The Cipher of Damnation',
     TBC_QUEST_10679 = 'Anti-Demon Weapons',
     TBC_QUEST_10808 = 'The Dark Conclave',
+	
+	AN_HEMET_QUESTS_NAGRAND = 'Hills Like White Elekk',
+	AD_HEMET_QUESTS_NAGRAND = 'Complete all of Hemet Nesingwary quests in Nagrand up to and including The Ultimate Bloodsport.',
 
     HEROIC_NAME_PATTERN = 'Heroic: %s',
     HEROIC_DESCRIPTION_PATTERN = '%s on Heroic Difficulty',
@@ -1245,9 +1256,24 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_HAWK_MOUNT = 'Obtain the Swift White Hawkstrider from Kael\'thas Sunstrider in Magister\'s Terrace.',
 	AN_ALAR_MOUNT = 'Ashes of Al\'ar',
     AD_ALAR_MOUNT = 'Obtain the Ashes of Al\'ar from Kael\'thas Sunstrider in Tempest Keep.',
+	AN_HORSEMAN_MOUNT = 'The Horseman\'s Reins',
+	AD_HORSEMAN_MOUNT = 'Obtain The Horseman\'s Reins from The Headless Horseman in the Scarlet Monastery during Hallow\'s End.',
+	AN_HERO_SHATTRATH = 'Hero of Shattrath',
+	AD_HERO_SHATTRATH = 'Gained exalted status with The Scryers and The Aldor.',
+	AN_HERO_SCRYER = 'The Scryers',
+	AN_HERO_ALDOR = 'The Aldor',
+	AN_CHAMPION_NAARU = 'Champion of the Naaru',
+	AD_CHAMPION_NAARU = 'Earned the title, "Champion of the Naaru".',
+	AR_CHAMPION_NAARU = 'Champion of the Naaru',
+	AN_HAND_ADAL = 'Hand of  A\'dal',
+	AD_HAND_ADAL = 'Earned the title, "Hand of A\'dal".',
+	AR_HAND_ADAL = 'Hand of  A\'dal',
 
     AN_P3_FIRST_WEEK = 'Conqueror of the Outland',
     AD_P3_FIRST_WEEK = 'Defeat Archimonde and Illidan Stormrage in their respective raids within the first week of the release of Phase Three.',
     AC_KILL_ARCHIMONDE = 'Archimonde',
-    AR_P3_FIRST_WEEK = 'Conqueror of Outland'
+    AR_P3_FIRST_WEEK = 'Conqueror of Outland',
+	
+	AN_FLIGHFORM = 'Swift Flight Form',
+	AD_FLIGHFORM = 'Completed the druid quest to obtain Swift Flight Form.'
 })

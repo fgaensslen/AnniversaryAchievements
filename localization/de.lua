@@ -476,8 +476,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_HYDRAXIANS = 'Erreicht bei den Hydraxianern den Status ehrfürchtig.',
     AN_TIMBERMAW_HOLD = 'Holzschlundfeste',
     AD_TIMBERMAW_HOLD = 'Erreicht bei der Holzschlundfeste den Status ehrfürchtig.',
-    AN_PIRATES = 'Yar-r-r!',
-    AD_PIRATES = 'Erreicht den Status wohlwollend bei den Blutsegelbukaniere.',
+    AN_THORIUM = 'Ich liebe den Geruch von Thorium',
+    AD_THORIUM = 'Erreicht bei der Thoriumbruderschaft den Status ehrfürchtig.',
     AN_SHENDRALAR = 'Agent der Shen\'dralar',
     AD_SHENDRALAR = 'Erreicht bei den Shen\'dralar den Status ehrfürchtig.',
 
@@ -907,6 +907,14 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_ARACHNOPHOBIA = 'Bezwingt Maexxna in Naxxramas innerhalb von 20 Minuten nach Anub\'Rekhans Tod.',
     AN_FOUR_TOGETHER = 'Zusammen bis in den Tod',
     AD_FOUR_TOGETHER = 'Bezwingt die Vier Reiter in Naxxramas, wobei sie im Abstand von höchstens 15 Sekunden hintereinander sterben müssen.',
+	
+	AN_PIRATES_HAT = 'Segel setzen, Admiral!',
+	AD_PIRATES_HAT = 'Erhaltet den Blutsegeladmiralshut... und versucht, zwischendurch etwas frische Luft zu tanken.',
+	AR_PIRATES_HAT = 'Blutsegeladmiral',	
+	AN_PALADIN_MOUNT = 'Streitross',
+	AD_PALADIN_MOUNT = 'Die Paladinquest zur Erlangung eines Streitrosses abgeschlossen.',
+	AN_WARLOCK_MOUNT = 'Schreckensross von Xoroth',
+	AD_WARLOCK_MOUNT = 'Die Hexenmeisterquest zur Beschwörung eines Schreckensrosses von Xoroth abgeschlossen.',
 
 	--BURNING CRUSADE
     AN_QUESTS_HELLFIRE_PENINSULA = 'Durchs Höllenfeuer und zurück',
@@ -993,6 +1001,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     TBC_QUEST_10588 = 'Die Litanei der Verdammnis',
     TBC_QUEST_10679 = 'Antidämonenwaffen',
     TBC_QUEST_10808 = 'Der Dunkle Rat',
+	
+	AN_HEMET_QUESTS_NAGRAND = 'Hügel wie weiße Elekk',
+	AD_HEMET_QUESTS_NAGRAND = 'Schließt alle Hemet Nesingwary-Quests in Nagrand bis hin zu und inklusive \'Die ultimative Beute\' ab.',
 
     HEROIC_NAME_PATTERN = 'Heroisch: %s',
     HEROIC_DESCRIPTION_PATTERN = '%s auf dem Schwierigkeitsgrad \'Heroisch\'',
@@ -1246,9 +1257,24 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_HAWK_MOUNT = 'Erhaltet den schnellen weißen Falkenschreiter von Kael\'thas Sonnenwanderer auf der Terrasse der Magister.',
 	AN_ALAR_MOUNT = 'Al\'ars Asche',
     AD_ALAR_MOUNT = 'Erhaltet Al\'ars Asche von Kael\'thas Sonnenwanderer in der Festung der Stürme.',
+	AN_HORSEMAN_MOUNT = 'Die Zügel des Reiters',
+	AD_HORSEMAN_MOUNT = 'Erhaltet während der Schlotternächte die Zügel des Reiters vom kopflosen Reiter im Scharlachroten Kloster.',
+	AN_HERO_SHATTRATH = 'Der Held Shattraths',
+	AD_HERO_SHATTRATH = 'Bei den Sehern und den Aldor den Status ehrfürchtig erreicht.',
+	AN_HERO_SCRYER = 'Die Seher',
+	AN_HERO_ALDOR = 'Die Aldor',
+	AN_CHAMPION_NAARU = 'Champion der Naaru',
+	AD_CHAMPION_NAARU = 'Den Titel "Champion der Naaru" erhalten.',
+	AR_CHAMPION_NAARU = 'Champion der Naaru',
+	AN_HAND_ADAL = 'Hand von A\'dal',
+	AD_HAND_ADAL = 'Den Titel "Hand von A\'dal" erhalten.',
+	AR_HAND_ADAL = 'Hand von A\'dal',
 
     AN_P3_FIRST_WEEK = 'Eroberer der Scherbenwelt',
     AD_P3_FIRST_WEEK = 'Bezwingt Archimonde und Illidan Sturmgrimm in der ersten Woche von Phase 3.',
     AC_KILL_ARCHIMONDE = 'Archimonde',
-    AR_P3_FIRST_WEEK = '\'Eroberer der Scherbenwelt\'.'
+    AR_P3_FIRST_WEEK = 'Eroberer der Scherbenwelt',
+	
+	AN_FLIGHFORM = 'Schnelle Fluggestalt',
+	AD_FLIGHFORM = 'Die Druidenquest zum Erlernen einer schnellen Fluggestalt abgeschlossen.'
 })
