@@ -1377,12 +1377,23 @@ do
         :Previous(a1)
         :Build()
 
-	--FISHING
-    ach = fishing:CreateAchievement('AN_FISHING_ROD', 'AD_FISHING_ROD', 10, '-inv_fishingpole_02', true)
-    ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {19970}))
+	--FISHING		
+	L:Achievement(fishing, 10, '-inv_misc_fish_21')
+        :NameDesc('AN_BOOTY_BAY_CONTEST', 'AD_BOOTY_BAY_CONTEST', true)
+        :Criteria(TYPE.OR, {
+            L:Criteria(TYPE.OBTAIN_ITEM, {19970}):Build(),
+            L:Criteria(TYPE.OBTAIN_ITEM, {19979}):Build()
+        }):Build()
+        :Build()
 	
-    ach = fishing:CreateAchievement('AN_FISHING_TRINKET', 'AD_FISHING_TRINKET', 10, '-Inv_FishingPole_01', true)
-    ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {19979}))
+	L:Achievement(fishing, 10, '-inv_misc_fish_10')
+        :NameDesc('AN_BOOTY_BAY_FISH', 'AD_BOOTY_BAY_FISH', true)
+        :Criteria(TYPE.OR, {
+            L:Criteria(TYPE.OBTAIN_ITEM, {19803}):Build(),
+            L:Criteria(TYPE.OBTAIN_ITEM, {19805}):Build(),
+            L:Criteria(TYPE.OBTAIN_ITEM, {19806}):Build()
+        }):Build()
+        :Build()
 
     local function add(name, icon, ids)
         local ach = fishing:CreateAchievement('AN_FISHING_' .. name, 'AD_FISHING_' .. name, 10, icon, true)
@@ -1402,7 +1413,7 @@ do
         return ach
     end
 	
-	add('COLLECTION', '-inv_misc_fish_08', {19975, 6291, 6643, 6645, 6522, 6358, 21071, 6359, 8365, 21153, 13755, 13422, 13757, 13754, 13758, 13756, 13760, 13759, 13890, 13889, 13893, 13888, 12238, 19806, 19805, 19803, 19807, 6299, 6458})
+	add('COLLECTION', '-inv_misc_fish_08', {6291, 6643, 6645, 6522, 6358, 21071, 6359, 8365, 21153, 13755, 13422, 13757, 13754, 13758, 13756, 13760, 13759, 13890, 13889, 13893, 13888, 12238, 6299, 6458})
     add('WATER', '-Spell_Nature_Acid_01', {7080})
     add('RUM', '-Inv_Drink_04', {21151, 21114, 20709})
     add('RING', '-Inv_Jewelry_Ring_03', {8350})
@@ -1412,7 +1423,7 @@ do
     local seaBass = add('SEA_BASS', '-inv_misc_fish_06', {13876, 13877, 13878, 13879, 13880})
     local salmon = add('SALMON', '-inv_misc_fish_02', {13901, 13902, 13903, 13904, 13905, 13906})
     local lobster = add('LOBSTER', '-Inv_Misc_Fish_14', {13907, 13908, 13909, 13910, 13911, 13912, 13913})
-    ach = fishing:CreateAchievement('AN_FISHING_BIG_SIZE', 'AD_FISHING_BIG_SIZE', 10, '-inv_misc_fish_09', true)
+    ach = fishing:CreateAchievement('AN_FISHING_BIG_SIZE', 'AD_FISHING_BIG_SIZE', 10, '-Inv_FishingPole_01', true)
 		ach:AddCriteria(criterias:Create(snapper.name, TYPE.COMPLETE_ACHIEVEMENT, {snapper.id}))
 		ach:AddCriteria(criterias:Create(seaBass.name, TYPE.COMPLETE_ACHIEVEMENT, {seaBass.id}))
 		ach:AddCriteria(criterias:Create(salmon.name, TYPE.COMPLETE_ACHIEVEMENT, {salmon.id}))

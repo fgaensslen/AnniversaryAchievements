@@ -751,10 +751,10 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_STOCKING_UP_2_OUTLAND = 'Stellt 500 schwere Netherstoffverbände her.',
     AC_STOCKING_UP_2_OUTLAND = 'Stellt 500 schwere Netherstoffverbände her',
 
-    AN_FISHING_ROD = 'Für\'s Angeln nur das Beste!',
-    AD_FISHING_ROD = 'Gewinnt den Angelwettbewerb in der Beutebucht und wählt die Arkanitangel als Belohnung.',
-    AN_FISHING_TRINKET = 'Echter Fischliebhaber',
-    AD_FISHING_TRINKET = 'Gewinnt den Angelwettbewerb in der Beutebucht und wählt den Angelhaken des Anglermeisters als Belohnung.',
+    AN_BOOTY_BAY_CONTEST = 'Für\'s Angeln nur das Beste!',
+    AD_BOOTY_BAY_CONTEST = 'Gewinnt den Angelwettbewerb in der Beutebucht und wählt die Arkanitangel oder den Angelhaken des Anglermeisters als Belohnung.',
+    AN_BOOTY_BAY_FISH = 'Echter Fischliebhaber',
+    AD_BOOTY_BAY_FISH = 'Angelt einen der besonderen Fische während des Angelwettbewerbs in der Beutebucht.',
 
     AN_FISHING_COLLECTION = 'Fischsammlung',
     AD_FISHING_COLLECTION = 'Fangt die unten aufgelisteten Fische in Azeroth.',

@@ -749,10 +749,10 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_STOCKING_UP_2_OUTLAND = 'Craft 500 Heavy Netherweave Bandages.',
     AC_STOCKING_UP_2_OUTLAND = 'Craft 500 Heavy Netherweave Bandages.',
 
-    AN_FISHING_ROD = 'I choose the best for fishing',
-    AD_FISHING_ROD = 'Win the Booty Bay fishing contest and choose the Arcanite Fishing Pole as your reward.',
-    AN_FISHING_TRINKET = 'Real fish lover',
-    AD_FISHING_TRINKET = 'Win the Booty Bay fishing contest and choose Hook of the Master Angler as your reward.',
+    AN_BOOTY_BAY_CONTEST = 'I choose the best for fishing',
+    AD_BOOTY_BAY_CONTEST = 'Win the Booty Bay fishing contest and choose the Arcanite Fishing Pole or the Hook of the Master Angler as your reward.',
+    AN_BOOTY_BAY_FISH = 'Real fish lover',
+    AD_BOOTY_BAY_FISH = 'Fish up one of the rare fish during the Booty Bay fishing contest.',
 
     AN_FISHING_COLLECTION = 'Fish Collection',
     AD_FISHING_COLLECTION = 'Catch the following fishes in Azeroth.',
