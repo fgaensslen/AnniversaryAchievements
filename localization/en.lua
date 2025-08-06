@@ -474,7 +474,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_HYDRAXIANS = 'Earn exalted status with the Hydraxian Waterlords.',
     AN_TIMBERMAW_HOLD = 'They Love Me In That Tunnel',
     AD_TIMBERMAW_HOLD = 'Earn exalted status with Timbermaw Hold.',
-    AN_THORIUM = 'I love the smell of Thorium',
+    AN_THORIUM = 'Thorium Brotherhood',
     AD_THORIUM = 'Earn exalted status with the Thorium Brotherhood.',
     AN_SHENDRALAR = 'Agent of the Shen\'dralar',
     AD_SHENDRALAR = 'Earn exalted status with Shen\'dralar.',

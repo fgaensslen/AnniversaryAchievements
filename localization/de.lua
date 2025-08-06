@@ -476,7 +476,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_HYDRAXIANS = 'Erreicht bei den Hydraxianern den Status ehrfürchtig.',
     AN_TIMBERMAW_HOLD = 'Holzschlundfeste',
     AD_TIMBERMAW_HOLD = 'Erreicht bei der Holzschlundfeste den Status ehrfürchtig.',
-    AN_THORIUM = 'Ich liebe den Geruch von Thorium',
+    AN_THORIUM = 'Thoriumbruderschaft',
     AD_THORIUM = 'Erreicht bei der Thoriumbruderschaft den Status ehrfürchtig.',
     AN_SHENDRALAR = 'Agent der Shen\'dralar',
     AD_SHENDRALAR = 'Erreicht bei den Shen\'dralar den Status ehrfürchtig.',
