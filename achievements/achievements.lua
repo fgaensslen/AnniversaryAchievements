@@ -26,7 +26,6 @@ local alterac = tab:CreateCategory('CATEGORY_BG_ALTERAC', pvp.id, true)
 local warsong = tab:CreateCategory('CATEGORY_BG_WARSONG', pvp.id, true)
 local arathi = tab:CreateCategory('CATEGORY_BG_ARATHI', pvp.id, true)
 local bgEye = tab:CreateCategory('CATEGORY_BG_EYE', pvp.id, true)
-local openWorldPVP = tab:CreateCategory('CATEGORY_OPEN_WORLD', pvp.id, true)
 
 local pve = tab:CreateCategory('CATEGORY_PVE', nil, true)
 local instances = tab:CreateCategory('CATEGORY_VANILLA', pve.id, true)
@@ -38,8 +37,11 @@ local fishing = tab:CreateCategory('PROF_FISHING', professions.id, true)
 local firstAid = tab:CreateCategory('PROF_FIRST_AID', professions.id, true)
 
 local reputation = tab:CreateCategory('CATEGORY_REPUTATION', nil, true)
-local vanillaReputation = tab:CreateCategory('CATEGORY_VANILLA', reputation.id, true) --Name???
+local vanillaReputation = tab:CreateCategory('CATEGORY_VANILLA', reputation.id, true)
 local tbcReputations = tab:CreateCategory('CATEGORY_TBC', reputation.id, true)
+
+local worldevents = tab:CreateCategory('CATEGORY_EVENTS', nil, true)
+local hallowsend = tab:CreateCategory('CATEGORY_HALLOWSEND', worldevents.id, true)
 
 local featsOfStrength = tab:CreateCategory('CATEGORY_FEATS_OF_STRENGTH', nil, true)
 
@@ -586,7 +588,7 @@ do
     ach:SetAllianceOnly()
     
     add = function(npcID, name, icon)
-        local ach = openWorldPVP:CreateAchievement(loc:Get('AN_' .. name .. '_SLAYER'), loc:Get('AD_' .. name .. '_SLAYER'), 10, icon)
+        local ach = pvp:CreateAchievement(loc:Get('AN_' .. name .. '_SLAYER'), loc:Get('AD_' .. name .. '_SLAYER'), 10, icon)
         ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {npcID}))
         return ach
     end
@@ -599,7 +601,7 @@ do
     ach4:SetHordeOnly()
     local ach5 = add(17468, 'VELEN', '-Achievement_leader_prophet_velen')
     ach5:SetHordeOnly()
-    ach = openWorldPVP:CreateAchievement(loc:Get('AN_ALLIANCE_KINGS_SLAYER'), loc:Get('AD_ALLIANCE_KINGS_SLAYER'), 20, '-inv_bannerpvp_01')
+    ach = pvp:CreateAchievement(loc:Get('AN_ALLIANCE_KINGS_SLAYER'), loc:Get('AD_ALLIANCE_KINGS_SLAYER'), 20, '-inv_bannerpvp_01')
     ach:AddCriteria(criterias:Create(ach1.name, TYPE.COMPLETE_ACHIEVEMENT, {ach1.id}))
     ach:AddCriteria(criterias:Create(ach2.name, TYPE.COMPLETE_ACHIEVEMENT, {ach2.id}))
     ach:AddCriteria(criterias:Create(ach4.name, TYPE.COMPLETE_ACHIEVEMENT, {ach4.id}))
@@ -615,7 +617,7 @@ do
     ach4:SetAllianceOnly()
     ach5 = add(16802, 'LORTHEMAR', 'Achievement_Leader_Lorthemar_Theron')
     ach5:SetAllianceOnly()
-    ach = openWorldPVP:CreateAchievement(loc:Get('AN_HORDE_KINGS_SLAYER'), loc:Get('AD_HORDE_KINGS_SLAYER'), 20, '-inv_bannerpvp_02')
+    ach = pvp:CreateAchievement(loc:Get('AN_HORDE_KINGS_SLAYER'), loc:Get('AD_HORDE_KINGS_SLAYER'), 20, '-inv_bannerpvp_02')
     ach:AddCriteria(criterias:Create(ach1.name, TYPE.COMPLETE_ACHIEVEMENT, {ach1.id}))
     ach:AddCriteria(criterias:Create(ach3.name, TYPE.COMPLETE_ACHIEVEMENT, {ach3.id}))
     ach:AddCriteria(criterias:Create(ach4.name, TYPE.COMPLETE_ACHIEVEMENT, {ach4.id}))
@@ -836,13 +838,13 @@ do
     add('KILLING_BLOW', TYPE.BATTLEFIELDS_SCORE, 1, {100, 250, 500, 750, 1000}, '-Spell_Shadow_Unholyfrenzy')
     add('KILL', TYPE.BATTLEFIELDS_SCORE, 2, {100, 250, 500, 750, 1000}, '-Ability_Warrior_Innerrage')
 	
-	ach = L:Achievement(openWorldPVP, 10, '-Inv_Misc_ArmorKit_14')
+	ach = L:Achievement(pvp, 10, '-Inv_Misc_ArmorKit_14')
 		:NameDesc('AN_GURUBASHI_1', 'AD_GURUBASHI_1', true)
 		:Criteria(TYPE.COMPLETE_QUEST, {7810}):Build()
 		:Build()
 		ach.priority = 2
 
-	L:Achievement(openWorldPVP, 10, '-Inv_Misc_ArmorKit_04')
+	L:Achievement(pvp, 10, '-Inv_Misc_ArmorKit_04')
 		:NameDesc('AN_GURUBASHI_2', 'AD_GURUBASHI_2', true)
 		:Criteria(TYPE.OBTAIN_ITEM, {19024}):Build()
 		:Previous(ach)
@@ -1495,6 +1497,42 @@ do
 
 	--TODO: Change into TBC cake: https://www.wowhead.com/wotlk/achievement=877/the-cake-is-not-a-lie
     add('CHOPS', '-Inv_Misc_Food_65', 21023, 20):SetUnavailable()
+end
+
+--WORLD EVENTS
+do
+	
+	local hallowsendSummary = worldevents:CreateAchievement('AN_HALLOWSEND', 'AD_HALLOWSEND', 10, '-achievement_halloween_witch_01', true, 531)
+		hallowsendSummary:SetRewardText(loc:Get('AR_HALLOWSEND'))
+    if UnitFactionGroup('player') == 'Horde' then		
+		ach = hallowsend:CreateAchievement('AN_HALLOWSEND_HORDE_QUEST1', 'AD_HALLOWSEND_HORDE_QUEST1', 10, '-achievement_halloween_rottenegg_01', true, 532)
+			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_HORDE_QUEST1_CRITERIA1'), TYPE.COMPLETE_QUEST, {8409}))
+			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_HORDE_QUEST1_CRITERIA2'), TYPE.COMPLETE_QUEST, {1657}))
+		hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+			
+		ach = hallowsend:CreateAchievement('AN_HALLOWSEND_HORDE_QUEST2', 'AD_HALLOWSEND_HORDE_QUEST2', 10, '-inv_misc_food_26', true, 533)
+			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_HORDE_QUEST2_CRITERIA1'), TYPE.OBTAIN_ITEM, {20493}))
+			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_HORDE_QUEST2_CRITERIA2'), TYPE.OBTAIN_ITEM, {20495}))	
+			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_HORDE_QUEST2_CRITERIA3'), TYPE.OBTAIN_ITEM, {20491}))	
+			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_HORDE_QUEST2_CRITERIA4'), TYPE.OBTAIN_ITEM, {20497}))	
+		hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+    else	
+		ach = hallowsend:CreateAchievement('AN_HALLOWSEND_ALLIANCE_QUEST1', 'AD_HALLOWSEND_ALLIANCE_QUEST1', 10, '-achievement_halloween_rottenegg_01', true, 532)
+			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_ALLIANCE_QUEST1_CRITERIA1'), TYPE.COMPLETE_QUEST, {1658}))
+			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_ALLIANCE_QUEST1_CRITERIA2'), TYPE.COMPLETE_QUEST, {8373}))
+		hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+			
+		ach = hallowsend:CreateAchievement('AN_HALLOWSEND_ALLIANCE_QUEST2', 'AD_HALLOWSEND_ALLIANCE_QUEST2', 10, '-inv_misc_food_26', true, 533)
+			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_ALLIANCE_QUEST2_CRITERIA1'), TYPE.OBTAIN_ITEM, {20492}))
+			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_ALLIANCE_QUEST2_CRITERIA2'), TYPE.OBTAIN_ITEM, {20494}))
+			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_ALLIANCE_QUEST2_CRITERIA3'), TYPE.OBTAIN_ITEM, {20490}))
+			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_ALLIANCE_QUEST2_CRITERIA4'), TYPE.OBTAIN_ITEM, {20496}))
+		hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+    end
+
+	ach = hallowsend:CreateAchievement('AN_PUMPKIN', 'AD_PUMPKIN', 10, '-inv_misc_food_59', true, 534)
+		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {20400}))
+	hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
 end
 
 -- REPUTATION --
