@@ -33,9 +33,9 @@ util/Guild.lua
 util/PostLoad.lua
 
 BlizzardStuff/ApiMocks.lua
+BlizzardStuff/Backdrop.lua
 BlizzardStuff/AchievementUI.lua
 BlizzardStuff/AchievementUI.xml
-
 BlizzardStuff/Microbutton.xml
 BlizzardStuff/Microbutton.lua
 util/Minimap.lua
