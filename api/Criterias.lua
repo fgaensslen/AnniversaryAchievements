@@ -49,7 +49,8 @@ struct.TYPE = {
     BG_EYE_BERSERK = 43,
     BG_POINTS = 44,
     P3_FIRST_WEEK = 45,
-	FISH_ANY_ITEM = 46
+	FISH_ANY_ITEM = 46,
+	HAS_BUFF = 47
 }
 
 struct.dataLengths = {
@@ -98,7 +99,8 @@ struct.dataLengths = {
     [struct.TYPE.BG_EYE_BERSERK] = 0,
     [struct.TYPE.BG_POINTS] = 3,
     [struct.TYPE.P3_FIRST_WEEK] = 1,
-	[struct.TYPE.FISH_ANY_ITEM] = 1
+	[struct.TYPE.FISH_ANY_ITEM] = 1,
+	[struct.TYPE.HAS_BUFF] = 1 --spellID
 }
 
 struct.criterias = {}

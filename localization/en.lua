@@ -941,6 +941,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AC_HALLOWSEND_HORDE_QUEST2_CRITERIA2 = 'Darkspear Gumdrop',
 	AC_HALLOWSEND_HORDE_QUEST2_CRITERIA3 = 'Undercity Mint',
 	AC_HALLOWSEND_HORDE_QUEST2_CRITERIA4 = 'Thunder Bluff Marzipan',
+	
+	AN_HALLOWSEND_INVOCATION_BUFF = 'Invocation of the Wickerman',
+	AD_HALLOWSEND_INVOCATION_BUFF = 'Receive the buff "Invocation of the Wickerman" during Hallow\'s End.',
 
 	--TBC
     AN_QUESTS_HELLFIRE_PENINSULA = 'To Hellfire and Back',

@@ -644,6 +644,18 @@ local events = {
         trigger(TYPE.BATTLEFIELD_MAX_LEVEL_PARTICIPATION)
         
     end,
+	UNIT_AURA = function(unit)
+		if unit ~= "player" then return end
+
+		local i = 1
+		while true do
+			local name, _, _, _, _, _, _, _, _, spellId = UnitBuff("player", i)
+			if not name then break end
+
+			trigger(TYPE.HAS_BUFF, {spellId})
+			i = i + 1
+		end
+	end,
 	ZONE_CHANGED_NEW_AREA = function()
 		checkUnexploredAreas()
 	end,

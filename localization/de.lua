@@ -943,6 +943,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AC_HALLOWSEND_HORDE_QUEST2_CRITERIA2 = 'Kaugummikugel der Darkspear',
 	AC_HALLOWSEND_HORDE_QUEST2_CRITERIA3 = 'Pfefferminzbonbon aus Undercity',
 	AC_HALLOWSEND_HORDE_QUEST2_CRITERIA4 = 'Marzipan aus Thunder Bluff',
+	
+	AN_HALLOWSEND_INVOCATION_BUFF = 'Anrufung des Weidenmanns',
+	AD_HALLOWSEND_INVOCATION_BUFF = 'Erhaltet während der Schlotternächte den Stärkungszauber "Anrufung des Weidenmanns".',
 
 	--BURNING CRUSADE
     AN_QUESTS_HELLFIRE_PENINSULA = 'Durchs Höllenfeuer und zurück',

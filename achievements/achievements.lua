@@ -1529,8 +1529,12 @@ do
 			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_ALLIANCE_QUEST2_CRITERIA4'), TYPE.OBTAIN_ITEM, {20496}))
 		hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
     end
+	
+	ach = hallowsend:CreateAchievement('AN_HALLOWSEND_INVOCATION_BUFF', 'AD_HALLOWSEND_INVOCATION_BUFF', 10, '-inv_waepon_bow_zulgrub_d_02', true, 534)
+		ach:AddCriteria(criterias:Create(nil, TYPE.HAS_BUFF, {24705}))
+	hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
 
-	ach = hallowsend:CreateAchievement('AN_PUMPKIN', 'AD_PUMPKIN', 10, '-inv_misc_food_59', true, 534)
+	ach = hallowsend:CreateAchievement('AN_PUMPKIN', 'AD_PUMPKIN', 10, '-inv_misc_food_59', true, 535)
 		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {20400}))
 	hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
 end
