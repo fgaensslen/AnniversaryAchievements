@@ -944,6 +944,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	
 	AN_HALLOWSEND_INVOCATION_BUFF = 'Invocation of the Wickerman',
 	AD_HALLOWSEND_INVOCATION_BUFF = 'Receive the buff "Invocation of the Wickerman" during Hallow\'s End.',
+	
+	AN_HALLOWSEND_TREATS = 'Trick or Treat!',
+	AD_HALLOWSEND_TREATS = 'Receive a Treat Bag from an innkeeper.',
 
 	--TBC
     AN_QUESTS_HELLFIRE_PENINSULA = 'To Hellfire and Back',

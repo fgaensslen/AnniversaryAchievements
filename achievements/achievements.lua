@@ -1391,9 +1391,9 @@ do
 	L:Achievement(fishing, 10, '-inv_misc_fish_10')
         :NameDesc('AN_BOOTY_BAY_FISH', 'AD_BOOTY_BAY_FISH', true)
         :Criteria(TYPE.OR, {
-            L:Criteria(TYPE.OBTAIN_ITEM, {19803}):Build(),
-            L:Criteria(TYPE.OBTAIN_ITEM, {19805}):Build(),
-            L:Criteria(TYPE.OBTAIN_ITEM, {19806}):Build()
+            L:Criteria(TYPE.FISH_AN_ITEM, {19803}):Build(),
+            L:Criteria(TYPE.FISH_AN_ITEM, {19805}):Build(),
+            L:Criteria(TYPE.FISH_AN_ITEM, {19806}):Build()
         }):Build()
         :Build()
 
@@ -1530,13 +1530,17 @@ do
 		hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
     end
 	
-	ach = hallowsend:CreateAchievement('AN_HALLOWSEND_INVOCATION_BUFF', 'AD_HALLOWSEND_INVOCATION_BUFF', 10, '-inv_waepon_bow_zulgrub_d_02', true, 534)
-		ach:AddCriteria(criterias:Create(nil, TYPE.HAS_BUFF, {24705}))
+	ach = hallowsend:CreateAchievement('AN_HALLOWSEND_TREATS', 'AD_HALLOWSEND_TREATS', 10, '-inv_misc_food_30', true, 534)
+		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {20393}))
 	hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
-
+	
 	ach = hallowsend:CreateAchievement('AN_PUMPKIN', 'AD_PUMPKIN', 10, '-inv_misc_food_59', true, 535)
 		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {20400}))
 	hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+	
+	ach = hallowsend:CreateAchievement('AN_HALLOWSEND_INVOCATION_BUFF', 'AD_HALLOWSEND_INVOCATION_BUFF', 10, '-inv_waepon_bow_zulgrub_d_02', true, 536)
+		ach:AddCriteria(criterias:Create(nil, TYPE.HAS_BUFF, {24705}))
+	hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))	
 end
 
 -- REPUTATION --

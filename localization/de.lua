@@ -638,7 +638,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     PROF_HERBALISM = 'Kräuterkunde',
     PROF_MINING = 'Bergbau',
     PROF_SKINNING = 'Kürschnerei',
-    PROF_JEWELCRAFTING = 'Juwelierskunst',
+    PROF_JEWELCRAFTING = 'Juwelenschleifen',
     SKILL_UNARMED = 'Unbewaffnet',
     SKILL_RIDING = 'Reiten',
 
@@ -946,6 +946,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	
 	AN_HALLOWSEND_INVOCATION_BUFF = 'Anrufung des Weidenmanns',
 	AD_HALLOWSEND_INVOCATION_BUFF = 'Erhaltet während der Schlotternächte den Stärkungszauber "Anrufung des Weidenmanns".',
+	
+	AN_HALLOWSEND_TREATS = 'Süßes oder Saures!',
+	AD_HALLOWSEND_TREATS = 'Erhaltet einen Schlotterbeutel von einem Gastwirt.',
 
 	--BURNING CRUSADE
     AN_QUESTS_HELLFIRE_PENINSULA = 'Durchs Höllenfeuer und zurück',
