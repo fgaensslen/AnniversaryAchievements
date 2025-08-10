@@ -631,7 +631,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     PROF_COOKING = 'Kochkunst',
     PROF_ENCHANTING = 'Verzauberkunst',
     PROF_TAILORING = 'Schneiderei',
-    PROF_ENGINEERING = 'Ingenierskunst',
+    PROF_ENGINEERING = 'Ingenieurskunst',
     PROF_LEATHERWORKING = 'Lederverarbeitung',
     PROF_ALCHEMY = 'Alchimie',
     PROF_BLACKSMITHING = 'Schmiedekunst',
