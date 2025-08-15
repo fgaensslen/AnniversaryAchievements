@@ -44,7 +44,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     NPC_13321 = 'Frog',
     NPC_2620 = 'Prairie Dog',
     NPC_9600 = 'Parrot',
-    NPC_5951 = 'Hare',
+    NPC_883 = 'Deer',
     NPC_9699 = 'Fire Beetle',
     NPC_4953 = 'Moccasin',
     NPC_721 = 'Rabbit',
