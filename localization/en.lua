@@ -947,6 +947,22 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	
 	AN_HALLOWSEND_TREATS = 'Trick or Treat!',
 	AD_HALLOWSEND_TREATS = 'Receive a Treat Bag from an innkeeper.',
+	
+	AN_HALLOWSEND_MASK = 'The Mask Task',
+	AD_HALLOWSEND_MASK = 'Obtain a Flimsy Mask during Hallow\'s End.',
+	
+	AN_HALLOWSEND_MASKS = 'A Mask for All Occasions',
+	AD_HALLOWSEND_MASKS = 'Collect the 16 unique Flimsy Masks listed below.',
+	
+	AN_HALLOWSEND_TRANSFORM = 'The Masquerade',
+	AD_HALLOWSEND_TRANSFORM = 'Get transformed by the Hallowed Wands listed below.',
+	AC_HALLOWSEND_GHOST = 'Transformed by Hallowed Wand - Ghost',
+	AC_HALLOWSEND_GNOME = 'Transformed by Hallowed Wand - Leper Gnome',
+	AC_HALLOWSEND_WISP = 'Transformed by Hallowed Wand - Wisp',
+	AC_HALLOWSEND_NINJA = 'Transformed by Hallowed Wand - Ninja',
+	AC_HALLOWSEND_SKELETON = 'Transformed by Hallowed Wand - Skeleton',
+	AC_HALLOWSEND_PIRATE = 'Transformed by Hallowed Wand - Pirate',
+	AC_HALLOWSEND_BAT = 'Transformed by Hallowed Wand - Bat',
 
 	--TBC
     AN_QUESTS_HELLFIRE_PENINSULA = 'To Hellfire and Back',

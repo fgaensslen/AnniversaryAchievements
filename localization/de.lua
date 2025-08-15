@@ -45,7 +45,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     NPC_13321 = 'Frosch',
     NPC_2620 = 'Präriehund',
     NPC_9600 = 'Papagei',
-    NPC_5951 = 'Hase',
+    NPC_883 = 'Reh',
     NPC_9699 = 'Feuerkäfer',
     NPC_4953 = 'Mokassin',
     NPC_721 = 'Hase',
@@ -949,6 +949,22 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	
 	AN_HALLOWSEND_TREATS = 'Süßes oder Saures!',
 	AD_HALLOWSEND_TREATS = 'Erhaltet einen Schlotterbeutel von einem Gastwirt.',
+	
+	AN_HALLOWSEND_MASK = 'Maskiert',
+	AD_HALLOWSEND_MASK = 'Erhaltet während der Schlotternächte eine leichte Maske.',
+	
+	AN_HALLOWSEND_MASKS = 'Eine Maske für jede Gelegenheit',
+	AD_HALLOWSEND_MASKS = 'Sammelt die 16 unten aufgelisteten einzigartigen leichten Masken.',
+	
+	AN_HALLOWSEND_TRANSFORM = 'Die Maskerade',
+	AD_HALLOWSEND_TRANSFORM = 'Lasst Euch von den unten aufgelisteten Stäben der Verwandlung transformieren.',
+	AC_HALLOWSEND_GHOST = 'Durch den Stab der Verwandlung transformiert - Geist',
+	AC_HALLOWSEND_GNOME = 'Durch den Stab der Verwandlung transformiert - Lepragnom',
+	AC_HALLOWSEND_WISP = 'Durch den Stab der Verwandlung transformiert - Irrwisch',
+	AC_HALLOWSEND_NINJA = 'Durch den Stab der Verwandlung transformiert - Ninja',
+	AC_HALLOWSEND_SKELETON = 'Durch den Stab der Verwandlung transformiert - Skelett',
+	AC_HALLOWSEND_PIRATE = 'Durch den Stab der Verwandlung transformiert - Pirat',
+	AC_HALLOWSEND_BAT = 'Durch den Stab der Verwandlung transformiert - Fledermaus',
 
 	--BURNING CRUSADE
     AN_QUESTS_HELLFIRE_PENINSULA = 'Durchs Höllenfeuer und zurück',

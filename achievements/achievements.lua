@@ -473,7 +473,7 @@ do
 	
 	ach = L:Achievement(general, 10, '-inv_jewelcrafting_crimsonhare')
 		:NameDesc('AN_LOVE', 'AD_LOVE', true)
-		for _, creatureID in pairs({3444, 620, 1420, 13321, 2620, 9600, 5951, 9699, 4953, 721, 9700, 15476, 2914, 16030, 4075, 1412, 7390, 15475, 15010, 4076, 13016, 14881, 2110, 4166, 1933, 890, 2098, 2442, 6368, 10582, 385, 10685, 3300}) do
+		for _, creatureID in pairs({3444, 620, 1420, 13321, 2620, 9600, 883, 9699, 4953, 721, 9700, 15476, 2914, 16030, 4075, 1412, 7390, 15475, 15010, 4076, 13016, 14881, 2110, 4166, 1933, 890, 2098, 2442, 6368, 10582, 385, 10685, 3300}) do
 			ach:Criteria(TYPE.EMOTE, {'LOVE', creatureID}):Name('NPC_' .. creatureID, true):Build()
 		end
 
@@ -1540,7 +1540,51 @@ do
 	
 	ach = hallowsend:CreateAchievement('AN_HALLOWSEND_INVOCATION_BUFF', 'AD_HALLOWSEND_INVOCATION_BUFF', 10, '-inv_waepon_bow_zulgrub_d_02', true, 536)
 		ach:AddCriteria(criterias:Create(nil, TYPE.HAS_BUFF, {24705}))
-	hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))	
+	hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))		
+	
+	local maskItems = {
+		20570, 20561, 20391, 20566, 20564, 20572, 20568, 20573,
+		20392, 20569, 20571, 20574, 20565, 20563, 20567, 20562
+	}
+
+	local function CreateAllMasksAchievement(ids, nameKey, descKey, points, icon, forcedID)
+		local ach = hallowsend:CreateAchievement(nameKey, descKey, points, icon, true, forcedID)
+
+		for _, itemID in ipairs(ids) do
+			local criteria = criterias:Create(nil, TYPE.OBTAIN_ITEM, { itemID })
+			ach:AddCriteria(criteria)
+
+			local item = Item:CreateFromItemID(itemID)
+                item:ContinueOnItemLoad(function()
+                    criteria.name = item:GetItemName()
+                end)
+		end
+
+		return ach
+	end
+
+	-- "Obtain any mask" achievement (TYPE.OR)
+	local subCriterias = {}
+	for _, itemID in ipairs(maskItems) do
+		table.insert(subCriterias, criterias:Create(nil, TYPE.OBTAIN_ITEM, { itemID }))
+	end
+	local maskAny = hallowsend:CreateAchievement('AN_HALLOWSEND_MASK', 'AD_HALLOWSEND_MASK', 10, '-inv_mask_06', true, 537)
+	maskAny:AddCriteria(criterias:Create(nil, TYPE.OR, subCriterias))
+
+	-- "Obtain all masks" achievement
+	local maskAll = CreateAllMasksAchievement(maskItems, 'AN_HALLOWSEND_MASKS', 'AD_HALLOWSEND_MASKS', 10, '-inv_mask_04', 538)
+
+	maskAny:SetNext(maskAll)
+	
+	ach = hallowsend:CreateAchievement('AN_HALLOWSEND_TRANSFORM', 'AD_HALLOWSEND_TRANSFORM', 10, '-achievement_halloween_ghost_01', true, 539)
+		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_GHOST'), TYPE.HAS_BUFF, {24737}))
+		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_GNOME'), TYPE.HAS_BUFF, {24719}))
+		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_WISP'), TYPE.HAS_BUFF, {24741}))
+		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_NINJA'), TYPE.HAS_BUFF, {24718}))
+		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_SKELETON'), TYPE.HAS_BUFF, {24724}))
+		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_PIRATE'), TYPE.HAS_BUFF, {24717}))
+		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_BAT'), TYPE.HAS_BUFF, {24733}))
+	hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))		
 end
 
 -- REPUTATION --
