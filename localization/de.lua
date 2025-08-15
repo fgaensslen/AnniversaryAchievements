@@ -764,8 +764,6 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_FISHING_WATER = 'Angelt eine Essenz des Wassers.',
     AN_FISHING_RUM = 'Aufhören unmöglich',
     AD_FISHING_RUM = 'Angelt die folgenden Rumsorten.',
-    AC_FISHING_RUM_BLACK = 'Schwarzer Rumsey Rum',
-    AC_FISHING_RUM_WHITE = 'Rumsey-Rum Light',
     AN_FISHING_RING = 'Geschenk von Mordor',
     AD_FISHING_RING = 'Angelt den Einen Ring.',
     AN_FISHING_SKULL = 'Bote eines traurigen Endes',
