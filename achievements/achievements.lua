@@ -557,7 +557,7 @@ do
 	
 	local function add(category, factionID, factionName, points, icon)
         local ach = category:CreateAchievement(loc:Get('AN_' .. factionName), loc:Get('AD_' .. factionName), points or 10, icon or string.lower(factionName))
-        ach:AddCriteria(criterias:Create(nil, TYPE.REACH_REPUTATION, {factionID, 8}))
+			ach:AddCriteria(criterias:Create(nil, TYPE.REACH_REPUTATION, {factionID, 8}))
         return ach
     end
 
