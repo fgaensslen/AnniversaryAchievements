@@ -474,7 +474,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_ZANDALAR_TRIBE = 'Erreicht beim Stamm der Zandalar den Status ehrfürchtig.',
     AN_HYDRAXIANS = 'Die Hydraxianer',
     AD_HYDRAXIANS = 'Erreicht bei den Hydraxianern den Status ehrfürchtig.',
-    AN_TIMBERMAW_HOLD = 'Holzschlundfeste',
+    AN_TIMBERMAW_HOLD = 'Die stehen auf mich in diesem Tunnel',
     AD_TIMBERMAW_HOLD = 'Erreicht bei der Holzschlundfeste den Status ehrfürchtig.',
     AN_THORIUM = 'Thoriumbruderschaft',
     AD_THORIUM = 'Erreicht bei der Thoriumbruderschaft den Status ehrfürchtig.',

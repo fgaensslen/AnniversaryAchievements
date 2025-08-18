@@ -8,7 +8,7 @@
 ## SavedVariablesPerCharacter: CA_LocalData, CA_Flags
 
 #@no-lib-strip@
-Libs\libs.xml
+libs\libs.xml
 #@end-no-lib-strip@
 
 util/stubs.lua
@@ -32,16 +32,16 @@ achievements/achievements.lua
 util/Guild.lua
 util/PostLoad.lua
 
-BlizzardStuff/ApiMocks.lua
-BlizzardStuff/Backdrop.lua
-BlizzardStuff/AchievementUI.lua
-BlizzardStuff/AchievementUI.xml
-BlizzardStuff/Microbutton.xml
-BlizzardStuff/Microbutton.lua
+ui/ApiMocks.lua
+ui/Backdrop.lua
+ui/AchievementUI.lua
+ui/AchievementUI.xml
+ui/Microbutton.xml
+ui/Microbutton.lua
 util/Minimap.lua
 
 util/Network.lua
 util/Comparison.lua
 
-Integrations/DBM.lua
-Integrations/Bartender4.lua
+integrations/DBM.lua
+integrations/Bartender4.lua
