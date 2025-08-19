@@ -847,7 +847,6 @@ do
 	L:Achievement(pvp, 10, '-Inv_Misc_ArmorKit_04')
 		:NameDesc('AN_GURUBASHI_2', 'AD_GURUBASHI_2', true)
 		:Criteria(TYPE.OBTAIN_ITEM, {19024}):Build()
-		:Previous(ach)
 		:Build()
 		.priority = 2	
 	

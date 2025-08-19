@@ -245,14 +245,21 @@
 				else
 					PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF);
 				end
-				local tracked = AchievementButton_ToggleTracking(self:GetParent().id);
-				if ( not tracked ) then
-					self:SetChecked(false);
-				end
+				
+				local id = self:GetParent().id;
+				if trackedAchievements[id] then
+					trackedAchievements[id] = nil;
+				else
+					trackedAchievements[id] = true;					
+				end	
+
+				-- refresh the tracker after toggling
+				Anniversary_ShowTrackedAchievementProgress()				
 			</OnClick>
 			<OnEnter>
 				GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-				if ( self:GetChecked() ) then
+				local id = self:GetParent().id;
+				if (trackedAchievements[id]) then
 					GameTooltip:SetText(UNTRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
 				else
 					GameTooltip:SetText(TRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
@@ -262,7 +269,8 @@
 				GameTooltip:Hide();
 			</OnLeave>
 			<OnShow>
-				self:SetChecked(IsTrackedAchievement(self:GetParent().id));
+				local id = self:GetParent().id;
+				self:SetChecked(trackedAchievements[id] and true or false);
 			</OnShow>
 		</Scripts>
 		<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
@@ -1057,11 +1065,11 @@
 					<Anchor point="BOTTOM" relativeTo="$parentRewardBackground" relativePoint="TOP" x="0" y="0"/>
 				</Anchors>
 			</Frame>
-			<!-- <CheckButton name="$parentTracked" hidden="true" inherits="AchievementCheckButtonTemplate" parentKey="tracked">
+			<CheckButton name="$parentTracked" hidden="true" inherits="AchievementCheckButtonTemplate" parentKey="tracked">
 				<Anchors>
 					<Anchor point="TOPLEFT" x="12" y="-66"/>
 				</Anchors>
-			</CheckButton> -->
+			</CheckButton>
 		</Frames>
 	</Button>
 	<Frame name="ComparisonPlayerTemplate" inherits="TooltipBorderBackdropTemplate" virtual="true">

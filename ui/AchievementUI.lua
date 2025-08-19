@@ -74,8 +74,9 @@ local displayStatCategories = {};
 
 local guildMemberRequestFrame;
 
-local trackedAchievements = {};
+trackedAchievements = {};
 local achievementFunctions;
+
 local function updateTrackedAchievements (...)
 	local count = select("#", ...);
 
@@ -87,6 +88,125 @@ end
 local function GetSafeScrollChildBottom(scrollChild)
 	return scrollChild:GetBottom() or 0;
 end
+
+-- Create display frame once
+local f = CreateFrame("Frame", "AnniversaryTrackedDisplay", UIParent, "BackdropTemplate")
+f:SetSize(300, 200)
+f:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -50, -200)
+
+-- Debug backdrop so we see it
+f:SetBackdrop({
+    bgFile = "Interface/Tooltips/UI-Tooltip-Background",
+    edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+    tile = true, tileSize = 16, edgeSize = 16,
+    insets = { left = 4, right = 4, top = 4, bottom = 4 }
+})
+f:SetBackdropColor(0,0,0,0.8)
+f:Show()
+
+-- Content frame
+f.content = CreateFrame("Frame", nil, f)
+f.content:SetAllPoints()
+
+trackedAchievements = trackedAchievements or {}
+f.lines = {}
+
+local function clearLines()
+    for _, line in ipairs(f.lines) do
+        line:Hide()
+    end
+end
+
+local function getLine(i, font)
+    if not f.lines[i] then
+        f.lines[i] = f.content:CreateFontString(nil, "OVERLAY")
+    end
+    f.lines[i]:SetFontObject(font)
+    f.lines[i]:ClearAllPoints()
+    return f.lines[i]
+end
+
+function Anniversary_ShowTrackedAchievementProgress()
+    local f = AnniversaryTrackedDisplay
+    if not f then return end
+
+    -- clear previous lines
+    for _, fs in ipairs(f.lines or {}) do
+        fs:Hide()
+    end
+    f.lines = {}
+
+    -- count tracked
+    local function countTracked()
+        local c = 0
+        for _ in pairs(trackedAchievements) do
+            c = c + 1
+        end
+        return c
+    end
+
+    local trackedCount = countTracked()
+    if trackedCount == 0 then
+        f:Hide()
+        return
+    end
+
+    f:Show()
+
+    -- header "Ziele (#)"
+    local header = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    header:SetPoint("TOPLEFT", f.content, "TOPLEFT", 8, -8)
+    header:SetText("|cffffff00Ziele (" .. trackedCount .. ")|r")
+    table.insert(f.lines, header)
+
+    local prev = header
+
+    -- loop over tracked achievements
+    for id in pairs(trackedAchievements) do
+        local _, name, _, completed, _, _, _, description = GetAchievementInfo(id)
+
+        -- title
+        local title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+        title:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -8)
+        title:SetText("|cffffcc00" .. name .. "|r")
+        table.insert(f.lines, title)
+        prev = title
+
+        local numCriteria = GetAchievementNumCriteria(id)
+        if numCriteria and numCriteria > 0 then
+            for i = 1, numCriteria do
+                local critName, critType, completedCrit, quantity, reqQuantity = GetAchievementCriteriaInfo(id, i)
+
+                local critText = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+                critText:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -4)
+
+                if reqQuantity and reqQuantity > 1 then
+                    critText:SetText("- " .. quantity .. "/" .. reqQuantity .. " " .. critName)
+                else
+                    critText:SetText("- " .. critName)
+                end
+
+                table.insert(f.lines, critText)
+                prev = critText
+            end
+        else
+            -- no criteria → show description instead
+            local desc = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+            desc:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -4)
+            desc:SetText("- " .. description)
+            table.insert(f.lines, desc)
+            prev = desc
+        end
+    end
+
+    -- resize the frame to fit text
+    local lastLine = prev
+    local height = (f:GetTop() - lastLine:GetBottom()) + 16
+    f:SetHeight(height)
+end
+
+
+
 
 -- [[ AchievementFrame ]] --
 
@@ -979,9 +1099,9 @@ function AchievementFrameAchievements_ClearSelection ()
 			button.highlight:Hide();
 		end
 		button.selected = nil;
-		-- if ( not button.tracked:GetChecked() ) then
-		-- 	button.tracked:Hide();
-		-- end
+		if ( not button.tracked:GetChecked() ) then
+			button.tracked:Hide();
+		end
 		button.description:Show();
 		button.hiddenDescription:Hide();
 	end
@@ -1133,9 +1253,9 @@ function AchievementButton_Collapse (self)
 	AchievementButton_UpdatePlusMinusTexture(self);
 	self:SetHeight(ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT);
 	self.background:SetTexCoord(0, 1, 1-(ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT / 256), 1);
-	-- if ( not self.tracked:GetChecked() ) then
-	-- 	self.tracked:Hide();
-	-- end
+	if ( not self.tracked:GetChecked() ) then
+		self.tracked:Hide();
+	end
 	self.tabard:Hide();
 	self.guildCornerL:Hide();
 	self.guildCornerR:Hide();
@@ -1391,15 +1511,15 @@ function AchievementButton_DisplayAchievement (button, category, achievement, se
 			end
 		end
 
-		if ( IsTrackedAchievement(id) ) then
+		if ( trackedAchievements[id] ) then
 			button.check:Show();
-			button.label:SetWidth(button.label:GetStringWidth() + 4); -- This +4 here is to fudge around any string width issues that arize from resizing a string set to its string width. See bug 144418 for an example.
-			-- button.tracked:SetChecked(true);
-			-- button.tracked:Show();
+			button.label:SetWidth(button.label:GetStringWidth() + 4); -- This +4 here is to fudge around any string width issues that arize from resizing a string set to its string width.
+			button.tracked:SetChecked(true);
+			button.tracked:Show();
 		else
 			button.check:Hide();
-			-- button.tracked:SetChecked(false);
-			-- button.tracked:Hide();
+			button.tracked:SetChecked(false);
+			button.tracked:Hide();
 		end
 
 		AchievementButton_UpdatePlusMinusTexture(button);
@@ -1419,7 +1539,7 @@ function AchievementButton_DisplayAchievement (button, category, achievement, se
 			button:Expand(height);
 		end
 		if ( not completed or (not wasEarnedByMe and not isGuild) ) then
-			-- button.tracked:Show();
+			button.tracked:Show();
 		end
 	elseif ( button.selected ) then
 		button.selected = nil;
@@ -2676,7 +2796,7 @@ function AchievementFrame_SelectAchievement(id, forceSelect, isComparison)
 		if ( not shown ) then
 			local _, maxVal = AchievementFrameCategoriesContainerScrollBar:GetMinMaxValues();
 			if ( AchievementFrameCategoriesContainerScrollBar:GetValue() == maxVal ) then
-				--assert(false)
+				assert(false)
 				if ( not found ) then
 					return;
 				else
@@ -2726,7 +2846,7 @@ function AchievementFrame_SelectAchievement(id, forceSelect, isComparison)
 		else
 			local scrollValue = scrollBar:GetValue();
 			if ( scrollValue == maxVal or scrollValue == previousScrollValue ) then
-				--assert(false, "Failed to find achievement " .. id .. " while jumping!")
+				assert(false, "Failed to find achievement " .. id .. " while jumping!")
 				return;
 			else
 				previousScrollValue = scrollValue;
@@ -2983,9 +3103,9 @@ function AchievementFrameComparison_OnEvent (self, event, ...)
 		AchievementFrameComparisonHeaderPoints:SetText(GetComparisonAchievementPoints());
 		AchievementFrameComparison_UpdateStatusBars(achievementFunctions.selectedCategory)
 	elseif event == "DISPLAY_SIZE_CHANGED" then
-		-- C_AchievementInfo.SetPortraitTexture(AchievementFrameComparisonHeaderPortrait);
+		C_AchievementInfo.SetPortraitTexture(AchievementFrameComparisonHeaderPortrait);
 	elseif event == "PORTRAITS_UPDATED" then
-		-- C_AchievementInfo.SetPortraitTexture(AchievementFrameComparisonHeaderPortrait);
+		C_AchievementInfo.SetPortraitTexture(AchievementFrameComparisonHeaderPortrait);
 	elseif event == "UNIT_PORTRAIT_UPDATE" then
 		local updateUnit = ...;
 		if UnitName(updateUnit) == AchievementFrameComparisonHeaderName:GetText() then
@@ -3392,8 +3512,8 @@ function AchievementComparisonPlayerButton_OnLoad (self)
 
 	self:Desaturate();
 
-	-- AchievementFrameComparison.buttons = AchievementFrameComparison.buttons or {};
-	-- tinsert(AchievementFrameComparison.buttons, self);
+	AchievementFrameComparison.buttons = AchievementFrameComparison.buttons or {};
+	tinsert(AchievementFrameComparison.buttons, self);
 end
 
 function AchievementComparisonFriendButton_Saturate (self)
