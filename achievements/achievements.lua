@@ -277,7 +277,7 @@ do
         wisdomAzeroth:AddCriteria(criterias:Create(kach.name, TYPE.COMPLETE_ACHIEVEMENT, {kach.id}))
         wisdomAzeroth:AddCriteria(criterias:Create(ekach.name , TYPE.COMPLETE_ACHIEVEMENT, {ekach.id}))
 		
-	local nesingwaryQuests = quests:CreateAchievement('AN_NESINGWARY', 'AD_NESINGWARY', 10, '-ability_mount_whitetiger', true)
+	local nesingwaryQuests = questsEasternKingdoms:CreateAchievement('AN_NESINGWARY', 'AD_NESINGWARY', 10, '-ability_mount_whitetiger', true)
 		nesingwaryQuests:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {338, 208}))	
 	
     --TBC
@@ -948,7 +948,7 @@ do
 
 	local scholo = create('SCHOLOMANCE', '-Spell_Holy_Senseundead', {1853, 10508}).id
 
-	ach = instances:CreateAchievement('AN_YOUNG_DEFENDER', 'AD_YOUNG_DEFENDER', 10, '-spell_holy_revivechampion', true)
+	ach = pve:CreateAchievement('AN_YOUNG_DEFENDER', 'AD_YOUNG_DEFENDER', 10, '-spell_holy_revivechampion', true)
 	ach:AddCriteria(criterias:CreateL('AN_RAGEFIRE_CHASM', TYPE.COMPLETE_ACHIEVEMENT, {rc}))
 	ach:AddCriteria(criterias:CreateL('AN_WAILING_CAVERNS', TYPE.COMPLETE_ACHIEVEMENT, {wc}))
 	ach:AddCriteria(criterias:CreateL('AN_DEAD_MINES', TYPE.COMPLETE_ACHIEVEMENT, {dm}))
