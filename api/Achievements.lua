@@ -115,6 +115,7 @@ local function Category(name, parentID, localize, forceID)
         name = name,
         parentID = parentID or -1,
         achievements = {},
+		unavailable = false,
         CreateAchievement = function(self, ...)
             local result = Achievement(...)
             self.achievements[result.id] = result
@@ -125,6 +126,17 @@ local function Category(name, parentID, localize, forceID)
         end,
         GetAchievements = function(self)
             return self.achievements
+        end,
+        SetUnavailable = function(self)
+			self.unavailable = true
+			-- deactivate all achievements in this category
+			for _, achievement in pairs(self.achievements) do
+				achievement:SetUnavailable()
+			end
+			return self
+		end,
+        IsAvailable = function(self)
+            return not self.unavailable
         end
     }
     struct.categories[id] = result
@@ -151,7 +163,13 @@ local function Tab(id)
             return self.categories[id]
         end,
         GetCategories = function(self)
-            return self.categories
+			local result = {}
+			for id, category in pairs(self.categories) do
+				if category:IsAvailable() then
+					result[id] = category
+				end
+			end
+			return result
         end,
         summaryCategory = {
             id = -1,

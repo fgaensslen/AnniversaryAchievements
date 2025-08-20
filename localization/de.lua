@@ -131,8 +131,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_LVL = 'Erreicht Level %d.',
 
     AN_BANK = 'Sicher angelegt',
-    AD_BANK = 'Kauft 7 zusätzliche Bankplätze.',
-    AC_BANK = 'Kauft 7 zusätzliche Bankplätze.',
+    AD_BANK = 'Kauft 6 zusätzliche Bankplätze.',
+    AC_BANK = 'Kauft 6 zusätzliche Bankplätze.',
 
     AN_QUESTS = '%d Quests abgeschlossen',
     AD_QUESTS = 'Schließt %d Quests ab.',
@@ -700,7 +700,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_PROFS_FIVE_OUTLAND = 'Genie der Scherbenwelt',
     AD_PROFS_FIVE = 'Erlangt die unten aufgelisteten Berufserfolge.',
     AN_UNARMED_SKILL = 'Hat jemand ein Veilchen bestellt?',
-    AD_UNARMED_SKILL = 'Erreicht eine unbewaffnete Fertigkeit von 350.',
+    AD_UNARMED_SKILL = 'Erreicht eine unbewaffnete Fertigkeit von 300.',
 
     AN_EXPLORE_AZEROTH = 'Weltenbummler',
     AD_EXPLORE_AZEROTH = 'Erforscht die östlichen Königreiche, Kalimdor und die Scherbenwelt.',

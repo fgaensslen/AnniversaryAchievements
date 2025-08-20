@@ -127,16 +127,14 @@ local function Completion(data)
             criteria[1] = true
             return true
         end,
-        SetCriteriaProgression = function(self, achievementID, criteriaID, value, requiredQuantity)
-            if self:IsAchievementCompleted(achievementID) then return false end
-            value = min(value, requiredQuantity)
-            local criteria = self:GetCriteria(achievementID, criteriaID, true)
-            if criteria and criteria[2] and (criteria[2] >= value or criteria[2] == requiredQuantity) then return false end
-            criteria[2] = value
-            if criteria[2] == requiredQuantity then
-                return self:CompleteCriteria(achievementID, criteriaID)
-            end
-            return false
+		SetCriteriaProgression = function(self, achievementID, criteriaID, value, requiredQuantity)
+			if self:IsAchievementCompleted(achievementID) then return false end
+			local criteria = self:GetCriteria(achievementID, criteriaID, true)
+			criteria[2] = min(value, requiredQuantity)
+			if criteria[2] >= requiredQuantity then
+				return self:CompleteCriteria(achievementID, criteriaID)
+			end
+			return false
         end,
         IncrementCriteriaProgression = function(self, achievementID, criteriaID, requiredQuantity, count)
             if self:IsAchievementCompleted(achievementID) then return false end
