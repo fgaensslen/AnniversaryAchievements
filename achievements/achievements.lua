@@ -54,9 +54,12 @@ do
         if previous then previous:SetNext(ach) end
         previous = ach
     end
+	
+	--Level 70
+	ach:SetUnavailable()
 
 	ach = general:CreateAchievement('AN_BANK', 'AD_BANK', 10, '-inv_box_01', true)
-	ach:AddCriteria(criterias:Create('AC_BANK', TYPE.BANK_SLOTS, nil, 7))
+	ach:AddCriteria(criterias:Create('AC_BANK', TYPE.BANK_SLOTS, nil, 6))
 
     previous = nil
     for i, count in pairs({100, 1000, 5000, 10000, 25000, 50000, 100000}) do
@@ -67,7 +70,7 @@ do
     end
 	
     ach = general:CreateAchievement('AN_UNARMED_SKILL', 'AD_UNARMED_SKILL', 10, '-ability_warrior_secondwind', true)
-    ach:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsSkills.UNARMED[1], 350}))
+    ach:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsSkills.UNARMED[1], 300}))
 
     local function add(previous, qualityName, quality, icon)
         local ach = general:CreateAchievement('AN_' .. qualityName .. '_GEAR', 'AD_' .. qualityName .. '_GEAR', 10, icon, true)
@@ -93,7 +96,8 @@ do
 	
 	ach = nil
 	for _, data in pairs({{'-Ability_Mount_RidingHorse', 75},{'-Ability_Mount_BlackPanther', 150},{'-Ability_Mount_Gryphon_01', 225},{'-Ability_Mount_RocketMount', 300}}) do 
-		ach = riding(data[1], data[2], ach) 
+		ach = riding(data[1], data[2], ach)
+		ach:SetUnavailable()
 	end        
 		
 	-- SETS --
@@ -237,7 +241,7 @@ do
 		return ach
 	end
    
-    local kach = questsKalimdor:CreateAchievement('AN_WISDOM_KEEPER_KALIMDOR', 'AD_WISDOM_KEEPER_KALIMDOR', 10, '-achievement_zone_kalimdor_01', true)
+    local kach = quests:CreateAchievement('AN_WISDOM_KEEPER_KALIMDOR', 'AD_WISDOM_KEEPER_KALIMDOR', 10, '-achievement_zone_kalimdor_01', true)
     questsKalimdor.add = function(self, ...) return addZoneQuests(self, kach, ...) end
     
     questsKalimdor:add('DUROTAR', 835, 10, '-achievement_zone_durotar')
@@ -253,7 +257,7 @@ do
     questsKalimdor:add('WINTERSPRING', {975, 5082, 5121, 5163, 4842}, 10, '-achievement_zone_winterspring')
     questsKalimdor:add('SILITHUS', {8287, 8352, 8321, 8281}, 10, '-achievement_zone_silithus_01')    
     
-    local ekach = questsEasternKingdoms:CreateAchievement('AN_WISDOM_KEEPER_EASTERN_KINGDOMS', 'AD_WISDOM_KEEPER_EASTERN_KINGDOMS', 10, '-achievement_zone_easternkingdoms_01', true)
+    local ekach = quests:CreateAchievement('AN_WISDOM_KEEPER_EASTERN_KINGDOMS', 'AD_WISDOM_KEEPER_EASTERN_KINGDOMS', 10, '-achievement_zone_easternkingdoms_01', true)
     questsEasternKingdoms.add = function(self, ...) return addZoneQuests(self, ekach, ...) end
 
     questsEasternKingdoms:add('ARATHI', 652, 10, '-achievement_zone_arathihighlands_01')
@@ -273,7 +277,7 @@ do
         wisdomAzeroth:AddCriteria(criterias:Create(kach.name, TYPE.COMPLETE_ACHIEVEMENT, {kach.id}))
         wisdomAzeroth:AddCriteria(criterias:Create(ekach.name , TYPE.COMPLETE_ACHIEVEMENT, {ekach.id}))
 		
-	local nesingwaryQuests = quests:CreateAchievement('AN_NESINGWARY', 'AD_NESINGWARY', 10, '-ability_mount_whitetiger', true)
+	local nesingwaryQuests = questsEasternKingdoms:CreateAchievement('AN_NESINGWARY', 'AD_NESINGWARY', 10, '-ability_mount_whitetiger', true)
 		nesingwaryQuests:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {338, 208}))	
 	
     --TBC
@@ -325,6 +329,7 @@ do
     local shadow = create('shadowmoon', {{10744, 10745}, 11052, {10645, 10639}, {10651, 10692}, 10588, 10679, 10808})
     
     local function create(questIDs)
+		--Change category to quests
         local builder = L:Achievement(outlandQuests, 10, '-achievement_zone_outland_01')
 			:NameDesc('AN_WISDOM_KEEPER_OUTLAND', 'AD_WISDOM_KEEPER_OUTLAND', true)
         
@@ -347,12 +352,14 @@ do
         hordeOutlandQuests:SetHordeOnly()
         wisdomHorde:SetRewardText(loc:Get('AR_WISDOM_KEEPER')) 
 	wisdomHorde:SetHordeOnly()
+	wisdomHorde:SetUnavailable()
 	
     local wisdomAlliance = quests:CreateAchievement('AN_WISDOM_KEEPER', 'AD_WISDOM_KEEPER', 30, '-Inv_Misc_Book_07', true)
         wisdomAlliance:AddCriteria(criterias:Create(wisdomAzeroth.name, TYPE.COMPLETE_ACHIEVEMENT, {wisdomAzeroth.id}))
         wisdomAlliance:AddCriteria(criterias:Create(allianceOutlandQuests.name , TYPE.COMPLETE_ACHIEVEMENT, {allianceOutlandQuests.id}))
         wisdomAlliance:SetRewardText(loc:Get('AR_WISDOM_KEEPER'))		
 	wisdomAlliance:SetAllianceOnly()
+	wisdomAlliance:SetUnavailable()
 	
 	ach = outlandQuests:CreateAchievement('AN_HEMET_QUESTS_NAGRAND', 'AD_HEMET_QUESTS_NAGRAND', 10, '-ability_mount_ridingelekk', true, 526)
 		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9852}))
@@ -410,7 +417,13 @@ do
         for _, childrenID in pairs(areaIDs) do
 			ach:AddCriteria(criterias:Create(AreaTableLocale[childrenID], TYPE.EXPLORE_AREA, {childrenID}))
         end
-        global:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+		
+		--dont add TBC achievements to Kalimdor achievement
+		if(areaID ~= 3524 and areaID ~= 3525) then
+			global:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+		else
+			ach:SetUnavailable()
+		end
     end
 
     add(331, {441, 414, 2301, 413, 417, 416, 424, 415, 421, 418, 426, 419, 422, 438, 430, 434, 437}, '-achievement_zone_ashenvale_01')
@@ -441,7 +454,13 @@ do
         for _, childrenID in pairs(areaIDs) do
                 ach:AddCriteria(criterias:Create(AreaTableLocale[childrenID], TYPE.EXPLORE_AREA, {childrenID}))
         end
-        global:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+		
+		--dont add TBC achievements to Eastern Kingdoms achievement
+		if(areaID ~= 3430 and areaID ~= 3433 and areaID ~= 4080) then
+			global:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+		else
+			ach:SetUnavailable()
+		end
     end
 
     add(36, {1679, 282, 279, 1682, 1357, 1677, 1683, 278, 1681, 281, 1678, 280, 1680, 284, 1684}, '-achievement_zone_alteracmountains_01')
@@ -496,7 +515,8 @@ do
     add(3523, {3712, 3726, 3730, 3734, 3722, 3736, 3741, 3842, 3729, 3723, 3737, 3732, 3850, 3725, 3837, 3738, 3868, 3874, 3877, 3878, 3742, 3739}, 'netherstorm')
     add(3520, {3750, 3822, 3743, 3759, 3744, 3840, 3748, 3746, 3821, 3745, 3754, 3752, 3758}, 'shadowmoon')
 	
-	exploreAzeroth:AddCriteria(criterias:Create(global.name, TYPE.COMPLETE_ACHIEVEMENT, {global.id}))  
+	global:SetUnavailable()
+	--exploreAzeroth:AddCriteria(criterias:Create(global.name, TYPE.COMPLETE_ACHIEVEMENT, {global.id}))  
     exploreAzeroth:SetRewardText(loc:Get('AR_EXPLORER'))  
     
     local rareIDs = {18695, 18682, 18697, 18681, 18694, 18689, 18686, 18698, 18678, 17144, 18692, 18696, 18680, 18677, 18690, 20932, 18685, 18693, 18683, 18679}
@@ -601,12 +621,12 @@ do
     ach4:SetHordeOnly()
     local ach5 = add(17468, 'VELEN', '-Achievement_leader_prophet_velen')
     ach5:SetHordeOnly()
+	ach5:SetUnavailable()
     ach = pvp:CreateAchievement(loc:Get('AN_ALLIANCE_KINGS_SLAYER'), loc:Get('AD_ALLIANCE_KINGS_SLAYER'), 20, '-inv_bannerpvp_01')
     ach:AddCriteria(criterias:Create(ach1.name, TYPE.COMPLETE_ACHIEVEMENT, {ach1.id}))
     ach:AddCriteria(criterias:Create(ach2.name, TYPE.COMPLETE_ACHIEVEMENT, {ach2.id}))
     ach:AddCriteria(criterias:Create(ach4.name, TYPE.COMPLETE_ACHIEVEMENT, {ach4.id}))
-    ach:AddCriteria(criterias:Create(ach5.name, TYPE.COMPLETE_ACHIEVEMENT, {ach5.id}))
-    ach.priority = 1
+    --ach:AddCriteria(criterias:Create(ach5.name, TYPE.COMPLETE_ACHIEVEMENT, {ach5.id}))
     ach:SetHordeOnly()
 
     ach1 = add(4949, 'THRALL', 'Achievement_Leader_ Thrall')
@@ -621,18 +641,17 @@ do
     ach:AddCriteria(criterias:Create(ach1.name, TYPE.COMPLETE_ACHIEVEMENT, {ach1.id}))
     ach:AddCriteria(criterias:Create(ach3.name, TYPE.COMPLETE_ACHIEVEMENT, {ach3.id}))
     ach:AddCriteria(criterias:Create(ach4.name, TYPE.COMPLETE_ACHIEVEMENT, {ach4.id}))
-    ach:AddCriteria(criterias:Create(ach5.name, TYPE.COMPLETE_ACHIEVEMENT, {ach5.id}))
-    ach.priority = 1
+    --ach:AddCriteria(criterias:Create(ach5.name, TYPE.COMPLETE_ACHIEVEMENT, {ach5.id}))
     ach:SetAllianceOnly()
 
     ach = pvp:CreateAchievement(loc:Get('AN_RACES_KILLER'), loc:Get('AD_ALLIANCE_RACES_KILLER'), 10, '-Ability_Gouge')
-    for _, race in pairs({'HUMAN', 'NIGHTELF', 'DWARF', 'GNOME', 'DRAENEI'}) do
+    for _, race in pairs({'HUMAN', 'NIGHTELF', 'DWARF', 'GNOME'--[[, 'DRAENEI']]}) do
         ach:AddCriteria(criterias:CreateL('AC_' .. race .. '_KILLED', TYPE.KILL_PLAYER_OF_RACE, {race}))
     end
     ach:SetHordeOnly()
 
     ach = pvp:CreateAchievement(loc:Get('AN_RACES_KILLER'), loc:Get('AD_HORDE_RACES_KILLER'), 10, '-Ability_Gouge')
-    for _, race in pairs({'ORC', 'TROLL', 'SCOURGE', 'TAUREN', 'BLOODELF'}) do
+    for _, race in pairs({'ORC', 'TROLL', 'SCOURGE', 'TAUREN'--[[, 'BLOODELF']]}) do
         ach:AddCriteria(criterias:CreateL('AC_' .. race .. '_KILLED', TYPE.KILL_PLAYER_OF_RACE, {race}))
     end
     ach:SetAllianceOnly()
@@ -816,7 +835,7 @@ do
 		:CompleteAchievementCriteria(alteracBoss)
 		:CompleteAchievementCriteria(warsongBoss)
 		:CompleteAchievementCriteria(arathiBoss)
-        :CompleteAchievementCriteria(eyeBoss)
+        --:CompleteAchievementCriteria(eyeBoss)
 		:Reward('AR_BATTLEMASTER', true)
 		:Build()		
 		
@@ -929,7 +948,7 @@ do
 
 	local scholo = create('SCHOLOMANCE', '-Spell_Holy_Senseundead', {1853, 10508}).id
 
-	ach = instances:CreateAchievement('AN_YOUNG_DEFENDER', 'AD_YOUNG_DEFENDER', 10, '-spell_holy_revivechampion', true)
+	ach = pve:CreateAchievement('AN_YOUNG_DEFENDER', 'AD_YOUNG_DEFENDER', 10, '-spell_holy_revivechampion', true)
 	ach:AddCriteria(criterias:CreateL('AN_RAGEFIRE_CHASM', TYPE.COMPLETE_ACHIEVEMENT, {rc}))
 	ach:AddCriteria(criterias:CreateL('AN_WAILING_CAVERNS', TYPE.COMPLETE_ACHIEVEMENT, {wc}))
 	ach:AddCriteria(criterias:CreateL('AN_DEAD_MINES', TYPE.COMPLETE_ACHIEVEMENT, {dm}))
@@ -1137,6 +1156,9 @@ do
 	builderNormalTBC = builderNormalTBC:Build()
 	builderHeroicTBC = builderHeroicTBC:Build()
 	builderNormalTBC:SetNext(builderHeroicTBC)
+	
+	builderNormalTBC:SetUnavailable()
+	builderHeroicTBC:SetUnavailable()	
 
     L:Achievement(featsOfStrength, 0, '-Inv-Mount_Raven_54')
         :NameDesc('AN_RAVEN_LORD', 'AD_RAVEN_LORD', true)
@@ -1169,12 +1191,14 @@ do
         :Criteria(TYPE.KILL_NPC, {17257}):Build()
         :Build()
 
-    L:Achievement(pve, 10, '-Inv_Helmet_89')
+    local p1 = L:Achievement(pve, 10, '-Inv_Helmet_89')
         :NameDesc('AN_TBC_PHASE_1', 'AD_TBC_PHASE_1', true)
         :Criteria(TYPE.COMPLETE_ACHIEVEMENT, {karazhan.id}):Name(karazhan.name):Build()
         :Criteria(TYPE.COMPLETE_ACHIEVEMENT, {gruul.id}):Name(gruul.name):Build()
         :Criteria(TYPE.COMPLETE_ACHIEVEMENT, {magtheridon.id}):Name(magtheridon.name):Build()
         :Build()
+		
+	p1:SetUnavailable()
 
     --RAIDS P2
     local ssc = L:Achievement(tbcInstances, 10, '-Achievement_boss_ladyvashj')
@@ -1195,11 +1219,13 @@ do
         :Criteria(TYPE.KILL_NPC, {19622}):Name('AC_KILL_KAELTHAS', true):Build()
         :Build()
 
-    L:Achievement(pve, 10, '-Inv_Helmet_90')
+    local p2 = L:Achievement(pve, 10, '-Inv_Helmet_90')
         :NameDesc('AN_TBC_PHASE_2', 'AD_TBC_PHASE_2', true)
         :Criteria(TYPE.COMPLETE_ACHIEVEMENT, {ssc.id}):Name(ssc.name):Build()
         :Criteria(TYPE.COMPLETE_ACHIEVEMENT, {tk.id}):Name(tk.name):Build()
         :Build()
+		
+	p2:SetUnavailable()
 
     --RAIDS P3
     local hyjal = L:Achievement(tbcInstances, 10, '-achievement_boss_princemalchezaar_02')
@@ -1236,11 +1262,13 @@ do
         :Reward('AR_BLACK_TEMPLE', true)
         :Build()	
 
-    L:Achievement(pve, 10, '-Inv_Helmet_103')
+    local p3 = L:Achievement(pve, 10, '-Inv_Helmet_103')
         :NameDesc('AN_TBC_PHASE_3', 'AD_TBC_PHASE_3', true)
         :Criteria(TYPE.COMPLETE_ACHIEVEMENT, {hyjal.id}):Name(hyjal.name):Build()
         :Criteria(TYPE.COMPLETE_ACHIEVEMENT, {bt.id}):Name(bt.name):Build()
         :Build()
+		
+	p3:SetUnavailable()
 		
 	--RAIDS P4
 	local zulAman = L:Achievement(tbcInstances, 10, '-achievement_boss_zuljin')
@@ -1248,10 +1276,12 @@ do
         :Criteria(TYPE.KILL_NPC, { 23863 }):Build()
         :Build()	
 		
-	L:Achievement(pve, 10, '-inv_helmet_112')
+	local p4 = L:Achievement(pve, 10, '-inv_helmet_112')
         :NameDesc('AN_TBC_PHASE_4', 'AD_TBC_PHASE_4', true)
 		:Criteria(TYPE.COMPLETE_ACHIEVEMENT, {zulAman.id}):Name(zulAman.name):Build()
-        :Build()  
+        :Build() 
+
+	p4:SetUnavailable()	
 		
 	--RAIDS P5
 	local sunwell = L:Achievement(tbcInstances, 10, '-achievement_boss_kiljaedan')
@@ -1259,10 +1289,12 @@ do
         :Criteria(TYPE.KILL_NPC, { 25315 }):Build()
         :Build()
 	
-	L:Achievement(pve, 10, '-inv_helmet_92')
+	local p5 = L:Achievement(pve, 10, '-inv_helmet_92')
         :NameDesc('AN_TBC_PHASE_5', 'AD_TBC_PHASE_5', true)
 		:Criteria(TYPE.COMPLETE_ACHIEVEMENT, {sunwell.id}):Name(sunwell.name):Build()
-        :Build()  		
+        :Build() 
+		
+	p5:SetUnavailable() 		
 end
 
 -- PROFESSIONS --
@@ -1290,7 +1322,9 @@ do
     ach = professions:CreateAchievement(loc:Get('AN_PROFS_ONE_OUTLAND'), loc:Get('AD_PROFS_ONE_OUTLAND'), 10, '-Inv_Misc_Note_01')
 		ach:AddCriteria(criterias:Create(nil, TYPE.REACH_MAIN_PROFESSION_LEVEL, {375}))
 		previous:SetNext(ach) 
-	previous = nil		
+	previous = nil	
+
+	ach:SetUnavailable()
 	
 	--SECOND MAIN PROFESSION
 	local twoMains = professions:CreateAchievement(loc:Get('AN_PROFS_TWO'), loc:Get('AD_PROFS_TWO'), 10, '-ability_repair')
@@ -1301,6 +1335,8 @@ do
         twoMainsOutland:AddCriteria(criterias:Create(loc:Get('AC_PROFS_TWO_OUTLAND'), TYPE.REACH_MAIN_PROFESSION_LEVEL, {375}, 2))
         previous:SetNext(twoMainsOutland)
 	previous = nil
+	
+	twoMainsOutland:SetUnavailable()
 
 	--SECONDARY PROFESSIONS
     local levels = {{'JOURNEYMAN', 75}, {'EXPERT', 150}, {'ARTISAN', 225}, {'MASTER', 300}}
@@ -1337,12 +1373,18 @@ do
         fishingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.FISHING[1], 375}))
     cookingAch = add(cooking, 'COOKING', '-inv_misc_food_15')
         cookingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.COOKING[1], 375}))
+		
+	firstAidAch:SetUnavailable()
+	fishingAch:SetUnavailable()
+	cookingAch:SetUnavailable()
 
     local secondaryOutland = professions:CreateAchievement(loc:Get('AN_PROFS_SECONDARY_OUTLAND'), loc:Get('AD_PROFS_SECONDARY_OUTLAND'), 10, '-Inv_Misc_Note_02')
 		secondaryOutland:AddCriteria(criterias:Create(firstAidAch.name, TYPE.COMPLETE_ACHIEVEMENT, {firstAidAch.id}))
 		secondaryOutland:AddCriteria(criterias:Create(fishingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {fishingAch.id}))
 		secondaryOutland:AddCriteria(criterias:Create(cookingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {cookingAch.id}))
 		previousSecondary:SetNext(secondaryOutland)
+		
+	secondaryOutland:SetUnavailable()
     
 	--5 PROFESSIONS
     ach = professions:CreateAchievement(loc:Get('AN_PROFS_FIVE'), loc:Get('AD_PROFS_FIVE'), 10, '-Spell_Magic_GreaterBlessingOfKings')
@@ -1355,6 +1397,8 @@ do
         ach:AddCriteria(criterias:Create(secondaryOutland.name, TYPE.COMPLETE_ACHIEVEMENT, {secondaryOutland.id}))
         previous:SetNext(ach)
 	previous = nil
+	
+	ach:SetUnavailable()
 		
 	-- FIRST AID
     ach = firstAid:CreateAchievement('AN_STOCKING_UP', 'AD_STOCKING_UP', 10, '-Inv_Misc_Bandage_12', true)
@@ -1372,11 +1416,14 @@ do
         :Criteria(TYPE.CRAFT_ITEM, {21991}, 100):Name('AC_STOCKING_UP_OUTLAND', true):Build()
         :Build()
 
-    L:Achievement(firstAid, 10, '-Inv_Misc_Bandage_Netherweave_Heavy')
+    local a2 = L:Achievement(firstAid, 10, '-Inv_Misc_Bandage_Netherweave_Heavy')
         :NameDesc('AN_STOCKING_UP_2_OUTLAND', 'AD_STOCKING_UP_2_OUTLAND', true)
         :Criteria(TYPE.CRAFT_ITEM, {21991}, 500):Name('AC_STOCKING_UP_2_OUTLAND', true):Build()
         :Previous(a1)
         :Build()
+		
+	a1:SetUnavailable()
+	a2:SetUnavailable()
 
 	--FISHING		
 	L:Achievement(fishing, 10, '-inv_misc_fish_21')
@@ -1446,10 +1493,12 @@ do
 	fishingAchievements()
 
     --TBC
-    L:Achievement(fishing, 10, '-Inv_Misc_Fish_14')
+    local pinchy = L:Achievement(fishing, 10, '-Inv_Misc_Fish_14')
         :NameDesc('AN_MR_PINCHY', 'AD_MR_PINCHY', true)
         :Criteria(TYPE.FISH_AN_ITEM, {27388}):Build()
         :Build()
+		
+	pinchy:SetUnavailable()
 
 	--COOKING
     previous = nil
@@ -1793,6 +1842,13 @@ do
 		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {10445}))
 		ach:SetRewardText(loc:Get('AR_HAND_ADAL'))
 end
+
+--DELETE WHEN TBC COMES OUT
+outlandQuests:SetUnavailable()
+outlandExploration:SetUnavailable()
+bgEye:SetUnavailable()
+tbcInstances:SetUnavailable()
+tbcReputations:SetUnavailable()
 
 --print(db:GetAllAchievements())
 --[[
