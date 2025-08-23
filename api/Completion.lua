@@ -2,6 +2,8 @@ CA_CompletionManager = {}
 
 local struct = CA_CompletionManager
 local mapping = {}
+local metaMapping = {} -- NEW: subAchievementID -> { metaAchievementIDs }
+
 local achievementSoundQueued = false
 
 local requiresUpdate = false
@@ -80,21 +82,45 @@ local function Completion(data)
             end
             return true
         end,
-        isAchievementCompleted = function(self, achievementData)
-            return achievementData and achievementData:IsAvailable() and (achievementData:IsAnyCompletable() or self:AreAllCriteriasCompleted(achievementData))
-        end,
+		isAchievementCompleted = function(self, achievementData)
+			if not (achievementData and achievementData:IsAvailable()) then
+				return false
+			end
+
+			-- Check criterias
+			for _, criteria in pairs(achievementData:GetCriterias()) do
+				if criteria.type == CA_Criterias.TYPE.COMPLETE_ACHIEVEMENT then
+					local subID = criteria.data[1]
+					if not self:IsAchievementCompleted(subID) then
+						return false
+					end
+				elseif not self:IsCriteriaCompleted(achievementData.id, criteria.id, criteria) then
+					return false
+				end
+			end
+
+			return true
+		end,
         GetCriteriaProgression = function(self, achievementID, criteriaID)
             local criteria = self:GetCriteria(achievementID, criteriaID)
             if not criteria then return 0 end
             return criteria[2] or 0
         end,
         CompleteAchievement = function(self, id)
-            local achievement = self:GetAchievement(id, true)
-            achievement[1] = true
-            achievement[2] = GetServerTime()
+			local achievement = self:GetAchievement(id, true)
+			achievement[1] = true
+			achievement[2] = GetServerTime()
 
-            CA_Criterias:Trigger(CA_Criterias.TYPE.COMPLETE_ACHIEVEMENT, {id}, 1)
-        end,
+			local metas = metaMapping[id]
+			if metas then
+				for _, metaID in ipairs(metas) do
+					self:checkAndComplete(metaID)
+				end
+				requiresUpdate = true
+			end
+
+			CA_Criterias:Trigger(CA_Criterias.TYPE.COMPLETE_ACHIEVEMENT, {id}, 1)
+		end,
         completeAchievementGracefully = function(self, achievement, forcefully)
             local previousID = achievement:GetPreviousID()
             if previousID and not self:IsAchievementCompleted(previousID) then
@@ -278,18 +304,28 @@ end
 
 function struct:PostLoad(categories)
     local function processCriteria(achievementID, criteria)
-        if criteria.type == CA_Criterias.TYPE.OR then
-            processCriteria(achievementID, criteria.data[1])
-            processCriteria(achievementID, criteria.data[2])
-        else
-            if not mapping[criteria.id] then mapping[criteria.id] = {} end
-            local achievementIDs = mapping[criteria.id]
-            achievementIDs[#achievementIDs + 1] = achievementID
-        end
-    end
+		if criteria.type == CA_Criterias.TYPE.OR then
+			processCriteria(achievementID, criteria.data[1])
+			processCriteria(achievementID, criteria.data[2])
+
+		elseif criteria.type == CA_Criterias.TYPE.COMPLETE_ACHIEVEMENT then
+			-- This is a meta requirement: sub-achievement must be completed
+			local subID = criteria.data[1]  -- the achievement ID being referenced
+			metaMapping[subID] = metaMapping[subID] or {}
+			table.insert(metaMapping[subID], achievementID)
+
+		else
+			-- Normal criteria (zone discovered etc.)
+			if not mapping[criteria.id] then mapping[criteria.id] = {} end
+			local achievementIDs = mapping[criteria.id]
+			achievementIDs[#achievementIDs + 1] = achievementID
+		end
+	end
+
     for _, category in pairs(categories) do
         for achievementID, achievement in pairs(category:GetAchievements()) do
             if achievement:IsAvailable() then
+                -- criteria mapping (existing)
                 for _, criteria in pairs(achievement:GetCriterias()) do
                     processCriteria(achievementID, criteria)
                 end
