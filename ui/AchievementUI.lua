@@ -74,7 +74,8 @@ local displayStatCategories = {};
 
 local guildMemberRequestFrame;
 
-trackedAchievements = {};
+-- global table for tracked achievements
+trackedAchievements = trackedAchievements or {}
 local achievementFunctions;
 
 local function updateTrackedAchievements (...)
@@ -89,124 +90,148 @@ local function GetSafeScrollChildBottom(scrollChild)
 	return scrollChild:GetBottom() or 0;
 end
 
--- Create display frame once
-local f = CreateFrame("Frame", "AnniversaryTrackedDisplay", UIParent, "BackdropTemplate")
-f:SetSize(300, 200)
-f:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -50, -200)
+-- [[ TRACKER ]] --
+function Anniversary_ShowTrackedAchievementProgress()
 
--- Debug backdrop so we see it
-f:SetBackdrop({
-    bgFile = "Interface/Tooltips/UI-Tooltip-Background",
-    edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
-    tile = true, tileSize = 16, edgeSize = 16,
-    insets = { left = 4, right = 4, top = 4, bottom = 4 }
-})
-f:SetBackdropColor(0,0,0,0.8)
-f:Show()
+	-- clean invalid keys
+	for id in pairs(trackedAchievements) do
+		if type(id) ~= "number" then
+			trackedAchievements[id] = nil
+		end
+	end
+	
+    if not AnniversaryTrackedDisplay then
+        AnniversaryTrackedDisplay = CreateFrame("Frame", "AnniversaryTrackedDisplay", UIParent, "BackdropTemplate")
+        AnniversaryTrackedDisplay:SetSize(300, 400)
+        AnniversaryTrackedDisplay:SetPoint("CENTER")
 
--- Content frame
-f.content = CreateFrame("Frame", nil, f)
-f.content:SetAllPoints()
+        AnniversaryTrackedDisplay:SetMovable(true)
+        AnniversaryTrackedDisplay:EnableMouse(true)
+        AnniversaryTrackedDisplay:RegisterForDrag("LeftButton")
+        AnniversaryTrackedDisplay:SetScript("OnDragStart", AnniversaryTrackedDisplay.StartMoving)
+        AnniversaryTrackedDisplay:SetScript("OnDragStop", AnniversaryTrackedDisplay.StopMovingOrSizing)
 
-trackedAchievements = trackedAchievements or {}
-f.lines = {}
+        AnniversaryTrackedDisplay.content = CreateFrame("Frame", nil, AnniversaryTrackedDisplay)
+        AnniversaryTrackedDisplay.content:SetPoint("TOPLEFT", 10, -30)
+        AnniversaryTrackedDisplay.content:SetPoint("BOTTOMRIGHT", -10, 10)
+        AnniversaryTrackedDisplay.lines = {}
+    end
 
-local function clearLines()
+    local f = AnniversaryTrackedDisplay
     for _, line in ipairs(f.lines) do
         line:Hide()
-    end
-end
-
-local function getLine(i, font)
-    if not f.lines[i] then
-        f.lines[i] = f.content:CreateFontString(nil, "OVERLAY")
-    end
-    f.lines[i]:SetFontObject(font)
-    f.lines[i]:ClearAllPoints()
-    return f.lines[i]
-end
-
-function Anniversary_ShowTrackedAchievementProgress()
-    local f = AnniversaryTrackedDisplay
-    if not f then return end
-
-    -- clear previous lines
-    for _, fs in ipairs(f.lines or {}) do
-        fs:Hide()
     end
     f.lines = {}
 
     -- count tracked
-    local function countTracked()
-        local c = 0
-        for _ in pairs(trackedAchievements) do
-            c = c + 1
-        end
-        return c
+    local trackedCount = 0
+    for _ in pairs(trackedAchievements) do
+        trackedCount = trackedCount + 1
     end
 
-    local trackedCount = countTracked()
     if trackedCount == 0 then
         f:Hide()
         return
     end
-
+	
     f:Show()
 
     -- header "Ziele (#)"
     local header = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     header:SetPoint("TOPLEFT", f.content, "TOPLEFT", 8, -8)
-    header:SetText("|cffffff00Ziele (" .. trackedCount .. ")|r")
+    header:SetText("|cFFFFD500Ziele (" .. trackedCount .. ")|r")
+	header:SetShadowOffset(1, -1)
     table.insert(f.lines, header)
 
     local prev = header
 
-    -- loop over tracked achievements
+    -- loop tracked achievements
     for id in pairs(trackedAchievements) do
-        local _, name, _, completed, _, _, _, description = GetAchievementInfo(id)
+        local _, name, _, _, _, _, _, description = GetAchievementInfo(id)
 
-        -- title
+        -- achievement title
         local title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-        title:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -8)
-        title:SetText("|cffffcc00" .. name .. "|r")
+        title:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
+        title:SetText("|cFFC4A300" .. name .. "|r") -- gold
+		title:SetShadowOffset(1, -1)
+		
         table.insert(f.lines, title)
         prev = title
 
-        local numCriteria = GetAchievementNumCriteria(id)
-        if numCriteria and numCriteria > 0 then
-            for i = 1, numCriteria do
-                local critName, critType, completedCrit, quantity, reqQuantity = GetAchievementCriteriaInfo(id, i)
+		-- Criteria
+		local numCriteria = GetAchievementNumCriteria(id)
+		if numCriteria > 0 then
+			for i = 1, numCriteria do
+				local desc, _, critCompleted, qty, reqQty = GetAchievementCriteriaInfo(id, i)
+				local criteriaNumber
 
-                local critText = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-                critText:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -4)
+				if (qty == 0 and reqQty == nil) then
+					criteriaNumber = ""
+				else					
+					criteriaNumber = qty .. "/" .. reqQty
+				end
 
-                if reqQuantity and reqQuantity > 1 then
-                    critText:SetText("- " .. quantity .. "/" .. reqQuantity .. " " .. critName)
-                else
-                    critText:SetText("- " .. critName)
-                end
+				-- Skip completed criteria
+				if not critCompleted then
+					local criteriaLine = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")				
+						criteriaLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
+						criteriaLine:SetText("|cFFD0D0D0- " .. criteriaNumber .. " " ..desc)
+						criteriaLine:SetShadowOffset(1, -1)
 
-                table.insert(f.lines, critText)
-                prev = critText
-            end
-        else
-            -- no criteria → show description instead
-            local desc = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-            desc:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -4)
-            desc:SetText("- " .. description)
-            table.insert(f.lines, desc)
-            prev = desc
-        end
+					table.insert(f.lines, criteriaLine)
+					prev = criteriaLine
+				end
+			end
+		else
+			-- Fallback: description
+			local descLine = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+			descLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
+			descLine:SetText("|cFFD0D0D0- " .. description)
+			descLine:SetShadowOffset(1, -1)
+			
+			table.insert(f.lines, descLine)
+			prev = descLine
+		end
     end
-
-    -- resize the frame to fit text
-    local lastLine = prev
-    local height = (f:GetTop() - lastLine:GetBottom()) + 16
-    f:SetHeight(height)
 end
 
+-------------------------------------------------
+-- HOOK INTO BLIZZARD ACHIEVEMENT FRAME
+-------------------------------------------------
+local f = CreateFrame("Frame")
+f:RegisterEvent("ADDON_LOADED")
+f:RegisterEvent("ACHIEVEMENT_EARNED")
+f:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED")
 
-
+f:SetScript("OnEvent", function(_, event, addon)
+    if event == "ADDON_LOADED" and addon == "Blizzard_AchievementUI" then
+        -- Hook the checkboxes in Blizzard's Achievement Frame
+        hooksecurefunc("AchievementButton_ToggleTracking", function(button)
+            if not button or not button.id then return end
+            if button.tracked then
+                trackedAchievements[button.id] = true
+            else
+                trackedAchievements[button.id] = nil
+            end
+            Anniversary_ShowTrackedAchievementProgress()
+        end)
+    elseif event == "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
+        -- keep sync if user uses shift-click or other methods
+        wipe(trackedAchievements)
+        for i = 1, GetNumTrackedAchievements() do
+            local id = GetTrackedAchievement(i)
+            if id then
+                trackedAchievements[id] = true
+            end
+        end
+        Anniversary_ShowTrackedAchievementProgress()
+    elseif event == "ACHIEVEMENT_EARNED" then
+        -- if an achievement is earned, untrack it
+        local id = addon
+        trackedAchievements[id] = nil
+        Anniversary_ShowTrackedAchievementProgress()
+    end
+end)
 
 -- [[ AchievementFrame ]] --
 

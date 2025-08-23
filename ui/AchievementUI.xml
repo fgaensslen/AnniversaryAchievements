@@ -245,16 +245,19 @@
 				else
 					PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF);
 				end
-				
-				local id = self:GetParent().id;
-				if trackedAchievements[id] then
-					trackedAchievements[id] = nil;
-				else
-					trackedAchievements[id] = true;					
-				end	
 
-				-- refresh the tracker after toggling
-				Anniversary_ShowTrackedAchievementProgress()				
+				local id = tonumber(self:GetParent().id)
+				if not id then
+					id = self.id or select(1, GetAchievementInfo(self:GetParent().index))
+				end
+
+				if trackedAchievements[id] then
+					trackedAchievements[id] = nil
+				else
+					trackedAchievements[id] = true
+				end    
+
+				Anniversary_ShowTrackedAchievementProgress()
 			</OnClick>
 			<OnEnter>
 				GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
