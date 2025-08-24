@@ -254,10 +254,26 @@
 				if trackedAchievements[id] then
 					trackedAchievements[id] = nil
 				else
+					-- enforce max tracking limit
+					local count = 0
+					for _ in pairs(trackedAchievements) do
+						count = count + 1
+					end
+					
+					if count >= MAX_TRACKED_ACHIEVEMENTS then
+						UIErrorsFrame:AddMessage(
+							string.format(ACHIEVEMENT_WATCH_TOO_MANY, MAX_TRACKED_ACHIEVEMENTS),
+							1.0, 0.1, 0.1, 1.0
+						)
+						self:SetChecked(false) -- uncheck again
+						return
+					end
+
 					trackedAchievements[id] = true
-				end    
+				end     
 
 				Anniversary_ShowTrackedAchievementProgress()
+				AchievementFrameAchievements_ForceUpdate()
 			</OnClick>
 			<OnEnter>
 				GameTooltip:SetOwner(self, "ANCHOR_RIGHT");

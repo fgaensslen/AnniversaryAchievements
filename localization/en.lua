@@ -226,6 +226,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     QUEST_737 = 'Forbidden Knowledge',
     QUEST_778 = 'This Is Going to Be Hard',
     QUEST_656 = 'Summoning the Princess',
+	QUEST_793 = 'Broken Alliances',
+	QUEST_717 = 'Tremors of the Earth',
     
     EASTERN_PLAGUELANDS_1 = 'Eastern Plaguelands',
     EASTERN_PLAGUELANDS_2 = 'Eastern Plaguelands',

@@ -261,8 +261,12 @@ do
     questsEasternKingdoms.add = function(self, ...) return addZoneQuests(self, ekach, ...) end
 
     questsEasternKingdoms:add('ARATHI', 652, 10, '-achievement_zone_arathihighlands_01')
-    questsEasternKingdoms:add('STRANGLETHORN_VALLEY', {208, 600, 613, 628, 338}, 10, '-achievement_zone_stranglethorn_01')
-    questsEasternKingdoms:add('BADLANDS', {737, 778, 656}, 10, '-achievement_zone_badlands_01')
+    questsEasternKingdoms:add('STRANGLETHORN_VALLEY', {208, 600, 613, 628, 338}, 10, '-achievement_zone_stranglethorn_01')    
+	if UnitFactionGroup('player') == 'Horde' then
+		questsEasternKingdoms:add('BADLANDS', {737, 778, 656, 793}, 10, '-achievement_zone_badlands_01')
+    else
+		questsEasternKingdoms:add('BADLANDS', {737, 778, 656, 717}, 10, '-achievement_zone_badlands_01')
+    end  
     questsEasternKingdoms:add('SEARING_GORGE', 3481, 10, '-achievement_zone_searinggorge_01')
     questsEasternKingdoms:add('BLASTED_LANDS', 3628, 10, '-achievement_zone_blastedlands_01')
     questsEasternKingdoms:add('WESTERN_PLAGUELANDS', {5944, 5051, 4985}, 10, '-achievement_zone_westernplaguelands_01')
@@ -1523,8 +1527,8 @@ do
     previous = nil
 
     local function add(name, icon, itemID, count, points)
-        local ach = cooking:CreateAchievement(loc:Get('AN_COOKING_' .. name), 'create itemID ' .. itemID, points or 10, icon)
-        ach:AddCriteria(criterias:Create(loc:Get('AC_COOKING_CREATE', count), TYPE.CRAFT_ITEM, {itemID}, count))
+        local ach = cooking:CreateAchievement(loc:Get('AN_COOKING_' .. name), 'create itemID ' .. itemID, 10, icon)
+			ach:AddCriteria(criterias:Create(loc:Get('AC_COOKING_CREATE', count), TYPE.CRAFT_ITEM, {itemID}, count))
 
         local item = Item:CreateFromItemID(itemID)
         item:ContinueOnItemLoad(function()

@@ -73,24 +73,26 @@ local ACHIEVEMENT_FRAME_SHOW_ALL_RESULTS_INDEX = ACHIEVEMENT_FRAME_NUM_SEARCH_PR
 local displayStatCategories = {};
 
 local guildMemberRequestFrame;
+local achievementFunctions;
+
+
+-- [[ TRACKER ]] --
 
 -- global table for tracked achievements
 trackedAchievements = trackedAchievements or {}
-local achievementFunctions;
 
-local function updateTrackedAchievements (...)
-	local count = select("#", ...);
+-- 4. Live-Update bei Progressänderung
+-- 5. Bugfix für Kochachievements
+-- 6. Position merken
+-- 7. Position von Anfang an am rechten Rand
+-- 8. Per MouseHover und gedrückter Umschalttaste kann man entfernen
+-- 9. Umbruch bei zu langen Texten
+-- 10. Getrackte Achievements speichern
+-- 11. Trackerfenster durchklickbar machen
+-- 12. Achievements unten der Liste hinzufügen
+-- 13. Mouse Hover macht Schrift heller
 
-	for i = 1, count do
-		trackedAchievements[select(i, ...)] = true;
-	end
-end
 
-local function GetSafeScrollChildBottom(scrollChild)
-	return scrollChild:GetBottom() or 0;
-end
-
--- [[ TRACKER ]] --
 function Anniversary_ShowTrackedAchievementProgress()
 
 	-- clean invalid keys
@@ -102,7 +104,7 @@ function Anniversary_ShowTrackedAchievementProgress()
 	
     if not AnniversaryTrackedDisplay then
         AnniversaryTrackedDisplay = CreateFrame("Frame", "AnniversaryTrackedDisplay", UIParent, "BackdropTemplate")
-        AnniversaryTrackedDisplay:SetSize(300, 400)
+        AnniversaryTrackedDisplay:SetSize(100, 100)
         AnniversaryTrackedDisplay:SetPoint("CENTER")
 
         AnniversaryTrackedDisplay:SetMovable(true)
@@ -136,10 +138,10 @@ function Anniversary_ShowTrackedAchievementProgress()
 	
     f:Show()
 
-    -- header "Ziele (#)"
+    -- Objectives Header
     local header = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     header:SetPoint("TOPLEFT", f.content, "TOPLEFT", 8, -8)
-    header:SetText("|cFFFFD500Ziele (" .. trackedCount .. ")|r")
+    header:SetText("|cFFFFD500" .. OBJECTIVES_TRACKER_LABEL .. " (" .. trackedCount .. ")|r")
 	header:SetShadowOffset(1, -1)
     table.insert(f.lines, header)
 
@@ -192,48 +194,14 @@ function Anniversary_ShowTrackedAchievementProgress()
 			table.insert(f.lines, descLine)
 			prev = descLine
 		end
-    end
+    end	
 end
 
--------------------------------------------------
--- HOOK INTO BLIZZARD ACHIEVEMENT FRAME
--------------------------------------------------
-local f = CreateFrame("Frame")
-f:RegisterEvent("ADDON_LOADED")
-f:RegisterEvent("ACHIEVEMENT_EARNED")
-f:RegisterEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED")
-
-f:SetScript("OnEvent", function(_, event, addon)
-    if event == "ADDON_LOADED" and addon == "Blizzard_AchievementUI" then
-        -- Hook the checkboxes in Blizzard's Achievement Frame
-        hooksecurefunc("AchievementButton_ToggleTracking", function(button)
-            if not button or not button.id then return end
-            if button.tracked then
-                trackedAchievements[button.id] = true
-            else
-                trackedAchievements[button.id] = nil
-            end
-            Anniversary_ShowTrackedAchievementProgress()
-        end)
-    elseif event == "TRACKED_ACHIEVEMENT_LIST_CHANGED" then
-        -- keep sync if user uses shift-click or other methods
-        wipe(trackedAchievements)
-        for i = 1, GetNumTrackedAchievements() do
-            local id = GetTrackedAchievement(i)
-            if id then
-                trackedAchievements[id] = true
-            end
-        end
-        Anniversary_ShowTrackedAchievementProgress()
-    elseif event == "ACHIEVEMENT_EARNED" then
-        -- if an achievement is earned, untrack it
-        local id = addon
-        trackedAchievements[id] = nil
-        Anniversary_ShowTrackedAchievementProgress()
-    end
-end)
-
 -- [[ AchievementFrame ]] --
+
+local function GetSafeScrollChildBottom(scrollChild)
+	return scrollChild:GetBottom() or 0;
+end
 
 function AchievementFrame_ToggleAchievementFrame(toggleStatFrame, toggleGuildView)
 	AchievementFrameComparison:Hide();
@@ -962,8 +930,6 @@ function AchievementFrameAchievements_OnEvent (self, event, ...)
 		RegisterCustomEvent("TRACKED_ACHIEVEMENT_LIST_CHANGED");
 		RegisterCustomEvent("RECEIVED_ACHIEVEMENT_MEMBER_LIST");
 		RegisterCustomEvent("ACHIEVEMENT_SEARCH_UPDATED");
-
-		updateTrackedAchievements(GetTrackedAchievements());
 		
 		AchievementFrame:HookScript("OnShow", function(self)
 			if CA_Settings and CA_Settings.AchievementFramePosition then
@@ -997,12 +963,7 @@ function AchievementFrameAchievements_OnEvent (self, event, ...)
 		else
 			AchievementFrameAchievementsObjectives.id = nil; -- Force redraw
 		end
-	elseif ( event == "TRACKED_ACHIEVEMENT_LIST_CHANGED" ) then
-		for k, v in next, trackedAchievements do
-			trackedAchievements[k] = nil;
-		end
 
-		updateTrackedAchievements(GetTrackedAchievements());
 	elseif ( event == "RECEIVED_ACHIEVEMENT_MEMBER_LIST" ) then
 		local achievementID = ...;
 		-- check if we initiated the request from a meta criteria and we're still over it
@@ -1124,9 +1085,6 @@ function AchievementFrameAchievements_ClearSelection ()
 			button.highlight:Hide();
 		end
 		button.selected = nil;
-		if ( not button.tracked:GetChecked() ) then
-			button.tracked:Hide();
-		end
 		button.description:Show();
 		button.hiddenDescription:Hide();
 	end
@@ -1278,9 +1236,6 @@ function AchievementButton_Collapse (self)
 	AchievementButton_UpdatePlusMinusTexture(self);
 	self:SetHeight(ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT);
 	self.background:SetTexCoord(0, 1, 1-(ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT / 256), 1);
-	if ( not self.tracked:GetChecked() ) then
-		self.tracked:Hide();
-	end
 	self.tabard:Hide();
 	self.guildCornerL:Hide();
 	self.guildCornerR:Hide();
@@ -1401,9 +1356,6 @@ function AchievementButton_OnClick (self, button, down, ignoreModifiers)
 				end
 			end
 		end
-		if ( not handled and IsModifiedClick("QUESTWATCHTOGGLE") ) then
-			AchievementButton_ToggleTracking(self.id);
-		end
 		return;
 	end
 
@@ -1426,31 +1378,7 @@ function AchievementButton_OnClick (self, button, down, ignoreModifiers)
 	end
 end
 
-function AchievementButton_ToggleTracking (id)
-	if ( trackedAchievements[id] ) then
-		RemoveTrackedAchievement(id);
-		AchievementFrameAchievements_ForceUpdate();
-		return;
-	end
 
-	local count = GetNumTrackedAchievements();
-
-	if ( count >= MAX_TRACKED_ACHIEVEMENTS ) then
-		UIErrorsFrame:AddMessage(format(ACHIEVEMENT_WATCH_TOO_MANY, MAX_TRACKED_ACHIEVEMENTS), 1.0, 0.1, 0.1, 1.0);
-		return;
-	end
-
-	local _, _, _, completed, _, _, _, _, _, _, _, isGuild, wasEarnedByMe = GetAchievementInfo(id)
-	if ( (completed and isGuild) or wasEarnedByMe ) then
-		UIErrorsFrame:AddMessage(ERR_ACHIEVEMENT_WATCH_COMPLETED, 1.0, 0.1, 0.1, 1.0);
-		return;
-	end
-
-	AddTrackedAchievement(id);
-	AchievementFrameAchievements_ForceUpdate();
-
-	return true;
-end
 
 function AchievementButton_DisplayAchievement (button, category, achievement, selectionID, renderOffScreen)
 	local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy = GetAchievementInfo(category, achievement);

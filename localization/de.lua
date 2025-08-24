@@ -224,6 +224,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     QUEST_737 = 'Verbotenes Wissen',
     QUEST_778 = 'Das wird schwierig',
     QUEST_656 = 'Beschwören der Prinzessin',
+	QUEST_793 = 'Zerbrochene Allianzen',
+	QUEST_717 = 'Erdbeben',
     
     EASTERN_PLAGUELANDS_1 = 'Östliche Pestländer',
     EASTERN_PLAGUELANDS_2 = 'Östliche Pestländer',
