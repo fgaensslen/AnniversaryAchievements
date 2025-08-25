@@ -80,12 +80,12 @@ local achievementFunctions;
 
 -- global table for tracked achievements
 trackedAchievements = trackedAchievements or {}
+trackedOrder = trackedOrder or {}
 
 -- 5. Bugfix für Kochachievements
 -- 8. Per MouseHover und gedrückter Umschalttaste kann man entfernen
 -- 9. Umbruch bei zu langen Texten
 -- 10. Getrackte Achievements speichern
--- 12. Achievements unten der Liste hinzufügen
 -- 13. Mouse Hover macht Schrift heller
 
 
@@ -100,9 +100,9 @@ function Anniversary_ShowTrackedAchievementProgress()
 	
     if not AnniversaryTrackedDisplay then
         AnniversaryTrackedDisplay = CreateFrame("Frame", "AnniversaryTrackedDisplay", UIParent, "BackdropTemplate")
-        AnniversaryTrackedDisplay:SetSize(100, 100)
+        AnniversaryTrackedDisplay:SetSize(1, 1)
 		
-		-- When creating the frame
+		-- Load position data
 		if CA_Settings and CA_Settings.TrackerPosition then
 			local pos = CA_Settings.TrackerPosition
 			AnniversaryTrackedDisplay:ClearAllPoints()
@@ -164,7 +164,7 @@ function Anniversary_ShowTrackedAchievementProgress()
     local prev = header
 
     -- loop tracked achievements
-    for id in pairs(trackedAchievements) do
+    for _, id in ipairs(trackedOrder) do
         local _, name, _, _, _, _, _, description = GetAchievementInfo(id)
 
         -- achievement title
@@ -211,6 +211,55 @@ function Anniversary_ShowTrackedAchievementProgress()
 			prev = descLine
 		end
     end	
+end
+
+function Anniversary_ToggleAchievementTracking(self)
+    -- play sound
+    if self:GetChecked() then
+        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
+    else
+        PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF)
+    end
+
+    -- resolve achievement ID
+    local id = tonumber(self:GetParent().id) or self.id or select(1, GetAchievementInfo(self:GetParent().index))
+    if not id then return end
+
+    if trackedAchievements[id] then
+        -- remove from trackedAchievements + trackedOrder
+        trackedAchievements[id] = nil
+        for i, v in ipairs(trackedOrder or {}) do
+            if v == id then
+                table.remove(trackedOrder, i)
+                break
+            end
+        end
+    else
+        -- enforce max limit
+        local count = 0
+        for _ in pairs(trackedAchievements) do count = count + 1 end
+        if count >= MAX_TRACKED_ACHIEVEMENTS then
+            UIErrorsFrame:AddMessage(
+                string.format(ACHIEVEMENT_WATCH_TOO_MANY, MAX_TRACKED_ACHIEVEMENTS),
+                1.0, 0.1, 0.1, 1.0
+            )
+            self:SetChecked(false)
+            return
+        end
+
+        -- avoid duplicates in trackedOrder
+        for _, v in ipairs(trackedOrder or {}) do
+            if v == id then return end
+        end
+
+        trackedAchievements[id] = true
+        trackedOrder = trackedOrder or {}
+        table.insert(trackedOrder, id)
+    end
+
+    -- refresh UI
+    Anniversary_ShowTrackedAchievementProgress()
+    AchievementFrameAchievements_ForceUpdate()
 end
 
 local trackerFrame = CreateFrame("Frame")
