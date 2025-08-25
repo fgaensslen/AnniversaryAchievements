@@ -90,8 +90,8 @@ trackedOrder = CA_LocalData.trackedOrder
 
 -- 5. Bugfix für Kochachievements
 -- 8. Per MouseHover und gedrückter Umschalttaste kann man entfernen
--- 9. Umbruch bei zu langen Texten
 -- 13. Mouse Hover macht Schrift heller
+-- klickt man auf ein achievement so öffnet sich das fenster dazu
 
 
 function Anniversary_ShowTrackedAchievementProgress()
@@ -202,6 +202,9 @@ function Anniversary_ShowTrackedAchievementProgress()
             descLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
             descLine:SetText("|cFFD0D0D0- " .. description)
             descLine:SetShadowOffset(1, -1)
+			descLine:SetJustifyH("LEFT")
+			descLine:SetWidth(250)
+			descLine:SetWordWrap(true)
 
             table.insert(f.lines, descLine)
             prev = descLine
