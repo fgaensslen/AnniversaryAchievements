@@ -78,39 +78,42 @@ local achievementFunctions;
 
 -- [[ TRACKER ]] --
 
--- global table for tracked achievements
-trackedAchievements = trackedAchievements or {}
-trackedOrder = trackedOrder or {}
+-- initialize per-character storage
+CA_LocalData = CA_LocalData or {}
+CA_LocalData.trackedAchievements = CA_LocalData.trackedAchievements or {}
+CA_LocalData.trackedOrder = CA_LocalData.trackedOrder or {}
+CA_LocalData.TrackerPosition = CA_LocalData.TrackerPosition or nil
+
+-- local references for convenience
+trackedAchievements = CA_LocalData.trackedAchievements
+trackedOrder = CA_LocalData.trackedOrder
 
 -- 5. Bugfix für Kochachievements
 -- 8. Per MouseHover und gedrückter Umschalttaste kann man entfernen
 -- 9. Umbruch bei zu langen Texten
--- 10. Getrackte Achievements speichern
 -- 13. Mouse Hover macht Schrift heller
 
 
 function Anniversary_ShowTrackedAchievementProgress()
+    -- clean invalid keys
+    for id in pairs(trackedAchievements) do
+        if type(id) ~= "number" then
+            trackedAchievements[id] = nil
+        end
+    end
 
-	-- clean invalid keys
-	for id in pairs(trackedAchievements) do
-		if type(id) ~= "number" then
-			trackedAchievements[id] = nil
-		end
-	end
-	
     if not AnniversaryTrackedDisplay then
         AnniversaryTrackedDisplay = CreateFrame("Frame", "AnniversaryTrackedDisplay", UIParent, "BackdropTemplate")
         AnniversaryTrackedDisplay:SetSize(1, 1)
-		
-		-- Load position data
-		if CA_Settings and CA_Settings.TrackerPosition then
-			local pos = CA_Settings.TrackerPosition
-			AnniversaryTrackedDisplay:ClearAllPoints()
-			AnniversaryTrackedDisplay:SetPoint(pos.point, UIParent, pos.relativePoint, pos.x, pos.y)
-		else
-			-- default anchor
-			AnniversaryTrackedDisplay:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -160, -300)
-		end        
+
+        -- Load position per character
+        if CA_LocalData.TrackerPosition then
+            local pos = CA_LocalData.TrackerPosition
+            AnniversaryTrackedDisplay:ClearAllPoints()
+            AnniversaryTrackedDisplay:SetPoint(pos.point, UIParent, pos.relativePoint, pos.x, pos.y)
+        else
+            AnniversaryTrackedDisplay:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -160, -300)
+        end
 
         AnniversaryTrackedDisplay:SetMovable(true)
         AnniversaryTrackedDisplay.content = CreateFrame("Frame", nil, AnniversaryTrackedDisplay)
@@ -135,35 +138,34 @@ function Anniversary_ShowTrackedAchievementProgress()
         f:Hide()
         return
     end
-	
+
     f:Show()
 
     -- Objectives Header
     local header = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     header:SetPoint("TOPLEFT", f.content, "TOPLEFT", 8, -8)
     header:SetText("|cFFFFD500" .. OBJECTIVES_TRACKER_LABEL .. " (" .. trackedCount .. ")|r")
-	header:SetShadowOffset(1, -1)
+    header:SetShadowOffset(1, -1)
     table.insert(f.lines, header)
-		
-	-- Create a drag handle frame over the header
-	if not f.dragHandle then
-		local handle = CreateFrame("Frame", nil, f)
-		handle:SetAllPoints(header)
-		handle:EnableMouse(true)
-		handle:RegisterForDrag("LeftButton")
-		handle:SetScript("OnDragStart", function() f:StartMoving() end)
-		handle:SetScript("OnDragStop", function()
-			f:StopMovingOrSizing()
-			local point, _, relativePoint, xOfs, yOfs = f:GetPoint()
-			CA_Settings = CA_Settings or {}
-			CA_Settings.TrackerPosition = {point = point, relativePoint = relativePoint, x = xOfs, y = yOfs}
-		end)
-		f.dragHandle = handle
-	end
+
+    -- Create a drag handle over the header (only once)
+    if not f.dragHandle then
+        local handle = CreateFrame("Frame", nil, f)
+        handle:SetAllPoints(header)
+        handle:EnableMouse(true)
+        handle:RegisterForDrag("LeftButton")
+        handle:SetScript("OnDragStart", function() f:StartMoving() end)
+        handle:SetScript("OnDragStop", function()
+            f:StopMovingOrSizing()
+            local point, _, relativePoint, xOfs, yOfs = f:GetPoint()
+            CA_LocalData.TrackerPosition = {point = point, relativePoint = relativePoint, x = xOfs, y = yOfs}
+        end)
+        f.dragHandle = handle
+    end
 
     local prev = header
 
-    -- loop tracked achievements
+    -- loop in preserved order
     for _, id in ipairs(trackedOrder) do
         local _, name, _, _, _, _, _, description = GetAchievementInfo(id)
 
@@ -171,46 +173,40 @@ function Anniversary_ShowTrackedAchievementProgress()
         local title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         title:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
         title:SetText("|cFFC4A300" .. name .. "|r") -- gold
-		title:SetShadowOffset(1, -1)
-		
+        title:SetShadowOffset(1, -1)
+
         table.insert(f.lines, title)
         prev = title
 
-		-- Criteria
-		local numCriteria = GetAchievementNumCriteria(id)
-		if numCriteria > 0 then
-			for i = 1, numCriteria do
-				local desc, _, critCompleted, qty, reqQty = GetAchievementCriteriaInfo(id, i)
-				local criteriaNumber
+        -- Criteria
+        local numCriteria = GetAchievementNumCriteria(id)
+        if numCriteria > 0 then
+            for i = 1, numCriteria do
+                local desc, _, critCompleted, qty, reqQty = GetAchievementCriteriaInfo(id, i)
+                local criteriaNumber = (qty == 0 and reqQty == nil) and "" or qty .. "/" .. reqQty
 
-				if (qty == 0 and reqQty == nil) then
-					criteriaNumber = ""
-				else					
-					criteriaNumber = qty .. "/" .. reqQty
-				end
+                -- Skip completed criteria
+                if not critCompleted then
+                    local criteriaLine = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+                    criteriaLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
+                    criteriaLine:SetText("|cFFD0D0D0- " .. criteriaNumber .. " " .. desc)
+                    criteriaLine:SetShadowOffset(1, -1)
 
-				-- Skip completed criteria
-				if not critCompleted then
-					local criteriaLine = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")				
-						criteriaLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
-						criteriaLine:SetText("|cFFD0D0D0- " .. criteriaNumber .. " " ..desc)
-						criteriaLine:SetShadowOffset(1, -1)
+                    table.insert(f.lines, criteriaLine)
+                    prev = criteriaLine
+                end
+            end
+        else
+            -- Fallback: description
+            local descLine = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+            descLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
+            descLine:SetText("|cFFD0D0D0- " .. description)
+            descLine:SetShadowOffset(1, -1)
 
-					table.insert(f.lines, criteriaLine)
-					prev = criteriaLine
-				end
-			end
-		else
-			-- Fallback: description
-			local descLine = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-			descLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
-			descLine:SetText("|cFFD0D0D0- " .. description)
-			descLine:SetShadowOffset(1, -1)
-			
-			table.insert(f.lines, descLine)
-			prev = descLine
-		end
-    end	
+            table.insert(f.lines, descLine)
+            prev = descLine
+        end
+    end
 end
 
 function Anniversary_ToggleAchievementTracking(self)
@@ -257,7 +253,10 @@ function Anniversary_ToggleAchievementTracking(self)
         table.insert(trackedOrder, id)
     end
 
-    -- refresh UI
+    -- save per-character
+    CA_LocalData.trackedAchievements = trackedAchievements
+    CA_LocalData.trackedOrder = trackedOrder
+
     Anniversary_ShowTrackedAchievementProgress()
     AchievementFrameAchievements_ForceUpdate()
 end
@@ -308,10 +307,25 @@ end
 
 trackerFrame:SetScript("OnEvent", function(self, event, ...)
     if event == "PLAYER_ENTERING_WORLD" then
-        if not self.ticker then
-            self.ticker = C_Timer.NewTicker(1, UpdateTracker)
-        end
+		-- ensure per-character storage exists
+        CA_LocalData = CA_LocalData or {}
+        CA_LocalData.trackedAchievements = CA_LocalData.trackedAchievements or {}
+        CA_LocalData.trackedOrder = CA_LocalData.trackedOrder or {}
+        CA_LocalData.TrackerPosition = CA_LocalData.TrackerPosition or nil
+
+        -- local references for convenience
+        trackedAchievements = CA_LocalData.trackedAchievements
+        trackedOrder = CA_LocalData.trackedOrder
+
+        -- restore tracker UI immediately
         Anniversary_ShowTrackedAchievementProgress()
+
+        -- start a short ticker to update progress (optional)
+        if not self.ticker then
+            self.ticker = C_Timer.NewTicker(1, function()
+                Anniversary_ShowTrackedAchievementProgress()
+            end)
+        end
     elseif event == "ACHIEVEMENT_EARNED" then
         Anniversary_ShowTrackedAchievementProgress()
     end
@@ -1108,8 +1122,7 @@ function AchievementFrameAchievements_OnEvent (self, event, ...)
 	AchievementFrame:SetScript("OnDragStop", function(self)
 		self:StopMovingOrSizing()
 		local point, _, relativePoint, xOfs, yOfs = self:GetPoint()
-
-		CA_Settings = CA_Settings or {}
+		
 		CA_Settings.AchievementFramePosition = {
 			point = point,
 			relativePoint = relativePoint,
@@ -1356,6 +1369,9 @@ function AchievementButton_Collapse (self)
 	AchievementButton_UpdatePlusMinusTexture(self);
 	self:SetHeight(ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT);
 	self.background:SetTexCoord(0, 1, 1-(ACHIEVEMENTBUTTON_COLLAPSEDHEIGHT / 256), 1);
+	if ( not self.tracked:GetChecked() ) then
+		self.tracked:Hide();
+	end
 	self.tabard:Hide();
 	self.guildCornerL:Hide();
 	self.guildCornerR:Hide();
