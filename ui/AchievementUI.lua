@@ -81,14 +81,10 @@ local achievementFunctions;
 -- global table for tracked achievements
 trackedAchievements = trackedAchievements or {}
 
--- 4. Live-Update bei Progressänderung
 -- 5. Bugfix für Kochachievements
--- 6. Position merken
--- 7. Position von Anfang an am rechten Rand
 -- 8. Per MouseHover und gedrückter Umschalttaste kann man entfernen
 -- 9. Umbruch bei zu langen Texten
 -- 10. Getrackte Achievements speichern
--- 11. Trackerfenster durchklickbar machen
 -- 12. Achievements unten der Liste hinzufügen
 -- 13. Mouse Hover macht Schrift heller
 
@@ -105,14 +101,18 @@ function Anniversary_ShowTrackedAchievementProgress()
     if not AnniversaryTrackedDisplay then
         AnniversaryTrackedDisplay = CreateFrame("Frame", "AnniversaryTrackedDisplay", UIParent, "BackdropTemplate")
         AnniversaryTrackedDisplay:SetSize(100, 100)
-        AnniversaryTrackedDisplay:SetPoint("CENTER")
+		
+		-- When creating the frame
+		if CA_Settings and CA_Settings.TrackerPosition then
+			local pos = CA_Settings.TrackerPosition
+			AnniversaryTrackedDisplay:ClearAllPoints()
+			AnniversaryTrackedDisplay:SetPoint(pos.point, UIParent, pos.relativePoint, pos.x, pos.y)
+		else
+			-- default anchor
+			AnniversaryTrackedDisplay:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -160, -300)
+		end        
 
         AnniversaryTrackedDisplay:SetMovable(true)
-        AnniversaryTrackedDisplay:EnableMouse(true)
-        AnniversaryTrackedDisplay:RegisterForDrag("LeftButton")
-        AnniversaryTrackedDisplay:SetScript("OnDragStart", AnniversaryTrackedDisplay.StartMoving)
-        AnniversaryTrackedDisplay:SetScript("OnDragStop", AnniversaryTrackedDisplay.StopMovingOrSizing)
-
         AnniversaryTrackedDisplay.content = CreateFrame("Frame", nil, AnniversaryTrackedDisplay)
         AnniversaryTrackedDisplay.content:SetPoint("TOPLEFT", 10, -30)
         AnniversaryTrackedDisplay.content:SetPoint("BOTTOMRIGHT", -10, 10)
@@ -144,6 +144,22 @@ function Anniversary_ShowTrackedAchievementProgress()
     header:SetText("|cFFFFD500" .. OBJECTIVES_TRACKER_LABEL .. " (" .. trackedCount .. ")|r")
 	header:SetShadowOffset(1, -1)
     table.insert(f.lines, header)
+		
+	-- Create a drag handle frame over the header
+	if not f.dragHandle then
+		local handle = CreateFrame("Frame", nil, f)
+		handle:SetAllPoints(header)
+		handle:EnableMouse(true)
+		handle:RegisterForDrag("LeftButton")
+		handle:SetScript("OnDragStart", function() f:StartMoving() end)
+		handle:SetScript("OnDragStop", function()
+			f:StopMovingOrSizing()
+			local point, _, relativePoint, xOfs, yOfs = f:GetPoint()
+			CA_Settings = CA_Settings or {}
+			CA_Settings.TrackerPosition = {point = point, relativePoint = relativePoint, x = xOfs, y = yOfs}
+		end)
+		f.dragHandle = handle
+	end
 
     local prev = header
 
@@ -196,6 +212,61 @@ function Anniversary_ShowTrackedAchievementProgress()
 		end
     end	
 end
+
+local trackerFrame = CreateFrame("Frame")
+trackerFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+trackerFrame:RegisterEvent("ACHIEVEMENT_EARNED")
+
+-- cache of last known progress
+local lastProgress = {}
+
+-- helper: build a progress "signature" for an achievement
+local function GetAchievementProgressSignature(id)
+    local sig = tostring(id)
+
+    local numCriteria = GetAchievementNumCriteria(id)
+    if numCriteria and numCriteria > 0 then
+        for i = 1, numCriteria do
+            local _, _, completed, qty, reqQty = GetAchievementCriteriaInfo(id, i)
+            sig = sig .. ":" .. tostring(qty) .. "/" .. tostring(reqQty) .. (completed and "X" or "")
+        end
+    else
+        -- fallback: just mark description (not great, but avoids constant rebuilds)
+        local _, _, _, _, _, _, _, description = GetAchievementInfo(id)
+        sig = sig .. ":" .. (description or "")
+    end
+    return sig
+end
+
+-- check if any progress changed
+local function HasProgressChanged()
+    for id in pairs(trackedAchievements) do
+        local newSig = GetAchievementProgressSignature(id)
+        if lastProgress[id] ~= newSig then
+            lastProgress[id] = newSig
+            return true -- at least one change
+        end
+    end
+    return false
+end
+
+-- throttled refresh
+local function UpdateTracker()
+    if HasProgressChanged() then
+        Anniversary_ShowTrackedAchievementProgress()
+    end
+end
+
+trackerFrame:SetScript("OnEvent", function(self, event, ...)
+    if event == "PLAYER_ENTERING_WORLD" then
+        if not self.ticker then
+            self.ticker = C_Timer.NewTicker(1, UpdateTracker)
+        end
+        Anniversary_ShowTrackedAchievementProgress()
+    elseif event == "ACHIEVEMENT_EARNED" then
+        Anniversary_ShowTrackedAchievementProgress()
+    end
+end)
 
 -- [[ AchievementFrame ]] --
 
