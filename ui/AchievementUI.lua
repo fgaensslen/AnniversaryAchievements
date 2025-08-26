@@ -232,7 +232,7 @@ function Anniversary_ShowTrackedAchievementProgress()
 		-- Resize lineFrame dynamically (so hover covers all lines)
 		local totalHeight = 0
 		for _, t in ipairs(lineFrame.texts) do
-			totalHeight = totalHeight + t.fs:GetStringHeight() + 2 -- small spacing
+			totalHeight = totalHeight + t.fs:GetStringHeight()
 		end
 		lineFrame:SetHeight(totalHeight > 0 and totalHeight or 20)
 		
@@ -247,21 +247,30 @@ function Anniversary_ShowTrackedAchievementProgress()
                 t.fs:SetText(t.normal)
             end
         end)
-
-        -- Shift-click to untrack
+        
         lineFrame:SetScript("OnMouseDown", function(_, button)
-            if button == "LeftButton" and IsShiftKeyDown() then
-                trackedAchievements[id] = nil
-                for i, v in ipairs(trackedOrder) do
-                    if v == id then
-                        table.remove(trackedOrder, i)
-                        break
-                    end
-                end
-                CA_LocalData.trackedAchievements = trackedAchievements
-                CA_LocalData.trackedOrder = trackedOrder
-                Anniversary_ShowTrackedAchievementProgress()
-				AchievementFrameAchievements_ForceUpdate()
+            if button == "LeftButton" then
+				if IsShiftKeyDown() then -- Shift-click to untrack		 	
+					trackedAchievements[id] = nil
+					for i, v in ipairs(trackedOrder) do
+						if v == id then
+							table.remove(trackedOrder, i)
+							break
+						end
+					end
+					CA_LocalData.trackedAchievements = trackedAchievements
+					CA_LocalData.trackedOrder = trackedOrder
+					Anniversary_ShowTrackedAchievementProgress()
+					AchievementFrameAchievements_ForceUpdate()
+				else
+					-- open achievement UI and select correct achievement
+					if not AchievementFrame then
+						AchievementFrame_LoadUI()
+					end
+					ShowUIPanel(AchievementFrame)
+
+					AchievementFrame_SelectAchievement(id)
+				end
             end
         end)
 		
