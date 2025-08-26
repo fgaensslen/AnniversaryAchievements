@@ -89,8 +89,6 @@ trackedAchievements = CA_LocalData.trackedAchievements
 trackedOrder = CA_LocalData.trackedOrder
 
 -- 5. Bugfix für Kochachievements
--- 8. Per MouseHover und gedrückter Umschalttaste kann man entfernen
--- 13. Mouse Hover macht Schrift heller
 -- klickt man auf ein achievement so öffnet sich das fenster dazu
 
 
@@ -168,14 +166,27 @@ function Anniversary_ShowTrackedAchievementProgress()
     -- loop in preserved order
     for _, id in ipairs(trackedOrder) do
         local _, name, _, _, _, _, _, description = GetAchievementInfo(id)
+		
+		-- Create a frame wrapper for mouse interaction
+        local lineFrame = CreateFrame("Frame", nil, f.content)
+        lineFrame:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
+        lineFrame:SetWidth(250)
+        lineFrame:EnableMouse(true)
+		
+		-- collect all fontstrings for this block
+        lineFrame.texts = {}
 
         -- achievement title
-        local title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+        local title = lineFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         title:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
         title:SetText("|cFFC4A300" .. name .. "|r") -- gold
         title:SetShadowOffset(1, -1)
 
-        table.insert(f.lines, title)
+        table.insert(lineFrame.texts, {
+			fs = title,
+			normal = "|cFFC4A300" .. name .. "|r",
+			highlight = "|cFFFFD500" .. name .. "|r"
+			})
         prev = title
 
         -- Criteria
@@ -187,18 +198,22 @@ function Anniversary_ShowTrackedAchievementProgress()
 
                 -- Skip completed criteria
                 if not critCompleted then
-                    local criteriaLine = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+                    local criteriaLine = lineFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
                     criteriaLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
                     criteriaLine:SetText("|cFFD0D0D0- " .. criteriaNumber .. " " .. desc)
                     criteriaLine:SetShadowOffset(1, -1)
-
-                    table.insert(f.lines, criteriaLine)
+					
+                    table.insert(lineFrame.texts, {
+						fs = criteriaLine,
+                        normal = "|cFFD0D0D0- " .. criteriaNumber .. " " .. desc,
+                        highlight = "|cFFFFFFFF- " .. criteriaNumber .. " " .. desc
+						})
                     prev = criteriaLine
                 end
             end
         else
             -- Fallback: description
-            local descLine = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+            local descLine = lineFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
             descLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
             descLine:SetText("|cFFD0D0D0- " .. description)
             descLine:SetShadowOffset(1, -1)
@@ -206,9 +221,52 @@ function Anniversary_ShowTrackedAchievementProgress()
 			descLine:SetWidth(250)
 			descLine:SetWordWrap(true)
 
-            table.insert(f.lines, descLine)
+            table.insert(lineFrame.texts, {
+				fs = descLine,
+                normal = "|cFFD0D0D0- " .. description,
+                highlight = "|cFFFFFFFF- " .. description
+				})
             prev = descLine
         end
+		
+		-- Resize lineFrame dynamically (so hover covers all lines)
+		local totalHeight = 0
+		for _, t in ipairs(lineFrame.texts) do
+			totalHeight = totalHeight + t.fs:GetStringHeight() + 2 -- small spacing
+		end
+		lineFrame:SetHeight(totalHeight > 0 and totalHeight or 20)
+		
+		-- Hover effect applies to all stored texts
+        lineFrame:SetScript("OnEnter", function()
+            for _, t in ipairs(lineFrame.texts) do
+                t.fs:SetText(t.highlight)
+            end
+        end)
+        lineFrame:SetScript("OnLeave", function()
+            for _, t in ipairs(lineFrame.texts) do
+                t.fs:SetText(t.normal)
+            end
+        end)
+
+        -- Shift-click to untrack
+        lineFrame:SetScript("OnMouseDown", function(_, button)
+            if button == "LeftButton" and IsShiftKeyDown() then
+                trackedAchievements[id] = nil
+                for i, v in ipairs(trackedOrder) do
+                    if v == id then
+                        table.remove(trackedOrder, i)
+                        break
+                    end
+                end
+                CA_LocalData.trackedAchievements = trackedAchievements
+                CA_LocalData.trackedOrder = trackedOrder
+                Anniversary_ShowTrackedAchievementProgress()
+				AchievementFrameAchievements_ForceUpdate()
+            end
+        end)
+		
+		table.insert(f.lines, lineFrame)
+        prev = lineFrame
     end
 end
 
