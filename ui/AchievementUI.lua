@@ -88,9 +88,7 @@ CA_LocalData.TrackerPosition = CA_LocalData.TrackerPosition or nil
 trackedAchievements = CA_LocalData.trackedAchievements
 trackedOrder = CA_LocalData.trackedOrder
 
--- 5. Bugfix für Kochachievements
--- klickt man auf ein achievement so öffnet sich das fenster dazu
-
+--Quests verfolgen
 
 function Anniversary_ShowTrackedAchievementProgress()
     -- clean invalid keys
@@ -195,6 +193,11 @@ function Anniversary_ShowTrackedAchievementProgress()
             for i = 1, numCriteria do
                 local desc, _, critCompleted, qty, reqQty = GetAchievementCriteriaInfo(id, i)
                 local criteriaNumber = (qty == 0 and reqQty == nil) and "" or qty .. "/" .. reqQty
+				
+				--To get correct text for cooking achievements we use the description text directly from the achievement instead of the criteria lines
+				if description and description ~= "" and reqQty and reqQty > 0 then
+					desc = description
+				end
 
                 -- Skip completed criteria
                 if not critCompleted then
