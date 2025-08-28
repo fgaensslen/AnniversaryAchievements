@@ -88,15 +88,22 @@ CA_LocalData.TrackerPosition = CA_LocalData.TrackerPosition or nil
 trackedAchievements = CA_LocalData.trackedAchievements
 trackedOrder = CA_LocalData.trackedOrder
 
---Quests verfolgen
+-- Disable Blizzard Quest Tracker
+local function DisableBlizzardQuestTracker()
+    if QuestWatchFrame then
+        QuestWatchFrame:Hide()
+    end
+end
 
-function Anniversary_ShowTrackedAchievementProgress()
-    -- clean invalid keys
+function Anniversary_ShowTrackedAchievementProgress()	
+	DisableBlizzardQuestTracker()
+    --[[clean invalid keys
     for id in pairs(trackedAchievements) do
         if type(id) ~= "number" then
             trackedAchievements[id] = nil
         end
     end
+	]]
 
     if not AnniversaryTrackedDisplay then
         AnniversaryTrackedDisplay = CreateFrame("Frame", "AnniversaryTrackedDisplay", UIParent, "BackdropTemplate")
@@ -130,7 +137,10 @@ function Anniversary_ShowTrackedAchievementProgress()
         trackedCount = trackedCount + 1
     end
 
-    if trackedCount == 0 then
+    -- count tracked quests
+    local numQuests = GetNumQuestWatches()
+
+    if trackedCount == 0 and numQuests == 0 then
         f:Hide()
         return
     end
@@ -140,7 +150,7 @@ function Anniversary_ShowTrackedAchievementProgress()
     -- Objectives Header
     local header = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     header:SetPoint("TOPLEFT", f.content, "TOPLEFT", 8, -8)
-    header:SetText("|cFFFFD500" .. OBJECTIVES_TRACKER_LABEL .. " (" .. trackedCount .. ")|r")
+    header:SetText("|cFFFFD500" .. OBJECTIVES_TRACKER_LABEL .. " (" .. (trackedCount+numQuests) .. ")|r")
     header:SetShadowOffset(1, -1)
     table.insert(f.lines, header)
 
@@ -163,122 +173,224 @@ function Anniversary_ShowTrackedAchievementProgress()
 
     -- loop in preserved order
     for _, id in ipairs(trackedOrder) do
-        local _, name, _, _, _, _, _, description = GetAchievementInfo(id)
-		
+         local _, name, _, completed, _, _, _, description = GetAchievementInfo(id)
+
+		-- if achievement is complete -> untrack immediately
+		if completed then
+			trackedAchievements[id] = nil
+			for i = #trackedOrder, 1, -1 do
+				if trackedOrder[i] == id then
+					table.remove(trackedOrder, i)
+					break
+				end
+			end
+			CA_LocalData.trackedAchievements = trackedAchievements
+			CA_LocalData.trackedOrder = trackedOrder
+		else			
+			-- Create a frame wrapper for mouse interaction
+			local hoverFrame_Achievements = CreateFrame("Frame", nil, f.content)
+			hoverFrame_Achievements:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
+			hoverFrame_Achievements:SetWidth(250)
+			hoverFrame_Achievements:EnableMouse(true)
+			
+			-- collect all fontstrings for this block
+			hoverFrame_Achievements.texts = {}
+
+			-- achievement title
+			local title = hoverFrame_Achievements:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+			title:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
+			title:SetText("|cFFC4A300" .. name .. "|r") -- gold
+			title:SetShadowOffset(1, -1)
+
+			table.insert(hoverFrame_Achievements.texts, {
+				fs = title,
+				normal = "|cFFC4A300" .. name .. "|r",
+				highlight = "|cFFFFD500" .. name .. "|r"
+				})
+			prev = title
+
+			-- Criteria
+			local numCriteria = GetAchievementNumCriteria(id)
+			if numCriteria > 0 then
+				for i = 1, numCriteria do
+					local desc, _, critCompleted, qty, reqQty = GetAchievementCriteriaInfo(id, i)
+					local criteriaNumber = (qty == 0 and reqQty == nil) and "" or qty .. "/" .. reqQty
+					
+					--To get correct text for cooking achievements we use the description text directly from the achievement instead of the criteria lines
+					if description and description ~= "" and reqQty and reqQty > 0 then
+						desc = description
+					end
+
+					-- Skip completed criteria
+					if not critCompleted then
+						local criteriaLine = hoverFrame_Achievements:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+						criteriaLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
+						criteriaLine:SetText("|cFFD0D0D0- " .. criteriaNumber .. " " .. desc)
+						criteriaLine:SetShadowOffset(1, -1)
+						
+						table.insert(hoverFrame_Achievements.texts, {
+							fs = criteriaLine,
+							normal = "|cFFD0D0D0- " .. criteriaNumber .. " " .. desc,
+							highlight = "|cFFFFFFFF- " .. criteriaNumber .. " " .. desc
+							})
+						prev = criteriaLine
+					end
+				end
+			else
+				-- Fallback: description
+				local descLine = hoverFrame_Achievements:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+				descLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
+				descLine:SetText("|cFFD0D0D0- " .. description)
+				descLine:SetShadowOffset(1, -1)
+				descLine:SetJustifyH("LEFT")
+				descLine:SetWidth(250)
+				descLine:SetWordWrap(true)
+
+				table.insert(hoverFrame_Achievements.texts, {
+					fs = descLine,
+					normal = "|cFFD0D0D0- " .. description,
+					highlight = "|cFFFFFFFF- " .. description
+					})
+				prev = descLine
+			end
+			
+			-- Resize hoverFrame_Achievements dynamically (so hover covers all lines)
+			local totalHeight = 0
+			for _, t in ipairs(hoverFrame_Achievements.texts) do
+				totalHeight = totalHeight + t.fs:GetStringHeight()
+			end
+			hoverFrame_Achievements:SetHeight(totalHeight > 0 and totalHeight or 20)
+			
+			-- Hover effect applies to all stored texts
+			hoverFrame_Achievements:SetScript("OnEnter", function()
+				for _, t in ipairs(hoverFrame_Achievements.texts) do
+					t.fs:SetText(t.highlight)
+				end
+			end)
+
+			hoverFrame_Achievements:SetScript("OnLeave", function()
+				for _, t in ipairs(hoverFrame_Achievements.texts) do
+					t.fs:SetText(t.normal)
+				end
+			end)
+			
+			hoverFrame_Achievements:SetScript("OnMouseDown", function(_, button)
+				if button == "LeftButton" then
+					if IsShiftKeyDown() then -- Shift-click to untrack		 	
+						trackedAchievements[id] = nil
+						for i, v in ipairs(trackedOrder) do
+							if v == id then
+								table.remove(trackedOrder, i)
+								break
+							end
+						end
+						CA_LocalData.trackedAchievements = trackedAchievements
+						CA_LocalData.trackedOrder = trackedOrder
+						Anniversary_ShowTrackedAchievementProgress()
+						AchievementFrameAchievements_ForceUpdate()
+					else
+						-- open achievement UI and select correct achievement
+						if not AchievementFrame then
+							AchievementFrame_LoadUI()
+						end
+						ShowUIPanel(AchievementFrame)
+
+						AchievementFrame_SelectAchievement(id)
+					end
+				end
+			end)
+			
+			table.insert(f.lines, hoverFrame_Achievements)
+			prev = hoverFrame_Achievements
+		end
+    end
+
+	--QUEST TRACKER
+    for i = 1, numQuests do
 		-- Create a frame wrapper for mouse interaction
-        local lineFrame = CreateFrame("Frame", nil, f.content)
-        lineFrame:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
-        lineFrame:SetWidth(250)
-        lineFrame:EnableMouse(true)
+        local hoverFrame_Quests = CreateFrame("Frame", nil, f.content)
+        hoverFrame_Quests:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
+        hoverFrame_Quests:SetWidth(250)
+        hoverFrame_Quests:EnableMouse(true)
 		
 		-- collect all fontstrings for this block
-        lineFrame.texts = {}
+        hoverFrame_Quests.texts = {}
 
-        -- achievement title
-        local title = lineFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-        title:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
-        title:SetText("|cFFC4A300" .. name .. "|r") -- gold
-        title:SetShadowOffset(1, -1)
+        local questIndex = GetQuestIndexForWatch(i)
+        if questIndex then
+            local title, level, _, _, _, _, _, questID = GetQuestLogTitle(questIndex)
 
-        table.insert(lineFrame.texts, {
-			fs = title,
-			normal = "|cFFC4A300" .. name .. "|r",
-			highlight = "|cFFFFD500" .. name .. "|r"
-			})
-        prev = title
+            local objectives = GetNumQuestLeaderBoards(questIndex)
+            local questLine = hoverFrame_Quests:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+            questLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
+            questLine:SetText("|cFFC4A300" .. title .. "|r")
+			questLine:SetShadowOffset(1, -1)
+			
+			table.insert(hoverFrame_Quests.texts, {
+				fs = questLine,
+				normal = "|cFFC4A300" .. title .. "|r",
+				highlight = "|cFFFFD500" .. title .. "|r"
+				})
+            prev = questLine
 
-        -- Criteria
-        local numCriteria = GetAchievementNumCriteria(id)
-        if numCriteria > 0 then
-            for i = 1, numCriteria do
-                local desc, _, critCompleted, qty, reqQty = GetAchievementCriteriaInfo(id, i)
-                local criteriaNumber = (qty == 0 and reqQty == nil) and "" or qty .. "/" .. reqQty
-				
-				--To get correct text for cooking achievements we use the description text directly from the achievement instead of the criteria lines
-				if description and description ~= "" and reqQty and reqQty > 0 then
-					desc = description
-				end
+            for obj = 1, objectives do
+                local desc, type, finished = GetQuestLogLeaderBoard(obj, questIndex)
+                if desc then
+                    local objLine = hoverFrame_Quests:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+                    objLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
+					-- Set color: white if finished, gray otherwise
+        			local color = finished and "|cFFFFFFFF" or "|cFFD0D0D0"
+        			objLine:SetText(color .. "- " .. desc)
+                    objLine:SetShadowOffset(1, -1)
 
-                -- Skip completed criteria
-                if not critCompleted then
-                    local criteriaLine = lineFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-                    criteriaLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
-                    criteriaLine:SetText("|cFFD0D0D0- " .. criteriaNumber .. " " .. desc)
-                    criteriaLine:SetShadowOffset(1, -1)
-					
-                    table.insert(lineFrame.texts, {
-						fs = criteriaLine,
-                        normal = "|cFFD0D0D0- " .. criteriaNumber .. " " .. desc,
-                        highlight = "|cFFFFFFFF- " .. criteriaNumber .. " " .. desc
-						})
-                    prev = criteriaLine
+					table.insert(hoverFrame_Quests.texts, {
+						fs = objLine,
+                        normal = color .. "- " .. desc,
+                        highlight = "|cFFFFFFFF- " .. desc
+					})
+                    prev = objLine
                 end
             end
-        else
-            -- Fallback: description
-            local descLine = lineFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-            descLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
-            descLine:SetText("|cFFD0D0D0- " .. description)
-            descLine:SetShadowOffset(1, -1)
-			descLine:SetJustifyH("LEFT")
-			descLine:SetWidth(250)
-			descLine:SetWordWrap(true)
-
-            table.insert(lineFrame.texts, {
-				fs = descLine,
-                normal = "|cFFD0D0D0- " .. description,
-                highlight = "|cFFFFFFFF- " .. description
-				})
-            prev = descLine
         end
-		
-		-- Resize lineFrame dynamically (so hover covers all lines)
+
+		-- Resize hoverFrame_Quests dynamically (so hover covers all lines)
 		local totalHeight = 0
-		for _, t in ipairs(lineFrame.texts) do
+		for _, t in ipairs(hoverFrame_Quests.texts) do
 			totalHeight = totalHeight + t.fs:GetStringHeight()
 		end
-		lineFrame:SetHeight(totalHeight > 0 and totalHeight or 20)
+		hoverFrame_Quests:SetHeight(totalHeight > 0 and totalHeight or 20)
 		
 		-- Hover effect applies to all stored texts
-        lineFrame:SetScript("OnEnter", function()
-            for _, t in ipairs(lineFrame.texts) do
+        hoverFrame_Quests:SetScript("OnEnter", function()
+            for _, t in ipairs(hoverFrame_Quests.texts) do
                 t.fs:SetText(t.highlight)
             end
         end)
-        lineFrame:SetScript("OnLeave", function()
-            for _, t in ipairs(lineFrame.texts) do
+
+        hoverFrame_Quests:SetScript("OnLeave", function()
+            for _, t in ipairs(hoverFrame_Quests.texts) do
                 t.fs:SetText(t.normal)
             end
         end)
         
-        lineFrame:SetScript("OnMouseDown", function(_, button)
+        hoverFrame_Quests:SetScript("OnMouseDown", function(_, button)
             if button == "LeftButton" then
 				if IsShiftKeyDown() then -- Shift-click to untrack		 	
-					trackedAchievements[id] = nil
-					for i, v in ipairs(trackedOrder) do
-						if v == id then
-							table.remove(trackedOrder, i)
-							break
-						end
-					end
-					CA_LocalData.trackedAchievements = trackedAchievements
-					CA_LocalData.trackedOrder = trackedOrder
-					Anniversary_ShowTrackedAchievementProgress()
-					AchievementFrameAchievements_ForceUpdate()
+					RemoveQuestWatch(questIndex)
 				else
-					-- open achievement UI and select correct achievement
-					if not AchievementFrame then
-						AchievementFrame_LoadUI()
-					end
-					ShowUIPanel(AchievementFrame)
-
-					AchievementFrame_SelectAchievement(id)
+					--C_Timer.After(0.5, function()
+    					ShowUIPanel(QuestLogFrame)
+					--end)
+					
+					--C_Timer.After(0.5, function()
+    					SelectQuestLogEntry(questIndex)
+					--end)
 				end
             end
         end)
 		
-		table.insert(f.lines, lineFrame)
-        prev = lineFrame
+		table.insert(f.lines, hoverFrame_Quests)
+        prev = hoverFrame_Quests
     end
 end
 
@@ -337,49 +449,12 @@ end
 local trackerFrame = CreateFrame("Frame")
 trackerFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 trackerFrame:RegisterEvent("ACHIEVEMENT_EARNED")
+trackerFrame:RegisterEvent("QUEST_LOG_UPDATE")
+trackerFrame:RegisterEvent("QUEST_WATCH_UPDATE")
 
--- cache of last known progress
-local lastProgress = {}
+trackerFrame:SetScript("OnEvent", function(self, event, ...)	
 
--- helper: build a progress "signature" for an achievement
-local function GetAchievementProgressSignature(id)
-    local sig = tostring(id)
-
-    local numCriteria = GetAchievementNumCriteria(id)
-    if numCriteria and numCriteria > 0 then
-        for i = 1, numCriteria do
-            local _, _, completed, qty, reqQty = GetAchievementCriteriaInfo(id, i)
-            sig = sig .. ":" .. tostring(qty) .. "/" .. tostring(reqQty) .. (completed and "X" or "")
-        end
-    else
-        -- fallback: just mark description (not great, but avoids constant rebuilds)
-        local _, _, _, _, _, _, _, description = GetAchievementInfo(id)
-        sig = sig .. ":" .. (description or "")
-    end
-    return sig
-end
-
--- check if any progress changed
-local function HasProgressChanged()
-    for id in pairs(trackedAchievements) do
-        local newSig = GetAchievementProgressSignature(id)
-        if lastProgress[id] ~= newSig then
-            lastProgress[id] = newSig
-            return true -- at least one change
-        end
-    end
-    return false
-end
-
--- throttled refresh
-local function UpdateTracker()
-    if HasProgressChanged() then
-        Anniversary_ShowTrackedAchievementProgress()
-    end
-end
-
-trackerFrame:SetScript("OnEvent", function(self, event, ...)
-    if event == "PLAYER_ENTERING_WORLD" then
+    if event == "PLAYER_ENTERING_WORLD" then			
 		-- ensure per-character storage exists
         CA_LocalData = CA_LocalData or {}
         CA_LocalData.trackedAchievements = CA_LocalData.trackedAchievements or {}
@@ -390,16 +465,14 @@ trackerFrame:SetScript("OnEvent", function(self, event, ...)
         trackedAchievements = CA_LocalData.trackedAchievements
         trackedOrder = CA_LocalData.trackedOrder
 
-        -- restore tracker UI immediately
-        Anniversary_ShowTrackedAchievementProgress()
-
         -- start a short ticker to update progress (optional)
         if not self.ticker then
             self.ticker = C_Timer.NewTicker(1, function()
                 Anniversary_ShowTrackedAchievementProgress()
             end)
         end
-    elseif event == "ACHIEVEMENT_EARNED" then
+		
+    elseif event == "QUEST_LOG_UPDATE" or event == "QUEST_WATCH_UPDATE" then		
         Anniversary_ShowTrackedAchievementProgress()
     end
 end)
