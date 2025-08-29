@@ -91,19 +91,14 @@ trackedOrder = CA_LocalData.trackedOrder
 -- Disable Blizzard Quest Tracker
 local function DisableBlizzardQuestTracker()
     if QuestWatchFrame then
-        QuestWatchFrame:Hide()
+		QuestWatchFrame:ClearAllPoints()
+        QuestWatchFrame:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", -1000, -1000)
+        QuestWatchFrame:SetAlpha(0) -- Optional: make it invisible
     end
 end
 
 function Anniversary_ShowTrackedAchievementProgress()	
 	DisableBlizzardQuestTracker()
-    --[[clean invalid keys
-    for id in pairs(trackedAchievements) do
-        if type(id) ~= "number" then
-            trackedAchievements[id] = nil
-        end
-    end
-	]]
 
     if not AnniversaryTrackedDisplay then
         AnniversaryTrackedDisplay = CreateFrame("Frame", "AnniversaryTrackedDisplay", UIParent, "BackdropTemplate")
@@ -377,14 +372,6 @@ function Anniversary_ShowTrackedAchievementProgress()
             if button == "LeftButton" then
 				if IsShiftKeyDown() then -- Shift-click to untrack		 	
 					RemoveQuestWatch(questIndex)
-				else
-					--C_Timer.After(0.5, function()
-    					ShowUIPanel(QuestLogFrame)
-					--end)
-					
-					--C_Timer.After(0.5, function()
-    					SelectQuestLogEntry(questIndex)
-					--end)
 				end
             end
         end)
