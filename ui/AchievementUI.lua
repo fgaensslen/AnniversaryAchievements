@@ -88,6 +88,9 @@ CA_LocalData.TrackerPosition = CA_LocalData.TrackerPosition or nil
 trackedAchievements = CA_LocalData.trackedAchievements
 trackedOrder = CA_LocalData.trackedOrder
 
+--Tracker Visibility
+local trackerHidden = false
+
 -- Disable Blizzard Quest Tracker
 local function DisableBlizzardQuestTracker()
     if QuestWatchFrame then
@@ -97,9 +100,27 @@ local function DisableBlizzardQuestTracker()
     end
 end
 
+-- Truncate text to fit within a certain character limit
+local function TruncateText(text, maxChars)
+    if not text then return "" end
+    if strlenutf8(text) > maxChars then
+        return strsub(text, 1, maxChars - 3) .. "..."
+    end
+    return text
+end
+
 function Anniversary_ShowTrackedAchievementProgress()	
 	DisableBlizzardQuestTracker()
 
+	if AnniversaryTrackedDisplay and AnniversaryTrackedDisplay.content then
+		if trackerHidden then
+			AnniversaryTrackedDisplay.content:Hide()
+		else
+			AnniversaryTrackedDisplay.content:Show()
+		end
+	end
+
+	-- Create the main frame if it doesn't exist
     if not AnniversaryTrackedDisplay then
         AnniversaryTrackedDisplay = CreateFrame("Frame", "AnniversaryTrackedDisplay", UIParent, "BackdropTemplate")
         AnniversaryTrackedDisplay:SetSize(1, 1)
@@ -136,11 +157,11 @@ function Anniversary_ShowTrackedAchievementProgress()
     local numQuests = GetNumQuestWatches()
 
     if trackedCount == 0 and numQuests == 0 then
-        f:Hide()
+        f.content:Hide()
         return
     end
 
-    f:Show()
+    f.content:Show()
 
     -- Objectives Header
     local header = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
@@ -165,6 +186,44 @@ function Anniversary_ShowTrackedAchievementProgress()
     end
 
     local prev = header
+
+	--Toggle Button
+	if not f.toggleTrackerButton then
+		local btn = CreateFrame("Button", nil, f.content)
+		btn:SetSize(25, 25)
+		btn:SetPoint("LEFT", header, "RIGHT", 10, 0)
+		btn:SetNormalTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Up")
+		btn:SetPushedTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Down")
+		btn:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight")
+		btn:SetScript("OnClick", function()
+			trackerHidden = not trackerHidden
+			if trackerHidden then
+				AnniversaryTrackedDisplay.content:Hide()
+
+				btn:SetNormalTexture("Interface\\Buttons\\UI-Panel-ExpandButton-Up")
+				btn:SetPushedTexture("Interface\\Buttons\\UI-Panel-ExpandButton-Down")
+			else
+				AnniversaryTrackedDisplay.content:Show()
+
+				btn:SetNormalTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Up")
+    			btn:SetPushedTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Down")
+			end
+			Anniversary_ShowTrackedAchievementProgress()
+		end)
+		btn:SetScript("OnEnter", function(self)
+			GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+			GameTooltip:SetText("Toggle Achievement/Quest Tracker", 1, 1, 1)
+			GameTooltip:Show()
+		end)
+		btn:SetScript("OnLeave", function(self)
+			GameTooltip:Hide()
+		end)
+		f.toggleTrackerButton = btn
+	end
+
+	if trackerHidden then
+    	return
+	end
 
     -- loop in preserved order
     for _, id in ipairs(trackedOrder) do
@@ -193,14 +252,15 @@ function Anniversary_ShowTrackedAchievementProgress()
 
 			-- achievement title
 			local title = hoverFrame_Achievements:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+			local truncatedName = TruncateText(name, 40)
 			title:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
-			title:SetText("|cFFC4A300" .. name .. "|r") -- gold
+			title:SetText("|cFFC4A300" .. truncatedName .. "|r") -- gold
 			title:SetShadowOffset(1, -1)
 
 			table.insert(hoverFrame_Achievements.texts, {
 				fs = title,
-				normal = "|cFFC4A300" .. name .. "|r",
-				highlight = "|cFFFFD500" .. name .. "|r"
+				normal = "|cFFC4A300" .. truncatedName .. "|r",
+				highlight = "|cFFFFD500" .. truncatedName .. "|r"
 				})
 			prev = title
 
@@ -314,34 +374,35 @@ function Anniversary_ShowTrackedAchievementProgress()
         local questIndex = GetQuestIndexForWatch(i)
         if questIndex then
             local title, level, _, _, _, _, _, questID = GetQuestLogTitle(questIndex)
-
+			local truncatedTitle = TruncateText(title, 40)
             local objectives = GetNumQuestLeaderBoards(questIndex)
             local questLine = hoverFrame_Quests:CreateFontString(nil, "OVERLAY", "GameFontNormal")
             questLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
-            questLine:SetText("|cFFC4A300" .. title .. "|r")
+            questLine:SetText("|cFFC4A300" .. truncatedTitle .. "|r")
 			questLine:SetShadowOffset(1, -1)
 			
 			table.insert(hoverFrame_Quests.texts, {
 				fs = questLine,
-				normal = "|cFFC4A300" .. title .. "|r",
-				highlight = "|cFFFFD500" .. title .. "|r"
+				normal = "|cFFC4A300" .. truncatedTitle .. "|r",
+				highlight = "|cFFFFD500" .. truncatedTitle .. "|r"
 				})
             prev = questLine
 
             for obj = 1, objectives do
                 local desc, type, finished = GetQuestLogLeaderBoard(obj, questIndex)
                 if desc then
+					local truncatedObj = TruncateText(desc, 45)
                     local objLine = hoverFrame_Quests:CreateFontString(nil, "OVERLAY", "GameFontNormal")
                     objLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
 					-- Set color: white if finished, gray otherwise
         			local color = finished and "|cFFFFFFFF" or "|cFFD0D0D0"
-        			objLine:SetText(color .. "- " .. desc)
+        			objLine:SetText(color .. "- " .. truncatedObj)
                     objLine:SetShadowOffset(1, -1)
 
 					table.insert(hoverFrame_Quests.texts, {
 						fs = objLine,
-                        normal = color .. "- " .. desc,
-                        highlight = "|cFFFFFFFF- " .. desc
+                        normal = color .. "- " .. truncatedObj,
+                        highlight = "|cFFFFFFFF- " .. truncatedObj
 					})
                     prev = objLine
                 end
