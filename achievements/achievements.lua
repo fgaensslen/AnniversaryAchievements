@@ -1794,6 +1794,7 @@ do
 	ach = featsOfStrength:CreateAchievement('AN_PALADIN_MOUNT', 'AD_PALADIN_MOUNT', 0, '-ability_mount_charger', true, 525)
 		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {7647}))
 
+    --[[
     --TBC
     L:Achievement(featsOfStrength, 0, '-inv_shirt_guildtabard_01')
         :NameDesc('AN_PREPATCH_QUEST', 'AD_PREPATCH_QUEST', true)
@@ -1845,6 +1846,8 @@ do
 	ach = featsOfStrength:CreateAchievement('AN_HAND_ADAL', 'AD_HAND_ADAL', 0, '-inv_mace_25', true, 530)
 		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {10445}))
 		ach:SetRewardText(loc:Get('AR_HAND_ADAL'))
+
+    ]]
 end
 
 --DELETE WHEN TBC COMES OUT
