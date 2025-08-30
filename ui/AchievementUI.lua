@@ -77,6 +77,8 @@ local achievementFunctions;
 
 
 -- [[ TRACKER ]] --
+-- Toggle State speichern!
+-- Header und Button auf gleicher Höhe anzeigen
 
 -- initialize per-character storage
 CA_LocalData = CA_LocalData or {}
@@ -159,50 +161,48 @@ function Anniversary_ShowTrackedAchievementProgress()
 
     f.content:Show()
 
-    -- Objectives Header
-    local header = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    header:SetPoint("TOPLEFT", f.content, "TOPLEFT", 0, 0)
-    header:SetText(titleColor_hover .. OBJECTIVES_TRACKER_LABEL .. " (" .. (trackedCount+numQuests) .. ")|r")
-    header:SetShadowOffset(1, -1)
-    table.insert(f.lines, header)
+	-- Objectives Header
+	if not f.header then
+		local header = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+		header:SetShadowOffset(1, -1)
+		f.header = header
+	end
 
-    -- Create a drag handle over the header (only once)
-    if not f.dragHandle then
-        local handle = CreateFrame("Frame", nil, f)
-        handle:SetAllPoints(header)
-        handle:EnableMouse(true)
-        handle:RegisterForDrag("LeftButton")
-        handle:SetScript("OnDragStart", function() f:StartMoving() end)
-        handle:SetScript("OnDragStop", function()
-            f:StopMovingOrSizing()
-            local point, _, relativePoint, xOfs, yOfs = f:GetPoint()
-            CA_LocalData.TrackerPosition = {point = point, relativePoint = relativePoint, x = xOfs, y = yOfs}
-        end)
-        f.dragHandle = handle
-    end
+	-- update header text
+	f.header:SetText(titleColor_hover .. OBJECTIVES_TRACKER_LABEL .. " (" .. (trackedCount+numQuests) .. ")|r")
 
-    local prev = header
+	-- reposition based on toggle state
+	f.header:ClearAllPoints()
+	if trackerHidden then
+		-- collapsed: move header near button
+		f.header:SetPoint("RIGHT", f.toggleTrackerButton, "LEFT", 0, 0)
+	else
+		-- expanded: normal spot on the left
+		f.header:SetPoint("LEFT", f.content, "LEFT", 0, 10)
+	end
+
+	local prev = f.header
 
 	--Toggle Button
 	if not f.toggleTrackerButton then
 		local btn = CreateFrame("Button", nil, f.content)
 		btn:SetSize(25, 25)
-		btn:SetPoint("TOPRIGHT", f.content, "TOPRIGHT", 250, 5)
+		btn:SetPoint("TOPRIGHT", f.content, "TOPRIGHT", 250, 0)
 		btn:SetNormalTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Up")
 		btn:SetPushedTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Down")
 		btn:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight")
 		btn:SetScript("OnClick", function()
 			trackerHidden = not trackerHidden
-			header:ClearAllPoints()
+
+			if f.PositionDragHandle then f.PositionDragHandle() end
+
 			if trackerHidden then
 				AnniversaryTrackedDisplay.content:Hide()
-				header:SetPoint("TOPRIGHT", f.content, "TOPLEFT", 80, 0)
 				btn:SetNormalTexture("Interface\\Buttons\\UI-Panel-ExpandButton-Up")
 				btn:SetPushedTexture("Interface\\Buttons\\UI-Panel-ExpandButton-Down")
 				PlaySound(822)
 			else
 				AnniversaryTrackedDisplay.content:Show()
-				header:SetPoint("TOPLEFT", f.content, "TOPLEFT", 0, 0)
 				btn:SetNormalTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Up")
     			btn:SetPushedTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Down")
 				PlaySound(821)
@@ -217,6 +217,37 @@ function Anniversary_ShowTrackedAchievementProgress()
 
 	if trackerHidden then
     	return
+	end
+
+	-- Create one persistent draggable area that spans from the header to the toggle button.
+	if not f.dragHandle then
+		local handle = CreateFrame("Frame", nil, f)
+		handle:EnableMouse(true)
+		handle:RegisterForDrag("LeftButton")
+		handle:SetFrameLevel((f:GetFrameLevel() or 0) + 50)
+
+		handle:SetScript("OnDragStart", function() f:StartMoving() end)
+		handle:SetScript("OnDragStop", function()
+			f:StopMovingOrSizing()
+			local point, _, relativePoint, xOfs, yOfs = f:GetPoint()
+			CA_LocalData.TrackerPosition = {point = point, relativePoint = relativePoint, x = xOfs, y = yOfs}
+		end)
+
+		-- function to (re)position the drag handle based on the header and toggle button
+		local function PositionDragHandle()
+			local leftAnchor = f.header or header or f.content
+			local rightAnchor = f.toggleTrackerButton or f.header or f.content
+
+			handle:ClearAllPoints()
+			handle:SetPoint("TOPLEFT", leftAnchor, "TOPLEFT", -6, 6)
+			handle:SetPoint("BOTTOMRIGHT", rightAnchor, "LEFT", -4, -6)
+			handle:SetHitRectInsets(-6, -6, -6, -6)
+		end
+
+		f.dragHandle = handle
+		f.PositionDragHandle = PositionDragHandle
+
+		pcall(f.PositionDragHandle)
 	end
 
     -- loop in preserved order
@@ -438,6 +469,10 @@ function Anniversary_ShowTrackedAchievementProgress()
 		table.insert(f.lines, hoverFrame_Quests)
         prev = hoverFrame_Quests
     end
+
+	if AnniversaryTrackedDisplay and AnniversaryTrackedDisplay.PositionDragHandle then
+		pcall(AnniversaryTrackedDisplay.PositionDragHandle)
+	end
 end
 
 function Anniversary_ToggleAchievementTracking(self)
