@@ -75,16 +75,17 @@ local displayStatCategories = {};
 local guildMemberRequestFrame;
 local achievementFunctions;
 
-
 -- [[ TRACKER ]] --
--- Toggle State speichern!
 -- Header und Button auf gleicher Höhe anzeigen
+-- einzelnes Questfenster öffnen
 
 -- initialize per-character storage
 CA_LocalData = CA_LocalData or {}
+CA_Settings = CA_Settings or {}
 CA_LocalData.trackedAchievements = CA_LocalData.trackedAchievements or {}
 CA_LocalData.trackedOrder = CA_LocalData.trackedOrder or {}
 CA_LocalData.TrackerPosition = CA_LocalData.TrackerPosition or nil
+CA_Settings.trackerHidden = CA_Settings.trackerHidden or false
 
 -- local references for convenience
 trackedAchievements = CA_LocalData.trackedAchievements
@@ -108,7 +109,13 @@ local function DisableBlizzardQuestTracker()
 end
 
 function Anniversary_ShowTrackedAchievementProgress()	
+
 	DisableBlizzardQuestTracker()
+
+	if CA_Settings.trackerHidden == nil then
+    	CA_Settings.trackerHidden = false -- default expanded
+	end
+	trackerHidden = CA_Settings.trackerHidden
 
 	if AnniversaryTrackedDisplay and AnniversaryTrackedDisplay.content then
 		if trackerHidden then
@@ -155,6 +162,8 @@ function Anniversary_ShowTrackedAchievementProgress()
     local numQuests = GetNumQuestWatches()
 
     if trackedCount == 0 and numQuests == 0 then
+		if f.header then f.header:Hide() end
+    	if f.toggleTrackerButton then f.toggleTrackerButton:Hide() end
         f.content:Hide()
         return
     end
@@ -166,6 +175,8 @@ function Anniversary_ShowTrackedAchievementProgress()
 		local header = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 		header:SetShadowOffset(1, -1)
 		f.header = header
+	else
+		f.header:Show()
 	end
 
 	-- update header text
@@ -188,11 +199,17 @@ function Anniversary_ShowTrackedAchievementProgress()
 		local btn = CreateFrame("Button", nil, f.content)
 		btn:SetSize(25, 25)
 		btn:SetPoint("TOPRIGHT", f.content, "TOPRIGHT", 250, 0)
-		btn:SetNormalTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Up")
-		btn:SetPushedTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Down")
+		if trackerHidden then
+			btn:SetNormalTexture("Interface\\Buttons\\UI-Panel-ExpandButton-Up")
+			btn:SetPushedTexture("Interface\\Buttons\\UI-Panel-ExpandButton-Down")
+		else
+			btn:SetNormalTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Up")
+			btn:SetPushedTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Down")
+		end
 		btn:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight")
 		btn:SetScript("OnClick", function()
 			trackerHidden = not trackerHidden
+			CA_Settings.trackerHidden = trackerHidden  -- save state
 
 			if f.PositionDragHandle then f.PositionDragHandle() end
 
@@ -213,6 +230,8 @@ function Anniversary_ShowTrackedAchievementProgress()
 			GameTooltip:Hide()
 		end)
 		f.toggleTrackerButton = btn
+	else
+		f.toggleTrackerButton:Show()
 	end
 
 	if trackerHidden then
