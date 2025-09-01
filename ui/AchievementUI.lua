@@ -84,7 +84,7 @@ CA_LocalData = CA_LocalData or {}
 CA_Settings = CA_Settings or {}
 CA_LocalData.trackedAchievements = CA_LocalData.trackedAchievements or {}
 CA_LocalData.trackedOrder = CA_LocalData.trackedOrder or {}
-CA_LocalData.TrackerPosition = CA_LocalData.TrackerPosition or nil
+CA_Settings.trackerPosition = CA_Settings.trackerPosition or nil
 CA_Settings.trackerHidden = CA_Settings.trackerHidden or false
 
 -- local references for convenience
@@ -131,12 +131,12 @@ function Anniversary_ShowTrackedAchievementProgress()
         AnniversaryTrackedDisplay:SetSize(1, 1)
 
         -- Load position per character
-        if CA_LocalData.TrackerPosition then
-            local pos = CA_LocalData.TrackerPosition
+        if CA_Settings.trackerPosition then
+            local pos = CA_Settings.trackerPosition
             AnniversaryTrackedDisplay:ClearAllPoints()
             AnniversaryTrackedDisplay:SetPoint(pos.point, UIParent, pos.relativePoint, pos.x, pos.y)
         else
-            AnniversaryTrackedDisplay:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -160, -300)
+            AnniversaryTrackedDisplay:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
         end
 
         AnniversaryTrackedDisplay:SetMovable(true)
@@ -186,7 +186,7 @@ function Anniversary_ShowTrackedAchievementProgress()
 	f.header:ClearAllPoints()
 	if trackerHidden then
 		-- collapsed: move header near button
-		f.header:SetPoint("RIGHT", f.toggleTrackerButton, "LEFT", 0, 0)
+		f.header:SetPoint("RIGHT", f.toggleTrackerButton, "LEFT", -20, 0)
 	else
 		-- expanded: normal spot on the left
 		f.header:SetPoint("LEFT", f.content, "LEFT", 0, 10)
@@ -198,7 +198,7 @@ function Anniversary_ShowTrackedAchievementProgress()
 	if not f.toggleTrackerButton then
 		local btn = CreateFrame("Button", nil, f.content)
 		btn:SetSize(25, 25)
-		btn:SetPoint("TOPRIGHT", f.content, "TOPRIGHT", 250, 0)
+		btn:SetPoint("RIGHT", f, "RIGHT", textWidth, 0)
 		if trackerHidden then
 			btn:SetNormalTexture("Interface\\Buttons\\UI-Panel-ExpandButton-Up")
 			btn:SetPushedTexture("Interface\\Buttons\\UI-Panel-ExpandButton-Down")
@@ -249,7 +249,7 @@ function Anniversary_ShowTrackedAchievementProgress()
 		handle:SetScript("OnDragStop", function()
 			f:StopMovingOrSizing()
 			local point, _, relativePoint, xOfs, yOfs = f:GetPoint()
-			CA_LocalData.TrackerPosition = {point = point, relativePoint = relativePoint, x = xOfs, y = yOfs}
+			CA_Settings.trackerPosition = {point = point, relativePoint = relativePoint, x = xOfs, y = yOfs}
 		end)
 
 		-- function to (re)position the drag handle based on the header and toggle button
@@ -494,6 +494,100 @@ function Anniversary_ShowTrackedAchievementProgress()
 	end
 end
 
+-- Simple custom quest popup (call Anniversary_ShowQuestPopup(questID_or_logIndex))
+local function EnsureAnniversaryQuestPopup()
+    if Anniversary_QuestPopupFrame then return Anniversary_QuestPopupFrame end
+
+    local f = CreateFrame("Frame", "Anniversary_QuestPopupFrame", UIParent, "DialogBoxFrame")
+    f:SetSize(420, 320)
+    f:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+    f:EnableMouse(true)
+    f:SetMovable(true)
+    f:SetClampedToScreen(true)
+
+    -- title
+    f.title = f:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+    f.title:SetPoint("TOP", 0, -12)
+
+    -- close button
+    local close = CreateFrame("Button", nil, f, "UIPanelCloseButton")
+    close:SetPoint("TOPRIGHT", -6, -6)
+    close:SetScript("OnClick", function() f:Hide() end)
+
+    -- scroll frame + content
+    local scroll = CreateFrame("ScrollFrame", nil, f, "UIPanelScrollFrameTemplate")
+    scroll:SetPoint("TOPLEFT", 16, -40)
+    scroll:SetPoint("BOTTOMRIGHT", -30, 16)
+
+    local content = CreateFrame("Frame", nil, scroll)
+    content:SetSize(360, 1) -- height will be adjusted later
+    scroll:SetScrollChild(content)
+
+    local text = content:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    text:SetPoint("TOPLEFT", 0, 0)
+    text:SetJustifyH("LEFT")
+    text:SetWidth(360)
+
+    f.scroll = scroll
+    f.content = content
+    f.text = text
+
+    Anniversary_QuestPopupFrame = f
+    return f
+end
+
+function Anniversary_ShowQuestPopup(questID_or_logIndex, maybeLogIndex)
+    local f = EnsureAnniversaryQuestPopup()
+
+    -- figure out log index and questID
+    local logIndex, questID = nil, nil
+    if maybeLogIndex and maybeLogIndex > 0 then
+        logIndex = maybeLogIndex
+        questID = questID_or_logIndex
+    else
+        -- if parameter looks like a log index, try it, otherwise treat parameter as questID
+        if type(questID_or_logIndex) == "number" then
+            -- try as log index first
+            local titleTest = GetQuestLogTitle(questID_or_logIndex)
+            if titleTest then
+                logIndex = questID_or_logIndex
+                questID = select(8, GetQuestLogTitle(logIndex))
+            else
+                -- treat as questID
+                questID = questID_or_logIndex
+                if GetQuestLogIndexByID then
+                    logIndex = GetQuestLogIndexByID(questID)
+                else
+                    for i = 1, GetNumQuestLogEntries() do
+                        local _, _, _, isHeader, _, _, _, qid = GetQuestLogTitle(i)
+                        if (not isHeader) and qid == questID then logIndex = i; break end
+                    end
+                end
+            end
+        end
+    end
+
+    if not logIndex or logIndex == 0 then
+        -- nothing to show
+        return
+    end
+
+    local title = select(1, GetQuestLogTitle(logIndex)) or RETRIEVING_DATA
+    local desc, obj = GetQuestLogQuestText(logIndex) -- returns description, objectives
+    desc = desc or ""
+    obj = obj or ""
+
+    f.title:SetText(title)
+    f.text:SetText(desc .. "\n\n" .. obj)
+
+    -- adjust content height to fit text
+    local h = f.text:GetStringHeight()
+    f.content:SetHeight(h + 8)
+
+    f:Show()
+end
+
+
 function Anniversary_ToggleAchievementTracking(self)
     -- play sound when an achievement is (un)tracked
     if self:GetChecked() then
@@ -559,7 +653,7 @@ trackerFrame:SetScript("OnEvent", function(self, event, ...)
         CA_LocalData = CA_LocalData or {}
         CA_LocalData.trackedAchievements = CA_LocalData.trackedAchievements or {}
         CA_LocalData.trackedOrder = CA_LocalData.trackedOrder or {}
-        CA_LocalData.TrackerPosition = CA_LocalData.TrackerPosition or nil
+        CA_Settings.trackerPosition = CA_Settings.trackerPosition or nil
 
         -- local references for convenience
         trackedAchievements = CA_LocalData.trackedAchievements
