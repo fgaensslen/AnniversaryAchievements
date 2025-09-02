@@ -76,8 +76,6 @@ local guildMemberRequestFrame;
 local achievementFunctions;
 
 -- [[ TRACKER ]] --
--- Header und Button auf gleicher Höhe anzeigen
--- einzelnes Questfenster öffnen
 
 -- initialize per-character storage
 CA_LocalData = CA_LocalData or {}
@@ -482,7 +480,7 @@ function Anniversary_ShowTrackedAchievementProgress()
 				if IsShiftKeyDown() then -- Shift-click to untrack		 	
 					RemoveQuestWatch(questIndex)
 				else
-					Anniversary_ShowQuestPopup(questID, questIndex)
+					Anniversary_OpenQuestDetails(questID, questIndex)
 				end
             end
         end)
@@ -496,7 +494,64 @@ function Anniversary_ShowTrackedAchievementProgress()
 	end
 end
 
+-- Robust Classic opener for the exact quest
+function Anniversary_OpenQuestDetails(questID, questLogIndex)
+    ShowUIPanel(QuestLogFrame)
 
+    local function FocusQuest()
+        -- 1) Expand all headers so indices are stable/visible
+        local num = GetNumQuestLogEntries()
+        for i = 1, num do
+            local _, _, _, isHeader, isCollapsed = GetQuestLogTitle(i)
+            if isHeader and isCollapsed then
+                ExpandQuestHeader(i)
+            end
+        end
+
+        -- 2) Re-find by questID (most reliable)
+        local target
+        num = GetNumQuestLogEntries()
+        if questID then
+            for i = 1, num do
+                local _, _, _, isHeader, _, _, _, qid = GetQuestLogTitle(i)
+                if not isHeader and qid == questID then
+                    target = i
+                    break
+                end
+            end
+        end
+
+        -- 3) Fallback: use provided index if valid and not a header
+        if not target and questLogIndex then
+            local _, _, _, isHeader = GetQuestLogTitle(questLogIndex)
+            if questLogIndex >= 1 and questLogIndex <= num and not isHeader then
+                target = questLogIndex
+            end
+        end
+        if not target then return end
+
+        -- 4) Apply selection to both UI and API
+        if QuestLog_SetSelection then QuestLog_SetSelection(target) end
+        if SelectQuestLogEntry then SelectQuestLogEntry(target) end
+
+        -- 5) Scroll the left list so the quest is visible
+        local frame = QuestLogListScrollFrame
+        if frame and frame.buttons and frame.ScrollBar then
+            local buttons = frame.buttons
+            local rowH = buttons[1] and buttons[1]:GetHeight() or 16
+            local rowsVisible = math.max(1, math.floor(frame:GetHeight() / rowH + 0.5))
+            local offset = math.max(0, target - math.floor(rowsVisible / 2) - 1)
+            FauxScrollFrame_SetOffset(frame, offset)
+            frame.ScrollBar:SetValue(offset * rowH)
+        end
+
+        if QuestLog_Update then QuestLog_Update() end
+    end
+
+    -- Run now (if the frame was already shown) and once next frame (after OnShow)
+    FocusQuest()
+    if C_Timer and C_Timer.After then C_Timer.After(0, FocusQuest) end
+end
 
 function Anniversary_ToggleAchievementTracking(self)
     -- play sound when an achievement is (un)tracked
