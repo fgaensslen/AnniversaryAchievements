@@ -405,7 +405,7 @@ function Anniversary_ShowTrackedAchievementProgress()
 
 	--QUEST TRACKER
     for i = 1, numQuests do
-		-- Create a frame wrapper for mouse interaction
+		local watchSlot = i
         local hoverFrame_Quests = CreateFrame("Frame", nil, f.content)
         hoverFrame_Quests:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
         hoverFrame_Quests:SetWidth(textWidth)
@@ -414,9 +414,11 @@ function Anniversary_ShowTrackedAchievementProgress()
 		-- collect all fontstrings for this block
         hoverFrame_Quests.texts = {}
 
-        local questIndex = GetQuestIndexForWatch(i)
+        local questIndex = GetQuestIndexForWatch(watchSlot)
         if questIndex then
             local title, level, _, _, _, _, _, questID = GetQuestLogTitle(questIndex)
+			hoverFrame_Quests.watchSlot = watchSlot
+        	hoverFrame_Quests.questID   = questID
             local objectives = GetNumQuestLeaderBoards(questIndex)
             local questLine = hoverFrame_Quests:CreateFontString(nil, "OVERLAY", "GameFontNormal")
             questLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
@@ -475,15 +477,47 @@ function Anniversary_ShowTrackedAchievementProgress()
             end
         end)
         
-        hoverFrame_Quests:SetScript("OnMouseDown", function(_, button)
-            if button == "LeftButton" then
-				if IsShiftKeyDown() then -- Shift-click to untrack		 	
-					RemoveQuestWatch(questIndex)
-				else
-					Anniversary_OpenQuestDetails(questID, questIndex)
+		hoverFrame_Quests:SetScript("OnMouseDown", function(self, button)
+			if button ~= "LeftButton" then return end
+
+			if IsShiftKeyDown() then
+				-- Re-resolve a live quest log index from the current watch slot
+				local idx = self.watchSlot and GetQuestIndexForWatch(self.watchSlot) or nil
+
+				-- Fallback: find by questID if needed
+				if (not idx or idx <= 0) and self.questID then
+					local num = GetNumQuestLogEntries()
+					for j = 1, num do
+						local _, _, _, isHeader, _, _, _, qid = GetQuestLogTitle(j)
+						if not isHeader and qid == self.questID then
+							idx = j
+							break
+						end
+					end
 				end
-            end
-        end)
+
+				-- **Critical**: purge the internal QUEST_WATCH_LIST entry by questID (like ModernQuestWatch)
+				if self.questID and type(QUEST_WATCH_LIST) == "table" then
+					for n = #QUEST_WATCH_LIST, 1, -1 do
+						if QUEST_WATCH_LIST[n].id == self.questID then
+							tremove(QUEST_WATCH_LIST, n)
+						end
+					end
+				end
+
+				-- Now remove the watch using the live index
+				if idx and idx > 0 then
+					RemoveQuestWatch(idx)
+				end
+
+				if QuestLog_Update   then QuestLog_Update() end
+				if QuestWatch_Update then QuestWatch_Update() end
+
+				Anniversary_ShowTrackedAchievementProgress()
+			else
+				Anniversary_OpenQuestDetails(self.questID, GetQuestIndexForWatch(self.watchSlot))
+			end
+		end)
 		
 		table.insert(f.lines, hoverFrame_Quests)
         prev = hoverFrame_Quests
