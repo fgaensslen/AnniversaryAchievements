@@ -12,20 +12,20 @@ local TYPE = criterias.TYPE
 local general = tab:CreateCategory('CATEGORY_GENERAL', nil, true)
 
 local quests = tab:CreateCategory('CATEGORY_QUESTS', nil, true)
-local questsKalimdor = tab:CreateCategory('CATEGORY_KALIMDOR', quests.id, true)
 local questsEasternKingdoms = tab:CreateCategory('CATEGORY_EASTERN_KINGDOMS', quests.id, true)
+local questsKalimdor = tab:CreateCategory('CATEGORY_KALIMDOR', quests.id, true)
 local outlandQuests = tab:CreateCategory('CATEGORY_OUTLAND', quests.id, true)
 
 local exploration = tab:CreateCategory('CATEGORY_EXPLORATION', nil, true)
-local explorationKalimdor = tab:CreateCategory('CATEGORY_KALIMDOR', exploration.id, true)
 local explorationEasternKingdoms = tab:CreateCategory('CATEGORY_EASTERN_KINGDOMS', exploration.id, true)
+local explorationKalimdor = tab:CreateCategory('CATEGORY_KALIMDOR', exploration.id, true)
 local outlandExploration = tab:CreateCategory('CATEGORY_OUTLAND', exploration.id, true)
 
 local pvp = tab:CreateCategory('CATEGORY_PVP', nil, true)
-local alterac = tab:CreateCategory('CATEGORY_BG_ALTERAC', pvp.id, true)
 local warsong = tab:CreateCategory('CATEGORY_BG_WARSONG', pvp.id, true)
 local arathi = tab:CreateCategory('CATEGORY_BG_ARATHI', pvp.id, true)
 local bgEye = tab:CreateCategory('CATEGORY_BG_EYE', pvp.id, true)
+local alterac = tab:CreateCategory('CATEGORY_BG_ALTERAC', pvp.id, true)
 
 local pve = tab:CreateCategory('CATEGORY_PVE', nil, true)
 local instances = tab:CreateCategory('CATEGORY_VANILLA', pve.id, true)

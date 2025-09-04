@@ -98,11 +98,14 @@ local textWidth = 250
 local trackerHidden = false
 
 -- Disable Blizzard Quest Tracker
+local blizzTrackerDisabled
 local function DisableBlizzardQuestTracker()
+    if blizzTrackerDisabled then return end
     if QuestWatchFrame then
 		QuestWatchFrame:ClearAllPoints()
         QuestWatchFrame:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", -1000, -1000)
-        QuestWatchFrame:SetAlpha(0) -- Optional: make it invisible
+        QuestWatchFrame:SetAlpha(0)
+        blizzTrackerDisabled = true
     end
 end
 
@@ -147,6 +150,7 @@ function Anniversary_ShowTrackedAchievementProgress()
     local f = AnniversaryTrackedDisplay
     for _, line in ipairs(f.lines) do
         line:Hide()
+		line:SetParent(nil) -- free it
     end
     f.lines = {}
 
@@ -499,7 +503,8 @@ function Anniversary_ShowTrackedAchievementProgress()
 				-- **Critical**: purge the internal QUEST_WATCH_LIST entry by questID (like ModernQuestWatch)
 				if self.questID and type(QUEST_WATCH_LIST) == "table" then
 					for n = #QUEST_WATCH_LIST, 1, -1 do
-						if QUEST_WATCH_LIST[n].id == self.questID then
+						local row = QUEST_WATCH_LIST[n]
+						if type(row) == "table" and row.id == self.questID then
 							tremove(QUEST_WATCH_LIST, n)
 						end
 					end
