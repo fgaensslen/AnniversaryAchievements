@@ -236,7 +236,11 @@ do
 			end
 		end
 
-		parent:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+        if(zoneName == 'BLACK_ROCK') then --create the Criteria but dont add it to the parent achievement. Necessary to don't mess up the database ids
+		    criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id})
+        else
+            parent:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+        end
 
 		return ach
 	end
@@ -568,7 +572,7 @@ do
 
     local previous = pvp:CreateAchievement('AN_PVP_FIRST_KILL', 'AD_PVP_FIRST_KILL', 10, '-achievement_pvp_p_01', true)
     previous:AddCriteria(criterias:CreateL('AC_PVP_FIRST_KILL', TYPE.KILL_PLAYERS, nil, 1))
-    for i, count in pairs({10, 100, 250, 500, 1000, 2000, 5000, 10000, 25000, 50000, 100000, 250000, 500000}) do
+    for i, count in pairs({10, 100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000, 250000, 500000}) do
 		if i <= 9 then pvpIcon = '-achievement_pvp_p_0'
         else pvpIcon = '-achievement_pvp_p_' end
 	
