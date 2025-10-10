@@ -897,14 +897,17 @@ do
 	local createPvE = function(category)
 		return function(instanceName, icon, npcIDs, points)
 			ach = category:CreateAchievement('AN_' .. instanceName, 'AD_' .. instanceName, points or 10, icon, true)
-			if type(npcIDs) == 'table' then
+			if type(npcIDs) == 'table' then 
 				for i, npcID in pairs(npcIDs) do
-					if npcID > 0 then
-						ach:AddCriteria(criterias:CreateL('AC_' .. instanceName .. i, TYPE.KILL_NPC, {npcID}))
-					else
-						ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {-npcID}))
-					end
-				end
+                    if type(npcID) == 'table' then
+                        -- Grouped bosses (e.g. The Four Horsemen)
+                        ach:AddCriteria(criterias:CreateL('AC_' .. instanceName .. i, TYPE.KILL_NPC, npcID))
+                    elseif npcID > 0 then
+                        ach:AddCriteria(criterias:CreateL('AC_' .. instanceName .. i, TYPE.KILL_NPC, {npcID}))
+                    else
+                        ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {-npcID}))
+                    end
+                end
 			else
 				ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {npcIDs}))
 			end
@@ -990,16 +993,19 @@ do
     local ragnaros = create('RAGNAROS', '-achievement_boss_ragnaros', 11502, 10).id
     local bwl = create('BLACK_WING_LAIR', '-Achievement_boss_nefarion', 11583, 10).id
     local aq40 = create('AQ40', '-Achievement_boss_cthun', 15727, 10).id
-    local nx1 = create('NAXXRAMAS_SPIDERS', '-Inv_Trinket_Naxxramas04', 15952).id
-    local nx2 = create('NAXXRAMAS_PLAGUE', '-inv_misc_cauldron_nature', 16011).id
-    local nx3 = create('NAXXRAMAS_MILITARY', '-spell_deathknight_classicon', {-16062, -16063, -16064, -16065}).id
-    local nx4 = create('NAXXRAMAS_CONSTRUCT', '-ability_rogue_deviouspoisons', 15928).id
+    local nx1 = create('NAXXRAMAS_SPIDERS', '-Inv_Trinket_Naxxramas04', {15956, 15953, 15952}).id
+    local nx2 = create('NAXXRAMAS_PLAGUE', '-inv_misc_cauldron_nature', {15954, 15936, 16011}).id
+    local nx3 = create('NAXXRAMAS_MILITARY', '-spell_deathknight_classicon', {16061, 16060, {16062, 16063, 16064, 16065}}, 10).id
+    local nx4 = create('NAXXRAMAS_CONSTRUCT', '-ability_rogue_deviouspoisons', {16028, 15931, 15932, 15928}).id
     local nx5 = create('NAXXRAMAS_LAIR', '-inv_trinket_naxxramas06', 15990).id
+    local nx6 = instances:CreateAchievement('AN_NAXXRAMAS_SAPPHIRON', 'AD_NAXXRAMAS_SAPPHIRON', 10, '-inv_misc_head_dragon_blue', true, 540)
+		nx6:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {15989}))
     ach = instances:CreateAchievement('AN_NAXXRAMAS', 'AD_NAXXRAMAS', 10, '-achievement_dungeon_naxxramas_10man', true)
     ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_SPIDERS', TYPE.COMPLETE_ACHIEVEMENT, {nx1}))
     ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_PLAGUE', TYPE.COMPLETE_ACHIEVEMENT, {nx2}))
     ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_MILITARY', TYPE.COMPLETE_ACHIEVEMENT, {nx3}))
     ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_CONSTRUCT', TYPE.COMPLETE_ACHIEVEMENT, {nx4}))
+    ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_LAIR', TYPE.COMPLETE_ACHIEVEMENT, {nx6.id}))
     ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_LAIR', TYPE.COMPLETE_ACHIEVEMENT, {nx5}))
     local nx = ach.id
 
