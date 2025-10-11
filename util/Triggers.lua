@@ -217,27 +217,35 @@ local function updateProfessions()
     triggerProfessions(secondary, TYPE.REACH_SECONDARY_PROFESSION_LEVEL)
 end
 
-local previousCookingRecipeCount = 0  -- Cache to store the last counted number
+local previousCookingRecipeCount = 0
+local initializedCooking = false
 
 function CountLearnedCookingRecipes()
-	local profession = GetTradeSkillLine()
-	if profession ~= loc:Get('PROF_COOKING') then return end  -- Only proceed if it's cooking
+    local profession = GetTradeSkillLine()
+    if profession ~= loc:Get('PROF_COOKING') then return end -- Only if it's Cooking
 
-	local total = 0
-	for i = 1, GetNumTradeSkills() do
-		local _, type = GetTradeSkillInfo(i)
-		if type ~= 'header' then
-			total = total + 1
-		end
-	end
-	
-	-- Only trigger if count has increased
-	if total > previousCookingRecipeCount then
-		trigger(TYPE.LEARN_PROFESSION_RECIPES, {ClassicAchievementsProfessions.COOKING[1]}, total, true)
-		previousCookingRecipeCount = total
-	end
+    local total = 0
+    for i = 1, GetNumTradeSkills() do
+        local _, type = GetTradeSkillInfo(i)
+        if type ~= 'header' then
+            total = total + 1
+        end
+    end
+
+    -- Initialize once when the player first opens Cooking
+    if not initializedCooking then
+        initializedCooking = true
+        previousCookingRecipeCount = total
+        return
+    end
+
+    -- Fire trigger only if total increased since last known
+    if total > previousCookingRecipeCount then
+        trigger(TYPE.LEARN_PROFESSION_RECIPES, {ClassicAchievementsProfessions.COOKING[1]}, total, true)
+    end
+
+    previousCookingRecipeCount = total
 end
-
 
 local function updateItemsInInventory()
     local items = {}

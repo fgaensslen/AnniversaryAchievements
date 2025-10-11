@@ -1527,7 +1527,6 @@ do
 	
         local ach = cooking:CreateAchievement(loc:Get('AN_COOKING_RECIPES_' .. count), loc:Get('AD_COOKING_RECIPES', count), 10, cookingIcon)
         ach:AddCriteria(criterias:Create(loc:Get('AC_COOKING_RECIPES', count), TYPE.LEARN_PROFESSION_RECIPES, {ClassicAchievementsProfessions.COOKING[1]}, count))
-		ach:SetUnavailable()
         if previous then previous:SetNext(ach) end
         if count == 75 then
             ach:SetRewardText(loc:Get('AR_COOKING_RECIPES'))
