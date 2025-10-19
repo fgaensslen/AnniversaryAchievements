@@ -69,11 +69,16 @@ local function Completion(data)
         IsCriteriaCompleted = function(self, achievementID, criteriaID, realCriteria)
             local criteria = self:GetCriteria(achievementID, criteriaID)
             realCriteria = realCriteria or CA_Criterias:GetCriteriaByID(criteriaID)
-            if realCriteria and realCriteria.type == CA_Criterias.TYPE.OR then
-                if self:IsCriteriaCompleted(achievementID, realCriteria.data[1].id) or self:IsCriteriaCompleted(achievementID, realCriteria.data[2].id) then
-                    return true
+
+            if realCriteria and realCriteria.type == CA_Criterias.TYPE.OR and realCriteria.data then
+                for _, sub in ipairs(realCriteria.data) do
+                    if self:IsCriteriaCompleted(achievementID, sub.id) then
+                        return true
+                    end
                 end
+                return false
             end
+
             return criteria and criteria[1]
         end,
         AreAllCriteriasCompleted = function(self, achievementData)
@@ -304,9 +309,11 @@ end
 
 function struct:PostLoad(categories)
     local function processCriteria(achievementID, criteria)
-		if criteria.type == CA_Criterias.TYPE.OR then
-			processCriteria(achievementID, criteria.data[1])
-			processCriteria(achievementID, criteria.data[2])
+        if criteria.type == CA_Criterias.TYPE.OR then
+            -- ✅ FIX: Loop through all subcriteria instead of hardcoding two
+            for _, subCriteria in ipairs(criteria.data) do
+                processCriteria(achievementID, subCriteria)
+            end
 
 		elseif criteria.type == CA_Criterias.TYPE.COMPLETE_ACHIEVEMENT then
 			-- This is a meta requirement: sub-achievement must be completed

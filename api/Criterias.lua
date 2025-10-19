@@ -92,7 +92,7 @@ struct.dataLengths = {
     [struct.TYPE.SPECIAL] = 1,
     [struct.TYPE.BOSS_WITHOUT_MOBS] = 1,
     [struct.TYPE.BOSS_WITH_ALL_ALIVE] = 1, -- creatureID, raid members count
-    [struct.TYPE.OR] = 2,
+    [struct.TYPE.OR] = 0,
     [struct.TYPE.KILL_NPC_HEROIC] = 1,
     [struct.TYPE.ALTERAC_VALLEY_MINE_CAPTURE_MAX] = 0,
     [struct.TYPE.BG_EYE_GLORY] = 0,
@@ -135,9 +135,9 @@ function struct:CreateL(localizationKey, ...)
 end
 
 local function registerCriteriaForTriggering(criteria)
-    if type == struct.TYPE.OR then
-        for _, criteria in pairs(data) do
-            if not registerCriteriaForTriggering(criteria) then return false end
+    if criteria.type == struct.TYPE.OR then
+        for _, subCriteria in ipairs(criteria.data) do
+            registerCriteriaForTriggering(subCriteria)
         end
         return true
     end
@@ -199,6 +199,24 @@ function struct:Trigger(type, data, count, const)
         if not criterias then return end
     end
     count = count or 1
+
+    -- ✅ Helper: recursively mark OR criteria complete if any subcriteria is complete
+    local function checkOrCompletion(criteria)
+        if criteria.type == struct.TYPE.OR and criteria.data then
+            for _, sub in ipairs(criteria.data) do
+                -- If any subcriteria is already complete, complete the OR
+                if completion:IsCriteriaCompletedGlobally(sub.id) then
+                    completion:CompleteCriteriaGlobally(criteria.id)
+                    return true
+                else
+                    -- Recurse deeper for nested ORs
+                    checkOrCompletion(sub)
+                end
+            end
+        end
+    end
+
+    -- ✅ Now process each matching criteria
     for _, criteria in pairs(criterias) do
         if not criteria.deactivated then
             if criteria.quantity then
@@ -210,6 +228,9 @@ function struct:Trigger(type, data, count, const)
             else
                 completion:CompleteCriteriaGlobally(criteria.id)
             end
+
+            -- ✅ Check if this completion should satisfy a parent OR
+            checkOrCompletion(criteria)
         end
     end
 end
