@@ -1638,13 +1638,13 @@ do
 	maskAny:SetNext(maskAll)
 	
 	ach = hallowsend:CreateAchievement('AN_HALLOWSEND_TRANSFORM', 'AD_HALLOWSEND_TRANSFORM', 10, '-achievement_halloween_ghost_01', true, 539)
-		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_GHOST'), TYPE.HAS_BUFF, {24737}))
-		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_GNOME'), TYPE.HAS_BUFF, {24719}))
-		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_WISP'), TYPE.HAS_BUFF, {24741}))
-		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_NINJA'), TYPE.HAS_BUFF, {24718}))
-		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_SKELETON'), TYPE.HAS_BUFF, {24724}))
-		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_PIRATE'), TYPE.HAS_BUFF, {24717}))
-		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_BAT'), TYPE.HAS_BUFF, {24733}))
+		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_GHOST'), TYPE.HAS_BUFF, {24735}))
+		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_GNOME'), TYPE.HAS_BUFF, {24712}))
+		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_WISP'), TYPE.HAS_BUFF, {24740}))
+		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_NINJA'), TYPE.HAS_BUFF, {24710}))
+		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_SKELETON'), TYPE.HAS_BUFF, {24723}))
+		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_PIRATE'), TYPE.HAS_BUFF, {24708}))
+		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_BAT'), TYPE.HAS_BUFF, {24732}))
 	hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))		
 end
 
