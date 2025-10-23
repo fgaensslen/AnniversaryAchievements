@@ -462,11 +462,20 @@ killingTracker:AddHandler({16062, 16063, 16064, 16065}, function(targetID)
     horsemen[targetID] = time()
     local timings = {}
     for _, timing in pairs(horsemen) do timings[#timings + 1] = timing end
+
     if #timings == 4 then
         table.sort(timings, function(a, b) return a < b end)
+
+        -- Timed achievement
         if timings[2] - timings[1] <= 15 and timings[3] - timings[2] <= 15 and timings[4] - timings[3] <= 15 then
             trigger(TYPE.SPECIAL, {4}, 1, true)
         end
+
+        -- Untimed achievement
+        trigger(TYPE.SPECIAL, {5}, 1, true)
+
+        -- ✅ Clear table so next attempt works correctly
+        horsemen = {}
     end
 end)
 

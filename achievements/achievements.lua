@@ -901,7 +901,7 @@ do
 				for i, npcID in pairs(npcIDs) do
                     if type(npcID) == 'table' then
                         -- Grouped bosses (e.g. The Four Horsemen)
-                        ach:AddCriteria(criterias:CreateL('AC_' .. instanceName .. i, TYPE.KILL_NPC, npcID))
+                        ach:AddCriteria(criterias:CreateL('AC_' .. instanceName .. i, TYPE.SPECIAL, {5}))
                     elseif npcID > 0 then
                         ach:AddCriteria(criterias:CreateL('AC_' .. instanceName .. i, TYPE.KILL_NPC, {npcID}))
                     else
