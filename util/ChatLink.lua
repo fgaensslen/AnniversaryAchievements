@@ -191,10 +191,18 @@ function CA_ShareAchievement(achievementID)
             if gender == 2 then gender = 'MALE'
             else gender = 'FEMALE' end
             local message = SexyLib:Localization('Anniversary Achievements'):Get('GOT_ACHIEVEMENT_MESSAGE_' .. gender, GetAchievementLink(achievementID))
-            if SexyLib:Util():IsInGuild() then SendChatMessage(message, 'GUILD') end
-            if IsInRaid() then SendChatMessage(message, 'RAID')
-            elseif IsInGroup() then SendChatMessage(message, 'PARTY')
-            else SendChatMessage(message, 'SAY') end
+            if SexyLib:Util():IsInGuild() then safeSendChat(message, 'GUILD') end
+            if IsInRaid() then safeSendChat(message, 'RAID')
+            elseif IsInGroup() then safeSendChat(message, 'PARTY')
+            else safeSendChat(message, 'SAY') end
         end
     end
+end
+
+function safeSendChat(msg, channel)
+    if InCombatLockdown() then
+        C_Timer.After(3, function() safeSendChat(msg, channel) end)
+        return
+    end
+    pcall(SendChatMessage, msg, channel)
 end
