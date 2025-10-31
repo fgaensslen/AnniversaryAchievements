@@ -71,8 +71,10 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     NPC_385 = 'Horse',
     NPC_10685 = 'Swine',
     NPC_3300 = 'Adder',
+    NPC_15065 = 'Lady',
     NPC_15066 = 'Cleo',
     NPC_15071 = 'Underfoot',
+    NPC_15072 = 'Spike',
 
     CATEGORY_GENERAL = 'General',
     CATEGORY_QUESTS = 'Quests',

@@ -71,9 +71,11 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     NPC_10582 = 'Hund <Vater>',
     NPC_385 = 'Pferd',
     NPC_10685 = 'Schwein',
-    NPC_3300 = 'Otter',
+    NPC_3300 = 'Otter',    
+    NPC_15065 = 'Lady',
     NPC_15066 = 'Cleo',
     NPC_15071 = 'Schleicherpfote',
+    NPC_15072 = 'Spike',
 
     CATEGORY_GENERAL = 'Allgemein',
     CATEGORY_QUESTS = 'Quests',

@@ -738,11 +738,21 @@ do
 
     local arathi1 = add('BASE_ASSAULT', TYPE.BATTLEFIELD_STAT_MAX, 1, {1, 2, 3, 4}, '-Ability_Eyeoftheowl')
     local arathi2 = add('BASE_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 2, 3, 4}, '-Inv_Shield_06')	
-	local arathi3 = L:Achievement(arathi, 10, '-ability_hunter_catlikereflexes')
-		:NameDesc('AN_ARATHI_CATS', 'AD_ARATHI_CATS', true)
-		:Criteria(TYPE.EMOTE, {'PAT', 15071}):Name('NPC_15071', true):Build()
-		:Criteria(TYPE.EMOTE, {'PAT', 15066}):Name('NPC_15066', true):Build()
-		:Build()
+	local arathi3
+    if UnitFactionGroup('player') == 'Horde' then
+        arathi3 = L:Achievement(arathi, 10, '-ability_hunter_catlikereflexes')
+            :NameDesc('AN_ARATHI_CATS', 'AD_ARATHI_CATS', true)
+            :Criteria(TYPE.EMOTE, {'PAT', 15071}):Name('NPC_15071', true):Build()
+            :Criteria(TYPE.EMOTE, {'PAT', 15072}):Name('NPC_15072', true):Build()
+            :Build()
+    else
+        arathi3 = L:Achievement(arathi, 10, '-ability_hunter_catlikereflexes')
+            :NameDesc('AN_ARATHI_CATS', 'AD_ARATHI_CATS', true)
+            :Criteria(TYPE.EMOTE, {'PAT', 15065}):Name('NPC_15065', true):Build()
+            :Criteria(TYPE.EMOTE, {'PAT', 15066}):Name('NPC_15066', true):Build()
+            :Build()
+    end
+
 	local arathi4 = L:Achievement(arathi, 10, '-achievement_bg_winab_underxminutes')
 		:NameDesc('AN_ARATHI_FAST_WIN', 'AD_ARATHI_FAST_WIN', true)
 		:Criteria(TYPE.BATTLEFIELD_FAST_WIN, {arathiID}):Build()
