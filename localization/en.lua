@@ -869,7 +869,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_LOVE = 'Show the critters of Azeroth how much you /love them.',
     EMOTE_PAT1 = 'You gently pat %s.',
     AN_ARATHI_CATS = 'Cats first, then everything else',
-    AD_ARATHI_CATS = 'Pat (/pat) the designated felines in Arathi Basin.',
+    AD_ARATHI_CATS = 'Pat (/pat) the designated pets in Arathi Basin.',
 
     AN_ALTERAC_FAST_WIN = 'The Alterac Blitz',
     AD_ALTERAC_FAST_WIN = 'Win Alterac Valley in 6 minutes.',

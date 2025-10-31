@@ -871,7 +871,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_LOVE = 'Zeigt den Tieren in Azeroth, wie sehr Ihr sie liebt (/liebe).',
     EMOTE_PAT1 = 'Ihr streichelt %s.',
     AN_ARATHI_CATS = 'Katzen sind am wichtigsten',
-    AD_ARATHI_CATS = 'Streichelt die angegebenen Katzen im Arathibecken (/streicheln).',
+    AD_ARATHI_CATS = 'Streichelt die angegebenen Haustiere im Arathibecken (/streicheln).',
 
     AN_ALTERAC_FAST_WIN = 'Der Alteracblitz',
     AD_ALTERAC_FAST_WIN = 'Gewinnt im Alteractal innerhalb von 6 Minuten.',
