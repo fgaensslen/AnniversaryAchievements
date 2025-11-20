@@ -42,6 +42,7 @@ local tbcReputations = tab:CreateCategory('CATEGORY_TBC', reputation.id, true)
 
 local worldevents = tab:CreateCategory('CATEGORY_EVENTS', nil, true)
 local hallowsend = tab:CreateCategory('CATEGORY_HALLOWSEND', worldevents.id, true)
+local winterveil = tab:CreateCategory('CATEGORY_WINTERVEIL', worldevents.id, true)
 
 local featsOfStrength = tab:CreateCategory('CATEGORY_FEATS_OF_STRENGTH', nil, true)
 
@@ -1572,7 +1573,7 @@ end
 
 --WORLD EVENTS
 do
-	
+	-- HALLOWSEND
 	local hallowsendSummary = worldevents:CreateAchievement('AN_HALLOWSEND', 'AD_HALLOWSEND', 10, '-achievement_halloween_witch_01', true, 531)
 		hallowsendSummary:SetRewardText(loc:Get('AR_HALLOWSEND'))
     if UnitFactionGroup('player') == 'Horde' then		
@@ -1655,7 +1656,49 @@ do
 		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_SKELETON'), TYPE.HAS_BUFF, {24723}))
 		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_PIRATE'), TYPE.HAS_BUFF, {24708}))
 		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_BAT'), TYPE.HAS_BUFF, {24732}))
-	hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))		
+	hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+    
+    
+    --WINTER VEIL
+    local winterveilSummary = worldevents:CreateAchievement('AN_WINTERVEIL', 'AD_WINTERVEIL', 10, '-achievement_worldevent_merrymaker', true, 541)
+		winterveilSummary:SetRewardText(loc:Get('AR_WINTERVEIL'))
+
+    if UnitFactionGroup('player') == 'Horde' then
+        ach = winterveil:CreateAchievement('AN_WINTERVEIL_METZEN', 'AD_WINTERVEIL_METZEN', 10, '-achievement_worldevent_reindeer', true, 542)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {8746}))
+        winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+
+        ach = winterveil:CreateAchievement('AN_WINTERVEIL_SMOKEYWOOD', 'AD_WINTERVEIL_SMOKEYWOOD', 10, '-inv_helmet_68', true, 543)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {6984}))
+        winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+
+        --ach = winterveil:CreateAchievement('AN_WINTERVEIL_SNOWBALL_HORDE', 'AD_WINTERVEIL_SNOWBALL_HORDE', 10, '-inv_ammo_snowball', true, 546)
+        --    ach:AddCriteria(criterias:Create(nil, TYPE.HAS_BUFF,{ spellID = 21343, npcID = 3057 }))
+        --winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+    else
+        ach = winterveil:CreateAchievement('AN_WINTERVEIL_METZEN', 'AD_WINTERVEIL_METZEN', 10, '-achievement_worldevent_reindeer', true, 542)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {8762}))
+        winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+
+        ach = winterveil:CreateAchievement('AN_WINTERVEIL_SMOKEYWOOD', 'AD_WINTERVEIL_SMOKEYWOOD', 10, '-inv_helmet_68', true, 543)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {7045}))
+        winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+
+        --ach = winterveil:CreateAchievement('AN_WINTERVEIL_SNOWBALL_ALLIANCE', 'AD_WINTERVEIL_SNOWBALL_ALLIANCE', 10, '-inv_ammo_snowball', true, 546)
+        --    ach:AddCriteria(criterias:Create(nil, TYPE.HAS_BUFF,{ spellID = 21343, npcID = 2784 }))
+        --winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+    end
+
+        ach = winterveil:CreateAchievement('AN_WINTERVEIL_GOURMET', 'AD_WINTERVEIL_GOURMET', 10, '-inv_misc_food_62', true, 544)
+            ach:AddCriteria(criterias:Create(loc:Get('AC_WINTERVEIL_GOURMET_CRITERIA1'), TYPE.CRAFT_ITEM, {17197}))
+            ach:AddCriteria(criterias:Create(loc:Get('AC_WINTERVEIL_GOURMET_CRITERIA2'), TYPE.CRAFT_ITEM, {17198}))
+        winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+
+        ach = winterveil:CreateAchievement('AN_WINTERVEIL_PRESENTS', 'AD_WINTERVEIL_PRESENTS', 10, '-inv_holiday_christmas_present_01', true, 545)
+            local q1 = criterias:Create(nil, TYPE.COMPLETE_QUEST, {8767})
+            local q2 = criterias:Create(nil, TYPE.COMPLETE_QUEST, {8768})
+            ach:AddCriteria(criterias:Create(nil, TYPE.OR, { q1, q2 }))
+        winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
 end
 
 -- REPUTATION --

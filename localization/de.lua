@@ -95,6 +95,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_REPUTATION = 'Ruf',
 	CATEGORY_EVENTS = 'Weltereignisse',
 	CATEGORY_HALLOWSEND = 'Schlotternächte',
+    CATEGORY_WINTERVEIL = 'Winterhauch',
     CATEGORY_FEATS_OF_STRENGTH = 'Heldentaten',
 	
 	AN_DRUID_T1 = 'Gewänder des Cenarius',
@@ -982,6 +983,31 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AC_HALLOWSEND_SKELETON = 'Durch den Stab der Verwandlung transformiert - Skelett',
 	AC_HALLOWSEND_PIRATE = 'Durch den Stab der Verwandlung transformiert - Pirat',
 	AC_HALLOWSEND_BAT = 'Durch den Stab der Verwandlung transformiert - Fledermaus',
+
+    --WINTERVEIL
+    AN_WINTERVEIL = 'Winterhauchengel',
+	AD_WINTERVEIL = 'Schließt die unten aufgelisteten Winterhaucherfolge ab.',
+	AR_WINTERVEIL = 'Winterhauchengel',
+
+    AN_WINTERVEIL_METZEN = 'Auf Metzen!',
+	AD_WINTERVEIL_METZEN = 'Rettet Metzen das Rentier.',
+
+    AN_WINTERVEIL_SMOKEYWOOD = 'Einfach grässlich',
+	AD_WINTERVEIL_SMOKEYWOOD = 'Schließt die Quest zur Wiederbeschaffung von Kokelwälders gestohlenen Leckereien ab und erhaltet ein Dankeschön von Kokelwälder.',
+
+    AN_WINTERVEIL_GOURMET = 'Der Winterhauch-Gourmet',
+	AD_WINTERVEIL_GOURMET = 'Nutzt während des Winterhauchfests Eure kulinarische Expertise, um einen Lebkuchen und einen Eierflip herzustellen.',
+    AC_WINTERVEIL_GOURMET_CRITERIA1 = 'Lebkuchen',
+    AC_WINTERVEIL_GOURMET_CRITERIA2 = 'Eierflip',
+
+    AN_WINTERVEIL_PRESENTS = 'Waren wir brav dieses Jahr?',
+	AD_WINTERVEIL_PRESENTS = 'Öffnet eines der Geschenke unter dem Winterhauchbaum, sobald sie verfügbar sind.',
+
+    AN_WINTERVEIL_SNOWBALL_ALLIANCE = 'Mitten ins Gesicht',
+	AD_WINTERVEIL_SNOWBALL_ALLIANCE = 'Werft während des Winterhauchfests einen Schneeball auf König Magni Bronzebart.',
+
+    AN_WINTERVEIL_SNOWBALL_HORDE = 'Mitten ins Gesicht',
+	AD_WINTERVEIL_SNOWBALL_HORDE = 'Werft während des Winterhauchfests einen Schneeball auf Cairne Bluthuf.',
 
 	--BURNING CRUSADE
     AN_QUESTS_HELLFIRE_PENINSULA = 'Durchs Höllenfeuer und zurück',

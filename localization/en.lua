@@ -94,6 +94,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_REPUTATION = 'Reputation',
 	CATEGORY_EVENTS = 'World Events',
 	CATEGORY_HALLOWSEND = 'Hallow\'s End',
+    CATEGORY_WINTERVEIL = 'Winter Veil',
     CATEGORY_FEATS_OF_STRENGTH = 'Feats of Strength',
 	
 	AN_DRUID_T1 = 'Cenarion Raiment',
@@ -404,7 +405,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_YOUNG_HERO = 'Earn the raid achievements listed below.',
     AN_BLACKROCK_MASTER = 'Lord of the Blackrock',
     AD_BLACKROCK_MASTER = 'Earn the following achievements related to the Blackrock dungeons and raids.',
-    AN_HERO = 'Hero of the Azeroth',
+    AN_HERO = 'Hero of Azeroth',
     AD_HERO = 'Earn the raid achievements listed below.',
     AR_HERO = 'Hero of Azeroth.',
     AN_GREAT_HERO = 'Great Hero of Azeroth',
@@ -980,6 +981,31 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AC_HALLOWSEND_SKELETON = 'Transformed by Hallowed Wand - Skeleton',
 	AC_HALLOWSEND_PIRATE = 'Transformed by Hallowed Wand - Pirate',
 	AC_HALLOWSEND_BAT = 'Transformed by Hallowed Wand - Bat',
+
+    --WINTERVEIL
+    AN_WINTERVEIL = 'Merrymaker',
+	AD_WINTERVEIL = 'Complete the Winter Veil achievements listed below.',
+	AR_WINTERVEIL = 'Merrymaker',
+
+    AN_WINTERVEIL_METZEN = 'On Metzen!',
+	AD_WINTERVEIL_METZEN = 'Save Metzen the Reindeer.',
+
+    AN_WINTERVEIL_SMOKEYWOOD = 'Simply Abominable',
+	AD_WINTERVEIL_SMOKEYWOOD = 'Complete the quest to retrieve Smokywood Pastures\' stolen treats and receive a Smokywood Pastures\' Thank You.',
+
+    AN_WINTERVEIL_GOURMET = 'The Winter Veil Gourmet',
+	AD_WINTERVEIL_GOURMET = 'During the Feast of Winter Veil, use your culinary expertise to produce a Gingerbread Cookie and Egg Nog.',
+    AC_WINTERVEIL_GOURMET_CRITERIA1 = 'Gingerbread Cookie', 
+    AC_WINTERVEIL_GOURMET_CRITERIA2 = 'Egg Nog',
+
+    AN_WINTERVEIL_PRESENTS = 'He Knows If You\'ve Been Naughty',
+	AD_WINTERVEIL_PRESENTS = 'Open one of the presents underneath the Winter Veil tree once they are available.',
+
+    AN_WINTERVEIL_SNOWBALL_ALLIANCE = 'Scrooge',
+	AD_WINTERVEIL_SNOWBALL_ALLIANCE = 'Throw a snowball at King Magni Bronzebeard during the Feast of Winter Veil.',
+
+    AN_WINTERVEIL_SNOWBALL_HORDE = 'Scrooge',
+	AD_WINTERVEIL_SNOWBALL_HORDE = 'Throw a snowball at Cairne Bloodhoof during the Feast of Winter Veil.',
 
 	--TBC
     AN_QUESTS_HELLFIRE_PENINSULA = 'To Hellfire and Back',
