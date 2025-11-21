@@ -549,8 +549,7 @@ do
     end
     for i = 1, 14 do	
 	
-        if i <= 9 then pvpIcon = '-achievement_pvp_o_0'
-        else pvpIcon = '-achievement_pvp_o_' end
+        pvpIcon = 'pvp_rank_'
 		
         ach = featsOfStrength:CreateAchievement('AN_PVP_RANK_' .. factionLetter .. i, 'AD_PVP_RANK', 0, pvpIcon .. i, true)
         ach:AddCriteria(criterias:Create(nil, TYPE.REACH_PVP_RANK, {i}))
@@ -558,11 +557,11 @@ do
         previous = ach
     end
 
-    local previous = pvp:CreateAchievement('AN_PVP_FIRST_KILL', 'AD_PVP_FIRST_KILL', 10, '-achievement_pvp_p_01', true)
+    local previous = pvp:CreateAchievement('AN_PVP_FIRST_KILL', 'AD_PVP_FIRST_KILL', 10, 'achievement_pvp_p_01', true)
     previous:AddCriteria(criterias:CreateL('AC_PVP_FIRST_KILL', TYPE.KILL_PLAYERS, nil, 1))
     for i, count in pairs({10, 100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000, 250000, 500000}) do
-		if i <= 9 then pvpIcon = '-achievement_pvp_p_0'
-        else pvpIcon = '-achievement_pvp_p_' end
+		if i <= 9 then pvpIcon = 'achievement_pvp_p_0'
+        else pvpIcon = 'achievement_pvp_p_' end
 	
         ach = pvp:CreateAchievement(loc:Get('AN_PVP_KILLS', count), loc:Get('AD_PVP_KILLS', count), 10, pvpIcon .. (i + 1))
         ach:AddCriteria(criterias:Create(loc:Get('AC_PVP_KILLS', count), TYPE.KILL_PLAYERS, nil, count))
@@ -577,7 +576,7 @@ do
         return ach
     end
 
-    local ach1 = add(arathi, 510, 'DEFILERS', 10, '-spell_shadow_psychichorrors')
+    local ach1 = add(arathi, 510, 'DEFILERS', 10, 'spell_shadow_psychichorrors')
     ach1:SetHordeOnly()
     local ach2 = add(alterac, 729, 'FROSTWOLF_CLAN', 10, '-Inv_Jewelry_FrostwolfTrinket_05')
     ach2:SetHordeOnly()
@@ -609,23 +608,24 @@ do
         return ach
     end
     
-    ach1 = add(1748, 'BOLVAR', '-achievement_leader_king_varian_wrynn')
+    ach1 = add(1748, 'BOLVAR', 'achievement_leader_king_varian_wrynn')
     ach1:SetHordeOnly()
-    ach2 = add(2784, 'MAGNI', '-Achievement_leader_king_magni_bronzebeard')
+    ach2 = add(2784, 'MAGNI', 'achievement_leader_king_magni_bronzebeard')
     ach2:SetHordeOnly()
-    local ach4 = add(7999, 'TYRANDE', '-achievement_leader_tyrande_whisperwind')
+    local ach4 = add(7999, 'TYRANDE', 'achievement_leader_tyrande_whisperwind')
     ach4:SetHordeOnly()
-    local ach5 = add(17468, 'VELEN', '-Achievement_leader_prophet_velen')
+    local ach5 = add(17468, 'VELEN', 'achievement_leader_prophet_velen')
     ach5:SetHordeOnly()
     ach = pvp:CreateAchievement(loc:Get('AN_ALLIANCE_KINGS_SLAYER'), loc:Get('AD_ALLIANCE_KINGS_SLAYER'), 20, '-inv_bannerpvp_01')
     ach:AddCriteria(criterias:Create(ach1.name, TYPE.COMPLETE_ACHIEVEMENT, {ach1.id}))
     ach:AddCriteria(criterias:Create(ach2.name, TYPE.COMPLETE_ACHIEVEMENT, {ach2.id}))
     ach:AddCriteria(criterias:Create(ach4.name, TYPE.COMPLETE_ACHIEVEMENT, {ach4.id}))
+    ach:AddCriteria(criterias:Create(ach4.name, TYPE.COMPLETE_ACHIEVEMENT, {ach5.id}))
     ach:SetHordeOnly()
 
     ach1 = add(4949, 'THRALL', 'Achievement_Leader_ Thrall')
     ach1:SetAllianceOnly()
-    ach3 = add(10181, 'SYLVANAS', '-Achievement_leader_sylvanas')
+    ach3 = add(10181, 'SYLVANAS', 'Achievement_leader_sylvanas')
     ach3:SetAllianceOnly()
     ach4 = add(3057, 'CAIRNE', 'Achievement_Leader_Cairne Bloodhoof')
     ach4:SetAllianceOnly()
@@ -635,16 +635,17 @@ do
     ach:AddCriteria(criterias:Create(ach1.name, TYPE.COMPLETE_ACHIEVEMENT, {ach1.id}))
     ach:AddCriteria(criterias:Create(ach3.name, TYPE.COMPLETE_ACHIEVEMENT, {ach3.id}))
     ach:AddCriteria(criterias:Create(ach4.name, TYPE.COMPLETE_ACHIEVEMENT, {ach4.id}))
+    ach:AddCriteria(criterias:Create(ach4.name, TYPE.COMPLETE_ACHIEVEMENT, {ach5.id}))
     ach:SetAllianceOnly()
 
     ach = pvp:CreateAchievement(loc:Get('AN_RACES_KILLER'), loc:Get('AD_ALLIANCE_RACES_KILLER'), 10, '-Ability_Gouge')
-    for _, race in pairs({'HUMAN', 'NIGHTELF', 'DWARF', 'GNOME'--[[, 'DRAENEI']]}) do
+    for _, race in pairs({'HUMAN', 'NIGHTELF', 'DWARF', 'GNOME', 'DRAENEI'}) do
         ach:AddCriteria(criterias:CreateL('AC_' .. race .. '_KILLED', TYPE.KILL_PLAYER_OF_RACE, {race}))
     end
     ach:SetHordeOnly()
 
     ach = pvp:CreateAchievement(loc:Get('AN_RACES_KILLER'), loc:Get('AD_HORDE_RACES_KILLER'), 10, '-Ability_Gouge')
-    for _, race in pairs({'ORC', 'TROLL', 'SCOURGE', 'TAUREN'--[[, 'BLOODELF']]}) do
+    for _, race in pairs({'ORC', 'TROLL', 'SCOURGE', 'TAUREN', 'BLOODELF'}) do
         ach:AddCriteria(criterias:CreateL('AC_' .. race .. '_KILLED', TYPE.KILL_PLAYER_OF_RACE, {race}))
     end
     ach:SetAllianceOnly()
@@ -685,10 +686,10 @@ do
         return _add(category, mapID, mapName, 'WIN', TYPE.BATTLEFIELD_WINS, nil, {1, 5, 10, 25, 50}, icon)
     end
 
-    local alteracWins = add(alterac, alteracID, 'ALTERAC', '-achievement_bg_winav')
-    local warsongWins = add(warsong, warsongID, 'WARSONG', '-achievement_bg_winwsg')
-    local arathiWins = add(arathi, arathiID, 'ARATHI', '-achievement_bg_winab')
-    local eyeWins = add(bgEye, eyeID, 'EYE', '-achievement_bg_wineos')
+    local alteracWins = add(alterac, alteracID, 'ALTERAC', 'achievement_bg_winav')
+    local warsongWins = add(warsong, warsongID, 'WARSONG', 'achievement_bg_winwsg')
+    local arathiWins = add(arathi, arathiID, 'ARATHI', 'achievement_bg_winab')
+    local eyeWins = add(bgEye, eyeID, 'EYE', 'achievement_bg_wineos')
 
     add = function(typeName, type, additionalParam, amounts, icon)
         return _add(alterac, alteracID, 'ALTERAC', typeName, type, additionalParam, amounts, icon)
@@ -700,7 +701,7 @@ do
     local alterac4 = add('TOWER_ASSAULT', TYPE.BATTLEFIELD_STAT_MAX, 3, {1, 2, 3, 4}, '-Ability_Thunderbolt')
     local alterac5 = add('TOWER_DEFEND', TYPE.BATTLEFIELD_STAT_MAX, 4, {1, 2, 3, 4}, '-Inv_Shield_05')
     local alterac6 = _add(alterac, nil, 'ALTERAC', 'MINE_CAPTURE', TYPE.ALTERAC_VALLEY_MINE_CAPTURE_MAX, nil, {1, 2, 3, 4}, '-Inv_Pick_01')
-	local alterac7 = L:Achievement(alterac, 10, '-achievement_bg_winav_underxminutes')
+	local alterac7 = L:Achievement(alterac, 10, 'achievement_bg_winav_underxminutes')
 		:NameDesc('AN_ALTERAC_FAST_WIN', 'AD_ALTERAC_FAST_WIN', true)
 		:Criteria(TYPE.BATTLEFIELD_FAST_WIN, {alteracID}):Build()
 		:Build()
@@ -712,7 +713,7 @@ do
     local warsong1 = add('KILL', TYPE.BATTLEFIELD_SCORE_MAX, 2, {10, 25, 50, 75}, '-Ability_Rogue_Eviscerate')
     local warsong2 = add('FLAG_CAPTURE', TYPE.BATTLEFIELD_STAT_MAX, 1, {1, 2, 3}, '-Inv_Banner_03')
     local warsong3 = add('FLAG_RETURN', TYPE.BATTLEFIELD_STAT_MAX, 2, {1, 2, 3}, '-Spell_Nature_Reincarnation')
-	local warsong4 = L:Achievement(warsong, 10, '-achievement_bg_winwsg_underxminutes')
+	local warsong4 = L:Achievement(warsong, 10, 'achievement_bg_winwsg_underxminutes')
 		:NameDesc('AN_WARSONG_FAST_WIN', 'AD_WARSONG_FAST_WIN', true)
 		:Criteria(TYPE.BATTLEFIELD_FAST_WIN, {warsongID}):Build()
 		:Build()
@@ -738,7 +739,7 @@ do
             :Build()
     end
 
-	local arathi4 = L:Achievement(arathi, 10, '-achievement_bg_winab_underxminutes')
+	local arathi4 = L:Achievement(arathi, 10, 'achievement_bg_winab_underxminutes')
 		:NameDesc('AN_ARATHI_FAST_WIN', 'AD_ARATHI_FAST_WIN', true)
 		:Criteria(TYPE.BATTLEFIELD_FAST_WIN, {arathiID}):Build()
 		:Build()
@@ -754,12 +755,12 @@ do
 		return temp_ach
 	end
 
-	local alterac8 = add(alterac, alteracID, 4, 'ALTERAC_TOWER_DEFEND', '-achievement_bg_defendxtowers_av', 50)
-	local alterac9 = add(alterac, alteracID, 1, 'ALTERAC_GRAVEYARD_ASSAULT', '-achievement_bg_xkills_avgraveyard', 50)
-	local warsong5 = add(warsong, warsongID, 1, 'WARSONG_FLAG_CAPTURE', '-achievement_bg_captureflag_wsg', 50)
-	local warsong6 = add(warsong, warsongID, 2, 'WARSONG_FLAG_RETURN', '-achievement_bg_interruptx_flagcapture_attempts', 50)
-	local arathi5 = add(arathi, arathiID, 1, 'ARATHI_BASE_ASSAULT', '-achievement_bg_takexflags_ab', 50)
-	local arathi6 = add(arathi, arathiID, 2, 'ARATHI_BASE_DEFEND', '-ability_warrior_victoryrush', 50)
+	local alterac8 = add(alterac, alteracID, 4, 'ALTERAC_TOWER_DEFEND', 'achievement_bg_defendxtowers_av', 50)
+	local alterac9 = add(alterac, alteracID, 1, 'ALTERAC_GRAVEYARD_ASSAULT', 'achievement_bg_xkills_avgraveyard', 50)
+	local warsong5 = add(warsong, warsongID, 1, 'WARSONG_FLAG_CAPTURE', 'achievement_bg_captureflag_wsg', 50)
+	local warsong6 = add(warsong, warsongID, 2, 'WARSONG_FLAG_RETURN', 'achievement_bg_interruptx_flagcapture_attempts', 50)
+	local arathi5 = add(arathi, arathiID, 1, 'ARATHI_BASE_ASSAULT', 'achievement_bg_takexflags_ab', 50)
+	local arathi6 = add(arathi, arathiID, 2, 'ARATHI_BASE_DEFEND', 'ability_warrior_victoryrush', 50)
 
 	local frostwolf = L:Achievement(alterac, 10, '-inv_jewelry_frostwolftrinket_01')
 		:NameDesc('AN_ALTERAC_MOUNT_HORDE', 'AD_ALTERAC_MOUNT_HORDE', true)
@@ -792,7 +793,7 @@ do
         else
             desc = loc:Get('AD_EYE_CAPTURES', count)
         end
-        local builder = L:Achievement(bgEye, 10, '-achievement_bg_captureflag_eos')
+        local builder = L:Achievement(bgEye, 10, 'achievement_bg_captureflag_eos')
 			:Name('AN_EYE_CAPTURE', true)
 			:Desc(desc)
 			:Criteria(TYPE.BATTLEFIELD_STAT_MAX, {eyeID, 1}, count):Name(desc):Build()
@@ -818,7 +819,7 @@ do
         :Criteria(TYPE.BG_POINTS, {eyeID, 1500, 0}):Build()
         :Build()
     
-    local eye5 = L:Achievement(bgEye, 10, '-achievement_bg_wineos_underxminutes')
+    local eye5 = L:Achievement(bgEye, 10, 'achievement_bg_wineos_underxminutes')
         :NameDesc('AN_EYE_FAST_WIN', 'AD_EYE_FAST_WIN', true)
         :Criteria(TYPE.BATTLEFIELD_FAST_WIN, {eyeID}):Build()
         :Build()
@@ -833,12 +834,12 @@ do
 	local arathiBoss = add(arathi, 'ARATHI_BOSS', '-inv_jewelry_amulet_07', {arathiWins.id, arathi1.id, arathi2.id, arathi3.id, arathi4.id, arathi5.id, arathi6.id})
     local eyeBoss = add(bgEye, 'EYE_BOSS', '-Spell_Nature_EyeoftheStorm', {eyeWins.id, eye1.id, eye2.id, eye3.id, eye4.id, eye5.id})
 
-	L:Achievement(pvp, 40, '-achievement_pvp_a_15')
+	L:Achievement(pvp, 40, 'achievement_pvp_a_15')
 		:NameDesc('AN_BATTLEMASTER', 'AD_BATTLEMASTER', true)
 		:CompleteAchievementCriteria(alteracBoss)
 		:CompleteAchievementCriteria(warsongBoss)
 		:CompleteAchievementCriteria(arathiBoss)
-        --:CompleteAchievementCriteria(eyeBoss)
+        :CompleteAchievementCriteria(eyeBoss)
 		:Reward('AR_BATTLEMASTER', true)
 		:Build()		
 		
@@ -1463,7 +1464,7 @@ do
 		local ach
 		local lastID = 516
         for _, count in pairs({25, 50, 100, 250, 500, 1000}) do
-			ach = fishing:CreateAchievement(loc:Get('AN_FISHING_COUNT', count), loc:Get('AD_FISHING_COUNT', count), 10, '-inv_misc_fish_50', false, lastID)
+			ach = fishing:CreateAchievement(loc:Get('AN_FISHING_COUNT', count), loc:Get('AD_FISHING_COUNT', count), 10, 'inv_misc_fish_50', false, lastID)
 			ach:AddCriteria(criterias:Create(loc:Get('AC_FISHING_COUNT', count), TYPE.FISH_ANY_ITEM, {-1}, count))				
 		if previous then previous:SetNext(ach) end
             previous = ach
@@ -1478,6 +1479,17 @@ do
         :NameDesc('AN_MR_PINCHY', 'AD_MR_PINCHY', true)
         :Criteria(TYPE.FISH_AN_ITEM, {27388}):Build()
         :Build()
+
+    ach = fishing:CreateAchievement('AN_FISHING_OUTLAND_COLLECTION', 'AD_FISHING_OUTLAND_COLLECTION', 10, '-Inv_Misc_Fish_37', true, 547)
+    for _, itemID in pairs({35285, 27422, 27439, 27438, 27437, 27429, 27425, 27435, 33824, 33823, 35286}) do
+        local criteria = criterias:Create('itemID ' .. itemID, TYPE.FISH_AN_ITEM, {itemID})
+        ach:AddCriteria(criteria)
+
+        local item = Item:CreateFromItemID(itemID)
+        item:ContinueOnItemLoad(function()
+            criteria.name = item:GetItemName()
+        end)
+    end
 
 	--COOKING
     previous = nil
@@ -1521,8 +1533,10 @@ do
     ach:AddCriteria(criterias:Create(squid.name, TYPE.COMPLETE_ACHIEVEMENT, {squid.id}))
     ach:AddCriteria(criterias:Create(dumplings.name, TYPE.COMPLETE_ACHIEVEMENT, {dumplings.id}))
 
-	--TODO: Change into TBC cake: https://www.wowhead.com/wotlk/achievement=877/the-cake-is-not-a-lie
-    add('CHOPS', '-Inv_Misc_Food_65', 21023, 20):SetUnavailable()
+    local cake = L:Achievement(cooking, 10, '-inv_misc_celebrationcake_01')
+        :NameDesc('AN_COOKING_CAKE', 'AD_COOKING_CAKE', true)
+        :Criteria(TYPE.CRAFT_ITEM, {33924}):Build()
+        :Build()
 end
 
 --WORLD EVENTS

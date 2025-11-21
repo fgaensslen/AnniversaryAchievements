@@ -66,9 +66,9 @@ SexyLib:Util():AfterLogin(function()
 		move(MainMenuBarPerformanceBarFrame, -width)
     end)
     move(MainMenuBarBackpackButton, -width)
-    ]]
-    move(MultiBarBottomRight, width)
     
+    move(MultiBarBottomRight, width)
+    ]]
     local expBarWidth = MainMenuBarTexture3:GetWidth() + width
     MainMenuBarTexture3:SetWidth(expBarWidth)
     move(MainMenuBarTexture3, -width / 2)
