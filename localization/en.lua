@@ -136,8 +136,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_LVL = 'Reach level %d.',
 
     AN_BANK = 'Safe Deposit',
-    AD_BANK = 'Buy 6 additional bank slots.',
-    AC_BANK = 'Buy 6 additional bank slots.',
+    AD_BANK = 'Buy 7 additional bank slots.',
+    AC_BANK = 'Buy 7 additional bank slots.',
 
     AN_QUESTS = '%d Quests Completed',
     AD_QUESTS = 'Complete %d quests.',
@@ -718,7 +718,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_PROFS_FIVE_OUTLAND = 'Outlandish Genius',
     AD_PROFS_FIVE = 'Complete the profession achievements listed below.',
     AN_UNARMED_SKILL = 'Did Somebody Order a Knuckle Sandwich?',
-    AD_UNARMED_SKILL = 'Raise your unarmed skill to 300.',
+    AD_UNARMED_SKILL = 'Raise your unarmed skill to 350.',
 
     AN_EXPLORE_AZEROTH = 'World Explorer',
     AD_EXPLORE_AZEROTH = 'Explore Eastern Kingdoms, Kalimdor and Outland.',

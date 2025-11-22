@@ -57,7 +57,7 @@ do
     end
 	
 	ach = general:CreateAchievement('AN_BANK', 'AD_BANK', 10, '-inv_box_01', true)
-	ach:AddCriteria(criterias:Create('AC_BANK', TYPE.BANK_SLOTS, nil, 6))
+	ach:AddCriteria(criterias:Create('AC_BANK', TYPE.BANK_SLOTS, nil, 7))
 
     previous = nil
     for i, count in pairs({100, 1000, 5000, 10000, 25000, 50000, 100000}) do
@@ -68,7 +68,7 @@ do
     end
 	
     ach = general:CreateAchievement('AN_UNARMED_SKILL', 'AD_UNARMED_SKILL', 10, '-ability_warrior_secondwind', true)
-    ach:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsSkills.UNARMED[1], 300}))
+    ach:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsSkills.UNARMED[1], 350}))
 
     local function add(previous, qualityName, quality, icon)
         local ach = general:CreateAchievement('AN_' .. qualityName .. '_GEAR', 'AD_' .. qualityName .. '_GEAR', 10, icon, true)
@@ -334,7 +334,6 @@ do
     local shadow = create('shadowmoon', {{10744, 10745}, 11052, {10645, 10639}, {10651, 10692}, 10588, 10679, 10808})
     
     local function create(questIDs)
-		--Change category to quests
         local builder = L:Achievement(quests, 10, 'outland')
 			:NameDesc('AN_WISDOM_KEEPER_OUTLAND', 'AD_WISDOM_KEEPER_OUTLAND', true)
         
@@ -915,21 +914,21 @@ do
 
 	local create = createPvE(instances)
 	local rc = create('RAGEFIRE_CHASM', '-spell_shadow_summonfelguard', 11520).id
-	local wc = create('WAILING_CAVERNS', '-Achievement_boss_mutanus_the_devourer', 3654).id
-	local dm = create('DEAD_MINES', '-achievement_boss_edwinvancleef', 639).id
-	local sk = create('SHADOWFANG_KEEP', '-achievement_boss_archmagearugal', 4275).id
-	local bfd = create('BLACKFATHOM_DEEPS', '-achievement_boss_bazil_akumai', 4829).id
-	local jail = create('JAIL', '-Achievement_boss_bazil_thredd', 1716).id
+	local wc = create('WAILING_CAVERNS', 'achievement_boss_mutanus_the_devourer', 3654).id
+	local dm = create('DEAD_MINES', 'achievement_boss_edwinvancleef', 639).id
+	local sk = create('SHADOWFANG_KEEP', 'achievement_boss_archmagearugal', 4275).id
+	local bfd = create('BLACKFATHOM_DEEPS', 'achievement_boss_bazil_akumai', 4829).id
+	local jail = create('JAIL', 'achievement_boss_bazil_thredd', 1716).id
 	local gnom = create('GNOMREGAN', 'gnomeregan', 7800).id
-	local rk = create('RAZORFEN_KRAUL', '-Achievement_boss_charlgarazorflank', 4421).id
+	local rk = create('RAZORFEN_KRAUL', 'achievement_boss_charlgarazorflank', 4421).id
 	local sm = create('SCARLET_MONASTERY', '-inv_helmet_52', {4543, 6487, 3975, 3976, 3977}, 10).id
-	local rd = create('RAZORFEN_DOWNS', '-achievement_boss_amnennar_the_coldbringer', 7358).id
-	local uldaman = create('ULDAMAN', '-achievement_boss_archaedas', 2748).id
-	local zf = create('ZULFARRAK', '-Achievement_boss_chiefukorzsandscalp', 7267).id
-	local mara = create('MARAUDON', '-Achievement_boss_princesstheradras', 12201).id
-	local st = create('SUNKEN_TEMPLE', '-achievement_boss_shadeoferanikus', 5709).id
+	local rd = create('RAZORFEN_DOWNS', 'achievement_boss_amnennar_the_coldbringer', 7358).id
+	local uldaman = create('ULDAMAN', 'achievement_boss_archaedas', 2748).id
+	local zf = create('ZULFARRAK', 'achievement_boss_chiefukorzsandscalp', 7267).id
+	local mara = create('MARAUDON', 'achievement_boss_princesstheradras', 12201).id
+	local st = create('SUNKEN_TEMPLE', 'achievement_boss_shadeoferanikus', 5709).id
 
-	local id1 = create('NEW_EMPEROR', '-Achievement_boss_emperordagranthaurissan', 9019).id
+	local id1 = create('NEW_EMPEROR', 'achievement_boss_emperordagranthaurissan', 9019).id
 	local id2 = create('BLACKROCK_DEPTHS', '-Spell_Fire_Lavaspawn', {9018, 9319, 9033, 8983, 9017, 9041, 9016}, 10).id
 	local id3 = create('BLACKROCK_PARTY', '-inv_drink_05', {9543, 9499, 9537, 9502}, 10).id
 	ach = instances:CreateAchievement('AN_ARMOR_SWORD', 'AD_ARMOR_SWORD', 10, '-Inv_Sword_47', true)
@@ -942,8 +941,8 @@ do
 	ach:AddCriteria(criterias:CreateL('AN_ARMOR_SWORD', TYPE.COMPLETE_ACHIEVEMENT, {id4}))
 	brd = ach.id
 
-	id1 = create('BLACKROCK_SPIRE_BOTTOM', '-Achievement_boss_overlord_wyrmthalak', 9568).id
-	id2 = create('BLACKROCK_SPIRE_UPPER', '-achievement_boss_generaldrakkisath', 10363).id
+	id1 = create('BLACKROCK_SPIRE_BOTTOM', 'achievement_boss_overlord_wyrmthalak', 9568).id
+	id2 = create('BLACKROCK_SPIRE_UPPER', 'achievement_boss_generaldrakkisath', 10363).id
 	ach = instances:CreateAchievement('AN_BLACKROCK_SPIRE', 'AD_BLACKROCK_SPIRE', 10, '-Inv_Sword_48', true)
 	ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_SPIRE_BOTTOM', TYPE.COMPLETE_ACHIEVEMENT, {id1}))
 	ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_SPIRE_UPPER', TYPE.COMPLETE_ACHIEVEMENT, {id2}))
@@ -951,7 +950,7 @@ do
 
 	local direm = create('DIRE_MAUL', '-Ability_Warrior_DecisiveStrike', {11492, 11496, 11501}).id
 
-	local strat = create('STRATHOLME', '-spell_deathknight_armyofthedead', {10813, 10440}).id
+	local strat = create('STRATHOLME', 'spell_deathknight_armyofthedead', {10813, 10440}).id
 
 	local scholo = create('SCHOLOMANCE', '-Spell_Holy_Senseundead', {1853, 10508}).id
 
@@ -972,7 +971,7 @@ do
 	ach:AddCriteria(criterias:CreateL('AN_SUNKEN_TEMPLE', TYPE.COMPLETE_ACHIEVEMENT, {st}))
 	
 	id1 = ach.id
-	ach = pve:CreateAchievement('AN_DEFENDER', 'AD_DEFENDER', 10, '-achievement_dungeon_classicraider', true)
+	ach = pve:CreateAchievement('AN_DEFENDER', 'AD_DEFENDER', 10, 'achievement_dungeon_classicraider', true)
 	ach:AddCriteria(criterias:CreateL('AN_YOUNG_DEFENDER', TYPE.COMPLETE_ACHIEVEMENT, {id1}))
 	ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_DEPTHS_FULL', TYPE.COMPLETE_ACHIEVEMENT, {brd}))
 	ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_SPIRE', TYPE.COMPLETE_ACHIEVEMENT, {brs}))
@@ -983,20 +982,20 @@ do
 	defender = ach.id	
 
     local create = createPvE(instances)
-    local onyxia = create('ONYXIA', '-achievement_boss_onyxia', 10184).id
-    local aq20 = create('AQ20', '-Achievement_boss_ossiriantheunscarred', 15339).id
-    local zg = create('ZULGURUB', '-achievement_boss_hakkar', 14834).id
-    local ragnaros = create('RAGNAROS', '-achievement_boss_ragnaros', 11502, 10).id
-    local bwl = create('BLACK_WING_LAIR', '-Achievement_boss_nefarion', 11583, 10).id
-    local aq40 = create('AQ40', '-Achievement_boss_cthun', 15727, 10).id
+    local onyxia = create('ONYXIA', 'achievement_boss_onyxia', 10184).id
+    local aq20 = create('AQ20', 'achievement_boss_ossiriantheunscarred', 15339).id
+    local zg = create('ZULGURUB', 'achievement_boss_hakkar', 14834).id
+    local ragnaros = create('RAGNAROS', 'achievement_boss_ragnaros', 11502, 10).id
+    local bwl = create('BLACK_WING_LAIR', 'achievement_boss_nefarion', 11583, 10).id
+    local aq40 = create('AQ40', 'achievement_boss_cthun', 15727, 10).id
     local nx1 = create('NAXXRAMAS_SPIDERS', '-Inv_Trinket_Naxxramas04', {15956, 15953, 15952}).id
     local nx2 = create('NAXXRAMAS_PLAGUE', '-inv_misc_cauldron_nature', {15954, 15936, 16011}).id
-    local nx3 = create('NAXXRAMAS_MILITARY', '-spell_deathknight_classicon', {16061, 16060, {16062, 16063, 16064, 16065}}, 10).id
-    local nx4 = create('NAXXRAMAS_CONSTRUCT', '-ability_rogue_deviouspoisons', {16028, 15931, 15932, 15928}).id
+    local nx3 = create('NAXXRAMAS_MILITARY', 'spell_deathknight_classicon', {16061, 16060, {16062, 16063, 16064, 16065}}, 10).id
+    local nx4 = create('NAXXRAMAS_CONSTRUCT', 'ability_rogue_deviouspoisons', {16028, 15931, 15932, 15928}).id
     local nx5 = create('NAXXRAMAS_LAIR', '-inv_trinket_naxxramas06', 15990).id
     local nx6 = instances:CreateAchievement('AN_NAXXRAMAS_SAPPHIRON', 'AD_NAXXRAMAS_SAPPHIRON', 10, '-inv_misc_head_dragon_blue', true, 540)
 		nx6:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {15989}))
-    ach = instances:CreateAchievement('AN_NAXXRAMAS', 'AD_NAXXRAMAS', 10, '-achievement_dungeon_naxxramas_10man', true)
+    ach = instances:CreateAchievement('AN_NAXXRAMAS', 'AD_NAXXRAMAS', 10, 'achievement_dungeon_naxxramas_normal', true)
     ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_SPIDERS', TYPE.COMPLETE_ACHIEVEMENT, {nx1}))
     ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_PLAGUE', TYPE.COMPLETE_ACHIEVEMENT, {nx2}))
     ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_MILITARY', TYPE.COMPLETE_ACHIEVEMENT, {nx3}))
@@ -1005,19 +1004,19 @@ do
     ach:AddCriteria(criterias:CreateL('AN_NAXXRAMAS_LAIR', TYPE.COMPLETE_ACHIEVEMENT, {nx5}))
     local nx = ach.id
 
-    ach = pve:CreateAchievement('AN_YOUNG_HERO', 'AD_YOUNG_HERO', 10, '-Achievement_dungeon_gloryofthehero', true)
+    ach = pve:CreateAchievement('AN_YOUNG_HERO', 'AD_YOUNG_HERO', 10, 'achievement_dungeon_gloryofthehero', true)
     ach:AddCriteria(criterias:CreateL('AN_ONYXIA', TYPE.COMPLETE_ACHIEVEMENT, {onyxia}))
     ach:AddCriteria(criterias:CreateL('AN_AQ20', TYPE.COMPLETE_ACHIEVEMENT, {aq20}))
     ach:AddCriteria(criterias:CreateL('AN_ZULGURUB', TYPE.COMPLETE_ACHIEVEMENT, {zg}))
     local id = ach.id
 
-    ach = instances:CreateAchievement('AN_BLACKROCK_MASTER', 'AD_BLACKROCK_MASTER', 10, '-achievement_dungeon_classicdungeonmaster', true)
+    ach = instances:CreateAchievement('AN_BLACKROCK_MASTER', 'AD_BLACKROCK_MASTER', 10, 'achievement_dungeon_classicdungeonmaster', true)
     ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_DEPTHS_FULL', TYPE.COMPLETE_ACHIEVEMENT, {brd}))
     ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_SPIRE', TYPE.COMPLETE_ACHIEVEMENT, {brs}))
     ach:AddCriteria(criterias:CreateL('AN_RAGNAROS', TYPE.COMPLETE_ACHIEVEMENT, {ragnaros}))
     ach:AddCriteria(criterias:CreateL('AN_BLACK_WING_LAIR', TYPE.COMPLETE_ACHIEVEMENT, {bwl}))
 
-    ach = pve:CreateAchievement('AN_HERO', 'AD_HERO', 10, '-Achievement_dungeon_heroic_gloryoftheraider', true)
+    ach = pve:CreateAchievement('AN_HERO', 'AD_HERO', 10, 'achievement_dungeon_heroic_gloryoftheraider', true)
     ach:AddCriteria(criterias:CreateL('AN_YOUNG_HERO', TYPE.COMPLETE_ACHIEVEMENT, {id}))
     ach:AddCriteria(criterias:CreateL('AN_RAGNAROS', TYPE.COMPLETE_ACHIEVEMENT, {ragnaros}))
     ach:AddCriteria(criterias:CreateL('AN_BLACK_WING_LAIR', TYPE.COMPLETE_ACHIEVEMENT, {bwl}))
@@ -1026,7 +1025,7 @@ do
     ach:SetRewardText(loc:Get('AR_HERO'))
     id = ach.id
 
-    ach = pve:CreateAchievement('AN_GREAT_HERO', 'AD_GREAT_HERO', 10, '-Achievement_dungeon_gloryoftheraider', true)
+    ach = pve:CreateAchievement('AN_GREAT_HERO', 'AD_GREAT_HERO', 10, 'achievement_dungeon_gloryoftheraider', true)
     ach:AddCriteria(criterias:CreateL('AN_DEFENDER', TYPE.COMPLETE_ACHIEVEMENT, {defender}))
     ach:AddCriteria(criterias:CreateL('AN_HERO', TYPE.COMPLETE_ACHIEVEMENT, {id}))
     ach:SetRewardText(loc:Get('AR_GREAT_HERO'))
@@ -1046,14 +1045,14 @@ do
                 :Build()
     end
 
-    add('AZUREGOS', 6109, '-achievement_boss_cyanigosa')
-    add('KAZZAK', 12397, '-ability_warlock_demonicempowerment', true)
-    local ysondre = add('YSONDRE', 14887, '-achievement_boss_valithradreamwalker')
-    local lethon = add('LETHON', 14888, '-Achievement_boss_aeonus_01')
-    local emeriss = add('EMERISS', 14889, '-Achievement_boss_malygos_01')
-    local taerar = add('TAERAR', 14890, '-Achievement_boss_eregos')
+    add('AZUREGOS', 6109, 'achievement_boss_cyanigosa')
+    add('KAZZAK', 12397, 'ability_warlock_demonicempowerment', true)
+    local ysondre = add('YSONDRE', 14887, 'achievement_boss_valithradreamwalker')
+    local lethon = add('LETHON', 14888, 'achievement_boss_aeonus_01')
+    local emeriss = add('EMERISS', 14889, 'achievement_boss_malygos_01')
+    local taerar = add('TAERAR', 14890, 'achievement_boss_eregos')
 	
-    ach = L:Achievement(pve, 20, '-inv_misc_shadowegg')
+    ach = L:Achievement(pve, 20, 'inv_misc_shadowegg')
             :NameDesc('AN_WB_EMERALD_DRAGONS', 'AD_WB_EMERALD_DRAGONS', true)
             :CompleteAchievementCriteria(ysondre)
             :CompleteAchievementCriteria(lethon)
@@ -1062,18 +1061,18 @@ do
             :Reward('AR_WB_EMERALD_DRAGONS', true)
             :Build()			
 			
-	L:Achievement(instances, 20, '-ability_mount_drake_red')
+	L:Achievement(instances, 20, 'ability_mount_drake_red')
 		:NameDesc('AN_LEEROY', 'AD_LEEROY', true)
 		:Criteria(TYPE.SPECIAL, {1}):Build()
 		:Reward('AR_LEEROY', true)
 		:Build()
 
-	L:Achievement(instances, 20, '-ability_mount_drake_twilight')
+	L:Achievement(instances, 20, 'ability_mount_drake_twilight')
 		:NameDesc('AN_BWL_DUO', 'AD_BWL_DUO', true)
 		:Criteria(TYPE.SPECIAL, {2}):Build()
 		:Build()
 
-	L:Achievement(instances, 20, '-achievement_boss_anubarak')
+	L:Achievement(instances, 20, 'achievement_boss_anubarak')
 		:NameDesc('AN_ANUBREKHAN_WITHOUT_MOBS', 'AD_ANUBREKHAN_WITHOUT_MOBS', true)
 		:Criteria(TYPE.BOSS_WITHOUT_MOBS, {15956}):Build()
 		:Build()
@@ -1083,12 +1082,12 @@ do
 		:Criteria(TYPE.BOSS_WITHOUT_MOBS, {15953}):Build()
 		:Build()
 
-	L:Achievement(instances, 20, '-achievement_halloween_spider_01')
+	L:Achievement(instances, 20, 'achievement_halloween_spider_01')
 		:NameDesc('AN_ARACHNOPHOBIA', 'AD_ARACHNOPHOBIA', true)
 		:Criteria(TYPE.SPECIAL, {3}):Build()
 		:Build()
 
-	L:Achievement(instances, 20, '-spell_deathknight_summondeathcharger')
+	L:Achievement(instances, 20, 'spell_deathknight_summondeathcharger')
 		:NameDesc('AN_FOUR_TOGETHER', 'AD_FOUR_TOGETHER', true)
 		:Criteria(TYPE.SPECIAL, {4}):Build()
 		:Build()
@@ -1146,22 +1145,22 @@ do
 		normal:SetNext(heroic)
     end
 
-    create('hellfire_ramparts', {17308, 17537, 17536}, '-Achievement_boss_omartheunscarred_01')
-    create('blood_furnace', 17377, '-Achievement_boss_kelidanthebreaker')
-    create('slave_pens', 17942, '-Achievement_boss_quagmirran')
-    create('underbog', 17882, '-Achievement_boss_theblackstalker')
-    create('mana_tombs', 18344, '-achievement_boss_nexus_prince_shaffar')
-    create('auchenai_crypts', 18373, '-Achievement_boss_exarch_maladaar')
-    create('old_hillsbrad', 18096, '-Achievement_boss_epochhunter')
-    create('sethekk_halls', 18473, '-Achievement_boss_talonkingikiss')
-    create('steamvault', 17798, '-Achievement_boss_warlord_kalithresh')
-    create('shadow_labyrinth', 18708, '-achievement_boss_murmur')
-    create('shattered_halls', 16808, '-Achievement_boss_kargathbladefist_01')
-    create('black_morass', 17881, '-Achievement_boss_aeonus_01')
-    create('botanica', 17977, '-achievement_boss_warpsplinter')
-    create('mechanar', 19220, '-achievement_boss_pathaleonthecalculator')
-	create('arcatraz', 20912, '-achievement_boss_harbinger_skyriss')
-	create('magisters_terrace', 24664, '-achievement_character_bloodelf_male')    	
+    create('hellfire_ramparts', {17308, 17537, 17536}, 'achievement_boss_omartheunscarred_01')
+    create('blood_furnace', 17377, 'achievement_boss_kelidanthebreaker')
+    create('slave_pens', 17942, 'achievement_boss_quagmirran')
+    create('underbog', 17882, 'achievement_boss_theblackstalker')
+    create('mana_tombs', 18344, 'achievement_boss_nexus_prince_shaffar')
+    create('auchenai_crypts', 18373, 'achievement_boss_exarch_maladaar')
+    create('old_hillsbrad', 18096, 'achievement_boss_epochhunter')
+    create('sethekk_halls', 18473, 'achievement_boss_talonkingikiss')
+    create('steamvault', 17798, 'achievement_boss_warlord_kalithresh')
+    create('shadow_labyrinth', 18708, 'achievement_boss_murmur')
+    create('shattered_halls', 16808, 'achievement_boss_kargathbladefist_01')
+    create('black_morass', 17881, 'achievement_boss_aeonus_01')
+    create('botanica', 17977, 'achievement_boss_warpsplinter')
+    create('mechanar', 19220, 'achievement_boss_pathaleonthecalculator')
+	create('arcatraz', 20912, 'achievement_boss_harbinger_skyriss')
+	create('magisters_terrace', 24664, 'achievement_boss_kaelthassunstrider_01')    	
 	
 	builderNormalTBC = builderNormalTBC:Build()
 	builderHeroicTBC = builderHeroicTBC:Build()
@@ -1183,17 +1182,17 @@ do
         :Build()
 
     --RAIDS P1
-    local karazhan = L:Achievement(tbcInstances, 10, '-achievement_boss_prince_malchezaar')
+    local karazhan = L:Achievement(tbcInstances, 10, 'achievement_boss_prince_malchezaar')
         :NameDesc('AN_KARAZHAN', 'AD_KARAZHAN', true)
         :Criteria(TYPE.KILL_NPC, {15690}):Build()
         :Build()
 
-    local gruul = L:Achievement(tbcInstances, 10, '-Achievement_boss_gruulthedragonkiller')
+    local gruul = L:Achievement(tbcInstances, 10, 'achievement_boss_gruulthedragonkiller')
         :NameDesc('AN_GRUUL', 'AD_GRUUL', true)
         :Criteria(TYPE.KILL_NPC, {19044}):Build()
         :Build()
 
-    local magtheridon = L:Achievement(tbcInstances, 10, '-achievement_boss_magtheridon')
+    local magtheridon = L:Achievement(tbcInstances, 10, 'achievement_boss_magtheridon')
         :NameDesc('AN_MAGTHERIDON', 'AD_MAGTHERIDON', true)
         :Criteria(TYPE.KILL_NPC, {17257}):Build()
         :Build()
@@ -1206,7 +1205,7 @@ do
         :Build()
 		
     --RAIDS P2
-    local ssc = L:Achievement(tbcInstances, 10, '-Achievement_boss_ladyvashj')
+    local ssc = L:Achievement(tbcInstances, 10, 'achievement_boss_ladyvashj')
         :NameDesc('AN_SSC', 'AD_SSC', true)
         :Criteria(TYPE.KILL_NPC, {21216}):Name('AC_KILL_HYDROS', true):Build()
         :Criteria(TYPE.KILL_NPC, {21217}):Name('AC_KILL_LURKER', true):Build()
@@ -1216,7 +1215,7 @@ do
         :Criteria(TYPE.KILL_NPC, {21212}):Name('AC_KILL_VASHJ', true):Build()
         :Build()
 
-    local tk = L:Achievement(tbcInstances, 10, 'the_eye')
+    local tk = L:Achievement(tbcInstances, 10, 'achievement_character_bloodelf_male')
         :NameDesc('AN_TK', 'AD_TK', true)
         :Criteria(TYPE.KILL_NPC, {19514}):Name('AC_KILL_ALAR', true):Build()
         :Criteria(TYPE.KILL_NPC, {19516}):Name('AC_KILL_VOID_REAVER', true):Build()
@@ -1231,18 +1230,18 @@ do
         :Build()
 
     --RAIDS P3
-    local hyjal = L:Achievement(tbcInstances, 10, '-achievement_boss_princemalchezaar_02')
+    local hyjal = L:Achievement(tbcInstances, 10, 'achievement_boss_princemalchezaar_02')
         :NameDesc('AN_HYJAL', 'AD_HYJAL', true)
         :Criteria(TYPE.KILL_NPC, { 17968 }):Build()
         :Build()
 
-    local btEntrance = L:Achievement(tbcInstances, 10, '-Spell_Fire_BlueImmolation')
+    local btEntrance = L:Achievement(tbcInstances, 10, '-spell_Fire_BlueImmolation')
         :NameDesc('AN_BT_ENTRANCE', 'AD_BT_ENTRANCE', true)
         :Criteria(TYPE.KILL_NPC, { 22887 }):Name('AC_KILL_NAJENTUS', true):Build()
         :Criteria(TYPE.KILL_NPC, { 22898 }):Name('AC_KILL_SUPREMUS', true):Build()
         :Build()
 
-    local btSecondWing = L:Achievement(tbcInstances, 10, '-Spell_Shadow_ConeOfSilence')
+    local btSecondWing = L:Achievement(tbcInstances, 10, '-spell_Shadow_ConeOfSilence')
         :NameDesc('AN_BT_SECOND_WING', 'AD_BT_SECOND_WING', true)
         :Criteria(TYPE.KILL_NPC, { 22841 }):Name('AC_KILL_SHADOW_OF_AKAMA', true):Build()
         :Criteria(TYPE.KILL_NPC, { 22871 }):Name('AC_KILL_THERON', true):Build()
@@ -1257,7 +1256,7 @@ do
         :Criteria(TYPE.KILL_NPC, { 22917 }):Name('AC_KILL_ILLIDAN', true):Build()
         :Build()
 
-    local bt = L:Achievement(tbcInstances, 10, '-achievement_boss_illidan')
+    local bt = L:Achievement(tbcInstances, 10, 'achievement_boss_illidan')
         :NameDesc('AN_BLACK_TEMPLE', 'AD_BLACK_TEMPLE', true)
         :Criteria(TYPE.COMPLETE_ACHIEVEMENT, { btEntrance.id }):Name(btEntrance.name):Build()
         :Criteria(TYPE.COMPLETE_ACHIEVEMENT, { btSecondWing.id }):Name(btSecondWing.name):Build()
@@ -1272,7 +1271,7 @@ do
         :Build()
 		
 	--RAIDS P4
-	local zulAman = L:Achievement(tbcInstances, 10, '-achievement_boss_zuljin')
+	local zulAman = L:Achievement(tbcInstances, 10, 'achievement_boss_zuljin')
         :NameDesc('AN_ZULAMAN', 'AD_ZULAMAN', true)
         :Criteria(TYPE.KILL_NPC, { 23863 }):Build()
         :Build()	
@@ -1283,7 +1282,7 @@ do
         :Build() 
 		
 	--RAIDS P5
-	local sunwell = L:Achievement(tbcInstances, 10, '-achievement_boss_kiljaedan')
+	local sunwell = L:Achievement(tbcInstances, 10, 'achievement_boss_kiljaedan')
         :NameDesc('AN_SUNWELL', 'AD_SUNWELL', true)
         :Criteria(TYPE.KILL_NPC, { 25315 }):Build()
         :Build()
@@ -1360,17 +1359,20 @@ do
     local previousSecondary = secondary
 
     levels = {{'OUTLAND_MASTER', 375}}
-    firstAidAch = add(firstAid, 'FIRST_AID', '-spell_holy_sealofsacrifice')
-        firstAidAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.FIRST_AID[1], 375}))
-    fishingAch = add(fishing, 'FISHING', '-trade_fishing')
-        fishingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.FISHING[1], 375}))
-    cookingAch = add(cooking, 'COOKING', '-inv_misc_food_15')
-        cookingAch:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.COOKING[1], 375}))
+    local firstAidAch_Outland = add(firstAid, 'FIRST_AID', '-spell_holy_sealofsacrifice')
+        firstAidAch_Outland:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.FIRST_AID[1], 375}))
+        firstAidAch:SetNext(firstAidAch_Outland)
+    local fishingAch_Outland = add(fishing, 'FISHING', '-trade_fishing')
+        fishingAch_Outland:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.FISHING[1], 375}))
+        fishingAch:SetNext(fishingAch_Outland)
+    local cookingAch_Outland = add(cooking, 'COOKING', '-inv_misc_food_15')
+        cookingAch_Outland:AddCriteria(criterias:Create(nil, TYPE.REACH_PROFESSION_LEVEL, {ClassicAchievementsProfessions.COOKING[1], 375}))
+        cookingAch:SetNext(cookingAch_Outland)
 
     local secondaryOutland = professions:CreateAchievement(loc:Get('AN_PROFS_SECONDARY_OUTLAND'), loc:Get('AD_PROFS_SECONDARY_OUTLAND'), 10, '-Inv_Misc_Note_02')
-		secondaryOutland:AddCriteria(criterias:Create(firstAidAch.name, TYPE.COMPLETE_ACHIEVEMENT, {firstAidAch.id}))
-		secondaryOutland:AddCriteria(criterias:Create(fishingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {fishingAch.id}))
-		secondaryOutland:AddCriteria(criterias:Create(cookingAch.name, TYPE.COMPLETE_ACHIEVEMENT, {cookingAch.id}))
+		secondaryOutland:AddCriteria(criterias:Create(firstAidAch_Outland.name, TYPE.COMPLETE_ACHIEVEMENT, {firstAidAch_Outland.id}))
+		secondaryOutland:AddCriteria(criterias:Create(fishingAch_Outland.name, TYPE.COMPLETE_ACHIEVEMENT, {fishingAch_Outland.id}))
+		secondaryOutland:AddCriteria(criterias:Create(cookingAch_Outland.name, TYPE.COMPLETE_ACHIEVEMENT, {cookingAch_Outland.id}))
 		previousSecondary:SetNext(secondaryOutland)
     
 	--5 PROFESSIONS
@@ -1542,10 +1544,10 @@ end
 --WORLD EVENTS
 do
 	-- HALLOWSEND
-	local hallowsendSummary = worldevents:CreateAchievement('AN_HALLOWSEND', 'AD_HALLOWSEND', 10, '-achievement_halloween_witch_01', true, 531)
+	local hallowsendSummary = worldevents:CreateAchievement('AN_HALLOWSEND', 'AD_HALLOWSEND', 10, 'achievement_halloween_witch_01', true, 531)
 		hallowsendSummary:SetRewardText(loc:Get('AR_HALLOWSEND'))
     if UnitFactionGroup('player') == 'Horde' then		
-		ach = hallowsend:CreateAchievement('AN_HALLOWSEND_HORDE_QUEST1', 'AD_HALLOWSEND_HORDE_QUEST1', 10, '-achievement_halloween_rottenegg_01', true, 532)
+		ach = hallowsend:CreateAchievement('AN_HALLOWSEND_HORDE_QUEST1', 'AD_HALLOWSEND_HORDE_QUEST1', 10, 'achievement_halloween_rottenegg_01', true, 532)
 			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_HORDE_QUEST1_CRITERIA1'), TYPE.COMPLETE_QUEST, {8409}))
 			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_HORDE_QUEST1_CRITERIA2'), TYPE.COMPLETE_QUEST, {1657}))
 		hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
@@ -1557,7 +1559,7 @@ do
 			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_HORDE_QUEST2_CRITERIA4'), TYPE.OBTAIN_ITEM, {20497}))	
 		hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
     else	
-		ach = hallowsend:CreateAchievement('AN_HALLOWSEND_ALLIANCE_QUEST1', 'AD_HALLOWSEND_ALLIANCE_QUEST1', 10, '-achievement_halloween_rottenegg_01', true, 532)
+		ach = hallowsend:CreateAchievement('AN_HALLOWSEND_ALLIANCE_QUEST1', 'AD_HALLOWSEND_ALLIANCE_QUEST1', 10, 'achievement_halloween_rottenegg_01', true, 532)
 			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_ALLIANCE_QUEST1_CRITERIA1'), TYPE.COMPLETE_QUEST, {1658}))
 			ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_ALLIANCE_QUEST1_CRITERIA2'), TYPE.COMPLETE_QUEST, {8373}))
 		hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
@@ -1616,7 +1618,7 @@ do
 
 	maskAny:SetNext(maskAll)
 	
-	ach = hallowsend:CreateAchievement('AN_HALLOWSEND_TRANSFORM', 'AD_HALLOWSEND_TRANSFORM', 10, '-achievement_halloween_ghost_01', true, 539)
+	ach = hallowsend:CreateAchievement('AN_HALLOWSEND_TRANSFORM', 'AD_HALLOWSEND_TRANSFORM', 10, 'achievement_halloween_ghost_01', true, 539)
 		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_GHOST'), TYPE.HAS_BUFF, {24735}))
 		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_GNOME'), TYPE.HAS_BUFF, {24712}))
 		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_WISP'), TYPE.HAS_BUFF, {24740}))
@@ -1628,11 +1630,11 @@ do
     
     
     --WINTER VEIL
-    local winterveilSummary = worldevents:CreateAchievement('AN_WINTERVEIL', 'AD_WINTERVEIL', 10, '-achievement_worldevent_merrymaker', true, 541)
+    local winterveilSummary = worldevents:CreateAchievement('AN_WINTERVEIL', 'AD_WINTERVEIL', 10, 'achievement_worldevent_merrymaker', true, 541)
 		winterveilSummary:SetRewardText(loc:Get('AR_WINTERVEIL'))
 
     if UnitFactionGroup('player') == 'Horde' then
-        ach = winterveil:CreateAchievement('AN_WINTERVEIL_METZEN', 'AD_WINTERVEIL_METZEN', 10, '-achievement_worldevent_reindeer', true, 542)
+        ach = winterveil:CreateAchievement('AN_WINTERVEIL_METZEN', 'AD_WINTERVEIL_METZEN', 10, 'achievement_worldevent_reindeer', true, 542)
             ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {8746}))
         winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
 
@@ -1644,7 +1646,7 @@ do
         --    ach:AddCriteria(criterias:Create(nil, TYPE.HAS_BUFF,{ spellID = 21343, npcID = 3057 }))
         --winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
     else
-        ach = winterveil:CreateAchievement('AN_WINTERVEIL_METZEN', 'AD_WINTERVEIL_METZEN', 10, '-achievement_worldevent_reindeer', true, 542)
+        ach = winterveil:CreateAchievement('AN_WINTERVEIL_METZEN', 'AD_WINTERVEIL_METZEN', 10, 'achievement_worldevent_reindeer', true, 542)
             ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {8762}))
         winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
 
@@ -1686,14 +1688,14 @@ do
         end		
 		
         local icon
-        if i == 1 then icon = '-achievement_reputation_01'
-        elseif i >= 1 and i < 5 then icon = '-achievement_reputation_02'
-		elseif i >= 5 and i < 10 then icon = '-achievement_reputation_03'
-		elseif i >= 10 and i < 15 then icon = '-achievement_reputation_04'
-		elseif i >= 15 and i < 20 then icon = '-achievement_reputation_05'
-		elseif i >= 20 and i < 25 then icon = '-achievement_reputation_06'
-		elseif i >= 25 and i < 30 then icon = '-achievement_reputation_07'
-		elseif i >= 30 then icon = '-achievement_reputation_08'
+        if i == 1 then icon = 'achievement_reputation_01'
+        elseif i >= 1 and i < 5 then icon = 'achievement_reputation_02'
+		elseif i >= 5 and i < 10 then icon = 'achievement_reputation_03'
+		elseif i >= 10 and i < 15 then icon = 'achievement_reputation_04'
+		elseif i >= 15 and i < 20 then icon = 'achievement_reputation_05'
+		elseif i >= 20 and i < 25 then icon = 'achievement_reputation_06'
+		elseif i >= 25 and i < 30 then icon = 'achievement_reputation_07'
+		elseif i >= 30 then icon = 'achievement_reputation_08'
 		end
 		
         ach = reputation:CreateAchievement(name, desc, 10, icon)
@@ -1704,13 +1706,13 @@ do
         previous = ach
     end
 
-    ach = reputation:CreateAchievement(loc:Get('AN_HORDE_REPS'), loc:Get('AD_HORDE_REPS'), 10, '-achievement_pvp_o_h')
+    ach = reputation:CreateAchievement(loc:Get('AN_HORDE_REPS'), loc:Get('AD_HORDE_REPS'), 10, 'achievement_pvp_o_h')
     for i, fid in pairs({76, 530, 68, 81, 911}) do
         ach:AddCriteria(criterias:Create(loc:Get('AC_HORDE_REPS_' .. i), TYPE.REACH_REPUTATION, {fid, 8}))
     end
     ach:SetHordeOnly()
 
-    ach = reputation:CreateAchievement(loc:Get('AN_ALLIANCE_REPS'), loc:Get('AD_ALLIANCE_REPS'), 10, '-achievement_pvp_o_a')
+    ach = reputation:CreateAchievement(loc:Get('AN_ALLIANCE_REPS'), loc:Get('AD_ALLIANCE_REPS'), 10, 'achievement_pvp_o_a')
     for i, fid in pairs({72, 69, 54, 47, 930}) do
         ach:AddCriteria(criterias:Create(loc:Get('AC_ALLIANCE_REPS_' .. i), TYPE.REACH_REPUTATION, {fid, 8}))
     end
@@ -1726,7 +1728,7 @@ do
     add(270, 'ZANDALAR_TRIBE', 10, '-inv_bijou_green')
     add(910, 'BROOD_OF_NOZDORMU', 10, '-Inv_Misc_Head_Dragon_Bronze')
     add(529, 'ARGENT_DAWN', 10, '-inv_jewelry_talisman_07')
-    add(576, 'TIMBERMAW_HOLD', 10, '-achievement_reputation_timbermaw')
+    add(576, 'TIMBERMAW_HOLD', 10, 'achievement_reputation_timbermaw')
     add(909, 'DARKMOON_FAIRE', 10, '-Inv_Misc_MissileLarge_Red')
     add(59, 'THORIUM', 10, '-inv_enchant_dustsoul')
     add(809, 'SHENDRALAR', 10, '-inv_misc_book_11')
@@ -1781,7 +1783,7 @@ do
 
     create('amethyst_eye', 967, '-Spell_Holy_Mindsooth')
     create('scale_of_the_sands', 990, '-Inv_Enchant_DustIllusion')
-    create('ashtongue_deathsworn', 1012, '-achievement_reputation_ashtonguedeathsworn')
+    create('ashtongue_deathsworn', 1012, 'achievement_reputation_ashtonguedeathsworn')
     create('shattered_sun', 1077, '-Inv_Shield_48')
 end
 
