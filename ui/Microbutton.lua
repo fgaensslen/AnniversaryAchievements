@@ -32,49 +32,23 @@ SexyLib:Util():AfterLogin(function()
     if not CA_IsMicrobuttonEnabled() or Bartender4 then return end
 
     CA_InitializeMicrobutton()
-    
-    local width = 24
-    MainMenuBar:SetWidth(MainMenuBar:GetWidth() + width * 2)
-    
-    do
-        local point, relativeTo, relativePoint, xOfs, yOfs = SocialsMicroButton:GetPoint()
-        SocialsMicroButton:SetPoint(point, AchievementMicroButton, relativePoint, xOfs, yOfs)
+    AchievementMicroButton:SetFrameLevel(QuestLogMicroButton:GetFrameLevel() + 1)
+
+    local helpPoint, helpRelativeTo, helpRelativePoint, helpX, helpY
+
+    if HelpMicroButton then
+        helpPoint, helpRelativeTo, helpRelativePoint, helpX, helpY = HelpMicroButton:GetPoint()
     end
-    
-    local function move(thing, delta)
-        local point, relativeTo, relativePoint, xOfs, yOfs = thing:GetPoint()
-        thing:SetPoint(point, relativeTo, relativePoint, xOfs + delta, yOfs)
+
+    if HelpMicroButton then
+        HelpMicroButton:Hide()
+        HelpMicroButton:UnregisterAllEvents()
+        HelpMicroButton:SetParent(nil)
     end
-    
-    local function set(thing, xOf, yOf)
-        local point, relativeTo, relativePoint, xOfs, yOfs = thing:GetPoint()
-        thing:SetPoint(point, relativeTo, relativePoint, xOf or xOfs, yOf or yOfs)
+
+    if SocialsMicroButton and helpPoint then
+        SocialsMicroButton:ClearAllPoints()
+        SocialsMicroButton:SetPoint(helpPoint, helpRelativeTo, helpRelativePoint, helpX, helpY)
     end
-    
-	--move(MainMenuBarTexture0, -width + 1.5)
-    --move(MainMenuBarTexture1, -width + 1.5)
-    --move(MainMenuBarPageNumber, -width + 1.5)
-    move(MainMenuBarTexture2, -width / 2)
-    --MainMenuBarTexture2:SetWidth(MainMenuBarTexture2:GetWidth() + width)
-    AchievementMicroButton:SetFrameStrata('HIGH')
-    --[[C_Timer.After(0.01, function()
-        MainMenuBarPerformanceBarFrame:SetClampedToScreen(false)  
-		MainMenuBarPerformanceBarFrame:SetMovable(1)
-		MainMenuBarPerformanceBarFrame:SetUserPlaced(true)
-		MainMenuBarPerformanceBarFrame:ClearAllPoints()
-		MainMenuBarPerformanceBarFrame:SetPoint("RIGHT", -235, -4)
-		move(MainMenuBarPerformanceBarFrame, -width)
-    end)
-    move(MainMenuBarBackpackButton, -width)
-    
-    move(MultiBarBottomRight, width)
-    ]]
-    local expBarWidth = MainMenuBarTexture3:GetWidth() + width
-    MainMenuBarTexture3:SetWidth(expBarWidth)
-    move(MainMenuBarTexture3, -width / 2)
-    for i, part in pairs({-0.375, -0.125, 0.125, 0.375}) do
-        --local tex = _G['MainMenuXPBarTexture' .. (i - 1)]
-        --tex:SetWidth(expBarWidth / 4)
-        --set(tex, expBarWidth * part)
-    end
+
 end)

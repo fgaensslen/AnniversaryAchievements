@@ -149,7 +149,7 @@ local function Completion(data)
             AchievementAlertSystem:AddAlert(achievement.id)
             QueueAchievementSound()
 			
-            --CA_ShareAchievement(achievement.id)
+            CA_ShareAchievement(achievement.id)
         end,
         CompleteCriteria = function(self, achievementID, criteriaID, withQuantity)
             if self:IsAchievementCompleted(achievementID) then return false end
