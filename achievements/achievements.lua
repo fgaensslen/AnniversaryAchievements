@@ -418,11 +418,9 @@ do
         ach = explorationKalimdor:CreateAchievement(loc:Get('AN_EXPLORE', areaName), loc:Get('AD_EXPLORE', areaName), 10, icon)
         for _, childrenID in pairs(areaIDs) do
 			ach:AddCriteria(criterias:Create(AreaTableLocale[childrenID], TYPE.EXPLORE_AREA, {childrenID}))
-        end
+        end		
 		
-		if(areaID ~= 3524 and areaID ~= 3525) then
-			global:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
-        end
+		global:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))        
     end
 
     add(331, {441, 414, 2301, 413, 417, 416, 424, 415, 421, 418, 426, 419, 422, 438, 430, 434, 437}, 'ashenvale')
@@ -452,11 +450,9 @@ do
         ach = explorationEasternKingdoms:CreateAchievement(loc:Get('AN_EXPLORE', areaName), loc:Get('AD_EXPLORE', areaName), 10, icon)
         for _, childrenID in pairs(areaIDs) do
                 ach:AddCriteria(criterias:Create(AreaTableLocale[childrenID], TYPE.EXPLORE_AREA, {childrenID}))
-        end
+        end		
 		
-		if(areaID ~= 3430 and areaID ~= 3433 and areaID ~= 4080) then
-			global:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
-        end
+		global:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))        
     end
 
     add(36, {1679, 282, 279, 1682, 1357, 1677, 1683, 278, 1681, 281, 1678, 280, 1680, 284, 1684}, 'alterac_mountains')
