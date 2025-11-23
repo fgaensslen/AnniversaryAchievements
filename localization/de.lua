@@ -1241,6 +1241,20 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_MR_PINCHY = 'Dr. Zwicky!',
     AD_MR_PINCHY = 'Angelt Dr. Zwicky in der Scherbenwelt.',
 
+    AN_FISHING_BOOK = 'Fische hinterlassen keine Fußspuren',
+    AD_FISHING_BOOK = 'Erlernt die Fertigkeit, Fische zu finden.',
+
+    AN_ACCOMPLISHED_ANGLER = 'Versierter Angler',
+    AD_ACCOMPLISHED_ANGLER = 'Schließt die unten aufgelisteten Angelerfolge ab.',
+
+    AN_TBC_DAILY_FISH = 'Fische für den alten Barlo',
+    AD_TBC_DAILY_FISH = 'Schließt jede der unten aufgelisteten 5 täglichen Angelquests des alten Barlo ab.',
+    AC_TBC_DAILY_FISH1 = 'Krokilisken in der Stadt',
+    AC_TBC_DAILY_FISH2 = 'Köderbanditen',
+    AC_TBC_DAILY_FISH3 = 'Teufelsblutfilet',
+    AC_TBC_DAILY_FISH4 = 'Der Eine, der entkam',
+    AC_TBC_DAILY_FISH5 = 'Garnelenfangen ist nicht einfach',
+
     AN_EXPLORE_OUTLAND = 'Erforscht die Scherbenwelt',
     AD_EXPLORE_OUTLAND = 'Erforscht die Regionen der Scherbenwelt.',    
 

@@ -1488,6 +1488,24 @@ do
             criteria.name = item:GetItemName()
         end)
     end
+    
+    local fishingbook = fishing:CreateAchievement('AN_FISHING_BOOK', 'AD_FISHING_BOOK', 10, 'achievement_profession_fishing_findfish', true, 548)
+        fishingbook:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {34109}))
+
+    local fishingdailies = fishing:CreateAchievement('AN_TBC_DAILY_FISH', 'AD_TBC_DAILY_FISH', 10, 'achievement_profession_fishing_oldmanbarlowned', true, 549)
+        fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH1'), TYPE.COMPLETE_QUEST, {11665}))
+        fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH2'), TYPE.COMPLETE_QUEST, {11666}))
+        fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH3'), TYPE.COMPLETE_QUEST, {11669}))
+        fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH4'), TYPE.COMPLETE_QUEST, {11667}))
+        fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH5'), TYPE.COMPLETE_QUEST, {11668}))
+    
+    local accomplishedfisher = fishing:CreateAchievement('AN_ACCOMPLISHED_ANGLER', 'AD_ACCOMPLISHED_ANGLER', 10, '-trade_fishing', true, 555)
+        accomplishedfisher:AddCriteria(criterias:CreateL('AN_FISHING_BOOK', TYPE.COMPLETE_ACHIEVEMENT, {fishingbook.id}))
+        accomplishedfisher:AddCriteria(criterias:Create(loc:Get('AN_FISHING_COUNT', 1000), TYPE.COMPLETE_ACHIEVEMENT, {521})) --1000 Fish
+        accomplishedfisher:AddCriteria(criterias:CreateL('AN_TBC_DAILY_FISH', TYPE.COMPLETE_ACHIEVEMENT, {fishingdailies.id}))
+        accomplishedfisher:AddCriteria(criterias:CreateL('AN_MR_PINCHY', TYPE.COMPLETE_ACHIEVEMENT, {pinchy.id}))
+        accomplishedfisher:AddCriteria(criterias:CreateL('AN_FISHING_OUTLAND_MASTER', TYPE.COMPLETE_ACHIEVEMENT, {435}))
+        accomplishedfisher:AddCriteria(criterias:CreateL('AN_BOOTY_BAY_CONTEST', TYPE.COMPLETE_ACHIEVEMENT, {444}))
 
 	--COOKING
     previous = nil

@@ -1239,6 +1239,20 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_MR_PINCHY = 'Mr. Pinchy!',
     AD_MR_PINCHY = 'Fish up Mr. Pinchy in Outland.',
 
+    AN_FISHING_BOOK = 'Fish Don\'t Leave Footprints',
+    AD_FISHING_BOOK = 'Learn the ability to find fish.',
+
+    AN_ACCOMPLISHED_ANGLER = 'Accomplished Angler',
+    AD_ACCOMPLISHED_ANGLER = 'Complete the fishing achievements listed below.',
+
+    AN_TBC_DAILY_FISH = 'Old Man Barlowned',
+    AD_TBC_DAILY_FISH = 'Complete each of Old Man Barlo\'s 5 fishing daily quests listed below.',
+    AC_TBC_DAILY_FISH1 = 'Crocolisks in the City',
+    AC_TBC_DAILY_FISH2 = 'Bait Bandits',
+    AC_TBC_DAILY_FISH3 = 'Felblood Fillet',
+    AC_TBC_DAILY_FISH4 = 'The One That Got Away',
+    AC_TBC_DAILY_FISH5 = 'Shrimpin\' Ain\'t Easy',
+
     AN_EXPLORE_OUTLAND = 'Explore Outland',
     AD_EXPLORE_OUTLAND = 'Explore the regions of Outland.',
     AN_EXPLORER = 'Universal Explorer',
