@@ -1498,8 +1498,14 @@ do
         fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH3'), TYPE.COMPLETE_QUEST, {11669}))
         fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH4'), TYPE.COMPLETE_QUEST, {11667}))
         fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH5'), TYPE.COMPLETE_QUEST, {11668}))
+
+    local oldironjaw = fishing:CreateAchievement('AN_OLD_IRONJAW', 'AD_OLD_IRONJAW', 10, '-inv_misc_fish_31', true, 550)
+        oldironjaw:AddCriteria(criterias:Create(nil, TYPE.FISH_AN_ITEM, {34484}))
+
+    local oldcrafty = fishing:CreateAchievement('AN_OLD_CRAFTY', 'AD_OLD_CRAFTY', 10, '-inv_misc_fish_35', true, 551)
+        oldcrafty:AddCriteria(criterias:Create(nil, TYPE.FISH_AN_ITEM, {34486}))
     
-    local accomplishedfisher = fishing:CreateAchievement('AN_ACCOMPLISHED_ANGLER', 'AD_ACCOMPLISHED_ANGLER', 10, '-trade_fishing', true, 555)
+    local accomplishedfisher = fishing:CreateAchievement('AN_ACCOMPLISHED_ANGLER', 'AD_ACCOMPLISHED_ANGLER', 10, '-trade_fishing', true, 554)
         accomplishedfisher:AddCriteria(criterias:CreateL('AN_FISHING_BOOK', TYPE.COMPLETE_ACHIEVEMENT, {fishingbook.id}))
         accomplishedfisher:AddCriteria(criterias:Create(loc:Get('AN_FISHING_COUNT', 1000), TYPE.COMPLETE_ACHIEVEMENT, {521})) --1000 Fish
         accomplishedfisher:AddCriteria(criterias:CreateL('AN_TBC_DAILY_FISH', TYPE.COMPLETE_ACHIEVEMENT, {fishingdailies.id}))
@@ -1549,10 +1555,42 @@ do
     ach:AddCriteria(criterias:Create(squid.name, TYPE.COMPLETE_ACHIEVEMENT, {squid.id}))
     ach:AddCriteria(criterias:Create(dumplings.name, TYPE.COMPLETE_ACHIEVEMENT, {dumplings.id}))
 
+    --TBC
     local cake = L:Achievement(cooking, 10, '-inv_misc_celebrationcake_01')
         :NameDesc('AN_COOKING_CAKE', 'AD_COOKING_CAKE', true)
         :Criteria(TYPE.CRAFT_ITEM, {33924}):Build()
         :Build()
+
+    local captainrumsey = cooking:CreateAchievement('AN_CAPTAIN_RUMSEY', 'AD_CAPTAIN_RUMSEY', 10, '-inv_drink_03', true, 555)
+        captainrumsey:AddCriteria(criterias:Create(nil, TYPE.CRAFT_ITEM, {34832}))
+
+    local cookingdailies = cooking:CreateAchievement('AN_TBC_DAILY_COOKING', 'AD_TBC_DAILY_COOKING', 10, '-inv_misc_cauldron_arcane', true, 556)
+        cookingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_COOKING1'), TYPE.COMPLETE_QUEST, {11380}))
+        cookingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_COOKING2'), TYPE.COMPLETE_QUEST, {11381}))
+        cookingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_COOKING3'), TYPE.COMPLETE_QUEST, {11377}))
+        cookingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_COOKING4'), TYPE.COMPLETE_QUEST, {11379}))
+
+    local cookingrecipes_tbc = cooking:CreateAchievement('AN_TBC_COOKING_RECIPES', 'AD_TBC_COOKING_RECIPES', 10, '-inv_misc_food_84_roastclefthoof', true, 557)
+    for _, itemID in pairs({
+        27663, 33053, 27665, 27655, 33048, 27667, 33052, 31673, 27660, 27658, 33867, 30155, 27664, 
+        31672, 33866, 27662, 33924, 27666, 33874, 27659, 27651, 27661, 27656, 33825, 33872, 27657
+    }) do
+        local criteria = criterias:Create('itemID ' .. itemID, TYPE.CRAFT_ITEM, {itemID})
+        cookingrecipes_tbc:AddCriteria(criteria)
+
+        local item = Item:CreateFromItemID(itemID)
+        item:ContinueOnItemLoad(function()
+            criteria.name = item:GetItemName()
+        end)
+    end
+
+    local hailchef = cooking:CreateAchievement('AN_HAIL_CHEF', 'AD_HAIL_CHEF', 10, 'achievement_profession_chefhat', true, 558)
+        hailchef:AddCriteria(criterias:Create(loc:Get('AN_COOKING_RECIPES_' .. 75), TYPE.COMPLETE_ACHIEVEMENT, {461})) --75 Cooking Recipes
+        hailchef:AddCriteria(criterias:CreateL('AN_COOKING_OUTLAND_MASTER', TYPE.COMPLETE_ACHIEVEMENT, {436}))
+        hailchef:AddCriteria(criterias:CreateL('AN_COOKING_CAKE', TYPE.COMPLETE_ACHIEVEMENT, {cake.id}))
+        hailchef:AddCriteria(criterias:CreateL('AN_CAPTAIN_RUMSEY', TYPE.COMPLETE_ACHIEVEMENT, {captainrumsey.id}))
+        hailchef:AddCriteria(criterias:CreateL('AN_TBC_DAILY_COOKING', TYPE.COMPLETE_ACHIEVEMENT, {cookingdailies.id}))
+        hailchef:AddCriteria(criterias:CreateL('AN_TBC_COOKING_RECIPES', TYPE.COMPLETE_ACHIEVEMENT, {cookingrecipes_tbc.id}))
 end
 
 --WORLD EVENTS
@@ -1599,8 +1637,8 @@ do
 	hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))		
 	
 	local maskItems = {
-		20570, 20561, 20391, 20566, 20564, 20572, 20568, 20573,
-		20392, 20569, 20571, 20574, 20565, 20563, 20567, 20562
+		20570, 20561, 20391, 20566, 20564, 20572, 20568, 20573, 34000, 34002,
+		20392, 20569, 20571, 20574, 20565, 20563, 20567, 20562, 34001, 34003
 	}
 
 	local function CreateAllMasksAchievement(ids, nameKey, descKey, points, icon, forcedID)

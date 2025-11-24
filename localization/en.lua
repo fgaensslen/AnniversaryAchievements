@@ -1253,6 +1253,25 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_TBC_DAILY_FISH4 = 'The One That Got Away',
     AC_TBC_DAILY_FISH5 = 'Shrimpin\' Ain\'t Easy',
 
+    AN_OLD_IRONJAW = 'Old Ironjaw',
+    AD_OLD_IRONJAW = 'Fish up Old Ironjaw in Ironforge.',
+
+    AN_OLD_CRAFTY = 'Old Crafty',
+    AD_OLD_CRAFTY = 'Fish up Old Crafty in Orgrimmar.',
+
+    AN_CAPTAIN_RUMSEY = 'Captain Rumsey\'s Lager',
+    AD_CAPTAIN_RUMSEY = 'Brew up some of Captain Rumsey\'s Lager.',
+
+    AN_TBC_DAILY_COOKING = 'Kickin\' It Up a Notch',
+    AD_TBC_DAILY_COOKING = 'Complete each of The Rokk\'s 4 cooking daily quests listed below.',
+    AC_TBC_DAILY_COOKING1 = 'Manalicious',
+    AC_TBC_DAILY_COOKING2 = 'Soup for the Soul',
+    AC_TBC_DAILY_COOKING3 = 'Revenge is Tasty',
+    AC_TBC_DAILY_COOKING4 = 'Super Hot Stew',
+
+    AN_HAIL_CHEF = 'Hail to the Chef',
+    AD_HAIL_CHEF = 'Complete the cooking achievements listed below.',
+
     AN_EXPLORE_OUTLAND = 'Explore Outland',
     AD_EXPLORE_OUTLAND = 'Explore the regions of Outland.',
     AN_EXPLORER = 'Universal Explorer',

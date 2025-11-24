@@ -1255,6 +1255,28 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_TBC_DAILY_FISH4 = 'Der Eine, der entkam',
     AC_TBC_DAILY_FISH5 = 'Garnelenfangen ist nicht einfach',
 
+    AN_OLD_IRONJAW = 'Alter Eisenkiefer',
+    AD_OLD_IRONJAW = 'Angelt den alten Eisenkiefer in Eisenschmiede.',
+
+    AN_OLD_CRAFTY = 'Alter Fuchs',
+    AD_OLD_CRAFTY = 'Angelt den alten Fuchs in Orgrimmar.',
+
+    AN_CAPTAIN_RUMSEY = 'Kapitän Rumseys Lagerbier',
+    AD_CAPTAIN_RUMSEY = 'Braut etwas von Kapitän Rumseys Lagerbier.',
+
+    AN_TBC_DAILY_COOKING = 'Bitte nicht zu scharf',
+    AD_TBC_DAILY_COOKING = 'Schließt jede der 4 unten aufgelisteten täglichen Kochquests des Rokk ab.',
+    AC_TBC_DAILY_COOKING1 = 'Manaziös',
+    AC_TBC_DAILY_COOKING2 = 'Suppe für die Seele',
+    AC_TBC_DAILY_COOKING3 = 'Rache ist süß',
+    AC_TBC_DAILY_COOKING4 = 'Superheißes Ragout',
+
+    AN_TBC_COOKING_RECIPES = 'Der Scherbenwelt-Gourmet',
+    AD_TBC_COOKING_RECIPES = 'Kocht jedes der unten aufgelisteten Rezepte aus der Scherbenwelt.',
+
+    AN_HAIL_CHEF = 'Ein Hoch auf den Koch!',
+    AD_HAIL_CHEF = 'Schließt die unten aufgelisteten Kocherfolge ab.',
+
     AN_EXPLORE_OUTLAND = 'Erforscht die Scherbenwelt',
     AD_EXPLORE_OUTLAND = 'Erforscht die Regionen der Scherbenwelt.',    
 
