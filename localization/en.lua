@@ -928,6 +928,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_FOUR_TOGETHER = 'Defeat the 4 Horsemen in Naxxramas, ensuring that they all die within 15 seconds of each other.',
     AN_HEIGAN_DANCE = 'The Safety Dance',
     AD_HEIGAN_DANCE = 'Defeat Heigan the Unclean in Naxxramas without anyone in the raid dying.',
+    AN_PATCHWERK = 'Make Quick Werk Of Him',
+    AD_PATCHWERK = 'Defeat Patchwerk in Naxxramas in 3 minutes or less.',
 	
 	AN_PIRATES_HAT = 'Avast Ye, Admiral!',
 	AD_PIRATES_HAT = 'Obtain the Bloodsail Admiral\'s Hat... and try to get some fresh air every now and then.',

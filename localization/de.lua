@@ -930,6 +930,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_FOUR_TOGETHER = 'Bezwingt die Vier Reiter in Naxxramas, wobei sie im Abstand von höchstens 15 Sekunden hintereinander sterben müssen.',
     AN_HEIGAN_DANCE = 'Auf Nummer sicher',
     AD_HEIGAN_DANCE = 'Bezwingt Heigan den Unreinen in Naxxramas, ohne dass jemand aus dem Schlachtzug stirbt.',
+    AN_PATCHWERK = 'Legt Flickwerk schnell das Handwerk',
+    AD_PATCHWERK = 'Bezwingt Flickwerk in Naxxramas in höchstens 3 Minuten.',
 	
 	AN_PIRATES_HAT = 'Segel setzen, Admiral!',
 	AD_PIRATES_HAT = 'Erhaltet den Blutsegeladmiralshut... und versucht, zwischendurch etwas frische Luft zu tanken.',
