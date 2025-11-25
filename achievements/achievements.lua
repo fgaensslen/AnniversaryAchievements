@@ -1093,6 +1093,9 @@ do
 		:Criteria(TYPE.BOSS_WITH_ALL_ALIVE, {15989}):Build()
 		:Build()
 
+    ach = instances:CreateAchievement('AN_HEIGAN_DANCE', 'AD_HEIGAN_DANCE', 10, '-ability_rogue_quickrecovery', true, 562)
+		ach:AddCriteria(criterias:Create(nil, TYPE.BOSS_WITH_ALL_ALIVE, {15936}))
+
     --TBC
 	local builderNormalTBC = L:Achievement(pve, 10, '-spell_holy_summonchampion')
 		:NameDesc('AN_TBC_DUNGEONS', 'AD_TBC_DUNGEONS', true)
@@ -1837,6 +1840,12 @@ do
     create('scale_of_the_sands', 990, '-Inv_Enchant_DustIllusion')
     create('ashtongue_deathsworn', 1012, 'achievement_reputation_ashtonguedeathsworn')
     create('shattered_sun', 1077, '-Inv_Shield_48')
+
+    local skyguard = tbcReputations:CreateAchievement('AN_SKYGUARD', 'AD_SKYGUARD', 10, '-ability_hunter_pet_netherray', true, 559)
+        skyguard:AddCriteria(criterias:Create(nil, TYPE.REACH_REPUTATION, {1031, 8}))
+
+    local hippogryph = tbcReputations:CreateAchievement('AN_HIPPOGRYPH', 'AD_HIPPOGRYPH', 10, '-ability_mount_warhippogryph', true, 560)
+        hippogryph:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {33999}))
 end
 
 -- FEATS OF STRENGTH --
@@ -1877,6 +1886,9 @@ do
 		
 	ach = featsOfStrength:CreateAchievement('AN_PALADIN_MOUNT', 'AD_PALADIN_MOUNT', 0, '-ability_mount_charger', true, 525)
 		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {7647}))
+
+    ach = featsOfStrength:CreateAchievement('AN_ARGENT_DAWN_TABARD', 'AD_ARGENT_DAWN_TABARD', 0, '-inv_shirt_guildtabard_01', true, 561)
+		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {22999}))
 
     --TBC
     L:Achievement(featsOfStrength, 0, '-inv_shirt_guildtabard_01')

@@ -494,7 +494,8 @@ for bossID, mobIDs in pairs(bossesWithMobs) do
 end
 
 local bossesWithAllAlives = {
-    [15989] = 40
+    [15989] = 40,
+    [15936] = 40
 }
 for bossID, raidMembers in pairs(bossesWithAllAlives) do
     killingTracker:AddHandler(bossID, function(targetID)

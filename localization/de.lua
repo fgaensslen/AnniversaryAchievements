@@ -750,6 +750,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_BARON_MOUNT = 'Erhaltet die Zügel des Todesstreitrosses von Totenschwur in Stratholme.',
 	AN_SABER_MOUNT = 'Frostsäbler aus Winterquell',
     AD_SABER_MOUNT = 'Erhaltet einen Frostsäbler aus Winterquell.',
+    AN_ARGENT_DAWN_TABARD = 'Wappenrock der Argentumdämmerung',
+    AD_ARGENT_DAWN_TABARD = 'Einen Wappenrock der Argentumdämmerung durch das Ereignis \'Invasion der Geißel\' erhalten.',
     
     AN_UNCOMMON_GEAR = 'Selten',
     AD_UNCOMMON_GEAR = 'Legt an jedem Platz einen Gegenstand von seltener Qualität an.',
@@ -921,11 +923,13 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_FAERLINA_WITHOUT_MOBS = 'Witwenjäger',
     AD_FAERLINA_WITHOUT_MOBS = 'Bezwingt Großwitwe Faerlina in Naxxramas, während alle Anhänger und Jünger von Naxxramas am Leben sind.',
     AN_SAPPHIRONE_WITH_ALL_ALIVE = 'Ziemlich frostig hier',
-    AD_SAPPHIRONE_WITH_ALL_ALIVE = 'Bezwingt Saphiron in Naxxramas während alle 40 Schlachtzugsmitglieder am Leben sind.',
+    AD_SAPPHIRONE_WITH_ALL_ALIVE = 'Bezwingt Saphiron in Naxxramas, ohne dass jemand aus dem Schlachtzug stirbt.',
     AN_ARACHNOPHOBIA = 'Arachnophobie',
     AD_ARACHNOPHOBIA = 'Bezwingt Maexxna in Naxxramas innerhalb von 20 Minuten nach Anub\'Rekhans Tod.',
     AN_FOUR_TOGETHER = 'Zusammen bis in den Tod',
     AD_FOUR_TOGETHER = 'Bezwingt die Vier Reiter in Naxxramas, wobei sie im Abstand von höchstens 15 Sekunden hintereinander sterben müssen.',
+    AN_HEIGAN_DANCE = 'Auf Nummer sicher',
+    AD_HEIGAN_DANCE = 'Bezwingt Heigan den Unreinen in Naxxramas, ohne dass jemand aus dem Schlachtzug stirbt.',
 	
 	AN_PIRATES_HAT = 'Segel setzen, Admiral!',
 	AD_PIRATES_HAT = 'Erhaltet den Blutsegeladmiralshut... und versucht, zwischendurch etwas frische Luft zu tanken.',
@@ -1237,6 +1241,12 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_SHATTERED_SUN = 'Welch eine Offensive',
     AD_SHATTERED_SUN = 'Erreicht bei der Offensive der zerschmetterten Sonne den Status ehrfürchtig.',
+
+    AN_SKYGUARD = 'Hoch über Skettis',
+    AD_SKYGUARD = 'Erreicht bei der Himmelswache der Sha\'tari den Status ehrfürchtig.',
+
+    AN_HIPPOGRYPH = 'Cenarischer Kriegshippogryph',
+    AD_HIPPOGRYPH = 'Erhaltet den cenarischen Kriegshippogryphen von der Expedition des Cenarius in den Zangarmarschen.',
 
     AN_MR_PINCHY = 'Dr. Zwicky!',
     AD_MR_PINCHY = 'Angelt Dr. Zwicky in der Scherbenwelt.',
