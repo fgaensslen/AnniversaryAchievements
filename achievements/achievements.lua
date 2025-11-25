@@ -1112,6 +1112,12 @@ do
 		:NameDesc('AN_SAPPHIRONE_WITH_ALL_ALIVE', 'AD_SAPPHIRONE_WITH_ALL_ALIVE', true)
 		:Criteria(TYPE.BOSS_WITH_ALL_ALIVE, {15989}):Build()
 		:Build()
+		
+	ach = instances:CreateAchievement('AN_HEIGAN_DANCE', 'AD_HEIGAN_DANCE', 10, '-ability_rogue_quickrecovery', true, 562)
+		ach:AddCriteria(criterias:Create(nil, TYPE.BOSS_WITH_ALL_ALIVE, {15936}))
+		
+	ach = instances:CreateAchievement('AN_PATCHWERK', 'AD_PATCHWERK', 10, '-spell_shadow_abominationexplosion', true, 563)
+		ach:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, {16028}))
 
     --TBC
 	local builderNormalTBC = L:Achievement(pve, 10, '-spell_holy_summonchampion')

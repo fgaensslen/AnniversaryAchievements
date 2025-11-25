@@ -494,7 +494,8 @@ for bossID, mobIDs in pairs(bossesWithMobs) do
 end
 
 local bossesWithAllAlives = {
-    [15989] = 40
+    [15989] = 40,
+	[15936] = 40
 }
 for bossID, raidMembers in pairs(bossesWithAllAlives) do
     killingTracker:AddHandler(bossID, function(targetID)
@@ -509,6 +510,32 @@ for bossID, raidMembers in pairs(bossesWithAllAlives) do
         if not failed then trigger(TYPE.BOSS_WITH_ALL_ALIVE, {creatureID}, 1, true) end
     end)
 end
+
+-- Patchwerk 3-minute kill
+local patchwerkStart = nil
+local PATCHWERK_ID = 16028
+
+-- When Patchwerk enters combat (any hit)
+killingTracker:AddHandler(PATCHWERK_ID, function(targetID, event)
+    -- Start timer on first hit if not started
+    if not patchwerkStart then
+        patchwerkStart = time()
+    end
+end)
+
+-- When Patchwerk dies
+killingTracker:AddHandler(PATCHWERK_ID, function(targetID)
+    if patchwerkStart then
+        local duration = time() - patchwerkStart
+        if duration <= 180 then
+            -- Trigger achievement
+            trigger(TYPE.SPECIAL, {16028}, 1, true)
+        end
+    end
+
+    -- Reset for next pull
+    patchwerkStart = nil
+end)
 
 local previousPvPKills = GetPVPLifetimeStats()
 killingTracker:AddPlayerHandler(function(targetGUID)
