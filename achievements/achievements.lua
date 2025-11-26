@@ -1849,6 +1849,19 @@ do
 
     local hippogryph = tbcReputations:CreateAchievement('AN_HIPPOGRYPH', 'AD_HIPPOGRYPH', 10, '-ability_mount_warhippogryph', true, 560)
         hippogryph:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {33999}))
+
+    local diplomat = tbcReputations:CreateAchievement('AN_DIPLOMAT', 'AN_DIPLOMAT', 10, '-inv_helmet_44', true, 564)
+    if UnitFactionGroup('player') == 'Horde' then
+		diplomat.description = loc:Get('AD_DIPLOMAT_HORDE')
+        for _, factionID in pairs({576, 970, 941}) do
+            diplomat:AddCriteria(criterias:Create(loc:Get('AC_DIPLOMAT_' .. factionID), TYPE.REACH_REPUTATION, {factionID, 8}))
+        end
+    else
+		diplomat.description = loc:Get('AD_DIPLOMAT_ALLIANCE')
+        for _, factionID in pairs({576, 970, 978}) do
+            diplomat:AddCriteria(criterias:Create(loc:Get('AC_DIPLOMAT_' .. factionID), TYPE.REACH_REPUTATION, {factionID, 8}))
+        end
+    end
 end
 
 -- FEATS OF STRENGTH --

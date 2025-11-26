@@ -1250,6 +1250,14 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_HIPPOGRYPH = 'Cenarischer Kriegshippogryph',
     AD_HIPPOGRYPH = 'Erhaltet den cenarischen Kriegshippogryphen von der Expedition des Cenarius in den Zangarmarschen.',
 
+    AN_DIPLOMAT = 'Der Diplomat',
+    AD_DIPLOMAT_ALLIANCE = 'Erhöht Euren Ruf bei der Holzschlundfeste, den Sporeggar und den Kurenai von unfreundlich auf ehrfürchtig.',
+    AD_DIPLOMAT_HORDE = 'Erhöht Euren Ruf bei der Holzschlundfeste, den Sporeggar und den Mag\'har von unfreundlich auf ehrfürchtig.',
+    AC_DIPLOMAT_576 = 'Ehrfürchtig bei der Holzschlundfeste',
+    AC_DIPLOMAT_970 = 'Ehrfürchtig bei den Sporeggar',
+    AC_DIPLOMAT_978 = 'Ehrfürchtig bei den Kurenai',
+    AC_DIPLOMAT_941 = 'Ehrfürchtig bei den Mag\'har',
+
     AN_MR_PINCHY = 'Dr. Zwicky!',
     AD_MR_PINCHY = 'Angelt Dr. Zwicky in der Scherbenwelt.',
 

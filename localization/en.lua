@@ -1248,6 +1248,14 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_HIPPOGRYPH = 'Cenarion War Hippogryph',
     AD_HIPPOGRYPH = 'Obtain the Cenarion War Hippogryph from the Cenarion Expedition in Zangarmarsh.',
 
+    AN_DIPLOMAT = 'The Diplomat',
+    AD_DIPLOMAT_ALLIANCE = 'Raise your reputation level from unfriendly to exalted with Timbermaw Hold, Sporeggar and the Kurenai.',
+    AD_DIPLOMAT_HORDE = 'Raise your reputation level from unfriendly to exalted with Timbermaw Hold, Sporeggar and The Mag\'har.',
+    AC_DIPLOMAT_576 = 'Exalted with Timbermaw Hold',
+    AC_DIPLOMAT_970 = 'Exalted with the Sporeggar',
+    AC_DIPLOMAT_978 = 'Exalted with the Kurenai',
+    AC_DIPLOMAT_941 = 'Exalted with the The Mag\'har',
+
     AN_MR_PINCHY = 'Mr. Pinchy!',
     AD_MR_PINCHY = 'Fish up Mr. Pinchy in Outland.',
 
