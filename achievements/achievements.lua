@@ -1743,13 +1743,13 @@ do
     end
 
     ach = reputation:CreateAchievement(loc:Get('AN_HORDE_REPS'), loc:Get('AD_HORDE_REPS'), 10, '-achievement_pvp_o_h')
-    for i, fid in pairs({76, 530, 68, 81, 911}) do
+    for i, fid in pairs({76, 530, 68, 81}) do
         ach:AddCriteria(criterias:Create(loc:Get('AC_HORDE_REPS_' .. i), TYPE.REACH_REPUTATION, {fid, 8}))
     end
     ach:SetHordeOnly()
 
     ach = reputation:CreateAchievement(loc:Get('AN_ALLIANCE_REPS'), loc:Get('AD_ALLIANCE_REPS'), 10, '-achievement_pvp_o_a')
-    for i, fid in pairs({72, 69, 54, 47, 930}) do
+    for i, fid in pairs({72, 69, 54, 47}) do
         ach:AddCriteria(criterias:Create(loc:Get('AC_ALLIANCE_REPS_' .. i), TYPE.REACH_REPUTATION, {fid, 8}))
     end
     ach:SetAllianceOnly()
