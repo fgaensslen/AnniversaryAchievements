@@ -467,7 +467,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AR_REPS = 'The Exalted',
 
     AN_HORDE_REPS = 'Ambassador of the Horde',
-    AD_HORDE_REPS = 'Earn exalted reputation with 5 home cities.',
+    AD_HORDE_REPS = 'Earn exalted reputation with 4 home cities.',
     AC_HORDE_REPS_1 = 'Exalted Orgrimmar.',
     AC_HORDE_REPS_2 = 'Exalted Darkspear Tribe.',
     AC_HORDE_REPS_3 = 'Exalted Undercity.',
@@ -475,7 +475,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_HORDE_REPS_5 = 'Exalted Silvermoon.',
 
     AN_ALLIANCE_REPS = 'Ambassador of the Alliance',
-    AD_ALLIANCE_REPS = 'Earn exalted reputation with 5 home cities.',
+    AD_ALLIANCE_REPS = 'Earn exalted reputation with 4 home cities.',
     AC_ALLIANCE_REPS_1 = 'Exalted Stormwind.',
     AC_ALLIANCE_REPS_2 = 'Exalted Darnassus.',
     AC_ALLIANCE_REPS_3 = 'Exalted Gnomeregan Exiles.',
