@@ -494,20 +494,39 @@ for bossID, mobIDs in pairs(bossesWithMobs) do
 end
 
 local bossesWithAllAlives = {
-    [15989] = 40,
-    [15936] = 40
+    [15936] = 40, -- Heigan
+    [15989] = 40  -- Sapphiron
 }
-for bossID, raidMembers in pairs(bossesWithAllAlives) do
+
+for bossID, _ in pairs(bossesWithAllAlives) do
     killingTracker:AddHandler(bossID, function(targetID)
-        if raidMembers ~= GetNumGroupMembers() then return end
+
+        -- must be in a raid
+        local members = GetNumGroupMembers()
+        if members == 0 then return end
+
         local failed = false
-        for i = 1, raidMembers do
-            if UnitIsDeadOrGhost('raid' .. i) then
-                failed = true
-                break
+        for i = 1, members do
+            local unit = "raid" .. i
+
+            -- only evaluate real units
+            if UnitExists(unit) then
+
+                -- if the player is offline, treat as alive
+                if UnitIsConnected(unit) then
+                    -- only fail if actually dead
+                    if UnitIsDeadOrGhost(unit) then
+                        failed = true
+                        break
+                    end
+                end
+
             end
         end
-        if not failed then trigger(TYPE.BOSS_WITH_ALL_ALIVE, {creatureID}, 1, true) end
+
+        if not failed then
+            trigger(TYPE.BOSS_WITH_ALL_ALIVE, {bossID}, 1, true)
+        end
     end)
 end
 

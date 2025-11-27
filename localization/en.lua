@@ -1289,6 +1289,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_TBC_DAILY_COOKING3 = 'Revenge is Tasty',
     AC_TBC_DAILY_COOKING4 = 'Super Hot Stew',
 
+    AN_TBC_COOKING_RECIPES = 'The Outland Gourmet',
+    AD_TBC_COOKING_RECIPES = 'Cook each of the Outland cooking recipes listed below.',
+
     AN_HAIL_CHEF = 'Hail to the Chef',
     AD_HAIL_CHEF = 'Complete the cooking achievements listed below.',
 
