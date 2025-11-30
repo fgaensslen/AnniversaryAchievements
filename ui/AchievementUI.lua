@@ -111,6 +111,14 @@ end
 
 function Anniversary_ShowTrackedAchievementProgress()	
 
+	-- allow user to disable the entire tracker
+    if CA_Settings.trackerToggle == false then
+        if AnniversaryTrackedDisplay then
+            AnniversaryTrackedDisplay:Hide()
+        end
+        return
+    end
+
 	DisableBlizzardQuestTracker()
 
 	if CA_Settings.trackerHidden == nil then
@@ -1971,10 +1979,19 @@ function AchievementButton_DisplayAchievement (button, category, achievement, se
 		else
 			button:Expand(height);
 		end
-		if ( not completed or (not wasEarnedByMe and not isGuild) ) then
-			button.tracked:Show();
+
+		if CA_Settings.trackerToggle == false then
+			if button.check then button.check:Hide() end
 		end
-	elseif ( button.selected ) then
+		
+		if ( not completed or (not wasEarnedByMe and not isGuild) ) then
+			if CA_Settings.trackerToggle == false then	
+				button.tracked:Hide();
+			else
+				button.tracked:Show();
+			end
+		end
+	else
 		button.selected = nil;
 		if ( not button:IsMouseOver() ) then
 			button.highlight:Hide();
@@ -1982,6 +1999,12 @@ function AchievementButton_DisplayAchievement (button, category, achievement, se
 		button:Collapse();
 		button.description:Show();
 		button.hiddenDescription:Hide();
+
+		if button.tracked then button.tracked:Hide() end
+
+		if CA_Settings.trackerToggle == false then
+			if button.check then button.check:Hide() end
+		end
 	end
 
 	return id;
