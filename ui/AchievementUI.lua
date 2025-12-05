@@ -434,22 +434,24 @@ function Anniversary_ShowTrackedAchievementProgress()
             local objectives = GetNumQuestLeaderBoards(questIndex)
             local questLine = hoverFrame_Quests:CreateFontString(nil, "OVERLAY", "GameFontNormal")
             questLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
-            questLine:SetText(titleColor_normal .. title .. "|r")
+            
 			questLine:SetShadowOffset(1, -1)
 			questLine:SetJustifyH("LEFT")
 			questLine:SetWidth(textWidth)
 			questLine:SetWordWrap(true)
 			
-			table.insert(hoverFrame_Quests.texts, {
-				fs = questLine,
-				normal = titleColor_normal .. title .. "|r",
-				highlight = titleColor_hover .. title .. "|r"
-				})
+
             prev = questLine
 
+			local questFinished = true  -- assume finished until proven otherwise
             for obj = 1, objectives do
                 local desc, type, finished = GetQuestLogLeaderBoard(obj, questIndex)
                 if desc then					
+					-- If any objective is not finished → the quest isn't finished
+					if not finished then
+						questFinished = false
+					end
+
                     local objLine = hoverFrame_Quests:CreateFontString(nil, "OVERLAY", "GameFontNormal")
                     objLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
         			local color = finished and textColor_finished or textColor_normal
@@ -467,6 +469,16 @@ function Anniversary_ShowTrackedAchievementProgress()
                     prev = objLine
                 end
             end
+
+			local titleColor = questFinished and titleColor_hover or titleColor_normal
+
+			questLine:SetText(titleColor .. title .. "|r")
+
+			table.insert(hoverFrame_Quests.texts, {
+				fs = questLine,
+				normal = titleColor .. title .. "|r",
+				highlight = titleColor_hover .. title .. "|r"
+			})
         end
 
 		-- Resize hoverFrame_Quests dynamically (so hover covers all lines)
