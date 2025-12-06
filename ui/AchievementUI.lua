@@ -111,6 +111,14 @@ end
 
 function Anniversary_ShowTrackedAchievementProgress()	
 
+	-- allow user to disable the entire tracker
+    if CA_Settings.trackerToggle == false then
+        if AnniversaryTrackedDisplay then
+            AnniversaryTrackedDisplay:Hide()
+        end
+        return
+    end
+
 	DisableBlizzardQuestTracker()
 
 	if CA_Settings.trackerHidden == nil then
@@ -426,22 +434,24 @@ function Anniversary_ShowTrackedAchievementProgress()
             local objectives = GetNumQuestLeaderBoards(questIndex)
             local questLine = hoverFrame_Quests:CreateFontString(nil, "OVERLAY", "GameFontNormal")
             questLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
-            questLine:SetText(titleColor_normal .. title .. "|r")
+            
 			questLine:SetShadowOffset(1, -1)
 			questLine:SetJustifyH("LEFT")
 			questLine:SetWidth(textWidth)
 			questLine:SetWordWrap(true)
 			
-			table.insert(hoverFrame_Quests.texts, {
-				fs = questLine,
-				normal = titleColor_normal .. title .. "|r",
-				highlight = titleColor_hover .. title .. "|r"
-				})
+
             prev = questLine
 
+			local questFinished = true  -- assume finished until proven otherwise
             for obj = 1, objectives do
                 local desc, type, finished = GetQuestLogLeaderBoard(obj, questIndex)
                 if desc then					
+					-- If any objective is not finished → the quest isn't finished
+					if not finished then
+						questFinished = false
+					end
+
                     local objLine = hoverFrame_Quests:CreateFontString(nil, "OVERLAY", "GameFontNormal")
                     objLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
         			local color = finished and textColor_finished or textColor_normal
@@ -459,6 +469,16 @@ function Anniversary_ShowTrackedAchievementProgress()
                     prev = objLine
                 end
             end
+
+			local titleColor = questFinished and titleColor_hover or titleColor_normal
+
+			questLine:SetText(titleColor .. title .. "|r")
+
+			table.insert(hoverFrame_Quests.texts, {
+				fs = questLine,
+				normal = titleColor .. title .. "|r",
+				highlight = titleColor_hover .. title .. "|r"
+			})
         end
 
 		-- Resize hoverFrame_Quests dynamically (so hover covers all lines)
@@ -1971,10 +1991,19 @@ function AchievementButton_DisplayAchievement (button, category, achievement, se
 		else
 			button:Expand(height);
 		end
-		if ( not completed or (not wasEarnedByMe and not isGuild) ) then
-			button.tracked:Show();
+
+		if CA_Settings.trackerToggle == false then
+			if button.check then button.check:Hide() end
 		end
-	elseif ( button.selected ) then
+		
+		if ( not completed or (not wasEarnedByMe and not isGuild) ) then
+			if CA_Settings.trackerToggle == false then	
+				button.tracked:Hide();
+			else
+				button.tracked:Show();
+			end
+		end
+	else
 		button.selected = nil;
 		if ( not button:IsMouseOver() ) then
 			button.highlight:Hide();
@@ -1982,6 +2011,12 @@ function AchievementButton_DisplayAchievement (button, category, achievement, se
 		button:Collapse();
 		button.description:Show();
 		button.hiddenDescription:Hide();
+
+		if button.tracked then button.tracked:Hide() end
+
+		if CA_Settings.trackerToggle == false then
+			if button.check then button.check:Hide() end
+		end
 	end
 
 	return id;

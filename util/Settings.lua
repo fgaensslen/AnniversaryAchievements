@@ -25,13 +25,22 @@ local options = {
             get = function(info) return CA_IsMicrobuttonEnabled() end,
             order = 2
         },
+        enableTracker = {
+            name = loc:Get('OPTION_TRACKER'),
+            desc = loc:Get('OPTION_TRACKER_DESC'),
+            type = 'toggle',
+            width = 2,
+            set = function(info, val) CA_Settings.trackerToggle = val end,
+            get = function(info) return CA_IsTrackerEnabled() end,
+            order = 3
+        },
         updateMapExploration = {
             name = loc:Get('OPTION_UPDATE_MAP_EXPLORATION'),
             desc = loc:Get('OPTION_UPDATE_MAP_EXPLORATION_DESC'),
             type = 'execute',
             width = 2,
             func = function() CA_UpdateExploredAreas() end,
-            order = 3
+            order = 4
         },
         resetAchievements = {
             name = loc:Get('OPTION_RESET_ACHIEVEMENTS'),
@@ -42,7 +51,7 @@ local options = {
                 CA_CompletionManager:GetLocal():Reset()
                 CA_performInitialCheck()
             end,
-            order = 4
+            order = 5
         }
     }
 }
@@ -52,11 +61,11 @@ LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addon)
 
 SexyLib:Util():AfterLogin(function()
     if not CA_Settings then
-        CA_Settings = {
-            sharing = true,
-            microbutton = true
-        }
+        CA_Settings = {}
     end
+    if CA_Settings.sharing == nil then CA_Settings.sharing = true end
+    if CA_Settings.microbutton == nil then CA_Settings.microbutton = true end
+    if CA_Settings.trackerToggle == nil then CA_Settings.trackerToggle = true end
 end)
 
 C_Timer.After(2, function()
@@ -84,4 +93,8 @@ end
 function CA_IsMicrobuttonEnabled()
     if CA_Settings.microbutton == nil then CA_Settings.microbutton = true end
     return CA_Settings.microbutton
+end
+
+function CA_IsTrackerEnabled()
+    return CA_Settings.trackerToggle
 end
