@@ -1,7 +1,7 @@
 if GetLocale() ~= 'deDE' then return end
 SexyLib:InitLocalization('Anniversary Achievements', {
-    achievement_earned = '&aErfolg erhalten von %s am %d/%d/%d',
-    achievement_in_progress = '&7Erfolg in Bearbeitung von %s',
+    achievement_earned = '&aErfolg von %s am %d.%d.%d errungen',
+    achievement_in_progress = '&aErfolg wird von %s erarbeitet',
 
     ICON_DESCRIPTION = '&7Linksklick: &eErfolge anzeigen oder schließen\n&7Rechtsklick: &eEinstellungen öffnen\n',
 
@@ -13,11 +13,11 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     OPTION_UPDATE_MAP_EXPLORATION_DESC = 'Überprüft alle bereits erkundeten Gebiete für Erfolge.',
     OPTION_RESET_ACHIEVEMENTS = 'Erfolge zurücksetzen',
     OPTION_RESET_ACHIEVEMENTS_DESC = 'Setzt alle Erfolge auf diesem Charakter zurück. Dies kann nicht rückgängig gemacht werden!',
-    OPTION_TRACKER = 'Ziele verfolgen und beobachten',
+    OPTION_TRACKER = 'Ziele beobachten',
     OPTION_TRACKER_DESC = 'Aktiviert oder deaktiviert den Tracker für Erfolge und Quests. Ändern dieser Option benötigt ein /reload des User-Interfaces.',
 
-    GOT_ACHIEVEMENT_MESSAGE_MALE = 'Ich habe folgenden Erfolg erhalten %s!',
-    GOT_ACHIEVEMENT_MESSAGE_FEMALE = 'Ich habe folgenden Erfolg erhalten %s!',
+    GOT_ACHIEVEMENT_MESSAGE_MALE = 'Ich habe folgenden Erfolg erhalten: %s!',
+    GOT_ACHIEVEMENT_MESSAGE_FEMALE = 'Ich habe folgenden Erfolg erhalten: %s!',
 
     COMPARE_ACHIEVEMENTS = 'Erfolge vergleichen',
     TARGET_DOES_NOT_HAVE_ADDON = 'Ziel hat das Addon nicht installiert.',

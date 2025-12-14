@@ -1,6 +1,6 @@
 SexyLib:InitLocalization('Anniversary Achievements', {
-    achievement_earned = '&aAchievement earned by %s on %d/%d/%d',
-    achievement_in_progress = '&7Achievement in progress by %s',
+    achievement_earned = '&aAchievement earned by %s on %d.%d.%d',
+    achievement_in_progress = '&aAchievement in progress by %s',
 
     ICON_DESCRIPTION = '&7Left mouse button: &eopen/hide achievements window\n&7Right mouse button: &eopen Anniversary Achievements settings',
 
@@ -12,11 +12,11 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     OPTION_UPDATE_MAP_EXPLORATION_DESC = 'Counts already explored areas for achievements.',
     OPTION_RESET_ACHIEVEMENTS = 'Reset achievements',
     OPTION_RESET_ACHIEVEMENTS_DESC = 'Reset all achievements progressions on this character. This can not be undone!',
-    OPTION_TRACKER = 'Objective Tracker',
+    OPTION_TRACKER = 'Track Objectives',
     OPTION_TRACKER_DESC = 'Enable or disable the tracker for achievements and quests. Toggling this option requires you to do /reload your user interface.',
 
-    GOT_ACHIEVEMENT_MESSAGE_MALE = 'I\'ve just earned achievement %s!',
-    GOT_ACHIEVEMENT_MESSAGE_FEMALE = 'I\'ve just earned achievement %s!',
+    GOT_ACHIEVEMENT_MESSAGE_MALE = 'I\'ve earned achievement: %s!',
+    GOT_ACHIEVEMENT_MESSAGE_FEMALE = 'I\'ve earned achievement: %s!',
 
     COMPARE_ACHIEVEMENTS = 'Compare achievements',
     TARGET_DOES_NOT_HAVE_ADDON = 'Target does not have this addon installed.',

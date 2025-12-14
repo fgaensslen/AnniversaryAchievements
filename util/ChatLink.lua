@@ -126,7 +126,7 @@ hooksecurefunc('SetItemRef', function(link)
         local _, _, _, _, _, playerName = GetPlayerInfoByGUID(guid)
         if not playerName then playerName = '???' end
         if finished == 1 then
-            lines[#lines + 1] = {1, loc:Get('achievement_earned', '|3-4(' .. playerName .. ')', day, month, year)}
+            lines[#lines + 1] = {1, loc:Get('achievement_earned', playerName, day, month, year)}
         else
             lines[#lines + 1] = {1, loc:Get('achievement_in_progress', playerName)}
         end
