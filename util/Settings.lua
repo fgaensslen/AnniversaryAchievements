@@ -63,7 +63,7 @@ SexyLib:Util():AfterLogin(function()
     if not CA_Settings then
         CA_Settings = {}
     end
-    if CA_Settings.sharing == nil then CA_Settings.sharing = true end
+    if CA_Settings.sharing == nil then CA_Settings.sharing = false end
     if CA_Settings.microbutton == nil then CA_Settings.microbutton = true end
     if CA_Settings.trackerToggle == nil then CA_Settings.trackerToggle = true end
 end)
