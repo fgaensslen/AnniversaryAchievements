@@ -2486,9 +2486,7 @@ function AchievementObjectives_DisplayCriteria (objectivesFrame, id, renderOffSc
 			metaCriteria.label:SetText(achievementName);
 			metaCriteria.icon:SetTexture(iconpath);
 
-			-- have to check if criteria is completed here, can't just check if achievement is completed.
-			-- This is because the criteria could have modifiers on it that prevent completion even though the achievement is earned.
-			if ( objectivesFrame.completed and completed ) then
+			if ( objectivesFrame.completed) then
 				metaCriteria.check:Show();
 				metaCriteria.border:SetVertexColor(1, 1, 1, 1);
 				metaCriteria.icon:SetVertexColor(1, 1, 1, 1);
