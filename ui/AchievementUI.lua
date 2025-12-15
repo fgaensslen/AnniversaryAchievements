@@ -2475,6 +2475,7 @@ function AchievementObjectives_DisplayCriteria (objectivesFrame, id, renderOffSc
 			end
 
 			local id, achievementName, points, achievementCompleted, month, day, year, description, flags, iconpath = GetAchievementInfo(assetID);
+			metaCriteria.completed = achievementCompleted
 
 			if ( month ) then
 				metaCriteria.date = FormatShortDate(day, month, year)
@@ -2486,25 +2487,19 @@ function AchievementObjectives_DisplayCriteria (objectivesFrame, id, renderOffSc
 			metaCriteria.label:SetText(achievementName);
 			metaCriteria.icon:SetTexture(iconpath);
 
-			-- have to check if criteria is completed here, can't just check if achievement is completed.
-			-- This is because the criteria could have modifiers on it that prevent completion even though the achievement is earned.
-			if ( objectivesFrame.completed and completed ) then
+			-- Reset first (frame reuse!)
+			metaCriteria.check:Hide();
+
+			if ( metaCriteria.completed ) then
 				metaCriteria.check:Show();
 				metaCriteria.border:SetVertexColor(1, 1, 1, 1);
 				metaCriteria.icon:SetVertexColor(1, 1, 1, 1);
-				metaCriteria.label:SetShadowOffset(0, 0)
-				metaCriteria.label:SetTextColor(0, 0, 0, 1);
-			elseif ( completed ) then
-				metaCriteria.check:Show();
-				metaCriteria.border:SetVertexColor(1, 1, 1, 1);
-				metaCriteria.icon:SetVertexColor(1, 1, 1, 1);
-				metaCriteria.label:SetShadowOffset(1, -1)
+				metaCriteria.label:SetShadowOffset(1, -1);
 				metaCriteria.label:SetTextColor(0, 1, 0, 1);
 			else
-				metaCriteria.check:Hide();
 				metaCriteria.border:SetVertexColor(.75, .75, .75, 1);
 				metaCriteria.icon:SetVertexColor(.55, .55, .55, 1);
-				metaCriteria.label:SetShadowOffset(1, -1)
+				metaCriteria.label:SetShadowOffset(1, -1);
 				metaCriteria.label:SetTextColor(.6, .6, .6, 1);
 			end
 

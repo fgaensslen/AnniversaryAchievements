@@ -1,6 +1,6 @@
 SexyLib:InitLocalization('Anniversary Achievements', {
     achievement_earned = '&aAchievement earned by %s on %d.%d.%d',
-    achievement_in_progress = '&7Achievement in progress by %s',
+    achievement_in_progress = '&aAchievement in progress by %s',
 
     ICON_DESCRIPTION = '&7Left mouse button: &eopen/hide achievements window\n&7Right mouse button: &eopen Anniversary Achievements settings',
 
@@ -12,11 +12,11 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     OPTION_UPDATE_MAP_EXPLORATION_DESC = 'Counts already explored areas for achievements.',
     OPTION_RESET_ACHIEVEMENTS = 'Reset achievements',
     OPTION_RESET_ACHIEVEMENTS_DESC = 'Reset all achievements progressions on this character. This can not be undone!',
-    OPTION_TRACKER = 'Objective Tracker',
+    OPTION_TRACKER = 'Track Objectives',
     OPTION_TRACKER_DESC = 'Enable or disable the tracker for achievements and quests. Toggling this option requires you to do /reload your user interface.',
 
-    GOT_ACHIEVEMENT_MESSAGE_MALE = 'I\'ve just earned achievement %s!',
-    GOT_ACHIEVEMENT_MESSAGE_FEMALE = 'I\'ve just earned achievement %s!',
+    GOT_ACHIEVEMENT_MESSAGE_MALE = 'I\'ve earned achievement: %s!',
+    GOT_ACHIEVEMENT_MESSAGE_FEMALE = 'I\'ve earned achievement: %s!',
 
     COMPARE_ACHIEVEMENTS = 'Compare achievements',
     TARGET_DOES_NOT_HAVE_ADDON = 'Target does not have this addon installed.',
@@ -922,7 +922,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_ANUBREKHAN_WITHOUT_MOBS = 'Slay Anub\'Rekhan, leaving both Crypt Guards alive.',
     AN_FAERLINA_WITHOUT_MOBS = 'Momma Said Knock You Out',
     AD_FAERLINA_WITHOUT_MOBS = 'Slay Grand Widow Faerlina, leaving all the worshipers and followers of Naxxramas alive.',
-    AN_SAPPHIRONE_WITH_ALL_ALIVE = 'We Won\'t Submit To Ice',
+    AN_SAPPHIRONE_WITH_ALL_ALIVE = 'We won\'t succumb to the Ice',
     AD_SAPPHIRONE_WITH_ALL_ALIVE = 'Defeat Sapphiron in Naxxramas without anyone in the raid dying.',
     AN_ARACHNOPHOBIA = 'Arachnophobia',
     AD_ARACHNOPHOBIA = 'Kill Maexxna in Naxxramas within 20 minutes of Anub\'Rekhan\'s death in 25-player mode.',
