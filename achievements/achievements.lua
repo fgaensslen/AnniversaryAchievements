@@ -1093,18 +1093,11 @@ do
 		:Criteria(TYPE.BOSS_WITH_ALL_ALIVE, {15989}):Build()
 		:Build()
 		
-	ach = instances:CreateAchievement('AN_HEIGAN_DANCE', 'AD_HEIGAN_DANCE', 10, '-ability_rogue_quickrecovery', true, 562)
-		ach:AddCriteria(criterias:Create(nil, TYPE.BOSS_WITH_ALL_ALIVE, {15936}))
-		
-	ach = instances:CreateAchievement('AN_PATCHWERK', 'AD_PATCHWERK', 10, '-spell_shadow_abominationexplosion', true, 563)
-		ach:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, {16028}))
-
     ach = instances:CreateAchievement('AN_HEIGAN_DANCE', 'AD_HEIGAN_DANCE', 10, '-ability_rogue_quickrecovery', true, 562)
 		ach:AddCriteria(criterias:Create(nil, TYPE.BOSS_WITH_ALL_ALIVE, {15936}))
 
     ach = instances:CreateAchievement('AN_PATCHWERK', 'AD_PATCHWERK', 10, '-spell_shadow_abominationexplosion', true, 563)
 		ach:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, {16028}))
-
     --TBC
 	local builderNormalTBC = L:Achievement(pve, 10, '-spell_holy_summonchampion')
 		:NameDesc('AN_TBC_DUNGEONS', 'AD_TBC_DUNGEONS', true)
@@ -1771,13 +1764,13 @@ do
     end
 
     ach = reputation:CreateAchievement(loc:Get('AN_HORDE_REPS'), loc:Get('AD_HORDE_REPS'), 10, 'achievement_pvp_o_h')
-    for i, fid in pairs({76, 530, 68, 81}) do
+    for i, fid in pairs({76, 530, 68, 81, 911}) do
         ach:AddCriteria(criterias:Create(loc:Get('AC_HORDE_REPS_' .. i), TYPE.REACH_REPUTATION, {fid, 8}))
     end
     ach:SetHordeOnly()
 
     ach = reputation:CreateAchievement(loc:Get('AN_ALLIANCE_REPS'), loc:Get('AD_ALLIANCE_REPS'), 10, 'achievement_pvp_o_a')
-    for i, fid in pairs({72, 69, 54, 47}) do
+    for i, fid in pairs({72, 69, 54, 47, 930}) do
         ach:AddCriteria(criterias:Create(loc:Get('AC_ALLIANCE_REPS_' .. i), TYPE.REACH_REPUTATION, {fid, 8}))
     end
     ach:SetAllianceOnly()
