@@ -77,6 +77,8 @@ local function Completion(data)
                     end
                 end
                 return false
+            elseif realCriteria and realCriteria.type == CA_Criterias.TYPE.COMPLETE_ACHIEVEMENT then
+                return self:IsAchievementCompleted(realCriteria.data[1])
             end
 
             return criteria and criteria[1]

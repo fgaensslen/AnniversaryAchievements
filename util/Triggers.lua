@@ -240,7 +240,7 @@ function CountLearnedCookingRecipes()
     end
 
     -- Fire trigger only if total increased since last known
-    if total > previousCookingRecipeCount then
+    if total >= previousCookingRecipeCount then
         trigger(TYPE.LEARN_PROFESSION_RECIPES, {ClassicAchievementsProfessions.COOKING[1]}, total, true)
     end
 
