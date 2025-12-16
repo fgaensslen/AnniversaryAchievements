@@ -8,6 +8,21 @@ local ach, previous = nil
 local L = CA_Loader:ForTab(tab)
 local TYPE = criterias.TYPE
 
+local separator
+if(GetLocale() == "deDE") then 
+    separator = '.'
+else
+    separator = ','
+end
+
+local function FormatNumbersInString(text)
+    return text:gsub("%d+", function(num)
+        local left, digits = num:match("^(%d)(%d+)$")
+        if not digits then return num end
+        return left .. digits:reverse():gsub("(%d%d%d)", "%1" .. separator):reverse()
+    end)
+end
+
 -- CATEGORIES -- 
 local general = tab:CreateCategory('CATEGORY_GENERAL', nil, true)
 
@@ -64,7 +79,7 @@ do
 
     previous = nil
     for i, count in pairs({100, 1000, 5000, 10000, 25000, 50000, 100000}) do
-        ach = general:CreateAchievement(loc:Get('AN_MOB_KILLS_' .. i), loc:Get('AD_MOB_KILLS', count), 10, '-inv_misc_monsterclaw_02')
+        ach = general:CreateAchievement(loc:Get('AN_MOB_KILLS_' .. i), FormatNumbersInString(loc:Get('AD_MOB_KILLS', count)), 10, '-inv_misc_monsterclaw_02')
         ach:AddCriteria(criterias:Create(loc:Get('AC_MOB_KILLS', count), TYPE.KILL_NPCS, nil, count))
         if previous then previous:SetNext(ach) end
         previous = ach
@@ -187,7 +202,7 @@ end
 do
     previous = nil
     for i, count in pairs({50, 100, 250, 500, 750, 1000, 1500, 3000}) do
-        ach = quests:CreateAchievement(loc:Get('AN_QUESTS', count), loc:Get('AD_QUESTS', count), 10, '-achievement_quests_completed_0' .. i)
+        ach = quests:CreateAchievement(FormatNumbersInString(loc:Get('AN_QUESTS', count)), FormatNumbersInString(loc:Get('AD_QUESTS', count)), 10, '-achievement_quests_completed_0' .. i)
         ach:AddCriteria(criterias:Create(loc:Get('AC_QUESTS', count), TYPE.COMPLETE_QUESTS, nil, count))
         if previous then previous:SetNext(ach) end
         previous = ach
@@ -577,7 +592,7 @@ do
 		if i <= 9 then pvpIcon = '-achievement_pvp_p_0'
         else pvpIcon = '-achievement_pvp_p_' end
 	
-        ach = pvp:CreateAchievement(loc:Get('AN_PVP_KILLS', count), loc:Get('AD_PVP_KILLS', count), 10, pvpIcon .. (i + 1))
+        ach = pvp:CreateAchievement(FormatNumbersInString(loc:Get('AN_PVP_KILLS', count)), FormatNumbersInString(loc:Get('AD_PVP_KILLS', count)), 10, pvpIcon .. (i + 1))
         ach:AddCriteria(criterias:Create(loc:Get('AC_PVP_KILLS', count), TYPE.KILL_PLAYERS, nil, count))
         previous:SetNext(ach)
         previous = ach
@@ -1513,7 +1528,7 @@ do
 		local ach
 		local lastID = 516
         for _, count in pairs({25, 50, 100, 250, 500, 1000}) do
-			ach = fishing:CreateAchievement(loc:Get('AN_FISHING_COUNT', count), loc:Get('AD_FISHING_COUNT', count), 10, '-inv_misc_fish_50', false, lastID)
+			ach = fishing:CreateAchievement(FormatNumbersInString(loc:Get('AN_FISHING_COUNT', count)), FormatNumbersInString(loc:Get('AD_FISHING_COUNT', count)), 10, '-inv_misc_fish_50', false, lastID)
 			ach:AddCriteria(criterias:Create(loc:Get('AC_FISHING_COUNT', count), TYPE.FISH_ANY_ITEM, {-1}, count))				
 		if previous then previous:SetNext(ach) end
             previous = ach
