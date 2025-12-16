@@ -8,14 +8,13 @@ local ach, previous = nil
 local L = CA_Loader:ForTab(tab)
 local TYPE = criterias.TYPE
 
-local separator
-if(GetLocale() == "deDE") then 
-    separator = '.'
-else
-    separator = ','
-end
+local separator = '.'
 
-local function FormatNumbersInString(text)
+function FormatNumbersInString(text)
+    if GetLocale() ~= "deDE" then
+        return text
+    end
+
     return text:gsub("%d+", function(num)
         local left, digits = num:match("^(%d)(%d+)$")
         if not digits then return num end

@@ -919,7 +919,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_ANUBREKHAN_WITHOUT_MOBS = 'Slay Anub\'Rekhan, leaving both Crypt Guards alive.',
     AN_FAERLINA_WITHOUT_MOBS = 'Momma Said Knock You Out',
     AD_FAERLINA_WITHOUT_MOBS = 'Slay Grand Widow Faerlina, leaving all the worshipers and followers of Naxxramas alive.',
-    AN_SAPPHIRONE_WITH_ALL_ALIVE = 'We won\'t succumb to the Ice',
+    AN_SAPPHIRONE_WITH_ALL_ALIVE = 'We won\'t succumb to the ice',
     AD_SAPPHIRONE_WITH_ALL_ALIVE = 'Defeat Sapphiron in Naxxramas without anyone in the raid dying.',
     AN_ARACHNOPHOBIA = 'Arachnophobia',
     AD_ARACHNOPHOBIA = 'Kill Maexxna in Naxxramas within 20 minutes of Anub\'Rekhan\'s death in 25-player mode.',
