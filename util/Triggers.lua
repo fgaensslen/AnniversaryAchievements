@@ -556,12 +556,37 @@ killingTracker:AddHandler(PATCHWERK_ID, function(targetID)
     patchwerkStart = nil
 end)
 
+--PVP
+--Achievement: With a Little Helper from My Friends
+local LITTLE_HELPER_BUFFS = {
+    [26157] = true,
+    [26272] = true,
+    [26273] = true,
+    [26274] = true
+}
+
+local function HasLittleHelper()
+    for i = 1, 40 do
+        local _, _, _, _, _, _, _, _, _, spellId = UnitBuff("player", i)
+        if not spellId then break end
+        if LITTLE_HELPER_BUFFS[spellId] then
+            return true
+        end
+    end
+    return false
+end
+
 local previousPvPKills = GetPVPLifetimeStats()
 killingTracker:AddPlayerHandler(function(targetGUID)
     local kills = GetPVPLifetimeStats()
     if kills == previousPvPKills then return end
     trigger(TYPE.KILL_PLAYERS, nil, kills, true)
     previousPvPKills = kills
+
+    -- ✅ LITTLE HELPER ACHIEVEMENT
+    if HasLittleHelper() then
+        trigger(TYPE.SPECIAL, { 'LITTLE_HELPER_HK' }, 1)
+    end
 
     local _, className, _, raceName = GetPlayerInfoByGUID(targetGUID)
     trigger(TYPE.KILL_PLAYER_OF_CLASS, {string.upper(className)}, 1)
@@ -590,7 +615,33 @@ killingTracker:AddHandler({11677, 13086, 13088}, function(targetID)
 end)
 
 local events = {
-    COMBAT_LOG_EVENT_UNFILTERED = function() killingTracker:HandleCombatEvent() end,
+    COMBAT_LOG_EVENT_UNFILTERED = function() 
+        killingTracker:HandleCombatEvent() 
+        
+        -- Detect KT engage / death
+        local _, subEvent, _, sourceGUID, _, _, _, destGUID, _, _, _, spellId = CombatLogGetCurrentEventInfo()
+        -- Detect Snowball hits
+        if spellId == 21343 then
+            -- Only player casts
+            if sourceGUID ~= UnitGUID("player") then return end
+
+            local targetID = GetCreatureIDFromGUID(destGUID)
+
+            -- Sometimes targetID can be nil, fallback to name check
+            local targetName = targetID and nil or UnitName("target")
+
+            -- Horde
+            if (targetID == 3057) then
+                trigger(TYPE.SPECIAL, { 'SNOWBALL_CAIRNE' }, 1, true)
+            end
+
+            -- Alliance
+            if (targetID == 2784) then
+                trigger(TYPE.SPECIAL, { 'SNOWBALL_MAGNI' }, 1, true)
+            end
+        end
+
+    end,
     PLAYER_PVP_KILLS_CHANGED = function()
         local kills = GetPVPLifetimeStats()
         trigger(TYPE.KILL_PLAYERS, nil, kills, true)

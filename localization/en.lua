@@ -1013,6 +1013,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_WINTERVEIL_SNOWBALL_HORDE = 'Scrooge',
 	AD_WINTERVEIL_SNOWBALL_HORDE = 'Throw a snowball at Cairne Bloodhoof during the Feast of Winter Veil.',
 
+    AN_WINTERVEIL_PVP = 'With a Little Helper from My Friends',
+    AD_WINTERVEIL_PVP = 'Earn 50 honorable kills as a Little Helper from the Winter Wondervolt machine.',
+
 	--TBC
     AN_QUESTS_HELLFIRE_PENINSULA = 'To Hellfire and Back',
     AD_QUESTS_HELLFIRE_PENINSULA = 'Complete the Hellfire Peninsula storylines listed below.',

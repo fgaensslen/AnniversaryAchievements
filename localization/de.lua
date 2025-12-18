@@ -1010,10 +1010,13 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AD_WINTERVEIL_PRESENTS = 'Öffnet eines der Geschenke unter dem Winterhauchbaum, sobald sie verfügbar sind.',
 
     AN_WINTERVEIL_SNOWBALL_ALLIANCE = 'Mitten ins Gesicht',
-	AD_WINTERVEIL_SNOWBALL_ALLIANCE = 'Werft während des Winterhauchfests einen Schneeball auf König Magni Bronzebart.',
+	AD_WINTERVEIL_SNOWBALL_ALLIANCE = 'Werft während des Winterhauchfests einen Schneeball auf König Magni Bronzebeard.',
 
     AN_WINTERVEIL_SNOWBALL_HORDE = 'Mitten ins Gesicht',
-	AD_WINTERVEIL_SNOWBALL_HORDE = 'Werft während des Winterhauchfests einen Schneeball auf Cairne Bluthuf.',
+	AD_WINTERVEIL_SNOWBALL_HORDE = 'Werft während des Winterhauchfests einen Schneeball auf Cairne Bloodhof.',
+
+    AN_WINTERVEIL_PVP = 'Kleiner Helfer in der Not',
+    AD_WINTERVEIL_PVP = 'Erringt 50 ehrenhafte Siege als kleiner Helfer der Winterwundervolt-Maschine.',
 
 	--BURNING CRUSADE
     AN_QUESTS_HELLFIRE_PENINSULA = 'Durchs Höllenfeuer und zurück',

@@ -185,17 +185,35 @@ hooksecurefunc('SetItemRef', function(link)
 end)
 
 function CA_ShareAchievement(achievementID)
-    if CA_IsSharingAchievementsInChat() then
-        local gender = UnitSex('player')
-        if gender > 1 then
-            if gender == 2 then gender = 'MALE'
-            else gender = 'FEMALE' end
-            local message = SexyLib:Localization('Anniversary Achievements'):Get('GOT_ACHIEVEMENT_MESSAGE_' .. gender, GetAchievementLink(achievementID))
-            if SexyLib:Util():IsInGuild() then safeSendChat(message, 'GUILD') end
-            if IsInRaid() then safeSendChat(message, 'RAID')
-            elseif IsInGroup() then safeSendChat(message, 'PARTY')
-            else safeSendChat(message, 'SAY') end
-        end
+    if not CA_IsSharingAchievementsInChat() then return end
+
+    local ach = db:GetAchievement(achievementID)
+    if not ach then return end
+
+    local gender = UnitSex('player')
+    if gender <= 1 then return end
+
+    gender = (gender == 2) and 'MALE' or 'FEMALE'
+
+    local link = GetAchievementLink(achievementID)
+    local fallback = "[" .. ach.name .. "]"
+    local display = link or fallback
+
+    local message = SexyLib:Localization('Anniversary Achievements'):Get(
+        'GOT_ACHIEVEMENT_MESSAGE_' .. gender,
+        display
+    )
+
+    if SexyLib:Util():IsInGuild() then
+        safeSendChat(message, 'GUILD')
+    end
+
+    if IsInRaid() then
+        safeSendChat(message, 'RAID')
+    elseif IsInGroup() then
+        safeSendChat(message, 'PARTY')
+    else
+        safeSendChat(message, 'SAY')
     end
 end
 
