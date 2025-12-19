@@ -8,14 +8,13 @@ local ach, previous = nil
 local L = CA_Loader:ForTab(tab)
 local TYPE = criterias.TYPE
 
-local separator
-if(GetLocale() == "deDE") then 
-    separator = '.'
-else
-    separator = ','
-end
+local separator = '.'
 
-local function FormatNumbersInString(text)
+function FormatNumbersInString(text)
+    if GetLocale() ~= "deDE" then
+        return text
+    end
+
     return text:gsub("%d+", function(num)
         local left, digits = num:match("^(%d)(%d+)$")
         if not digits then return num end
@@ -207,9 +206,13 @@ do
     previous = nil
     for i, count in pairs({5, 10, 25, 50, 100, 250, 500}) do
         local texture
-        if i == 1 then texture = 6
-        elseif i < 4 then texture = 4
-        else texture = 2 end
+        if i == 1 then texture = 5
+        elseif i == 2 then texture = 6
+        elseif i == 3 then texture = 3
+        elseif i == 4 then texture = 4
+        elseif i == 5 then texture = 1
+        elseif i > 5 then texture = 2
+        end
         ach = quests:CreateAchievement(loc:Get('AN_QUEST_GOLD' .. count), loc:Get('AD_QUEST_GOLD', count), 10, '-Inv_Misc_Coin_0' .. texture)
         ach:AddCriteria(criterias:Create(loc:Get('AC_QUEST_GOLD', count), TYPE.LOOT_QUEST_GOLD, nil, count * 10000):SetQuantityFormatter(function(current, required)
             return GetCoinTextureString(current) .. ' / ' .. GetCoinTextureString(required)
@@ -1714,9 +1717,9 @@ do
             ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {6984}))
         winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
 
-        --ach = winterveil:CreateAchievement('AN_WINTERVEIL_SNOWBALL_HORDE', 'AD_WINTERVEIL_SNOWBALL_HORDE', 10, '-inv_ammo_snowball', true, 546)
-        --    ach:AddCriteria(criterias:Create(nil, TYPE.HAS_BUFF,{ spellID = 21343, npcID = 3057 }))
-        --winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+        ach = winterveil:CreateAchievement('AN_WINTERVEIL_SNOWBALL_HORDE', 'AD_WINTERVEIL_SNOWBALL_HORDE', 10, '-inv_ammo_snowball', true, 546)
+            ach:AddCriteria(criterias:Create(nil, TYPE.SPECIAL,{ 'SNOWBALL_CAIRNE' }))
+        winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
     else
         ach = winterveil:CreateAchievement('AN_WINTERVEIL_METZEN', 'AD_WINTERVEIL_METZEN', 10, 'achievement_worldevent_reindeer', true, 542)
             ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {8762}))
@@ -1726,9 +1729,9 @@ do
             ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {7045}))
         winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
 
-        --ach = winterveil:CreateAchievement('AN_WINTERVEIL_SNOWBALL_ALLIANCE', 'AD_WINTERVEIL_SNOWBALL_ALLIANCE', 10, '-inv_ammo_snowball', true, 546)
-        --    ach:AddCriteria(criterias:Create(nil, TYPE.HAS_BUFF,{ spellID = 21343, npcID = 2784 }))
-        --winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+        ach = winterveil:CreateAchievement('AN_WINTERVEIL_SNOWBALL_ALLIANCE', 'AD_WINTERVEIL_SNOWBALL_ALLIANCE', 10, '-inv_ammo_snowball', true, 546)
+            ach:AddCriteria(criterias:Create(nil, TYPE.SPECIAL,{ 'SNOWBALL_MAGNI' }))
+        winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
     end
 
         ach = winterveil:CreateAchievement('AN_WINTERVEIL_GOURMET', 'AD_WINTERVEIL_GOURMET', 10, '-inv_misc_food_62', true, 544)
@@ -1740,6 +1743,10 @@ do
             local q1 = criterias:Create(nil, TYPE.COMPLETE_QUEST, {8767})
             local q2 = criterias:Create(nil, TYPE.COMPLETE_QUEST, {8768})
             ach:AddCriteria(criterias:Create(nil, TYPE.OR, { q1, q2 }))
+        winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+
+        ach = winterveil:CreateAchievement('AN_WINTERVEIL_PVP', 'AD_WINTERVEIL_PVP', 10, 'achievement_worldevent_littlehelper', true, 566)
+            ach:AddCriteria(criterias:Create(loc:Get('AC_PVP_KILLS', 50), TYPE.SPECIAL, { 'LITTLE_HELPER_HK' }, 50))
         winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
 end
 

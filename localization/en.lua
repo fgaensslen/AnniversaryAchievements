@@ -922,7 +922,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_ANUBREKHAN_WITHOUT_MOBS = 'Slay Anub\'Rekhan, leaving both Crypt Guards alive.',
     AN_FAERLINA_WITHOUT_MOBS = 'Momma Said Knock You Out',
     AD_FAERLINA_WITHOUT_MOBS = 'Slay Grand Widow Faerlina, leaving all the worshipers and followers of Naxxramas alive.',
-    AN_SAPPHIRONE_WITH_ALL_ALIVE = 'We won\'t succumb to the Ice',
+    AN_SAPPHIRONE_WITH_ALL_ALIVE = 'We won\'t succumb to the ice',
     AD_SAPPHIRONE_WITH_ALL_ALIVE = 'Defeat Sapphiron in Naxxramas without anyone in the raid dying.',
     AN_ARACHNOPHOBIA = 'Arachnophobia',
     AD_ARACHNOPHOBIA = 'Kill Maexxna in Naxxramas within 20 minutes of Anub\'Rekhan\'s death in 25-player mode.',
@@ -1015,6 +1015,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_WINTERVEIL_SNOWBALL_HORDE = 'Scrooge',
 	AD_WINTERVEIL_SNOWBALL_HORDE = 'Throw a snowball at Cairne Bloodhoof during the Feast of Winter Veil.',
+
+    AN_WINTERVEIL_PVP = 'With a Little Helper from My Friends',
+    AD_WINTERVEIL_PVP = 'Earn 50 honorable kills as a Little Helper from the Winter Wondervolt machine.',
 
 	--TBC
     AN_QUESTS_HELLFIRE_PENINSULA = 'To Hellfire and Back',
