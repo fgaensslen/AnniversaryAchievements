@@ -79,7 +79,7 @@ do
     previous = nil
     for i, count in pairs({100, 1000, 5000, 10000, 25000, 50000, 100000}) do
         ach = general:CreateAchievement(loc:Get('AN_MOB_KILLS_' .. i), FormatNumbersInString(loc:Get('AD_MOB_KILLS', count)), 10, '-inv_misc_monsterclaw_02')
-        ach:AddCriteria(criterias:Create(loc:Get('AC_MOB_KILLS', count), TYPE.KILL_NPCS, nil, count))
+        ach:AddCriteria(criterias:Create(loc:Get('AC_MOB_KILLS', count), TYPE.KILL_ANY_NPC, nil, count))
         if previous then previous:SetNext(ach) end
         previous = ach
     end
@@ -1136,6 +1136,9 @@ do
 		
 	ach = instances:CreateAchievement('AN_PATCHWERK', 'AD_PATCHWERK', 10, '-spell_shadow_abominationexplosion', true, 563)
 		ach:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, {16028}))
+
+    ach = instances:CreateAchievement('AN_KELTHUZAD_ABOMINATIONS', 'AD_KELTHUZAD_ABOMINATIONS', 10, 'spell_deathknight_plaguestrike', true, 565)
+		ach:AddCriteria(criterias:Create(loc:Get('AC_MOB_KILLS', 18), TYPE.KILL_NPCS, {16428}, 18))
 
     --TBC
 	local builderNormalTBC = L:Achievement(pve, 10, '-spell_holy_summonchampion')

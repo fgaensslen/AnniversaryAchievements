@@ -59,16 +59,8 @@ function CheckDungeonQuests()
 		[3341] = { type = CA_Criterias.TYPE.KILL_NPC, data = {7358} }, -- Amnennar the Coldbringer
 
 		-- Scarlet Monastery
-		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4543} }, -- Alle fünf Bosse für Horde
-		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {6487} },
-		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3975} },
-		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3976} },
-		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3977} },
-		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4543} }, -- Alle fünf Bosse für Allianz
-		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {6487} },
-		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3975} },
-		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3976} }, 
-		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {3977} },
+		[1053] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4543, 6487, 3975, 3976, 3977} }, -- Alle fünf Bosse für Horde
+		[1048] = { type = CA_Criterias.TYPE.KILL_NPC, data = {4543, 6487, 3975, 3976, 3977} }, -- Alle fünf Bosse für Allianz
 
 		-- Uldaman
 		[2278] = { type = CA_Criterias.TYPE.KILL_NPC, data = {2748} }, -- Archaedas 
@@ -105,8 +97,7 @@ function CheckDungeonQuests()
 		[5263] = { type = CA_Criterias.TYPE.KILL_NPC, data = {10440} }, -- Baron Rivendare
 
 		-- Dire Maul
-		[7461] = { type = CA_Criterias.TYPE.KILL_NPC, data = {11496} }, -- Immol'thar
-		[7461] = { type = CA_Criterias.TYPE.KILL_NPC, data = {11486} }, -- Prinz Tortheldrin
+		[7461] = { type = CA_Criterias.TYPE.KILL_NPC, data = {11496, 11486} }, -- Immol'thar, Prinz Tortheldrin
 	}
 	
 	for questID, criteriaInfo in pairs(bossQuestMap) do
@@ -415,15 +406,60 @@ local EMOTE_PAT = getEmoteLocalizations('EMOTE_PAT')
 local canGetBattlegroundsAchievement = false
 local alteracID, warsongID, arathiID, bgEyeID = 1459, 1460, 1461, 1956
 
+-- Kel'Thuzad Abomination Achievement (event-based)
+local KT_ID = 15990
+local KT_ABOMINATION_ID = 16428
+
+local ktActive = false
+local ktAbomKills = 0
+local ktCompleted = false
+
+local function ResetKT()
+    ktActive = false
+    ktAbomKills = 0
+    ktCompleted = false
+end
+
+local function GetCreatureIDFromGUID(guid)
+    if not guid or not guid:find("^Creature%-") then return nil end
+    local _, _, _, _, _, id = strsplit("-", guid)
+    return tonumber(id)
+end
+
 local killingTracker = CA_CreatureKillingTracker
 killingTracker:AddHandler(function(targetID) return true end, function(targetID)
-    trigger(TYPE.KILL_NPC, {targetID}, 1)
-    trigger(TYPE.KILL_NPCS, nil, 1)
 
+    -- 1. SINGLE NPC (exact ID)
+    trigger(TYPE.KILL_NPC, {targetID}, 1)
+
+    -- 2. ANY NPC (generic kill)
+    trigger(TYPE.KILL_ANY_NPC, nil, 1)
+
+    -- 3. MULTIPLE NPCS OF SPECIFIC IDs (list-type achievements)
+    trigger(TYPE.KILL_NPCS, {targetID}, 1)
+
+    -- 4. HEROIC kills
     local difficultyID = GetDungeonDifficultyID()
     local _, _, isHeroic = GetDifficultyInfo(difficultyID)
-    if isHeroic then trigger(TYPE.KILL_NPC_HEROIC, {targetID}, 1) end
-    if time() < 1643871600 then trigger(TYPE.P3_FIRST_WEEK, {targetID}, 1) end
+    if isHeroic then
+        trigger(TYPE.KILL_NPC_HEROIC, {targetID}, 1)
+    end
+
+    -- 5. P3 first week
+    if time() < 1643871600 then
+        trigger(TYPE.P3_FIRST_WEEK, {targetID}, 1)
+    end
+
+    -- KT Abomination logic
+    if not ktActive or ktCompleted then return end
+    if targetID ~= KT_ABOMINATION_ID then return end
+
+    ktAbomKills = ktAbomKills + 1
+
+    if ktAbomKills >= 18 then
+        ktCompleted = true
+        trigger(TYPE.KILL_NPCS, {KT_ABOMINATION_ID}, 18, true)
+    end
 end)
 
 local leeroy = {}
@@ -565,15 +601,16 @@ local LITTLE_HELPER_BUFFS = {
     [26274] = true
 }
 
-local function HasLittleHelper()
+local function UpdateLittleHelper()
+    hasLittleHelper = false
     for i = 1, 40 do
         local _, _, _, _, _, _, _, _, _, spellId = UnitBuff("player", i)
         if not spellId then break end
         if LITTLE_HELPER_BUFFS[spellId] then
-            return true
+            hasLittleHelper = true
+            return
         end
     end
-    return false
 end
 
 local previousPvPKills = GetPVPLifetimeStats()
@@ -584,7 +621,7 @@ killingTracker:AddPlayerHandler(function(targetGUID)
     previousPvPKills = kills
 
     -- ✅ LITTLE HELPER ACHIEVEMENT
-    if HasLittleHelper() then
+    if hasLittleHelper then
         trigger(TYPE.SPECIAL, { 'LITTLE_HELPER_HK' }, 1)
     end
 
@@ -620,6 +657,17 @@ local events = {
         
         -- Detect KT engage / death
         local _, subEvent, _, sourceGUID, _, _, _, destGUID, _, _, _, spellId = CombatLogGetCurrentEventInfo()
+
+        if subEvent == "UNIT_DIED" then
+            -- KT dead
+            ResetKT()
+        elseif not ktActive then
+            -- First engage
+            ktActive = true
+            ktAbomKills = 0
+            ktCompleted = false
+        end
+
         -- Detect Snowball hits
         if spellId == 21343 then
             -- Only player casts
@@ -760,6 +808,7 @@ local events = {
     end,
 	UNIT_AURA = function(unit)
 		if unit ~= "player" then return end
+        UpdateLittleHelper()
 
 		local i = 1
 		while true do
@@ -787,9 +836,6 @@ local events = {
 	TRADE_SKILL_SHOW = function()
 		CountLearnedCookingRecipes()	
 	end,
-    --TRADE_SKILL_UPDATE = function()
-		--CountLearnedCookingRecipes()        
-    --end,
     CHAT_MSG_SYSTEM = function(msg)
         local winner = msg:match(DUEL_VICTORY_PATTERN)
         if winner and UnitName('player') == winner then
@@ -825,6 +871,11 @@ local events = {
     end,
     PLAYER_REGEN_ENABLED = function()
         bossesWithMobsCache = {}
+
+        -- Reset on wipe / combat end
+        if ktActive then
+            ResetKT()
+        end
     end
 }
 local eventsHandler = CreateFrame('FRAME', 'ClassicAchievementsEventHandlingFrame')

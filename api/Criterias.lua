@@ -50,12 +50,13 @@ struct.TYPE = {
     BG_POINTS = 44,
     P3_FIRST_WEEK = 45,
 	FISH_ANY_ITEM = 46,
-	HAS_BUFF = 47
+	HAS_BUFF = 47,
+    KILL_ANY_NPC = 48
 }
 
 struct.dataLengths = {
     [struct.TYPE.KILL_NPC] = 1, -- npcID
-    [struct.TYPE.KILL_NPCS] = 0,
+    [struct.TYPE.KILL_NPCS] = 1,
     [struct.TYPE.COMPLETE_QUEST] = 1, -- questID
     [struct.TYPE.COMPLETE_QUESTS] = 0,
     [struct.TYPE.OBTAIN_ITEM] = 1, -- itemID
@@ -100,7 +101,8 @@ struct.dataLengths = {
     [struct.TYPE.BG_POINTS] = 3,
     [struct.TYPE.P3_FIRST_WEEK] = 1,
 	[struct.TYPE.FISH_ANY_ITEM] = 1,
-	[struct.TYPE.HAS_BUFF] = 1 --spellID
+	[struct.TYPE.HAS_BUFF] = 1, --spellID,
+    [struct.TYPE.KILL_ANY_NPC] = 0
 }
 
 struct.criterias = {}

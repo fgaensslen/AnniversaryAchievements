@@ -931,6 +931,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_HEIGAN_DANCE = 'Bezwingt Heigan den Unreinen in Naxxramas, ohne dass jemand aus dem Schlachtzug stirbt.',
 	AN_PATCHWERK = 'Legt Flickwerk schnell das Handwerk',
     AD_PATCHWERK = 'Bezwingt Flickwerk in Naxxramas in höchstens 3 Minuten.',
+    AN_KELTHUZAD_ABOMINATIONS = 'Ich krieg\' einfach nicht genug',
+    AD_KELTHUZAD_ABOMINATIONS = 'Bezwingt Kel\'Thuzad in Naxxramas, nachdem ihr mindestens 18 Monstrositäten in seiner Kammer besiegt habt.',
 	
 	AN_PIRATES_HAT = 'Segel setzen, Admiral!',
 	AD_PIRATES_HAT = 'Erhaltet den Blutsegeladmiralshut... und versucht, zwischendurch etwas frische Luft zu tanken.',

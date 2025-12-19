@@ -929,6 +929,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_HEIGAN_DANCE = 'Defeat Heigan the Unclean in Naxxramas without anyone in the raid dying.',
 	AN_PATCHWERK = 'Make Quick Werk Of Him',
     AD_PATCHWERK = 'Defeat Patchwerk in Naxxramas in 3 minutes or less.',
+    AN_KELTHUZAD_ABOMINATIONS = 'Just Can\'t Get Enough',
+    AD_KELTHUZAD_ABOMINATIONS = 'Defeat Kel\'Thuzad in Naxxramas while killing at least 18 abominations in his chamber.',
 	
 	AN_PIRATES_HAT = 'Avast Ye, Admiral!',
 	AD_PIRATES_HAT = 'Obtain the Bloodsail Admiral\'s Hat... and try to get some fresh air every now and then.',
