@@ -3,7 +3,7 @@
 ## Notes: Achievements for WoW Classic
 ## Author: Florian Gaensslen
 ## Version: 1.2.7
-## OptionalDeps: DBM-Core, ElvUI, Bartender4
+## OptionalDeps: DBM-Core, Bartender4
 ## SavedVariables: CA_Settings
 ## SavedVariablesPerCharacter: CA_LocalData, CA_Flags
 
@@ -29,8 +29,6 @@ util/ChatLink.lua
 
 util/Loader.lua
 achievements/achievements.lua
-util/Guild.lua
-util/PostLoad.lua
 
 ui/ApiMocks.lua
 ui/Backdrop.lua
@@ -39,9 +37,6 @@ ui/AchievementUI.xml
 ui/Microbutton.xml
 ui/Microbutton.lua
 util/Minimap.lua
-
-util/Network.lua
-util/Comparison.lua
 
 integrations/DBM.lua
 integrations/Bartender4.lua
