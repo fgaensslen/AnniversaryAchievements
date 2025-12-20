@@ -197,7 +197,7 @@ end
 do
     previous = nil
     for i, count in pairs({50, 100, 250, 500, 750, 1000, 1500, 3000}) do
-        ach = quests:CreateAchievement(FormatNumbersInString(loc:Get('AN_QUESTS', count)), FormatNumbersInString(loc:Get('AD_QUESTS', count)), 10, '-achievement_quests_completed_0' .. i)
+        ach = quests:CreateAchievement(FormatNumbersInString(loc:Get('AN_QUESTS', count)), FormatNumbersInString(loc:Get('AD_QUESTS', count)), 10, 'achievement_quests_completed_0' .. i)
         ach:AddCriteria(criterias:Create(loc:Get('AC_QUESTS', count), TYPE.COMPLETE_QUESTS, nil, count))
         if previous then previous:SetNext(ach) end
         previous = ach
@@ -1485,7 +1485,7 @@ do
 		local ach
 		local lastID = 516
         for _, count in pairs({25, 50, 100, 250, 500, 1000}) do
-			ach = fishing:CreateAchievement(FormatNumbersInString(loc:Get('AN_FISHING_COUNT', count)), FormatNumbersInString(loc:Get('AD_FISHING_COUNT', count)), 10, '-inv_misc_fish_50', false, lastID)
+			ach = fishing:CreateAchievement(FormatNumbersInString(loc:Get('AN_FISHING_COUNT', count)), FormatNumbersInString(loc:Get('AD_FISHING_COUNT', count)), 10, 'inv_misc_fish_50', false, lastID)
 			ach:AddCriteria(criterias:Create(loc:Get('AC_FISHING_COUNT', count), TYPE.FISH_ANY_ITEM, {-1}, count))				
 		if previous then previous:SetNext(ach) end
             previous = ach
