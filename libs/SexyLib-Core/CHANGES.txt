@@ -1,0 +1,12 @@
+tag f023965a6330a8a4e6826388b8dc76512540dad6 v1.0.1.2
+Author:	Konstantin Shandurenko <k.shandurenko@corp.vk.com>
+Date:	Wed Jan 13 02:36:28 2021 +0300
+
+v1.0.1.2
+
+commit 469bdc919981f165c8f90a1c059c287efef93e2e
+Author: Konstantin Shandurenko <k.shandurenko@corp.vk.com>
+Date:   Wed Jan 13 02:36:23 2021 +0300
+
+    Fixes
+

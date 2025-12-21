@@ -1,0 +1,7 @@
+## Interface: 11507
+## Title: SexyLib |cFF00FF00Core
+## Notes: The basement for the whole Sexy Lib
+## Author: Konstantin Shandurenko
+## Version: 1.0.1
+
+core.lua
