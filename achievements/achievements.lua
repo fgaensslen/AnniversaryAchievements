@@ -1137,7 +1137,7 @@ do
 	ach = instances:CreateAchievement('AN_PATCHWERK', 'AD_PATCHWERK', 10, '-spell_shadow_abominationexplosion', true, 563)
 		ach:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, {16028}))
 
-    ach = instances:CreateAchievement('AN_KELTHUZAD_ABOMINATIONS', 'AD_KELTHUZAD_ABOMINATIONS', 10, 'spell_deathknight_plaguestrike', true, 565)
+    ach = instances:CreateAchievement('AN_KELTHUZAD_ABOMINATIONS', 'AD_KELTHUZAD_ABOMINATIONS', 10, '-spell_deathknight_plaguestrike', true, 565)
 		ach:AddCriteria(criterias:Create(loc:Get('AC_MOB_KILLS', 18), TYPE.KILL_NPCS, {16428}, 18))
 
     --TBC
@@ -1727,7 +1727,7 @@ do
             ach:AddCriteria(criterias:Create(nil, TYPE.OR, { q1, q2 }))
         winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
 
-        ach = winterveil:CreateAchievement('AN_WINTERVEIL_PVP', 'AD_WINTERVEIL_PVP', 10, 'achievement_worldevent_littlehelper', true, 566)
+        ach = winterveil:CreateAchievement('AN_WINTERVEIL_PVP', 'AD_WINTERVEIL_PVP', 10, '-achievement_worldevent_littlehelper', true, 566)
             ach:AddCriteria(criterias:Create(loc:Get('AC_PVP_KILLS', 50), TYPE.SPECIAL, { 'LITTLE_HELPER_HK' }, 50))
         winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
 end
