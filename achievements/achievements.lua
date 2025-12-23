@@ -592,7 +592,7 @@ do
     local previous = pvp:CreateAchievement('AN_PVP_FIRST_KILL', 'AD_PVP_FIRST_KILL', 10, '-achievement_pvp_p_01', true)
     previous:AddCriteria(criterias:CreateL('AC_PVP_FIRST_KILL', TYPE.KILL_PLAYERS, nil, 1))
     for i, count in pairs({10, 100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000, 250000, 500000}) do
-		if i <= 9 then pvpIcon = '-achievement_pvp_p_0'
+		if i <= 8 then pvpIcon = '-achievement_pvp_p_0'
         else pvpIcon = '-achievement_pvp_p_' end
 	
         ach = pvp:CreateAchievement(FormatNumbersInString(loc:Get('AN_PVP_KILLS', count)), FormatNumbersInString(loc:Get('AD_PVP_KILLS', count)), 10, pvpIcon .. (i + 1))
@@ -664,6 +664,7 @@ do
     ach4:SetAllianceOnly()
     ach5 = add(16802, 'LORTHEMAR', 'Achievement_Leader_Lorthemar_Theron')
     ach5:SetAllianceOnly()
+    ach5:SetUnavailable()
     ach = pvp:CreateAchievement(loc:Get('AN_HORDE_KINGS_SLAYER'), loc:Get('AD_HORDE_KINGS_SLAYER'), 20, '-inv_bannerpvp_02')
     ach:AddCriteria(criterias:Create(ach1.name, TYPE.COMPLETE_ACHIEVEMENT, {ach1.id}))
     ach:AddCriteria(criterias:Create(ach3.name, TYPE.COMPLETE_ACHIEVEMENT, {ach3.id}))
@@ -1953,7 +1954,7 @@ tbcReputations:SetUnavailable()
 --print(db:GetAllAchievements())
 --[[
 	for id, ach in pairs(db.achievements or {}) do
-		print("Achievement:", ach.name, "ID:", id)
+		print(id, ";", ach.name, ";", ach.description, ";", ach.icon)
 	end
 --]]
 
