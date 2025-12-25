@@ -200,7 +200,7 @@ end
 -- QUESTS --
 do
     previous = nil
-    for i, count in pairs({50, 100, 250, 500, 750, 1000, 1500, 3000}) do
+    for i, count in pairs({50, 100, 250, 500, 750, 1000, 1500, 2000}) do
         ach = quests:CreateAchievement(FormatNumbersInString(loc:Get('AN_QUESTS', count)), FormatNumbersInString(loc:Get('AD_QUESTS', count)), 10, '-achievement_quests_completed_0' .. i)
         ach:AddCriteria(criterias:Create(loc:Get('AC_QUESTS', count), TYPE.COMPLETE_QUESTS, nil, count))
         if previous then previous:SetNext(ach) end
