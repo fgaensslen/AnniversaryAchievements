@@ -1139,7 +1139,7 @@ do
 		ach:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, {16028}))
 
     ach = instances:CreateAchievement('AN_KELTHUZAD_ABOMINATIONS', 'AD_KELTHUZAD_ABOMINATIONS', 10, '-spell_deathknight_plaguestrike', true, 565)
-		ach:AddCriteria(criterias:Create(loc:Get('AC_MOB_KILLS', 18), TYPE.KILL_NPCS, {16428}, 18))
+		ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPCS, {16428}, 1))
 
     --TBC
 	local builderNormalTBC = L:Achievement(pve, 10, '-spell_holy_summonchampion')
