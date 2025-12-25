@@ -196,7 +196,7 @@ end
 -- QUESTS --
 do
     previous = nil
-    for i, count in pairs({50, 100, 250, 500, 750, 1000, 1500, 3000}) do
+    for i, count in pairs({50, 100, 250, 500, 750, 1000, 1500, 2000}) do
         ach = quests:CreateAchievement(FormatNumbersInString(loc:Get('AN_QUESTS', count)), FormatNumbersInString(loc:Get('AD_QUESTS', count)), 10, 'achievement_quests_completed_0' .. i)
         ach:AddCriteria(criterias:Create(loc:Get('AC_QUESTS', count), TYPE.COMPLETE_QUESTS, nil, count))
         if previous then previous:SetNext(ach) end
@@ -573,7 +573,7 @@ do
     local previous = pvp:CreateAchievement('AN_PVP_FIRST_KILL', 'AD_PVP_FIRST_KILL', 10, 'achievement_pvp_p_01', true)
     previous:AddCriteria(criterias:CreateL('AC_PVP_FIRST_KILL', TYPE.KILL_PLAYERS, nil, 1))
     for i, count in pairs({10, 100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000, 250000, 500000}) do
-		if i <= 9 then pvpIcon = 'achievement_pvp_p_0'
+		if i <= 8 then pvpIcon = 'achievement_pvp_p_0'
         else pvpIcon = 'achievement_pvp_p_' end
 	
         ach = pvp:CreateAchievement(FormatNumbersInString(loc:Get('AN_PVP_KILLS', count)), FormatNumbersInString(loc:Get('AD_PVP_KILLS', count)), 10, pvpIcon .. (i + 1))
@@ -633,7 +633,7 @@ do
     ach:AddCriteria(criterias:Create(ach1.name, TYPE.COMPLETE_ACHIEVEMENT, {ach1.id}))
     ach:AddCriteria(criterias:Create(ach2.name, TYPE.COMPLETE_ACHIEVEMENT, {ach2.id}))
     ach:AddCriteria(criterias:Create(ach4.name, TYPE.COMPLETE_ACHIEVEMENT, {ach4.id}))
-    ach:AddCriteria(criterias:Create(ach4.name, TYPE.COMPLETE_ACHIEVEMENT, {ach5.id}))
+    ach:AddCriteria(criterias:Create(ach5.name, TYPE.COMPLETE_ACHIEVEMENT, {ach5.id}))
     ach:SetHordeOnly()
 
     ach1 = add(4949, 'THRALL', 'Achievement_Leader_ Thrall')
@@ -1117,7 +1117,7 @@ do
     ach = instances:CreateAchievement('AN_PATCHWERK', 'AD_PATCHWERK', 10, '-spell_shadow_abominationexplosion', true, 563)
 		ach:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, {16028}))
     ach = instances:CreateAchievement('AN_KELTHUZAD_ABOMINATIONS', 'AD_KELTHUZAD_ABOMINATIONS', 10, 'spell_deathknight_plaguestrike', true, 565)
-		ach:AddCriteria(criterias:Create(loc:Get('AC_MOB_KILLS', 18), TYPE.KILL_NPCS, {16428}, 18))
+		ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPCS, {16428}, 1))
 
     --TBC
 	local builderNormalTBC = L:Achievement(pve, 10, '-spell_holy_summonchampion')
@@ -1986,7 +1986,7 @@ end
 --print(db:GetAllAchievements())
 --[[
 	for id, ach in pairs(db.achievements or {}) do
-		print("Achievement:", ach.name, "ID:", id)
+		print(id, ";", ach.name, ";", ach.description, ";", ach.icon)
 	end
 --]]
 

@@ -406,18 +406,12 @@ local EMOTE_PAT = getEmoteLocalizations('EMOTE_PAT')
 local canGetBattlegroundsAchievement = false
 local alteracID, warsongID, arathiID, bgEyeID = 1459, 1460, 1461, 1956
 
--- Kel'Thuzad Abomination Achievement (event-based)
-local KT_ID = 15990
+-- Kel'Thuzad Abomination Achievement
 local KT_ABOMINATION_ID = 16428
-
-local ktActive = false
 local ktAbomKills = 0
-local ktCompleted = false
 
 local function ResetKT()
-    ktActive = false
     ktAbomKills = 0
-    ktCompleted = false
 end
 
 local function GetCreatureIDFromGUID(guid)
@@ -429,36 +423,33 @@ end
 local killingTracker = CA_CreatureKillingTracker
 killingTracker:AddHandler(function(targetID) return true end, function(targetID)
 
-    -- 1. SINGLE NPC (exact ID)
-    trigger(TYPE.KILL_NPC, {targetID}, 1)
+    if targetID ~= KT_ABOMINATION_ID then
+        -- 1. SINGLE NPC (exact ID)
+        trigger(TYPE.KILL_NPC, {targetID}, 1)
 
-    -- 2. ANY NPC (generic kill)
-    trigger(TYPE.KILL_ANY_NPC, nil, 1)
+        -- 2. ANY NPC (generic kill)
+        trigger(TYPE.KILL_ANY_NPC, nil, 1)
 
-    -- 3. MULTIPLE NPCS OF SPECIFIC IDs (list-type achievements)
-    trigger(TYPE.KILL_NPCS, {targetID}, 1)
+        -- 3. MULTIPLE NPCS OF SPECIFIC IDs (list-type achievements)
+        trigger(TYPE.KILL_NPCS, {targetID}, 1)
 
-    -- 4. HEROIC kills
-    local difficultyID = GetDungeonDifficultyID()
-    local _, _, isHeroic = GetDifficultyInfo(difficultyID)
-    if isHeroic then
-        trigger(TYPE.KILL_NPC_HEROIC, {targetID}, 1)
-    end
+        -- 4. HEROIC kills
+        local difficultyID = GetDungeonDifficultyID()
+        local _, _, isHeroic = GetDifficultyInfo(difficultyID)
+        if isHeroic then
+            trigger(TYPE.KILL_NPC_HEROIC, {targetID}, 1)
+        end
 
-    -- 5. P3 first week
-    if time() < 1643871600 then
-        trigger(TYPE.P3_FIRST_WEEK, {targetID}, 1)
-    end
+        -- 5. P3 first week
+        if time() < 1643871600 then
+            trigger(TYPE.P3_FIRST_WEEK, {targetID}, 1)
+        end
+    else
+        ktAbomKills = ktAbomKills + 1
 
-    -- KT Abomination logic
-    if not ktActive or ktCompleted then return end
-    if targetID ~= KT_ABOMINATION_ID then return end
-
-    ktAbomKills = ktAbomKills + 1
-
-    if ktAbomKills >= 18 then
-        ktCompleted = true
-        trigger(TYPE.KILL_NPCS, {KT_ABOMINATION_ID}, 18, true)
+        if ktAbomKills >= 18 then
+            trigger(TYPE.KILL_NPCS, {KT_ABOMINATION_ID}, 1)
+        end
     end
 end)
 
@@ -570,26 +561,18 @@ end
 local patchwerkStart = nil
 local PATCHWERK_ID = 16028
 
--- When Patchwerk enters combat (any hit)
 killingTracker:AddHandler(PATCHWERK_ID, function(targetID, event)
-    -- Start timer on first hit if not started
-    if not patchwerkStart then
-        patchwerkStart = time()
-    end
-end)
-
--- When Patchwerk dies
-killingTracker:AddHandler(PATCHWERK_ID, function(targetID)
-    if patchwerkStart then
-        local duration = time() - patchwerkStart
-        if duration <= 180 then
-            -- Trigger achievement
+    if event ~= "UNIT_DIED" then
+        if not patchwerkStart then
+            patchwerkStart = time()
+        end
+    else
+        if patchwerkStart and time() - patchwerkStart <= 180 then
             trigger(TYPE.SPECIAL, {16028}, 1, true)
         end
+        -- Reset for next pull
+        patchwerkStart = nil
     end
-
-    -- Reset for next pull
-    patchwerkStart = nil
 end)
 
 --PVP
@@ -658,16 +641,6 @@ local events = {
         -- Detect KT engage / death
         local _, subEvent, _, sourceGUID, _, _, _, destGUID, _, _, _, spellId = CombatLogGetCurrentEventInfo()
 
-        if subEvent == "UNIT_DIED" then
-            -- KT dead
-            ResetKT()
-        elseif not ktActive then
-            -- First engage
-            ktActive = true
-            ktAbomKills = 0
-            ktCompleted = false
-        end
-
         -- Detect Snowball hits
         if spellId == 21343 then
             -- Only player casts
@@ -714,7 +687,7 @@ local events = {
         C_Timer.After(1, updateProfessions)
     end,
     CHAT_MSG_LOOT = function(msg, initiator, langName, channelName, playerName, flags)
-        if flag == 'GM' or flag == 'DEV' then return end
+        if flags == 'GM' or flags == 'DEV' then return end
         if not playerName then playerName = initiator end
         if not playerName or playerName ~= UnitName('player') then return end
 
@@ -872,10 +845,8 @@ local events = {
     PLAYER_REGEN_ENABLED = function()
         bossesWithMobsCache = {}
 
-        -- Reset on wipe / combat end
-        if ktActive then
-            ResetKT()
-        end
+        -- Reset KT abominations on wipe / combat end        
+        ResetKT()        
     end
 }
 local eventsHandler = CreateFrame('FRAME', 'ClassicAchievementsEventHandlingFrame')
