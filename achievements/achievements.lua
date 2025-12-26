@@ -1530,6 +1530,10 @@ do
 
     local oldcrafty = fishing:CreateAchievement('AN_OLD_CRAFTY', 'AD_OLD_CRAFTY', 10, '-inv_misc_fish_35', true, 551)
         oldcrafty:AddCriteria(criterias:Create(nil, TYPE.FISH_AN_ITEM, {34486}))
+
+    local fishing_diplomat = fishing:CreateAchievement('AN_FISHING_DIPLOMAT', 'AD_FISHING_DIPLOMAT', 10, '-inv_helmet_44', true, 552)
+        fishing_diplomat:AddCriteria(criterias:Create(loc:Get('AC_FISHING_DIPLOMAT1'), TYPE.FISH_ANY_ITEM, {1454}))
+        fishing_diplomat:AddCriteria(criterias:Create(loc:Get('AC_FISHING_DIPLOMAT2'), TYPE.FISH_ANY_ITEM, {1453})) 
     
     local accomplishedfisher = fishing:CreateAchievement('AN_ACCOMPLISHED_ANGLER', 'AD_ACCOMPLISHED_ANGLER', 10, '-trade_fishing', true, 554)
         accomplishedfisher:AddCriteria(criterias:CreateL('AN_FISHING_BOOK', TYPE.COMPLETE_ACHIEVEMENT, {fishingbook.id}))
@@ -1538,6 +1542,7 @@ do
         accomplishedfisher:AddCriteria(criterias:CreateL('AN_MR_PINCHY', TYPE.COMPLETE_ACHIEVEMENT, {pinchy.id}))
         accomplishedfisher:AddCriteria(criterias:CreateL('AN_FISHING_OUTLAND_MASTER', TYPE.COMPLETE_ACHIEVEMENT, {435}))
         accomplishedfisher:AddCriteria(criterias:CreateL('AN_BOOTY_BAY_CONTEST', TYPE.COMPLETE_ACHIEVEMENT, {444}))
+        accomplishedfisher:AddCriteria(criterias:CreateL('AN_FISHING_DIPLOMAT', TYPE.COMPLETE_ACHIEVEMENT, {fishing_diplomat.id}))
 
 	--COOKING
     previous = nil

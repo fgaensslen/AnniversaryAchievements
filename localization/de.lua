@@ -1288,6 +1288,11 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_OLD_CRAFTY = 'Alter Fuchs',
     AD_OLD_CRAFTY = 'Angelt den alten Fuchs in Orgrimmar.',
 
+    AN_FISHING_DIPLOMAT = 'Der angelnde Diplomat',
+    AD_FISHING_DIPLOMAT = 'Bekommt etwas in Orgrimmar und Sturmwind an den Haken.',
+    AC_FISHING_DIPLOMAT1 = 'Orgrimmar',
+    AC_FISHING_DIPLOMAT2 = 'Sturmwind',
+
     AN_CAPTAIN_RUMSEY = 'Kapitän Rumseys Lagerbier',
     AD_CAPTAIN_RUMSEY = 'Braut etwas von Kapitän Rumseys Lagerbier.',
 
