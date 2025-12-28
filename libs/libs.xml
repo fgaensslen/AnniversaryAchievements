@@ -8,4 +8,6 @@
 	<Include file="SexyLib-Core\core.lua" />
 	<Include file="SexyLib-Localization\localization.lua" />
 	<Include file="SexyLib-Network\network.lua" />
+	<Include file="LibDataBroker-1.1/LibDataBroker-1.1.lua" />
+	<Include file="LibDBIcon-1.0/LibDBIcon-1.0.lua" />	
 </Ui>
