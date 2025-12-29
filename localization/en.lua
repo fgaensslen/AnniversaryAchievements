@@ -18,9 +18,6 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     GOT_ACHIEVEMENT_MESSAGE_MALE = 'I\'ve earned achievement: %s!',
     GOT_ACHIEVEMENT_MESSAGE_FEMALE = 'I\'ve earned achievement: %s!',
 
-    COMPARE_ACHIEVEMENTS = 'Compare achievements',
-    TARGET_DOES_NOT_HAVE_ADDON = 'Target does not have this addon installed.',
-
     UPDATING_EXPLORED_AREAS = 'Updating area exploration data. This action will take a few seconds.',
     UPDATED_EXPLORED_AREAS = '&aInformation about explored areas has been updated!',
 
