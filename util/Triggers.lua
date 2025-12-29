@@ -20,6 +20,13 @@ local function updateQuests()
     trigger(TYPE.COMPLETE_QUESTS, nil, total, true)
 end
 
+local function updateDailyQuests(questID)
+    if questID then
+        local dailyCount = GetDailyQuestsCompleted() or 0
+        trigger(TYPE.COMPLETE_DAILY_QUESTS, nil, dailyCount, true)
+    end
+end
+
 local function updateBankSlots()
     local bankSlots = GetNumBankSlots()
     trigger(TYPE.BANK_SLOTS, nil, bankSlots, true)
@@ -672,7 +679,10 @@ local events = {
     end,
     QUEST_TURNED_IN = function(questID, xpReward, moneyReward)
         trigger(TYPE.LOOT_QUEST_GOLD, nil, moneyReward)
-        C_Timer.After(1, updateQuests)
+        C_Timer.After(1, function()
+            updateDailyQuests(questID)
+            updateQuests()
+        end)
     end,
     PLAYERBANKBAGSLOTS_CHANGED = function()
         C_Timer.After(1, updateBankSlots)
@@ -710,7 +720,7 @@ local events = {
 
         -- Fishing Diplomat: detect city by mapID
         local mapID = C_Map.GetBestMapForUnit("player")
-        print( mapID )
+
         if mapID == 1454 or mapID == 1453 then
             trigger(TYPE.FISH_ANY_ITEM, {mapID}, 1)
         end

@@ -199,8 +199,21 @@ do
     for i, count in pairs({50, 100, 250, 500, 750, 1000, 1500, 2000}) do
         ach = quests:CreateAchievement(FormatNumbersInString(loc:Get('AN_QUESTS', count)), FormatNumbersInString(loc:Get('AD_QUESTS', count)), 10, 'achievement_quests_completed_0' .. i)
         ach:AddCriteria(criterias:Create(loc:Get('AC_QUESTS', count), TYPE.COMPLETE_QUESTS, nil, count))
+        
         if previous then previous:SetNext(ach) end
-        previous = ach
+            previous = ach
+    end
+
+    previous = nil
+    local achievementIDDailies = 567
+    for i, count in pairs({5, 50, 200, 500, 1000, 2500, 5000, 10000}) do
+        ach = quests:CreateAchievement(FormatNumbersInString(loc:Get('AN_DAILY_QUESTS', count)), FormatNumbersInString(loc:Get('AD_DAILY_QUESTS', count)), 10, 'achievement_quests_completed_daily_0' .. i, false, achievementIDDailies)
+        ach:AddCriteria(criterias:Create(loc:Get('AC_DAILY_QUESTS', count), TYPE.COMPLETE_DAILY_QUESTS, nil, count))
+        
+        if previous then previous:SetNext(ach) end
+            previous = ach
+
+        achievementIDDailies = achievementIDDailies + 1
     end
 
     previous = nil

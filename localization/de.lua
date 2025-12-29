@@ -143,6 +143,10 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_QUESTS = 'Schließt %d Quests ab.',
     AC_QUESTS = 'Schließt %d Quests ab.',
 
+    AN_DAILY_QUESTS = '%d tägliche Quests abgeschlossen',
+    AD_DAILY_QUESTS = 'Schließt %d tägliche Quests ab.',
+    AC_DAILY_QUESTS = 'Schließt %d tägliche Quests ab.',
+
     AN_QUEST_GOLD5 = 'Glitzernde Belohnung',
     AN_QUEST_GOLD10 = 'Sammler geprägter Münzen',
     AN_QUEST_GOLD25 = 'Täglich Brot',

@@ -145,6 +145,10 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_QUESTS = 'Complete %d quests.',
     AC_QUESTS = 'Complete %d quests.',
 
+    AN_DAILY_QUESTS = '%d Daily Quests Completed',
+    AD_DAILY_QUESTS = 'Complete %d daily quests.',
+    AC_DAILY_QUESTS = 'Complete %d daily quests.',
+
     AN_QUEST_GOLD5 = 'Glittering Reward',
     AN_QUEST_GOLD10 = 'Collector of minted Coins',
     AN_QUEST_GOLD25 = 'Breadwinner',
