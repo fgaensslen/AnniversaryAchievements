@@ -1532,11 +1532,11 @@ do
         fishingbook:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {34109}))
 
     local fishingdailies = fishing:CreateAchievement('AN_TBC_DAILY_FISH', 'AD_TBC_DAILY_FISH', 10, 'achievement_profession_fishing_oldmanbarlowned', true, 549)
-        fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH1'), TYPE.COMPLETE_QUEST, {11665}))
-        fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH2'), TYPE.COMPLETE_QUEST, {11666}))
-        fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH3'), TYPE.COMPLETE_QUEST, {11669}))
-        fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH4'), TYPE.COMPLETE_QUEST, {11667}))
-        fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH5'), TYPE.COMPLETE_QUEST, {11668}))
+        fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH1'), TYPE.COMPLETE_DAILY_QUEST, {11665}))
+        fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH2'), TYPE.COMPLETE_DAILY_QUEST, {11666}))
+        fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH3'), TYPE.COMPLETE_DAILY_QUEST, {11669}))
+        fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH4'), TYPE.COMPLETE_DAILY_QUEST, {11667}))
+        fishingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_FISH5'), TYPE.COMPLETE_DAILY_QUEST, {11668}))
 
     local oldironjaw = fishing:CreateAchievement('AN_OLD_IRONJAW', 'AD_OLD_IRONJAW', 10, '-inv_misc_fish_31', true, 550)
         oldironjaw:AddCriteria(criterias:Create(nil, TYPE.FISH_AN_ITEM, {34484}))
@@ -1609,10 +1609,10 @@ do
         captainrumsey:AddCriteria(criterias:Create(nil, TYPE.CRAFT_ITEM, {34832}))
 
     local cookingdailies = cooking:CreateAchievement('AN_TBC_DAILY_COOKING', 'AD_TBC_DAILY_COOKING', 10, '-inv_misc_cauldron_arcane', true, 556)
-        cookingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_COOKING1'), TYPE.COMPLETE_QUEST, {11380}))
-        cookingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_COOKING2'), TYPE.COMPLETE_QUEST, {11381}))
-        cookingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_COOKING3'), TYPE.COMPLETE_QUEST, {11377}))
-        cookingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_COOKING4'), TYPE.COMPLETE_QUEST, {11379}))
+        cookingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_COOKING1'), TYPE.COMPLETE_DAILY_QUEST, {11380}))
+        cookingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_COOKING2'), TYPE.COMPLETE_DAILY_QUEST, {11381}))
+        cookingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_COOKING3'), TYPE.COMPLETE_DAILY_QUEST, {11377}))
+        cookingdailies:AddCriteria(criterias:Create(loc:Get('AC_TBC_DAILY_COOKING4'), TYPE.COMPLETE_DAILY_QUEST, {11379}))
 
     local cookingrecipes_tbc = cooking:CreateAchievement('AN_TBC_COOKING_RECIPES', 'AD_TBC_COOKING_RECIPES', 10, '-inv_misc_food_84_roastclefthoof', true, 557)
     for _, itemID in pairs({
@@ -2003,9 +2003,20 @@ end
 
 --print(db:GetAllAchievements())
 --[[
-	for id, ach in pairs(db.achievements or {}) do
-		print(id, ";", ach.name, ";", ach.description, ";", ach.icon)
-	end
+    local list = {}
+
+    for id, ach in pairs(db.achievements or {}) do
+        list[#list + 1] = { id = id, ach = ach }
+    end
+
+    table.sort(list, function(a, b)
+        return a.id < b.id
+    end)
+
+    for _, entry in ipairs(list) do
+        local ach = entry.ach
+        print(entry.id, ";", ach.name, ";", ach.description, ";", ach.icon)
+    end
 --]]
 
 CA_CompletionManager:PostLoad(CA_Database:GetTab(CA_Database.TAB_ID_PLAYER):GetCategories())
