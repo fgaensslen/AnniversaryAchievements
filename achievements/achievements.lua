@@ -79,7 +79,7 @@ do
     previous = nil
     for i, count in pairs({100, 1000, 5000, 10000, 25000, 50000, 100000}) do
         ach = general:CreateAchievement(loc:Get('AN_MOB_KILLS_' .. i), FormatNumbersInString(loc:Get('AD_MOB_KILLS', count)), 10, '-inv_misc_monsterclaw_02')
-        ach:AddCriteria(criterias:Create(loc:Get('AC_MOB_KILLS', count), TYPE.KILL_ANY_NPC, nil, count))
+        ach:AddCriteria(criterias:Create(FormatNumbersInString(loc:Get('AC_MOB_KILLS', count)), TYPE.KILL_ANY_NPC, nil, count))
         if previous then previous:SetNext(ach) end
         previous = ach
     end
@@ -202,7 +202,7 @@ do
     previous = nil
     for i, count in pairs({50, 100, 250, 500, 750, 1000, 1500, 2000}) do
         ach = quests:CreateAchievement(FormatNumbersInString(loc:Get('AN_QUESTS', count)), FormatNumbersInString(loc:Get('AD_QUESTS', count)), 10, '-achievement_quests_completed_0' .. i)
-        ach:AddCriteria(criterias:Create(loc:Get('AC_QUESTS', count), TYPE.COMPLETE_QUESTS, nil, count))
+        ach:AddCriteria(criterias:Create(FormatNumbersInString(loc:Get('AC_QUESTS', count)), TYPE.COMPLETE_QUESTS, nil, count))
         if previous then previous:SetNext(ach) end
         previous = ach
     end
@@ -596,7 +596,7 @@ do
         else pvpIcon = '-achievement_pvp_p_' end
 	
         ach = pvp:CreateAchievement(FormatNumbersInString(loc:Get('AN_PVP_KILLS', count)), FormatNumbersInString(loc:Get('AD_PVP_KILLS', count)), 10, pvpIcon .. (i + 1))
-        ach:AddCriteria(criterias:Create(loc:Get('AC_PVP_KILLS', count), TYPE.KILL_PLAYERS, nil, count))
+        ach:AddCriteria(criterias:Create(FormatNumbersInString(loc:Get('AC_PVP_KILLS', count)), TYPE.KILL_PLAYERS, nil, count))
         previous:SetNext(ach)
         previous = ach
     end
@@ -1536,7 +1536,7 @@ do
 		local lastID = 516
         for _, count in pairs({25, 50, 100, 250, 500, 1000}) do
 			ach = fishing:CreateAchievement(FormatNumbersInString(loc:Get('AN_FISHING_COUNT', count)), FormatNumbersInString(loc:Get('AD_FISHING_COUNT', count)), 10, '-inv_misc_fish_50', false, lastID)
-			ach:AddCriteria(criterias:Create(loc:Get('AC_FISHING_COUNT', count), TYPE.FISH_ANY_ITEM, {-1}, count))				
+			ach:AddCriteria(criterias:Create(FormatNumbersInString(loc:Get('AC_FISHING_COUNT', count)), TYPE.FISH_ANY_ITEM, {-1}, count))				
 		if previous then previous:SetNext(ach) end
             previous = ach
 			lastID = lastID+1
@@ -1953,9 +1953,20 @@ tbcReputations:SetUnavailable()
 
 --print(db:GetAllAchievements())
 --[[
-	for id, ach in pairs(db.achievements or {}) do
-		print(id, ";", ach.name, ";", ach.description, ";", ach.icon)
-	end
+    local list = {}
+
+    for id, ach in pairs(db.achievements or {}) do
+        list[#list + 1] = { id = id, ach = ach }
+    end
+
+    table.sort(list, function(a, b)
+        return a.id < b.id
+    end)
+
+    for _, entry in ipairs(list) do
+        local ach = entry.ach
+        print(entry.id, ";", ach.name, ";", ach.description, ";", ach.icon)
+    end
 --]]
 
 CA_CompletionManager:PostLoad(CA_Database:GetTab(CA_Database.TAB_ID_PLAYER):GetCategories())
