@@ -1290,7 +1290,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_FISHING_DIPLOMAT = 'The Fishing Diplomat',
     AD_FISHING_DIPLOMAT = 'Fish something up in Orgrimmar and Stormwind.',
     AC_FISHING_DIPLOMAT1 = 'Orgrimmar',
-    AC_FISHING_DIPLOMAT1 = 'Stormwind',
+    AC_FISHING_DIPLOMAT2 = 'Stormwind',
 
     AN_CAPTAIN_RUMSEY = 'Captain Rumsey\'s Lager',
     AD_CAPTAIN_RUMSEY = 'Brew up some of Captain Rumsey\'s Lager.',
