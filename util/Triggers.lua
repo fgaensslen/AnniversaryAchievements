@@ -653,10 +653,8 @@ local events = {
         C_Timer.After(1, function()
             local dailyQuestCounter_new = GetDailyQuestsCompleted()
 
-            print(dailyQuestCounter_new, dailyQuestCounter)
             --after turning in a quest, we check if it was daily quest or not by comparing the counter
             if dailyQuestCounter_new > dailyQuestCounter then
-                print("Daily quest detected:", questID)
                 -- Per-quest daily achievement
                 trigger(TYPE.COMPLETE_DAILY_QUEST, {questID}, 1, true)
 
@@ -665,10 +663,9 @@ local events = {
 
                 dailyQuestCounter = dailyQuestCounter_new
             else
-                print("Normal quest detected:", questID)
                 -- Always count as a normal quest
                 trigger(TYPE.COMPLETE_QUEST, {questID}, 1, true)
-                syncTotalQuests()
+                trigger(TYPE.COMPLETE_QUESTS, nil, 1)
             end
         end)
     end,
