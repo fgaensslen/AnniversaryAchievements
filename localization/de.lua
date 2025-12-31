@@ -67,7 +67,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     NPC_2098 = 'Widder',
     NPC_2442 = 'Kuh',
     NPC_6368 = 'Katze',
-    NPC_10582 = 'Hund <Vater>',
+    NPC_6271 = 'Maus',
     NPC_385 = 'Pferd',
     NPC_10685 = 'Schwein',
     NPC_3300 = 'Otter',    
@@ -523,7 +523,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_ALLIANCE_PVP_FRACTIONS = 'Erhöht Euren Ruf in der Kriegshymnenschlucht, dem Arathibecken und dem Alteractal auf ehrfürchtig.',
 
     AN_BOLVAR_SLAYER = 'Sturm auf Sturmwind',
-    AD_BOLVAR_SLAYER = 'Tötet Hochlord Bolvar Fordragon in Stormwind.',
+    AD_BOLVAR_SLAYER = 'Tötet Hochlord Bolvar Fordragon.',
     AN_MAGNI_SLAYER = 'Tod dem König!',
     AD_MAGNI_SLAYER = 'Tötet König Magni Bronzebart.',
     AN_TYRANDE_SLAYER = 'Von wegen unsterblich',

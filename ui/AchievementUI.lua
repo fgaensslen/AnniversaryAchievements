@@ -91,9 +91,11 @@ trackedOrder = CA_LocalData.trackedOrder
 
 local titleColor_normal = "|cFFC4A300"
 local titleColor_hover = "|cFFFFD500"
+local titleColorCompleted_hover = "|cFFFFEE33"
 local textColor_normal = "|cFFD0D0D0"
 local textColor_hover = "|cFFFFFFFF"
 local textColor_finished = "|cFFFFFFFF"
+local textColorCompleted_hover = "|cFFFFFFFF"
 local textWidth = 250
 local trackerHidden = false
 
@@ -464,20 +466,21 @@ function Anniversary_ShowTrackedAchievementProgress()
 					table.insert(hoverFrame_Quests.texts, {
 						fs = objLine,
                         normal = color .. "- " .. desc,
-                        highlight = textColor_hover .. "- " .. desc
+                        highlight = textColorCompleted_hover .. "- " .. desc
 					})
                     prev = objLine
                 end
             end
 
 			local titleColor = questFinished and titleColor_hover or titleColor_normal
+			local titleColorHoverFinished = questFinished and titleColorCompleted_hover or titleColor_hover
 
 			questLine:SetText(titleColor .. title .. "|r")
 
 			table.insert(hoverFrame_Quests.texts, {
 				fs = questLine,
 				normal = titleColor .. title .. "|r",
-				highlight = titleColor_hover .. title .. "|r"
+				highlight = titleColorHoverFinished .. title .. "|r"
 			})
         end
 
