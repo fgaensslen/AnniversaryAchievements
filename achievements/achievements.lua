@@ -519,7 +519,7 @@ do
 	
 	ach = L:Achievement(general, 10, '-inv_jewelcrafting_crimsonhare')
 		:NameDesc('AN_LOVE', 'AD_LOVE', true)
-		for _, creatureID in pairs({3444, 620, 1420, 13321, 2620, 9600, 883, 9699, 4953, 721, 9700, 15476, 2914, 16030, 4075, 1412, 7390, 15475, 15010, 4076, 13016, 14881, 2110, 4166, 1933, 890, 2098, 2442, 6368, 10582, 385, 10685, 3300}) do
+		for _, creatureID in pairs({3444, 620, 1420, 13321, 2620, 9600, 883, 9699, 4953, 721, 9700, 15476, 2914, 16030, 4075, 1412, 7390, 15475, 15010, 4076, 13016, 14881, 2110, 4166, 1933, 890, 2098, 2442, 6368, 6271, 385, 10685, 3300}) do
 			ach:Criteria(TYPE.EMOTE, {'LOVE', creatureID}):Name('NPC_' .. creatureID, true):Build()
 		end
 

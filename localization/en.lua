@@ -66,7 +66,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     NPC_2098 = 'Ram',
     NPC_2442 = 'Cow',
     NPC_6368 = 'Cat',
-    NPC_10582 = 'Dog <Sire>',
+    NPC_6271 = 'Mouse',
     NPC_385 = 'Horse',
     NPC_10685 = 'Swine',
     NPC_3300 = 'Adder',

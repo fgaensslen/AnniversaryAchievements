@@ -67,7 +67,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     NPC_2098 = 'Widder',
     NPC_2442 = 'Kuh',
     NPC_6368 = 'Katze',
-    NPC_10582 = 'Hund <Vater>',
+    NPC_6271 = 'Maus',
     NPC_385 = 'Pferd',
     NPC_10685 = 'Schwein',
     NPC_3300 = 'Otter',    

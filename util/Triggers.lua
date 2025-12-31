@@ -25,7 +25,7 @@ local function updateBankSlots()
     trigger(TYPE.BANK_SLOTS, nil, bankSlots, true)
 end
 
-function CheckDungeonQuests()
+local function CheckDungeonQuests()
 	local bossQuestMap = {
 		-- Ragefire Chasm
 		[5761] = { type = CA_Criterias.TYPE.KILL_NPC, data = {11520} }, -- Jergosh der Herbeirufer
@@ -583,6 +583,7 @@ local LITTLE_HELPER_BUFFS = {
     [26273] = true,
     [26274] = true
 }
+local hasLittleHelper = false
 
 local function UpdateLittleHelper()
     hasLittleHelper = false
