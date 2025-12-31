@@ -14,9 +14,13 @@ end
 local function syncTotalQuests()
     local questsCompleted = GetQuestsCompleted()
     local total = 0
-    for _, completed in pairs(questsCompleted) do
-        if completed then total = total + 1 end
+
+    for questID, completed in pairs(questsCompleted) do
+        if completed and not QuestIsDaily(questID) then
+            total = total + 1
+        end
     end
+
     trigger(TYPE.COMPLETE_QUESTS, nil, total, true)
 end
 
