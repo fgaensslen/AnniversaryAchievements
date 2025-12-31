@@ -280,7 +280,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AN_SKELETON_KEY = 'Der Schlüssel zur Scholomance',
 	AD_SKELETON_KEY = 'Erhaltet den Skelettschlüssel.',
 
-    AN_RAGEFIRE_CHASM = 'Flammenschlund',
+    AN_RAGEFIRE_CHASM = 'Ragefireabgrund',
     AD_RAGEFIRE_CHASM = 'Bezwingt Taragaman den Hungerleider.',
     AN_WAILING_CAVERNS = 'Die Höhlen des Wehklagens',
     AD_WAILING_CAVERNS = 'Bezwingt Mutanus den Verschlinger.',
@@ -290,7 +290,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_SHADOWFANG_KEEP = 'Bezwingt Erzmagier Arugal.',
     AN_BLACKFATHOM_DEEPS = 'Blackfathom-Tiefe',
     AD_BLACKFATHOM_DEEPS = 'Bezwingt Aku\'mai.',
-    AN_JAIL = 'Verlies von Sturmwind',
+    AN_JAIL = 'Verlies von Stormwind',
     AD_JAIL = 'Bezwingt Bazil Thredd.',
     AN_GNOMREGAN = 'Gnomeregan',
     AD_GNOMREGAN = 'Bezwingt Robogenieur Thermaplugg.',
@@ -518,8 +518,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_ALLIANCE_PVP_FRACTIONS = 'Der Vollstrecker',
     AD_ALLIANCE_PVP_FRACTIONS = 'Erhöht Euren Ruf in der Warsongschlucht, dem Arathibecken und dem Alteractal auf ehrfürchtig.',
 
-    AN_BOLVAR_SLAYER = 'Sturm auf Sturmwind',
-    AD_BOLVAR_SLAYER = 'Tötet Hochlord Bolvar Fordragon in Stormwind.',
+    AN_BOLVAR_SLAYER = 'Sturm auf Stormwind',
+    AD_BOLVAR_SLAYER = 'Tötet Hochlord Bolvar Fordragon.',
     AN_MAGNI_SLAYER = 'Tod dem König!',
     AD_MAGNI_SLAYER = 'Tötet König Magni Bronzebart.',
     AN_TYRANDE_SLAYER = 'Von wegen unsterblich',
