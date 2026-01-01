@@ -35,7 +35,7 @@ The addon was tested with the following UIs:
 - Achievements are available for various categories, including PVP, PVE, Reputations, Professions, and more. 
 - Key bindings can be configured via the in-game options
 - The addon integrates with Deadly Boss Mods (DBM). If you have defeated a certain boss in the past, you will receive the respective achievement upon entering a dungeon and loading DBM automatically. If you don't have DBM, there is an additional check implemented that scans your finished dungeon quests to grant you the achievements
-Achievements for explored areas can be triggered via a scan in the addon's option menu
+- Achievements for explored areas can be triggered via a scan in the addon's option menu
 
 ### Notes
 
