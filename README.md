@@ -43,5 +43,7 @@ Achievements for explored areas can be triggered via a scan in the addon's optio
 - Other addons can prevent you from getting certain achievements: for example Fishing Buddy seems to interfere certain fishing achievements
 - The addon works best with the Standard UI. If you have modified your interface, you can disable the micromenu button and instead use a button on your minimap
 - Your achievements are NOT stored on Blizzard's servers. To backup them, go into:
-<your WoW folder>/WTF/Account/<your account name>/<server name>/<character name>/SavedVariables/AnniversaryAchievements.lua
+
+    >\<your WoW folder\>/WTF/Account/\<account name\>/\<server name\>/\<character name\>/SavedVariables/AnniversaryAchievements.lua
+
 - Guild and Statistics tabs are not available. Comparing achievements with other players who have this addon installed is also not implemented
