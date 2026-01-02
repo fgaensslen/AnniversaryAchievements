@@ -1,8 +1,6 @@
 local TYPE = CA_Criterias.TYPE
 local loc = SexyLib:Localization('Anniversary Achievements')
 
-local dailyQuestCounter = 0
-
 local function trigger(...)
     CA_Criterias:Trigger(...)
 end
@@ -11,12 +9,16 @@ local function getItemIdFromLink(link)
     return tonumber(link:match("\124Hitem:(%d+):"))
 end
 
+local function IsDailyQuest(questID)
+    return DAILY_QUESTS_TBC and DAILY_QUESTS_TBC[questID]
+end
+
 local function syncTotalQuests()
     local questsCompleted = GetQuestsCompleted()
     local total = 0
 
     for questID, completed in pairs(questsCompleted) do
-        if completed and not QuestIsDaily(questID) then
+        if completed and not IsDailyQuest(questID) then
             total = total + 1
         end
     end
@@ -656,19 +658,11 @@ local events = {
         trigger(TYPE.LOOT_QUEST_GOLD, nil, moneyReward)
 
         C_Timer.After(1, function()
-            local dailyQuestCounter_new = GetDailyQuestsCompleted()
 
-            --after turning in a quest, we check if it was daily quest or not by comparing the counter
-            if dailyQuestCounter_new > dailyQuestCounter then
-                -- Per-quest daily achievement
+            if IsDailyQuest(questID) then
                 trigger(TYPE.COMPLETE_DAILY_QUEST, {questID}, 1, true)
-
-                -- Total daily achievement (increment!)
                 trigger(TYPE.COMPLETE_DAILY_QUESTS, nil, 1)
-
-                dailyQuestCounter = dailyQuestCounter_new
             else
-                -- Always count as a normal quest
                 trigger(TYPE.COMPLETE_QUEST, {questID}, 1, true)
                 trigger(TYPE.COMPLETE_QUESTS, nil, 1)
             end
@@ -871,8 +865,6 @@ function CA_performInitialCheck()
 
     local level = UnitLevel('player')
     for lvl = 1, level do trigger(TYPE.REACH_LEVEL, {lvl}, 1, true) end
-
-    dailyQuestCounter = GetDailyQuestsCompleted()
 
     trigger(TYPE.NOT_WORKING, nil, 1, true)
     syncTotalQuests()

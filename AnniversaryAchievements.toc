@@ -23,6 +23,8 @@ localization/AreaTableLocale_deDE.lua
 
 util/Settings.lua
 
+data/DailyQuests_TBC.lua
+
 api/Completion.lua
 api/Achievements.lua
 api/Criterias.lua
