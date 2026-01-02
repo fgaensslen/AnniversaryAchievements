@@ -9,14 +9,20 @@ local function getItemIdFromLink(link)
     return tonumber(link:match("\124Hitem:(%d+):"))
 end
 
-local function updateQuests()
-    local questsCompleted, total = GetQuestsCompleted(), 0
-    for questID, isCompleted in pairs(questsCompleted) do
-        if isCompleted then
-            trigger(TYPE.COMPLETE_QUEST, {questID}, 1, true)
+local function IsDailyQuest(questID)
+    return DAILY_QUESTS_TBC and DAILY_QUESTS_TBC[questID]
+end
+
+local function syncTotalQuests()
+    local questsCompleted = GetQuestsCompleted()
+    local total = 0
+
+    for questID, completed in pairs(questsCompleted) do
+        if completed and not IsDailyQuest(questID) then
             total = total + 1
         end
     end
+
     trigger(TYPE.COMPLETE_QUESTS, nil, total, true)
 end
 
@@ -347,29 +353,6 @@ function CA_UpdateExploredAreas()
     end
 end
 
-function CA_performInitialCheck()
-    local kills, _, maxRank = GetPVPLifetimeStats()
-    local _, maxRank = GetPVPRankInfo(maxRank)
-    trigger(TYPE.KILL_PLAYERS, nil, kills, true)
-    for rank = 1, maxRank do trigger(TYPE.REACH_PVP_RANK, {rank}, 1, true) end
-
-    local level = UnitLevel('player')
-    for lvl = 1, level do trigger(TYPE.REACH_LEVEL, {lvl}, 1, true) end
-
-    trigger(TYPE.NOT_WORKING, nil, 1, true)
-    updateQuests()
-    updateBankSlots()
-    updateReputations()
-    updateProfessions()
-    updateItemsInInventory()
-    updateGear()
-	CheckDungeonQuests()
-
-    CA_CompletionManager:GetLocal():RecheckAchievements()
-end
-
-C_Timer.After(5, CA_performInitialCheck)
-
 local function toPattern(message)
     local pattern = message:gsub('%.', '%%.')
     :gsub('\124%d%-%d%(.*%)', '(.*)')
@@ -673,7 +656,17 @@ local events = {
     end,
     QUEST_TURNED_IN = function(questID, xpReward, moneyReward)
         trigger(TYPE.LOOT_QUEST_GOLD, nil, moneyReward)
-        C_Timer.After(1, updateQuests)
+
+        C_Timer.After(1, function()
+
+            if IsDailyQuest(questID) then
+                trigger(TYPE.COMPLETE_DAILY_QUEST, {questID}, 1, true)
+                trigger(TYPE.COMPLETE_DAILY_QUESTS, nil, 1)
+            else
+                trigger(TYPE.COMPLETE_QUEST, {questID}, 1, true)
+                trigger(TYPE.COMPLETE_QUESTS, nil, 1)
+            end
+        end)
     end,
     PLAYERBANKBAGSLOTS_CHANGED = function()
         C_Timer.After(1, updateBankSlots)
@@ -708,6 +701,14 @@ local events = {
     end,
     LOOT_OPENED = function()
         if not IsFishingLoot() then return end
+
+        -- Fishing Diplomat: detect city by mapID
+        local mapID = C_Map.GetBestMapForUnit("player")
+
+        if mapID == 1454 or mapID == 1453 then
+            trigger(TYPE.FISH_ANY_ITEM, {mapID}, 1)
+        end
+
         for slot = 1, GetNumLootItems() do
             if LootSlotHasItem(slot) then
                 local _, _, quantity = GetLootSlotInfo(slot)
@@ -715,9 +716,9 @@ local events = {
                 if link then
                     local id = getItemIdFromLink(link)
                     if id then 
-						trigger(TYPE.FISH_AN_ITEM, {id}, quantity)
-						trigger(TYPE.FISH_ANY_ITEM, {-1}, quantity)
-					end
+                        trigger(TYPE.FISH_AN_ITEM, {id}, quantity)
+                        trigger(TYPE.FISH_ANY_ITEM, {-1}, quantity)
+                    end
                 end
             end
         end
@@ -855,3 +856,26 @@ eventsHandler:SetScript('OnEvent', function(self, event, ...)
     events[event](...)
 end)
 for k, _ in pairs(events) do eventsHandler:RegisterEvent(k) end
+
+function CA_performInitialCheck()
+    local kills, _, maxRank = GetPVPLifetimeStats()
+    local _, maxRank = GetPVPRankInfo(maxRank)
+    trigger(TYPE.KILL_PLAYERS, nil, kills, true)
+    for rank = 1, maxRank do trigger(TYPE.REACH_PVP_RANK, {rank}, 1, true) end
+
+    local level = UnitLevel('player')
+    for lvl = 1, level do trigger(TYPE.REACH_LEVEL, {lvl}, 1, true) end
+
+    trigger(TYPE.NOT_WORKING, nil, 1, true)
+    syncTotalQuests()
+    updateBankSlots()
+    updateReputations()
+    updateProfessions()
+    updateItemsInInventory()
+    updateGear()
+	CheckDungeonQuests()
+
+    CA_CompletionManager:GetLocal():RecheckAchievements()
+end
+
+C_Timer.After(5, CA_performInitialCheck)
