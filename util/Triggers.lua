@@ -13,6 +13,29 @@ local function IsDailyQuest(questID)
     return DAILY_QUESTS_TBC and DAILY_QUESTS_TBC[questID]
 end
 
+local DAILY_ACHIEVEMENT_IDS = {
+    567, 568, 569, 570, 571, 572, 573, 574
+}
+
+local function GetTotalDailyQuestCount()
+    local completion = CA_CompletionManager:GetLocal()
+    local maxProgress = 0
+
+    for _, achID in ipairs(DAILY_ACHIEVEMENT_IDS) do
+        local ach = CA_Database:GetAchievement(achID)
+        if ach then
+            for _, criteria in pairs(ach:GetCriterias()) do
+                local progress = completion:GetCriteriaProgression(achID, criteria.id)
+                if progress and progress > maxProgress then
+                    maxProgress = progress
+                end
+            end
+        end
+    end
+
+    return maxProgress
+end
+
 local function syncTotalQuests()
     local questsCompleted = GetQuestsCompleted()
     local total = 0
@@ -661,10 +684,12 @@ local events = {
 
             if IsDailyQuest(questID) then
                 trigger(TYPE.COMPLETE_DAILY_QUEST, {questID}, 1, true)
-                trigger(TYPE.COMPLETE_DAILY_QUESTS, nil, 1)
+
+                local totalDaily = GetTotalDailyQuestCount() + 1
+                trigger(TYPE.COMPLETE_DAILY_QUESTS, nil, totalDaily, true)
             else
                 trigger(TYPE.COMPLETE_QUEST, {questID}, 1, true)
-                trigger(TYPE.COMPLETE_QUESTS, nil, 1)
+                syncTotalQuests()
             end
         end)
     end,
