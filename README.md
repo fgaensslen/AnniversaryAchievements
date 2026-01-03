@@ -9,7 +9,7 @@ It integrates perfectly with the Standard UI and uses the same graphics and soun
 
 Currently, nearly 385 Classic achievements (including Feats of Strength) are available. 
 
-[Here](/webpage/index.html) is an overview which are implemented.
+[Here](/achievements/index.html) is an overview which achievements are implemented.
 
 
 
