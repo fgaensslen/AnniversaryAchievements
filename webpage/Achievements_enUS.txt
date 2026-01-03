@@ -1,0 +1,2 @@
+ID; Name; Description
+1 ; Level 10 ; Erreicht Level 10. ; -achievement_level_10

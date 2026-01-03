@@ -1,0 +1,575 @@
+ID; Name; Description; Icon
+1 ; Level 10 ; Erreicht Level 10. ; -achievement_level_10
+2 ; Level 20 ; Erreicht Level 20. ; -achievement_level_20
+3 ; Level 30 ; Erreicht Level 30. ; -achievement_level_30
+4 ; Level 40 ; Erreicht Level 40. ; -achievement_level_40
+5 ; Level 50 ; Erreicht Level 50. ; -achievement_level_50
+6 ; Level 60 ; Erreicht Level 60. ; -achievement_level_60
+7 ; Level 70 ; Erreicht Level 70. ; -achievement_level_70
+8 ; Sicher angelegt ; Kauft 6 zusätzliche Bankplätze. ; -inv_box_01
+9 ; Totschläger ; Tötet 100 Gegner. ; -inv_misc_monsterclaw_02
+10 ; Zerstörer ; Tötet 1.000 Gegner. ; -inv_misc_monsterclaw_02
+11 ; Brecher ; Tötet 5.000 Gegner. ; -inv_misc_monsterclaw_02
+12 ; Kopfgeldjäger ; Tötet 10.000 Gegner. ; -inv_misc_monsterclaw_02
+13 ; Gewittersturm aller Monster ; Tötet 25.000 Gegner. ; -inv_misc_monsterclaw_02
+14 ; Gewittersturm allen Lebens ; Tötet 50.000 Gegner. ; -inv_misc_monsterclaw_02
+15 ; Allgegenwärtiger Tod ; Tötet 100.000 Gegner. ; -inv_misc_monsterclaw_02
+16 ; Hat jemand ein Veilchen bestellt? ; Erreicht eine unbewaffnete Fertigkeit von 300. ; -ability_warrior_secondwind
+17 ; Selten ; Legt an jedem Platz einen Gegenstand von seltener Qualität an. ; -Inv_Enchant_EssenceNetherSmall
+18 ; Überlegen ; Legt an jedem Platz einen Gegenstand von überragender Qualität an. ; -Spell_Frost_WizardMark
+19 ; Episch ; Legt an jedem Platz einen epischen Gegenstand an. ; -Inv_Enchant_ShardNexusLarge
+20 ; Aufsatteln! ; Erlernt die Fähigkeit 'Unerfahrener Reiter'. ; -Ability_Mount_RidingHorse
+21 ; Traber ; Erlernt die Fähigkeit 'Geübter Reiter'. ; -Ability_Mount_BlackPanther
+22 ; Galopper ; Erlernt die Fähigkeit 'Erfahrener Reiter'. ; -Ability_Mount_Gryphon_01
+23 ; Wie der Wind ; Erlernt die Fähigkeit 'Gekonnter Reiter'. ; -Ability_Mount_RocketMount
+24 ; Gewänder des Cenarius ; Sammelt alle Gegenstände des genannten Sets. ; -inv_helmet_09
+25 ; Gewänder des Stormrage ; Sammelt alle Gegenstände des genannten Sets. ; -inv_helmet_09
+26 ; Gewandung des Traumwandlers ; Sammelt alle Gegenstände des genannten Sets. ; -inv_helmet_15
+27 ; 50 Quests abgeschlossen ; Schließt 50 Quests ab. ; -achievement_quests_completed_01
+28 ; 100 Quests abgeschlossen ; Schließt 100 Quests ab. ; -achievement_quests_completed_02
+29 ; 250 Quests abgeschlossen ; Schließt 250 Quests ab. ; -achievement_quests_completed_03
+30 ; 500 Quests abgeschlossen ; Schließt 500 Quests ab. ; -achievement_quests_completed_04
+31 ; 750 Quests abgeschlossen ; Schließt 750 Quests ab. ; -achievement_quests_completed_05
+32 ; 1.000 Quests abgeschlossen ; Schließt 1.000 Quests ab. ; -achievement_quests_completed_06
+33 ; 1.500 Quests abgeschlossen ; Schließt 1.500 Quests ab. ; -achievement_quests_completed_07
+34 ; 3.000 Quests abgeschlossen ; Schließt 3.000 Quests ab. ; -achievement_quests_completed_08
+35 ; Glitzernde Belohnung ; Erhaltet 5 Gold durch Questbelohnungen. ; -Inv_Misc_Coin_05
+36 ; Sammler geprägter Münzen ; Erhaltet 10 Gold durch Questbelohnungen. ; -Inv_Misc_Coin_06
+37 ; Täglich Brot ; Erhaltet 25 Gold durch Questbelohnungen. ; -Inv_Misc_Coin_03
+38 ; Wohlverdientes Gold ; Erhaltet 50 Gold durch Questbelohnungen. ; -Inv_Misc_Coin_04
+39 ; Verdient durch Schweiß und Blut ; Erhaltet 100 Gold durch Questbelohnungen. ; -Inv_Misc_Coin_01
+40 ; Golddrucker ; Erhaltet 250 Gold durch Questbelohnungen. ; -Inv_Misc_Coin_02
+41 ; Angemessene Entlohnung ; Erhaltet 500 Gold durch Questbelohnungen. ; -Inv_Misc_Coin_02
+42 ; Der Schlüssel zur Scholomance ; Erhaltet den Skelettschlüssel. ; -inv_misc_key_11
+43 ; Meister der Lehren in Kalimdor ; Schließt die unten aufgelisteten Questerfolge in Kalimdor ab. ; -achievement_zone_kalimdor_01
+44 ; Meister der Lehren - Durotar ; Schließt die Quest "Sicherung der Linien" in Durotar ab. ; -achievement_zone_durotar
+45 ; Meister der Lehren - Das Brachland ; Schließt die folgenden Quests in Das Brachland ab. ; -achievement_zone_barrens_01
+46 ; Meister der Lehren - Steinkrallengebirge ; Schließt die Quest "Gerenzo Wrenchwhistle" in Steinkrallengebirge ab. ; -achievement_zone_stonetalon_01
+47 ; Meister der Lehren - Desolace ; Schließt die Quest "Buch der Uralten" in Desolace ab. ; -achievement_zone_desolace
+48 ; Meister der Lehren - Tausend Nadeln ; Schließt die Quest "Sicherheit zuerst" in Tausend Nadeln ab. ; -achievement_zone_thousandneedles_01
+49 ; Meister der Lehren - Düstermarschen ; Schließt die Quest "Jarl braucht eine Klinge" in Düstermarschen ab. ; -achievement_zone_dustwallowmarsh
+50 ; Meister der Lehren - Teufelswald ; Schließt die folgenden Quests in Teufelswald ab. ; -achievement_zone_felwood
+51 ; Meister der Lehren - Tanaris ; Schließt die folgenden Quests in Tanaris ab. ; -achievement_zone_tanaris_01
+52 ; Meister der Lehren - Un'Goro Krater ; Schließt die folgenden Quests in Un'Goro Krater ab. ; -achievement_zone_ungorocrater_01
+53 ; Meister der Lehren - Azshara ; Schließt die Quest "Azsharit" in Azshara ab. ; -achievement_zone_azshara_01
+54 ; Meister der Lehren - Winterspring ; Schließt die folgenden Quests in Winterspring ab. ; -achievement_zone_winterspring
+55 ; Meister der Lehren - Silithus ; Schließt die folgenden Quests in Silithus ab. ; -achievement_zone_silithus_01
+56 ; Meister der Lehren der östlichen Königreiche ; Schließt die unten aufgelisteten Questerfolge in den östlichen Königreichen ab. ; -achievement_zone_easternkingdoms_01
+57 ; Meister der Lehren - Arathihochland ; Schließt die Quest "Den Hauptstein zerbrechen" in Arathihochland ab. ; -achievement_zone_arathihighlands_01
+58 ; Meister der Lehren - Schlingendorntal ; Schließt die folgenden Quests in Schlingendorntal ab. ; -achievement_zone_stranglethorn_01
+59 ; Meister der Lehren - Ödland ; Schließt die folgenden Quests in Ödland ab. ; -achievement_zone_badlands_01
+60 ; Meister der Lehren - Sengende Schlucht ; Schließt die Quest "Plunder..." in Sengende Schlucht ab. ; -achievement_zone_searinggorge_01
+61 ; Meister der Lehren - Verwüstete Lande ; Schließt die Quest "Ihr seid Rakh'likh, Dämon" in Verwüstete Lande ab. ; -achievement_zone_blastedlands_01
+62 ; Meister der Lehren - Westliche Pestländer ; Schließt die folgenden Quests in Westliche Pestländer ab. ; -achievement_zone_westernplaguelands_01
+63 ; Meister der Lehren - Östliche Pestländer ; Schließt die folgenden Quests in Östliche Pestländer ab. ; -achievement_zone_easternplaguelands
+64 ; Meister der Lehren - Blackrock ; Schließt die Quest "Rückkehr zu Bodley" in Blackrock ab. ; -achievement_zone_blackrock_01
+65 ; Meister der Lehren von Azeroth ; Schließt die unten aufgelisteten Questerfolge ab. ; -Inv_Misc_Book_09
+66 ; Die Grünen Hügel des Schlingendorntals ; Schließt alle Hemet Nesingwary-Quests im Schlingendorntal ab, bis hin zu 'Die Grünen Hügel des Schlingendorntals' und 'Großwildjäger'. ; -ability_mount_whitetiger
+67 ; Durchs Höllenfeuer und zurück ; Schließt die folgenden Geschichtsstränge auf der Höllenfeuerhalbinsel ab. ; -achievement_zone_hellfirepeninsula_01
+68 ; Durchs Höllenfeuer und zurück ; Schließt die folgenden Geschichtsstränge auf der Höllenfeuerhalbinsel ab. ; -achievement_zone_hellfirepeninsula_01
+69 ; Mysterien der Marschen ; Schließt die folgenden Geschichtsstränge in den Zangarmarschen ab. ; achievement_zone_zangarmarsh
+70 ; Mysterien der Marschen ; Schließt die folgenden Geschichtsstränge in den Zangarmarschen ab. ; achievement_zone_zangarmarsh
+71 ; Terror in Terokkar ; Schließt die folgenden Geschichtsstränge in den Wäldern von Terrokkar ab. ; achievement_zone_terrokar
+72 ; Terror in Terokkar ; Schließt die folgenden Geschichtsstränge in den Wäldern von Terrokkar ab. ; achievement_zone_terrokar
+73 ; Nagrand Slam ; Schließt die folgenden Geschichtsstränge in Nagrand ab. ; achievement_zone_nagrand_01
+74 ; Nagrand Slam ; Schließt die folgenden Geschichtsstränge in Nagrand ab. ; achievement_zone_nagrand_01
+75 ; Auf schmalem Grat ; Schließt die folgenden Geschichtsstränge im Schergrat ab. ; achievement_zone_bladesedgemtns_01
+76 ; Auf schmalem Grat ; Schließt die folgenden Geschichtsstränge im Schergrat ab. ; achievement_zone_bladesedgemtns_01
+77 ; In den Nether ; Schließt die folgenden Geschichtsstränge im Nethersturm ab. ; achievement_zone_netherstorm_01
+78 ; Schatten des Verräters ; Schließt die folgenden Geschichtsstränge im Schattenmondtal ab. ; achievement_zone_shadowmoon
+79 ; Meister der Lehren der Scherbenwelt ; Schließt die unten aufgelisteten Scherbenwelt-Questerfolge ab. ; -achievement_zone_outland_01
+80 ; Meister der Lehren der Scherbenwelt ; Schließt die unten aufgelisteten Scherbenwelt-Questerfolge ab. ; -achievement_zone_outland_01
+81 ; Der Meister der Lehren ; Schließt die unten aufgelisteten Questerfolge ab. ; -Inv_Misc_Book_07
+82 ; Der Meister der Lehren ; Schließt die unten aufgelisteten Questerfolge ab. ; -Inv_Misc_Book_07
+83 ; Heißer als die Hölle ; Erhaltet den Schlüssel zu den Zerschmetterten Hallen. ; -inv_misc_key_02
+84 ; Wie man in Arkatraz einbricht ; Erhaltet den Schlüssel zur Arkatraz. ; -inv_datacrystal03
+85 ; Die Berührung des Meisters ; Erhaltet den Schlüssel des Meisters. ; -inv_misc_key_07
+86 ; Die Vergangenheit aufwühlen ; Erhaltet die Geschwärzte Urne. ; -inv_misc_urn_01
+87 ; Der Knüppel von Kar'desh ; Erhaltet Zugang zur Höhle des Schlangenschreins. ; -inv_trinket_naxxramas01
+88 ; Der Schlüssel der Stürme ; Erhaltet den Schlüssel der Stürme. ; -inv_datacrystal11
+89 ; Die Phiolen der Ewigkeit ; Soridormi in den Höhlen der Zeit möchte, dass Ihr die Überreste von Vashjs Phiole von Lady Vashj im Echsenkessel und die Überreste von Kaels Phiole von Kael'thas Sonnenwanderer in der Festung der Stürme besorgt. ; -inv_potion_101
+90 ; Ein Ablenkungsmanöver für Akama ; Erhaltet das Medaillon von Karabor. ; -inv_jewelry_amulet_04
+91 ; Weltenbummler ; Erforscht die östlichen Königreiche, Kalimdor und die Scherbenwelt. ; -inv_misc_map02
+92 ; Erforscht Kalimdor ; Erforscht die Regionen Kalimdors. ; -achievement_zone_kalimdor_01
+93 ; Erforscht Ashenvale ; Erforscht Ashenvale und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_ashenvale_01
+94 ; Erforscht Azshara ; Erforscht Azshara und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_azshara_01
+95 ; Erforscht Dunkelküste ; Erforscht Dunkelküste und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_darkshore_01
+96 ; Erforscht Desolace ; Erforscht Desolace und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_desolace
+97 ; Erforscht Durotar ; Erforscht Durotar und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_durotar
+98 ; Erforscht Marschen von Dustwallow ; Erforscht Marschen von Dustwallow und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_dustwallowmarsh
+99 ; Erforscht Teufelswald ; Erforscht Teufelswald und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_felwood
+100 ; Erforscht Feralas ; Erforscht Feralas und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_feralas
+101 ; Erforscht Mulgore ; Erforscht Mulgore und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_mulgore_01
+102 ; Erforscht Silithus ; Erforscht Silithus und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_silithus_01
+103 ; Erforscht Steinkrallengebirge ; Erforscht Steinkrallengebirge und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_stonetalon_01
+104 ; Erforscht Tanaris ; Erforscht Tanaris und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_tanaris_01
+105 ; Erforscht Teldrassil ; Erforscht Teldrassil und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_darnassus
+106 ; Erforscht Brachland ; Erforscht Brachland und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_barrens_01
+107 ; Erforscht Tausend Nadeln ; Erforscht Tausend Nadeln und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_thousandneedles_01
+108 ; Erforscht Un'Goro-Krater ; Erforscht Un'Goro-Krater und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_ungorocrater_01
+109 ; Erforscht Winterspring ; Erforscht Winterspring und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_winterspring
+110 ; Erforscht Azurmythosinsel ; Erforscht Azurmythosinsel und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_azuremystisle_01
+111 ; Erforscht Blutmythosinsel ; Erforscht Blutmythosinsel und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_bloodmystisle_01
+112 ; Erforscht die östlichen Königreiche ; Erforscht die Regionen der östlichen Königreiche. ; -achievement_zone_easternkingdoms_01
+113 ; Erforscht Alteracgebirge ; Erforscht Alteracgebirge und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_alteracmountains_01
+114 ; Erforscht Arathihochland ; Erforscht Arathihochland und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_arathihighlands_01
+115 ; Erforscht Ödland ; Erforscht Ödland und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_badlands_01
+116 ; Erforscht Verwüstete Lande ; Erforscht Verwüstete Lande und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_blastedlands_01
+117 ; Erforscht Brennende Steppe ; Erforscht Brennende Steppe und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_burningsteppes_01
+118 ; Erforscht Gebirgspass der Totenwinde ; Erforscht Gebirgspass der Totenwinde und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_deadwindpass
+119 ; Erforscht Dun Morogh ; Erforscht Dun Morogh und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_dunmorogh
+120 ; Erforscht Dämmerwald ; Erforscht Dämmerwald und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_duskwood
+121 ; Erforscht Östliche Pestländer ; Erforscht Östliche Pestländer und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_easternplaguelands
+122 ; Erforscht Wald von Elwynn ; Erforscht Wald von Elwynn und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_elwynnforest
+123 ; Erforscht Vorgebirge von Hillsbrad ; Erforscht Vorgebirge von Hillsbrad und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_hillsbradfoothills
+124 ; Erforscht Loch Modan ; Erforscht Loch Modan und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_lochmodan
+125 ; Erforscht Rotkammgebirge ; Erforscht Rotkammgebirge und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_redridgemountains
+126 ; Erforscht Sengende Schlucht ; Erforscht Sengende Schlucht und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_searinggorge_01
+127 ; Erforscht Silberwald ; Erforscht Silberwald und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_silverpine_01
+128 ; Erforscht Schlingendorntal ; Erforscht Schlingendorntal und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_stranglethorn_01
+129 ; Erforscht Sümpfe des Elends ; Erforscht Sümpfe des Elends und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_swampsorrows_01
+130 ; Erforscht Hinterland ; Erforscht Hinterland und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_hinterlands_01
+131 ; Erforscht Tirisfal ; Erforscht Tirisfal und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_tirisfalglades_01
+132 ; Erforscht Westliche Pestländer ; Erforscht Westliche Pestländer und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_westernplaguelands_01
+133 ; Erforscht Westfall ; Erforscht Westfall und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_westfall_01
+134 ; Erforscht Sumpfland ; Erforscht Sumpfland und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_wetlands_01
+135 ; Erforscht Immersangwald ; Erforscht Immersangwald und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_eversongwoods
+136 ; Erforscht Geisterlande ; Erforscht Geisterlande und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_ghostlands
+137 ; Erforscht Insel von Quel'Danas ; Erforscht Insel von Quel'Danas und enthüllt die verdeckten Gebiete auf der Weltkarte. ; -achievement_zone_isleofqueldanas
+138 ; Ob groß, ob klein, Tiere sind alle fein ; Zeigt den Tieren in Azeroth, wie sehr Ihr sie liebt (/liebe). ; -inv_jewelcrafting_crimsonhare
+139 ; Erforscht die Scherbenwelt ; Erforscht die Regionen der Scherbenwelt. ; -achievement_zone_outland_01
+140 ; Erforscht Höllenfeuerhalbinsel ; Erforscht Höllenfeuerhalbinsel und enthüllt die verdeckten Gebiete auf der Weltkarte. ; achievement_zone_hellfirepeninsula_01
+141 ; Erforscht Zangarmarschen ; Erforscht Zangarmarschen und enthüllt die verdeckten Gebiete auf der Weltkarte. ; achievement_zone_zangarmarsh
+142 ; Erforscht Wälder von Terokkar ; Erforscht Wälder von Terokkar und enthüllt die verdeckten Gebiete auf der Weltkarte. ; achievement_zone_terrokar
+143 ; Erforscht Nagrand ; Erforscht Nagrand und enthüllt die verdeckten Gebiete auf der Weltkarte. ; achievement_zone_nagrand_01
+144 ; Erforscht Schergrat ; Erforscht Schergrat und enthüllt die verdeckten Gebiete auf der Weltkarte. ; achievement_zone_bladesedgemtns_01
+145 ; Erforscht Nethersturm ; Erforscht Nethersturm und enthüllt die verdeckten Gebiete auf der Weltkarte. ; achievement_zone_netherstorm_01
+146 ; Erforscht Schattenmondtal ; Erforscht Schattenmondtal und enthüllt die verdeckten Gebiete auf der Weltkarte. ; achievement_zone_shadowmoon
+147 ; Ziemlich selten ; Tötet eine der unten aufgelisteten, extrem seltenen und schwer zu findenden Kreaturen der Scherbenwelt. ; -Spell_Shadow_DeathScream
+148 ; Verflucht selten ; Tötet jede der unten aufgelisteten, extrem seltenen und schwer zu findenden Kreaturen der Scherbenwelt. ; -Spell_Shadow_DeathScream
+149 ; Gefreiter ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_01
+150 ; Fußknecht ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_02
+151 ; Landsknecht ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_03
+152 ; Feldwebel ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_04
+153 ; Fähnrich ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_05
+154 ; Leutnant ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_06
+155 ; Hauptmann ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_07
+156 ; Kürassier ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_08
+157 ; Ritter der Allianz ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_09
+158 ; Feldkommandant ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_10
+159 ; Rittmeister ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_11
+160 ; Marschall ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_12
+161 ; Feldmarschall ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_13
+162 ; Großmarschall ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_14
+163 ; Ein ehrenhafter Sieg ; Erringt einen ehrenhaften Sieg. ; -achievement_pvp_p_01
+164 ; 10 ehrenhafte Siege ; Erringt 10 ehrenhafte Siege. ; -achievement_pvp_p_02
+165 ; 100 ehrenhafte Siege ; Erringt 100 ehrenhafte Siege. ; -achievement_pvp_p_03
+166 ; 250 ehrenhafte Siege ; Erringt 250 ehrenhafte Siege. ; -achievement_pvp_p_04
+167 ; 500 ehrenhafte Siege ; Erringt 500 ehrenhafte Siege. ; -achievement_pvp_p_05
+168 ; 1.000 ehrenhafte Siege ; Erringt 1.000 ehrenhafte Siege. ; -achievement_pvp_p_06
+169 ; 2.500 ehrenhafte Siege ; Erringt 2.500 ehrenhafte Siege. ; -achievement_pvp_p_07
+170 ; 5.000 ehrenhafte Siege ; Erringt 5.000 ehrenhafte Siege. ; -achievement_pvp_p_08
+171 ; 10.000 ehrenhafte Siege ; Erringt 10.000 ehrenhafte Siege. ; -achievement_pvp_p_09
+172 ; 25.000 ehrenhafte Siege ; Erringt 25.000 ehrenhafte Siege. ; -achievement_pvp_p_10
+173 ; 50.000 ehrenhafte Siege ; Erringt 50.000 ehrenhafte Siege. ; -achievement_pvp_p_11
+174 ; 100.000 ehrenhafte Siege ; Erringt 100.000 ehrenhafte Siege. ; -achievement_pvp_p_12
+175 ; 250.000 ehrenhafte Siege ; Erringt 250.000 ehrenhafte Siege. ; -achievement_pvp_p_13
+176 ; 500.000 ehrenhafte Siege ; Erringt 500.000 ehrenhafte Siege. ; -achievement_pvp_p_14
+177 ; Der Entweihte ; Erreicht einen ehrfürchtigen Ruf bei den Entweihten. ; -spell_shadow_psychichorrors
+178 ; Held des Frostwolfklans ; Erreicht einen ehrfürchtigen Ruf beim Frostwolfklan. ; -Inv_Jewelry_FrostwolfTrinket_05
+179 ; Warsongvorhut ; Erreicht einen ehrfürchtigen Ruf bei der Warsongvorhut. ; -ability_warrior_warcry
+180 ; Der Eroberer ; Erhöht Euren Ruf in der Warsongschlucht, dem Arathibecken und dem Alteractal auf ehrfürchtig. ; -inv_misc_tabardpvp_04
+181 ; Ritter von Arathor ; Erreicht einen ehrfürchtigen Ruf beim Bund von Arathor. ; -ability_warrior_rallyingcry
+182 ; Held der Sturmlanzengarde ; Erreicht einen ehrfürchtigen Ruf bei der Sturmlanzengarde. ; -Inv_Jewelry_Stormpiketrinket_05
+183 ; Schildwache der Silberschwingen ; Erreicht einen ehrfürchtigen Ruf bei der Schildwache der Silberschwingen. ; -Ability_Racial_Shadowmeld
+184 ; Der Vollstrecker ; Erhöht Euren Ruf in der Warsongschlucht, dem Arathibecken und dem Alteractal auf ehrfürchtig. ; -inv_misc_tabardpvp_03
+185 ; Sturm auf Sturmwind ; Tötet Hochlord Bolvar Fordragon in Stormwind. ; -achievement_leader_king_varian_wrynn
+186 ; Tod dem König! ; Tötet König Magni Bronzebart. ; -Achievement_leader_king_magni_bronzebeard
+187 ; Von wegen unsterblich ; Tötet die Hohepriesterin Tyrande Wisperwind. ; -achievement_leader_tyrande_whisperwind
+188 ; Das Licht ausmachen ; Tötet den Propheten Velen. ; -Achievement_leader_prophet_velen
+189 ; Für die Horde! ; Tötet die Anführer der Allianz. ; -inv_bannerpvp_01
+190 ; Tod dem Kriegshäuptling! ; Tötet Thrall. ; achievement_leader_thrall
+191 ; Nieder mit der dunklen Fürstin ; Tötet Fürstin Sylvanas Windläufer. ; -Achievement_leader_sylvanas
+192 ; Blutender Bluthuf ; Tötet Cairne Bluthuf. ; achievement_leader_cairnebloodhoof
+193 ; In Quel'Thalas getötet ; Tötet Lor'themar Theron. ; Achievement_Leader_Lorthemar_Theron
+194 ; Für die Allianz! ; Tötet die Anführer der Horde. ; -inv_bannerpvp_02
+195 ; Kenne deinen Feind ; Erringt einen ehrenhaften Todesstoß bei vier verschiedenen Völkern. ; -Ability_Gouge
+196 ; Kenne deinen Feind ; Erringt einen ehrenhaften Todesstoß bei vier verschiedenen Völkern. ; -Ability_Gouge
+197 ; Klasse & Stil ; Erreicht einen ehrenhaften Todesstoß gegen einen Vertreter jeder Klasse. ; -Ability_Cheapshot
+198 ; Sieg im Alteractal ; Gewinnt im Alteractal. ; -achievement_bg_winav
+199 ; Veteran des Alteractals ; Erringt 5 Siege im Alteractal. ; -achievement_bg_winav
+200 ; Veteran des Alteractals ; Erringt 10 Siege im Alteractal. ; -achievement_bg_winav
+201 ; Veteran des Alteractals ; Erringt 25 Siege im Alteractal. ; -achievement_bg_winav
+202 ; Veteran des Alteractals ; Erringt 50 Siege im Alteractal. ; -achievement_bg_winav
+203 ; Sieg in der Warsongschlucht ; Gewinnt in der Warsongschlucht. ; -achievement_bg_winwsg
+204 ; Veteran der Warsongschlucht ; Erringt 5 Siege in der Warsongschlucht. ; -achievement_bg_winwsg
+205 ; Veteran der Warsongschlucht ; Erringt 10 Siege in der Warsongschlucht. ; -achievement_bg_winwsg
+206 ; Veteran der Warsongschlucht ; Erringt 25 Siege in der Warsongschlucht. ; -achievement_bg_winwsg
+207 ; Veteran der Warsongschlucht ; Erringt 50 Siege in der Warsongschlucht. ; -achievement_bg_winwsg
+208 ; Sieg im Arathibecken ; Gewinnt im Arathibecken. ; -achievement_bg_winab
+209 ; Veteran des Arathibeckens ; Erringt 5 Siege im Arathibecken. ; -achievement_bg_winab
+210 ; Veteran des Arathibeckens ; Erringt 10 Siege im Arathibecken. ; -achievement_bg_winab
+211 ; Veteran des Arathibeckens ; Erringt 25 Siege im Arathibecken. ; -achievement_bg_winab
+212 ; Veteran des Arathibeckens ; Erringt 50 Siege im Arathibecken. ; -achievement_bg_winab
+213 ; Sieg im Auge des Sturms ; Gewinnt im Auge des Sturms. ; -achievement_bg_wineos
+214 ; Veteran im Auge des Sturms ; Erringt 5 Siege im Auge des Sturms. ; -achievement_bg_wineos
+215 ; Veteran im Auge des Sturms ; Erringt 10 Siege im Auge des Sturms. ; -achievement_bg_wineos
+216 ; Veteran im Auge des Sturms ; Erringt 25 Siege im Auge des Sturms. ; -achievement_bg_wineos
+217 ; Veteran im Auge des Sturms ; Erringt 50 Siege im Auge des Sturms. ; -achievement_bg_wineos
+218 ; Fleischwolf des Alteractals ; Erreicht 5 Todesstöße während einer einzigen Schlacht im Alteractal und bleibt bis zu deren Ende. ; -Spell_Shadow_Summonimp
+219 ; Fleischwolf des Alteractals ; Erreicht 10 Todesstöße während einer einzigen Schlacht im Alteractal und bleibt bis zu deren Ende. ; -Spell_Shadow_Summonimp
+220 ; Fleischwolf des Alteractals ; Erreicht 25 Todesstöße während einer einzigen Schlacht im Alteractal und bleibt bis zu deren Ende. ; -Spell_Shadow_Summonimp
+221 ; Fleischwolf des Alteractals ; Erreicht 40 Todesstöße während einer einzigen Schlacht im Alteractal und bleibt bis zu deren Ende. ; -Spell_Shadow_Summonimp
+222 ; Alterac-Grabjäger ; Nehmt einen Friedhof während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende. ; -Spell_Holy_Divinespirit
+223 ; Es fehlt an Särgen ; Nehmt 2 Friedhöfe während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende. ; -Spell_Holy_Divinespirit
+224 ; Es fehlt an Särgen ; Nehmt 3 Friedhöfe während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende. ; -Spell_Holy_Divinespirit
+225 ; Es fehlt an Särgen ; Nehmt 4 Friedhöfe während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende. ; -Spell_Holy_Divinespirit
+226 ; Verteidiger der Verstorbenen ; Verteidigt einen Friedhof während einer einzigen Schlacht im Alteractal und bleibt bis zu deren Ende. ; -Spell_Holy_Prayerofspirit
+227 ; Verteidiger der Toten ; Verteidigt 2 Friedhöfe während einer einzigen Schlacht im Alteractal und bleibt bis zu deren Ende. ; -Spell_Holy_Prayerofspirit
+228 ; Verteidiger der Toten ; Verteidigt 3 Friedhöfe während einer einzigen Schlacht im Alteractal und bleibt bis zu deren Ende. ; -Spell_Holy_Prayerofspirit
+229 ; Verteidiger der Toten ; Verteidigt 4 Friedhöfe während einer einzigen Schlacht im Alteractal und bleibt bis zu deren Ende. ; -Spell_Holy_Prayerofspirit
+230 ; Nun gehört er mir! ; Nehmt einen Turm während einer einzigen Schlacht im Alteractal ein und und bleibt bis zu deren Ende. ; -Ability_Thunderbolt
+231 ; Nun gehört ALLES mir! ; Nehmt 2 Türme während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende. ; -Ability_Thunderbolt
+232 ; Nun gehört ALLES mir! ; Nehmt 3 Türme während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende. ; -Ability_Thunderbolt
+233 ; Nun gehört ALLES mir! ; Nehmt 4 Türme während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende. ; -Ability_Thunderbolt
+234 ; Turmwächter ; Verteidigt einen Turm während einer einzigen Schlacht im Alteractal und bleibt bis zu deren Ende. ; -Inv_Shield_05
+235 ; Turmverteidiger ; Verteidigt 2 Türme während einer einzigen Schlacht im Alteractal und bleibt bis zu deren Ende. ; -Inv_Shield_05
+236 ; Turmverteidiger ; Verteidigt 3 Türme während einer einzigen Schlacht im Alteractal und bleibt bis zu deren Ende. ; -Inv_Shield_05
+237 ; Turmverteidiger ; Verteidigt 4 Türme während einer einzigen Schlacht im Alteractal und bleibt bis zu deren Ende. ; -Inv_Shield_05
+238 ; Gefrorener Bergmann ; Nehmt eine Mine während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende. ; -Inv_Pick_01
+239 ; Gefrorener Pikenier ; Nehmt 2 Minen während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende. ; -Inv_Pick_01
+240 ; Gefrorener Pikenier ; Nehmt 3 Minen während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende. ; -Inv_Pick_01
+241 ; Gefrorener Pikenier ; Nehmt 4 Minen während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende. ; -Inv_Pick_01
+242 ; Der Alteracblitz ; Gewinnt im Alteractal innerhalb von 6 Minuten. ; -achievement_bg_winav_underxminutes
+243 ; Militärische Auszeichnung ; Erreicht 10 ehrenhafte Siege während einer einzigen Schlacht in der Warsongschlucht und bleibt bis zu deren Ende. ; -Ability_Rogue_Eviscerate
+244 ; Militärische Auszeichnung ; Erreicht 25 ehrenhafte Siege während einer einzigen Schlacht in der Warsongschlucht und bleibt bis zu deren Ende. ; -Ability_Rogue_Eviscerate
+245 ; Militärische Auszeichnung ; Erreicht 50 ehrenhafte Siege während einer einzigen Schlacht in der Warsongschlucht und bleibt bis zu deren Ende. ; -Ability_Rogue_Eviscerate
+246 ; Militärische Auszeichnung ; Erreicht 75 ehrenhafte Siege während einer einzigen Schlacht in der Warsongschlucht und bleibt bis zu deren Ende. ; -Ability_Rogue_Eviscerate
+247 ; Flaggenträger ; Ergreift und erobert die gegnerische Flagge während einer einzigen Schlacht in der Warsongschlucht und bleibt bis zu deren Ende. ; -Inv_Banner_03
+248 ; Großartiger Flaggenträger ; Ergreift und erobert 2 gegnerische Flaggen während einer einzigen Schlacht in der Warsongschlucht und bleibt bis zu deren Ende. ; -Inv_Banner_03
+249 ; Großartiger Flaggenträger ; Ergreift und erobert 3 gegnerische Flaggen während einer einzigen Schlacht in der Warsongschlucht und bleibt bis zu deren Ende. ; -Inv_Banner_03
+250 ; Fasst das nicht an! ; Bringt als Verteidiger eine Flagge während einer einzigen Schlacht in der Warsongschlucht zurück und bleibt bis zu deren Ende. ; -Spell_Nature_Reincarnation
+251 ; Hartnäckiger Verteidiger ; Bringt als Verteidiger 2 Flaggen während einer einzigen Schlacht in der Warsongschlucht zurück und bleibt bis zu deren Ende. ; -Spell_Nature_Reincarnation
+252 ; Hartnäckiger Verteidiger ; Bringt als Verteidiger 3 Flaggen während einer einzigen Schlacht in der Warsongschlucht zurück und bleibt bis zu deren Ende. ; -Spell_Nature_Reincarnation
+253 ; Motivation der Warsong ; Gewinnt in der Warsongschlucht in weniger als 7 Minuten. ; -achievement_bg_winwsg_underxminutes
+254 ; Konquistador ; Erobert eine Basis während einer einzigen Schlacht im Arathibecken und bleibt bis zu deren Ende. ; -Ability_Eyeoftheowl
+255 ; Flaggenjagd ; Erobert 2 Basen während einer einzigen Schlacht im Arathibecken und bleibt bis zu deren Ende. ; -Ability_Eyeoftheowl
+256 ; Flaggenjagd ; Erobert 3 Basen während einer einzigen Schlacht im Arathibecken und bleibt bis zu deren Ende. ; -Ability_Eyeoftheowl
+257 ; Flaggenjagd ; Erobert 4 Basen während einer einzigen Schlacht im Arathibecken und bleibt bis zu deren Ende. ; -Ability_Eyeoftheowl
+258 ; Wächter ; Verteidigt eine Basis während einer einzigen Schlacht im Arathibecken und bleibt bis zu deren Ende. ; -Inv_Shield_06
+259 ; Ehrenhafter Wächter ; Verteidigt 2 Basen während einer einzigen Schlacht im Arathibecken und bleibt bis zu deren Ende. ; -Inv_Shield_06
+260 ; Ehrenhafter Wächter ; Verteidigt 3 Basen während einer einzigen Schlacht im Arathibecken und bleibt bis zu deren Ende. ; -Inv_Shield_06
+261 ; Ehrenhafter Wächter ; Verteidigt 4 Basen während einer einzigen Schlacht im Arathibecken und bleibt bis zu deren Ende. ; -Inv_Shield_06
+262 ; Katzen sind am wichtigsten ; Streichelt die angegebenen Haustiere im Arathibecken (/streicheln). ; -ability_hunter_catlikereflexes
+263 ; Auf die Schnelle ; Gewinnt im Arathibecken in 6 Minuten. ; -achievement_bg_winab_underxminutes
+264 ; Turmverteidigung ; Verteidigt 50 Türme im Alteractal. ; -achievement_bg_defendxtowers_av
+265 ; Alterac-Grabjäger ; Nehmt 50 Friedhöfe im Alteractal ein. ; -achievement_bg_xkills_avgraveyard
+266 ; Erobert die Flagge ; Ergreift und erobert persönlich 50 Flaggen in der Warsongschlucht. ; -achievement_bg_captureflag_wsg
+267 ; Hartnäckiger Verteidiger ; Bringt als Verteidiger in der Warsongschlucht 50 Flaggen zurück. ; -achievement_bg_interruptx_flagcapture_attempts
+268 ; Flaggenjagd ; Erobert 50 Flaggen im Arathibecken. ; -achievement_bg_takexflags_ab
+269 ; Rettungseinsatz ; Eilt im Arathibecken 50-mal zur Verteidigung einer Basis, indem Ihr die Flagge zurückerobert. ; -ability_warrior_victoryrush
+270 ; Frostwolfheuler ; Erhaltet einen Frostwolfheuler. ; -inv_jewelry_frostwolftrinket_01
+271 ; Streitwidder der Sturmlanzen ; Erhaltet einen Streitwidder der Sturmlanzen. ; -inv_jewelry_stormpiketrinket_01
+272 ; Sturmeroberer ; Ergreift und erobert persönlich die Flagge im Auge des Sturms und bleibt bis zum Ende der Schlacht. ; -achievement_bg_captureflag_eos
+273 ; Sturmeroberer ; Ergreift und erobert persönlich 2 Flaggen im Auge des Sturms und bleibt bis zum Ende der Schlacht. ; -achievement_bg_captureflag_eos
+274 ; Sturmeroberer ; Ergreift und erobert persönlich 3 Flaggen im Auge des Sturms und bleibt bis zum Ende der Schlacht. ; -achievement_bg_captureflag_eos
+275 ; Für den Ruhm ; Erobert in einem einzigen Auge des Sturm-Kampfes die Flagge 3-mal, ohne zu sterben. ; -Spell_Arcane_MassDispel
+276 ; Blutrünstiger Berserker ; Erteilt einen Todesstoß, während Ihr im Auge des Sturms unter dem Stärkungszauber Berserker steht. ; -Spell_Nature_BloodLust
+277 ; Der perfekte Sturm ; Gewinnt im Auge des Sturms mit einem Ergebnis von 1.600 zu 0. ; -inv_brd_banner
+278 ; Der Sturm ; Gewinnt im Auge des Sturms in weniger als 6 Minuten. ; -achievement_bg_wineos_underxminutes
+279 ; Meister des Alteractals ; Schließt die unten aufgelisteten Questerfolge im Alteractal ab. ; -inv_jewelry_necklace_21
+280 ; Meister der Warsongschlucht ; Schließt die unten aufgelisteten Questerfolge in der Warsongschlucht ab. ; -inv_misc_rune_07
+281 ; Meister des Arathibeckens ; Schließt die unten aufgelisteten Arathibeckenerfolge ab. ; -inv_jewelry_amulet_07
+282 ; Meister des Auge des Sturms ; Schließt die unten aufgelisteten Erfolge im Auge des Sturms ab. ; -Spell_Nature_EyeoftheStorm
+283 ; Kampfmeister ; Schließt die unten aufgelisteten Schlachtfeld-Erfolge ab. ; -achievement_pvp_a_15
+284 ; Ruf zu den Waffen! ; Schließt 10 Schlachtfelder ab. ; -Inv_Musket_02
+285 ; Ruf zu den Waffen! ; Schließt 25 Schlachtfelder ab. ; -Inv_Musket_02
+286 ; Ruf zu den Waffen! ; Schließt 50 Schlachtfelder ab. ; -Inv_Musket_02
+287 ; Todbringer ; Erringt 100 Todesstöße auf einem beliebigen Schlachtfeld. ; -Spell_Shadow_Unholyfrenzy
+288 ; Todbringer ; Erringt 250 Todesstöße auf einem beliebigen Schlachtfeld. ; -Spell_Shadow_Unholyfrenzy
+289 ; Todbringer ; Erringt 500 Todesstöße auf einem beliebigen Schlachtfeld. ; -Spell_Shadow_Unholyfrenzy
+290 ; Todbringer ; Erringt 750 Todesstöße auf einem beliebigen Schlachtfeld. ; -Spell_Shadow_Unholyfrenzy
+291 ; Todbringer ; Erringt 1000 Todesstöße auf einem beliebigen Schlachtfeld. ; -Spell_Shadow_Unholyfrenzy
+292 ; Todesengel ; Erringt 100 ehrenhafte Siege auf einem beliebigen Schlachtfeld. ; -Ability_Warrior_Innerrage
+293 ; Todesengel ; Erringt 250 ehrenhafte Siege auf einem beliebigen Schlachtfeld. ; -Ability_Warrior_Innerrage
+294 ; Todesengel ; Erringt 500 ehrenhafte Siege auf einem beliebigen Schlachtfeld. ; -Ability_Warrior_Innerrage
+295 ; Todesengel ; Erringt 750 ehrenhafte Siege auf einem beliebigen Schlachtfeld. ; -Ability_Warrior_Innerrage
+296 ; Todesengel ; Erringt 1000 ehrenhafte Siege auf einem beliebigen Schlachtfeld. ; -Ability_Warrior_Innerrage
+297 ; Gurubashi Arenameister ; Plündert den Schmuck des Arenameisters in der Arena der Gurubashi. ; -Inv_Misc_ArmorKit_14
+298 ; Gurubashi Arenagroßmeister ; Schließt die Quest von Störtebrecher ab, um den Schmuck des Arenagroßmeisters zu erhalten. ; -Inv_Misc_ArmorKit_04
+299 ; Duell-ikat ; Gewinnt ein Duell gegen einen anderen Spieler. ; -ability_dualwieldspecialization
+300 ; Duellist ; Gewinnt in 10 Duellen. ; -ability_dualwieldspecialization
+301 ; Geübter Duellist ; Gewinnt in 25 Duellen. ; -ability_dualwieldspecialization
+302 ; Meister-Duellist ; Gewinnt in 100 Duellen. ; -ability_dualwieldspecialization
+303 ; Flammenschlund ; Bezwingt Taragaman den Hungerleider. ; -spell_shadow_summonfelguard
+304 ; Die Höhlen des Wehklagens ; Bezwingt Mutanus den Verschlinger. ; -Achievement_boss_mutanus_the_devourer
+305 ; Die Todesminen ; Bezwingt Edwin van Cleef. ; -achievement_boss_edwinvancleef
+306 ; Burg Shadowfang ; Bezwingt Erzmagier Arugal. ; -achievement_boss_archmagearugal
+307 ; Blackfathom-Tiefe ; Bezwingt Aku'mai. ; -achievement_boss_bazil_akumai
+308 ; Verlies von Sturmwind ; Bezwingt Bazil Thredd. ; -Achievement_boss_bazil_thredd
+309 ; Gnomeregan ; Bezwingt Robogenieur Thermaplugg. ; Achievement_boss_mekgineer_thermaplugg
+310 ; Der Kral von Razorfen ; Bezwingt Charlga Razorflank. ; -Achievement_boss_charlgarazorflank
+311 ; Das Scharlachrote Kloster ; Bezwingt den Scharlachroten Kreuzzug im Scharlachroten Kloster. ; -inv_helmet_52
+312 ; Die Hügel von Razorfen ; Bezwingt Amnennar den Kältebringer. ; -achievement_boss_amnennar_the_coldbringer
+313 ; Uldaman ; Bezwingt Archaedas. ; -achievement_boss_archaedas
+314 ; Zul'Farrak ; Bezwingt Häuptling Ukorz Sandscalp. ; -Achievement_boss_chiefukorzsandscalp
+315 ; Maraudon ; Bezwingt Prinzessin Theradras ; -Achievement_boss_princesstheradras
+316 ; Versunkener Tempel ; Bezwingt Eranikus' Schemen. ; -achievement_boss_shadeoferanikus
+317 ; Blackrocktiefen ; Bezwingt Imperator Dagran Thaurissan. ; -Achievement_boss_emperordagranthaurissan
+318 ; Die Tiefen säubern ; Tötet die folgenden Bosse in den Blackrocktiefen. ; -Spell_Fire_Lavaspawn
+319 ; Party in den Tiefen ; Bezwingt die folgenden Gegner im Grimmigen Säufer ; -inv_drink_05
+320 ; Angriff ist die bessere Verteidigung ; Plündert den Stein der Erde von Panzor den Unbesiegbaren in den Blackrocktiefen. ; -Inv_Sword_47
+321 ; Blackrocktiefen ; Schließt die unten aufgelisteten Erfolge in den Blackrocktiefen ab. ; -Inv_Misc_AhnQirajTrinket_03
+322 ; Untere Blackrockspitze ; Bezwingt Oberanführer Wyrmthalak. ; -Achievement_boss_overlord_wyrmthalak
+323 ; Obere Blackrockspitze  ; Bezwingt General Drakkisath. ; -achievement_boss_generaldrakkisath
+324 ; Eindringling der Blackrockspitze ; Schließt die unten aufgelisteten Erfolge in der Blackrockspitze ab. ; -Inv_Sword_48
+325 ; König des Düsterbruchs ; Schließt erfolgreich alle Düsterbruch-Dungeons ab. ; -Ability_Warrior_DecisiveStrike
+326 ; Stratholme ; Bezwingt die bösen Drahtzieher der Invasion von Stratholme. ; -spell_deathknight_armyofthedead
+327 ; Scholomance ; Bezwingt die Anführer von Scholomance. ; -Spell_Holy_Senseundead
+328 ; Klassischer Dungeonmeister ; Schließt die unten aufgelisteten Dungeon-Erfolge ab. ; -spell_holy_revivechampion
+329 ; Verteidiger von Azeroth ; Schließt die unten aufgelisteten Dungeon-Erfolge ab. ; -achievement_dungeon_classicraider
+330 ; Onyxias Hort ; Bezwingt Onyxia. ; -achievement_boss_onyxia
+331 ; Ruinen von Ahn'Qiraj ; Bezwingt Ossirian den Narbenlosen. ; -Achievement_boss_ossiriantheunscarred
+332 ; Zul'Gurub ; Bezwingt Hakkar. ; -achievement_boss_hakkar
+333 ; Geschmolzener Kern ; Bezwingt Ragnaros. ; -achievement_boss_ragnaros
+334 ; Pechschwingenhort ; Bezwingt Nefarian. ; -Achievement_boss_nefarion
+335 ; Tempel von Ahn'Qiraj ; Bezwingt C'Thun. ; -Achievement_boss_cthun
+336 ; Das Arachnidenviertel ; Bezwingt die Bosse im Arachnidenviertel von Naxxramas ; -Inv_Trinket_Naxxramas04
+337 ; Das Seuchenviertel ; Bezwingt die Bosse im Seuchenviertel von Naxxramas. ; -inv_misc_cauldron_nature
+338 ; Das Militärviertel ; Bezwingt die Bosse im Militärviertel von Naxxramas. ; -spell_deathknight_classicon
+339 ; Das Konstruktviertel ; Bezwingt die Bosse im Konstruktviertel von Naxxramas. ; -ability_rogue_deviouspoisons
+340 ; Kel'Thuzads Niederlage ; Bezwingt Kel'Thuzad in Naxxramas. ; -inv_trinket_naxxramas06
+341 ; Der Fall Naxxramas' ; Schließt die unten aufgelisteten Erfolge in Naxxramas ab. ; -achievement_dungeon_naxxramas_10man
+342 ; Aufstrebender Held von Azeroth ; Schließt die unten aufgelisteten Schlachtzugserfolge ab. ; -Achievement_dungeon_gloryofthehero
+343 ; Herr des Blackrock ; Schließt die unten aufgelisteten Erfolge im Blackrock ab. ; -achievement_dungeon_classicdungeonmaster
+344 ; Held von Azeroth ; Schließt die unten aufgelisteten Schlachtzugserfolge ab. ; -Achievement_dungeon_heroic_gloryoftheraider
+345 ; Großartiger Held von Azeroth ; Schließt die unten aufgelisteten Dungeon- und Schlachtzugserfolge ab. ; -Achievement_dungeon_gloryoftheraider
+346 ; Das Geheimnis des blauen Drachens ; Bezwingt Azuregos. ; -achievement_boss_cyanigosa
+347 ; Dämonen können nicht vorbei ; Bezwingt Lord Kazzak. ; -ability_warlock_demonicempowerment
+348 ; Kein Platz für Mädchen in einem Albtraum ; Bezwingt Ysondre. ; -achievement_boss_valithradreamwalker
+349 ; Kind des Smaragdgrünen Albtraums ; Bezwingt Lethon. ; -Achievement_boss_aeonus_01
+350 ; Emeriss, Verräter des Lebens ; Bezwingt Emeriss. ; -Achievement_boss_malygos_01
+351 ; Albtraumhafte Taerar ; Bezwingt Taerar. ; -Achievement_boss_eregos
+352 ; Smaragdgrüner Wächter ; Bezwingt alle Drachen des Smaragdgrünen Albtraums. ; -inv_misc_shadowegg
+353 ; Leeeeeeeeeeeeeeeroy! ; Tötet 50 Krähenhorstwelpen innerhalb von 15 Sekunden. ; -ability_mount_drake_red
+354 ; Doppelter Atem ; Bezwingt Schattenschwinge und Flammenmaul innerhalb von 45 Sekunden. ; -ability_mount_drake_twilight
+355 ; Der böse Spinnenlord ; Bezwingt Anub'Rekhan in Naxxramas, während beide Gruftwachen am Leben sind. ; -achievement_boss_anubarak
+356 ; Witwenjäger ; Bezwingt Großwitwe Faerlina in Naxxramas, während alle Anhänger und Jünger von Naxxramas am Leben sind. ; -spell_shadow_curseofmannoroth
+357 ; Arachnophobie ; Bezwingt Maexxna in Naxxramas innerhalb von 20 Minuten nach Anub'Rekhans Tod. ; -achievement_halloween_spider_01
+358 ; Zusammen bis in den Tod ; Bezwingt die Vier Reiter in Naxxramas, wobei sie im Abstand von höchstens 15 Sekunden hintereinander sterben müssen. ; -spell_deathknight_summondeathcharger
+359 ; Ziemlich frostig hier ; Bezwingt Saphiron in Naxxramas, ohne dass jemand aus dem Schlachtzug stirbt. ; -spell_frost_icestorm
+360 ; Dungeonmeister der Scherbenwelt ; Schließt die unten aufgelisteten "Burning Crusade"-Dungeonerfolge ab. ; -spell_holy_summonchampion
+361 ; Dungeonheld der Scherbenwelt ; Schließt die unten aufgelisteten heroischen "Burning Crusade"-Dungeonerfolge ab. ; -ability_creature_cursed_02
+362 ; Höllenfeuerbollwerk ; Bezwingt die Anführer im Höllenfeuerbollwerk. ; -Achievement_boss_omartheunscarred_01
+363 ; Heroisch: Höllenfeuerbollwerk ; Bezwingt die Anführer im Höllenfeuerbollwerk auf dem Schwierigkeitsgrad 'Heroisch'. ; -Achievement_boss_omartheunscarred_01
+364 ; Der Blutkessel ; Bezwingt Keli'dan den Zerstörer. ; -Achievement_boss_kelidanthebreaker
+365 ; Heroisch: Der Blutkessel ; Bezwingt Keli'dan den Zerstörer auf dem Schwierigkeitsgrad 'Heroisch'. ; -Achievement_boss_kelidanthebreaker
+366 ; Die Sklavenunterkünfte ; Bezwingt Quagmirran. ; -Achievement_boss_quagmirran
+367 ; Heroisch: Die Sklavenunterkünfte ; Bezwingt Quagmirran auf dem Schwierigkeitsgrad 'Heroisch'. ; -Achievement_boss_quagmirran
+368 ; Tiefensumpf ; Bezwingt die Schattenmutter. ; -Achievement_boss_theblackstalker
+369 ; Heroisch: Tiefensumpf ; Bezwingt die Schattenmutter auf dem Schwierigkeitsgrad 'Heroisch'. ; -Achievement_boss_theblackstalker
+370 ; Managruft ; Bezwingt den Nexusprinzen Shaffar. ; -achievement_boss_nexus_prince_shaffar
+371 ; Heroisch: Managruft ; Bezwingt den Nexusprinzen Shaffar auf dem Schwierigkeitsgrad 'Heroisch'. ; -achievement_boss_nexus_prince_shaffar
+372 ; Auchenaikrypta ; Bezwingt Exarch Maladaar. ; -Achievement_boss_exarch_maladaar
+373 ; Heroisch: Auchenaikrypta ; Bezwingt Exarch Maladaar auf dem Schwierigkeitsgrad 'Heroisch'. ; -Achievement_boss_exarch_maladaar
+374 ; Die Flucht aus Durnholde ; Bezwingt den Epochenjäger. ; -Achievement_boss_epochhunter
+375 ; Heroisch: Die Flucht aus Durnholde ; Bezwingt den Epochenjäger auf dem Schwierigkeitsgrad 'Heroisch'. ; -Achievement_boss_epochhunter
+376 ; Sethekkhallen ; Bezwingt den Klauenkönig Ikiss. ; -Achievement_boss_talonkingikiss
+377 ; Heroisch: Sethekkhallen ; Bezwingt den Klauenkönig Ikiss auf dem Schwierigkeitsgrad 'Heroisch'. ; -Achievement_boss_talonkingikiss
+378 ; Die Dampfkammer ; Bezwingt den Kriegsherrn Kalithresh. ; -Achievement_boss_warlord_kalithresh
+379 ; Heroisch: Die Dampfkammer ; Bezwingt den Kriegsherrn Kalithresh auf dem Schwierigkeitsgrad 'Heroisch'. ; -Achievement_boss_warlord_kalithresh
+380 ; Schattenlabyrinth ; Bezwingt Murmur. ; -achievement_boss_murmur
+381 ; Heroisch: Schattenlabyrinth ; Bezwingt Murmur auf dem Schwierigkeitsgrad 'Heroisch'. ; -achievement_boss_murmur
+382 ; Die Zerschmetterten Hallen ; Bezwingt den Kriegshäuptling Kargath Messerfaust. ; -Achievement_boss_kargathbladefist_01
+383 ; Heroisch: Die Zerschmetterten Hallen ; Bezwingt den Kriegshäuptling Kargath Messerfaust auf dem Schwierigkeitsgrad 'Heroisch'. ; -Achievement_boss_kargathbladefist_01
+384 ; Öffnung des Dunklen Portals ; Bezwingt Aeonus. ; -Achievement_boss_aeonus_01
+385 ; Heroisch: Öffnung des Dunklen Portals ; Bezwingt Aeonus auf dem Schwierigkeitsgrad 'Heroisch'. ; -Achievement_boss_aeonus_01
+386 ; Die Botanika ; Bezwingt Warpzweig. ; -achievement_boss_warpsplinter
+387 ; Heroisch: Die Botanika ; Bezwingt Warpzweig auf dem Schwierigkeitsgrad 'Heroisch'. ; -achievement_boss_warpsplinter
+388 ; Die Mechanar ; Bezwingt Pathaleon den Kalkulator. ; -achievement_boss_pathaleonthecalculator
+389 ; Heroisch: Die Mechanar ; Bezwingt Pathaleon den Kalkulator auf dem Schwierigkeitsgrad 'Heroisch'. ; -achievement_boss_pathaleonthecalculator
+390 ; Die Arkatraz ; Bezwingt Herold Horizontiss. ; -achievement_boss_harbinger_skyriss
+391 ; Heroisch: Die Arkatraz ; Bezwingt Herold Horizontiss auf dem Schwierigkeitsgrad 'Heroisch'. ; -achievement_boss_harbinger_skyriss
+392 ; Terrasse der Magister ; Bezwingt Kael'thas Sonnenwanderer. ; -achievement_character_bloodelf_male
+393 ; Heroisch: Terrasse der Magister ; Bezwingt Kael'thas Sonnenwanderer auf dem Schwierigkeitsgrad 'Heroisch'. ; -achievement_character_bloodelf_male
+394 ; Die Zügel des Rabenfürsten ; Erhaltet die Zügel des Rabenfürsten von Anzu in den Sethekkhallen. ; -Inv-Mount_Raven_54
+395 ;  Ich bin der Meister meines Schicksals ; Bezwingt Verdammnislord Kazzak auf der Höllenfeuerhalbinsel. ; -spell_shadow_shadowbolt
+396 ; Kaputter Verdammniswandler ; Bezwingt den Verdammniswandler im Schattenmondtal. ; -spell_fire_felflamebreath
+397 ; Karazhan ; Bezwingt Prinz Malchezaar in Karazhan. ; -achievement_boss_prince_malchezaar
+398 ; Gruuls Unterschlupf ; Bezwingt Gruul den Drachenschlächter in Gruuls Unterschlupf. ; -Achievement_boss_gruulthedragonkiller
+399 ; Magtheridons Kammer ; Bezwingt Magtheridon in Magtheridons Kammer. ; -achievement_boss_magtheridon
+400 ; Scherbenwelt-Schlachtzugsmeister - Phase 1 ; Schließt die unten aufgelisteten Schlachtzugserfolge der Scherbenwelt ab. ; -Inv_Helmet_89
+401 ; Höhle des Schlangenschreins ; Bezwingt die folgenden Bosse in der Höhle des Schlangenschreins. ; -Achievement_boss_ladyvashj
+402 ; Die Festung der Stürme ; Bezwingt die folgenden Bosse in der Festung der Stürme. ; achievement_character_bloodelf_male
+403 ; Scherbenwelt-Schlachtzugsmeister - Phase 2 ; Schließt die unten aufgelisteten Schlachtzugserfolge der Scherbenwelt ab. ; -Inv_Helmet_90
+404 ; Die Schlacht um den Hyjal ; Bezwingt Archimonde in der Schlacht um den Hyjal. ; -achievement_boss_princemalchezaar_02
+405 ; Infiltration ; Dringt über die Kanäle von Karabor in den Schwarzen Tempel ein, indem ihr nachfolgende Bosse bezwingt. ; -Spell_Fire_BlueImmolation
+406 ; Akolyth von Karabor  ; Reinigt die Hallen des Schwarzen Tempels, indem ihr nachfolgende Bosse bezwingt. ; -Spell_Shadow_ConeOfSilence
+407 ; Tempelspitze ; Infiltriert die oberen Stockwerke des Schwarzen Tempels, indem ihr nachfolgende Bosse bezwingt. ; -Spell_Shadow_ShadowPower
+408 ; Der Schwarze Tempel ; Schließt die unten aufgelisteten Erfolge im Schwarzen Tempel ab. ; -achievement_boss_illidan
+409 ; Scherbenwelt-Schlachtzugsmeister - Phase 3 ; Schließt die unten aufgelisteten Schlachtzugserfolge der Scherbenwelt ab. ; -Inv_Helmet_103
+410 ; Zul'Aman ; Bezwingt Zul'jin in Zul'Aman. ; -achievement_boss_zuljin
+411 ; Scherbenwelt-Schlachtzugsmeister - Phase 4 ; Schließt die unten aufgelisteten Schlachtzugserfolge der Scherbenwelt ab. ; -inv_helmet_112
+412 ; Das Sonnenbrunnenplateau ; Bezwingt Kil'jaeden auf dem Sonnenbrunnenplateau. ; -achievement_boss_kiljaedan
+413 ; Scherbenwelt-Schlachtzugsmeister - Phase 5 ; Schließt die unten aufgelisteten Schlachtzugserfolge der Scherbenwelt ab. ; -inv_helmet_92
+414 ; Lehrlingsprüfung ; Erlangt 75 Fertigkeitspunkte in einem Beruf. ; -Inv_Misc_Note_01
+415 ; Gesellenprüfung ; Erlangt 150 Fertigkeitspunkte in einem Beruf. ; -Inv_Misc_Note_01
+416 ; Professioneller Experte ; Erlangt 225 Fertigkeitspunkte in einem Beruf. ; -Inv_Misc_Note_01
+417 ; Professioneller Fachmann ; Erlangt 300 Fertigkeitspunkte in einem Beruf. ; -Inv_Misc_Note_01
+418 ; Meisterprüfung ; Erlangt 375 Fertigkeitspunkte in einem Beruf. ; -Inv_Misc_Note_01
+419 ; Handwerker ; Werdet gleichzeitig in zwei Berufen Fachmann. ; -ability_repair
+420 ; Handwerker der Scherbenwelt ; Werdet gleichzeitig in zwei Berufen Meister. ; -ability_repair
+421 ; Lehrling in Erster Hilfe ; Erlangt 75 Fertigkeitspunkte in Erster Hilfe. ; -spell_holy_sealofsacrifice
+422 ; Geselle in Erster Hilfe ; Erlangt 150 Fertigkeitspunkte in Erster Hilfe. ; -spell_holy_sealofsacrifice
+423 ; Experte in Erster Hilfe ; Erlangt 225 Fertigkeitspunkte in Erster Hilfe. ; -spell_holy_sealofsacrifice
+424 ; Fachmann in Erster Hilfe ; Erlangt 300 Fertigkeitspunkte in Erster Hilfe. ; -spell_holy_sealofsacrifice
+425 ; Anglerlehrling ; Erlangt 75 Fertigkeitspunkte im Angeln. ; -trade_fishing
+426 ; Anglergeselle ; Erlangt 150 Fertigkeitspunkte im Angeln. ; -trade_fishing
+427 ; Expertenangler ; Erlangt 225 Fertigkeitspunkte im Angeln. ; -trade_fishing
+428 ; Anglerfachmann ; Erlangt 300 Fertigkeitspunkte im Angeln. ; -trade_fishing
+429 ; Kochlehrling ; Erlangt 75 Fertigkeitspunkte im Kochen. ; -inv_misc_food_15
+430 ; Kochgeselle ; Erlangt 150 Fertigkeitspunkte im Kochen. ; -inv_misc_food_15
+431 ; Expertenkoch ; Erlangt 225 Fertigkeitspunkte im Kochen. ; -inv_misc_food_15
+432 ; Der Kochfachmann ; Erlangt 300 Fertigkeitspunkte im Kochen. ; -inv_misc_food_15
+433 ; Außergewöhnliche Fähigkeiten ; Werdet gleichzeitig Fachmann des Angelns, der Ersten Hilfe und der Kochkunst. ; -Inv_Misc_Note_02
+434 ; Meister der Ersten Hilfe ; Erlangt 375 Fertigkeitspunkte in Erster Hilfe. ; -spell_holy_sealofsacrifice
+435 ; Meisterangler ; Erlangt 375 Fertigkeitspunkte im Angeln. ; -trade_fishing
+436 ; Meisterkoch ; Erlangt 375 Fertigkeitspunkte im Kochen. ; -inv_misc_food_15
+437 ; Außergewöhnliche Fähigkeiten der Scherbenwelt ; Werdet gleichzeitig Meister des Angelns, der Ersten Hilfe und der Kochkunst. ; -Inv_Misc_Note_02
+438 ; Genie ; Erlangt die unten aufgelisteten Berufserfolge. ; -Spell_Magic_GreaterBlessingOfKings
+439 ; Genie der Scherbenwelt ; Erlangt die unten aufgelisteten Berufserfolge. ; -Spell_Magic_GreaterBlessingOfKings
+440 ; Vorrat aufstocken ; Stellt 100 schwere Runenstoffverbände her. ; -Inv_Misc_Bandage_12
+441 ; Vorrat aufstocken ; Stellt 500 schwere Runenstoffverbände her. ; -Inv_Misc_Bandage_12
+442 ; Vorbereitung für die Leere ; Stellt 100 schwere Netherstoffverbände her. ; -Inv_Misc_Bandage_Netherweave_Heavy
+443 ; Vorbereitung für die Leere ; Stellt 500 schwere Netherstoffverbände her. ; -Inv_Misc_Bandage_Netherweave_Heavy
+444 ; Für's Angeln nur das Beste! ; Gewinnt den Angelwettbewerb in der Beutebucht und wählt die Arkanitangel oder den Angelhaken des Anglermeisters als Belohnung. ; -inv_misc_fish_21
+445 ; Echter Fischliebhaber ; Angelt einen der besonderen Fische während des Angelwettbewerbs in der Beutebucht. ; -inv_misc_fish_10
+446 ; Fischsammlung ; Fangt die unten aufgelisteten Fische in Azeroth. ; -inv_misc_fish_08
+447 ; Wasser aus Wasser ; Angelt eine Essenz des Wassers. ; -Spell_Nature_Acid_01
+448 ; Aufhören unmöglich ; Angelt die folgenden Rumsorten. ; -Inv_Drink_04
+449 ; Geschenk von Mordor ; Angelt den Einen Ring. ; -Inv_Jewelry_Ring_03
+450 ; Bote eines traurigen Endes ; Angelt Old Teamsters Schädel. ; -Inv_Misc_Bone_DwarfSkull_01
+451 ; Großer Schnapperfanger ; Angelt Matschschnapper der folgenden Größen. ; -inv_misc_fish_32
+452 ; Barschfänger ; Angelt Barsche der folgenden Größen. ; -inv_misc_fish_06
+453 ; Lachsliebhaber ; Angelt Lachse der folgenden Größen. ; -inv_misc_fish_02
+454 ; Hummerjäger ; Angelt Hummer der folgenden Größen. ; -Inv_Misc_Fish_14
+455 ; Der größte Angler von Azeroth ; Schließt die unten aufgelisteten Angel-Erfolge ab. ; -Inv_FishingPole_01
+456 ; Dr. Zwicky! ; Angelt Dr. Zwicky in der Scherbenwelt. ; -Inv_Misc_Fish_14
+457 ; Freizeitkoch ; Lernt 5 Kochrezepte. ; -inv_misc_food_66
+458 ; Commis de Cuisine ; Lernt 10 Kochrezepte. ; -inv_misc_food_65
+459 ; Chef de Partie ; Lernt 25 Kochrezepte. ; -inv_misc_food_60
+460 ; Sous Chef ; Lernt 50 Kochrezepte. ; -inv_misc_food_13
+461 ; Chef de Cuisine ; Lernt 75 Kochrezepte. ; -inv_misc_food_92_lobster
+462 ; Suppenkocher ; Kocht Nachtflossensuppe 100-mal. ; -Inv_Drink_17
+463 ; Konditormeister ; Kocht Runn Tum Knolle Surprise 100-mal. ; -Inv_Misc_Food_63
+464 ; Fang des Tages ; Kocht Gegrillter Kalmar 100-mal. ; -Inv_Misc_Fish_13
+465 ; Omas Knödel ; Kocht Geräucherte Wüstenknödel 100-mal. ; -Inv_Misc_Food_64
+466 ; Große Festtafel ; Schließt die unten aufgelisteten Kocherfolge ab. ; -Inv_Misc_Food_49
+467 ; Super nahrhafte Koteletts ; Kocht Dirges abgefahrene Chimaerokkoteletts 20-mal. ; -Inv_Misc_Food_65
+468 ; Jemand mag mich! ; Erreicht einen ehrfürchtigen Ruf. ; -achievement_reputation_01
+469 ; 5 ehrfürchtige Fraktionen ; Erreicht bei 5 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_02
+470 ; 10 ehrfürchtige Fraktionen ; Erreicht bei 10 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_02
+471 ; 15 ehrfürchtige Fraktionen ; Erreicht bei 15 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_02
+472 ; 20 ehrfürchtige Fraktionen ; Erreicht bei 20 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_03
+473 ; 25 ehrfürchtige Fraktionen ; Erreicht bei 25 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_03
+474 ; 30 ehrfürchtige Fraktionen ; Erreicht bei 30 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_03
+475 ; Botschafter der Horde ; Erreicht einen ehrfürchtigen Ruf in 4 Heimatstädten. ; -achievement_pvp_o_h
+476 ; Botschafter der Allianz ; Erreicht einen ehrfürchtigen Ruf in 4 Heimatstädten. ; -achievement_pvp_o_a
+477 ; Die Hydraxianer ; Erreicht bei den Hydraxianern den Status ehrfürchtig. ; -spell_frost_summonwaterelemental_2
+478 ; Stamm der Zandalar ; Erreicht beim Stamm der Zandalar den Status ehrfürchtig. ; -inv_bijou_green
+479 ; Brut von Nozdormu ; Erreicht bei der Brut Nozdormus den Status ehrfürchtig. ; -Inv_Misc_Head_Dragon_Bronze
+480 ; Argentumdämmerung ; Erreicht bei der Argentumdämmerung den Status ehrfürchtig. ; -inv_jewelry_talisman_07
+481 ; Die stehen auf mich in diesem Tunnel ; Erreicht bei der Holzschlundfeste den Status ehrfürchtig. ; -achievement_reputation_timbermaw
+482 ; Dunkelmond-Jahrmarkt ; Erreicht beim Dunkelmond-Jahrmarkt den Status ehrfürchtig. ; -Inv_Misc_MissileLarge_Red
+483 ; Thoriumbruderschaft ; Erreicht bei der Thoriumbruderschaft den Status ehrfürchtig. ; -inv_enchant_dustsoul
+484 ; Agent der Shen'dralar ; Erreicht bei den Shen'dralar den Status ehrfürchtig. ; -inv_misc_book_11
+485 ; Der brennende Kreuzritter ; Bringt alle Rufe der Burning-Crusade-Dungeons auf Ehrfürchtig. ; -Spell_Fire_FelfireWard
+486 ; Der brennende Kreuzritter ; Bringt alle Rufe der Burning-Crusade-Dungeons auf Ehrfürchtig. ; -Spell_Fire_FelfireWard
+487 ; Geteiltes Shattrath ; Erreicht bei den Sehern oder den Aldor den Status ehrfürchtig. ; -Spell_Arcane_PortalShattrath
+488 ; Wächter des Cenarius ; Erreicht beim Zirkel des Cenarius und der Expedition des Cenarius den Status ehrfürchtig. ; -ability_racial_ultravision
+489 ; Jeden Tag eine gute Tat für die Oger ; Erreicht in Ogri'la den Status ehrfürchtig. ; -Inv_Misc_Apexis_Crystal
+490 ; Der Zar von Sporeggar ; Erreicht bei den Sporeggar den Status ehrfürchtig. ; -Inv_Mushroom_11
+491 ; Ehrfurchtgebietender Offizier ; Erreicht beim Konsortium den Status ehrfürchtig. ; -Inv_Enchant_ShardPrismaticLarge
+492 ; Mag'har von Draenor ; Erreicht bei den Mag'har den Status ehrfürchtig. ; -Inv_Misc_Foot_Centaur
+493 ; Owei, Kurenai ; Erreicht bei den Kurenai den Status ehrfürchtig. ; -Inv_Misc_Foot_Centaur
+494 ; Auf den Schwingen der Nether ; Erreicht bei den Netherschwingen den Status ehrfürchtig. ; -Ability_Mount_NetherdrakePurple
+495 ; Aus dem Himmel gedonnert ; Bezwingt Hauptmann Himmelsdonner im Drachenmalrennen auf der Netherschwingenscherbe. ; -Ability_Mount_NetherdrakePurple
+496 ; Das Violette Auge ; Erreicht beim Violetten Auge den Status ehrfürchtig. ; -Spell_Holy_Mindsooth
+497 ; Die Wächter der Sande ; Erreicht bei den Wächtern der Sande den Status ehrfürchtig. ; -Inv_Enchant_DustIllusion
+498 ; Höriger der Todeshörigen ; Erreicht bei den Todeshörigen der Aschenzungen den Status ehrfürchtig. ; -achievement_reputation_ashtonguedeathsworn
+499 ; Welch eine Offensive ; Erreicht bei der Offensive der zerschmetterten Sonne den Status ehrfürchtig. ; -Inv_Shield_48
+500 ; Sulfuras, Hand von Ragnaros ; Träger von Sulfuras, Hand von Ragnaros. ; -Inv_Hammer_Unique_Sulfuras
+501 ; Donnerzorn, Gesegnete Klinge des Windsuchers ; Träger von Donnerzorn, Gesegnete Klinge des Windsuchers. ; -Inv_Sword_39
+502 ; Skarabäusfürst ; Die Tore von Ahn'Qiraj geöffnet. ; -achievement_zone_silithus_01
+503 ; Warum? Weil er rot ist! ; Erhaltet einen roten Qirajiresonanzkristall. ; -Inv_Misc_QirajiCrystal_02
+504 ; Atiesh, Hohestab des Wächters ; Träger von Atiesh, Hohestab des Wächters. ; -Inv_Staff_Medivh
+505 ; Schneller zulianischer Tiger ; Erhaltet den schnellen zulianischen Tiger vom Hohepriester Thekal in Zul'Gurub. ; -ability_mount_jungletiger
+506 ; Schneller Razzashiraptor ; Erhaltet den schnellen Razzashiraptor von Blutfürst Mandokir in Zul'Gurub. ; -ability_mount_raptor
+507 ; Die Zügel des Todesstreitrosses ; Erhaltet die Zügel des Todesstreitrosses von Totenschwur in Stratholme. ; -ability_mount_undeadhorse
+508 ; Frostsäbler aus Winterquell ; Erhaltet einen Frostsäbler aus Winterquell. ; -ability_mount_pinktiger
+509 ; Auf in den Kampf! ; Hat am Kampf um das Dunkle Portal teilgenommen. Träger des Wappenrock des Beschützers. ; -inv_shirt_guildtabard_01
+510 ; Kriegsgleven von Azzinoth ; Träger eines Sets der Kriegsgleven von Azzinoth. ; -Inv_Weapon_Glave_01
+511 ; Thori'dal, Furor der Sterne ; Träger von Thori'dal, Furor der Sterne. ; -inv_weapon_bow_39
+512 ; Kriegsbär der Amani ; Besitzer des Kriegsbären der Amani. ; -ability_druid_challangingroar
+513 ; Schneller weißer Falkenschreiter ; Erhaltet den schnellen weißen Falkenschreiter von Kael'thas Sonnenwanderer auf der Terrasse der Magister. ; -ability_mount_cockatricemountelite_green
+514 ; Al'ars Asche ; Erhaltet Al'ars Asche von Kael'thas Sonnenwanderer in der Festung der Stürme. ; -inv_misc_summerfest_brazierorange
+515 ; Eroberer der Scherbenwelt ; Bezwingt Archimonde und Illidan Sturmgrimm in der ersten Woche von Phase 3. ; -Inv_Helmet_96
+516 ; 25 Fische ; Angelt 25 Gegenstände oder Fische. ; -inv_misc_fish_50
+517 ; 50 Fische ; Angelt 50 Gegenstände oder Fische. ; -inv_misc_fish_50
+518 ; 100 Fische ; Angelt 100 Gegenstände oder Fische. ; -inv_misc_fish_50
+519 ; 250 Fische ; Angelt 250 Gegenstände oder Fische. ; -inv_misc_fish_50
+520 ; 500 Fische ; Angelt 500 Gegenstände oder Fische. ; -inv_misc_fish_50
+521 ; 1.000 Fische ; Angelt 1.000 Gegenstände oder Fische. ; -inv_misc_fish_50
+522 ; Schnelle Fluggestalt ; Die Druidenquest zum Erlernen einer schnellen Fluggestalt abgeschlossen. ; -ability_druid_flightform
+523 ; Segel setzen, Admiral! ; Erhaltet den Blutsegeladmiralshut... und versucht, zwischendurch etwas frische Luft zu tanken. ; -inv_helmet_66
+524 ; Schreckensross von Xoroth ; Die Hexenmeisterquest zur Beschwörung eines Schreckensrosses von Xoroth abgeschlossen. ; -ability_mount_dreadsteed
+525 ; Streitross ; Die Paladinquest zur Erlangung eines Streitrosses abgeschlossen. ; -ability_mount_charger
+526 ; Hügel wie weiße Elekk ; Schließt alle Hemet Nesingwary-Quests in Nagrand bis hin zu und inklusive 'Die ultimative Beute' ab. ; -ability_mount_ridingelekk
+527 ; Die Zügel des Reiters ; Erhaltet während der Schlotternächte die Zügel des Reiters vom kopflosen Reiter im Scharlachroten Kloster. ; -inv_belt_12
+528 ; Der Held Shattraths ; Bei den Sehern und den Aldor den Status ehrfürchtig erreicht. ; -spell_arcane_teleportshattrath
+529 ; Champion der Naaru ; Den Titel "Champion der Naaru" erhalten. ; -inv_mace_51
+530 ; Hand von A'dal ; Den Titel "Hand von A'dal" erhalten. ; -inv_mace_25
+531 ; Geschlottert werde dein Name ; Schließt die unten aufgelisteten Schlotternächte-Erfolge ab. ; -achievement_halloween_witch_01
+532 ; Fauliges Schlottern ; Ruiniert die Schlotternächte für die Allianz. Schließt dafür die Quests für die Ruferin der Dunkelheit, Yanka, ab, die Euch nach Süderstade führen, damit Ihr dort die Fässer mit faulen Eiern ruiniert und Stinkbomben in die Stadt werft. ; -achievement_halloween_rottenegg_01
+533 ; Schlotternachtssüßigkeiten für Spoops! ; Sammelt die gewünschten Süßigkeiten für Spoops. ; -inv_misc_food_26
+534 ; Süßes oder Saures! ; Erhaltet einen Schlotterbeutel von einem Gastwirt. ; -inv_misc_food_30
+535 ; Ziemlich gruselig ; Erhaltet eine Kürbistasche während der Schlotternächte. ; -inv_misc_food_59
+536 ; Anrufung des Weidenmanns ; Erhaltet während der Schlotternächte den Stärkungszauber "Anrufung des Weidenmanns". ; -inv_waepon_bow_zulgrub_d_02
+537 ; Maskiert ; Erhaltet während der Schlotternächte eine leichte Maske. ; -inv_mask_06
+538 ; Eine Maske für jede Gelegenheit ; Sammelt die 16 unten aufgelisteten einzigartigen leichten Masken. ; -inv_mask_04
+539 ; Die Maskerade ; Lasst Euch von den unten aufgelisteten Stäben der Verwandlung transformieren. ; -achievement_halloween_ghost_01
+540 ; Saphirons Ableben ; Bezwingt Saphiron in Naxxramas. ; -inv_misc_head_dragon_blue
+541 ; Winterhauchengel ; Schließt die unten aufgelisteten Winterhaucherfolge ab. ; -achievement_worldevent_merrymaker
+542 ; Auf Metzen! ; Rettet Metzen das Rentier. ; -achievement_worldevent_reindeer
+543 ; Einfach grässlich ; Schließt die Quest zur Wiederbeschaffung von Kokelwälders gestohlenen Leckereien ab und erhaltet ein Dankeschön von Kokelwälder. ; -inv_helmet_68
+544 ; Der Winterhauch-Gourmet ; Nutzt während des Winterhauchfests Eure kulinarische Expertise, um einen Lebkuchen und einen Eierflip herzustellen. ; -inv_misc_food_62
+545 ; Waren wir brav dieses Jahr? ; Öffnet eines der Geschenke unter dem Winterhauchbaum, sobald sie verfügbar sind. ; -inv_holiday_christmas_present_01
+546 ; Mitten ins Gesicht ; Werft während des Winterhauchfests einen Schneeball auf Cairne Bloodhof. ; -inv_ammo_snowball
+547 ; Fischsammlung der Scherbenwelt ; Fangt die unten aufgelisteten Fische in der Scherbenwelt. ; -Inv_Misc_Fish_37
+548 ; Fische hinterlassen keine Fußspuren ; Erlernt die Fertigkeit, Fische zu finden. ; achievement_profession_fishing_findfish
+549 ; Fische für den alten Barlo ; Schließt jede der unten aufgelisteten 5 täglichen Angelquests des alten Barlo ab. ; achievement_profession_fishing_oldmanbarlowned
+550 ; Alter Eisenkiefer ; Angelt den alten Eisenkiefer in Eisenschmiede. ; -inv_misc_fish_31
+551 ; Alter Fuchs ; Angelt den alten Fuchs in Orgrimmar. ; -inv_misc_fish_35
+552 ; Der angelnde Diplomat ; Bekommt etwas in Orgrimmar und Sturmwind an den Haken. ; -inv_helmet_44
+
+554 ; Versierter Angler ; Schließt die unten aufgelisteten Angelerfolge ab. ; -trade_fishing
+556 ; Bitte nicht zu scharf ; Schließt jede der 4 unten aufgelisteten täglichen Kochquests des Rokk ab. ; -inv_misc_cauldron_arcane
+555 ; Kapitän Rumseys Lagerbier ; Braut etwas von Kapitän Rumseys Lagerbier. ; -inv_drink_03
+557 ; Der Scherbenwelt-Gourmet ; Kocht jedes der unten aufgelisteten Rezepte aus der Scherbenwelt. ; -inv_misc_food_84_roastclefthoof
+558 ; Ein Hoch auf den Koch! ; Schließt die unten aufgelisteten Kocherfolge ab. ; achievement_profession_chefhat
+559 ; Hoch über Skettis ; Erreicht bei der Himmelswache der Sha'tari den Status ehrfürchtig. ; -ability_hunter_pet_netherray
+560 ; Cenarischer Kriegshippogryph ; Erhaltet den cenarischen Kriegshippogryphen von der Expedition des Cenarius in den Zangarmarschen. ; -ability_mount_warhippogryph
+561 ; Wappenrock der Argentumdämmerung ; Einen Wappenrock der Argentumdämmerung durch das Ereignis 'Invasion der Geißel' erhalten. ; -inv_shirt_guildtabard_01
+562 ; Auf Nummer sicher ; Bezwingt Heigan den Unreinen in Naxxramas, ohne dass jemand aus dem Schlachtzug stirbt. ; -ability_rogue_quickrecovery
+563 ; Legt Flickwerk schnell das Handwerk ; Bezwingt Flickwerk in Naxxramas in höchstens 3 Minuten. ; -spell_shadow_abominationexplosion
+564 ; Der Diplomat ; Erhöht Euren Ruf bei der Holzschlundfeste, den Sporeggar und den Kurenai von unfreundlich auf ehrfürchtig. ; -inv_helmet_44
+565 ; Ich krieg' einfach nicht genug ; Bezwingt Kel'Thuzad in Naxxramas, nachdem ihr mindestens 18 Monstrositäten in seiner Kammer besiegt habt. ; spell_deathknight_plaguestrike
+566 ; Kleiner Helfer in der Not ; Erringt 50 ehrenhafte Siege als kleiner Helfer der Winterwundervolt-Maschine. ; -achievement_worldevent_littlehelper
+567 ; 5 tägliche Quests abgeschlossen ; Schließt 5 tägliche Quests ab. ; achievement_quests_completed_daily_01
+568 ; 50 tägliche Quests abgeschlossen ; Schließt 50 tägliche Quests ab. ; achievement_quests_completed_daily_02
+569 ; 200 tägliche Quests abgeschlossen ; Schließt 200 tägliche Quests ab. ; achievement_quests_completed_daily_03
+570 ; 500 tägliche Quests abgeschlossen ; Schließt 500 tägliche Quests ab. ; achievement_quests_completed_daily_04
+571 ; 1.000 tägliche Quests abgeschlossen ; Schließt 1.000 tägliche Quests ab. ; achievement_quests_completed_daily_05
+572 ; 2.500 tägliche Quests abgeschlossen ; Schließt 2.500 tägliche Quests ab. ; achievement_quests_completed_daily_06
+573 ; 5.000 tägliche Quests abgeschlossen ; Schließt 5.000 tägliche Quests ab. ; achievement_quests_completed_daily_07
+574 ; 10.000 tägliche Quests abgeschlossen ; Schließt 10.000 tägliche Quests ab. ; achievement_quests_completed_daily_08
