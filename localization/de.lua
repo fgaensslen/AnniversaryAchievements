@@ -6,7 +6,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     ICON_DESCRIPTION = '&7Linksklick: &eErfolge anzeigen oder schließen\n&7Rechtsklick: &eEinstellungen öffnen\n',
 
     OPTION_SHARING = 'Erfolge teilen',
-    OPTION_SHARING_DESC = 'Neue Erfolge werden im Chat geteilt.',
+    OPTION_SHARING_DESC = 'Neue Erfolge werden im Chat geteilt. Nur für dich sichtbar.',
     OPTION_MICROBUTTON = 'Micromenu-Button',
     OPTION_MICROBUTTON_DESC = 'Wird diese Option aktiviert, so wird ein Addon-Button im Menü an der unteren Leiste angezeigt. Dies kann zu Anzeigefehlern führen, wenn andere Addons das Interface verändern. Alternativ wird ein Button an der Minimap angezeigt. Ändern dieser Option benötigt ein /reload des User-Interfaces.',
     OPTION_UPDATE_MAP_EXPLORATION = 'Erkundete Gebiete überprüfen',
@@ -16,8 +16,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     OPTION_TRACKER = 'Ziele beobachten',
     OPTION_TRACKER_DESC = 'Aktiviert oder deaktiviert den Tracker für Erfolge und Quests. Ändern dieser Option benötigt ein /reload des User-Interfaces.',
 
-    GOT_ACHIEVEMENT_MESSAGE_MALE = 'Ich habe folgenden Erfolg erhalten: %s!',
-    GOT_ACHIEVEMENT_MESSAGE_FEMALE = 'Ich habe folgenden Erfolg erhalten: %s!',
+    GOT_ACHIEVEMENT_MESSAGE_MALE = 'Ihr habt den Erfolg %s erreicht!',
+    GOT_ACHIEVEMENT_MESSAGE_FEMALE = 'Ihr habt den Erfolg %s erreicht!',
 
     UPDATING_EXPLORED_AREAS = 'Aktualisieren der erkundeten Gebiete. Dies kann ein paar Sekunden dauern.',
     UPDATED_EXPLORED_AREAS = '&aErkundete Gebiete wurden aktualisiert!',

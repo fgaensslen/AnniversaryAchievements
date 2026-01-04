@@ -5,7 +5,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     ICON_DESCRIPTION = '&7Left mouse button: &eopen/hide achievements window\n&7Right mouse button: &eopen Anniversary Achievements settings',
 
     OPTION_SHARING = 'Share achievements',
-    OPTION_SHARING_DESC = 'Write messages in chat when completing a new achievement.',
+    OPTION_SHARING_DESC = 'Share new achievements in the chat. Visible only for you.',
     OPTION_MICROBUTTON = 'Micromenu button',
     OPTION_MICROBUTTON_DESC = 'If enabled, an addon button will be added to the micromenu, and the interface may break if you are using any addon to modify it. If disabled, the icon will be added to the minimap. Toggling this option requires you to do /reload your user interface.',
     OPTION_UPDATE_MAP_EXPLORATION = 'Check explored areas',
@@ -15,8 +15,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     OPTION_TRACKER = 'Track Objectives',
     OPTION_TRACKER_DESC = 'Enable or disable the tracker for achievements and quests. Toggling this option requires you to do /reload your user interface.',
 
-    GOT_ACHIEVEMENT_MESSAGE_MALE = 'I\'ve earned achievement: %s!',
-    GOT_ACHIEVEMENT_MESSAGE_FEMALE = 'I\'ve earned achievement: %s!',
+    GOT_ACHIEVEMENT_MESSAGE_MALE = 'You have earned the achievement %s!',
+    GOT_ACHIEVEMENT_MESSAGE_FEMALE = 'You have earned the achievement %s!',
 
     UPDATING_EXPLORED_AREAS = 'Updating area exploration data. This action will take a few seconds.',
     UPDATED_EXPLORED_AREAS = '&aInformation about explored areas has been updated!',
