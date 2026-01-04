@@ -47,13 +47,13 @@ SexyLib:Util():AfterLogin(function()
     LDBIcon:Register(
         "AnniversaryAchievements",
         launcher,
-        CA_Settings.microbutton
+        CA_Settings.minimap
     )
 
     ----------------------------------------------------------------
     -- Sync visibility if settings change later
     ----------------------------------------------------------------
-    if CA_Settings.microbutton then
+    if CA_Settings.minimap.hide then
         LDBIcon:Hide("AnniversaryAchievements")
     else
         LDBIcon:Show("AnniversaryAchievements")

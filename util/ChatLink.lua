@@ -28,52 +28,33 @@ local function strstartsWith(str, prefix)
     return str:sub(1, #prefix) == prefix
 end
 
-local function filterFunc(_, event, msg, player, l, cs, t, flag, channelId, ...)
-    if flag == "GM" or flag == "DEV" or event == "CHAT_MSG_CHANNEL" and type(channelId) == "number" and channelId > 0 then return end
-
+local function FormatAnniversaryAchievementLinks(msg)
     local newMsg, remaining, done = '', msg, false
+
     repeat
         local start, finish, data = remaining:find('%[AnniversaryAchievement:(%d+:[^%]]+:%d:%d+:%d+:%d+:%d+)%]')
         if data then
-            local link
+            local link = ''
             local aid, guid, finished, month, day, year, criterias = strsplit(':', data)
-            if criterias == nil then link = ''
-            else
+            if criterias then
                 local ach = db:GetAchievement(tonumber(aid))
-                if not ach then link = ''
-                else
-                    link = string.format('|cffffff00|Hgarrmission:clach:%d#%s#%d#%d#%d#%d#%d|h[%s]|h|r', aid, guid, finished, month, day, year, criterias, ach.name)
+                if ach then
+                    link = string.format(
+                        '|cffffff00|Hgarrmission:clach:%d#%s#%d#%d#%d#%d#%d|h[%s]|h|r',
+                        aid, guid, finished, month, day, year, criterias, ach.name
+                    )
                 end
             end
-            newMsg = newMsg .. remaining:sub(1, start - 1)
-            newMsg = newMsg .. link
+
+            newMsg = newMsg .. remaining:sub(1, start - 1) .. link
             remaining = remaining:sub(finish + 1)
         else
             done = true
         end
-    until(done)
-    newMsg = newMsg .. remaining
+    until done
 
-    if newMsg ~= '' then
-        return false, newMsg, player, l, cs, t, flag, channelId, ...
-    end
+    return newMsg .. remaining
 end
-
-ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", filterFunc)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", filterFunc)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_GUILD", filterFunc)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_OFFICER", filterFunc)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_PARTY", filterFunc)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_PARTY_LEADER", filterFunc)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID", filterFunc)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID_LEADER", filterFunc)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", filterFunc)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", filterFunc)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER_INFORM", filterFunc)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_WHISPER", filterFunc)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_WHISPER_INFORM", filterFunc)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_INSTANCE_CHAT", filterFunc)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_INSTANCE_CHAT_LEADER", filterFunc)
 
 local function ShowTooltip(lines, linesFromTop, activeCategories)
     ItemRefTooltip:Show();
@@ -204,23 +185,10 @@ function CA_ShareAchievement(achievementID)
         display
     )
 
-    if SexyLib:Util():IsInGuild() then
-        safeSendChat(message, 'GUILD')
-    end
-
-    if IsInRaid() then
-        safeSendChat(message, 'RAID')
-    elseif IsInGroup() then
-        safeSendChat(message, 'PARTY')
-    else
-        safeSendChat(message, 'SAY')
-    end
+    PrintToSelf(message)
 end
 
-function safeSendChat(msg, channel)
-    if InCombatLockdown() then
-        C_Timer.After(3, function() safeSendChat(msg, channel) end)
-        return
-    end
-    pcall(SendChatMessage, msg, channel)
+function PrintToSelf(msg)
+    msg = FormatAnniversaryAchievementLinks(msg)
+    DEFAULT_CHAT_FRAME:AddMessage("|cffffff00" .. msg .. "|r")
 end

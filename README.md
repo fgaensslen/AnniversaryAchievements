@@ -7,7 +7,9 @@ This addon brings you the original Achievement Interface from Blizzard into WoW 
 
 It integrates perfectly with the Standard UI and uses the same graphics and sounds.
 
-Currently, nearly 385 Classic achievements (including Feats of Strength) are available.
+Currently, nearly 385 Classic achievements (including Feats of Strength) are available. 
+
+[Here](/achievements/index.html) is an overview which achievements are implemented.
 
 
 
