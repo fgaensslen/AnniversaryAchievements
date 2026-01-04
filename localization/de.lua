@@ -1,6 +1,6 @@
 if GetLocale() ~= 'deDE' then return end
 SexyLib:InitLocalization('Anniversary Achievements', {
-    achievement_earned = '&aErfolg von %s am %d.%d.%d errungen',
+    achievement_earned = '&aErfolg von %s am %02d.%02d.%02d errungen',
     achievement_in_progress = '&aErfolg wird von %s erarbeitet',
 
     ICON_DESCRIPTION = '&7Linksklick: &eErfolge anzeigen oder schließen\n&7Rechtsklick: &eEinstellungen öffnen\n',
