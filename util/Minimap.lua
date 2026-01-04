@@ -41,6 +41,9 @@ SexyLib:Util():AfterLogin(function()
         end,
     })
 
+    CA_Settings.minimap = CA_Settings.minimap or {}
+    CA_Settings.minimap.hide = CA_Settings.minimap.hide or false
+
     ----------------------------------------------------------------
     -- Register minimap icon
     ----------------------------------------------------------------
