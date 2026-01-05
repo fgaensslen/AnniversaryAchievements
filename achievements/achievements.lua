@@ -1776,13 +1776,13 @@ do
     --GENERAL
     previous = nil
     local icons = {
-        '-achievement_reputation_01',
-        '-achievement_reputation_02',
-        '-achievement_reputation_03',
-        '-achievement_reputation_04',
-        '-achievement_reputation_05',
-        '-achievement_reputation_06',
-        '-achievement_reputation_07',
+        'achievement_reputation_01',
+        'achievement_reputation_02',
+        'achievement_reputation_03',
+        'achievement_reputation_04',
+        'achievement_reputation_05',
+        'achievement_reputation_06',
+        'achievement_reputation_07',
     }
 
     for i, count in pairs({1, 5, 10, 15, 20, 25, 30}) do
@@ -1803,7 +1803,7 @@ do
         ach = reputation:CreateAchievement(name, desc, 10, icon)
 			ach:AddCriteria(criterias:Create(cname, TYPE.REACH_ANY_REPUTATION, {8}, count))
 			
-        if i > 2 then ach:SetRewardText(loc:Get('AR_REPS')) end
+        if i == 7 then ach:SetRewardText(loc:Get('AR_REPS')) end
         if previous then previous:SetNext(ach) end
         previous = ach
     end
