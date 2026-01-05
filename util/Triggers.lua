@@ -708,6 +708,14 @@ local events = {
     end,
     LOOT_OPENED = function()
         if not IsFishingLoot() then return end
+
+        -- Fishing Diplomat: detect city by mapID
+        local mapID = C_Map.GetBestMapForUnit("player")
+        print( mapID )
+        if mapID == 1454 or mapID == 1453 then
+            trigger(TYPE.FISH_ANY_ITEM, {mapID}, 1)
+        end
+
         for slot = 1, GetNumLootItems() do
             if LootSlotHasItem(slot) then
                 local _, _, quantity = GetLootSlotInfo(slot)
@@ -715,9 +723,9 @@ local events = {
                 if link then
                     local id = getItemIdFromLink(link)
                     if id then 
-						trigger(TYPE.FISH_AN_ITEM, {id}, quantity)
-						trigger(TYPE.FISH_ANY_ITEM, {-1}, quantity)
-					end
+                        trigger(TYPE.FISH_AN_ITEM, {id}, quantity)
+                        trigger(TYPE.FISH_ANY_ITEM, {-1}, quantity)
+                    end
                 end
             end
         end

@@ -1553,6 +1553,10 @@ do
 		
 	pinchy:SetUnavailable()
 
+    local fishing_diplomat = fishing:CreateAchievement('AN_FISHING_DIPLOMAT', 'AD_FISHING_DIPLOMAT', 10, '-inv_helmet_44', true, 552)
+        fishing_diplomat:AddCriteria(criterias:Create(loc:Get('AC_FISHING_DIPLOMAT1'), TYPE.FISH_ANY_ITEM, {1454}))
+        fishing_diplomat:AddCriteria(criterias:Create(loc:Get('AC_FISHING_DIPLOMAT2'), TYPE.FISH_ANY_ITEM, {1453})) 
+
 	--COOKING
     previous = nil
     for _, count in pairs({5, 10, 25, 50, 75}) do
@@ -1887,6 +1891,9 @@ do
 		
 	ach = featsOfStrength:CreateAchievement('AN_PALADIN_MOUNT', 'AD_PALADIN_MOUNT', 0, '-ability_mount_charger', true, 525)
 		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {7647}))
+
+    ach = featsOfStrength:CreateAchievement('AN_ARGENT_DAWN_TABARD', 'AD_ARGENT_DAWN_TABARD', 0, '-inv_shirt_guildtabard_01', true, 561)
+		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {22999}))
 
     --[[
     --TBC
