@@ -468,11 +468,11 @@ ID; Name; Description; Icon
 467 ; Super nahrhafte Koteletts ; Kocht Dirges abgefahrene Chimaerokkoteletts 20-mal. ; -Inv_Misc_Food_65
 468 ; Jemand mag mich! ; Erreicht einen ehrfürchtigen Ruf. ; -achievement_reputation_01
 469 ; 5 ehrfürchtige Fraktionen ; Erreicht bei 5 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_02
-470 ; 10 ehrfürchtige Fraktionen ; Erreicht bei 10 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_02
-471 ; 15 ehrfürchtige Fraktionen ; Erreicht bei 15 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_02
-472 ; 20 ehrfürchtige Fraktionen ; Erreicht bei 20 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_03
-473 ; 25 ehrfürchtige Fraktionen ; Erreicht bei 25 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_03
-474 ; 30 ehrfürchtige Fraktionen ; Erreicht bei 30 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_03
+470 ; 10 ehrfürchtige Fraktionen ; Erreicht bei 10 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_03
+471 ; 15 ehrfürchtige Fraktionen ; Erreicht bei 15 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_04
+472 ; 20 ehrfürchtige Fraktionen ; Erreicht bei 20 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_05
+473 ; 25 ehrfürchtige Fraktionen ; Erreicht bei 25 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_06
+474 ; 30 ehrfürchtige Fraktionen ; Erreicht bei 30 Fraktionen einen ehrfürchtigen Ruf. ; -achievement_reputation_07
 475 ; Botschafter der Horde ; Erreicht einen ehrfürchtigen Ruf in 4 Heimatstädten. ; -achievement_pvp_o_h
 476 ; Botschafter der Allianz ; Erreicht einen ehrfürchtigen Ruf in 4 Heimatstädten. ; -achievement_pvp_o_a
 477 ; Die Hydraxianer ; Erreicht bei den Hydraxianern den Status ehrfürchtig. ; -spell_frost_summonwaterelemental_2
