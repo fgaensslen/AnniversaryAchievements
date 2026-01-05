@@ -1741,8 +1741,19 @@ end
 do
     --GENERAL
     previous = nil
+    local icons = {
+        '-achievement_reputation_01',
+        '-achievement_reputation_02',
+        '-achievement_reputation_03',
+        '-achievement_reputation_04',
+        '-achievement_reputation_05',
+        '-achievement_reputation_06',
+        '-achievement_reputation_07',
+    }
+
     for i, count in pairs({1, 5, 10, 15, 20, 25, 30}) do
         local name, desc, cname
+
         if i == 1 then
 			name = loc:Get('AN_REPS_1')
             desc = loc:Get('AD_REPS_1')
@@ -1753,16 +1764,7 @@ do
             cname = loc:Get('AC_REPS', count)
         end		
 		
-        local icon
-        if i == 1 then icon = '-achievement_reputation_01'
-        elseif i >= 1 and i < 5 then icon = '-achievement_reputation_02'
-		elseif i >= 5 and i < 10 then icon = '-achievement_reputation_03'
-		elseif i >= 10 and i < 15 then icon = '-achievement_reputation_04'
-		elseif i >= 15 and i < 20 then icon = '-achievement_reputation_05'
-		elseif i >= 20 and i < 25 then icon = '-achievement_reputation_06'
-		elseif i >= 25 and i < 30 then icon = '-achievement_reputation_07'
-		elseif i >= 30 then icon = '-achievement_reputation_08'
-		end
+        local icon = icons[i]
 		
         ach = reputation:CreateAchievement(name, desc, 10, icon)
 			ach:AddCriteria(criterias:Create(cname, TYPE.REACH_ANY_REPUTATION, {8}, count))
