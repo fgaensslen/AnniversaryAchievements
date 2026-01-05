@@ -1769,7 +1769,7 @@ do
         ach = reputation:CreateAchievement(name, desc, 10, icon)
 			ach:AddCriteria(criterias:Create(cname, TYPE.REACH_ANY_REPUTATION, {8}, count))
 			
-        if i > 2 then ach:SetRewardText(loc:Get('AR_REPS')) end
+        if i == 7 then ach:SetRewardText(loc:Get('AR_REPS')) end
         if previous then previous:SetNext(ach) end
         previous = ach
     end
