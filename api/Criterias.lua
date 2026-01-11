@@ -51,7 +51,9 @@ struct.TYPE = {
     P3_FIRST_WEEK = 45,
 	FISH_ANY_ITEM = 46,
 	HAS_BUFF = 47,
-    KILL_ANY_NPC = 48
+    KILL_ANY_NPC = 48,
+    COMPLETE_DAILY_QUEST = 49,
+    COMPLETE_DAILY_QUESTS = 50
 }
 
 struct.dataLengths = {
@@ -102,7 +104,9 @@ struct.dataLengths = {
     [struct.TYPE.P3_FIRST_WEEK] = 1,
 	[struct.TYPE.FISH_ANY_ITEM] = 1,
 	[struct.TYPE.HAS_BUFF] = 1, --spellID,
-    [struct.TYPE.KILL_ANY_NPC] = 0
+    [struct.TYPE.KILL_ANY_NPC] = 0,
+    [struct.TYPE.COMPLETE_DAILY_QUEST] = 1, -- questID
+    [struct.TYPE.COMPLETE_DAILY_QUESTS] = 0    
 }
 
 struct.criterias = {}
@@ -202,23 +206,6 @@ function struct:Trigger(type, data, count, const)
     end
     count = count or 1
 
-    -- ✅ Helper: recursively mark OR criteria complete if any subcriteria is complete
-    local function checkOrCompletion(criteria)
-        if criteria.type == struct.TYPE.OR and criteria.data then
-            for _, sub in ipairs(criteria.data) do
-                -- If any subcriteria is already complete, complete the OR
-                if completion:IsCriteriaCompletedGlobally(sub.id) then
-                    completion:CompleteCriteriaGlobally(criteria.id)
-                    return true
-                else
-                    -- Recurse deeper for nested ORs
-                    checkOrCompletion(sub)
-                end
-            end
-        end
-    end
-
-    -- ✅ Now process each matching criteria
     for _, criteria in pairs(criterias) do
         if not criteria.deactivated then
             if criteria.quantity then
@@ -231,8 +218,6 @@ function struct:Trigger(type, data, count, const)
                 completion:CompleteCriteriaGlobally(criteria.id)
             end
 
-            -- ✅ Check if this completion should satisfy a parent OR
-            checkOrCompletion(criteria)
         end
     end
 end

@@ -1,5 +1,5 @@
 SexyLib:InitLocalization('Anniversary Achievements', {
-    achievement_earned = '&aAchievement earned by %s on %02d.%02d.%02d',
+    achievement_earned = '&aAchievement earned by %s on %d.%d.%d',
     achievement_in_progress = '&aAchievement in progress by %s',
 
     ICON_DESCRIPTION = '&7Left mouse button: &eopen/hide achievements window\n&7Right mouse button: &eopen Anniversary Achievements settings',
@@ -135,12 +135,16 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_LVL = 'Reach level %d.',
 
     AN_BANK = 'Safe Deposit',
-    AD_BANK = 'Buy 6 additional bank slots.',
-    AC_BANK = 'Buy 6 additional bank slots.',
+    AD_BANK = 'Buy 7 additional bank slots.',
+    AC_BANK = 'Buy 7 additional bank slots.',
 
     AN_QUESTS = '%d Quests Completed',
     AD_QUESTS = 'Complete %d quests.',
     AC_QUESTS = 'Complete %d quests.',
+
+    AN_DAILY_QUESTS = '%d Daily Quests Completed',
+    AD_DAILY_QUESTS = 'Complete %d daily quests.',
+    AC_DAILY_QUESTS = 'Complete %d daily quests.',
 
     AN_QUEST_GOLD5 = 'Glittering Reward',
     AN_QUEST_GOLD10 = 'Collector of minted Coins',
@@ -717,7 +721,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_PROFS_FIVE_OUTLAND = 'Outlandish Genius',
     AD_PROFS_FIVE = 'Complete the profession achievements listed below.',
     AN_UNARMED_SKILL = 'Did Somebody Order a Knuckle Sandwich?',
-    AD_UNARMED_SKILL = 'Raise your unarmed skill to 300.',
+    AD_UNARMED_SKILL = 'Raise your unarmed skill to 350.',
 
     AN_EXPLORE_AZEROTH = 'World Explorer',
     AD_EXPLORE_AZEROTH = 'Explore Eastern Kingdoms, Kalimdor and Outland.',
@@ -820,7 +824,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_COOKING_DESSERT = 'Pastry Cook',
     AN_COOKING_SQUID = 'Catch of the Day',
     AN_COOKING_DUMPLINGS = 'Grandma\'s Dumplings',
-    AN_COOKING_CHOPS = 'Super Nutritious Chops',
+    AN_COOKING_CAKE = 'The Cake Is Not A Lie',
+    AD_COOKING_CAKE = 'Bake a Delicious Chocolate Cake.',
     AD_COOKING_CREATE = 'Cook %s %d times.',
     AC_COOKING_CREATE = 'Cook %s %d times.',
     AN_COOKING_BIG_TABLE = 'Large Festive Feast',
@@ -924,9 +929,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_ARACHNOPHOBIA = 'Kill Maexxna in Naxxramas within 20 minutes of Anub\'Rekhan\'s death in 25-player mode.',
     AN_FOUR_TOGETHER = 'And They Would All Go Down Together',
     AD_FOUR_TOGETHER = 'Defeat the 4 Horsemen in Naxxramas, ensuring that they all die within 15 seconds of each other.',
-	AN_HEIGAN_DANCE = 'The Safety Dance',
+    AN_HEIGAN_DANCE = 'The Safety Dance',
     AD_HEIGAN_DANCE = 'Defeat Heigan the Unclean in Naxxramas without anyone in the raid dying.',
-	AN_PATCHWERK = 'Make Quick Werk Of Him',
+    AN_PATCHWERK = 'Make Quick Werk Of Him',
     AD_PATCHWERK = 'Defeat Patchwerk in Naxxramas in 3 minutes or less.',
     AN_KELTHUZAD_ABOMINATIONS = 'Just Can\'t Get Enough',
     AD_KELTHUZAD_ABOMINATIONS = 'Defeat Kel\'Thuzad in Naxxramas while killing at least 18 abominations in his chamber.',
@@ -1245,13 +1250,63 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_SHATTERED_SUN = 'You\'re So Offensive',
     AD_SHATTERED_SUN = 'Earn exalted status with the Shattered Sun Offensive.',
 
+    AN_SKYGUARD = 'Flying High Over Skettis',
+    AD_SKYGUARD = 'Earn exalted status within the Sha\'tari Skyguard.',
+
+    AN_HIPPOGRYPH = 'Cenarion War Hippogryph',
+    AD_HIPPOGRYPH = 'Obtain the Cenarion War Hippogryph from the Cenarion Expedition in Zangarmarsh.',
+
+    AN_DIPLOMAT = 'The Diplomat',
+    AD_DIPLOMAT_ALLIANCE = 'Raise your reputation level from unfriendly to exalted with Timbermaw Hold, Sporeggar and the Kurenai.',
+    AD_DIPLOMAT_HORDE = 'Raise your reputation level from unfriendly to exalted with Timbermaw Hold, Sporeggar and The Mag\'har.',
+    AC_DIPLOMAT_576 = 'Exalted with Timbermaw Hold',
+    AC_DIPLOMAT_970 = 'Exalted with the Sporeggar',
+    AC_DIPLOMAT_978 = 'Exalted with the Kurenai',
+    AC_DIPLOMAT_941 = 'Exalted with the The Mag\'har',
+
     AN_MR_PINCHY = 'Mr. Pinchy!',
     AD_MR_PINCHY = 'Fish up Mr. Pinchy in Outland.',
+
+    AN_FISHING_BOOK = 'Fish Don\'t Leave Footprints',
+    AD_FISHING_BOOK = 'Learn the ability to find fish.',
+
+    AN_ACCOMPLISHED_ANGLER = 'Accomplished Angler',
+    AD_ACCOMPLISHED_ANGLER = 'Complete the fishing achievements listed below.',
+
+    AN_TBC_DAILY_FISH = 'Old Man Barlowned',
+    AD_TBC_DAILY_FISH = 'Complete each of Old Man Barlo\'s 5 fishing daily quests listed below.',
+    AC_TBC_DAILY_FISH1 = 'Crocolisks in the City',
+    AC_TBC_DAILY_FISH2 = 'Bait Bandits',
+    AC_TBC_DAILY_FISH3 = 'Felblood Fillet',
+    AC_TBC_DAILY_FISH4 = 'The One That Got Away',
+    AC_TBC_DAILY_FISH5 = 'Shrimpin\' Ain\'t Easy',
+
+    AN_OLD_IRONJAW = 'Old Ironjaw',
+    AD_OLD_IRONJAW = 'Fish up Old Ironjaw in Ironforge.',
+
+    AN_OLD_CRAFTY = 'Old Crafty',
+    AD_OLD_CRAFTY = 'Fish up Old Crafty in Orgrimmar.',
 
     AN_FISHING_DIPLOMAT = 'The Fishing Diplomat',
     AD_FISHING_DIPLOMAT = 'Fish something up in Orgrimmar and Stormwind.',
     AC_FISHING_DIPLOMAT1 = 'Orgrimmar',
     AC_FISHING_DIPLOMAT2 = 'Stormwind',
+
+    AN_CAPTAIN_RUMSEY = 'Captain Rumsey\'s Lager',
+    AD_CAPTAIN_RUMSEY = 'Brew up some of Captain Rumsey\'s Lager.',
+
+    AN_TBC_DAILY_COOKING = 'Kickin\' It Up a Notch',
+    AD_TBC_DAILY_COOKING = 'Complete each of The Rokk\'s 4 cooking daily quests listed below.',
+    AC_TBC_DAILY_COOKING1 = 'Manalicious',
+    AC_TBC_DAILY_COOKING2 = 'Soup for the Soul',
+    AC_TBC_DAILY_COOKING3 = 'Revenge is Tasty',
+    AC_TBC_DAILY_COOKING4 = 'Super Hot Stew',
+
+    AN_TBC_COOKING_RECIPES = 'The Outland Gourmet',
+    AD_TBC_COOKING_RECIPES = 'Cook each of the Outland cooking recipes listed below.',
+
+    AN_HAIL_CHEF = 'Hail to the Chef',
+    AD_HAIL_CHEF = 'Complete the cooking achievements listed below.',
 
     AN_EXPLORE_OUTLAND = 'Explore Outland',
     AD_EXPLORE_OUTLAND = 'Explore the regions of Outland.',

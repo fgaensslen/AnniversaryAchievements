@@ -185,7 +185,7 @@ BACKDROP_CHAT_BUBBLE_16_16 = {
 	insets = { left = 16, right = 16, top = 16, bottom = 16 },
 };
 
-BackdropTemplateMixin = { };
+local AA_BackdropTemplateMixin = {};
 
 local coordStart = 0.0625;
 local coordEnd = 1 - coordStart;
@@ -202,7 +202,7 @@ local textureUVs = {			-- keys have to match pieceNames in nineSliceSetup table
 };
 local defaultEdgeSize = 39;		-- the old default
 
-function BackdropTemplateMixin:OnBackdropLoaded()
+function AA_BackdropTemplateMixin:OnBackdropLoaded()
 	if self.backdropInfo then
 		-- check for invalid info
 		if not self.backdropInfo.edgeFile and not self.backdropInfo.bgFile then
@@ -232,13 +232,13 @@ function BackdropTemplateMixin:OnBackdropLoaded()
 	end
 end
 
-function BackdropTemplateMixin:OnBackdropSizeChanged()
+function AA_BackdropTemplateMixin:OnBackdropSizeChanged()
 	if self.backdropInfo then
 		self:SetupTextureCoordinates();
 	end
 end
 
-function BackdropTemplateMixin:GetEdgeSize()
+function AA_BackdropTemplateMixin:GetEdgeSize()
 	if self.backdropInfo.edgeSize and self.backdropInfo.edgeSize > 0 then
 		return self.backdropInfo.edgeSize;
 	else
@@ -264,7 +264,7 @@ local function SetupBackdropTextureCoordinates(region, pieceSetup, repeatX, repe
 						GetBackdropCoordValue("LRx", pieceSetup, repeatX, repeatY), GetBackdropCoordValue("LRy", pieceSetup, repeatX, repeatY));
 end
 
-function BackdropTemplateMixin:SetupTextureCoordinates()
+function AA_BackdropTemplateMixin:SetupTextureCoordinates()
 	local width = self:GetWidth();
 	local height = self:GetHeight();
 	local effectiveScale = self:GetEffectiveScale();
@@ -296,7 +296,7 @@ function BackdropTemplateMixin:SetupTextureCoordinates()
 	end
 end
 
-function BackdropTemplateMixin:SetupPieceVisuals(piece, setupInfo, pieceLayout)
+function AA_BackdropTemplateMixin:SetupPieceVisuals(piece, setupInfo, pieceLayout)
 	local textureInfo = textureUVs[setupInfo.pieceName];
 	local tileVerts = false;
 	local file;
@@ -316,7 +316,7 @@ function BackdropTemplateMixin:SetupPieceVisuals(piece, setupInfo, pieceLayout)
 	piece:SetSize(cornerWidth, cornerHeight);
 end
 
-function BackdropTemplateMixin:SetBorderBlendMode(blendMode)
+function AA_BackdropTemplateMixin:SetBorderBlendMode(blendMode)
 	if not self.backdropInfo then
 		return;
 	end
@@ -328,11 +328,11 @@ function BackdropTemplateMixin:SetBorderBlendMode(blendMode)
 	end
 end
 
-function BackdropTemplateMixin:HasBackdropInfo(backdropInfo)
+function AA_BackdropTemplateMixin:HasBackdropInfo(backdropInfo)
 	return self.backdropInfo == backdropInfo;
 end
 
-function BackdropTemplateMixin:ClearBackdrop()
+function AA_BackdropTemplateMixin:ClearBackdrop()
 	if self.backdropInfo then
 		for pieceName in pairs(textureUVs) do
 			local region = self[pieceName];
@@ -344,7 +344,7 @@ function BackdropTemplateMixin:ClearBackdrop()
 	end
 end
 
-function BackdropTemplateMixin:ApplyBackdrop()
+function AA_BackdropTemplateMixin:ApplyBackdrop()
 	local x, y, x1, y1 = 0, 0, 0, 0;
 	if self.backdropInfo.bgFile then
 		local edgeSize = self:GetEdgeSize();
@@ -370,7 +370,7 @@ function BackdropTemplateMixin:ApplyBackdrop()
 		LeftEdge = {  },
 		RightEdge = {  },
 		Center = { layer = "BACKGROUND", x = x, y = y, x1 = x1, y1 = y1 },
-		setupPieceVisualsFunction = BackdropTemplateMixin.SetupPieceVisuals,
+		setupPieceVisualsFunction = AA_BackdropTemplateMixin.SetupPieceVisuals,
 	};
 	NineSliceUtil.ApplyLayout(self, layout);
 	self:SetBackdropColor(1, 1, 1, 1);
@@ -379,7 +379,7 @@ function BackdropTemplateMixin:ApplyBackdrop()
 end
 
 -- backwards compatibility API starts here
-function BackdropTemplateMixin:SetBackdrop(backdropInfo)
+function AA_BackdropTemplateMixin:SetBackdrop(backdropInfo)
 	if backdropInfo then
 		if self:HasBackdropInfo(backdropInfo) then
 			return;
@@ -397,7 +397,7 @@ function BackdropTemplateMixin:SetBackdrop(backdropInfo)
 	end
 end
 
-function BackdropTemplateMixin:GetBackdrop()
+function AA_BackdropTemplateMixin:GetBackdrop()
 	if self.backdropInfo then
 		-- make a copy because it will be altered to match old API output
 		local backdropInfo = CopyTable(self.backdropInfo);
@@ -440,7 +440,7 @@ function BackdropTemplateMixin:GetBackdrop()
 	return nil;
 end
 
-function BackdropTemplateMixin:GetBackdropColor()
+function AA_BackdropTemplateMixin:GetBackdropColor()
 	if not self.backdropInfo then
 		return;
 	end
@@ -449,7 +449,7 @@ function BackdropTemplateMixin:GetBackdropColor()
 	end
 end
 
-function BackdropTemplateMixin:SetBackdropColor(r, g, b, a)
+function AA_BackdropTemplateMixin:SetBackdropColor(r, g, b, a)
 	if not self.backdropInfo then
 		-- Ideally this would throw an error here but the old API just failed silently
 		return;
@@ -459,7 +459,7 @@ function BackdropTemplateMixin:SetBackdropColor(r, g, b, a)
 	end
 end
 
-function BackdropTemplateMixin:GetBackdropBorderColor()
+function AA_BackdropTemplateMixin:GetBackdropBorderColor()
 	if not self.backdropInfo then
 		return
 	end
@@ -472,7 +472,7 @@ function BackdropTemplateMixin:GetBackdropBorderColor()
 	end
 end
 
-function BackdropTemplateMixin:SetBackdropBorderColor(r, g, b, a)
+function AA_BackdropTemplateMixin:SetBackdropBorderColor(r, g, b, a)
 	if not self.backdropInfo then
 		-- Ideally this would throw an error here but the old API just failed silently
 		return;

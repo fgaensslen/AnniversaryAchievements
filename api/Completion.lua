@@ -90,24 +90,34 @@ local function Completion(data)
             return true
         end,
 		isAchievementCompleted = function(self, achievementData)
-			if not (achievementData and achievementData:IsAvailable()) then
-				return false
-			end
+            if not (achievementData and achievementData:IsAvailable()) then
+                return false
+            end
 
-			-- Check criterias
-			for _, criteria in pairs(achievementData:GetCriterias()) do
-				if criteria.type == CA_Criterias.TYPE.COMPLETE_ACHIEVEMENT then
-					local subID = criteria.data[1]
-					if not self:IsAchievementCompleted(subID) then
-						return false
-					end
-				elseif not self:IsCriteriaCompleted(achievementData.id, criteria.id, criteria) then
-					return false
-				end
-			end
+            local anyCompletable = achievementData:IsAnyCompletable()
 
-			return true
-		end,
+            for _, criteria in pairs(achievementData:GetCriterias()) do
+                local completed
+
+                if criteria.type == CA_Criterias.TYPE.COMPLETE_ACHIEVEMENT then
+                    completed = self:IsAchievementCompleted(criteria.data[1])
+                else
+                    completed = self:IsCriteriaCompleted(achievementData.id, criteria.id, criteria)
+                end
+
+                if anyCompletable then
+                    if completed then
+                        return true -- OR logic
+                    end
+                else
+                    if not completed then
+                        return false -- AND logic
+                    end
+                end
+            end
+
+            return not anyCompletable
+        end,
         GetCriteriaProgression = function(self, achievementID, criteriaID)
             local criteria = self:GetCriteria(achievementID, criteriaID)
             if not criteria then return 0 end

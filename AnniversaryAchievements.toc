@@ -1,8 +1,11 @@
-## Interface: 11508
+## Interface: 20505
 ## Title: Anniversary Achievements
-## Notes: Achievements for WoW Classic
 ## Author: Florian Gaensslen
-## Version: 1.2.9
+## Version: 2.0
+## IconTexture: Interface/AddOns/AnniversaryAchievements/logo.tga
+## Notes: Achievements for WoW Classic
+## Category: Achievements
+## Category-deDE: Erfolge
 ## OptionalDeps: DBM-Core, Bartender4
 ## SavedVariables: CA_Settings
 ## SavedVariablesPerCharacter: CA_LocalData, CA_Flags
@@ -19,6 +22,8 @@ localization/AreaTableLocale_enUS.lua
 localization/AreaTableLocale_deDE.lua
 
 util/Settings.lua
+
+data/DailyQuests_TBC.lua
 
 api/Completion.lua
 api/Achievements.lua
