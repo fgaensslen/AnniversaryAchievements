@@ -1,3 +1,7 @@
+if WOW_PROJECT_ID ~= WOW_PROJECT_BURNING_CRUSADE_CLASSIC then
+    return
+end
+
 local db = CA_Database
 local criterias = CA_Criterias
 local loc = SexyLib:Localization('Anniversary Achievements')

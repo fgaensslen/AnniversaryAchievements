@@ -23,8 +23,6 @@ localization/AreaTableLocale_deDE.lua
 
 util/Settings.lua
 
-data/DailyQuests_TBC.lua
-
 api/Completion.lua
 api/Achievements.lua
 api/Criterias.lua
@@ -33,7 +31,9 @@ util/Triggers.lua
 util/ChatLink.lua
 
 util/Loader.lua
-achievements/achievements.lua
+achievements/DailyQuests_TBC.lua
+achievements/achievements_tbc.lua
+achievements/achievements_classic.lua
 
 ui/ApiMocks.lua
 ui/Backdrop.lua
