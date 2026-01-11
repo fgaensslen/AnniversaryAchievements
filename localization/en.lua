@@ -821,7 +821,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_COOKING_RECIPES = 'Learn %d cooking recipes.',
 
     AN_COOKING_SOUP = 'Soupmaster',
-    AN_COOKING_DESSERT = 'Pastry Cook',
+    AN_COOKING_DESSERT = 'Tuber Master',
     AN_COOKING_SQUID = 'Catch of the Day',
     AN_COOKING_DUMPLINGS = 'Grandma\'s Dumplings',
     AN_COOKING_CAKE = 'The Cake Is Not A Lie',
