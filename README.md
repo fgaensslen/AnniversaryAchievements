@@ -46,6 +46,6 @@ The addon was tested with the following UIs:
 - The addon works best with the Standard UI. If you have modified your interface, you can disable the micromenu button and instead use a button on your minimap
 - Your achievements are NOT stored on Blizzard's servers. To backup them, go into:
 
-    >\<your WoW folder\>/WTF/Account/\<account name\>/\<server name\>/\<character name\>/SavedVariables/AnniversaryAchievements.lua
+    \<your WoW folder\>/WTF/Account/\<account name\>/\<server name\>/\<character name\>/SavedVariables/AnniversaryAchievements.lua
 
 - Guild and Statistics tabs are not available. Comparing achievements with other players who have this addon installed is also not implemented

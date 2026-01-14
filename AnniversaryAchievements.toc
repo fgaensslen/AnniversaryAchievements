@@ -1,7 +1,7 @@
 ## Interface: 20505
 ## Title: Anniversary Achievements
 ## Author: Florian Gaensslen
-## Version: 2.0
+## Version: v2.0.1
 ## IconTexture: Interface/AddOns/AnniversaryAchievements/logo.tga
 ## Notes: Achievements for WoW Classic
 ## Category: Achievements
@@ -32,8 +32,7 @@ util/ChatLink.lua
 
 util/Loader.lua
 achievements/DailyQuests_TBC.lua
-achievements/achievements_tbc.lua
-achievements/achievements_classic.lua
+achievements/achievements.lua
 
 ui/ApiMocks.lua
 ui/Backdrop.lua
