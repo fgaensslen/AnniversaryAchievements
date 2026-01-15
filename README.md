@@ -6,7 +6,7 @@ This addon brings you the original Achievement Interface from Blizzard into WoW 
 
 It integrates perfectly with the Standard UI and uses the same graphics and sounds.
 
-Currently, 574 achievements (including Feats of Strength) are available in TBC. The WoW Classic version consists of 390 achievements. A full list can be found [here](/achievements/index.html).
+Currently, 575 achievements (including Feats of Strength) are available in TBC. The WoW Classic version consists of 390 achievements. A full list can be found [here](/achievements/index.html).
 
 ### Download
 

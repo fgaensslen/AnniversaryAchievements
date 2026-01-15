@@ -1439,5 +1439,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AR_P3_FIRST_WEEK = 'Eroberer der Scherbenwelt',
 	
 	AN_FLIGHFORM = 'Schnelle Fluggestalt',
-	AD_FLIGHFORM = 'Die Druidenquest zum Erlernen einer schnellen Fluggestalt abgeschlossen.'
+	AD_FLIGHFORM = 'Die Druidenquest zum Erlernen einer schnellen Fluggestalt abgeschlossen.',
+
+    AN_KRUUL = '...nicht noch ein Dämonenlord!',
+	AD_KRUUL = 'Bezwingt Hochlord Kruul während des Kampf um das Dunkle Portal.'
 })

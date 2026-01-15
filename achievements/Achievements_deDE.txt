@@ -551,7 +551,6 @@ ID; Name; Description; Icon
 550 ; Alter Eisenkiefer ; Angelt den alten Eisenkiefer in Eisenschmiede. ; -inv_misc_fish_31
 551 ; Alter Fuchs ; Angelt den alten Fuchs in Orgrimmar. ; -inv_misc_fish_35
 552 ; Der angelnde Diplomat ; Bekommt etwas in Orgrimmar und Sturmwind an den Haken. ; -inv_helmet_44
-
 554 ; Versierter Angler ; Schließt die unten aufgelisteten Angelerfolge ab. ; -trade_fishing
 556 ; Bitte nicht zu scharf ; Schließt jede der 4 unten aufgelisteten täglichen Kochquests des Rokk ab. ; -inv_misc_cauldron_arcane
 555 ; Kapitän Rumseys Lagerbier ; Braut etwas von Kapitän Rumseys Lagerbier. ; -inv_drink_03
@@ -573,3 +572,4 @@ ID; Name; Description; Icon
 572 ; 2.500 tägliche Quests abgeschlossen ; Schließt 2.500 tägliche Quests ab. ; achievement_quests_completed_daily_06
 573 ; 5.000 tägliche Quests abgeschlossen ; Schließt 5.000 tägliche Quests ab. ; achievement_quests_completed_daily_07
 574 ; 10.000 tägliche Quests abgeschlossen ; Schließt 10.000 tägliche Quests ab. ; achievement_quests_completed_daily_08
+575 ; ...nicht noch ein Dämonenlord! ; Bezwingt Hochlord Kruul während des Kampf um das Dunkle Portal. ; -spell_shadow_demonictactics

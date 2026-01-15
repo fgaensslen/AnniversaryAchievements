@@ -2001,6 +2001,9 @@ do
 	ach = featsOfStrength:CreateAchievement('AN_HAND_ADAL', 'AD_HAND_ADAL', 0, '-inv_mace_25', true, 530)
 		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {10445}))
 		ach:SetRewardText(loc:Get('AR_HAND_ADAL'))
+
+    ach = featsOfStrength:CreateAchievement('AN_KRUUL', 'AD_KRUUL', 0, '-spell_shadow_demonictactics', true, 575)
+		ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {18338}))
 end
 
 --print(db:GetAllAchievements())

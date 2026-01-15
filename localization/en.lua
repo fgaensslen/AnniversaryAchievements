@@ -157,9 +157,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_QUEST_GOLD = 'Make %d gold from quest rewards.',
 
     AN_QUESTS_ZONE = 'Loremaster of %s',
-    AD_QUESTS_ZONE = 'Complete quest "%s" in %s.',
+    AD_QUESTS_ZONE = 'Complete the quest "%s" in %s.',
     AD_QUESTS_ZONE_MULTI = 'Complete the following quests in %s.',
-    AC_QUESTS_ZONE = 'Completed quest "%s".',
+    AC_QUESTS_ZONE = 'Completed the quest "%s".',
 
     AZSHARA_1 = 'Azshara',
     AZSHARA_2 = 'Azshara',
@@ -1436,5 +1436,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AR_P3_FIRST_WEEK = 'Conqueror of Outland',
 	
 	AN_FLIGHFORM = 'Swift Flight Form',
-	AD_FLIGHFORM = 'Completed the druid quest to obtain Swift Flight Form.'
+	AD_FLIGHFORM = 'Completed the druid quest to obtain Swift Flight Form.',
+
+    AN_KRUUL = '...not another Demon Lord!',
+	AD_KRUUL = 'Defeat Highlord Kruul during the Battle for the Dark Portal.'
 })
