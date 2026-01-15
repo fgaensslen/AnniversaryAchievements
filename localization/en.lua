@@ -335,7 +335,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_BLACKROCK_PARTY2 = 'Plugger Spazzring',
     AC_BLACKROCK_PARTY3 = 'Hurley Blackbreath',
     AC_BLACKROCK_PARTY4 = 'Phalanx',
-    AN_BLACKROCK_DEPTHS_FULL = 'Blackrock Depths',
+    AN_BLACKROCK_DEPTHS_FULL = 'Master of Blackrock Depths',
     AD_BLACKROCK_DEPTHS_FULL = 'Earn following achievements related to Blackrock Depths.',
     AN_ARMOR_SWORD = 'The Best Defense Is an Attack',
     AD_ARMOR_SWORD = 'Loot the Stone of the Earth from the body of the defeated Panzor the Invincible in Blackrock Depths.',
