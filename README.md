@@ -1,17 +1,17 @@
 ![](images/summary.png)
 
-
 ### Introduction
 
-This addon brings you the original Achievement Interface from Blizzard into WoW Classic. It works on all Classic Servers (Era, Hardcore, Anniversary, Season of Discovery).
+This addon brings you the original Achievement Interface from Blizzard into WoW TBC & Classic
 
 It integrates perfectly with the Standard UI and uses the same graphics and sounds.
 
-Currently, nearly 385 Classic achievements (including Feats of Strength) are available. 
+Currently, 574 achievements (including Feats of Strength) are available in TBC. The WoW Classic version consists of 390 achievements. A full list can be found [here](/achievements/index.html).
 
-[Here](/achievements/index.html) is an overview which achievements are implemented.
+### Download
 
-
+- WoW TBC: Version 2.0
+- WoW Classic: Version 1.2.9. It works on all Classic Servers (Era, Hardcore, Anniversary, Season of Discovery)
 
 ### Supported Languages
 
@@ -22,9 +22,9 @@ For both languages, almost all achievements use original Blizzard texts and icon
 
 Using another WoW client language may cause some achievements not to work properly.
 
-
-
 ### Supported User Interfaces
+
+The addon works best with the Standard UI. If you have modified your interface, you can disable the micromenu button and instead use a button on your minimap.
 
 The addon was tested with the following UIs:
 
@@ -43,7 +43,6 @@ The addon was tested with the following UIs:
 
 - Due to the huge amount of content, I couldn't test everything. If you find any bugs, wrong localization, or have great ideas for new achievements, please write a comment
 - Other addons can prevent you from getting certain achievements: for example Fishing Buddy seems to interfere certain fishing achievements
-- The addon works best with the Standard UI. If you have modified your interface, you can disable the micromenu button and instead use a button on your minimap
 - Your achievements are NOT stored on Blizzard's servers. To backup them, go into:
 
     \<your WoW folder\>/WTF/Account/\<account name\>/\<server name\>/\<character name\>/SavedVariables/AnniversaryAchievements.lua
