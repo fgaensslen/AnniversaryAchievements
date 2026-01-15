@@ -42,6 +42,7 @@ local function syncTotalQuests()
 
     for questID, completed in pairs(questsCompleted) do
         if completed and not IsDailyQuest(questID) then
+            trigger(TYPE.COMPLETE_QUEST, {questID}, 1, true)
             total = total + 1
         end
     end
