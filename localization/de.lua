@@ -127,7 +127,10 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AN_WARRIOR_T3 = 'Schlachtrüstung des Schreckenspanzers',
 	AN_SHAMAN_T3 = 'Der Erdspalter',
 	
-	AD_SET = 'Sammelt alle Gegenstände des genannten Sets.',		
+	AD_SET = 'Sammelt alle Gegenstände des genannten Sets.',
+    
+    AN_SKELETON_KEY = 'Der Schlüssel zur Scholomance',
+	AD_SKELETON_KEY = 'Erhaltet den Skelettschlüssel.',
 
     AN_LVL = 'Level %d',
     AD_LVL = 'Erreicht Level %d.',
@@ -280,9 +283,6 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_WISDOM_KEEPER_OUTLAND = 'Meister der Lehren der Scherbenwelt',
     AD_WISDOM_KEEPER_OUTLAND = 'Schließt die unten aufgelisteten Scherbenwelt-Questerfolge ab.',
     AR_WISDOM_KEEPER = 'Meister der Lehren',
-	
-	AN_SKELETON_KEY = 'Der Schlüssel zur Scholomance',
-	AD_SKELETON_KEY = 'Erhaltet den Skelettschlüssel.',
 
     AN_RAGEFIRE_CHASM = 'Flammenschlund',
     AD_RAGEFIRE_CHASM = 'Bezwingt Taragaman den Hungerleider.',
@@ -299,8 +299,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_GNOMREGAN = 'Gnomeregan',
     AD_GNOMREGAN = 'Bezwingt Robogenieur Dampfhammer.',
     AN_RAZORFEN_KRAUL = 'Der Kral von Razorfen',
-    AD_RAZORFEN_KRAUL = 'Bezwingt Charlga Klingenflanke.',
-	
+    AD_RAZORFEN_KRAUL = 'Bezwingt Charlga Klingenflanke.',	
     AN_SCARLET_MONASTERY = 'Das Scharlachrote Kloster',
     AD_SCARLET_MONASTERY = 'Bezwingt den Scharlachroten Kreuzzug im Scharlachroten Kloster.',
     AC_SCARLET_MONASTERY1 = 'Blutmagier Thalnos',
@@ -1374,8 +1373,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_KILL_LEOTHERAS = 'Leotheras der Blinde',
     AC_KILL_KARATHRESS = 'Tiefenlord Karathress',
     AC_KILL_MOROGRIM = 'Morogrim Gezeitenwandler',
-    AC_KILL_VASHJ = 'Lady Vashj',
-	
+    AC_KILL_VASHJ = 'Lady Vashj',	
     AN_TK = 'Die Festung der Stürme',
     AD_TK = 'Bezwingt die folgenden Bosse in der Festung der Stürme.',
     AC_KILL_ALAR = 'Al\'ar',

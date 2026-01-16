@@ -1,3 +1,4 @@
+
 SexyLib:InitLocalization('Anniversary Achievements', {
     achievement_earned = '&aAchievement earned by %s on %d.%d.%d',
     achievement_in_progress = '&aAchievement in progress by %s',
