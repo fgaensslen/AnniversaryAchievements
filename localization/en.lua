@@ -1,3 +1,4 @@
+
 SexyLib:InitLocalization('Anniversary Achievements', {
     achievement_earned = '&aAchievement earned by %s on %02d.%02d.%02d',
     achievement_in_progress = '&aAchievement in progress by %s',
@@ -20,6 +21,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     UPDATING_EXPLORED_AREAS = 'Updating area exploration data. This action will take a few seconds.',
     UPDATED_EXPLORED_AREAS = '&aInformation about explored areas has been updated!',
+
+    UI_COMBAT_ERROR = 'Anniversary Achievements cannot be opened during combat!',
 
     GEAR_SLOT_HEAD = 'Head',
     GEAR_SLOT_NECK = 'Neck',
@@ -153,9 +156,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_QUEST_GOLD = 'Make %d gold from quest rewards.',
 
     AN_QUESTS_ZONE = 'Loremaster of %s',
-    AD_QUESTS_ZONE = 'Complete quest "%s" in %s.',
+    AD_QUESTS_ZONE = 'Complete the quest "%s" in %s.',
     AD_QUESTS_ZONE_MULTI = 'Complete the following quests in %s.',
-    AC_QUESTS_ZONE = 'Completed quest "%s".',
+    AC_QUESTS_ZONE = 'Completed the quest "%s".',
 
     AZSHARA_1 = 'Azshara',
     AZSHARA_2 = 'Azshara',
@@ -331,7 +334,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_BLACKROCK_PARTY2 = 'Plugger Spazzring',
     AC_BLACKROCK_PARTY3 = 'Hurley Blackbreath',
     AC_BLACKROCK_PARTY4 = 'Phalanx',
-    AN_BLACKROCK_DEPTHS_FULL = 'Blackrock Depths',
+    AN_BLACKROCK_DEPTHS_FULL = 'Master of Blackrock Depths',
     AD_BLACKROCK_DEPTHS_FULL = 'Earn following achievements related to Blackrock Depths.',
     AN_ARMOR_SWORD = 'The Best Defense Is an Attack',
     AD_ARMOR_SWORD = 'Loot the Stone of the Earth from the body of the defeated Panzor the Invincible in Blackrock Depths.',

@@ -6,7 +6,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     ICON_DESCRIPTION = '&7Linksklick: &eErfolge anzeigen oder schließen\n&7Rechtsklick: &eEinstellungen öffnen\n',
 
     OPTION_SHARING = 'Erfolge teilen',
-    OPTION_SHARING_DESC = 'Neue Erfolge werden im Chat geteilt. Nur für dich sichtbar.',
+    OPTION_SHARING_DESC = 'Neue Erfolge werden im Chat geteilt. Nur für Euch sichtbar.',
     OPTION_MICROBUTTON = 'Micromenu-Button',
     OPTION_MICROBUTTON_DESC = 'Wird diese Option aktiviert, so wird ein Addon-Button im Menü an der unteren Leiste angezeigt. Dies kann zu Anzeigefehlern führen, wenn andere Addons das Interface verändern. Alternativ wird ein Button an der Minimap angezeigt. Ändern dieser Option benötigt ein /reload des User-Interfaces.',
     OPTION_UPDATE_MAP_EXPLORATION = 'Erkundete Gebiete überprüfen',
@@ -21,6 +21,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     UPDATING_EXPLORED_AREAS = 'Aktualisieren der erkundeten Gebiete. Dies kann ein paar Sekunden dauern.',
     UPDATED_EXPLORED_AREAS = '&aErkundete Gebiete wurden aktualisiert!',
+
+    UI_COMBAT_ERROR = 'Anniversary Achievements kann im Kampf nicht geöffnet werden!',
 
     GEAR_SLOT_HEAD = 'Kopf',
     GEAR_SLOT_NECK = 'Hals',
@@ -127,7 +129,10 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AN_WARRIOR_T3 = 'Schlachtrüstung des Schreckenspanzers',
 	AN_SHAMAN_T3 = 'Der Erdspalter',
 	
-	AD_SET = 'Sammelt alle Gegenstände des genannten Sets.',		
+	AD_SET = 'Sammelt alle Gegenstände des genannten Sets.',
+    
+    AN_SKELETON_KEY = 'Der Schlüssel zur Scholomance',
+	AD_SKELETON_KEY = 'Erhaltet den Skelettschlüssel.',
 
     AN_LVL = 'Level %d',
     AD_LVL = 'Erreicht Level %d.',
@@ -277,9 +282,6 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_WISDOM_KEEPER_OUTLAND = 'Schließt die unten aufgelisteten Scherbenwelt-Questerfolge ab.',
     AR_WISDOM_KEEPER = 'Meister der Lehren',
 	
-	AN_SKELETON_KEY = 'Der Schlüssel zur Scholomance',
-	AD_SKELETON_KEY = 'Erhaltet den Skelettschlüssel.',
-
     AN_RAGEFIRE_CHASM = 'Ragefireabgrund',
     AD_RAGEFIRE_CHASM = 'Bezwingt Taragaman den Hungerleider.',
     AN_WAILING_CAVERNS = 'Die Höhlen des Wehklagens',
@@ -295,8 +297,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_GNOMREGAN = 'Gnomeregan',
     AD_GNOMREGAN = 'Bezwingt Robogenieur Thermaplugg.',
     AN_RAZORFEN_KRAUL = 'Der Kral von Razorfen',
-    AD_RAZORFEN_KRAUL = 'Bezwingt Charlga Razorflank.',
-	
+    AD_RAZORFEN_KRAUL = 'Bezwingt Charlga Razorflank.',	
     AN_SCARLET_MONASTERY = 'Das Scharlachrote Kloster',
     AD_SCARLET_MONASTERY = 'Bezwingt den Scharlachroten Kreuzzug im Scharlachroten Kloster.',
     AC_SCARLET_MONASTERY1 = 'Blutmagier Thalnos',
@@ -333,7 +334,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_BLACKROCK_PARTY2 = 'Plugger Spazzring',
     AC_BLACKROCK_PARTY3 = 'Hurley Pestatem',
     AC_BLACKROCK_PARTY4 = 'Phalanx',
-    AN_BLACKROCK_DEPTHS_FULL = 'Blackrocktiefen',
+    AN_BLACKROCK_DEPTHS_FULL = 'Meister der Blackrocktiefen',
     AD_BLACKROCK_DEPTHS_FULL = 'Schließt die unten aufgelisteten Erfolge in den Blackrocktiefen ab.',
     AN_ARMOR_SWORD = 'Angriff ist die bessere Verteidigung',
     AD_ARMOR_SWORD = 'Plündert den Stein der Erde von Panzor den Unbesiegbaren in den Blackrocktiefen.',
@@ -1319,8 +1320,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_KILL_LEOTHERAS = 'Leotheras der Blinde',
     AC_KILL_KARATHRESS = 'Tiefenlord Karathress',
     AC_KILL_MOROGRIM = 'Morogrim Gezeitenwandler',
-    AC_KILL_VASHJ = 'Lady Vashj',
-	
+    AC_KILL_VASHJ = 'Lady Vashj',	
     AN_TK = 'Die Festung der Stürme',
     AD_TK = 'Bezwingt die folgenden Bosse in der Festung der Stürme.',
     AC_KILL_ALAR = 'Al\'ar',

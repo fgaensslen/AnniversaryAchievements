@@ -2,7 +2,7 @@
 ## Title: Anniversary Achievements
 ## Notes: Achievements for WoW Classic
 ## Author: Florian Gaensslen
-## Version: 1.2.9
+## Version: 1.3.0
 ## OptionalDeps: DBM-Core, Bartender4
 ## SavedVariables: CA_Settings
 ## SavedVariablesPerCharacter: CA_LocalData, CA_Flags

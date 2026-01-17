@@ -34,19 +34,31 @@ local options = {
             get = function(info) return CA_IsTrackerEnabled() end,
             order = 3
         },
+        spacerBeforeUpdate = {
+            type = "description",
+            name = "",
+            width = 1,   -- fills the missing space
+            order = 3.5
+        },
         updateMapExploration = {
             name = loc:Get('OPTION_UPDATE_MAP_EXPLORATION'),
             desc = loc:Get('OPTION_UPDATE_MAP_EXPLORATION_DESC'),
             type = 'execute',
-            width = 2,
+            width = 1.5,
             func = function() CA_UpdateExploredAreas() end,
             order = 4
+        },
+        spacer1 = {
+            type = 'description',
+            name = ' ', 
+            fontSize = 'large',
+            order = 4.5
         },
         resetAchievements = {
             name = loc:Get('OPTION_RESET_ACHIEVEMENTS'),
             desc = loc:Get('OPTION_RESET_ACHIEVEMENTS_DESC'),
             type = 'execute',
-            width = 2,
+            width = 1.5,
             func = function()
                 CA_CompletionManager:GetLocal():Reset()
                 CA_performInitialCheck()

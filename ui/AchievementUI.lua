@@ -705,6 +705,11 @@ local function GetSafeScrollChildBottom(scrollChild)
 end
 
 function AchievementFrame_ToggleAchievementFrame(toggleStatFrame, toggleGuildView)
+	if InCombatLockdown() then
+		DEFAULT_CHAT_FRAME:AddMessage("|cffffff00" .. SexyLib:Localization('Anniversary Achievements'):Get('UI_COMBAT_ERROR') .. "|r")
+		return
+	end
+
 	AchievementFrameComparison:Hide();
 	AchievementFrameTab_OnClick = AchievementFrameBaseTab_OnClick;
 	if ( not toggleStatFrame ) then
