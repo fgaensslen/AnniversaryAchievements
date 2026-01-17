@@ -11,7 +11,7 @@ Currently, 575 achievements (including Feats of Strength) are available in TBC. 
 ### Download
 
 - WoW TBC: Version 2.0
-- WoW Classic: Version 1.2.9. It works on all Classic Servers (Era, Hardcore, Anniversary, Season of Discovery)
+- WoW Classic: Version 1.2.9. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
 
 ### Supported Languages
 

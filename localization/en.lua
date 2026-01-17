@@ -22,6 +22,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     UPDATING_EXPLORED_AREAS = 'Updating area exploration data. This action will take a few seconds.',
     UPDATED_EXPLORED_AREAS = '&aInformation about explored areas has been updated!',
 
+    UI_COMBAT_ERROR = 'Anniversary Achievements cannot be opened during combat!',
+
     GEAR_SLOT_HEAD = 'Head',
     GEAR_SLOT_NECK = 'Neck',
     GEAR_SLOT_SHOULDER = 'Shoulder',

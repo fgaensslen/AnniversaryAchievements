@@ -22,6 +22,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     UPDATING_EXPLORED_AREAS = 'Aktualisieren der erkundeten Gebiete. Dies kann ein paar Sekunden dauern.',
     UPDATED_EXPLORED_AREAS = '&aErkundete Gebiete wurden aktualisiert!',
 
+    UI_COMBAT_ERROR = 'Anniversary Achievements kann im Kampf nicht geöffnet werden!',
+
     GEAR_SLOT_HEAD = 'Kopf',
     GEAR_SLOT_NECK = 'Hals',
     GEAR_SLOT_SHOULDER = 'Schulter',
@@ -330,7 +332,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_BLACKROCK_DEPTHS5 = 'Lord Incendius',
     AC_BLACKROCK_DEPTHS6 = 'Wärter Stilgiss',
     AC_BLACKROCK_DEPTHS7 = 'Bael\'Gar',
-    AN_BLACKROCK_PARTY = 'Party im Grimmigen Säufer',
+    AN_BLACKROCK_PARTY = 'Party in den Tiefen',
     AD_BLACKROCK_PARTY = 'Bezwingt die folgenden Gegner im Grimmigen Säufer',
     AC_BLACKROCK_PARTY1 = 'Ribbly Schraubstutz',
     AC_BLACKROCK_PARTY2 = 'Stöpsel Zapfring',
