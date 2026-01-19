@@ -573,3 +573,4 @@ ID; Name; Description
 573 ; 5000 Daily Quests Completed ; Complete 5000 daily quests. ; achievement_quests_completed_daily_07
 574 ; 10000 Daily Quests Completed ; Complete 10000 daily quests. ; achievement_quests_completed_daily_08
 575 ; ...not another Demon Lord! ; Defeat Highlord Kruul during the Battle for the Dark Portal. ; -spell_shadow_demonictactics
+576 ; Cenarion Circle ; Earn exalted status with the Cenarion Circle. ; -ability_druid_manatree
