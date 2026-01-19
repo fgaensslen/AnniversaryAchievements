@@ -22,7 +22,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     UPDATING_EXPLORED_AREAS = 'Aktualisieren der erkundeten Gebiete. Dies kann ein paar Sekunden dauern.',
     UPDATED_EXPLORED_AREAS = '&aErkundete Gebiete wurden aktualisiert!',
 
-    UI_COMBAT_ERROR = 'Anniversary Achievements kann im Kampf nicht geöffnet werden!',
+    UI_COMBAT_ERROR = 'Anniversary Achievements kann nicht im Kampf geöffnet werden!',
 
     GEAR_SLOT_HEAD = 'Kopf',
     GEAR_SLOT_NECK = 'Hals',
@@ -475,17 +475,17 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_HORDE_REPS = 'Botschafter der Horde',
     AD_HORDE_REPS = 'Erreicht einen ehrfürchtigen Ruf in 5 Heimatstädten.',
     AC_HORDE_REPS_1 = 'Ehrfürchtig in Orgrimmar.',
-    AC_HORDE_REPS_2 = 'Ehrfürchtig bei den Darkspeartrollen.',
-    AC_HORDE_REPS_3 = 'Ehrfürchtig in Undercity.',
-    AC_HORDE_REPS_4 = 'Ehrfürchtig in Thunder Bluff.',
+    AC_HORDE_REPS_2 = 'Ehrfürchtig bei den Dunkelspeertrollen.',
+    AC_HORDE_REPS_3 = 'Ehrfürchtig in Unterstadt.',
+    AC_HORDE_REPS_4 = 'Ehrfürchtig in Donnerfels.',
     AC_HORDE_REPS_5 = 'Ehrfürchtig in Silbermond.',
 
     AN_ALLIANCE_REPS = 'Botschafter der Allianz',
     AD_ALLIANCE_REPS = 'Erreicht einen ehrfürchtigen Ruf in 5 Heimatstädten.',
-    AC_ALLIANCE_REPS_1 = 'Ehrfürchtig in Stormwind.',
+    AC_ALLIANCE_REPS_1 = 'Ehrfürchtig in Sturmwind.',
     AC_ALLIANCE_REPS_2 = 'Ehrfürchtig in Darnassus.',
     AC_ALLIANCE_REPS_3 = 'Ehrfürchtig bei den Gnomeregangnomen.',
-    AC_ALLIANCE_REPS_4 = 'Ehrfürchtig in Ironforge.',
+    AC_ALLIANCE_REPS_4 = 'Ehrfürchtig in Eisenschmiede.',
     AC_ALLIANCE_REPS_5 = 'Ehrfürchtig in der Exodar.',
 
     AN_ARGENT_DAWN = 'Argentumdämmerung',
@@ -966,16 +966,16 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	
 	AN_HALLOWSEND_ALLIANCE_QUEST2 = 'Schlotternachtssüßigkeiten für Jesper!',
 	AD_HALLOWSEND_ALLIANCE_QUEST2 = 'Sammelt die gewünschten Süßigkeiten für Jesper.',
-	AC_HALLOWSEND_ALLIANCE_QUEST2_CRITERIA1 = 'Nugat aus Stormwind',
+	AC_HALLOWSEND_ALLIANCE_QUEST2_CRITERIA1 = 'Nugat aus Sturmwind',
 	AC_HALLOWSEND_ALLIANCE_QUEST2_CRITERIA2 = 'Kaugummikugel aus Gnomeregan',
-	AC_HALLOWSEND_ALLIANCE_QUEST2_CRITERIA3 = 'Pfefferminzbonbon aus Ironforge',
+	AC_HALLOWSEND_ALLIANCE_QUEST2_CRITERIA3 = 'Pfefferminzbonbon aus Eisenschmiede',
 	AC_HALLOWSEND_ALLIANCE_QUEST2_CRITERIA4 = 'Marzipan aus Darnassus',
 	AN_HALLOWSEND_HORDE_QUEST2 = 'Schlotternachtssüßigkeiten für Spoops!',
 	AD_HALLOWSEND_HORDE_QUEST2 = 'Sammelt die gewünschten Süßigkeiten für Spoops.',
 	AC_HALLOWSEND_HORDE_QUEST2_CRITERIA1 = 'Nugat aus Orgrimmar',
-	AC_HALLOWSEND_HORDE_QUEST2_CRITERIA2 = 'Kaugummikugel der Darkspear',
-	AC_HALLOWSEND_HORDE_QUEST2_CRITERIA3 = 'Pfefferminzbonbon aus Undercity',
-	AC_HALLOWSEND_HORDE_QUEST2_CRITERIA4 = 'Marzipan aus Thunder Bluff',
+	AC_HALLOWSEND_HORDE_QUEST2_CRITERIA2 = 'Kaugummikugel der Dunkelspeertrolle',
+	AC_HALLOWSEND_HORDE_QUEST2_CRITERIA3 = 'Pfefferminzbonbon aus Unterstadt',
+	AC_HALLOWSEND_HORDE_QUEST2_CRITERIA4 = 'Marzipan aus Donnerfels',
 	
 	AN_HALLOWSEND_INVOCATION_BUFF = 'Anrufung des Weidenmanns',
 	AD_HALLOWSEND_INVOCATION_BUFF = 'Erhaltet während der Schlotternächte den Stärkungszauber "Anrufung des Weidenmanns".',
@@ -1444,5 +1444,5 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AD_FLIGHFORM = 'Die Druidenquest zum Erlernen einer schnellen Fluggestalt abgeschlossen.',
 
     AN_KRUUL = '...nicht noch ein Dämonenlord!',
-	AD_KRUUL = 'Bezwingt Hochlord Kruul während des Kampf um das Dunkle Portal.'
+	AD_KRUUL = 'Bezwingt Hochlord Kruul während des Kampfes um das Dunkle Portal.'
 })
