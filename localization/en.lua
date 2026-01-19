@@ -504,6 +504,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_THORIUM = 'Earn exalted status with the Thorium Brotherhood.',
     AN_SHENDRALAR = 'Agent of the Shen\'dralar',
     AD_SHENDRALAR = 'Earn exalted status with Shen\'dralar.',
+    AN_CENARION = 'Cenarion Circle',
+    AD_CENARION = 'Earn exalted status with the Cenarion Circle.',
 
     AN_DEFILERS = 'The Defiler',
     AD_DEFILERS = 'Gain exalted reputation with The Forsaken Defilers.',

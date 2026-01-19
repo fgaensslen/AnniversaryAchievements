@@ -504,6 +504,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_THORIUM = 'Erreicht bei der Thoriumbruderschaft den Status ehrfürchtig.',
     AN_SHENDRALAR = 'Agent der Shen\'dralar',
     AD_SHENDRALAR = 'Erreicht bei den Shen\'dralar den Status ehrfürchtig.',
+    AN_CENARION = 'Zirkel des Cenarius',
+    AD_CENARION = 'Erreicht beim Zirkel des Cenarius den Status ehrfürchtig.',
 
     AN_DEFILERS = 'Der Entweihte',
     AD_DEFILERS = 'Erreicht einen ehrfürchtigen Ruf bei den Entweihten.',

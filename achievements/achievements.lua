@@ -1843,6 +1843,9 @@ do
     add(59, 'THORIUM', 10, '-inv_enchant_dustsoul')
     add(809, 'SHENDRALAR', 10, '-inv_misc_book_11')
 
+    local cenarion = vanillaReputation:CreateAchievement('AN_CENARION', 'AD_CENARION', 10, 'ability_druid_manatree', true, 576)
+        cenarion:AddCriteria(criterias:Create(nil, TYPE.REACH_REPUTATION, {609, 8}))
+
     --TBC
     local builder = L:Achievement(tbcReputations, 20, '-Spell_Fire_FelfireWard')
 		:NameDesc('AN_TBC_DUNGEON_REPUTATIONS', 'AD_TBC_DUNGEON_REPUTATIONS', true)
