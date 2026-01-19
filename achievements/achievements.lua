@@ -693,6 +693,13 @@ do
                 desc = loc:Get('AD_' .. mapName .. '_' .. typeName .. 'S', amount)
             end
             ach = category:CreateAchievement(name, desc, 10, icon)
+
+            --17.01.2025: In TBC there is no more column on the score screen at the end of the battle for the amount of captured mines.
+            --So the achievement for capturing mines is not achievable anymore and has to be disabled. Code can not be deleted, otherwise IDs of other achievements would change.
+            if typeName == 'MINE_CAPTURE' then
+                ach:SetUnavailable()
+            end
+
             local params
             if mapID == nil then
                 params = nil
@@ -705,6 +712,7 @@ do
             if previous then previous:SetNext(ach) end
             previous = ach
         end
+
         return ach
     end
 
@@ -852,9 +860,9 @@ do
 
 	local alteracBoss
 	if factionLetter == 'H' then	
-		alteracBoss = add(alterac, 'ALTERAC_BOSS', '-inv_jewelry_necklace_21', {alteracWins.id, alterac1.id, alterac2.id, alterac3.id, alterac4.id, alterac5.id, alterac6.id, alterac7.id, alterac8.id, alterac9.id, frostwolf.id})
+		alteracBoss = add(alterac, 'ALTERAC_BOSS', '-inv_jewelry_necklace_21', {alteracWins.id, alterac1.id, alterac2.id, alterac3.id, alterac4.id, alterac5.id, alterac7.id, alterac8.id, alterac9.id, frostwolf.id})
 	else
-		alteracBoss = add(alterac, 'ALTERAC_BOSS', '-inv_jewelry_necklace_21', {alteracWins.id, alterac1.id, alterac2.id, alterac3.id, alterac4.id, alterac5.id, alterac6.id, alterac7.id, alterac8.id, alterac9.id, stormpike.id})
+		alteracBoss = add(alterac, 'ALTERAC_BOSS', '-inv_jewelry_necklace_21', {alteracWins.id, alterac1.id, alterac2.id, alterac3.id, alterac4.id, alterac5.id, alterac7.id, alterac8.id, alterac9.id, stormpike.id})
 	end
 	local warsongBoss = add(warsong, 'WARSONG_BOSS', '-inv_misc_rune_07', {warsongWins.id, warsong1.id, warsong2.id, warsong3.id, warsong4.id, warsong5.id, warsong6.id})
 	local arathiBoss = add(arathi, 'ARATHI_BOSS', '-inv_jewelry_amulet_07', {arathiWins.id, arathi1.id, arathi2.id, arathi3.id, arathi4.id, arathi5.id, arathi6.id})

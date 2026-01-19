@@ -2,16 +2,15 @@
 
 ### Introduction
 
-This addon brings you the original Achievement Interface from Blizzard into WoW TBC & Classic
+- WoW TBC: 572 achievements (including Feats of Strength) are available in TBC
+- WoW Classic: 403 achievements
 
-It integrates perfectly with the Standard UI and uses the same graphics and sounds.
-
-Currently, 575 achievements (including Feats of Strength) are available in TBC. The WoW Classic version consists of 390 achievements. A full list can be found [here](/achievements/index.html).
+A full list can be found [here](https://fgaensslen.github.io/AnniversaryAchievements/achievements/index.html).
 
 ### Download
 
-- WoW TBC: Version 2.0
-- WoW Classic: Version 1.2.9. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
+- WoW TBC: Version 2.0.2
+- WoW Classic: Version 1.3.0. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
 
 ### Supported Languages
 
