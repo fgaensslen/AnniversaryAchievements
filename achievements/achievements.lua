@@ -858,11 +858,15 @@ do
         :Criteria(TYPE.BATTLEFIELD_FAST_WIN, {eyeID}):Build()
         :Build()
 
+    --This is necessary to replace the non-working Mines achievement inside the alteracBoss achievement to prevent mixed up criteria IDs.
+    local alterac10 = alterac:CreateAchievement('AN_ALTERAC_AUTOGRAPH', 'AD_ALTERAC_AUTOGRAPH', 10, '-inv_scroll_10', true, 577)
+		alterac10:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {18228}))
+
 	local alteracBoss
 	if factionLetter == 'H' then	
-		alteracBoss = add(alterac, 'ALTERAC_BOSS', '-inv_jewelry_necklace_21', {alteracWins.id, alterac1.id, alterac2.id, alterac3.id, alterac4.id, alterac5.id, alterac7.id, alterac8.id, alterac9.id, frostwolf.id})
+		alteracBoss = add(alterac, 'ALTERAC_BOSS', '-inv_jewelry_necklace_21', {alteracWins.id, alterac1.id, alterac2.id, alterac3.id, alterac4.id, alterac5.id, alterac10.id, alterac7.id, alterac8.id, alterac9.id, frostwolf.id})
 	else
-		alteracBoss = add(alterac, 'ALTERAC_BOSS', '-inv_jewelry_necklace_21', {alteracWins.id, alterac1.id, alterac2.id, alterac3.id, alterac4.id, alterac5.id, alterac7.id, alterac8.id, alterac9.id, stormpike.id})
+		alteracBoss = add(alterac, 'ALTERAC_BOSS', '-inv_jewelry_necklace_21', {alteracWins.id, alterac1.id, alterac2.id, alterac3.id, alterac4.id, alterac5.id, alterac10.id, alterac7.id, alterac8.id, alterac9.id, stormpike.id})
 	end
 	local warsongBoss = add(warsong, 'WARSONG_BOSS', '-inv_misc_rune_07', {warsongWins.id, warsong1.id, warsong2.id, warsong3.id, warsong4.id, warsong5.id, warsong6.id})
 	local arathiBoss = add(arathi, 'ARATHI_BOSS', '-inv_jewelry_amulet_07', {arathiWins.id, arathi1.id, arathi2.id, arathi3.id, arathi4.id, arathi5.id, arathi6.id})

@@ -614,6 +614,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_ALTERAC_MINE_CAPTURE = 'Nehmt eine Mine während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende.',
     AN_ALTERAC_MINE_CAPTURES = 'Gefrorener Pikenier',
     AD_ALTERAC_MINE_CAPTURES = 'Nehmt %d Minen während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende.',
+    AN_ALTERAC_AUTOGRAPH = 'Der Plünderer erhält die Beute',
+    AD_ALTERAC_AUTOGRAPH = 'Plündert das Autogramm von Tigule im Alteractal.',
 
     AN_WARSONG_KILLS = 'Militärische Auszeichnung',
     AD_WARSONG_KILLS = 'Erreicht %d ehrenhafte Siege während einer einzigen Schlacht in der Kriegshymnenschlucht und bleibt bis zu deren Ende.',

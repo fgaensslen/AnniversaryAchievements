@@ -574,3 +574,4 @@ ID; Name; Description; Icon
 574 ; 10.000 tägliche Quests abgeschlossen ; Schließt 10.000 tägliche Quests ab. ; achievement_quests_completed_daily_08
 575 ; ...nicht noch ein Dämonenlord! ; Bezwingt Hochlord Kruul während des Kampf um das Dunkle Portal. ; -spell_shadow_demonictactics
 576 ; Zirkel des Cenarius ; Erreicht beim Zirkel des Cenarius den Status ehrfürchtig. ; -ability_druid_manatree
+577 ; Der Plünderer erhält die Beute ; Plündert das Autogramm von Tigule im Alteractal. ; -inv_scroll_10
