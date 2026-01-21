@@ -9,7 +9,7 @@ A full list can be found [here](https://fgaensslen.github.io/AnniversaryAchieve
 
 ### Download
 
-- WoW TBC: Version 2.0.2
+- WoW TBC: Version 2.0.3
 - WoW Classic: Version 1.3.1. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
 
 ### Supported Languages
