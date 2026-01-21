@@ -610,6 +610,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_ALTERAC_MINE_CAPTURE = 'Assault a mine in one single battle for Alterac Valley and stay until it is over.',
     AN_ALTERAC_MINE_CAPTURES = 'Frozen Pikeman',
     AD_ALTERAC_MINE_CAPTURES = 'Assault %d mines in one single battle for Alterac Valley and stay until it is over.',
+    AN_ALTERAC_AUTOGRAPH = 'To the Looter Go the Spoils',
+    AD_ALTERAC_AUTOGRAPH = 'Loot the Autographed Picture of Tigule in Alterac Valley.',
 
     AN_WARSONG_KILLS = 'Military Honor',
     AD_WARSONG_KILLS = 'Get %d honorable kills in one single battle for Warsong Gulch and stay until it is over.',

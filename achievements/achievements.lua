@@ -858,6 +858,9 @@ do
         :Criteria(TYPE.BATTLEFIELD_FAST_WIN, {eyeID}):Build()
         :Build()
 
+    local alterac10 = alterac:CreateAchievement('AN_ALTERAC_AUTOGRAPH', 'AD_ALTERAC_AUTOGRAPH', 10, '-inv_scroll_10', true, 577)
+		alterac10:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {18228}))    
+
 	local alteracBoss
 	if factionLetter == 'H' then	
 		alteracBoss = add(alterac, 'ALTERAC_BOSS', '-inv_jewelry_necklace_21', {alteracWins.id, alterac1.id, alterac2.id, alterac3.id, alterac4.id, alterac5.id, alterac6.id, alterac7.id, alterac8.id, alterac9.id, frostwolf.id})
