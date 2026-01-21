@@ -22,7 +22,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     UPDATING_EXPLORED_AREAS = 'Aktualisieren der erkundeten Gebiete. Dies kann ein paar Sekunden dauern.',
     UPDATED_EXPLORED_AREAS = '&aErkundete Gebiete wurden aktualisiert!',
 
-    UI_COMBAT_ERROR = 'Anniversary Achievements kann im Kampf nicht geöffnet werden!',
+    UI_COMBAT_ERROR = 'Anniversary Achievements kann nicht im Kampf geöffnet werden!',
 
     GEAR_SLOT_HEAD = 'Kopf',
     GEAR_SLOT_NECK = 'Hals',
@@ -778,9 +778,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_STOCKING_UP_2_OUTLAND = 'Stellt 500 schwere Netherstoffverbände her',
 
     AN_BOOTY_BAY_CONTEST = 'Für\'s Angeln nur das Beste!',
-    AD_BOOTY_BAY_CONTEST = 'Gewinnt den Angelwettbewerb in der Beutebucht und wählt die Arkanitangel oder den Angelhaken des Anglermeisters als Belohnung.',
+    AD_BOOTY_BAY_CONTEST = 'Gewinnt den Angelwettbewerb in Booty Bay und wählt die Arkanitangel oder den Angelhaken des Anglermeisters als Belohnung.',
     AN_BOOTY_BAY_FISH = 'Echter Fischliebhaber',
-    AD_BOOTY_BAY_FISH = 'Angelt einen der besonderen Fische während des Angelwettbewerbs in der Beutebucht.',
+    AD_BOOTY_BAY_FISH = 'Angelt einen der besonderen Fische während des Angelwettbewerbs in Booty Bay.',
 
     AN_FISHING_COLLECTION = 'Fischsammlung',
     AD_FISHING_COLLECTION = 'Fangt die unten aufgelisteten Fische in Azeroth.',
@@ -957,9 +957,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AC_HALLOWSEND_ALLIANCE_QUEST1_CRITERIA1 = 'Bespitzelt das Fest des Weidenmanns',
 	AC_HALLOWSEND_ALLIANCE_QUEST1_CRITERIA2 = 'Die Kraft der Pinie',
 	AN_HALLOWSEND_HORDE_QUEST1 = 'Fauliges Schlottern',
-	AD_HALLOWSEND_HORDE_QUEST1 = 'Ruiniert die Schlotternächte für die Allianz. Schließt dafür die Quests für die Ruferin der Dunkelheit, Yanka, ab, die Euch nach Süderstade führen, damit Ihr dort die Fässer mit faulen Eiern ruiniert und Stinkbomben in die Stadt werft.',
+	AD_HALLOWSEND_HORDE_QUEST1 = 'Ruiniert die Schlotternächte für die Allianz. Schließt dafür die Quests für die Ruferin der Dunkelheit, Yanka, ab, die Euch nach Southshore führen, damit Ihr dort die Fässer mit faulen Eiern ruiniert und Stinkbomben in die Stadt werft.',
 	AC_HALLOWSEND_HORDE_QUEST1_CRITERIA1 = 'Faule Eier und verdorbenes Bier',
-	AC_HALLOWSEND_HORDE_QUEST1_CRITERIA2 = 'Die Verpestung von Süderstade',
+	AC_HALLOWSEND_HORDE_QUEST1_CRITERIA2 = 'Die Verpestung von Southshore',
 	
 	AN_HALLOWSEND_ALLIANCE_QUEST2 = 'Schlotternachtssüßigkeiten für Jesper!',
 	AD_HALLOWSEND_ALLIANCE_QUEST2 = 'Sammelt die gewünschten Süßigkeiten für Jesper.',
