@@ -447,7 +447,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_PVP_RANK_H12 = 'Kriegsherr',
     AN_PVP_RANK_H13 = 'Kriegsfürst',
     AN_PVP_RANK_H14 = 'Oberster Kriegsfürst',
-    AD_PVP_RANK = 'Den gleichnamigen Titel erhalten.',
+    AD_PVP_RANK = 'Den Titel "%s" erhalten.',
     AN_PVP_FIRST_KILL = 'Ein ehrenhafter Sieg',
     AD_PVP_FIRST_KILL = 'Erringt einen ehrenhaften Sieg.',
     AC_PVP_FIRST_KILL = 'Erringt einen ehrenhaften Sieg',

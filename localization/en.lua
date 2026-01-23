@@ -447,7 +447,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_PVP_RANK_H12 = 'General',
     AN_PVP_RANK_H13 = 'Warlord',
     AN_PVP_RANK_H14 = 'High Warlord',
-    AD_PVP_RANK = 'Get the rank of the same name with this achievement.',
+    AD_PVP_RANK = 'Earned the title, "%s".',
     AN_PVP_FIRST_KILL = 'An Honorable Kill',
     AD_PVP_FIRST_KILL = 'Achieve an honorable kill.',
     AC_PVP_FIRST_KILL = 'Achieve an honorable kill.',
