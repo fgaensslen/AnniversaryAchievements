@@ -3,7 +3,7 @@
 ### Introduction
 
 - WoW TBC: 573 achievements (including Feats of Strength) are available in TBC
-- WoW Classic: 404 achievements
+- WoW Classic: 405 achievements
 
 A full list can be found [here](https://fgaensslen.github.io/AnniversaryAchievements/achievements/index.html).
 
