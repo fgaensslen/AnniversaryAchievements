@@ -569,23 +569,38 @@ do
 	local arathiID = 1461
 	local eyeID = 1956
 	
-	local pvpIcon
+    local pvpIcon
+    local previous = nil
 
-    previous = nil
     local factionLetter
     if UnitFactionGroup('player') == 'Horde' then
         factionLetter = 'H'
     else
         factionLetter = 'A'
     end
-    for i = 1, 14 do	
-	
+
+    for i = 1, 14 do
         if i <= 9 then pvpIcon = '-achievement_pvp_o_0'
         else pvpIcon = '-achievement_pvp_o_' end
-		
-        ach = featsOfStrength:CreateAchievement('AN_PVP_RANK_' .. factionLetter .. i, 'AD_PVP_RANK', 0, pvpIcon .. i, true)
-        ach:AddCriteria(criterias:Create(nil, TYPE.REACH_PVP_RANK, {i}))
-        if previous then previous:SetNext(ach) end
+
+        local ach = featsOfStrength:CreateAchievement(
+            'AN_PVP_RANK_' .. factionLetter .. i,
+            'AD_PVP_RANK', -- description set dynamically
+            0,
+            pvpIcon .. i,
+            true
+        )
+
+        -- Build description from the achievement title
+        local title = ach.name
+        local desc = string.format(loc:Get('AD_PVP_RANK'), title)
+        ach.description = desc
+
+        ach:AddCriteria(criterias:Create(nil, TYPE.REACH_PVP_RANK, { i }))
+
+        if previous then
+            previous:SetNext(ach)
+        end
         previous = ach
     end
 
