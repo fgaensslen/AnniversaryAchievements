@@ -1369,7 +1369,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_ATTUNE_EYE = 'Der Schlüssel der Stürme',
     AD_ATTUNE_EYE = 'Erhaltet den Schlüssel der Stürme.',
     AN_ATTUNE_HYJAL = 'Die Phiolen der Ewigkeit',
-    AD_ATTUNE_HYJAL = 'Soridormi in den Höhlen der Zeit möchte, dass Ihr die Überreste von Vashjs Phiole von Lady Vashj im Echsenkessel und die Überreste von Kaels Phiole von Kael\'thas Sonnenwanderer in der Festung der Stürme besorgt.',
+    AD_ATTUNE_HYJAL = 'Erhaltet Zugang zur Schlacht um den Berg Hyjal.',
     AN_ATTUNE_BLACK_TEMPLE = 'Ein Ablenkungsmanöver für Akama',
     AD_ATTUNE_BLACK_TEMPLE = 'Erhaltet das Medaillon von Karabor.',
 

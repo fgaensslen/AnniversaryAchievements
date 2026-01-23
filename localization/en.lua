@@ -1365,11 +1365,11 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_ATTUNE_NIGHT_BANE = 'Digging Up the Past',
     AD_ATTUNE_NIGHT_BANE = 'Obtain the Blackened Urn.',
     AN_ATTUNE_SSC = 'The Cudgel of Kar\'desh',
-    AD_ATTUNE_SSC = 'Get access to the Serpentshrine Cavern.',
+    AD_ATTUNE_SSC = 'Gain access to the Serpentshrine Cavern.',
     AN_ATTUNE_EYE = 'The Tempest Key',
     AD_ATTUNE_EYE = 'Obtain The Tempest Key.',
     AN_ATTUNE_HYJAL = 'The Vials of Eternity',
-    AD_ATTUNE_HYJAL = 'Soridormi at Caverns of Time wants you to retrieve Vashj\'s Vial Remnant from Lady Vashj at Coilfang Reservoir and Kael\'s Vial Remnant from Kael\'thas Sunstrider at Tempest Keep.',
+    AD_ATTUNE_HYJAL = 'Gain access to the Battle of Mount Hyjal.',
     AN_ATTUNE_BLACK_TEMPLE = 'A Distraction for Akama',
     AD_ATTUNE_BLACK_TEMPLE = 'Obtain the Medallion of Karabor.',
 
