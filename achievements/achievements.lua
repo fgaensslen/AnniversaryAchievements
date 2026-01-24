@@ -865,7 +865,7 @@ do
     
     local eye4 = L:Achievement(bgEye, 10, '-inv_brd_banner')
         :NameDesc('AN_EYE_IDEAL_VICTORY', 'AD_EYE_IDEAL_VICTORY', true)
-        :Criteria(TYPE.BG_POINTS, {eyeID, 1500, 0}):Build()
+        :Criteria(TYPE.BG_POINTS, {eyeID, 2000, 0}):Build()
         :Build()
     
     local eye5 = L:Achievement(bgEye, 10, 'achievement_bg_wineos_underxminutes')

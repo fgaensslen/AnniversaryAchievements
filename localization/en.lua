@@ -648,7 +648,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_EYE_BERSERK = 'Bloodthirsty Berserker',
     AD_EYE_BERSERK = 'Get a killing blow while under the effects of the berserker buff in Eye of the Storm.',
     AN_EYE_IDEAL_VICTORY = 'The Perfect Storm',
-    AD_EYE_IDEAL_VICTORY = 'Win Eye of the Storm with a score of 1600 to 0.',
+    AD_EYE_IDEAL_VICTORY = 'Win Eye of the Storm with a score of 2000 to 0.',
 
     AN_BGS_KILLING_BLOWS = 'Deathbringer',
     AD_BGS_KILLING_BLOWS = 'Make %d killing blows on any battleground.',

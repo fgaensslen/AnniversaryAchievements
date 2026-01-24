@@ -648,7 +648,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_EYE_BERSERK = 'Blutrünstiger Berserker',
     AD_EYE_BERSERK = 'Erteilt einen Todesstoß, während Ihr im Auge des Sturms unter dem Stärkungszauber Berserker steht.',
     AN_EYE_IDEAL_VICTORY = 'Der perfekte Sturm',
-    AD_EYE_IDEAL_VICTORY = 'Gewinnt im Auge des Sturms mit einem Ergebnis von 1.600 zu 0.',
+    AD_EYE_IDEAL_VICTORY = 'Gewinnt im Auge des Sturms mit einem Ergebnis von 2.000 zu 0.',
 
     AN_BGS_KILLING_BLOWS = 'Todbringer',
     AD_BGS_KILLING_BLOWS = 'Erringt %d Todesstöße auf einem beliebigen Schlachtfeld.',

@@ -1,16 +1,20 @@
 ![](images/summary.png)
 
-### Introduction
+This addon brings you the original Achievement Interface from Blizzard into WoW TBC & Classic
+
+It integrates perfectly with the Standard UI and uses the same graphics and sounds.
+
+### Download
+
+- WoW TBC: Version 2.0.3
+- WoW Classic: Version 1.3.2. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
+
+### Achievements
 
 - WoW TBC: 573 achievements (including Feats of Strength) are available in TBC
 - WoW Classic: 405 achievements
 
 A full list can be found [here](https://fgaensslen.github.io/AnniversaryAchievements/achievements/index.html).
-
-### Download
-
-- WoW TBC: Version 2.0.3
-- WoW Classic: Version 1.3.1. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
 
 ### Supported Languages
 
@@ -28,7 +32,7 @@ The addon works best with the Standard UI. If you have modified your interface, 
 The addon was tested with the following UIs:
 
 - Standard
-- Dragonflight UI Classic 0.31.4
+- Dragonflight UI Classic
 
 ### Features
 
