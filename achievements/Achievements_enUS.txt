@@ -85,9 +85,9 @@ ID; Name; Description
 84 ; How to Break Into the Arcatraz ; Obtain the Key to the Arcatraz. ; -inv_datacrystal03
 85 ; The Master's Touch ; Obtain The Master's Key. ; -inv_misc_key_07
 86 ; Digging Up the Past ; Obtain the Blackened Urn. ; -inv_misc_urn_01
-87 ; The Cudgel of Kar'desh ; Get access to the Serpentshrine Cavern. ; -inv_trinket_naxxramas01
+87 ; The Cudgel of Kar'desh ; Gain access to the Serpentshrine Cavern. ; -inv_trinket_naxxramas01
 88 ; The Tempest Key ; Obtain The Tempest Key. ; -inv_datacrystal11
-89 ; The Vials of Eternity ; Soridormi at Caverns of Time wants you to retrieve Vashj's Vial Remnant from Lady Vashj at Coilfang Reservoir and Kael's Vial Remnant from Kael'thas Sunstrider at Tempest Keep. ; -inv_potion_101
+89 ; The Vials of Eternity ; Gain access to the Battle of Mount Hyjal. ; -inv_potion_101
 90 ; A Distraction for Akama ; Obtain the Medallion of Karabor. ; -inv_jewelry_amulet_04
 91 ; World Explorer ; Explore Eastern Kingdoms, Kalimdor and Outland. ; inv_misc_map02
 92 ; Explore Kalimdor ; Explore the regions of Kalimdor. ; -achievement_zone_kalimdor_01
@@ -147,20 +147,20 @@ ID; Name; Description
 146 ; Explore Shadowmoon Valley ; Explore Shadowmoon Valley, revealing the covered areas of the world map. ; achievement_zone_shadowmoon
 147 ; Medium Rare ; Kill one of the extremely rare and hard to find Outland creatures listed below. ; -Spell_Shadow_DeathScream
 148 ; Bloody Rare ; Kill all of the extremely rare and hard to find Outland creatures listed below. ; -Spell_Shadow_DeathScream
-149 ; Private ; Get the rank of the same name with this achievement. ; -achievement_pvp_o_01
-150 ; Corporal ; Get the rank of the same name with this achievement. ; -achievement_pvp_o_02
-151 ; Sergeant ; Get the rank of the same name with this achievement. ; -achievement_pvp_o_03
-152 ; Master Sergeant ; Get the rank of the same name with this achievement. ; -achievement_pvp_o_04
-153 ; Sergeant Major ; Get the rank of the same name with this achievement. ; -achievement_pvp_o_05
-154 ; Knight ; Get the rank of the same name with this achievement. ; -achievement_pvp_o_06
-155 ; Knight-Lieutenant ; Get the rank of the same name with this achievement. ; -achievement_pvp_o_07
-156 ; Knight-Captain ; Get the rank of the same name with this achievement. ; -achievement_pvp_o_08
-157 ; Knight-Champion ; Get the rank of the same name with this achievement. ; -achievement_pvp_o_09
-158 ; Lieutenant Commander ; Get the rank of the same name with this achievement. ; -achievement_pvp_o_10
-159 ; Commander ; Get the rank of the same name with this achievement. ; -achievement_pvp_o_11
-160 ; Marshal ; Get the rank of the same name with this achievement. ; -achievement_pvp_o_12
-161 ; Field Marshal ; Get the rank of the same name with this achievement. ; -achievement_pvp_o_13
-162 ; Grand Marshal ; Get the rank of the same name with this achievement. ; -achievement_pvp_o_13
+149 ; Private ; Earned the title, "Private". ; -achievement_pvp_o_01
+150 ; Corporal ; Earned the title, "Corporal". ; -achievement_pvp_o_02
+151 ; Sergeant ; Earned the title, "Sergeant". ; -achievement_pvp_o_03
+152 ; Master Sergeant ; Earned the title, "Master Sergeant". ; -achievement_pvp_o_04
+153 ; Sergeant Major ; Earned the title, "Sergeant Major". ; -achievement_pvp_o_05
+154 ; Knight ; Earned the title, "Knight". ; -achievement_pvp_o_06
+155 ; Knight-Lieutenant ; Earned the title, "Knight-Lieutenant". ; -achievement_pvp_o_07
+156 ; Knight-Captain ; Earned the title, "Knight-Captain". ; -achievement_pvp_o_08
+157 ; Knight-Champion ; Earned the title, "Knight-Champion". ; -achievement_pvp_o_09
+158 ; Lieutenant Commander ; Earned the title, "Lieutenant Commander". ; -achievement_pvp_o_10
+159 ; Commander ; Earned the title, "Commander". ; -achievement_pvp_o_11
+160 ; Marshal ; Earned the title, "Marshal". ; -achievement_pvp_o_12
+161 ; Field Marshal ; Earned the title, "Field Marshal". ; -achievement_pvp_o_13
+162 ; Grand Marshal ; Earned the title, "Grand Marshal". ; -achievement_pvp_o_14
 163 ; An Honorable Kill ; Achieve an honorable kill. ; achievement_pvp_p_01
 164 ; 10 Honorable Kills ; Get 10 honorable kills. ; achievement_pvp_p_02
 165 ; 100 Honorable Kills ; Get 100 honorable kills. ; achievement_pvp_p_03
@@ -275,7 +275,7 @@ ID; Name; Description
 274 ; Storm Capper ; Personally carry and capture 3 flags in Eye of the Storm and stay until the end of the battle. ; achievement_bg_captureflag_eos
 275 ; Bound for Glory ; In a single Eye of the Storm match, capture the flag 3 times without dying. ; -Spell_Arcane_MassDispel
 276 ; Bloodthirsty Berserker ; Get a killing blow while under the effects of the berserker buff in Eye of the Storm. ; -Spell_Nature_BloodLust
-277 ; The Perfect Storm ; Win Eye of the Storm with a score of 1600 to 0. ; -inv_brd_banner
+277 ; The Perfect Storm ; Win Eye of the Storm with a score of 2000 to 0. ; -inv_brd_banner
 278 ; Flurry ; Win Eye of the Storm in under 6 minutes. ; achievement_bg_wineos_underxminutes
 279 ; Master of Alterac Valley ; Complete the Alterac Valley achievements listed below. ; -inv_jewelry_necklace_21
 280 ; Master of Warsong Gulch ; Complete the Warsong Gulch achievements listed below. ; -inv_misc_rune_07

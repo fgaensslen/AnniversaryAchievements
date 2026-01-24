@@ -87,7 +87,7 @@ ID; Name; Description; Icon
 86 ; Die Vergangenheit aufwühlen ; Erhaltet die Geschwärzte Urne. ; -inv_misc_urn_01
 87 ; Der Knüppel von Kar'desh ; Erhaltet Zugang zur Höhle des Schlangenschreins. ; -inv_trinket_naxxramas01
 88 ; Der Schlüssel der Stürme ; Erhaltet den Schlüssel der Stürme. ; -inv_datacrystal11
-89 ; Die Phiolen der Ewigkeit ; Soridormi in den Höhlen der Zeit möchte, dass Ihr die Überreste von Vashjs Phiole von Lady Vashj im Echsenkessel und die Überreste von Kaels Phiole von Kael'thas Sonnenwanderer in der Festung der Stürme besorgt. ; -inv_potion_101
+89 ; Die Phiolen der Ewigkeit ; Erhaltet Zugang zur Schlacht um den Berg Hyjal. ; -inv_potion_101
 90 ; Ein Ablenkungsmanöver für Akama ; Erhaltet das Medaillon von Karabor. ; -inv_jewelry_amulet_04
 91 ; Weltenbummler ; Erforscht die östlichen Königreiche, Kalimdor und die Scherbenwelt. ; -inv_misc_map02
 92 ; Erforscht Kalimdor ; Erforscht die Regionen Kalimdors. ; -achievement_zone_kalimdor_01
@@ -147,20 +147,20 @@ ID; Name; Description; Icon
 146 ; Erforscht Schattenmondtal ; Erforscht Schattenmondtal und enthüllt die verdeckten Gebiete auf der Weltkarte. ; achievement_zone_shadowmoon
 147 ; Ziemlich selten ; Tötet eine der unten aufgelisteten, extrem seltenen und schwer zu findenden Kreaturen der Scherbenwelt. ; -Spell_Shadow_DeathScream
 148 ; Verflucht selten ; Tötet jede der unten aufgelisteten, extrem seltenen und schwer zu findenden Kreaturen der Scherbenwelt. ; -Spell_Shadow_DeathScream
-149 ; Gefreiter ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_01
-150 ; Fußknecht ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_02
-151 ; Landsknecht ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_03
-152 ; Feldwebel ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_04
-153 ; Fähnrich ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_05
-154 ; Leutnant ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_06
-155 ; Hauptmann ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_07
-156 ; Kürassier ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_08
-157 ; Ritter der Allianz ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_09
-158 ; Feldkommandant ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_10
-159 ; Rittmeister ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_11
-160 ; Marschall ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_12
-161 ; Feldmarschall ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_13
-162 ; Großmarschall ; Den gleichnamigen Titel erhalten. ; -achievement_pvp_o_14
+149 ; Gefreiter ; Den Titel "Gefreiter" erhalten. ; -achievement_pvp_o_01
+150 ; Fußknecht ; Den Titel "Fußknecht" erhalten. ; -achievement_pvp_o_02
+151 ; Landsknecht ; Den Titel "Landsknecht" erhalten. ; -achievement_pvp_o_03
+152 ; Feldwebel ; Den Titel "Feldwebel" erhalten. ; -achievement_pvp_o_04
+153 ; Fähnrich ; Den Titel "Fähnrich" erhalten. ; -achievement_pvp_o_05
+154 ; Leutnant ; Den Titel "Leutnant" erhalten. ; -achievement_pvp_o_06
+155 ; Hauptmann ; Den Titel "Hauptmann" erhalten. ; -achievement_pvp_o_07
+156 ; Kürassier ; Den Titel "Kürassier" erhalten. ; -achievement_pvp_o_08
+157 ; Ritter der Allianz ; Den Titel "Ritter der Allianz" erhalten. ; -achievement_pvp_o_09
+158 ; Feldkommandant ; Den Titel "Feldkommandant" erhalten. ; -achievement_pvp_o_10
+159 ; Rittmeister ; Den Titel "Rittmeister" erhalten. ; -achievement_pvp_o_11
+160 ; Marschall ; Den Titel "Marschall" erhalten. ; -achievement_pvp_o_12
+161 ; Feldmarschall ; Den Titel "Feldmarschall" erhalten. ; -achievement_pvp_o_13
+162 ; Großmarschall ; Den Titel "Großmarschall" erhalten. ; -achievement_pvp_o_14
 163 ; Ein ehrenhafter Sieg ; Erringt einen ehrenhaften Sieg. ; -achievement_pvp_p_01
 164 ; 10 ehrenhafte Siege ; Erringt 10 ehrenhafte Siege. ; -achievement_pvp_p_02
 165 ; 100 ehrenhafte Siege ; Erringt 100 ehrenhafte Siege. ; -achievement_pvp_p_03
@@ -275,7 +275,7 @@ ID; Name; Description; Icon
 274 ; Sturmeroberer ; Ergreift und erobert persönlich 3 Flaggen im Auge des Sturms und bleibt bis zum Ende der Schlacht. ; -achievement_bg_captureflag_eos
 275 ; Für den Ruhm ; Erobert in einem einzigen Auge des Sturm-Kampfes die Flagge 3-mal, ohne zu sterben. ; -Spell_Arcane_MassDispel
 276 ; Blutrünstiger Berserker ; Erteilt einen Todesstoß, während Ihr im Auge des Sturms unter dem Stärkungszauber Berserker steht. ; -Spell_Nature_BloodLust
-277 ; Der perfekte Sturm ; Gewinnt im Auge des Sturms mit einem Ergebnis von 1.600 zu 0. ; -inv_brd_banner
+277 ; Der perfekte Sturm ; Gewinnt im Auge des Sturms mit einem Ergebnis von 2.000 zu 0. ; -inv_brd_banner
 278 ; Der Sturm ; Gewinnt im Auge des Sturms in weniger als 6 Minuten. ; -achievement_bg_wineos_underxminutes
 279 ; Meister des Alteractals ; Schließt die unten aufgelisteten Questerfolge im Alteractal ab. ; -inv_jewelry_necklace_21
 280 ; Meister der Warsongschlucht ; Schließt die unten aufgelisteten Questerfolge in der Warsongschlucht ab. ; -inv_misc_rune_07
