@@ -29,7 +29,15 @@ function CA_InitializeMicrobutton()
 end
 
 SexyLib:Util():AfterLogin(function()
-    if not CA_IsMicrobuttonEnabled() or Bartender4 then return end
+    if not CA_ShouldUseMicrobutton() then
+        -- Hard-disable the button if it exists
+        if AchievementMicroButton then
+            AchievementMicroButton:Hide()
+            AchievementMicroButton:UnregisterAllEvents()
+            AchievementMicroButton:SetParent(nil)
+        end
+        return
+    end
 
     CA_InitializeMicrobutton()
     AchievementMicroButton:SetFrameLevel(QuestLogMicroButton:GetFrameLevel() + 1)
@@ -52,3 +60,13 @@ SexyLib:Util():AfterLogin(function()
     end
 
 end)
+
+function CA_ShouldUseMicrobutton()
+    return CA_IsMicrobuttonEnabled() and not CA_IsMicrobuttonForcedOff()
+end
+
+function CA_IsMicrobuttonForcedOff()
+    return Bartender4
+        or Dominos
+        or DragonflightUI
+end

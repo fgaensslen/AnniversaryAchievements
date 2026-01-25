@@ -6,7 +6,7 @@
 ## Notes: Achievements for WoW TBC Anniversary
 ## Category: Achievements
 ## Category-deDE: Erfolge
-## OptionalDeps: DBM-Core, Bartender4
+## OptionalDeps: DBM-Core
 ## SavedVariables: CA_Settings
 ## SavedVariablesPerCharacter: CA_LocalData, CA_Flags
 
@@ -43,4 +43,3 @@ ui/Microbutton.lua
 util/Minimap.lua
 
 integrations/DBM.lua
-integrations/Bartender4.lua

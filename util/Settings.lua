@@ -37,11 +37,17 @@ local options = {
             type = 'toggle',
             width = 2,
             set = function(info, val)
+                if CA_IsMicrobuttonForcedOff() then
+                    return
+                end
                 CA_Settings.microbutton = val
                 CA_UpdateReloadState()
             end,
             get = function(info)
-                return CA_IsMicrobuttonEnabled()
+                return CA_ShouldUseMicrobutton()
+            end,
+            disabled = function()
+                return CA_IsMicrobuttonForcedOff()
             end,
             order = 2
         },

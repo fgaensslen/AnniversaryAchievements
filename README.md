@@ -31,7 +31,9 @@ The addon works best with the Standard UI. If you have modified your interface, 
 
 The addon was tested with the following UIs:
 
-- Standard
+- Standard WoW Interface
+- Bartender4
+- Dominos
 - Dragonflight UI Classic
 
 ### Features
