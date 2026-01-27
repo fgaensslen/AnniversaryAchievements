@@ -39,4 +39,3 @@ ui/Microbutton.lua
 util/Minimap.lua
 
 integrations/DBM.lua
-integrations/Bartender4.lua
