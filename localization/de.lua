@@ -637,6 +637,10 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_ARATHI_BASE_DEFEND = 'Verteidigt eine Basis während einer einzigen Schlacht im Arathibecken und bleibt bis zu deren Ende.',
     AN_ARATHI_BASE_DEFENDS = 'Ehrenhafter Wächter',
     AD_ARATHI_BASE_DEFENDS = 'Verteidigt %d Basen während einer einzigen Schlacht im Arathibecken und bleibt bis zu deren Ende.',
+    AN_ARATHI_CLOSE = 'War doch kinderleicht *hust*',
+    AD_ARATHI_CLOSE = 'Gewinnt im Arathibecken mit einem Vorsprung von 10 Punkten (2.000 zu 1.990).',
+    AN_ARATHI_PERFECT = 'Arathibecken-Perfektion',
+    AD_ARATHI_PERFECT = 'Gewinnt im Arathibecken mit einer Punktzahl von 2.000 zu 0.',
 
     AN_EYE_CAPTURE = 'Sturmeroberer',
     AD_EYE_CAPTURE = 'Ergreift und erobert persönlich die Flagge im Auge des Sturms und bleibt bis zum Ende der Schlacht.',

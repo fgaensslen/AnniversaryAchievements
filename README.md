@@ -11,8 +11,8 @@ It integrates perfectly with the Standard UI and uses the same graphics and soun
 
 ### Achievements
 
-- WoW TBC: 573 achievements (including Feats of Strength) are available in TBC
-- WoW Classic: 405 achievements
+- WoW TBC: 575 achievements (including Feats of Strength)
+- WoW Classic: 407 achievements (including Feats of Strength)
 
 A full list can be found [here](https://fgaensslen.github.io/AnniversaryAchievements/achievements/index.html).
 
@@ -27,7 +27,7 @@ Using another WoW client language may cause some achievements not to work proper
 
 ### Supported User Interfaces
 
-The addon works best with the Standard UI. If you have modified your interface, you can disable the micromenu button and instead use a button on your minimap.
+The addon works best with the Standard UI. If you have modified your interface, the micromenu button is disabled automatically and instead displays a button at your minimap.
 
 The addon was tested with the following UIs:
 

@@ -575,3 +575,5 @@ ID; Name; Description; Icon
 575 ; ...nicht noch ein Dämonenlord! ; Bezwingt Hochlord Kruul während des Kampf um das Dunkle Portal. ; -spell_shadow_demonictactics
 576 ; Zirkel des Cenarius ; Erreicht beim Zirkel des Cenarius den Status ehrfürchtig. ; -ability_druid_manatree
 577 ; Der Plünderer erhält die Beute ; Plündert das Autogramm von Tigule im Alteractal. ; -inv_scroll_10
+578 ; War doch kinderleicht *hust* ; Gewinnt im Arathibecken mit einem Vorsprung von 10 Punkten (2.000 zu 1.990). ; -spell_shadow_improvedvampiricembrace
+579 ; Arathibecken-Perfektion ; Gewinnt im Arathibecken mit einer Punktzahl von 2.000 zu 0. ; -achievement_bg_abshutout

@@ -179,6 +179,10 @@ function struct:Create(name, type, data, quantity, forceID)
             return self
         end
     }
+    if struct.criteriasByID[id] then
+        error("Duplicate criteria ID: "..id)
+    end
+
     struct.criteriasByID[id] = result
     if quantity and quantity > 0 then
         result.quantity = quantity
