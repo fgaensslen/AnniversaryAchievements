@@ -811,6 +811,12 @@ do
 	local arathi5 = add(arathi, arathiID, 1, 'ARATHI_BASE_ASSAULT', '-achievement_bg_takexflags_ab', 50)
 	local arathi6 = add(arathi, arathiID, 2, 'ARATHI_BASE_DEFEND', '-ability_warrior_victoryrush', 50)
 
+    local arathi7 = arathi:CreateAchievement('AN_ARATHI_CLOSE', 'AD_ARATHI_CLOSE', 10, '-spell_shadow_improvedvampiricembrace', true, 578)
+		arathi7:AddCriteria(criterias:Create(nil, TYPE.BG_POINTS, {arathiID, 2000, 1990}, nil, 5781))
+
+    local arathi8 = arathi:CreateAchievement('AN_ARATHI_PERFECT', 'AD_ARATHI_PERFECT', 10, '-achievement_bg_abshutout', true, 579)
+		arathi8:AddCriteria(criterias:Create(nil, TYPE.BG_POINTS, {arathiID, 2000, 0}, nil, 5791))
+
 	local frostwolf = L:Achievement(alterac, 10, '-inv_jewelry_frostwolftrinket_01')
 		:NameDesc('AN_ALTERAC_MOUNT_HORDE', 'AD_ALTERAC_MOUNT_HORDE', true)
 		:Criteria(TYPE.OBTAIN_ITEM, {19029}):Build()

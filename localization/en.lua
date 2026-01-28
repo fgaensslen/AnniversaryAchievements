@@ -633,6 +633,10 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_ARATHI_BASE_DEFEND = 'Defend a flags in one single battle for Arathi Basin and stay until it is over.',
     AN_ARATHI_BASE_DEFENDS = 'Honorary sentry',
     AD_ARATHI_BASE_DEFENDS = 'Defend %d flags in one single battle for Arathi Basin and stay until it is over.',
+    AN_ARATHI_CLOSE = 'We Had It All Along *cough*',
+    AD_ARATHI_CLOSE = 'Win Arathi Basin by 10 points (2000 to 1990).',
+    AN_ARATHI_PERFECT = 'Arathi Basin Perfection',
+    AD_ARATHI_PERFECT = 'Win Arathi Basin with a score of 2000 to 0.',
 
     AN_EYE_CAPTURE = 'Storm Capper',
     AD_EYE_CAPTURE = 'Personally carry and capture the flag in Eye of the Storm and stay until the end of the battle.',
