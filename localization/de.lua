@@ -16,6 +16,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     OPTION_TRACKER = 'Ziele beobachten',
     OPTION_TRACKER_DESC = 'Aktiviert oder deaktiviert den Tracker für Erfolge und Quests.',
     OPTION_RELOAD = "Änderungen benötigen ein Reload des Interface",
+    OPTION_DISABLED = 'Option aufgrund eines UI-Addons nicht verfügbar',
 
     GOT_ACHIEVEMENT_MESSAGE_MALE = 'Ihr habt den Erfolg %s erreicht!',
     GOT_ACHIEVEMENT_MESSAGE_FEMALE = 'Ihr habt den Erfolg %s erreicht!',

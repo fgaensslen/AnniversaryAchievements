@@ -16,6 +16,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     OPTION_TRACKER = 'Track Objectives',
     OPTION_TRACKER_DESC = 'Enable or disable the tracker for achievements and quests.',
     OPTION_RELOAD = "Changes require a reload of the interface",
+    OPTION_DISABLED = 'This option is disabled because another UI addon is loaded',
 
     GOT_ACHIEVEMENT_MESSAGE_MALE = 'You have earned the achievement %s!',
     GOT_ACHIEVEMENT_MESSAGE_FEMALE = 'You have earned the achievement %s!',
