@@ -52,6 +52,16 @@ local options = {
             order = 2
         },
 
+        microbuttonDisabledNote = {
+            type = "description",
+            name = "|cffff2020" .. loc:Get('OPTION_DISABLED') .. "|r",
+            width = "full",
+            hidden = function()
+                return not CA_IsMicrobuttonForcedOff()
+            end,
+            order = 2.1
+        },
+
         enableTracker = {
             name = loc:Get('OPTION_TRACKER'),
             desc = loc:Get('OPTION_TRACKER_DESC'),
