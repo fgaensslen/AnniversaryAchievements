@@ -949,16 +949,33 @@ do
 
     --ARENA
     local gladiator = arena:CreateAchievement('AN_ARENA_GLADIATOR', 'AD_ARENA_GLADIATOR', 10, 'achievement_featsofstrength_gladiator_07', true, 580)
-        gladiator:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, { 'GLADIATOR_TITLE' }, nil, 5801))
+        gladiator:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, { 'GLADIATOR_TITLE' }, nil, 5800))
 
     local duelist = arena:CreateAchievement('AN_ARENA_DUELIST', 'AD_ARENA_DUELIST', 10, 'achievement_featsofstrength_gladiator_06', true, 581)
-        duelist:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, { 'DUELIST_TITLE' }, nil, 5811))
+        duelist:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, { 'DUELIST_TITLE' }, nil, 5810))
 
     local rival = arena:CreateAchievement('AN_ARENA_RIVAL', 'AD_ARENA_RIVAL', 10, 'achievement_featsofstrength_gladiator_05', true, 582)
-        rival:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, { 'RIVAL_TITLE' }, nil, 5821))
+        rival:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, { 'RIVAL_TITLE' }, nil, 5820))
 
     local challenger = arena:CreateAchievement('AN_ARENA_CHALLENGER', 'AD_ARENA_CHALLENGER', 10, 'achievement_featsofstrength_gladiator_04', true, 583)
-        challenger:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, { 'CHALLENGER_TITLE' }, nil, 5831))
+        challenger:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, { 'CHALLENGER_TITLE' }, nil, 5830))
+
+    previous = arena:CreateAchievement('AN_ARENA_FIRST_WIN', 'AD_ARENA_FIRST_WIN', 10, 'achievement_featsofstrength_gladiator_10', true, 584)
+        previous:AddCriteria(criterias:CreateL('AD_ARENA_FIRST_WIN', TYPE.ARENA_WIN, nil, 1, 5840))
+
+    local arenaAchievementID = 585
+    for i, count in ipairs({100, 200, 300}) do
+		local icon = 'achievement_featsofstrength_gladiator_0' .. i
+        ach = arena:CreateAchievement('AN_ARENA_WIN' .. i, 'AD_ARENA_WIN' .. i, 10, icon, true, arenaAchievementID)
+            ach:AddCriteria(criterias:CreateL('AN_ARENA_WIN' .. i, TYPE.ARENA_WIN, nil, count, (arenaAchievementID * 10)))
+
+        arenaAchievementID = arenaAchievementID + 1
+
+        previous:SetNext(ach)
+        previous = ach
+    end
+	previous = nil
+
 end
 
 -- PVE --

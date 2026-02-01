@@ -750,6 +750,11 @@ local events = {
         end
     end,
     UPDATE_BATTLEFIELD_SCORE = function()
+        
+        --ARENA
+        CheckRatedArenaWin()
+
+        --BATTLEGROUNDS        
         if not InActiveBattlefield() or not canGetBattlegroundsAchievement then return end
         local winner = GetBattlefieldWinner()
         if not winner then return end
@@ -804,8 +809,7 @@ local events = {
             end
         end
         
-        trigger(TYPE.BATTLEFIELD_MAX_LEVEL_PARTICIPATION)
-        
+        trigger(TYPE.BATTLEFIELD_MAX_LEVEL_PARTICIPATION)       
     end,
 	UNIT_AURA = function(unit)
 		if unit ~= "player" then return end
@@ -896,6 +900,33 @@ local events = {
         
     end
 }
+
+local function CheckRatedArenaWin()
+    -- level gate (adapted to TBC)
+    if UnitLevel("player") ~= 60 then return end
+
+    -- must be in an active battlefield
+    if not IsActiveBattlefield() then return end
+
+    -- exclude skirmishes
+    --if IsArenaSkirmish() then return end
+
+    -- arena maps only
+    local mapID = C_Map.GetBestMapForUnit("player")
+    if mapID ~= 559 and mapID ~= 562 and mapID ~= 572 then return end
+
+    local winner = GetBattlefieldWinner()
+    if not winner then return end
+
+    local myFaction = UnitFactionGroup("player")
+    myFaction = (myFaction == "Horde") and 0 or 1
+
+    if winner == myFaction then
+        trigger(TYPE.ARENA_WIN, nil, 1, true)
+    end
+end
+
+
 local eventsHandler = CreateFrame('FRAME', 'ClassicAchievementsEventHandlingFrame')
 eventsHandler:SetScript('OnEvent', function(self, event, ...)
     events[event](...)

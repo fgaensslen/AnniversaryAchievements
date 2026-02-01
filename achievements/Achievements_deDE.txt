@@ -581,3 +581,7 @@ ID; Name; Description; Icon
 581 ; Duellant ; Erlangt auf Stufe 70 den Titel "Duellant" in einer Arenasaison. ; -achievement_featsofstrength_gladiator_06
 582 ; Rivale ; Erlangt auf Stufe 70 den Titel "Rivale" in einer Arenasaison. ; -achievement_featsofstrength_gladiator_05
 583 ; Herausforderer ; Erlangt auf Stufe 70 den Titel "Herausforderer" in einer Arenasaison. ; -achievement_featsofstrength_gladiator_04
+584 ; Die Arena betreten ; Gewinnt einen gewerteten Arenakampf auf Stufe 70. ; -achievement_featsofstrength_gladiator_10
+585 ; Gnadenlos ehrgeizig ; Gewinnt 100 gewertete Arenakämpfe auf Stufe 70. ; -achievement_featsofstrength_gladiator_01
+586 ; Engagierter Kämpfer ; Gewinnt 200 gewertete Arenakämpfe auf Stufe 70. ; -achievement_featsofstrength_gladiator_02
+587 ; Brutaler Kämpfer ; Gewinnt 300 gewertete Arenakämpfe auf Stufe 70. ; -achievement_featsofstrength_gladiator_03

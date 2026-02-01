@@ -581,3 +581,7 @@ ID; Name; Description
 581 ; Duelist ; Earn the Duelist title in an arena season at level 70. ; -achievement_featsofstrength_gladiator_06
 582 ; Rival ; Earn the Rival title in an arena season at level 70. ; -achievement_featsofstrength_gladiator_05
 583 ; Challenger ; Earn the Challenger title in an arena season at level 70. ; -achievement_featsofstrength_gladiator_04
+584 ; Step Into The Arena ; Win a ranked arena match at level 70. ; -achievement_featsofstrength_gladiator_10
+585 ; Mercilessly Dedicated ; Win 100 ranked arena matches at level 70. ; -achievement_featsofstrength_gladiator_01
+586 ; Vengefully Dedicated ; Win 200 ranked arena matches at level 70. ; -achievement_featsofstrength_gladiator_02
+587 ; Brutally Dedicated ; Win 300 ranked arena matches at level 70. ; -achievement_featsofstrength_gladiator_03
