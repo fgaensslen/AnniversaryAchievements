@@ -585,3 +585,4 @@ ID; Name; Description; Icon
 585 ; Gnadenlos ehrgeizig ; Gewinnt 100 gewertete Arenakämpfe auf Stufe 70. ; -achievement_featsofstrength_gladiator_01
 586 ; Engagierter Kämpfer ; Gewinnt 200 gewertete Arenakämpfe auf Stufe 70. ; -achievement_featsofstrength_gladiator_02
 587 ; Brutaler Kämpfer ; Gewinnt 300 gewertete Arenakämpfe auf Stufe 70. ; -achievement_featsofstrength_gladiator_03
+588 ; Weltweiter Arenaheld ; Gewinnt auf Stufe 70 einen gewerteten Arenakampf im Schergrat, in Nagrand und den Ruinen von Lordaeron. ; -ability_hunter_pathfinding

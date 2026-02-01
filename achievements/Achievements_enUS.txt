@@ -585,3 +585,4 @@ ID; Name; Description
 585 ; Mercilessly Dedicated ; Win 100 ranked arena matches at level 70. ; -achievement_featsofstrength_gladiator_01
 586 ; Vengefully Dedicated ; Win 200 ranked arena matches at level 70. ; -achievement_featsofstrength_gladiator_02
 587 ; Brutally Dedicated ; Win 300 ranked arena matches at level 70. ; -achievement_featsofstrength_gladiator_03
+588 ; World Wide Winner ; Win a ranked arena match in Blade\'s Edge, Nagrand and the Ruins of Lordaeron at level 70. ; -ability_hunter_pathfinding

@@ -961,13 +961,13 @@ do
         challenger:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, { 'CHALLENGER_TITLE' }, nil, 5830))
 
     previous = arena:CreateAchievement('AN_ARENA_FIRST_WIN', 'AD_ARENA_FIRST_WIN', 10, 'achievement_featsofstrength_gladiator_10', true, 584)
-        previous:AddCriteria(criterias:CreateL('AD_ARENA_FIRST_WIN', TYPE.ARENA_WIN, nil, 1, 5840))
+        previous:AddCriteria(criterias:Create('AD_ARENA_FIRST_WIN', TYPE.ARENA_WIN, nil, 1, 5840))
 
     local arenaAchievementID = 585
     for i, count in ipairs({100, 200, 300}) do
 		local icon = 'achievement_featsofstrength_gladiator_0' .. i
         ach = arena:CreateAchievement('AN_ARENA_WIN' .. i, 'AD_ARENA_WIN' .. i, 10, icon, true, arenaAchievementID)
-            ach:AddCriteria(criterias:CreateL('AN_ARENA_WIN' .. i, TYPE.ARENA_WIN, nil, count, (arenaAchievementID * 10)))
+            ach:AddCriteria(criterias:Create('AN_ARENA_WIN' .. i, TYPE.ARENA_WIN, nil, count, (arenaAchievementID * 10)))
 
         arenaAchievementID = arenaAchievementID + 1
 
@@ -976,6 +976,10 @@ do
     end
 	previous = nil
 
+    local worldWideWinner = arena:CreateAchievement('AN_ARENA_MAPS', 'AD_ARENA_MAPS', 10, '-ability_hunter_pathfinding', true, 588)
+        worldWideWinner:AddCriteria(criterias:Create(loc:Get('AC_ARENA_MAPS1'), TYPE.ARENA_WIN, {562}))
+        worldWideWinner:AddCriteria(criterias:Create(loc:Get('AC_ARENA_MAPS2'), TYPE.ARENA_WIN, {559}))
+        worldWideWinner:AddCriteria(criterias:Create(loc:Get('AC_ARENA_MAPS3'), TYPE.ARENA_WIN, {572}))
 end
 
 -- PVE --

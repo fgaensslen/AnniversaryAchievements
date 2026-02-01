@@ -922,7 +922,7 @@ local function CheckRatedArenaWin()
     myFaction = (myFaction == "Horde") and 0 or 1
 
     if winner == myFaction then
-        trigger(TYPE.ARENA_WIN, nil, 1, true)
+        trigger(TYPE.ARENA_WIN, mapID, 1, true)
     end
 end
 
