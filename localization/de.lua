@@ -1262,9 +1262,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_MR_PINCHY = 'Angelt Dr. Zwicky in der Scherbenwelt.',
 
     AN_FISHING_DIPLOMAT = 'Der angelnde Diplomat',
-    AD_FISHING_DIPLOMAT = 'Bekommt etwas in Orgrimmar und Sturmwind an den Haken.',
+    AD_FISHING_DIPLOMAT = 'Bekommt etwas in Orgrimmar und Stormwind an den Haken.',
     AC_FISHING_DIPLOMAT1 = 'Orgrimmar',
-    AC_FISHING_DIPLOMAT2 = 'Sturmwind',
+    AC_FISHING_DIPLOMAT2 = 'Stormwind',
 
     AN_EXPLORE_OUTLAND = 'Erforscht die Scherbenwelt',
     AD_EXPLORE_OUTLAND = 'Erforscht die Regionen der Scherbenwelt.',    
