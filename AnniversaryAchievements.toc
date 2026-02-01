@@ -1,7 +1,7 @@
 ## Interface: 20505
 ## Title: Anniversary Achievements
 ## Author: Florian Gaensslen
-## Version: v2.0.4
+## Version: v2.1.0
 ## IconTexture: Interface/AddOns/AnniversaryAchievements/logo.tga
 ## Notes: Achievements for WoW TBC Anniversary
 ## Category: Achievements
