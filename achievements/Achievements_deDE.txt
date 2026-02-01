@@ -577,3 +577,7 @@ ID; Name; Description; Icon
 577 ; Der Plünderer erhält die Beute ; Plündert das Autogramm von Tigule im Alteractal. ; -inv_scroll_10
 578 ; War doch kinderleicht *hust* ; Gewinnt im Arathibecken mit einem Vorsprung von 10 Punkten (2.000 zu 1.990). ; -spell_shadow_improvedvampiricembrace
 579 ; Arathibecken-Perfektion ; Gewinnt im Arathibecken mit einer Punktzahl von 2.000 zu 0. ; -achievement_bg_abshutout
+580 ; Gladiator ; Erlangt auf Stufe 70 den Titel "Gladiator" in einer Arenasaison. ; -achievement_featsofstrength_gladiator_07
+581 ; Duellant ; Erlangt auf Stufe 70 den Titel "Duellant" in einer Arenasaison. ; -achievement_featsofstrength_gladiator_06
+582 ; Rivale ; Erlangt auf Stufe 70 den Titel "Rivale" in einer Arenasaison. ; -achievement_featsofstrength_gladiator_05
+583 ; Herausforderer ; Erlangt auf Stufe 70 den Titel "Herausforderer" in einer Arenasaison. ; -achievement_featsofstrength_gladiator_04

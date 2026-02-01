@@ -875,6 +875,25 @@ local events = {
 
         -- Reset KT abominations on wipe / combat end        
         ResetKT()        
+    end,
+    UNIT_NAME_UPDATE = function()
+        local current = GetCurrentTitle()
+        if not current or current == 0 then return end
+
+        local titleName = GetTitleName(current)
+ 
+        if not titleName then return end
+
+        if titleName:find(loc:Get('AN_ARENA_TITLE1')) then
+            trigger(TYPE.SPECIAL, { 'GLADIATOR_TITLE' }, 1, true)
+        elseif titleName:find(loc:Get('AN_ARENA_TITLE2')) then
+            trigger(TYPE.SPECIAL, { 'CHALLENGER_TITLE' }, 1, true)
+        elseif titleName:find(loc:Get('AN_ARENA_TITLE3')) then
+            trigger(TYPE.SPECIAL, { 'RIVAL_TITLE' }, 1, true)
+        elseif titleName:find(loc:Get('AN_ARENA_TITLE4')) then
+            trigger(TYPE.SPECIAL, { 'DUELIST_TITLE' }, 1, true)
+        end
+        
     end
 }
 local eventsHandler = CreateFrame('FRAME', 'ClassicAchievementsEventHandlingFrame')

@@ -90,6 +90,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_TBC = 'The Burning Crusade',
     CATEGORY_EXPLORATION = 'Erkundung',
     CATEGORY_PVE = 'Dungeons & Schlachtzüge',
+    CATEGORY_ARENA = 'Arena',
     CATEGORY_BG_ALTERAC = 'Alteractal',
     CATEGORY_BG_WARSONG = 'Kriegshymnenschlucht',
     CATEGORY_BG_ARATHI = 'Arathibecken',
@@ -1417,6 +1418,41 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_BLACK_TEMPLE = 'Der Schwarze Tempel',
     AD_BLACK_TEMPLE = 'Schließt die unten aufgelisteten Erfolge im Schwarzen Tempel ab.',
     AR_BLACK_TEMPLE = 'Bezwinger des Schwarzen Tempels',
+
+    AN_ARENA_FIRST_KILL = 'Die Arena betreten',
+    AD_ARENA_FIRST_KILL = 'Gewinnt einen gewerteten Arenakampf auf Stufe 70.',
+    AN_ARENA_KILL1 = 'Gnadenlos ehrgeizig',
+    AD_ARENA_KILL1 = 'Gewinnt 100 gewertete Arenakämpfe auf Stufe 70.',
+    AN_ARENA_KILL2 = 'Engagierter Kämpfer',
+    AD_ARENA_KILL2 = 'Gewinnt 200 gewertete Arenakämpfe auf Stufe 70.',
+    AN_ARENA_KILL3 = 'Brutaler Kämpfer',
+    AD_ARENA_KILL3 = 'Gewinnt 300 gewertete Arenakämpfe auf Stufe 70.',
+
+    AN_ARENA_TITLE1 = 'Gladiator',
+    AN_ARENA_TITLE2 = 'Duellant',
+    AN_ARENA_TITLE3 = 'Rivale',
+    AN_ARENA_TITLE4 = 'Herausforderer',
+
+    AN_ARENA_GLADIATOR = 'Gladiator',
+    AD_ARENA_GLADIATOR = 'Erlangt auf Stufe 70 den Titel "Gladiator" in einer Arenasaison.',
+
+    AN_ARENA_DUELIST = 'Duellant',
+    AD_ARENA_DUELIST = 'Erlangt auf Stufe 70 den Titel "Duellant" in einer Arenasaison.',
+
+    AN_ARENA_RIVAL = 'Rivale',
+    AD_ARENA_RIVAL = 'Erlangt auf Stufe 70 den Titel "Rivale" in einer Arenasaison.',
+
+    AN_ARENA_CHALLENGER = 'Herausforderer',
+    AD_ARENA_CHALLENGER = 'Erlangt auf Stufe 70 den Titel "Herausforderer" in einer Arenasaison.',
+
+    AN_ARENA_MAPS = 'Weltweiter Arenaheld',
+    AD_ARENA_MAPS = 'Gewinnt auf Stufe 70 einen gewerteten Arenakampf im Schergrat, in Nagrand und den Ruinen von Lordaeron.',    
+    AC_ARENA_MAPS1 = 'Arena des Schergrats',
+    AC_ARENA_MAPS2 = 'Arena von Nagrand',
+    AC_ARENA_MAPS3 = 'Ruinen von Lordaeron',
+
+    AN_ARENA_MASTER = 'Der Arenameister',
+    AD_ARENA_MASTER = 'Schließt die unten aufgelisteten Arenaerfolge ab.',
 
     AN_AZZINOTH = 'Kriegsgleven von Azzinoth',
     AD_AZZINOTH = 'Träger eines Sets der Kriegsgleven von Azzinoth.',

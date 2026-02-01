@@ -577,3 +577,7 @@ ID; Name; Description
 577 ; To the Looter Go the Spoils ; Loot the Autographed Picture of Tigule in Alterac Valley. ; -inv_scroll_10
 578 ; We Had It All Along *cough* ; Win Arathi Basin by 10 points (2000 to 1990). ; -spell_shadow_improvedvampiricembrace
 579 ; Arathi Basin Perfection ; Win Arathi Basin with a score of 2000 to 0. ; -achievement_bg_abshutout
+580 ; Gladiator ; Earn the Gladiator title in an arena season at level 70. ; -achievement_featsofstrength_gladiator_07
+581 ; Duelist ; Earn the Duelist title in an arena season at level 70. ; -achievement_featsofstrength_gladiator_06
+582 ; Rival ; Earn the Rival title in an arena season at level 70. ; -achievement_featsofstrength_gladiator_05
+583 ; Challenger ; Earn the Challenger title in an arena season at level 70. ; -achievement_featsofstrength_gladiator_04

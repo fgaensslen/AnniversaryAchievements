@@ -36,6 +36,7 @@ local explorationKalimdor = tab:CreateCategory('CATEGORY_KALIMDOR', exploration.
 local outlandExploration = tab:CreateCategory('CATEGORY_OUTLAND', exploration.id, true)
 
 local pvp = tab:CreateCategory('CATEGORY_PVP', nil, true)
+local arena = tab:CreateCategory('CATEGORY_ARENA', pvp.id, true)
 local warsong = tab:CreateCategory('CATEGORY_BG_WARSONG', pvp.id, true)
 local arathi = tab:CreateCategory('CATEGORY_BG_ARATHI', pvp.id, true)
 local bgEye = tab:CreateCategory('CATEGORY_BG_EYE', pvp.id, true)
@@ -945,6 +946,19 @@ do
             :Previous(ach)
             :Build()
 	end
+
+    --ARENA
+    local gladiator = arena:CreateAchievement('AN_ARENA_GLADIATOR', 'AD_ARENA_GLADIATOR', 10, 'achievement_featsofstrength_gladiator_07', true, 580)
+        gladiator:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, { 'GLADIATOR_TITLE' }, nil, 5801))
+
+    local duelist = arena:CreateAchievement('AN_ARENA_DUELIST', 'AD_ARENA_DUELIST', 10, 'achievement_featsofstrength_gladiator_06', true, 581)
+        duelist:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, { 'DUELIST_TITLE' }, nil, 5811))
+
+    local rival = arena:CreateAchievement('AN_ARENA_RIVAL', 'AD_ARENA_RIVAL', 10, 'achievement_featsofstrength_gladiator_05', true, 582)
+        rival:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, { 'RIVAL_TITLE' }, nil, 5821))
+
+    local challenger = arena:CreateAchievement('AN_ARENA_CHALLENGER', 'AD_ARENA_CHALLENGER', 10, 'achievement_featsofstrength_gladiator_04', true, 583)
+        challenger:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, { 'CHALLENGER_TITLE' }, nil, 5831))
 end
 
 -- PVE --

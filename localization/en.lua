@@ -90,6 +90,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_TBC = 'The Burning Crusade',
     CATEGORY_EXPLORATION = 'Exploration',
     CATEGORY_PVE = 'Dungeons & Raids',
+    CATEGORY_ARENA = 'Arena',
     CATEGORY_BG_ALTERAC = 'Alterac Valley',
     CATEGORY_BG_WARSONG = 'Warsong Gulch',
     CATEGORY_BG_ARATHI = 'Arathi Basin',
@@ -1417,6 +1418,41 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_BLACK_TEMPLE = 'The Black Temple',
     AD_BLACK_TEMPLE = 'Earn the achievements listed below by defeating all bosses in the Black Temple.',
     AR_BLACK_TEMPLE = 'Conqueror of the Black Temple',
+
+    AN_ARENA_FIRST_KILL = 'Step Into The Arena',
+    AD_ARENA_FIRST_KILL = 'Win a ranked arena match at level 70.',
+    AN_ARENA_KILL1 = 'Mercilessly Dedicated',
+    AD_ARENA_KILL1 = 'Win 100 ranked arena matches at level 70.',
+    AN_ARENA_KILL2 = 'Vengefully Dedicated',
+    AD_ARENA_KILL2 = 'Win 200 ranked arena matches at level 70.',
+    AN_ARENA_KILL3 = 'Brutally Dedicated',
+    AD_ARENA_KILL3 = 'Win 300 ranked arena matches at level 70.',
+
+    AN_ARENA_TITLE1 = 'Gladiator',
+    AN_ARENA_TITLE2 = 'Duelist',
+    AN_ARENA_TITLE3 = 'Rival',
+    AN_ARENA_TITLE4 = 'Challenger',
+
+    AN_ARENA_GLADIATOR = 'Gladiator',
+    AD_ARENA_GLADIATOR = 'Earn the Gladiator title in an arena season at level 70.',
+
+    AN_ARENA_DUELIST = 'Duelist',
+    AD_ARENA_DUELIST = 'Earn the Duelist title in an arena season at level 70.',
+
+    AN_ARENA_RIVAL = 'Rival',
+    AD_ARENA_RIVAL = 'Earn the Rival title in an arena season at level 70.',
+
+    AN_ARENA_CHALLENGER = 'Challenger',
+    AD_ARENA_CHALLENGER = 'Earn the Challenger title in an arena season at level 70.',
+
+    AN_ARENA_MAPS = 'World Wide Winner',
+    AD_ARENA_MAPS = 'Win a ranked arena match in Blade\'s Edge, Nagrand and the Ruins of Lordaeron at level 70.',    
+    AC_ARENA_MAPS1 = 'Blade\'s Edge Arena',
+    AC_ARENA_MAPS2 = 'Nagrand Arena',
+    AC_ARENA_MAPS3 = 'Ruins of Lordaeron',
+
+    AN_ARENA_MASTER = 'The Arena Master',
+    AD_ARENA_MASTER = 'Complete the arena achievements listed below.',
 
     AN_AZZINOTH = 'Warglaives of Azzinoth',
     AD_AZZINOTH = 'Wielder of a set of Warglaives of Azzinoth.',
