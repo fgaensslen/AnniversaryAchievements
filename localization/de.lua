@@ -1435,15 +1435,15 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_ARENA_GLADIATOR = 'Gladiator',
     AD_ARENA_GLADIATOR = 'Erlangt auf Stufe 70 den Titel "Gladiator" in einer Arenasaison.',
-
     AN_ARENA_DUELIST = 'Duellant',
     AD_ARENA_DUELIST = 'Erlangt auf Stufe 70 den Titel "Duellant" in einer Arenasaison.',
-
     AN_ARENA_RIVAL = 'Rivale',
     AD_ARENA_RIVAL = 'Erlangt auf Stufe 70 den Titel "Rivale" in einer Arenasaison.',
-
     AN_ARENA_CHALLENGER = 'Herausforderer',
     AD_ARENA_CHALLENGER = 'Erlangt auf Stufe 70 den Titel "Herausforderer" in einer Arenasaison.',
+
+    AN_ARENA_STREAK = 'Siegesserie',
+    AD_ARENA_STREAK = 'Gewinnt auf Stufe 70 zehn gewertete Kämpfe in Folge.',
 
     AN_ARENA_MAPS = 'Weltweiter Arenaheld',
     AD_ARENA_MAPS = 'Gewinnt auf Stufe 70 einen gewerteten Arenakampf im Schergrat, in Nagrand und den Ruinen von Lordaeron.',    

@@ -54,7 +54,8 @@ struct.TYPE = {
     KILL_ANY_NPC = 48,
     COMPLETE_DAILY_QUEST = 49,
     COMPLETE_DAILY_QUESTS = 50,
-    ARENA_WIN = 51
+    ARENA_WIN = 51,
+    ARENA_MAP = 52
 }
 
 struct.dataLengths = {
@@ -108,7 +109,8 @@ struct.dataLengths = {
     [struct.TYPE.KILL_ANY_NPC] = 0,
     [struct.TYPE.COMPLETE_DAILY_QUEST] = 1, -- questID
     [struct.TYPE.COMPLETE_DAILY_QUESTS] = 0,
-    [struct.TYPE.ARENA_WIN] = 0
+    [struct.TYPE.ARENA_WIN] = 0,
+    [struct.TYPE.ARENA_MAP] = 1
 }
 
 struct.criterias = {}

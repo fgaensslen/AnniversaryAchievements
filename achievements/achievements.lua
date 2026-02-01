@@ -939,12 +939,12 @@ do
 		:Build()
 		
 	for _, wins in pairs({10, 25, 100}) do
-    ach = L:Achievement(pvp, 10, '-ability_dualwieldspecialization')
-            :Name('AN_DUELS_' .. wins, true)
-            :Desc('AD_DUELS', true, wins)
-            :Criteria(TYPE.DUELS, nil, wins):Name('AC_DUELS', true, wins):Build()
-            :Previous(ach)
-            :Build()
+        ach = L:Achievement(pvp, 10, '-ability_dualwieldspecialization')
+                :Name('AN_DUELS_' .. wins, true)
+                :Desc('AD_DUELS', true, wins)
+                :Criteria(TYPE.DUELS, nil, wins):Name('AC_DUELS', true, wins):Build()
+                :Previous(ach)
+                :Build()
 	end
 
     --ARENA
@@ -966,20 +966,23 @@ do
     local arenaAchievementID = 585
     for i, count in ipairs({100, 200, 300}) do
 		local icon = 'achievement_featsofstrength_gladiator_0' .. i
-        ach = arena:CreateAchievement('AN_ARENA_WIN' .. i, 'AD_ARENA_WIN' .. i, 10, icon, true, arenaAchievementID)
+        local ach = arena:CreateAchievement('AN_ARENA_WIN' .. i, 'AD_ARENA_WIN' .. i, 10, icon, true, arenaAchievementID)
             ach:AddCriteria(criterias:Create('AN_ARENA_WIN' .. i, TYPE.ARENA_WIN, nil, count, (arenaAchievementID * 10)))
-
-        arenaAchievementID = arenaAchievementID + 1
-
+        
         previous:SetNext(ach)
         previous = ach
+
+        arenaAchievementID = arenaAchievementID + 1
     end
 	previous = nil
 
     local worldWideWinner = arena:CreateAchievement('AN_ARENA_MAPS', 'AD_ARENA_MAPS', 10, '-ability_hunter_pathfinding', true, 588)
-        worldWideWinner:AddCriteria(criterias:Create(loc:Get('AC_ARENA_MAPS1'), TYPE.ARENA_WIN, {562}))
-        worldWideWinner:AddCriteria(criterias:Create(loc:Get('AC_ARENA_MAPS2'), TYPE.ARENA_WIN, {559}))
-        worldWideWinner:AddCriteria(criterias:Create(loc:Get('AC_ARENA_MAPS3'), TYPE.ARENA_WIN, {572}))
+        worldWideWinner:AddCriteria(criterias:Create(loc:Get('AC_ARENA_MAPS1'), TYPE.ARENA_MAP, {562}))
+        worldWideWinner:AddCriteria(criterias:Create(loc:Get('AC_ARENA_MAPS2'), TYPE.ARENA_MAP, {559}))
+        worldWideWinner:AddCriteria(criterias:Create(loc:Get('AC_ARENA_MAPS3'), TYPE.ARENA_MAP, {572}))
+
+    --local winStreak = arena:CreateAchievement('AN_ARENA_STREAK', 'AD_ARENA_STREAK', 10, '-spell_fire_fire', true, 589)
+        --winStreak:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, { 'ARENA_WIN_STREAK_10' }, 1, 5890))
 end
 
 -- PVE --

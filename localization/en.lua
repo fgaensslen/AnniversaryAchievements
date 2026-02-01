@@ -1435,15 +1435,15 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_ARENA_GLADIATOR = 'Gladiator',
     AD_ARENA_GLADIATOR = 'Earn the Gladiator title in an arena season at level 70.',
-
     AN_ARENA_DUELIST = 'Duelist',
     AD_ARENA_DUELIST = 'Earn the Duelist title in an arena season at level 70.',
-
     AN_ARENA_RIVAL = 'Rival',
     AD_ARENA_RIVAL = 'Earn the Rival title in an arena season at level 70.',
-
     AN_ARENA_CHALLENGER = 'Challenger',
     AD_ARENA_CHALLENGER = 'Earn the Challenger title in an arena season at level 70.',
+
+    AN_ARENA_STREAK = 'Hot Streak',
+    AD_ARENA_STREAK = 'Win ten ranked matches in a row at level 70.',
 
     AN_ARENA_MAPS = 'World Wide Winner',
     AD_ARENA_MAPS = 'Win a ranked arena match in Blade\'s Edge, Nagrand and the Ruins of Lordaeron at level 70.',    

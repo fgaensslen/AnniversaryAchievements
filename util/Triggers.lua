@@ -901,28 +901,37 @@ local events = {
     end
 }
 
-local function CheckRatedArenaWin()
-    -- level gate (adapted to TBC)
-    if UnitLevel("player") ~= 60 then return end
+-- Necessary to avoid multiple triggers for the same arena match
+local lastArenaMatchID = 0
 
-    -- must be in an active battlefield
-    if not IsActiveBattlefield() then return end
+function CheckRatedArenaWin()
+    if UnitLevel("player") ~= 70 then return end
 
-    -- exclude skirmishes
-    --if IsArenaSkirmish() then return end
+    local isArena, isRated = IsActiveBattlefieldArena()
+    if not isArena then return end
 
-    -- arena maps only
-    local mapID = C_Map.GetBestMapForUnit("player")
-    if mapID ~= 559 and mapID ~= 562 and mapID ~= 572 then return end
+    local _, instanceType, _, _, _, _, _, instanceID = GetInstanceInfo()
+    if instanceType ~= "arena" or not instanceID or instanceID == lastArenaMatchID then return end
 
     local winner = GetBattlefieldWinner()
     if not winner then return end
 
-    local myFaction = UnitFactionGroup("player")
-    myFaction = (myFaction == "Horde") and 0 or 1
+    local won = false
+    for i = 1, GetNumBattlefieldScores() do
+        local name, _, _, _, _, team = GetBattlefieldScore(i)
+        if name == UnitName("player") then
+            won = (team == winner)
+            break
+        end
+    end
 
-    if winner == myFaction then
-        trigger(TYPE.ARENA_WIN, mapID, 1, true)
+    if not won then return end
+
+    lastArenaMatchID = instanceID
+
+    if isRated then
+        trigger(TYPE.ARENA_MAP, { instanceID })
+        trigger(TYPE.ARENA_WIN)
     end
 end
 
