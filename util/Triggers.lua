@@ -905,7 +905,7 @@ local events = {
 local lastArenaMatchID = 0
 
 function CheckRatedArenaWin()
-    if UnitLevel("player") ~= 70 then return end
+    if UnitLevel("player") ~= 60 then return end
 
     local isArena, isRated = IsActiveBattlefieldArena()
     if not isArena then return end
@@ -929,12 +929,28 @@ function CheckRatedArenaWin()
 
     lastArenaMatchID = instanceID
 
-    if isRated then
+    --if isRated then
         trigger(TYPE.ARENA_MAP, { instanceID })
         trigger(TYPE.ARENA_WIN)
-    end
+
+        -- Now update ratings since a win just occurred
+        -- if it does not trigger use event: ARENA_TEAM_UPDATE
+        CheckArenaRatings()
+    --end
 end
 
+function CheckArenaRatings()
+    --TBC Arena indices: 1 = 2v2, 2 = 3v3, 3 = 5v5
+    for index = 1, 3 do
+        -- GetArenaTeam returns personalRating as the 10th value in TBC
+        local _, teamSize, _, _, _, _, _, _, _, personalRating = GetArenaTeam(index)
+        
+        -- Validation: teamSize must exist and personalRating must be valid
+        if teamSize and personalRating and personalRating > 0 then
+            trigger(TYPE.ARENA_RATING, { teamSize }, personalRating, true)
+        end
+    end
+end
 
 local eventsHandler = CreateFrame('FRAME', 'ClassicAchievementsEventHandlingFrame')
 eventsHandler:SetScript('OnEvent', function(self, event, ...)

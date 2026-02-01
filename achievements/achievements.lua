@@ -966,7 +966,7 @@ do
     local arenaAchievementID = 585
     for i, count in ipairs({100, 200, 300}) do
 		local icon = 'achievement_featsofstrength_gladiator_0' .. i
-        local ach = arena:CreateAchievement('AN_ARENA_WIN' .. i, 'AD_ARENA_WIN' .. i, 10, icon, true, arenaAchievementID)
+        ach = arena:CreateAchievement('AN_ARENA_WIN' .. i, 'AD_ARENA_WIN' .. i, 10, icon, true, arenaAchievementID)
             ach:AddCriteria(criterias:Create('AN_ARENA_WIN' .. i, TYPE.ARENA_WIN, nil, count, (arenaAchievementID * 10)))
         
         previous:SetNext(ach)
@@ -983,6 +983,40 @@ do
 
     --local winStreak = arena:CreateAchievement('AN_ARENA_STREAK', 'AD_ARENA_STREAK', 10, '-spell_fire_fire', true, 589)
         --winStreak:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, { 'ARENA_WIN_STREAK_10' }, 1, 5890))
+
+    arenaAchievementID = 590    
+    for j, bracket in ipairs({2, 3, 5}) do
+
+        local previous = nil
+        for i, rating in ipairs({1550, 1750, 2000, 2200}) do            
+
+            local icon
+            if rating == 1550 then
+                icon = 'achievement_arena_' .. bracket .. 'v' .. bracket .. '_' .. 1
+            elseif rating == 1750 then
+                icon = 'achievement_arena_' .. bracket .. 'v' .. bracket .. '_' .. 4
+            elseif rating == 2000 then 
+                icon = 'achievement_arena_' .. bracket .. 'v' .. bracket .. '_' .. 5
+            else
+                icon = 'achievement_arena_' .. bracket .. 'v' .. bracket .. '_' .. 7
+            end
+
+            local ach = arena:CreateAchievement('AN_ARENA_' .. bracket .. '_' .. rating, 'AD_ARENA_' .. bracket .. '_' .. rating, 10, icon, true, arenaAchievementID)
+                ach:AddCriteria(criterias:Create(nil, TYPE.ARENA_RATING, { bracket }, rating, (arenaAchievementID * 10)))
+
+            if previous then previous:SetNext(ach) end
+                previous = ach
+
+            arenaAchievementID = arenaAchievementID + 1
+        end
+    end
+
+    local arenaMaster = arena:CreateAchievement('AN_ARENA_MASTER', 'AD_ARENA_MASTER', 10, 'achievement_featsofstrength_gladiator_08', true, 602)
+        arenaMaster:AddCriteria(criterias:CreateL('AN_ARENA_MAPS', TYPE.COMPLETE_ACHIEVEMENT, {worldWideWinner.id}))
+        arenaMaster:AddCriteria(criterias:CreateL('AN_ARENA_WIN3', TYPE.COMPLETE_ACHIEVEMENT, {587}))
+        arenaMaster:AddCriteria(criterias:CreateL('AN_ARENA_2_2200', TYPE.COMPLETE_ACHIEVEMENT, {599}))
+        arenaMaster:AddCriteria(criterias:CreateL('AN_ARENA_3_2200', TYPE.COMPLETE_ACHIEVEMENT, {600}))
+        arenaMaster:AddCriteria(criterias:CreateL('AN_ARENA_5_2200', TYPE.COMPLETE_ACHIEVEMENT, {601}))
 end
 
 -- PVE --

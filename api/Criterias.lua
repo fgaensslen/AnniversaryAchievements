@@ -55,7 +55,8 @@ struct.TYPE = {
     COMPLETE_DAILY_QUEST = 49,
     COMPLETE_DAILY_QUESTS = 50,
     ARENA_WIN = 51,
-    ARENA_MAP = 52
+    ARENA_MAP = 52,
+    ARENA_RATING = 53
 }
 
 struct.dataLengths = {
@@ -110,7 +111,8 @@ struct.dataLengths = {
     [struct.TYPE.COMPLETE_DAILY_QUEST] = 1, -- questID
     [struct.TYPE.COMPLETE_DAILY_QUESTS] = 0,
     [struct.TYPE.ARENA_WIN] = 0,
-    [struct.TYPE.ARENA_MAP] = 1
+    [struct.TYPE.ARENA_MAP] = 1,
+    [struct.TYPE.ARENA_RATING] = 1 -- bracket (2, 3, or 5)
 }
 
 struct.criterias = {}

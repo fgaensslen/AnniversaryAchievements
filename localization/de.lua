@@ -1442,6 +1442,33 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_ARENA_CHALLENGER = 'Herausforderer',
     AD_ARENA_CHALLENGER = 'Erlangt auf Stufe 70 den Titel "Herausforderer" in einer Arenasaison.',
 
+    AN_ARENA_2_1550 = 'Nur wir Zwei: 1.550',
+    AD_ARENA_2_1550 = 'Erreicht auf Stufe 70 eine persönliche Wertung von 1.550 in der 2v2-Sparte der Arena.',
+    AN_ARENA_2_1750 = 'Nur wir Zwei: 1.750',
+    AD_ARENA_2_1750 = 'Erreicht auf Stufe 70 eine persönliche Wertung von 1.750 in der 2v2-Sparte der Arena.',
+    AN_ARENA_2_2000 = 'Nur wir Zwei: 2.000',
+    AD_ARENA_2_2000 = 'Erreicht auf Stufe 70 eine persönliche Wertung von 2.000 in der 2v2-Sparte der Arena.',
+    AN_ARENA_2_2200 = 'Nur wir Zwei: 2.200',
+    AD_ARENA_2_2200 = 'Erreicht auf Stufe 70 eine persönliche Wertung von 2.200 in der 2v2-Sparte der Arena.',
+
+    AN_ARENA_3_1550 = 'Dreierbande: 1.550',
+    AD_ARENA_3_1550 = 'Erreicht auf Stufe 70 eine persönliche Wertung von 1.550 in der 3v3-Sparte der Arena.',
+    AN_ARENA_3_1750 = 'Dreierbande: 1.750',
+    AD_ARENA_3_1750 = 'Erreicht auf Stufe 70 eine persönliche Wertung von 1.750 in der 3v3-Sparte der Arena.',
+    AN_ARENA_3_2000 = 'Dreierbande: 2.000',
+    AD_ARENA_3_2000 = 'Erreicht auf Stufe 70 eine persönliche Wertung von 2.000 in der 3v3-Sparte der Arena.',
+    AN_ARENA_3_2200 = 'Dreierbande: 2.200',
+    AD_ARENA_3_2200 = 'Erreicht auf Stufe 70 eine persönliche Wertung von 2.200 in der 3v3-Sparte der Arena.',
+
+    AN_ARENA_5_1550 = 'Gib mir Fünf: 1.550',
+    AD_ARENA_5_1550 = 'Erreicht auf Stufe 70 eine persönliche Wertung von 1.550 in der 5v5-Sparte der Arena.',
+    AN_ARENA_5_1750 = 'Gib mir Fünf: 1.750',
+    AD_ARENA_5_1750 = 'Erreicht auf Stufe 70 eine persönliche Wertung von 1.750 in der 5v5-Sparte der Arena.',
+    AN_ARENA_5_2000 = 'Gib mir Fünf: 2.000',
+    AD_ARENA_5_2000 = 'Erreicht auf Stufe 70 eine persönliche Wertung von 2.000 in der 5v5-Sparte der Arena.',
+    AN_ARENA_5_2200 = 'Gib mir Fünf: 2.200',
+    AD_ARENA_5_2200 = 'Erreicht auf Stufe 70 eine persönliche Wertung von 2.200 in der 5v5-Sparte der Arena.',
+
     AN_ARENA_STREAK = 'Siegesserie',
     AD_ARENA_STREAK = 'Gewinnt auf Stufe 70 zehn gewertete Kämpfe in Folge.',
 
