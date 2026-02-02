@@ -905,7 +905,11 @@ local events = {
 local lastArenaMatchID = 0
 
 function CheckRatedArenaWin()
-    if UnitLevel("player") ~= 60 then return end
+    -- Initialize the streak variable within your existing SavedVariable table
+    CA_LocalData = CA_LocalData or {}
+    CA_LocalData.ArenaStreak = CA_LocalData.ArenaStreak or 0
+
+	if UnitLevel("player") ~= 70 then return end
 
     local isArena, isRated = IsActiveBattlefieldArena()
     if not isArena then return end
@@ -914,40 +918,80 @@ function CheckRatedArenaWin()
     if instanceType ~= "arena" or not instanceID or instanceID == lastArenaMatchID then return end
 
     local winner = GetBattlefieldWinner()
-    if not winner then return end
+    if winner == nil then return end 
 
-    local won = false
+    local playerWon = false
+    local playerTeam = -1
+    local playerName = UnitName("player")
+
+    -- Single loop to gather all necessary data
     for i = 1, GetNumBattlefieldScores() do
         local name, _, _, _, _, team = GetBattlefieldScore(i)
-        if name == UnitName("player") then
-            won = (team == winner)
-            break
+        if name == playerName then
+            playerTeam = team
+            playerWon = (team == winner)
         end
     end
 
-    if not won then return end
-
     lastArenaMatchID = instanceID
 
-    --if isRated then
+    -- Reset streak in CA_LocalData if the player lost
+    if not playerWon then 
+        CA_LocalData.ArenaStreak = 0
+
+        return 
+    end
+
+    CA_LocalData.ArenaStreak = CA_LocalData.ArenaStreak + 1
+
+
+    if isRated then
+        -- 1. Standard Win Triggers
         trigger(TYPE.ARENA_MAP, { instanceID })
         trigger(TYPE.ARENA_WIN)
 
-        -- Now update ratings since a win just occurred
-        -- if it does not trigger use event: ARENA_TEAM_UPDATE
-        CheckArenaRatings()
-    --end
-end
+        -- Last Man Standing (5v5)
+        local numScores = GetNumBattlefieldScores()
+        local _, teamSize = GetArenaTeam(3) 
 
-function CheckArenaRatings()
-    --TBC Arena indices: 1 = 2v2, 2 = 3v3, 3 = 5v5
-    for index = 1, 3 do
-        -- GetArenaTeam returns personalRating as the 10th value in TBC
-        local _, teamSize, _, _, _, _, _, _, _, personalRating = GetArenaTeam(index)
-        
-        -- Validation: teamSize must exist and personalRating must be valid
-        if teamSize and personalRating and personalRating > 0 then
-            trigger(TYPE.ARENA_RATING, { teamSize }, personalRating, true)
+        if teamSize == 5 and numScores == 10 and not UnitIsDeadOrGhost("player") then
+            local teammatesAlive = 0
+            for i = 1, numScores do
+                local name, _, _, _, _, team = GetBattlefieldScore(i)
+                if team == playerTeam and name ~= playerName then
+                    if not UnitIsDeadOrGhost(name) then
+                        teammatesAlive = teammatesAlive + 1
+                    end
+                end
+            end
+            if teammatesAlive == 0 then
+                trigger(TYPE.ARENA_5V5_SURVIVOR)
+            end
+        end
+
+        -- Streak Achievements (Hot Streak & Hotter Streak)
+        if CA_LocalData.ArenaStreak >= 10 then
+            trigger(TYPE.ARENA_HOT_STREAK)
+            
+            -- Check if any bracket is above 1800 for the Hotter Streak
+            for index = 1, 3 do
+                local _, _, _, _, _, _, _, _, _, rating = GetArenaTeam(index)
+                if rating and rating > 1800 then
+                    trigger(TYPE.ARENA_HOTTER_STREAK)
+                    break
+                end
+            end
+        end
+
+		-- Now update ratings since a win just occurred
+		-- if it does not trigger use event: ARENA_TEAM_UPDATE
+		
+		--TBC Arena indices: 1 = 2v2, 2 = 3v3, 3 = 5v5
+        for index = 1, 3 do
+            local _, tSize, _, _, _, _, _, _, _, rating = GetArenaTeam(index)
+            if tSize and rating and rating > 0 then
+                trigger(TYPE.ARENA_RATING, { tSize }, rating, true)
+            end
         end
     end
 end
@@ -976,7 +1020,7 @@ function CA_performInitialCheck()
     updateGear()
 	CheckDungeonQuests()
 
-    CA_CompletionManager:GetLocal():RecheckAchievements()
+    CA_CompletionManager:GetLocal():ReCheckAchievements()
 end
 
 C_Timer.After(5, CA_performInitialCheck)

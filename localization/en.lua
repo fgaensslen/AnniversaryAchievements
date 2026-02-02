@@ -1472,6 +1472,12 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_ARENA_STREAK = 'Hot Streak',
     AD_ARENA_STREAK = 'Win ten ranked matches in a row at level 70.',
 
+    AN_ARENA_HOTSTREAK = 'Hotter Streak',
+    AD_ARENA_HOTSTREAK = 'Win ten ranked matches in a row with a rating above 1800 at level 70.',
+
+    AN_ARENA_LASTMAN = 'Last Man Standing',
+    AD_ARENA_LASTMAN = 'Be the sole survivor at the end of a ranked 5v5 match at level 70.',
+
     AN_ARENA_MAPS = 'World Wide Winner',
     AD_ARENA_MAPS = 'Win a ranked arena match in Blade\'s Edge, Nagrand and the Ruins of Lordaeron at level 70.',    
     AC_ARENA_MAPS1 = 'Blade\'s Edge Arena',

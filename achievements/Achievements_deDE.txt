@@ -586,7 +586,7 @@ ID; Name; Description; Icon
 586 ; Engagierter Kämpfer ; Gewinnt 200 gewertete Arenakämpfe auf Stufe 70. ; -achievement_featsofstrength_gladiator_02
 587 ; Brutaler Kämpfer ; Gewinnt 300 gewertete Arenakämpfe auf Stufe 70. ; -achievement_featsofstrength_gladiator_03
 588 ; Weltweiter Arenaheld ; Gewinnt auf Stufe 70 einen gewerteten Arenakampf im Schergrat, in Nagrand und den Ruinen von Lordaeron. ; -ability_hunter_pathfinding
-
+589 ; Siegesserie ; Gewinnt auf Stufe 70 zehn gewertete Kämpfe in Folge. ; -spell_fire_fire
 590 ; Nur wir Zwei: 1.550 ; Erreicht auf Stufe 70 eine persönliche Wertung von 1.550 in der 2v2-Sparte der Arena. ; achievement_arena_2v2_1
 591 ; Nur wir Zwei: 1.750 ; Erreicht auf Stufe 70 eine persönliche Wertung von 1.750 in der 2v2-Sparte der Arena. ; achievement_arena_2v2_4
 592 ; Nur wir Zwei: 2.000 ; Erreicht auf Stufe 70 eine persönliche Wertung von 2.000 in der 2v2-Sparte der Arena. ; achievement_arena_2v2_5
@@ -599,4 +599,6 @@ ID; Name; Description; Icon
 599 ; Gib mir Fünf: 1.750 ; Erreicht auf Stufe 70 eine persönliche Wertung von 1.750 in der 5v5-Sparte der Arena. ; achievement_arena_5v5_4
 600 ; Gib mir Fünf: 2.000 ; Erreicht auf Stufe 70 eine persönliche Wertung von 2.000 in der 5v5-Sparte der Arena. ; achievement_arena_5v5_5
 601 ; Gib mir Fünf: 2.200 ; Erreicht auf Stufe 70 eine persönliche Wertung von 2.200 in der 5v5-Sparte der Arena. ; achievement_arena_5v5_7
-602 ; Der Arenameister ; Schließt die unten aufgelisteten Arenaerfolge ab. ; achievement_featsofstrength_gladiator_08
+602 ; Heiße Siegesserie ; Gewinnt auf Stufe 70 zehn gewertete Kämpfe in Folge, mit einer Wertung von über 1800. ; -spell_fire_fire
+603 ; Last Man Standing ; Seid der einzige Überlebende am Ende eines gewerteten 5v5-Kampfes auf Stufe 70. ; -spell_holy_surgeoflight
+604 ; Der Arenameister ; Schließt die unten aufgelisteten Arenaerfolge ab. ; achievement_featsofstrength_gladiator_08

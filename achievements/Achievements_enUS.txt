@@ -586,7 +586,7 @@ ID; Name; Description
 586 ; Vengefully Dedicated ; Win 200 ranked arena matches at level 70. ; -achievement_featsofstrength_gladiator_02
 587 ; Brutally Dedicated ; Win 300 ranked arena matches at level 70. ; -achievement_featsofstrength_gladiator_03
 588 ; World Wide Winner ; Win a ranked arena match in Blade\'s Edge, Nagrand and the Ruins of Lordaeron at level 70. ; -ability_hunter_pathfinding
-
+589 ; Hot Streak ; Win ten ranked matches in a row at level 70. ; -spell_fire_fire
 590 ; Just the Two of Us: 1550 ; Earn a 1550 personal rating in the 2v2 bracket of the arena at level 70. ; achievement_arena_2v2_1
 591 ; Just the Two of Us: 1750 ; Earn a 1750 personal rating in the 2v2 bracket of the arena at level 70. ; achievement_arena_2v2_4
 592 ; Just the Two of Us: 2000 ; Earn a 2000 personal rating in the 2v2 bracket of the arena at level 70. ; achievement_arena_2v2_5
@@ -599,4 +599,6 @@ ID; Name; Description
 599 ; High Five: 1750 ; Earn a 1750 personal rating in the 5v5 bracket of the arena at level 70. ; achievement_arena_5v5_4
 600 ; High Five: 2000 ; Earn a 2000 personal rating in the 5v5 bracket of the arena at level 70. ; achievement_arena_5v5_5
 601 ; High Five: 2200 ; Earn a 2200 personal rating in the 5v5 bracket of the arena at level 70. ; achievement_arena_5v5_7
-602 ; The Arena Master ; Complete the arena achievements listed below. ; achievement_featsofstrength_gladiator_08
+602 ; Hotter Streak ; Win ten ranked matches in a row with a rating above 1800 at level 70. ; -spell_fire_fire
+603 ; Last Man Standing ; Be the sole survivor at the end of a ranked 5v5 match at level 70. ; -spell_holy_surgeoflight
+604 ; The Arena Master ; Complete the arena achievements listed below. ; achievement_featsofstrength_gladiator_08

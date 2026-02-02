@@ -56,7 +56,10 @@ struct.TYPE = {
     COMPLETE_DAILY_QUESTS = 50,
     ARENA_WIN = 51,
     ARENA_MAP = 52,
-    ARENA_RATING = 53
+    ARENA_RATING = 53,
+    ARENA_5V5_SURVIVOR = 54,
+    ARENA_HOT_STREAK = 55,
+    ARENA_HOTTER_STREAK = 56
 }
 
 struct.dataLengths = {
@@ -112,7 +115,10 @@ struct.dataLengths = {
     [struct.TYPE.COMPLETE_DAILY_QUESTS] = 0,
     [struct.TYPE.ARENA_WIN] = 0,
     [struct.TYPE.ARENA_MAP] = 1,
-    [struct.TYPE.ARENA_RATING] = 1 -- bracket (2, 3, or 5)
+    [struct.TYPE.ARENA_RATING] = 1, -- bracket (2, 3, or 5)
+    [struct.TYPE.ARENA_5V5_SURVIVOR] = 0,
+    [struct.TYPE.ARENA_HOT_STREAK] = 0,
+    [struct.TYPE.ARENA_HOTTER_STREAK] = 0
 }
 
 struct.criterias = {}

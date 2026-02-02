@@ -36,11 +36,11 @@ local explorationKalimdor = tab:CreateCategory('CATEGORY_KALIMDOR', exploration.
 local outlandExploration = tab:CreateCategory('CATEGORY_OUTLAND', exploration.id, true)
 
 local pvp = tab:CreateCategory('CATEGORY_PVP', nil, true)
-local arena = tab:CreateCategory('CATEGORY_ARENA', pvp.id, true)
 local warsong = tab:CreateCategory('CATEGORY_BG_WARSONG', pvp.id, true)
 local arathi = tab:CreateCategory('CATEGORY_BG_ARATHI', pvp.id, true)
 local bgEye = tab:CreateCategory('CATEGORY_BG_EYE', pvp.id, true)
 local alterac = tab:CreateCategory('CATEGORY_BG_ALTERAC', pvp.id, true)
+local arena = tab:CreateCategory('CATEGORY_ARENA', pvp.id, true)
 
 local pve = tab:CreateCategory('CATEGORY_PVE', nil, true)
 local instances = tab:CreateCategory('CATEGORY_VANILLA', pve.id, true)
@@ -981,8 +981,8 @@ do
         worldWideWinner:AddCriteria(criterias:Create(loc:Get('AC_ARENA_MAPS2'), TYPE.ARENA_MAP, {559}))
         worldWideWinner:AddCriteria(criterias:Create(loc:Get('AC_ARENA_MAPS3'), TYPE.ARENA_MAP, {572}))
 
-    --local winStreak = arena:CreateAchievement('AN_ARENA_STREAK', 'AD_ARENA_STREAK', 10, '-spell_fire_fire', true, 589)
-        --winStreak:AddCriteria(criterias:Create(nil, TYPE.SPECIAL, { 'ARENA_WIN_STREAK_10' }, 1, 5890))
+    local winStreak = arena:CreateAchievement('AN_ARENA_STREAK', 'AD_ARENA_STREAK', 10, '-spell_fire_fire', true, 589)
+        winStreak:AddCriteria(criterias:Create(nil, TYPE.ARENA_HOT_STREAK, nil, 1, 5890))
 
     arenaAchievementID = 590    
     for j, bracket in ipairs({2, 3, 5}) do
@@ -1011,12 +1011,21 @@ do
         end
     end
 
-    local arenaMaster = arena:CreateAchievement('AN_ARENA_MASTER', 'AD_ARENA_MASTER', 10, 'achievement_featsofstrength_gladiator_08', true, 602)
+    local hotterStreak = arena:CreateAchievement('AN_ARENA_HOTSTREAK', 'AD_ARENA_HOTSTREAK', 10, '-spell_fire_fire', true, 602)
+        hotterStreak:AddCriteria(criterias:Create(nil, TYPE.ARENA_HOTTER_STREAK, nil, 1, 6020))
+
+    local lastMan = arena:CreateAchievement('AN_ARENA_LASTMAN', 'AD_ARENA_LASTMAN', 10, '-spell_holy_surgeoflight', true, 603)
+        lastMan:AddCriteria(criterias:Create(nil, TYPE.ARENA_5V5_SURVIVOR, nil, 1, 6030))
+
+    local arenaMaster = arena:CreateAchievement('AN_ARENA_MASTER', 'AD_ARENA_MASTER', 10, 'achievement_featsofstrength_gladiator_08', true, 604)
         arenaMaster:AddCriteria(criterias:CreateL('AN_ARENA_MAPS', TYPE.COMPLETE_ACHIEVEMENT, {worldWideWinner.id}))
         arenaMaster:AddCriteria(criterias:CreateL('AN_ARENA_WIN3', TYPE.COMPLETE_ACHIEVEMENT, {587}))
+        arenaMaster:AddCriteria(criterias:CreateL('AN_ARENA_STREAK', TYPE.COMPLETE_ACHIEVEMENT, {winStreak.id}))
+        arenaMaster:AddCriteria(criterias:CreateL('AN_ARENA_HOTSTREAK', TYPE.COMPLETE_ACHIEVEMENT, {hotterStreak.id}))
         arenaMaster:AddCriteria(criterias:CreateL('AN_ARENA_2_2200', TYPE.COMPLETE_ACHIEVEMENT, {599}))
         arenaMaster:AddCriteria(criterias:CreateL('AN_ARENA_3_2200', TYPE.COMPLETE_ACHIEVEMENT, {600}))
-        arenaMaster:AddCriteria(criterias:CreateL('AN_ARENA_5_2200', TYPE.COMPLETE_ACHIEVEMENT, {601}))
+        arenaMaster:AddCriteria(criterias:CreateL('AN_ARENA_5_2200', TYPE.COMPLETE_ACHIEVEMENT, {601}))        
+        arenaMaster:AddCriteria(criterias:CreateL('AN_ARENA_LASTMAN', TYPE.COMPLETE_ACHIEVEMENT, {lastMan.id}))
 end
 
 -- PVE --

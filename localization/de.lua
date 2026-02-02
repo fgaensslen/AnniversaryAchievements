@@ -1472,6 +1472,12 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_ARENA_STREAK = 'Siegesserie',
     AD_ARENA_STREAK = 'Gewinnt auf Stufe 70 zehn gewertete Kämpfe in Folge.',
 
+    AN_ARENA_HOTSTREAK = 'Heiße Siegesserie',
+    AD_ARENA_HOTSTREAK = 'Gewinnt auf Stufe 70 zehn gewertete Kämpfe in Folge, mit einer Wertung von über 1800.',
+
+    AN_ARENA_LASTMAN = 'Last Man Standing',
+    AD_ARENA_LASTMAN = 'Seid der einzige Überlebende am Ende eines gewerteten 5v5-Kampfes auf Stufe 70.',
+
     AN_ARENA_MAPS = 'Weltweiter Arenaheld',
     AD_ARENA_MAPS = 'Gewinnt auf Stufe 70 einen gewerteten Arenakampf im Schergrat, in Nagrand und den Ruinen von Lordaeron.',    
     AC_ARENA_MAPS1 = 'Arena des Schergrats',

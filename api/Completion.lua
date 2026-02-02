@@ -228,7 +228,7 @@ local function Completion(data)
             end
             requiresUpdate = true
         end,
-        RecheckAchievements = function(self)
+        ReCheckAchievements = function(self)
             for id, data in pairs(self:getData()) do
                 if data[1] == false then
                     self:checkAndComplete(id)
