@@ -912,7 +912,8 @@ local events = {
 local lastArenaMatchID = 0
 
 function CheckRatedArenaWin()
-	--if UnitLevel("player") ~= 70 then return end
+
+	if UnitLevel("player") ~= 70 then return end
 
     -- 1. Get Character Key
     local name = UnitName("player")
@@ -922,6 +923,7 @@ function CheckRatedArenaWin()
     
     -- SAFETY CHECK: If this character isn't in the DB yet, create them now
     if not CA_Settings[charKey] then
+        CA_Settings[playerName] = CA_Settings[playerName] or {}
         CA_Settings[charKey].HotStreak = CA_Settings[charKey].HotStreak or 0
         CA_Settings[charKey].HotterStreak = CA_Settings[charKey].HotterStreak or 0
     end
@@ -962,7 +964,7 @@ function CheckRatedArenaWin()
         return 
     end
 
-    --if isRated then
+    if isRated then
         -- 1. Standard Win Triggers
         trigger(TYPE.ARENA_MAP, { instanceID })
         trigger(TYPE.ARENA_WIN)
@@ -1021,7 +1023,7 @@ function CheckRatedArenaWin()
         if charData.HotStreak >= 10 then
             trigger(TYPE.ARENA_HOT_STREAK)
         end
-    --end
+    end
 end
 
 local eventsHandler = CreateFrame('FRAME', 'ClassicAchievementsEventHandlingFrame')
