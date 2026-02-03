@@ -2,9 +2,11 @@ local TYPE = CA_Criterias.TYPE
 local loc = SexyLib:Localization('Anniversary Achievements')
 
 -- Initialize the streak variable within your existing SavedVariable table
-CA_LocalData = CA_LocalData or {}
-CA_LocalData.HotStreak = CA_LocalData.HotStreak or 0
-CA_LocalData.HotterStreak = CA_LocalData.HotterStreak or 0
+local playerName = UnitName("player") .. "-" .. GetRealmName()
+CA_Settings = CA_Settings or {}
+CA_Settings[playerName] = CA_Settings[playerName] or {}
+CA_Settings[playerName].HotStreak = CA_Settings[playerName].HotStreak or 0
+CA_Settings[playerName].HotterStreak = CA_Settings[playerName].HotterStreak or 0
 
 local function trigger(...)
     CA_Criterias:Trigger(...)
@@ -912,18 +914,34 @@ local lastArenaMatchID = 0
 function CheckRatedArenaWin()
 	--if UnitLevel("player") ~= 70 then return end
 
+    -- 1. Get Character Key
+    local name = UnitName("player")
+    local realm = GetRealmName()
+    if not name or not realm then return end -- Safety for loading screens
+    local charKey = name .. "-" .. realm
+    
+    -- SAFETY CHECK: If this character isn't in the DB yet, create them now
+    if not CA_Settings[charKey] then
+        CA_Settings[charKey].HotStreak = CA_Settings[charKey].HotStreak or 0
+        CA_Settings[charKey].HotterStreak = CA_Settings[charKey].HotterStreak or 0
+    end
+
+    local charData = CA_Settings[charKey]
+    
     local isArena, isRated = IsActiveBattlefieldArena()
     if not isArena then return end
 
     local _, instanceType, _, _, _, _, _, instanceID = GetInstanceInfo()
     if instanceType ~= "arena" or not instanceID or instanceID == lastArenaMatchID then return end
-
+    
     local winner = GetBattlefieldWinner()
+
+    --nobody won
     if winner == nil then return end 
 
     local playerWon = false
     local playerTeam = -1
-    local playerName = UnitName("player")
+    local playerName = name
 
     -- Single loop to gather all necessary data
     for i = 1, GetNumBattlefieldScores() do
@@ -936,11 +954,11 @@ function CheckRatedArenaWin()
     end
 
     lastArenaMatchID = instanceID
-    print("Arena Match ID: " .. tostring(instanceID) .. ", Player Won: " .. tostring(playerWon))
-    -- Reset streak in CA_LocalData if the player lost
-    if not playerWon then 
-        CA_LocalData.HotStreak = 0
-        CA_LocalData.HotterStreak = 0
+    
+    -- Reset streak in charData if the player lost
+    if not playerWon then
+        charData.HotStreak = 0
+        charData.HotterStreak = 0
         return 
     end
 
@@ -960,8 +978,8 @@ function CheckRatedArenaWin()
             if is5v5 and GetNumBattlefieldScores() == 10 then
                 local teammatesAlive = 0
                 for i = 1, GetNumBattlefieldScores() do
-                    local name, _, _, _, _, team = GetBattlefieldScore(i)
-                    if name and team == playerTeam and name ~= playerName and not UnitIsDeadOrGhost(name) then
+                    local sName, _, _, _, _, team = GetBattlefieldScore(i)
+                    if sName and team == playerTeam and sName ~= playerName and not UnitIsDeadOrGhost(sName) then
                         teammatesAlive = teammatesAlive + 1
                     end
                 end
@@ -971,17 +989,13 @@ function CheckRatedArenaWin()
             end
         end
 
-        CA_LocalData.HotStreak = (CA_LocalData.HotStreak or 0) + 1
-        print("CA_LocalData.HotStreak: ", CA_LocalData.HotStreak)
-
-		-- Now update ratings since a win just occurred
-		-- if it does not trigger use event: ARENA_TEAM_UPDATE
+        charData.HotStreak = charData.HotStreak + 1   		
 		
         local qualifiesForHotter = false
-
         for index = 1, 3 do
             local _, tSize, _, _, _, _, _, _, _, rating = GetArenaTeam(index)
             if tSize and rating and rating > 0 then
+                -- if it does not trigger use event: ARENA_TEAM_UPDATE
                 trigger(TYPE.ARENA_RATING, { tSize }, rating, true)
 
                 -- Check if this specific win happened while player is > 1800
@@ -994,17 +1008,17 @@ function CheckRatedArenaWin()
 
         -- Handle the Hotter Streak counter
         if qualifiesForHotter then
-            CA_LocalData.HotterStreak = (CA_LocalData.HotterStreak or 0) + 1
-            if CA_LocalData.HotterStreak >= 10 then
+            charData.HotterStreak = charData.HotterStreak + 1
+            if charData.HotterStreak >= 10 then
                 trigger(TYPE.ARENA_HOTTER_STREAK)
             end
         else
-            -- If they win a game below 1800, the "Hotter" streak is broken
-            CA_LocalData.HotterStreak = 0 
+            -- If you win a game below 1800, the "Hotter" streak is broken
+            charData.HotterStreak = 0 
         end
 
         -- Standard Hot Streak (just 10 wins in a row, any rating)
-        if CA_LocalData.HotStreak >= 10 then
+        if charData.HotStreak >= 10 then
             trigger(TYPE.ARENA_HOT_STREAK)
         end
     --end
