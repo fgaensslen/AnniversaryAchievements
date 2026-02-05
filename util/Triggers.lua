@@ -995,13 +995,13 @@ function CheckRatedArenaWin()
 		
         local qualifiesForHotter = false
         for index = 1, 3 do
-            local _, tSize, _, _, _, _, _, _, _, rating = GetArenaTeam(index)
-            if tSize and rating and rating > 0 then
+            local _, tSize, _, _, _, _, _, _, _, _, pRating = GetArenaTeam(index)
+            if tSize and pRating and pRating > 0 then
                 -- if it does not trigger use event: ARENA_TEAM_UPDATE
-                trigger(TYPE.ARENA_RATING, { tSize }, rating, true)
+                trigger(TYPE.ARENA_RATING, { tSize }, pRating, true)
 
                 -- Check if this specific win happened while player is > 1800
-                if rating > 1800 then
+                if pRating >= 1800 then
                     qualifiesForHotter = true
                 end
                 
