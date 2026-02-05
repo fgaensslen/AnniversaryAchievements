@@ -7,11 +7,11 @@ It integrates perfectly with the Standard UI and uses the same graphics and soun
 ### Download
 
 - WoW TBC: Version 2.1.0
-- WoW Classic: Version 1.3.2. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
+- WoW Classic: Version 1.3.3. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
 
 ### Achievements
 
-- WoW TBC: 599 achievements (including Feats of Strength)
+- WoW TBC: 604 achievements (including Feats of Strength)
 - WoW Classic: 407 achievements (including Feats of Strength)
 
 A full list can be found [here](https://fgaensslen.github.io/AnniversaryAchievements/achievements/index.html).
