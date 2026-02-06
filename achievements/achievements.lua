@@ -1313,7 +1313,6 @@ do
 	
 	builderNormalTBC = builderNormalTBC:Build()
 	builderHeroicTBC = builderHeroicTBC:Build()
-	builderNormalTBC:SetNext(builderHeroicTBC)
 	
     L:Achievement(featsOfStrength, 0, '-Inv-Mount_Raven_54')
         :NameDesc('AN_RAVEN_LORD', 'AD_RAVEN_LORD', true)
