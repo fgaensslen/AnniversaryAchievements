@@ -1131,8 +1131,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_HELLFIRE_RAMPARTS = 'Hellfire Ramparts',
     AD_HELLFIRE_RAMPARTS = 'Defeat the leaders of Hellfire Ramparts',
     AC_BOSS_17308 = 'Omor the Unscarred',
-    AC_BOSS_17537 = 'Vazruden the Herald',
-	AC_BOSS_17536 = 'Nazan',
+    AC_BOSS_17537 = 'Nazan & Vazruden',
+	AC_BOSS_17306 = 'Watchkeeper Gargolmar',
 
     AN_BLOOD_FURNACE = 'The Blood Furnace',
     AD_BLOOD_FURNACE = 'Defeat Keli\'dan the Breaker',

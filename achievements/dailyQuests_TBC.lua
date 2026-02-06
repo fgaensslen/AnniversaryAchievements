@@ -1,7 +1,3 @@
-if WOW_PROJECT_ID ~= WOW_PROJECT_BURNING_CRUSADE_CLASSIC then
-    return
-end
-
 DAILY_QUESTS_TBC = {
     -- Fishing
     [11665] = true,

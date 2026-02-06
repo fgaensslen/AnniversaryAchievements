@@ -1294,7 +1294,7 @@ do
 		normal:SetNext(heroic)
     end
 
-    create('hellfire_ramparts', {17308, 17537, 17536}, 'achievement_boss_omartheunscarred_01')
+    create('hellfire_ramparts', {17308, 17537, 17306}, 'achievement_boss_omartheunscarred_01')
     create('blood_furnace', 17377, 'achievement_boss_kelidanthebreaker')
     create('slave_pens', 17942, 'achievement_boss_quagmirran')
     create('underbog', 17882, 'achievement_boss_theblackstalker')

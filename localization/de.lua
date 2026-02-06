@@ -1130,9 +1130,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_HELLFIRE_RAMPARTS = 'Höllenfeuerbollwerk',
     AD_HELLFIRE_RAMPARTS = 'Bezwingt die Anführer im Höllenfeuerbollwerk',
-    AC_BOSS_17308 = 'Omor den Narbenlosen',
-    AC_BOSS_17537 = 'Vazruden der Herold',
-	AC_BOSS_17536 = 'Nazan',
+    AC_BOSS_17308 = 'Omor der Narbenlosen',
+    AC_BOSS_17537 = 'Nazan & Vazruden',
+	AC_BOSS_17306 = 'Wachhabender Gargolmar',
 
     AN_BLOOD_FURNACE = 'Der Blutkessel',
     AD_BLOOD_FURNACE = 'Bezwingt Keli\'dan den Zerstörer',
