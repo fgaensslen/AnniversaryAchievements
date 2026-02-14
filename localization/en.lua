@@ -99,6 +99,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	CATEGORY_EVENTS = 'World Events',
 	CATEGORY_HALLOWSEND = 'Hallow\'s End',
     CATEGORY_WINTERVEIL = 'Winter Veil',
+    CATEGORY_VALENTINES = 'Love is in the Air',
     CATEGORY_FEATS_OF_STRENGTH = 'Feats of Strength',
 	
 	AN_DRUID_T1 = 'Cenarion Raiment',
@@ -1029,6 +1030,30 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_WINTERVEIL_PVP = 'With a Little Helper from My Friends',
     AD_WINTERVEIL_PVP = 'Earn 50 honorable kills as a Little Helper from the Winter Wondervolt machine.',
+
+    --VALENTINES
+    AN_VALENTINES = 'Fool For Love',
+	AD_VALENTINES = 'Complete the Love is in the Air achievements listed below.',
+	AR_VALENTINES = 'The Love Fool',
+
+    AN_VALENTINES_ROSES = 'My Love is Like a Red, Red Rose',
+    AD_VALENTINES_ROSES = 'Obtain a Bouquet of Red Roses during the Love is in the Air celebration.',
+
+    AN_VALENTINES_QUEST = 'Dangerous Love',
+    AD_VALENTINES_QUEST = 'Assist the Steamwheedle Cartel in stopping the sinister Crown Chemical Co. plot.',
+
+    AN_VALENTINES_CHOCOLATES = 'Sweet Tooth',
+    AD_VALENTINES_CHOCOLATES = 'Sample the Love is in the Air candies listed below.',
+    AC_VALENTINES_CHOCOLATES_CRITERIA1 = 'Dark Desire',
+    AC_VALENTINES_CHOCOLATES_CRITERIA2 = 'Buttermilk Delight',
+    AC_VALENTINES_CHOCOLATES_CRITERIA3 = 'Sweet Surprise',
+    AC_VALENTINES_CHOCOLATES_CRITERIA4 = 'Very Berry Cream',
+
+    AN_VALENTINES_DRESS = 'Lovely Luck Is On Your Side',
+    AD_VALENTINES_DRESS = 'Open a Lovely Dress Box and receive a Lovely Black Dress.',
+
+    AN_VALENTINES_PIDO = 'Perma-Peddle',
+    AD_VALENTINES_PIDO = 'Obtain a permanent Peddlefeet pet by procuring a Truesilver Shafted Arrow.',
 
 	--TBC
     AN_QUESTS_HELLFIRE_PENINSULA = 'To Hellfire and Back',

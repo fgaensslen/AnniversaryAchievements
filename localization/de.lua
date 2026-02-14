@@ -99,6 +99,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	CATEGORY_EVENTS = 'Weltereignisse',
 	CATEGORY_HALLOWSEND = 'Schlotternächte',
     CATEGORY_WINTERVEIL = 'Winterhauch',
+    CATEGORY_VALENTINES = 'Liebe liegt in der Luft',
     CATEGORY_FEATS_OF_STRENGTH = 'Heldentaten',
 	
 	AN_DRUID_T1 = 'Gewänder des Cenarius',
@@ -1029,6 +1030,30 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_WINTERVEIL_PVP = 'Kleiner Helfer in der Not',
     AD_WINTERVEIL_PVP = 'Erringt 50 ehrenhafte Siege als kleiner Helfer der Winterwundervolt-Maschine.',
+
+    --VALENTINES
+    AN_VALENTINES = 'Liebestoll',
+	AD_VALENTINES = 'Schließt die unten aufgelisteten Erfolge von \'Liebe liegt in der Luft\' ab.',
+	AR_VALENTINES = 'Liebesgott',
+
+    AN_VALENTINES_ROSES = 'Sag\'s mit Rosen',
+    AD_VALENTINES_ROSES = 'Erhaltet während der \'Liebe liegt in der Luft\'-Feierlichkeiten einen roten Rosenstrauß.',
+
+    AN_VALENTINES_QUEST = 'Gefährliche Liebschaft',
+    AD_VALENTINES_QUEST = 'Helft dem Dampfdruckkartell dabei, den Plan der Chemiemanufaktur Krone zu vereiteln.',
+
+    AN_VALENTINES_CHOCOLATES = 'Naschkatze',
+    AD_VALENTINES_CHOCOLATES = 'Probiert die unten aufgelisteten \'Liebe liegt in der Luft\'-Süßigkeiten.',
+    AC_VALENTINES_CHOCOLATES_CRITERIA1 = 'Dunkle Versuchung',
+    AC_VALENTINES_CHOCOLATES_CRITERIA2 = 'Buttermilchküsschen',
+    AC_VALENTINES_CHOCOLATES_CRITERIA3 = 'Süße Träume',
+    AC_VALENTINES_CHOCOLATES_CRITERIA4 = 'Beerens Echte',
+
+    AN_VALENTINES_DRESS = 'Das reizende Glück ist auf Eurer Seite',
+    AD_VALENTINES_DRESS = 'Öffnet einen reizenden Kleiderkarton und erhaltet ein reizendes schwarzes Kleid.',
+
+    AN_VALENTINES_PIDO = 'Perma-Pido',
+    AD_VALENTINES_PIDO = 'Erhaltet ein permanentes Q. Pido-Haustier, indem Ihr einen Echtsilberschaftpfeil erbeutet.',
 
 	--BURNING CRUSADE
     AN_QUESTS_HELLFIRE_PENINSULA = 'Durchs Höllenfeuer und zurück',

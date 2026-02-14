@@ -57,6 +57,7 @@ local tbcReputations = tab:CreateCategory('CATEGORY_TBC', reputation.id, true)
 local worldevents = tab:CreateCategory('CATEGORY_EVENTS', nil, true)
 local hallowsend = tab:CreateCategory('CATEGORY_HALLOWSEND', worldevents.id, true)
 local winterveil = tab:CreateCategory('CATEGORY_WINTERVEIL', worldevents.id, true)
+local valentines = tab:CreateCategory('CATEGORY_VALENTINES', worldevents.id, true)
 
 local featsOfStrength = tab:CreateCategory('CATEGORY_FEATS_OF_STRENGTH', nil, true)
 
@@ -1712,8 +1713,7 @@ do
 		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_SKELETON'), TYPE.HAS_BUFF, {24723}))
 		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_PIRATE'), TYPE.HAS_BUFF, {24708}))
 		ach:AddCriteria(criterias:Create(loc:Get('AC_HALLOWSEND_BAT'), TYPE.HAS_BUFF, {24732}))
-	hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
-    
+	hallowsendSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))    
     
     --WINTER VEIL
     local winterveilSummary = worldevents:CreateAchievement('AN_WINTERVEIL', 'AD_WINTERVEIL', 10, '-achievement_worldevent_merrymaker', true, 541)
@@ -1759,6 +1759,39 @@ do
         ach = winterveil:CreateAchievement('AN_WINTERVEIL_PVP', 'AD_WINTERVEIL_PVP', 10, '-achievement_worldevent_littlehelper', true, 566)
             ach:AddCriteria(criterias:Create(loc:Get('AC_PVP_KILLS', 50), TYPE.SPECIAL, { 'LITTLE_HELPER_HK' }, 50))
         winterveilSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+
+        --VALENTINES
+        local valentinesSummary = worldevents:CreateAchievement('AN_VALENTINES', 'AD_VALENTINES', 10, '-achievement_worldevent_valentine', true, 605)
+            valentinesSummary:SetRewardText(loc:Get('AR_VALENTINES'))
+
+        ach = valentines:CreateAchievement('AN_VALENTINES_ROSES', 'AD_VALENTINES_ROSES', 10, '-inv_rosebouquet01', true, 606)
+            ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {22206}))
+        valentinesSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+
+        if UnitFactionGroup('player') == 'Horde' then
+            ach = valentines:CreateAchievement('AN_VALENTINES_QUEST', 'AD_VALENTINES_QUEST', 10, '-spell_brokenheart', true, 607)
+                ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {8984}))
+            valentinesSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+        else
+            ach = valentines:CreateAchievement('AN_VALENTINES_QUEST', 'AD_VALENTINES_QUEST', 10, '-spell_brokenheart', true, 607)
+                ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9028}))
+            valentinesSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+        end
+
+        ach = valentines:CreateAchievement('AN_VALENTINES_CHOCOLATES', 'AD_VALENTINES_CHOCOLATES', 10, '-inv_valentineschocolate02', true, 608)
+            ach:AddCriteria(criterias:Create(loc:Get('AC_VALENTINES_CHOCOLATES_CRITERIA1'), TYPE.OBTAIN_ITEM, {22237}))
+            ach:AddCriteria(criterias:Create(loc:Get('AC_VALENTINES_CHOCOLATES_CRITERIA2'), TYPE.OBTAIN_ITEM, {22236}))
+            ach:AddCriteria(criterias:Create(loc:Get('AC_VALENTINES_CHOCOLATES_CRITERIA3'), TYPE.OBTAIN_ITEM, {22239}))
+            ach:AddCriteria(criterias:Create(loc:Get('AC_VALENTINES_CHOCOLATES_CRITERIA4'), TYPE.OBTAIN_ITEM, {22238}))
+        valentinesSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+
+        ach = valentines:CreateAchievement('AN_VALENTINES_DRESS', 'AD_VALENTINES_DRESS', 10, '-inv_chest_cloth_50', true, 609)
+            ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {22279}))
+        valentinesSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+
+        ach = valentines:CreateAchievement('AN_VALENTINES_PIDO', 'AD_VALENTINES_PIDO', 10, '-inv_ammo_arrow_02', true, 610)
+            ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {22235}))
+        valentinesSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
 end
 
 -- REPUTATION --
