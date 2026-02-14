@@ -6,13 +6,13 @@ It integrates perfectly with the Standard UI and uses the same graphics and soun
 
 ### Download
 
-- WoW TBC: Version 2.1.0
-- WoW Classic: Version 1.3.3. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
+- WoW TBC: Version 2.1.2
+- WoW Classic: Version 1.3.4. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
 
 ### Achievements
 
-- WoW TBC: 604 achievements (including Feats of Strength)
-- WoW Classic: 407 achievements (including Feats of Strength)
+- WoW TBC: 610 achievements (including Feats of Strength)
+- WoW Classic: 413 achievements (including Feats of Strength)
 
 A full list can be found [here](https://fgaensslen.github.io/AnniversaryAchievements/achievements/index.html).
 
@@ -47,6 +47,7 @@ The addon was tested with the following UIs:
 ### Notes
 
 - Due to the huge amount of content, I couldn't test everything. If you find any bugs, wrong localization, or have great ideas for new achievements, please write a comment
+- You can drag the window to another position by clicking inside the lower part of the summary section
 - Other addons can prevent you from getting certain achievements: for example Fishing Buddy seems to interfere certain fishing achievements
 - Your achievements are NOT stored on Blizzard's servers. To backup them, go into:
 

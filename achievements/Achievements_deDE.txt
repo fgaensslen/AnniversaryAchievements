@@ -602,3 +602,9 @@ ID; Name; Description; Icon
 602 ; Heiße Siegesserie ; Gewinnt auf Stufe 70 zehn gewertete Kämpfe in Folge, mit einer Wertung von über 1800. ; -spell_fire_fire
 603 ; Last Man Standing ; Seid der einzige Überlebende am Ende eines gewerteten 5v5-Kampfes auf Stufe 70. ; -spell_holy_surgeoflight
 604 ; Der Arenameister ; Schließt die unten aufgelisteten Arenaerfolge ab. ; achievement_featsofstrength_gladiator_08
+605 ; Liebestoll ; Schließt die unten aufgelisteten Erfolge von 'Liebe liegt in der Luft' ab. ; achievement_worldevent_valentine
+606 ; Sag's mit Rosen ; Erhaltet während der 'Liebe liegt in der Luft'-Feierlichkeiten einen roten Rosenstrauß. ; -inv_rosebouquet01
+607 ; Gefährliche Liebschaft ; Helft dem Dampfdruckkartell dabei, den Plan der Chemiemanufaktur Krone zu vereiteln. ; -spell_brokenheart
+608 ; Naschkatze ; Probiert die unten aufgelisteten 'Liebe liegt in der Luft'-Süßigkeiten. ; -inv_valentineschocolate02
+609 ; Das reizende Glück ist auf Eurer Seite ; Öffnet einen reizenden Kleiderkarton und erhaltet ein reizendes schwarzes Kleid. ; -inv_chest_cloth_50
+610 ; Perma-Pido ; Erhaltet ein permanentes Q. Pido-Haustier, indem Ihr einen Echtsilberschaftpfeil erbeutet. ; -inv_ammo_arrow_02
