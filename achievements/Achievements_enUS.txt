@@ -585,7 +585,7 @@ ID; Name; Description
 585 ; Mercilessly Dedicated ; Win 100 ranked arena matches at level 70. ; -achievement_featsofstrength_gladiator_01
 586 ; Vengefully Dedicated ; Win 200 ranked arena matches at level 70. ; -achievement_featsofstrength_gladiator_02
 587 ; Brutally Dedicated ; Win 300 ranked arena matches at level 70. ; -achievement_featsofstrength_gladiator_03
-588 ; World Wide Winner ; Win a ranked arena match in Blade\'s Edge, Nagrand and the Ruins of Lordaeron at level 70. ; -ability_hunter_pathfinding
+588 ; World Wide Winner ; Win a ranked arena match in Blade's Edge, Nagrand and the Ruins of Lordaeron at level 70. ; -ability_hunter_pathfinding
 589 ; Hot Streak ; Win ten ranked matches in a row at level 70. ; -spell_fire_fire
 590 ; Just the Two of Us: 1550 ; Earn a 1550 personal rating in the 2v2 bracket of the arena at level 70. ; achievement_arena_2v2_1
 591 ; Just the Two of Us: 1750 ; Earn a 1750 personal rating in the 2v2 bracket of the arena at level 70. ; achievement_arena_2v2_4
@@ -621,3 +621,4 @@ Shafted Arrow. ; -inv_ammo_arrow_02
 620 ; Elders of the Alliance ; Honor the Elders which are located in the Alliance capital cities. ; -spell_holy_symbolofhope
 621 ; Elders of Eastern Kingdoms ; Honor the Elders which are located in Eastern Kingdoms ; -spell_holy_symbolofhope
 622 ; Elders of Kalimdor ; Honor the Elders which are located in Kalimdor. ; -spell_holy_symbolofhope
+623 ; Fiery Warhorse's Reins ; Obtain the Fiery Warhorse's Reins from Attumen the Huntsman in Karazhan. ; -ability_mount_dreadsteed

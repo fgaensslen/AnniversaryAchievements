@@ -2219,6 +2219,9 @@ do
 
     ach = featsOfStrength:CreateAchievement('AN_KRUUL', 'AD_KRUUL', 0, '-spell_shadow_demonictactics', true, 575)
 		ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {18338}))
+
+    ach = featsOfStrength:CreateAchievement('AN_ATTUMEN_MOUNT', 'AD_ATTUMEN_MOUNT', 0, '-ability_mount_dreadsteed', true, 623)
+		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {30480}))
 end
 
 --print(db:GetAllAchievements())

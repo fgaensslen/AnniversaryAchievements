@@ -1629,5 +1629,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AD_FLIGHFORM = 'Completed the druid quest to obtain Swift Flight Form.',
 
     AN_KRUUL = '...not another Demon Lord!',
-	AD_KRUUL = 'Defeat Highlord Kruul during the Battle for the Dark Portal.'
+	AD_KRUUL = 'Defeat Highlord Kruul during the Battle for the Dark Portal.',
+
+    AN_ATTUMEN_MOUNT = 'Fiery Warhorse\'s Reins',
+	AD_ATTUMEN_MOUNT = 'Obtain the Fiery Warhorse\'s Reins from Attumen the Huntsman in Karazhan.'
 })

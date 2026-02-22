@@ -1629,5 +1629,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AD_FLIGHFORM = 'Die Druidenquest zum Erlernen einer schnellen Fluggestalt abgeschlossen.',
 
     AN_KRUUL = '...nicht noch ein Dämonenlord!',
-	AD_KRUUL = 'Bezwingt Hochlord Kruul während des Kampfes um das Dunkle Portal.'
+	AD_KRUUL = 'Bezwingt Hochlord Kruul während des Kampfes um das Dunkle Portal.',
+
+    AN_ATTUMEN_MOUNT = 'Zügel des feurigen Schlachtrosses',
+	AD_ATTUMEN_MOUNT = 'Erhaltet die Zügel des feurigen Schlachtrosses von Attumen dem Jäger in Karazhan.'
 })

@@ -619,4 +619,5 @@ ID; Name; Description; Icon
 619 ; Die Urahnen der Dungeons ; Ehrt die Urahnen, die sich in den Dungeons befinden. ; -spell_holy_symbolofhope
 620 ; Die Urahnen der Horde ; Ehrt die Urahnen, die sich in den Hauptstädten der Horde befinden. ; -spell_holy_symbolofhope
 621 ; Die Urahnen der östlichen Königreiche ; Ehrt die Urahnen, die sich in den östlichen Königreichen befinden. ; -spell_holy_symbolofhope
-622 ; Die Urahnen von Kalimdor ; Ehrt die Urahnen, die sich in Kalimdor befinden. ; -spell_holy_symbolofhope
+622 ; Die Urahnen von Kalimdor ; Ehrt die Urahnen, die sich in Kalimdor befinden. ; -spell_holy_symbolofhop
+623 ; Zügel des feurigen Schlachtrosses ; Erhaltet die Zügel des feurigen Schlachtrosses von Attumen dem Jäger in Karazhan. ; -ability_mount_dreadsteed
