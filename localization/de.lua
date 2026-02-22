@@ -100,6 +100,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	CATEGORY_HALLOWSEND = 'Schlotternächte',
     CATEGORY_WINTERVEIL = 'Winterhauch',
     CATEGORY_VALENTINES = 'Liebe liegt in der Luft',
+    CATEGORY_LUNAR = 'Mondfest',
     CATEGORY_FEATS_OF_STRENGTH = 'Heldentaten',
 	
 	AN_DRUID_T1 = 'Gewänder des Cenarius',
@@ -1054,6 +1055,23 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_VALENTINES_PIDO = 'Perma-Pido',
     AD_VALENTINES_PIDO = 'Erhaltet ein permanentes Q. Pido-Haustier, indem Ihr einen Echtsilberschaftpfeil erbeutet.',
+
+    --LUNAR
+    AN_LUNAR = 'Respekt vor den Urahnen',
+	AD_LUNAR = 'Schließt die unten aufgelisteten Mondfesterfolge ab.',
+	AR_LUNAR = 'Ältester',
+
+    AN_LUNAR_COIN = 'Eine Münze der Urahnen',
+    AD_LUNAR_COIN = 'Findet eine Münze der Urahnen.',
+
+    AN_LUNAR_COINS = '%d Münzen der Urahnen',
+    AD_LUNAR_COINS = 'Erhaltet %d Münzen der Urahnen.',
+
+    AN_LUNAR_QUEST = 'Elunes Segen',
+    AD_LUNAR_QUEST = 'Schließt die Quest \'Elunes Segen\' ab, indem Ihr Omen bezwingt.',
+
+    AN_LUNAR_CLOTHES = 'Mondfestgarderobe',
+    AD_LUNAR_CLOTHES = 'Kauft mit Münzen der Urahnen einen festlichen Hosenanzug oder ein festliches Kleid.',
 
 	--BURNING CRUSADE
     AN_QUESTS_HELLFIRE_PENINSULA = 'Durchs Höllenfeuer und zurück',
