@@ -616,3 +616,7 @@ ID; Name; Description; Icon
 616 ; 50 Münzen der Urahnen ; Erhaltet 50 Münzen der Urahnen. ; -inv_misc_elvencoins
 617 ; Elunes Segen ; Schließt die Quest 'Elunes Segen' ab, indem Ihr Omen bezwingt. ; spell_holy_aspiration
 618 ; Mondfestgarderobe ; Kauft mit Münzen der Urahnen einen festlichen Hosenanzug oder ein festliches Kleid. ; -inv_chest_cloth_59
+619 ; Die Urahnen der Dungeons ; Ehrt die Urahnen, die sich in den Dungeons befinden. ; -spell_holy_symbolofhope
+620 ; Die Urahnen der Horde ; Ehrt die Urahnen, die sich in den Hauptstädten der Horde befinden. ; -spell_holy_symbolofhope
+621 ; Die Urahnen der östlichen Königreiche ; Ehrt die Urahnen, die sich in den östlichen Königreichen befinden. ; -spell_holy_symbolofhope
+622 ; Die Urahnen von Kalimdor ; Ehrt die Urahnen, die sich in Kalimdor befinden. ; -spell_holy_symbolofhope

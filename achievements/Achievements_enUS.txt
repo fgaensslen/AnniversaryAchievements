@@ -617,3 +617,7 @@ Shafted Arrow. ; -inv_ammo_arrow_02
 616 ; 50 Coins of Ancestry ; Receive 50 Coins of Ancestry. ; -inv_misc_elvencoins
 617 ; Elune's Blessing ; Complete the Elune's Blessing quest by defeating Omen. ; spell_holy_aspiration
 618 ; Lunar Festival Finery ; Purchase a festive pant suit or festive dress with Coins of Ancestry. ; -inv_chest_cloth_59
+619 ; Elders of the Dungeons ; Honor the Elders which are located inside the dungeons. ; -spell_holy_symbolofhope
+620 ; Elders of the Alliance ; Honor the Elders which are located in the Alliance capital cities. ; -spell_holy_symbolofhope
+621 ; Elders of Eastern Kingdoms ; Honor the Elders which are located in Eastern Kingdoms ; -spell_holy_symbolofhope
+622 ; Elders of Kalimdor ; Honor the Elders which are located in Kalimdor. ; -spell_holy_symbolofhope

@@ -1952,6 +1952,35 @@ do
         ach:AddCriteria(criterias:Create(nil, TYPE.OR, subCriterias))
     lunarSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
 
+    --ELDERS
+	local function addLunarElders(name, ids, achievementID)
+        local ach = lunar:CreateAchievement('AN_LUNAR_ELDERS_' .. name, 'AD_LUNAR_ELDERS_' .. name, 10, '-spell_holy_symbolofhope', true, achievementID)
+
+		for _, questID in ipairs(ids) do
+			local criteria = criterias:Create(loc:Get('AC_LUNAR_ELDERS_' .. name .. '_' .. questID), TYPE.COMPLETE_QUEST, {questID})
+				ach:AddCriteria(criteria)
+		end
+
+        return ach
+	end
+	
+	local lunarElders = addLunarElders('DUNGEONS', {8727, 8619, 8635, 8713, 8644, 8676}, 619)
+    lunarSummary:AddCriteria(criterias:Create(lunarElders.name, TYPE.COMPLETE_ACHIEVEMENT, {lunarElders.id}))
+
+    if UnitFactionGroup('player') == 'Horde' then
+	    lunarElders = addLunarElders('HORDE', {8678, 8648, 8677}, 620)
+        lunarSummary:AddCriteria(criterias:Create(lunarElders.name, TYPE.COMPLETE_ACHIEVEMENT, {lunarElders.id}))
+    else
+	    lunarElders = addLunarElders('ALLIANCE', {8718, 8866, 8646}, 620)
+        lunarSummary:AddCriteria(criterias:Create(lunarElders.name, TYPE.COMPLETE_ACHIEVEMENT, {lunarElders.id}))
+    end
+
+    lunarElders = addLunarElders('EASTERN_KINGDOMS', {8636, 8651, 8652, 8674, 8716, 8643, 8675, 8649, 8650, 8642, 8645, 8722, 8647, 8653, 8714, 8688, 8683}, 621)
+    lunarSummary:AddCriteria(criterias:Create(lunarElders.name, TYPE.COMPLETE_ACHIEVEMENT, {lunarElders.id}))
+
+    lunarElders = addLunarElders('KALIMDOR', {8673, 8723, 8684, 8726, 8725, 8715, 8681, 8680, 8720, 8670, 8672, 8686, 8654, 8671, 8724, 8685, 8721, 8717, 8719, 8682, 8679}, 622)
+    lunarSummary:AddCriteria(criterias:Create(lunarElders.name, TYPE.COMPLETE_ACHIEVEMENT, {lunarElders.id}))
+
 end
 
 -- REPUTATION --
