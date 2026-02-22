@@ -2,8 +2,7 @@
 ## Title: Anniversary Achievements
 ## Notes: Achievements for WoW Classic
 ## Author: Florian Gaensslen
-## Version: 1.3.5
-## OptionalDeps: DBM-Core, Bartender4
+## Version: 1.3.6
 ## SavedVariables: CA_Settings
 ## SavedVariablesPerCharacter: CA_LocalData, CA_Flags
 
@@ -37,5 +36,3 @@ ui/AchievementUI.xml
 ui/Microbutton.xml
 ui/Microbutton.lua
 util/Minimap.lua
-
-integrations/DBM.lua
