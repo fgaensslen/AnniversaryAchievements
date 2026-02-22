@@ -1,12 +1,11 @@
 ## Interface: 20505
 ## Title: Anniversary Achievements
 ## Author: Florian Gaensslen
-## Version: v2.1.3
+## Version: v2.1.4
 ## IconTexture: Interface/AddOns/AnniversaryAchievements/logo.tga
 ## Notes: Achievements for WoW TBC Anniversary
 ## Category: Achievements
 ## Category-deDE: Erfolge
-## OptionalDeps: DBM-Core
 ## SavedVariables: CA_Settings
 ## SavedVariablesPerCharacter: CA_LocalData, CA_Flags
 
@@ -41,5 +40,3 @@ ui/AchievementUI.xml
 ui/Microbutton.xml
 ui/Microbutton.lua
 util/Minimap.lua
-
-integrations/DBM.lua
