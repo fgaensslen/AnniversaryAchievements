@@ -6,13 +6,13 @@ It integrates perfectly with the Standard UI and uses the same graphics and soun
 
 ### Download
 
-- WoW TBC: Version 2.1.2
-- WoW Classic: Version 1.3.4. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
+- WoW TBC: Version 2.1.4
+- WoW Classic: Version 1.3.6. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
 
 ### Achievements
 
 - WoW TBC: 622 achievements (including Feats of Strength)
-- WoW Classic: 413 achievements (including Feats of Strength)
+- WoW Classic: 425 achievements (including Feats of Strength)
 
 A full list can be found [here](https://fgaensslen.github.io/AnniversaryAchievements/achievements/index.html).
 
@@ -41,7 +41,7 @@ The addon was tested with the following UIs:
 - Installing the addon disables the standard quest tracker and replaces it with an object tracker for quests and achievements. Via shift-click, these objects can be removed from the tracker; left-click opens the quest or achievement window. If you don't like this behavior, you can disable it in the addon's options
 - Achievements are available for various categories, including PVP, PVE, Reputations, Professions, and more. 
 - Key bindings can be configured via the in-game options
-- The addon integrates with Deadly Boss Mods (DBM). If you have defeated a certain boss in the past, you will receive the respective achievement upon entering a dungeon and loading DBM automatically. If you don't have DBM, there is an additional check implemented that scans your finished dungeon quests to grant you the achievements
+- If you have finished a quest in the past that requires you to defeat certain dungeon bosses, the addon will recognize that and grant you the appropriate achievement
 - Achievements for explored areas can be triggered via a scan in the addon's option menu
 
 ### Notes
