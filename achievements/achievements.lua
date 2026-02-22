@@ -56,9 +56,10 @@ local vanillaReputation = tab:CreateCategory('CATEGORY_VANILLA', reputation.id, 
 local tbcReputations = tab:CreateCategory('CATEGORY_TBC', reputation.id, true)
 
 local worldevents = tab:CreateCategory('CATEGORY_EVENTS', nil, true)
+local lunar = tab:CreateCategory('CATEGORY_LUNAR', worldevents.id, true)
+local valentines = tab:CreateCategory('CATEGORY_VALENTINES', worldevents.id, true)
 local hallowsend = tab:CreateCategory('CATEGORY_HALLOWSEND', worldevents.id, true)
 local winterveil = tab:CreateCategory('CATEGORY_WINTERVEIL', worldevents.id, true)
-local valentines = tab:CreateCategory('CATEGORY_VALENTINES', worldevents.id, true)
 
 local featsOfStrength = tab:CreateCategory('CATEGORY_FEATS_OF_STRENGTH', nil, true)
 
@@ -1915,6 +1916,42 @@ do
     ach = valentines:CreateAchievement('AN_VALENTINES_PIDO', 'AD_VALENTINES_PIDO', 10, '-inv_ammo_arrow_02', true, 610)
         ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {22235}))
     valentinesSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+
+    --LUNAR FESTIVAL
+    local lunarSummary = worldevents:CreateAchievement('AN_LUNAR', 'AD_LUNAR', 10, 'achievement_worldevent_lunar', true, 611)
+        lunarSummary:SetRewardText(loc:Get('AR_LUNAR'))
+
+    local previous = lunar:CreateAchievement('AN_LUNAR_COIN', 'AD_LUNAR_COIN', 10, '-inv_misc_elvencoins', true, 612)
+        previous:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {21100}))
+
+    local coinID = 613
+    for i, count in pairs({5, 10, 25, 50}) do	
+        ach = lunar:CreateAchievement(loc:Get('AN_LUNAR_COINS', count), loc:Get('AD_LUNAR_COINS', count), 10, '-inv_misc_elvencoins', false, coinID)
+        ach:AddCriteria(criterias:Create(loc:Get('AD_LUNAR_COINS', count), TYPE.OBTAIN_ITEM, {21100}, count))
+        previous:SetNext(ach)
+        previous = ach
+
+        coinID = coinID + 1
+    end
+	previous = nil
+
+    lunarSummary:AddCriteria(criterias:Create(loc:Get('AN_LUNAR_COINS', 50), TYPE.COMPLETE_ACHIEVEMENT, {616}))
+
+    ach = lunar:CreateAchievement('AN_LUNAR_QUEST', 'AD_LUNAR_QUEST', 10, 'spell_holy_aspiration', true, 617)
+        ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {8868}))
+    lunarSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+
+	local clothItems = {
+        21157, 21538, 21539, 21544, 21543, 21541
+	}
+    subCriterias = {}
+    for _, itemID in ipairs(clothItems) do
+		table.insert(subCriterias, criterias:Create(nil, TYPE.OBTAIN_ITEM, { itemID }))
+	end
+    ach = lunar:CreateAchievement('AN_LUNAR_CLOTHES', 'AD_LUNAR_CLOTHES', 10, '-inv_chest_cloth_59', true, 618)
+        ach:AddCriteria(criterias:Create(nil, TYPE.OR, subCriterias))
+    lunarSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+
 end
 
 -- REPUTATION --

@@ -101,6 +101,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	CATEGORY_HALLOWSEND = 'Hallow\'s End',
     CATEGORY_WINTERVEIL = 'Winter Veil',
     CATEGORY_VALENTINES = 'Love is in the Air',
+    CATEGORY_LUNAR = 'Lunar Festival',
     CATEGORY_FEATS_OF_STRENGTH = 'Feats of Strength',
 	
 	AN_DRUID_T1 = 'Cenarion Raiment',
@@ -1060,6 +1061,23 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_VALENTINES_PIDO = 'Perma-Peddle',
     AD_VALENTINES_PIDO = 'Obtain a permanent Peddlefeet pet by procuring a Truesilver Shafted Arrow.',
+
+    --LUNAR
+    AN_LUNAR = 'To Honor One\'s Elders',
+	AD_LUNAR = 'Complete the Lunar Festival achievements listed below.',
+	AR_LUNAR = 'Elder',
+
+    AN_LUNAR_COIN = 'A Coin of Ancestry',
+    AD_LUNAR_COIN = 'Receive a Coin of Ancestry.',
+
+    AN_LUNAR_COINS = '%d Coins of Ancestry',
+    AD_LUNAR_COINS = 'Receive %d Coins of Ancestry.',
+
+    AN_LUNAR_QUEST = 'Elune\'s Blessing',
+    AD_LUNAR_QUEST = 'Complete the Elune\'s Blessing quest by defeating Omen.',
+
+    AN_LUNAR_CLOTHES = 'Lunar Festival Finery',
+    AD_LUNAR_CLOTHES = 'Purchase a festive pant suit or festive dress with Coins of Ancestry.',
 
 	--TBC
     AN_QUESTS_HELLFIRE_PENINSULA = 'To Hellfire and Back',

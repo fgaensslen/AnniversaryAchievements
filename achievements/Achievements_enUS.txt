@@ -608,3 +608,12 @@ ID; Name; Description
 608 ; Sweet Tooth ; Sample the Love is in the Air candies listed below. ; -inv_valentineschocolate02
 609 ; Lovely Luck Is On Your Side ; Open a Lovely Dress Box and receive a Lovely Black Dress. ; -inv_chest_cloth_50
 610 ; Perma-Peddle ; Obtain a permanent Peddlefeet pet by procuring a Truesilver Shafted Arrow. ; -inv_ammo_arrow_02
+Shafted Arrow. ; -inv_ammo_arrow_02
+611 ; To Honor One's Elders ; Complete the Lunar Festival achievements listed below. ; achievement_worldevent_lunar
+612 ; A Coin of Ancestry ; Receive a Coin of Ancestry. ; -inv_misc_elvencoins
+613 ; 5 Coins of Ancestry ; Receive 5 Coins of Ancestry. ; -inv_misc_elvencoins
+614 ; 10 Coins of Ancestry ; Receive 10 Coins of Ancestry. ; -inv_misc_elvencoins
+615 ; 25 Coins of Ancestry ; Receive 25 Coins of Ancestry. ; -inv_misc_elvencoins
+616 ; 50 Coins of Ancestry ; Receive 50 Coins of Ancestry. ; -inv_misc_elvencoins
+617 ; Elune's Blessing ; Complete the Elune's Blessing quest by defeating Omen. ; spell_holy_aspiration
+618 ; Lunar Festival Finery ; Purchase a festive pant suit or festive dress with Coins of Ancestry. ; -inv_chest_cloth_59

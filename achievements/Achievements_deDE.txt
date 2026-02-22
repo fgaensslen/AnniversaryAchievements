@@ -608,3 +608,11 @@ ID; Name; Description; Icon
 608 ; Naschkatze ; Probiert die unten aufgelisteten 'Liebe liegt in der Luft'-Süßigkeiten. ; -inv_valentineschocolate02
 609 ; Das reizende Glück ist auf Eurer Seite ; Öffnet einen reizenden Kleiderkarton und erhaltet ein reizendes schwarzes Kleid. ; -inv_chest_cloth_50
 610 ; Perma-Pido ; Erhaltet ein permanentes Q. Pido-Haustier, indem Ihr einen Echtsilberschaftpfeil erbeutet. ; -inv_ammo_arrow_02
+611 ; Respekt vor den Urahnen ; Schließt die unten aufgelisteten Mondfesterfolge ab. ; achievement_worldevent_lunar
+612 ; Eine Münze der Urahnen ; Findet eine Münze der Urahnen. ; -inv_misc_elvencoins
+613 ; 5 Münzen der Urahnen ; Erhaltet 5 Münzen der Urahnen. ; -inv_misc_elvencoins
+614 ; 10 Münzen der Urahnen ; Erhaltet 10 Münzen der Urahnen. ; -inv_misc_elvencoins
+615 ; 25 Münzen der Urahnen ; Erhaltet 25 Münzen der Urahnen. ; -inv_misc_elvencoins
+616 ; 50 Münzen der Urahnen ; Erhaltet 50 Münzen der Urahnen. ; -inv_misc_elvencoins
+617 ; Elunes Segen ; Schließt die Quest 'Elunes Segen' ab, indem Ihr Omen bezwingt. ; spell_holy_aspiration
+618 ; Mondfestgarderobe ; Kauft mit Münzen der Urahnen einen festlichen Hosenanzug oder ein festliches Kleid. ; -inv_chest_cloth_59
