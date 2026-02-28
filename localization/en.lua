@@ -1417,6 +1417,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_CAPTAIN_RUMSEY = 'Captain Rumsey\'s Lager',
     AD_CAPTAIN_RUMSEY = 'Brew up some of Captain Rumsey\'s Lager.',
 
+    AN_SECOND_RING = 'The 2 Ring',
+    AD_SECOND_RING = 'Fish up The 2 Ring.',
+
     AN_TBC_DAILY_COOKING = 'Kickin\' It Up a Notch',
     AD_TBC_DAILY_COOKING = 'Complete each of The Rokk\'s 4 cooking daily quests listed below.',
     AC_TBC_DAILY_COOKING1 = 'Manalicious',

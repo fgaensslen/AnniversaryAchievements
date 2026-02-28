@@ -239,10 +239,10 @@ do
 	
 	-- KEYs
     if UnitFactionGroup('player') == 'Horde' then
-		ach = quests:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 10, '-inv_misc_key_11', true)
+		ach = questsEasternKingdoms:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 10, '-inv_misc_key_11', true)
 	    ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {5511}))
     else
-		ach = quests:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 10, '-inv_misc_key_11', true)
+		ach = questsEasternKingdoms:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 10, '-inv_misc_key_11', true)
 	    ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {5505}))
     end	
 
@@ -1671,6 +1671,9 @@ do
         accomplishedfisher:AddCriteria(criterias:CreateL('AN_FISHING_OUTLAND_MASTER', TYPE.COMPLETE_ACHIEVEMENT, {435}))
         accomplishedfisher:AddCriteria(criterias:CreateL('AN_BOOTY_BAY_CONTEST', TYPE.COMPLETE_ACHIEVEMENT, {444}))
         accomplishedfisher:AddCriteria(criterias:CreateL('AN_FISHING_DIPLOMAT', TYPE.COMPLETE_ACHIEVEMENT, {fishing_diplomat.id}))
+
+    local second_ring = fishing:CreateAchievement('AN_SECOND_RING', 'AD_SECOND_RING', 10, '-inv_jewelry_ring_34', true, 624)
+        second_ring:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {34837}))
 
 	--COOKING
     previous = nil
