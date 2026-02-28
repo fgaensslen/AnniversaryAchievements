@@ -229,10 +229,10 @@ do
 	
 	-- KEYs
     if UnitFactionGroup('player') == 'Horde' then
-		ach = quests:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 10, '-inv_misc_key_11', true)
+		ach = questsEasternKingdoms:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 10, '-inv_misc_key_11', true)
 	    ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {5511}))
     else
-		ach = quests:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 10, '-inv_misc_key_11', true)
+		ach = questsEasternKingdoms:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 10, '-inv_misc_key_11', true)
 	    ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {5505}))
     end	
 
