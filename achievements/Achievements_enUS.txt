@@ -622,3 +622,4 @@ Shafted Arrow. ; -inv_ammo_arrow_02
 621 ; Elders of Eastern Kingdoms ; Honor the Elders which are located in Eastern Kingdoms ; -spell_holy_symbolofhope
 622 ; Elders of Kalimdor ; Honor the Elders which are located in Kalimdor. ; -spell_holy_symbolofhope
 623 ; Fiery Warhorse's Reins ; Obtain the Fiery Warhorse's Reins from Attumen the Huntsman in Karazhan. ; -ability_mount_dreadsteed
+624 ; The 2 Ring ; Obtain The 2 Ring from a Bag of Fishing Treasures. ; -inv_jewelry_ring_34

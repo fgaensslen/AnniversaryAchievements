@@ -621,3 +621,4 @@ ID; Name; Description; Icon
 621 ; Die Urahnen der östlichen Königreiche ; Ehrt die Urahnen, die sich in den östlichen Königreichen befinden. ; -spell_holy_symbolofhope
 622 ; Die Urahnen von Kalimdor ; Ehrt die Urahnen, die sich in Kalimdor befinden. ; -spell_holy_symbolofhop
 623 ; Zügel des feurigen Schlachtrosses ; Erhaltet die Zügel des feurigen Schlachtrosses von Attumen dem Jäger in Karazhan. ; -ability_mount_dreadsteed
+624 ; Der Andere Ring ; Erhaltet den Anderen Ring aus einem Sack voll geangelter Schätze. ; -inv_jewelry_ring_34
