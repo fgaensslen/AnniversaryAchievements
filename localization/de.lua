@@ -1418,7 +1418,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_CAPTAIN_RUMSEY = 'Braut etwas von Kapitän Rumseys Lagerbier.',
 
     AN_SECOND_RING = 'Der Andere Ring',
-    AD_SECOND_RING = 'Angelt den Anderen Ring.',
+    AD_SECOND_RING = 'Erhaltet den Anderen Ring aus einem Sack voll geangelter Schätze.',
 
     AN_TBC_DAILY_COOKING = 'Bitte nicht zu scharf',
     AD_TBC_DAILY_COOKING = 'Schließt jede der 4 unten aufgelisteten täglichen Kochquests des Rokk ab.',
