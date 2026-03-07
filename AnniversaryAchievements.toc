@@ -13,7 +13,6 @@
 libs\libs.xml
 #@end-no-lib-strip@
 
-util/stubs.lua
 localization/en.lua
 localization/de.lua
 
