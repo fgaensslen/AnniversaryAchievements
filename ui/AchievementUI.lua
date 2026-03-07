@@ -1391,7 +1391,6 @@ end
 function AchievementCategoryButton_OnLoad (button)
 	button:EnableMouse(true);
 	button:EnableMouseWheel(true);
-	AchievementCategoryButton_Localize(button);
 end
 
 function AchievementCategoryButton_OnClick (button)
@@ -2155,7 +2154,6 @@ function AchievementButton_GetCriteria (index, renderOffScreen)
 	end
 
 	local frame = CreateFrame("FRAME", "AchievementFrameCriteria" .. offscreenName .. index, AchievementFrameAchievements, "AchievementCriteriaTemplate");
-	AchievementFrame_LocalizeCriteria(frame);
 	criTable[index] = frame;
 
 	return frame;
@@ -2178,7 +2176,6 @@ function AchievementButton_GetMiniAchievement (index)
 	end
 
 	local frame = CreateFrame("FRAME", "AchievementFrameMiniAchievement" .. index, AchievementFrameAchievements, "MiniAchievementTemplate");
-	AchievementButton_LocalizeMiniAchievement(frame);
 	miniTable[index] = frame;
 
 	return frame;
@@ -2207,7 +2204,6 @@ function AchievementButton_GetProgressBar (index, renderOffScreen)
 	end
 
 	local frame = CreateFrame("STATUSBAR", "AchievementFrameProgressBar" .. offscreenName .. index, AchievementFrameAchievements, "AchievementProgressBarTemplate");
-	AchievementButton_LocalizeProgressBar(frame);
 	pgTable[index] = frame;
 
 	return frame;
@@ -2233,7 +2229,6 @@ function AchievementButton_GetMeta (index, renderOffScreen)
 	end
 	if ( not mcTable[index] ) then
 		local frame = CreateFrame("BUTTON", "AchievementFrameMeta" .. offscreenName .. index, AchievementFrameAchievements, "MetaCriteriaTemplate");
-		AchievementButton_LocalizeMetaAchievement(frame);
 		mcTable[index] = frame;
 	end
 
@@ -2975,7 +2970,6 @@ function AchievementFrameSummary_UpdateAchievements(...)
 				buttons = AchievementFrameSummaryAchievements.buttons;
 			end
 			button.isSummary = true;
-			AchievementFrameSummary_LocalizeButton(button);
 		end;
 
 		if ( i <= numAchievements ) then
