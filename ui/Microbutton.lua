@@ -42,23 +42,54 @@ SexyLib:Util():AfterLogin(function()
     CA_InitializeMicrobutton()
     AchievementMicroButton:SetFrameLevel(QuestLogMicroButton:GetFrameLevel() + 1)
 
-    local helpPoint, helpRelativeTo, helpRelativePoint, helpX, helpY
-
-    if HelpMicroButton then
-        helpPoint, helpRelativeTo, helpRelativePoint, helpX, helpY = HelpMicroButton:GetPoint()
-    end
-
+    -- 1. Completely disable the Help Button as requested
     if HelpMicroButton then
         HelpMicroButton:Hide()
         HelpMicroButton:UnregisterAllEvents()
         HelpMicroButton:SetParent(nil)
     end
 
-    if SocialsMicroButton and helpPoint then
-        SocialsMicroButton:ClearAllPoints()
-        SocialsMicroButton:SetPoint(helpPoint, helpRelativeTo, helpRelativePoint, helpX, helpY)
+    -- 2. Define our logic to bridge the gaps
+    local function ReanchorMicroButtons()
+        -- 1. Help is gone
+        if HelpMicroButton then HelpMicroButton:Hide() end
+
+        -- 2. Define the full potential order including the "Modern" Guild button
+        local buttons = {
+            CharacterMicroButton,
+            SpellbookMicroButton,
+            TalentMicroButton,
+            QuestLogMicroButton,
+            AchievementMicroButton,
+            SocialsMicroButton,
+            GuildMicroButton, -- Add this to catch the Modern UI button
+            WorldMapMicroButton,
+            MainMenuMicroButton
+        }
+
+        local prevButton = nil
+        
+        for _, btn in ipairs(buttons) do
+            -- Check if button exists and is currently being SHOWN by the game
+            if btn and btn:IsShown() and btn:GetAlpha() > 0 then
+                btn:ClearAllPoints()
+                if not prevButton then
+                    -- Position the first button
+                    btn:SetPoint("BOTTOMLEFT", MainMenuBarArtFrame, "BOTTOMLEFT", 548, 2)
+                else
+                    -- Anchor to the right of the previous VISIBLE button
+                    btn:SetPoint("LEFT", prevButton, "RIGHT", -3, 0)
+                end
+                prevButton = btn
+            end
+        end
     end
 
+    -- Hook the update function so when Socials is toggled, the bar reorganizes
+    hooksecurefunc("UpdateMicroButtons", ReanchorMicroButtons)
+    
+    -- Run once immediately to set the initial layout
+    ReanchorMicroButtons()
 end)
 
 function CA_ShouldUseMicrobutton()
