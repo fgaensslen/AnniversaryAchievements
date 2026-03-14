@@ -623,3 +623,6 @@ Shafted Arrow. ; -inv_ammo_arrow_02
 622 ; Elders of Kalimdor ; Honor the Elders which are located in Kalimdor. ; -spell_holy_symbolofhope
 623 ; Fiery Warhorse's Reins ; Obtain the Fiery Warhorse's Reins from Attumen the Huntsman in Karazhan. ; -ability_mount_dreadsteed
 624 ; The 2 Ring ; Obtain The 2 Ring from a Bag of Fishing Treasures. ; -inv_jewelry_ring_34
+625 ; I Found One! ; Find a Brightly Colored Egg. ; inv_egg_09
+626 ; Sunday's Finest ; Discover the White Tuxedo Shirt and Black Tuxedo Pants by opening Brightly Colored Eggs during the Noblegarden celebration. ; -inv_shirt_08
+627 ; Dressed for the Occasion ; Discover an Elegant Dress by opening Brightly Colored Eggs during the Noblegarden celebration. ; -inv_chest_cloth_04

@@ -58,6 +58,7 @@ local tbcReputations = tab:CreateCategory('CATEGORY_TBC', reputation.id, true)
 local worldevents = tab:CreateCategory('CATEGORY_EVENTS', nil, true)
 local lunar = tab:CreateCategory('CATEGORY_LUNAR', worldevents.id, true)
 local valentines = tab:CreateCategory('CATEGORY_VALENTINES', worldevents.id, true)
+local noblegarden = tab:CreateCategory('CATEGORY_NOBLEGARDEN', worldevents.id, true)
 local hallowsend = tab:CreateCategory('CATEGORY_HALLOWSEND', worldevents.id, true)
 local winterveil = tab:CreateCategory('CATEGORY_WINTERVEIL', worldevents.id, true)
 
@@ -1984,6 +1985,23 @@ do
     lunarElders = addLunarElders('KALIMDOR', {8673, 8723, 8684, 8726, 8725, 8715, 8681, 8680, 8720, 8670, 8672, 8686, 8654, 8671, 8724, 8685, 8721, 8717, 8719, 8682, 8679}, 622)
     lunarSummary:AddCriteria(criterias:Create(lunarElders.name, TYPE.COMPLETE_ACHIEVEMENT, {lunarElders.id}))
 
+    --NOBLEGARDEN
+	local eggIDs = {
+        113768, 113769, 113770, 113771, 113772
+	}
+    subCriterias = {}
+    for _, itemID in ipairs(eggIDs) do
+		table.insert(subCriterias, criterias:Create(nil, TYPE.OBTAIN_ITEM, { itemID }))
+	end
+    ach = noblegarden:CreateAchievement('AN_NOBLEGARDEN_EGG', 'AD_NOBLEGARDEN_EGG', 10, 'inv_egg_09', true, 625)
+        ach:AddCriteria(criterias:Create(nil, TYPE.OR, subCriterias))
+
+    ach = noblegarden:CreateAchievement('AN_NOBLEGARDEN_CLOTHES', 'AD_NOBLEGARDEN_CLOTHES', 10, '-inv_shirt_08', true, 626)
+        ach:AddCriteria(criterias:Create(loc:Get('AC_NOBLEGARDEN_CLOTHES_CRITERIA1'), TYPE.OBTAIN_ITEM, {6833}))
+        ach:AddCriteria(criterias:Create(loc:Get('AC_NOBLEGARDEN_CLOTHES_CRITERIA2'), TYPE.OBTAIN_ITEM, {6835}))
+    
+    ach = noblegarden:CreateAchievement('AN_NOBLEGARDEN_DRESS', 'AD_NOBLEGARDEN_DRESS', 10, '-inv_chest_cloth_04', true, 627)
+        ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {19028}))
 end
 
 -- REPUTATION --
