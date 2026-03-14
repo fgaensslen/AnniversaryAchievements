@@ -1146,9 +1146,6 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_LUNAR_ELDERS_KALIMDOR_8679 = 'Elder Grimtotem in Feralas',
 
     --NOBLEGARDEN
-    AN_NOBLEGARDEN_EGG = 'I Found One!',
-    AD_NOBLEGARDEN_EGG = 'Find a Brightly Colored Egg.',
-
     AN_NOBLEGARDEN_CLOTHES = 'Sunday\'s Finest',
     AD_NOBLEGARDEN_CLOTHES = 'Discover the White Tuxedo Shirt and Black Tuxedo Pants by opening Brightly Colored Eggs during the Noblegarden celebration.',
     AC_NOBLEGARDEN_CLOTHES_CRITERIA1 = 'White Tuxedo Shirt',

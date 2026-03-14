@@ -622,6 +622,5 @@ ID; Name; Description; Icon
 622 ; Die Urahnen von Kalimdor ; Ehrt die Urahnen, die sich in Kalimdor befinden. ; -spell_holy_symbolofhop
 623 ; Zügel des feurigen Schlachtrosses ; Erhaltet die Zügel des feurigen Schlachtrosses von Attumen dem Jäger in Karazhan. ; -ability_mount_dreadsteed
 624 ; Der Andere Ring ; Erhaltet den Anderen Ring aus einem Sack voll geangelter Schätze. ; -inv_jewelry_ring_34
-625 ; Ich hab eins gefunden! ; Findet ein Osterei. ; -inv_egg_09
-626 ; Smoking und Häschen ; Findet das weiße Smokinghemd und die schwarze Smokinghose, indem Ihr die bunt gefärbten Eier während des Nobelgartenfests öffnet. ; -inv_shirt_08
-627 ; Dem Anlass entsprechend gekleidet ; Entdeckt ein elegantes Kleid, indem Ihr die bunt gefärbten Eier während des Nobelgartenfests öffnet. ; -inv_chest_cloth_04
+625 ; Smoking und Häschen ; Findet das weiße Smokinghemd und die schwarze Smokinghose, indem Ihr die bunt gefärbten Eier während des Nobelgartenfests öffnet. ; -inv_shirt_08
+626 ; Dem Anlass entsprechend gekleidet ; Entdeckt ein elegantes Kleid, indem Ihr die bunt gefärbten Eier während des Nobelgartenfests öffnet. ; -inv_chest_cloth_04

@@ -1146,9 +1146,6 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_LUNAR_ELDERS_KALIMDOR_8679 = 'Urahne Grimmtotem in Feralas',
 
     --NOBLEGARDEN
-    AN_NOBLEGARDEN_EGG = 'Ich hab eins gefunden!',
-    AD_NOBLEGARDEN_EGG = 'Findet ein Osterei.',
-
     AN_NOBLEGARDEN_CLOTHES = 'Smoking und Häschen',
     AD_NOBLEGARDEN_CLOTHES = 'Findet das weiße Smokinghemd und die schwarze Smokinghose, indem Ihr die bunt gefärbten Eier während des Nobelgartenfests öffnet.',
     AC_NOBLEGARDEN_CLOTHES_CRITERIA1 = 'Weißes Smokinghemd',

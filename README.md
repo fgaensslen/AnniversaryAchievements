@@ -11,8 +11,8 @@ It integrates perfectly with the Standard UI and uses the same graphics and soun
 
 ### Achievements
 
-- WoW TBC: 627 achievements (including Feats of Strength)
-- WoW Classic: 428 achievements (including Feats of Strength)
+- WoW TBC: 626 achievements (including Feats of Strength)
+- WoW Classic: 427 achievements (including Feats of Strength)
 
 A full list can be found [here](https://fgaensslen.github.io/AnniversaryAchievements/achievements/index.html).
 
