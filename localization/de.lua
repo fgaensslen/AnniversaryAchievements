@@ -101,6 +101,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_WINTERVEIL = 'Winterhauch',
     CATEGORY_VALENTINES = 'Liebe liegt in der Luft',
     CATEGORY_LUNAR = 'Mondfest',
+    CATEGORY_NOBLEGARDEN = 'Nobelgarten',
     CATEGORY_FEATS_OF_STRENGTH = 'Heldentaten',
 	
 	AN_DRUID_T1 = 'Gewänder des Cenarius',
@@ -1137,6 +1138,15 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_LUNAR_ELDERS_KALIMDOR_8719 = 'Urahnin Bladesing in der Burg Cenarius',
     AC_LUNAR_ELDERS_KALIMDOR_8682 = 'Urahne Skyseer im Freiwindposten',
     AC_LUNAR_ELDERS_KALIMDOR_8679 = 'Urahne Grimtotem in Feralas',
+    
+    --NOBLEGARDEN
+    AN_NOBLEGARDEN_CLOTHES = 'Smoking und Häschen',
+    AD_NOBLEGARDEN_CLOTHES = 'Findet das weiße Smokinghemd und die schwarze Smokinghose, indem Ihr die bunt gefärbten Eier während des Nobelgartenfests öffnet.',
+    AC_NOBLEGARDEN_CLOTHES_CRITERIA1 = 'Weißes Smokinghemd',
+    AC_NOBLEGARDEN_CLOTHES_CRITERIA2 = 'Schwarze Smokinghose',
+
+    AN_NOBLEGARDEN_DRESS = 'Dem Anlass entsprechend gekleidet',
+    AD_NOBLEGARDEN_DRESS = 'Entdeckt ein elegantes Kleid, indem Ihr die bunt gefärbten Eier während des Nobelgartenfests öffnet.',
 
 	--BURNING CRUSADE
     AN_QUESTS_HELLFIRE_PENINSULA = 'Durchs Höllenfeuer und zurück',

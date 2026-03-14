@@ -101,6 +101,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_WINTERVEIL = 'Winter Veil',
     CATEGORY_VALENTINES = 'Love is in the Air',
     CATEGORY_LUNAR = 'Lunar Festival',
+    CATEGORY_NOBLEGARDEN = 'Noblegarden',
     CATEGORY_FEATS_OF_STRENGTH = 'Feats of Strength',
 	
 	AN_DRUID_T1 = 'Cenarion Raiment',
@@ -1137,6 +1138,15 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_LUNAR_ELDERS_KALIMDOR_8719 = 'Elder Bladesing in Cenarion Hold',
     AC_LUNAR_ELDERS_KALIMDOR_8682 = 'Elder Skyseer in Freewind Post',
     AC_LUNAR_ELDERS_KALIMDOR_8679 = 'Elder Grimtotem in Feralas',
+    
+    --NOBLEGARDEN
+    AN_NOBLEGARDEN_CLOTHES = 'Sunday\'s Finest',
+    AD_NOBLEGARDEN_CLOTHES = 'Discover the White Tuxedo Shirt and Black Tuxedo Pants by opening Brightly Colored Eggs during the Noblegarden celebration.',
+    AC_NOBLEGARDEN_CLOTHES_CRITERIA1 = 'White Tuxedo Shirt',
+    AC_NOBLEGARDEN_CLOTHES_CRITERIA2 = 'Black Tuxedo Pants',
+
+    AN_NOBLEGARDEN_DRESS = 'Dressed for the Occasion',
+    AD_NOBLEGARDEN_DRESS = 'Discover an Elegant Dress by opening Brightly Colored Eggs during the Noblegarden celebration.',
 
 	--TBC
     AN_QUESTS_HELLFIRE_PENINSULA = 'To Hellfire and Back',
