@@ -49,12 +49,9 @@ SexyLib:Util():AfterLogin(function()
         HelpMicroButton:SetParent(nil)
     end
 
-    -- 2. Define our logic to bridge the gaps
     local function ReanchorMicroButtons()
-        -- 1. Help is gone
         if HelpMicroButton then HelpMicroButton:Hide() end
 
-        -- 2. Define the full potential order including the "Modern" Guild button
         local buttons = {
             CharacterMicroButton,
             SpellbookMicroButton,
@@ -62,7 +59,7 @@ SexyLib:Util():AfterLogin(function()
             QuestLogMicroButton,
             AchievementMicroButton,
             SocialsMicroButton,
-            GuildMicroButton, -- Add this to catch the Modern UI button
+            GuildMicroButton,
             WorldMapMicroButton,
             MainMenuMicroButton
         }
@@ -70,14 +67,16 @@ SexyLib:Util():AfterLogin(function()
         local prevButton = nil
         
         for _, btn in ipairs(buttons) do
-            -- Check if button exists and is currently being SHOWN by the game
             if btn and btn:IsShown() and btn:GetAlpha() > 0 then
                 btn:ClearAllPoints()
                 if not prevButton then
-                    -- Position the first button
-                    btn:SetPoint("BOTTOMLEFT", MainMenuBarArtFrame, "BOTTOMLEFT", 548, 2)
+                    -- EDIT MODE FIX: 
+                    -- Instead of hard-coding coordinates, we anchor the first button 
+                    -- to the top-left of its own parent container at 0,0.
+                    -- This lets the Edit Mode "box" move freely.
+                    btn:SetPoint("BOTTOMLEFT", btn:GetParent(), "BOTTOMLEFT", 0, 0)
                 else
-                    -- Anchor to the right of the previous VISIBLE button
+                    -- Maintain the tight classic spacing
                     btn:SetPoint("LEFT", prevButton, "RIGHT", -3, 0)
                 end
                 prevButton = btn
