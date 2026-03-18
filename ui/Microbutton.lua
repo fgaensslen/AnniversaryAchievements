@@ -40,51 +40,48 @@ SexyLib:Util():AfterLogin(function()
     end
 
     CA_InitializeMicrobutton()
+    AchievementMicroButton:SetFrameLevel(QuestLogMicroButton:GetFrameLevel() + 1)  
     
-    local width = 24
-    MainMenuBar:SetWidth(MainMenuBar:GetWidth() + width * 2)
-    
-    do
-        local point, relativeTo, relativePoint, xOfs, yOfs = SocialsMicroButton:GetPoint()
-        SocialsMicroButton:SetPoint(point, AchievementMicroButton, relativePoint, xOfs, yOfs)
+    -- 1. Completely disable the Help Button as requested
+    if HelpMicroButton then
+        HelpMicroButton:Hide()
+        HelpMicroButton:UnregisterAllEvents()
+        HelpMicroButton:SetParent(nil)
     end
-    
-    local function move(thing, delta)
-        local point, relativeTo, relativePoint, xOfs, yOfs = thing:GetPoint()
-        thing:SetPoint(point, relativeTo, relativePoint, xOfs + delta, yOfs)
+
+    local function ReanchorMicroButtons()
+        if HelpMicroButton then HelpMicroButton:Hide() end
+
+        local buttons = {
+            CharacterMicroButton,
+            SpellbookMicroButton,
+            TalentMicroButton,
+            QuestLogMicroButton,
+            AchievementMicroButton,
+            SocialsMicroButton,
+            GuildMicroButton,
+            WorldMapMicroButton,
+            MainMenuMicroButton
+        }
+
+        local prevButton = nil
+        
+        for _, btn in ipairs(buttons) do
+            if btn and btn:IsShown() and btn:GetAlpha() > 0 then
+
+                if  prevButton then
+                    btn:SetPoint("LEFT", prevButton, "RIGHT", -3, 0)                    
+                end
+                prevButton = btn
+            end
+        end
     end
+
+    -- Hook the update function so when Socials is toggled, the bar reorganizes
+    hooksecurefunc("UpdateMicroButtons", ReanchorMicroButtons)
     
-    local function set(thing, xOf, yOf)
-        local point, relativeTo, relativePoint, xOfs, yOfs = thing:GetPoint()
-        thing:SetPoint(point, relativeTo, relativePoint, xOf or xOfs, yOf or yOfs)
-    end
-    
-	move(MainMenuBarTexture0, -width + 1.5)
-    move(MainMenuBarTexture1, -width + 1.5)
-    move(MainMenuBarPageNumber, -width + 1.5)
-    move(MainMenuBarTexture2, -width / 2)
-    MainMenuBarTexture2:SetWidth(MainMenuBarTexture2:GetWidth() + width)
-    AchievementMicroButton:SetFrameStrata('HIGH')
-    C_Timer.After(0.01, function()
-        MainMenuBarPerformanceBarFrame:SetClampedToScreen(false)  
-		MainMenuBarPerformanceBarFrame:SetMovable(1)
-		MainMenuBarPerformanceBarFrame:SetUserPlaced(true)
-		MainMenuBarPerformanceBarFrame:ClearAllPoints()
-		MainMenuBarPerformanceBarFrame:SetPoint("RIGHT", -235, -4)
-		move(MainMenuBarPerformanceBarFrame, -width)
-    end)
-    move(MainMenuBarBackpackButton, -width)
-    
-    move(MultiBarBottomRight, width)
-    
-    local expBarWidth = MainMenuExpBar:GetWidth() + width
-    MainMenuExpBar:SetWidth(expBarWidth)
-    move(MainMenuExpBar, -width / 2)
-    for i, part in pairs({-0.375, -0.125, 0.125, 0.375}) do
-        local tex = _G['MainMenuXPBarTexture' .. (i - 1)]
-        tex:SetWidth(expBarWidth / 4)
-        set(tex, expBarWidth * part)
-    end
+    -- Run once immediately to set the initial layout
+    ReanchorMicroButtons()
 end)
 
 function CA_ShouldUseMicrobutton()
