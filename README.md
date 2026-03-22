@@ -6,8 +6,8 @@ It integrates perfectly with the Standard UI and uses the same graphics and soun
 
 ### Download
 
-- WoW TBC: Version 2.1.6
-- WoW Classic: Version 1.3.8. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
+- WoW TBC: Version 2.1.8
+- WoW Classic: Version 1.3.9. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
 
 ### Achievements
 
@@ -41,16 +41,16 @@ The addon was tested with the following UIs:
 - Installing the addon disables the standard quest tracker and replaces it with an object tracker for quests and achievements. Via shift-click, these objects can be removed from the tracker; left-click opens the quest or achievement window. If you don't like this behavior, you can disable it in the addon's options
 - Achievements are available for various categories, including PVP, PVE, Reputations, Professions, and more. 
 - Key bindings can be configured via the in-game options
-- If you have finished a quest in the past that requires you to defeat certain dungeon bosses, the addon will recognize that and grant you the appropriate achievement
+- WoW classic only: If you have finished a quest in the past that requires you to defeat certain dungeon bosses, the addon will recognize that and grant you the appropriate achievement
 - Achievements for explored areas can be triggered via a scan in the addon's option menu
 
 ### Notes
 
 - Due to the huge amount of content, I couldn't test everything. If you find any bugs, wrong localization, or have great ideas for new achievements, please write a comment
+- The addon doesn’t have access to full historical data like Blizzard’s official achievement system does. The WoW API only provides limited information (for example PvP stats or some quest completions), so it’s unfortunately not always possible to detect things you’ve already done in the past
 - You can drag the window to another position by clicking inside the lower part of the summary section
+- Guild and Statistics tabs are not available. Comparing achievements with other players who have this addon installed is also not implemented
 - Other addons can prevent you from getting certain achievements: for example Fishing Buddy seems to interfere certain fishing achievements
 - Your achievements are NOT stored on Blizzard's servers. To backup them, go into:
 
     \<your WoW folder\>/WTF/Account/\<account name\>/\<server name\>/\<character name\>/SavedVariables/AnniversaryAchievements.lua
-
-- Guild and Statistics tabs are not available. Comparing achievements with other players who have this addon installed is also not implemented
