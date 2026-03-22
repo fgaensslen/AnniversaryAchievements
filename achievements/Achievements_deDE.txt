@@ -483,8 +483,8 @@ ID; Name; Description; Icon
 482 ; Dunkelmond-Jahrmarkt ; Erreicht beim Dunkelmond-Jahrmarkt den Status ehrfürchtig. ; -Inv_Misc_MissileLarge_Red
 483 ; Thoriumbruderschaft ; Erreicht bei der Thoriumbruderschaft den Status ehrfürchtig. ; -inv_enchant_dustsoul
 484 ; Agent der Shen'dralar ; Erreicht bei den Shen'dralar den Status ehrfürchtig. ; -inv_misc_book_11
-485 ; Der brennende Kreuzritter ; Bringt alle Rufe der Burning-Crusade-Dungeons auf Ehrfürchtig. ; -Spell_Fire_FelfireWard
-486 ; Der brennende Kreuzritter ; Bringt alle Rufe der Burning-Crusade-Dungeons auf Ehrfürchtig. ; -Spell_Fire_FelfireWard
+485 ; Der brennende Kreuzritter ; Bringt alle "Burning Crusade"-Dungeonrufe auf ehrfürchtig. ; -Spell_Fire_FelfireWard
+486 ; Der brennende Kreuzritter ; Bringt alle "Burning Crusade"-Dungeonrufe auf ehrfürchtig. ; -Spell_Fire_FelfireWard
 487 ; Geteiltes Shattrath ; Erreicht bei den Sehern oder den Aldor den Status ehrfürchtig. ; -Spell_Arcane_PortalShattrath
 488 ; Wächter des Cenarius ; Erreicht beim Zirkel des Cenarius und der Expedition des Cenarius den Status ehrfürchtig. ; -ability_racial_ultravision
 489 ; Jeden Tag eine gute Tat für die Oger ; Erreicht in Ogri'la den Status ehrfürchtig. ; -Inv_Misc_Apexis_Crystal

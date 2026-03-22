@@ -1341,7 +1341,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	FACTION_609 = 'Zirkel des Cenarius',
 
     AN_TBC_DUNGEON_REPUTATIONS = 'Der brennende Kreuzritter',
-    AD_TBC_DUNGEON_REPUTATIONS = 'Bringt alle Rufe der Burning-Crusade-Dungeons auf Ehrfürchtig.',
+    AD_TBC_DUNGEON_REPUTATIONS = 'Bringt alle "Burning Crusade"-Dungeonrufe auf ehrfürchtig.',
 	
 	AN_CENARION_CIRCLE = 'Wächter des Cenarius',
     AD_CENARION_CIRCLE = 'Erreicht beim Zirkel des Cenarius und der Expedition des Cenarius den Status ehrfürchtig.',
