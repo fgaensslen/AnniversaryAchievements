@@ -586,7 +586,7 @@ do
         if i <= 9 then pvpIcon = '-achievement_pvp_o_0'
         else pvpIcon = '-achievement_pvp_o_' end
 
-        local ach = featsOfStrength:CreateAchievement(
+        local ach = pvp:CreateAchievement(
             'AN_PVP_RANK_' .. factionLetter .. i,
             'AD_PVP_RANK', -- description set dynamically
             0,
