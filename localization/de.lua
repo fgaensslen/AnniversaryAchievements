@@ -14,7 +14,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     OPTION_RESET_ACHIEVEMENTS = 'Erfolge zurücksetzen',
     OPTION_RESET_ACHIEVEMENTS_DESC = 'Setzt alle Erfolge auf diesem Charakter zurück. Dies kann nicht rückgängig gemacht werden!',
     OPTION_TRACKER = 'Ziele beobachten',
-    OPTION_TRACKER_DESC = 'Aktiviert oder deaktiviert den Tracker für Erfolge und Quests.',
+    OPTION_TRACKER_DESC = 'Aktiviert oder deaktiviert die Quest- und Erfolgsverfolgung.',
     OPTION_RELOAD = "Änderungen benötigen ein Reload des Interface",
     OPTION_DISABLED = 'Option aufgrund eines UI-Addons nicht verfügbar',
 
