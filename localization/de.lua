@@ -1479,38 +1479,5 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_BLACK_TEMPLE = 'Der Schwarze Tempel',
     AD_BLACK_TEMPLE = 'Schließt die unten aufgelisteten Erfolge im Schwarzen Tempel ab.',
-    AR_BLACK_TEMPLE = 'Bezwinger des Schwarzen Tempels',
-
-    AN_AZZINOTH = 'Kriegsgleven von Azzinoth',
-    AD_AZZINOTH = 'Träger eines Sets der Kriegsgleven von Azzinoth.',
-	AN_THORIDAL = 'Thori\'dal, Furor der Sterne',
-    AD_THORIDAL = 'Träger von Thori\'dal, Furor der Sterne.',
-    AC_OBTAIN_MAINHAND_AZZINOTH = 'Rechte Kriegsgleve von Azzinoth',
-    AC_OBTAIN_OFFHAND_AZZINOTH = 'Linke Kriegsgleve von Azzinoth',
-	AN_BEAR_MOUNT = 'Kriegsbär der Amani',
-    AD_BEAR_MOUNT = 'Besitzer des Kriegsbären der Amani.',
-	AN_HAWK_MOUNT = 'Schneller weißer Falkenschreiter',
-    AD_HAWK_MOUNT = 'Erhaltet den schnellen weißen Falkenschreiter von Kael\'thas Sonnenwanderer auf der Terrasse der Magister.',
-	AN_ALAR_MOUNT = 'Al\'ars Asche',
-    AD_ALAR_MOUNT = 'Erhaltet Al\'ars Asche von Kael\'thas Sonnenwanderer in der Festung der Stürme.',
-	AN_HORSEMAN_MOUNT = 'Die Zügel des Reiters',
-	AD_HORSEMAN_MOUNT = 'Erhaltet während der Schlotternächte die Zügel des Reiters vom kopflosen Reiter im Scharlachroten Kloster.',
-	AN_HERO_SHATTRATH = 'Der Held Shattraths',
-	AD_HERO_SHATTRATH = 'Bei den Sehern und den Aldor den Status ehrfürchtig erreicht.',
-	AN_HERO_SCRYER = 'Die Seher',
-	AN_HERO_ALDOR = 'Die Aldor',
-	AN_CHAMPION_NAARU = 'Champion der Naaru',
-	AD_CHAMPION_NAARU = 'Den Titel "Champion der Naaru" erhalten.',
-	AR_CHAMPION_NAARU = 'Champion der Naaru',
-	AN_HAND_ADAL = 'Hand von A\'dal',
-	AD_HAND_ADAL = 'Den Titel "Hand von A\'dal" erhalten.',
-	AR_HAND_ADAL = 'Hand von A\'dal',
-
-    AN_P3_FIRST_WEEK = 'Eroberer der Scherbenwelt',
-    AD_P3_FIRST_WEEK = 'Bezwingt Archimonde und Illidan Sturmgrimm in der ersten Woche von Phase 3.',
-    AC_KILL_ARCHIMONDE = 'Archimonde',
-    AR_P3_FIRST_WEEK = 'Eroberer der Scherbenwelt',
-	
-	AN_FLIGHFORM = 'Schnelle Fluggestalt',
-	AD_FLIGHFORM = 'Die Druidenquest zum Erlernen einer schnellen Fluggestalt abgeschlossen.'
+    AR_BLACK_TEMPLE = 'Bezwinger des Schwarzen Tempels'
 })

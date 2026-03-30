@@ -22,7 +22,7 @@ function FormatNumbersInString(text)
     end)
 end
 
--- CATEGORIES -- 
+-- CATEGORIES 
 local general = tab:CreateCategory('CATEGORY_GENERAL', nil, true)
 
 local quests = tab:CreateCategory('CATEGORY_QUESTS', nil, true)
@@ -63,7 +63,7 @@ local winterveil = tab:CreateCategory('CATEGORY_WINTERVEIL', worldevents.id, tru
 
 local featsOfStrength = tab:CreateCategory('CATEGORY_FEATS_OF_STRENGTH', nil, true)
 
--- GENERAL --
+-- GENERAL
 do 
     for i = 1, 7 do
         local lvl = i * 10
@@ -671,7 +671,6 @@ do
     ach:AddCriteria(criterias:Create(ach1.name, TYPE.COMPLETE_ACHIEVEMENT, {ach1.id}))
     ach:AddCriteria(criterias:Create(ach2.name, TYPE.COMPLETE_ACHIEVEMENT, {ach2.id}))
     ach:AddCriteria(criterias:Create(ach4.name, TYPE.COMPLETE_ACHIEVEMENT, {ach4.id}))
-    --ach:AddCriteria(criterias:Create(ach5.name, TYPE.COMPLETE_ACHIEVEMENT, {ach5.id}))
     ach:SetHordeOnly()
 
     ach1 = add(4949, 'THRALL', 'Achievement_Leader_ Thrall')
@@ -687,17 +686,16 @@ do
     ach:AddCriteria(criterias:Create(ach1.name, TYPE.COMPLETE_ACHIEVEMENT, {ach1.id}))
     ach:AddCriteria(criterias:Create(ach3.name, TYPE.COMPLETE_ACHIEVEMENT, {ach3.id}))
     ach:AddCriteria(criterias:Create(ach4.name, TYPE.COMPLETE_ACHIEVEMENT, {ach4.id}))
-    --ach:AddCriteria(criterias:Create(ach5.name, TYPE.COMPLETE_ACHIEVEMENT, {ach5.id}))
     ach:SetAllianceOnly()
 
     ach = pvp:CreateAchievement(loc:Get('AN_RACES_KILLER'), loc:Get('AD_ALLIANCE_RACES_KILLER'), 10, '-Ability_Gouge')
-    for _, race in pairs({'HUMAN', 'NIGHTELF', 'DWARF', 'GNOME'--[[, 'DRAENEI']]}) do
+    for _, race in pairs({'HUMAN', 'NIGHTELF', 'DWARF', 'GNOME'}) do
         ach:AddCriteria(criterias:CreateL('AC_' .. race .. '_KILLED', TYPE.KILL_PLAYER_OF_RACE, {race}))
     end
     ach:SetHordeOnly()
 
     ach = pvp:CreateAchievement(loc:Get('AN_RACES_KILLER'), loc:Get('AD_HORDE_RACES_KILLER'), 10, '-Ability_Gouge')
-    for _, race in pairs({'ORC', 'TROLL', 'SCOURGE', 'TAUREN'--[[, 'BLOODELF']]}) do
+    for _, race in pairs({'ORC', 'TROLL', 'SCOURGE', 'TAUREN'}) do
         ach:AddCriteria(criterias:CreateL('AC_' .. race .. '_KILLED', TYPE.KILL_PLAYER_OF_RACE, {race}))
     end
     ach:SetAllianceOnly()
@@ -900,7 +898,6 @@ do
 		:CompleteAchievementCriteria(alteracBoss)
 		:CompleteAchievementCriteria(warsongBoss)
 		:CompleteAchievementCriteria(arathiBoss)
-        --:CompleteAchievementCriteria(eyeBoss)
 		:Reward('AR_BATTLEMASTER', true)
 		:Build()		
 		
@@ -1626,7 +1623,6 @@ do
     ach:AddCriteria(criterias:Create(squid.name, TYPE.COMPLETE_ACHIEVEMENT, {squid.id}))
     ach:AddCriteria(criterias:Create(dumplings.name, TYPE.COMPLETE_ACHIEVEMENT, {dumplings.id}))
 
-	--TODO: Change into TBC cake: https://www.wowhead.com/wotlk/achievement=877/the-cake-is-not-a-lie
     add('CHOPS', '-Inv_Misc_Food_65', 21023, 20):SetUnavailable()
 end
 
@@ -1989,7 +1985,7 @@ do
     create('shattered_sun', 1077, '-Inv_Shield_48')
 end
 
--- FEATS OF STRENGTH --
+--FEATS OF STRENGTH
 do
     ach = featsOfStrength:CreateAchievement('AN_SULFURAS', 'AD_SULFURAS', 0, '-Inv_Hammer_Unique_Sulfuras', true)
 		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {17182}))
@@ -2030,61 +2026,6 @@ do
 
     ach = featsOfStrength:CreateAchievement('AN_ARGENT_DAWN_TABARD', 'AD_ARGENT_DAWN_TABARD', 0, '-inv_shirt_guildtabard_01', true, 561)
 		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {22999}))
-
-    --[[
-    --TBC
-    L:Achievement(featsOfStrength, 0, '-inv_shirt_guildtabard_01')
-        :NameDesc('AN_PREPATCH_QUEST', 'AD_PREPATCH_QUEST', true)
-        :Criteria(TYPE.COMPLETE_QUEST, {10259}):Build()
-        :Build()
-
-    L:Achievement(featsOfStrength, 0, '-Inv_Weapon_Glave_01')
-        :NameDesc('AN_AZZINOTH', 'AD_AZZINOTH', true)
-        :Criteria(TYPE.OBTAIN_ITEM, { 32837 }):Name('AC_OBTAIN_MAINHAND_AZZINOTH', true):Build()
-        :Criteria(TYPE.OBTAIN_ITEM, { 32838 }):Name('AC_OBTAIN_OFFHAND_AZZINOTH', true):Build()
-        :Build()
-		
-	L:Achievement(featsOfStrength, 0, '-inv_weapon_bow_39')
-        :NameDesc('AN_THORIDAL', 'AD_THORIDAL', true)
-        :Criteria(TYPE.OBTAIN_ITEM, { 34334 }):Build()
-        :Build()
-		
-	ach = featsOfStrength:CreateAchievement('AN_BEAR_MOUNT', 'AD_BEAR_MOUNT', 0, '-ability_druid_challangingroar', true)
-		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {33809}))
-		
-	ach = featsOfStrength:CreateAchievement('AN_HAWK_MOUNT', 'AD_HAWK_MOUNT', 0, '-ability_mount_cockatricemountelite_green', true)
-		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {35513}))
-		
-	ach = featsOfStrength:CreateAchievement('AN_ALAR_MOUNT', 'AD_ALAR_MOUNT', 0, '-inv_misc_summerfest_brazierorange', true)
-		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {32458}))
-
-    L:Achievement(featsOfStrength, 0, '-Inv_Helmet_96')
-        :NameDesc('AN_P3_FIRST_WEEK', 'AD_P3_FIRST_WEEK', true)
-        :Criteria(TYPE.P3_FIRST_WEEK, { 17968 }):Name('AC_KILL_ARCHIMONDE', true):Build()
-        :Criteria(TYPE.P3_FIRST_WEEK, { 22917 }):Name('AC_KILL_ILLIDAN', true):Build()
-        :Reward('AR_P3_FIRST_WEEK', true)
-        :Build()
-
-	ach = featsOfStrength:CreateAchievement('AN_FLIGHFORM', 'AD_FLIGHFORM', 0, '-ability_druid_flightform', true, 522)
-		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {11001}))	
-		
-	ach = featsOfStrength:CreateAchievement('AN_HORSEMAN_MOUNT', 'AD_HORSEMAN_MOUNT', 0, '-inv_belt_12', true, 527)
-		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {37012}))		
-		
-	ach = featsOfStrength:CreateAchievement('AN_HERO_SHATTRATH', 'AD_HERO_SHATTRATH', 0, '-spell_arcane_teleportshattrath', true, 528)
-		ach:AddCriteria(criterias:Create(loc:Get('AN_HERO_ALDOR'), TYPE.REACH_REPUTATION, {932, 8}))	
-		ach:AddCriteria(criterias:Create(loc:Get('AN_HERO_SCRYER'), TYPE.REACH_REPUTATION, {934, 8}))
-		
-	ach = featsOfStrength:CreateAchievement('AN_CHAMPION_NAARU', 'AD_CHAMPION_NAARU', 0, '-inv_mace_51', true, 529)
-		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {10901}))
-		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {10888}))
-		ach:SetRewardText(loc:Get('AR_CHAMPION_NAARU'))	
-		
-	ach = featsOfStrength:CreateAchievement('AN_HAND_ADAL', 'AD_HAND_ADAL', 0, '-inv_mace_25', true, 530)
-		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {10445}))
-		ach:SetRewardText(loc:Get('AR_HAND_ADAL'))
-
-    ]]
 end
 
 --DELETE WHEN TBC COMES OUT

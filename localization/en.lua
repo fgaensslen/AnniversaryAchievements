@@ -1479,38 +1479,5 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_BLACK_TEMPLE = 'The Black Temple',
     AD_BLACK_TEMPLE = 'Earn the achievements listed below by defeating all bosses in the Black Temple.',
-    AR_BLACK_TEMPLE = 'Conqueror of the Black Temple',
-
-    AN_AZZINOTH = 'Warglaives of Azzinoth',
-    AD_AZZINOTH = 'Wielder of a set of Warglaives of Azzinoth.',
-	AN_THORIDAL = 'Thori\'dal, the Stars\' Fury',
-    AD_THORIDAL = 'Wielder of Thori\'dal, the Stars\' Fury.',
-    AC_OBTAIN_MAINHAND_AZZINOTH = 'Right Warglaive of Azzinoth',
-    AC_OBTAIN_OFFHAND_AZZINOTH = 'Left Warglaive of Azzinoth',
-	AN_BEAR_MOUNT = 'Amani War Bear',
-    AD_BEAR_MOUNT = 'Owner of Amani War Bear.',
-	AN_HAWK_MOUNT = 'Swift White Hawkstrider',
-    AD_HAWK_MOUNT = 'Obtain the Swift White Hawkstrider from Kael\'thas Sunstrider in Magister\'s Terrace.',
-	AN_ALAR_MOUNT = 'Ashes of Al\'ar',
-    AD_ALAR_MOUNT = 'Obtain the Ashes of Al\'ar from Kael\'thas Sunstrider in Tempest Keep.',
-	AN_HORSEMAN_MOUNT = 'The Horseman\'s Reins',
-	AD_HORSEMAN_MOUNT = 'Obtain The Horseman\'s Reins from The Headless Horseman in the Scarlet Monastery during Hallow\'s End.',
-	AN_HERO_SHATTRATH = 'Hero of Shattrath',
-	AD_HERO_SHATTRATH = 'Gained exalted status with The Scryers and The Aldor.',
-	AN_HERO_SCRYER = 'The Scryers',
-	AN_HERO_ALDOR = 'The Aldor',
-	AN_CHAMPION_NAARU = 'Champion of the Naaru',
-	AD_CHAMPION_NAARU = 'Earned the title, "Champion of the Naaru".',
-	AR_CHAMPION_NAARU = 'Champion of the Naaru',
-	AN_HAND_ADAL = 'Hand of  A\'dal',
-	AD_HAND_ADAL = 'Earned the title, "Hand of A\'dal".',
-	AR_HAND_ADAL = 'Hand of  A\'dal',
-
-    AN_P3_FIRST_WEEK = 'Conqueror of the Outland',
-    AD_P3_FIRST_WEEK = 'Defeat Archimonde and Illidan Stormrage in their respective raids within the first week of the release of Phase Three.',
-    AC_KILL_ARCHIMONDE = 'Archimonde',
-    AR_P3_FIRST_WEEK = 'Conqueror of Outland',
-	
-	AN_FLIGHFORM = 'Swift Flight Form',
-	AD_FLIGHFORM = 'Completed the druid quest to obtain Swift Flight Form.'
+    AR_BLACK_TEMPLE = 'Conqueror of the Black Temple'
 })
