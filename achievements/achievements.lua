@@ -69,13 +69,14 @@ do
     for i = 1, 7 do
         local lvl = i * 10
         ach = general:CreateAchievement(loc:Get('AN_LVL', lvl), loc:Get('AD_LVL', lvl), 10, 'level_' .. lvl)
-        ach:AddCriteria(criterias:Create(nil, TYPE.REACH_LEVEL, {lvl}))
+            ach:AddCriteria(criterias:Create(nil, TYPE.REACH_LEVEL, {lvl}))
+
         if previous then previous:SetNext(ach) end
         previous = ach
     end
 	
 	ach = general:CreateAchievement('AN_BANK', 'AD_BANK', 10, '-inv_box_01', true)
-	ach:AddCriteria(criterias:Create('AC_BANK', TYPE.BANK_SLOTS, nil, 7))
+	    ach:AddCriteria(criterias:Create('AC_BANK', TYPE.BANK_SLOTS, nil, 7))
 
     previous = nil
     for i, count in pairs({100, 1000, 5000, 10000, 25000, 50000, 100000}) do
@@ -194,7 +195,9 @@ do
 	elseif englishClass == 'SHAMAN' then
 		add('SHAMAN_T3', 'AD_SET', '-inv_helmet_15', {22466, 22467, 22464, 22465, 22468, 22470, 22469, 22471, 23065})
 	end
-	
+
+    ach = general:CreateAchievement('AN_DOLCE', 'AD_DOLCE', 10, '-inv_misc_bag_27', true, 627)
+        ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {38082}, nil, 6270))
 end
 
 -- QUESTS --
@@ -571,36 +574,53 @@ do
     local pvpIcon
     local previous = nil
 
-    local factionLetter
-    if UnitFactionGroup('player') == 'Horde' then
-        factionLetter = 'H'
-    else
-        factionLetter = 'A'
-    end
+    local factionLetter = (UnitFactionGroup('player') == 'Horde') and 'H' or 'A'
+    local pvpAchievements = {} -- Temporary table to store references for this session
 
+    -- 1. Generate all 14 and immediately disable them
     for i = 1, 14 do
-        pvpIcon = 'pvp_rank_'
-
+        local pvpIcon = 'pvp_rank_'
         local ach = featsOfStrength:CreateAchievement(
             'AN_PVP_RANK_' .. factionLetter .. i,
-            'AD_PVP_RANK', -- description set dynamically
+            'AD_PVP_RANK', 
             0,
             pvpIcon .. i,
             true
         )
 
-        -- Build description from the achievement title
         local title = ach.name
-        local desc = string.format(loc:Get('AD_PVP_RANK'), title)
-        ach.description = desc
-
+        ach.description = string.format(loc:Get('AD_PVP_RANK'), title)
         ach:AddCriteria(criterias:Create(nil, TYPE.REACH_PVP_RANK, { i }))
 
-        if previous then
-            previous:SetNext(ach)
-        end
-        previous = ach
+        -- Mark as unavailable so it doesn't show in the UI list
+        ach:SetUnavailable()
+        
+        -- Store reference to enable it later
+        pvpAchievements[i] = ach
     end
+
+    -- 2. Define the Refresh Function
+    local function RefreshPvpAchievement()
+        local rank = UnitPVPRank("player")
+        local highestRank = rank - 4 -- Your TBC offset logic
+
+        if highestRank > 0 and highestRank <= 14 then
+            -- Hide all first to be safe
+            for _, ach in pairs(pvpAchievements) do ach.unavailable = true end
+            
+            -- Show the current one
+            local currentAch = pvpAchievements[highestRank]
+            if currentAch then
+                currentAch.unavailable = false
+                for _, criteria in pairs(currentAch.criterias) do
+                    criteria.deactivated = false
+                end
+            end
+        end
+    end
+
+    --Necessary to delay the initial check until the player data is loaded
+    C_Timer.After(1, RefreshPvpAchievement)
 
     local previous = pvp:CreateAchievement('AN_PVP_FIRST_KILL', 'AD_PVP_FIRST_KILL', 10, 'achievement_pvp_p_01', true)
     previous:AddCriteria(criterias:CreateL('AC_PVP_FIRST_KILL', TYPE.KILL_PLAYERS, nil, 1))
@@ -1991,7 +2011,7 @@ do
         ach:AddCriteria(criterias:Create(loc:Get('AC_NOBLEGARDEN_CLOTHES_CRITERIA2'), TYPE.OBTAIN_ITEM, {6835}))
     
     ach = noblegarden:CreateAchievement('AN_NOBLEGARDEN_DRESS', 'AD_NOBLEGARDEN_DRESS', 10, '-inv_chest_cloth_04', true, 626)
-        ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {19028}))
+        ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {19028}))  
 end
 
 -- REPUTATION --

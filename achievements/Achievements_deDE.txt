@@ -624,3 +624,4 @@ ID; Name; Description; Icon
 624 ; Der Andere Ring ; Erhaltet den Anderen Ring aus einem Sack voll geangelter Schätze. ; -inv_jewelry_ring_34
 625 ; Smoking und Häschen ; Findet das weiße Smokinghemd und die schwarze Smokinghose, indem Ihr die bunt gefärbten Eier während des Nobelgartenfests öffnet. ; -inv_shirt_08
 626 ; Dem Anlass entsprechend gekleidet ; Entdeckt ein elegantes Kleid, indem Ihr die bunt gefärbten Eier während des Nobelgartenfests öffnet. ; -inv_chest_cloth_04
+627 ; Meine Tasche ist von "Dolche & Giganta" ; Legt Haris Piltons 'Dolche & Giganta'-Tasche an. ; -inv_misc_bag_27

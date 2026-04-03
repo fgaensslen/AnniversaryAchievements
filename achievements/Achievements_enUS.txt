@@ -608,7 +608,6 @@ ID; Name; Description
 608 ; Sweet Tooth ; Sample the Love is in the Air candies listed below. ; -inv_valentineschocolate02
 609 ; Lovely Luck Is On Your Side ; Open a Lovely Dress Box and receive a Lovely Black Dress. ; -inv_chest_cloth_50
 610 ; Perma-Peddle ; Obtain a permanent Peddlefeet pet by procuring a Truesilver Shafted Arrow. ; -inv_ammo_arrow_02
-Shafted Arrow. ; -inv_ammo_arrow_02
 611 ; To Honor One's Elders ; Complete the Lunar Festival achievements listed below. ; achievement_worldevent_lunar
 612 ; A Coin of Ancestry ; Receive a Coin of Ancestry. ; -inv_misc_elvencoins
 613 ; 5 Coins of Ancestry ; Receive 5 Coins of Ancestry. ; -inv_misc_elvencoins
@@ -625,3 +624,4 @@ Shafted Arrow. ; -inv_ammo_arrow_02
 624 ; The 2 Ring ; Obtain The 2 Ring from a Bag of Fishing Treasures. ; -inv_jewelry_ring_34
 625 ; Sunday's Finest ; Discover the White Tuxedo Shirt and Black Tuxedo Pants by opening Brightly Colored Eggs during the Noblegarden celebration. ; -inv_shirt_08
 626 ; Dressed for the Occasion ; Discover an Elegant Dress by opening Brightly Colored Eggs during the Noblegarden celebration. ; -inv_chest_cloth_04
+627 ; My Storage is "Gigantique" ; Equip Haris Pilton's "Gigantique" Bag. ; -inv_misc_bag_27

@@ -1155,6 +1155,9 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AD_NOBLEGARDEN_DRESS = 'Discover an Elegant Dress by opening Brightly Colored Eggs during the Noblegarden celebration.',
 
 	--TBC
+    AN_DOLCE = 'My Storage is "Gigantique"',
+    AD_DOLCE = 'Equip Haris Pilton\'s "Gigantique" Bag.',
+
     AN_QUESTS_HELLFIRE_PENINSULA = 'To Hellfire and Back',
     AD_QUESTS_HELLFIRE_PENINSULA = 'Complete the Hellfire Peninsula storylines listed below.',
     TBC_QUEST_10388 = 'Disrupt the Burning Legion',
