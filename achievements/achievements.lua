@@ -589,7 +589,7 @@ do
         local ach = pvp:CreateAchievement(
             'AN_PVP_RANK_' .. factionLetter .. i,
             'AD_PVP_RANK', -- description set dynamically
-            0,
+            10,
             pvpIcon .. i,
             true
         )
