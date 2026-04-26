@@ -103,6 +103,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_VALENTINES = 'Liebe liegt in der Luft',
     CATEGORY_LUNAR = 'Mondfest',
     CATEGORY_NOBLEGARDEN = 'Nobelgarten',
+    CATEGORY_CHILDREN = 'Kinderwoche',
     CATEGORY_FEATS_OF_STRENGTH = 'Heldentaten',
 	
 	AN_DRUID_T1 = 'Gewänder des Cenarius',
@@ -1153,6 +1154,20 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_NOBLEGARDEN_DRESS = 'Dem Anlass entsprechend gekleidet',
     AD_NOBLEGARDEN_DRESS = 'Entdeckt ein elegantes Kleid, indem Ihr die bunt gefärbten Eier während des Nobelgartenfests öffnet.',
+
+    --CHILDRENS WEEK
+    AN_CHILDREN = 'Ein Herz für Kinder',
+    AD_CHILDREN = 'Schließt die unten aufgelisteten Erfolge der \'Kinderwoche\' ab.',
+    AR_CHILDREN = 'Patron',
+
+    AN_CHILDREN_PET = 'Och, ist das nicht süß?',
+    AD_CHILDREN_PET = 'Erhaltet eines der Belohnungshaustiere der Kinderwoche.',
+
+    AN_CHILDREN_PETS = 'Tierhüterveteran',
+    AD_CHILDREN_PETS = 'Erhaltet das Ei des Kolumbus, den schläfrigen Willy und das Elekkhalsband mit einem Charakter.',
+    AC_CHILDREN_PETS1 = 'Elekkhalsband',
+    AC_CHILDREN_PETS2 = 'Schläfriger Willy',
+    AC_CHILDREN_PETS3 = 'Ei des Kolumbus',
     
 	--BURNING CRUSADE
     AN_DOLCE = 'Meine Tasche ist von "Dolche & Giganta"',

@@ -103,6 +103,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_VALENTINES = 'Love is in the Air',
     CATEGORY_LUNAR = 'Lunar Festival',
     CATEGORY_NOBLEGARDEN = 'Noblegarden',
+    CATEGORY_CHILDREN = 'Children\'s Week',
     CATEGORY_FEATS_OF_STRENGTH = 'Feats of Strength',
 	
 	AN_DRUID_T1 = 'Cenarion Raiment',
@@ -1153,6 +1154,20 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_NOBLEGARDEN_DRESS = 'Dressed for the Occasion',
     AD_NOBLEGARDEN_DRESS = 'Discover an Elegant Dress by opening Brightly Colored Eggs during the Noblegarden celebration.',
+
+    --CHILDRENS WEEK
+    AN_CHILDREN = 'For The Children',
+    AD_CHILDREN = 'Complete the Children\'s Week achievements listed below.',
+    AR_CHILDREN = 'Patron',
+    
+    AN_CHILDREN_PET = 'Aw, Isn\'t It Cute?',
+    AD_CHILDREN_PET = 'Obtain one of the Children\'s Week reward pets.',
+
+    AN_CHILDREN_PETS = 'Veteran Nanny',
+    AD_CHILDREN_PETS = 'Acquire Egbert\'s Egg, Sleepy Willy, and Elekk Training Collar on one character.',
+    AC_CHILDREN_PETS1 = 'Elekk Training Collar',
+    AC_CHILDREN_PETS2 = 'Sleepy Willy',
+    AC_CHILDREN_PETS3 = 'Egbert\'s Egg',
 
 	--TBC
     AN_DOLCE = 'My Storage is "Gigantique"',

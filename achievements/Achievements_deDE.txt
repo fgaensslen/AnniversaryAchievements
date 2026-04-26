@@ -625,3 +625,6 @@ ID; Name; Description; Icon
 625 ; Smoking und Häschen ; Findet das weiße Smokinghemd und die schwarze Smokinghose, indem Ihr die bunt gefärbten Eier während des Nobelgartenfests öffnet. ; -inv_shirt_08
 626 ; Dem Anlass entsprechend gekleidet ; Entdeckt ein elegantes Kleid, indem Ihr die bunt gefärbten Eier während des Nobelgartenfests öffnet. ; -inv_chest_cloth_04
 627 ; Meine Tasche ist von "Dolche & Giganta" ; Legt Haris Piltons 'Dolche & Giganta'-Tasche an. ; -inv_misc_bag_27
+628 ; Ein Herz für Kinder ; Schließt die unten aufgelisteten Erfolge der 'Kinderwoche' ab. ; -inv_misc_toy_04
+629 ; Och, ist das nicht süß? ; Erhaltet eines der Belohnungshaustiere der Kinderwoche. ; -ability_hunter_pet_turtle
+630 ; Tierhüterveteran ; Erhaltet das Ei des Kolumbus, den schläfrigen Willy und das Elekkhalsband mit einem Charakter. ; -inv_misc_toy_01

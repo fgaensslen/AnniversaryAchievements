@@ -625,3 +625,6 @@ ID; Name; Description
 625 ; Sunday's Finest ; Discover the White Tuxedo Shirt and Black Tuxedo Pants by opening Brightly Colored Eggs during the Noblegarden celebration. ; -inv_shirt_08
 626 ; Dressed for the Occasion ; Discover an Elegant Dress by opening Brightly Colored Eggs during the Noblegarden celebration. ; -inv_chest_cloth_04
 627 ; My Storage is "Gigantique" ; Equip Haris Pilton's "Gigantique" Bag. ; -inv_misc_bag_27
+628 ; For The Children ; Complete the Children's Week achievements listed below. ; -inv_misc_toy_04
+629 ; Aw, Isn't It Cute? ; Obtain one of the Children's Week reward pets. ; -ability_hunter_pet_turtle
+630 ; Veteran Nanny ; AAcquire Egbert's Egg, Sleepy Willy, and Elekk Training Collar on one character.  -inv_misc_toy_01
