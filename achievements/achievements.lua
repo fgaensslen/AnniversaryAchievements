@@ -58,6 +58,7 @@ local worldevents = tab:CreateCategory('CATEGORY_EVENTS', nil, true)
 local lunar = tab:CreateCategory('CATEGORY_LUNAR', worldevents.id, true)
 local valentines = tab:CreateCategory('CATEGORY_VALENTINES', worldevents.id, true)
 local noblegarden = tab:CreateCategory('CATEGORY_NOBLEGARDEN', worldevents.id, true)
+local children = tab:CreateCategory('CATEGORY_CHILDREN', worldevents.id, true)
 local hallowsend = tab:CreateCategory('CATEGORY_HALLOWSEND', worldevents.id, true)
 local winterveil = tab:CreateCategory('CATEGORY_WINTERVEIL', worldevents.id, true)
 
@@ -1862,6 +1863,22 @@ do
         
         ach = noblegarden:CreateAchievement('AN_NOBLEGARDEN_DRESS', 'AD_NOBLEGARDEN_DRESS', 10, '-inv_chest_cloth_04', true, 627)
             ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {19028}))
+
+        --CHILDRENS WEEK
+        childrenSummary = worldevents:CreateAchievement('AN_CHILDREN', 'AD_CHILDREN', 10, '-inv_misc_toy_04', true, 628)
+            childrenSummary:SetRewardText(loc:Get('AR_CHILDREN'))
+        
+        local petItems = {
+            23007, 23015, 23002
+        }
+        subCriterias = {}
+        for _, itemID in ipairs(petItems) do
+            table.insert(subCriterias, criterias:Create(nil, TYPE.OBTAIN_ITEM, { itemID }))
+        end    
+
+        ach = children:CreateAchievement('AN_CHILDREN_PET', 'AD_CHILDREN_PET', 10, '-ability_hunter_pet_turtle', true, 629)
+            ach:AddCriteria(criterias:Create(nil, TYPE.OR, subCriterias, nil, 6290))
+        childrenSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6280))
 end
 
 -- REPUTATION --

@@ -102,6 +102,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_VALENTINES = 'Love is in the Air',
     CATEGORY_LUNAR = 'Lunar Festival',
     CATEGORY_NOBLEGARDEN = 'Noblegarden',
+    CATEGORY_CHILDREN = 'Children\'s Week',
     CATEGORY_FEATS_OF_STRENGTH = 'Feats of Strength',
 	
 	AN_DRUID_T1 = 'Cenarion Raiment',
@@ -1147,6 +1148,14 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_NOBLEGARDEN_DRESS = 'Dressed for the Occasion',
     AD_NOBLEGARDEN_DRESS = 'Discover an Elegant Dress by opening Brightly Colored Eggs during the Noblegarden celebration.',
+
+    --CHILDRENS WEEK
+    AN_CHILDREN = 'For The Children',
+    AD_CHILDREN = 'Complete the Children\'s Week achievements listed below.',
+    AR_CHILDREN = 'Patron',
+    
+    AN_CHILDREN_PET = 'Aw, Isn\'t It Cute?',
+    AD_CHILDREN_PET = 'Obtain one of the Children\'s Week reward pets.',
 
 	--TBC
     AN_QUESTS_HELLFIRE_PENINSULA = 'To Hellfire and Back',
