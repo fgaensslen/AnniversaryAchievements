@@ -405,11 +405,18 @@ do
 	ach = outlandQuests:CreateAchievement('AN_HEMET_QUESTS_NAGRAND', 'AD_HEMET_QUESTS_NAGRAND', 10, '-ability_mount_ridingelekk', true, 526)
 		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9852}))
 
-    --ATTUNEMENT    
-	L:Achievement(outlandQuests, 10, '-inv_misc_key_02')
-        :NameDesc('AN_ATTUNE_SHATTERED_HALLS', 'AD_ATTUNE_SHATTERED_HALLS', true)
-        :Criteria(TYPE.OBTAIN_ITEM, {28395}):Build()
-        :Build()
+    --ATTUNEMENT  
+    if UnitFactionGroup('player') == 'Horde' then  
+        L:Achievement(outlandQuests, 10, '-inv_misc_key_02')
+            :NameDesc('AN_ATTUNE_SHATTERED_HALLS', 'AD_ATTUNE_SHATTERED_HALLS', true)
+            :Criteria(TYPE.COMPLETE_QUEST, {10758}):Build()
+            :Build()
+    else
+        L:Achievement(outlandQuests, 10, '-inv_misc_key_02')
+            :NameDesc('AN_ATTUNE_SHATTERED_HALLS', 'AD_ATTUNE_SHATTERED_HALLS', true)
+            :Criteria(TYPE.COMPLETE_QUEST, {10764}):Build()
+            :Build()
+    then
 		
 	L:Achievement(outlandQuests, 10, '-inv_datacrystal03')
         :NameDesc('AN_ATTUNE_ARCATRAZ', 'AD_ATTUNE_ARCATRAZ', true)
@@ -423,7 +430,7 @@ do
 		
 	L:Achievement(outlandQuests, 10, '-inv_misc_urn_01')
         :NameDesc('AN_ATTUNE_NIGHT_BANE', 'AD_ATTUNE_NIGHT_BANE', true)
-        :Criteria(TYPE.OBTAIN_ITEM, {24140}):Build()
+        :Criteria(TYPE.COMPLETE_QUEST, {9644}):Build()
         :Build()
 		
 	L:Achievement(outlandQuests, 10, '-inv_trinket_naxxramas01')
@@ -440,10 +447,10 @@ do
         :NameDesc('AN_ATTUNE_HYJAL', 'AD_ATTUNE_HYJAL', true)
         :Criteria(TYPE.COMPLETE_QUEST, {10445}):Build()
         :Build()
-		
+
 	L:Achievement(outlandQuests, 10, '-inv_jewelry_amulet_04')
         :NameDesc('AN_ATTUNE_BLACK_TEMPLE', 'AD_ATTUNE_BLACK_TEMPLE', true)
-        :Criteria(TYPE.OR, {L:Criteria(TYPE.OBTAIN_ITEM, {32649}):Build(), L:Criteria(TYPE.OBTAIN_ITEM, {32757}):Build()}):Build()
+        :Criteria(TYPE.COMPLETE_QUEST, {10985}):Build()
         :Build()    
 end
 
