@@ -450,7 +450,7 @@ do
 
 	L:Achievement(outlandQuests, 10, '-inv_jewelry_amulet_04')
         :NameDesc('AN_ATTUNE_BLACK_TEMPLE', 'AD_ATTUNE_BLACK_TEMPLE', true)
-        :Criteria(TYPE.COMPLETE_QUEST, {10985}):Build()
+        :Criteria(TYPE.OR, {L:Criteria(TYPE.COMPLETE_QUEST, {10985}):Build(), L:Criteria(TYPE.COMPLETE_QUEST, {10985}):Build()}):Build()
         :Build()    
 end
 
