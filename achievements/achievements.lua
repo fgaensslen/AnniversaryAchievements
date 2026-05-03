@@ -2222,8 +2222,13 @@ do
 	ach = featsOfStrength:CreateAchievement('AN_PALADIN_MOUNT', 'AD_PALADIN_MOUNT', 0, '-ability_mount_charger', true, 525)
 		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {7647}))
 
-    ach = featsOfStrength:CreateAchievement('AN_ARGENT_DAWN_TABARD', 'AD_ARGENT_DAWN_TABARD', 0, '-inv_shirt_guildtabard_01', true, 561)
-		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {22999}))
+    if UnitFactionGroup('player') == 'Horde' then
+        ach = featsOfStrength:CreateAchievement('AN_ARGENT_DAWN_TABARD', 'AD_ARGENT_DAWN_TABARD', 0, '-inv_shirt_guildtabard_01', true, 561)
+		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9343}))
+    else
+        ach = featsOfStrength:CreateAchievement('AN_ARGENT_DAWN_TABARD', 'AD_ARGENT_DAWN_TABARD', 0, '-inv_shirt_guildtabard_01', true, 561)
+        ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9341}))
+    end
 
     --TBC
     L:Achievement(featsOfStrength, 0, '-inv_shirt_guildtabard_01')
