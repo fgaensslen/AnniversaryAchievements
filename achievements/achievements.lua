@@ -416,7 +416,7 @@ do
             :NameDesc('AN_ATTUNE_SHATTERED_HALLS', 'AD_ATTUNE_SHATTERED_HALLS', true)
             :Criteria(TYPE.COMPLETE_QUEST, {10764}):Build()
             :Build()
-    then
+    end
 		
 	L:Achievement(outlandQuests, 10, '-inv_datacrystal03')
         :NameDesc('AN_ATTUNE_ARCATRAZ', 'AD_ATTUNE_ARCATRAZ', true)
@@ -2224,10 +2224,10 @@ do
 
     if UnitFactionGroup('player') == 'Horde' then
         ach = featsOfStrength:CreateAchievement('AN_ARGENT_DAWN_TABARD', 'AD_ARGENT_DAWN_TABARD', 0, '-inv_shirt_guildtabard_01', true, 561)
-		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9343}))
+		    ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9343}))
     else
         ach = featsOfStrength:CreateAchievement('AN_ARGENT_DAWN_TABARD', 'AD_ARGENT_DAWN_TABARD', 0, '-inv_shirt_guildtabard_01', true, 561)
-        ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9341}))
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9341}))
     end
 
     --TBC
