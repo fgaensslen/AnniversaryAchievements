@@ -6,8 +6,8 @@ It integrates perfectly with the Standard UI and uses the same graphics and soun
 
 ### Download
 
-- WoW TBC: Version 2.1.9
-- WoW Classic: Version 1.4.1. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
+- WoW TBC: Version 2.2.0
+- WoW Classic: Version 1.4.2. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
 
 ### Achievements
 
