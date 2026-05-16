@@ -1508,7 +1508,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_ATTUNE_KARAZHAN = 'The Master\'s Touch',
     AD_ATTUNE_KARAZHAN = 'Obtain The Master\'s Key.',
     AN_ATTUNE_NIGHT_BANE = 'Digging Up the Past',
-    AD_ATTUNE_NIGHT_BANE = 'Obtain the Blackened Urn.',
+    AD_ATTUNE_NIGHT_BANE = 'Obtain the Blackened Urn and defeat Nightbane in Karazhan.',
     AN_ATTUNE_SSC = 'The Cudgel of Kar\'desh',
     AD_ATTUNE_SSC = 'Gain access to the Serpentshrine Cavern.',
     AN_ATTUNE_EYE = 'The Tempest Key',

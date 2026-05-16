@@ -1508,7 +1508,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_ATTUNE_KARAZHAN = 'Die Berührung des Meisters',
     AD_ATTUNE_KARAZHAN = 'Erhaltet den Schlüssel des Meisters.',
     AN_ATTUNE_NIGHT_BANE = 'Die Vergangenheit aufwühlen',
-    AD_ATTUNE_NIGHT_BANE = 'Erhaltet die Geschwärzte Urne.',
+    AD_ATTUNE_NIGHT_BANE = 'Erhaltet die Geschwärzte Urne und bezwingt den Schrecken der Nacht in Karazhan.',
     AN_ATTUNE_SSC = 'Der Knüppel von Kar\'desh',
     AD_ATTUNE_SSC = 'Erhaltet Zugang zur Höhle des Schlangenschreins.',
     AN_ATTUNE_EYE = 'Der Schlüssel der Stürme',
