@@ -1321,6 +1321,14 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_TBC_DUNGEONS_HERO = 'Outland Dungeon Hero',
     AD_TBC_DUNGEONS_HERO = 'Complete the heroic Burning Crusade dungeon achievements listed below.',
 
+    AN_OUTLAND_HERO = 'Hero of Outland',
+    AD_OUTLAND_HERO = 'Earn the raid achievements listed below.',
+    AR_OUTLAND_HERO = 'Hero of Outland',
+    
+    AN_OUTLAND_GREAT_HERO = 'Great Hero of Outland',
+    AD_OUTLAND_GREAT_HERO = 'Earn the raid and dungeon achievements listed below.',
+    AR_OUTLAND_GREAT_HERO = 'Great Hero of Outland',
+
     AN_RAVEN_LORD = 'Reins of the Raven Lord',
     AD_RAVEN_LORD = 'Obtain the Reins of the Raven Lord from Anzu in Sethekk Halls.',
 

@@ -1321,6 +1321,14 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_TBC_DUNGEONS_HERO = 'Dungeonheld der Scherbenwelt',
     AD_TBC_DUNGEONS_HERO = 'Schließt die unten aufgelisteten heroischen "Burning Crusade"-Dungeonerfolge ab.',
 
+    AN_OUTLAND_HERO = 'Held der Scherbenwelt',
+    AD_OUTLAND_HERO = 'Schließt die unten aufgelisteten Schlachtzugserfolge ab.',
+    AR_OUTLAND_HERO = 'Held der Scherbenwelt',
+    
+    AN_OUTLAND_GREAT_HERO = 'Großartiger Held der Scherbenwelt',
+    AD_OUTLAND_GREAT_HERO = 'Schließt die unten aufgelisteten Dungeon- und Schlachtzugserfolge ab.',
+    AR_OUTLAND_GREAT_HERO = 'Großartiger Held der Scherbenwelt',
+
     AN_RAVEN_LORD = 'Die Zügel des Rabenfürsten',
     AD_RAVEN_LORD = 'Erhaltet die Zügel des Rabenfürsten von Anzu in den Sethekkhallen.',
 

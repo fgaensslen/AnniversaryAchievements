@@ -1469,7 +1469,21 @@ do
 	local p5 = L:Achievement(pve, 10, '-inv_helmet_92')
         :NameDesc('AN_TBC_PHASE_5', 'AD_TBC_PHASE_5', true)
 		:Criteria(TYPE.COMPLETE_ACHIEVEMENT, {sunwell.id}):Name(sunwell.name):Build()
-        :Build() 		
+        :Build()    
+
+    local outlandHero = pve:CreateAchievement('AN_OUTLAND_HERO', 'AD_OUTLAND_HERO', 10, 'achievement_dungeon_outland_dungeon_hero', true, 631)
+        outlandHero:AddCriteria(criterias:CreateL('AN_YOUNG_HERO', TYPE.COMPLETE_ACHIEVEMENT, {p1.id}, nil, 6310))
+        outlandHero:AddCriteria(criterias:CreateL('AN_YOUNG_HERO', TYPE.COMPLETE_ACHIEVEMENT, {p2.id}, nil, 6311))
+        outlandHero:AddCriteria(criterias:CreateL('AN_YOUNG_HERO', TYPE.COMPLETE_ACHIEVEMENT, {p3.id}, nil, 6312))
+        outlandHero:AddCriteria(criterias:CreateL('AN_YOUNG_HERO', TYPE.COMPLETE_ACHIEVEMENT, {p4.id}, nil, 6313))
+        outlandHero:AddCriteria(criterias:CreateL('AN_YOUNG_HERO', TYPE.COMPLETE_ACHIEVEMENT, {p5.id}, nil, 6314))
+        outlandHero:SetRewardText(loc:Get('AR_OUTLAND_HERO'))
+
+    local outlandGreatHero = pve:CreateAchievement('AN_OUTLAND_GREAT_HERO', 'AD_OUTLAND_GREAT_HERO', 10, 'spell_holy_proclaimchampion_02', true, 632)
+        outlandGreatHero:AddCriteria(criterias:CreateL('AN_GREAT_HERO', TYPE.COMPLETE_ACHIEVEMENT, {builderNormalTBC.id}, nil, 6320))
+        outlandGreatHero:AddCriteria(criterias:CreateL('AN_GREAT_HERO', TYPE.COMPLETE_ACHIEVEMENT, {builderHeroicTBC.id}, nil, 6321))
+        outlandGreatHero:AddCriteria(criterias:CreateL('AN_GREAT_HERO', TYPE.COMPLETE_ACHIEVEMENT, {outlandHero.id}, nil, 6322))
+        outlandGreatHero:SetRewardText(loc:Get('AR_OUTLAND_GREAT_HERO'))
 end
 
 -- PROFESSIONS --

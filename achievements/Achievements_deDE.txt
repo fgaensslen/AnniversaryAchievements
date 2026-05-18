@@ -628,3 +628,5 @@ ID; Name; Description; Icon
 628 ; Ein Herz für Kinder ; Schließt die unten aufgelisteten Erfolge der 'Kinderwoche' ab. ; -inv_misc_toy_04
 629 ; Och, ist das nicht süß? ; Erhaltet eines der Belohnungshaustiere der Kinderwoche. ; -ability_hunter_pet_turtle
 630 ; Tierhüterveteran ; Erhaltet das Ei des Kolumbus, den schläfrigen Willy und das Elekkhalsband mit einem Charakter. ; -inv_misc_toy_01
+631 ; Held der Scherbenwelt ; Schließt die unten aufgelisteten Schlachtzugserfolge ab. ; achievement_dungeon_outland_dungeon_hero
+632 ; Großartiger Held der Scherbenwelt ; Schließt die unten aufgelisteten Dungeon- und Schlachtzugserfolge ab. ; spell_holy_proclaimchampion_02
