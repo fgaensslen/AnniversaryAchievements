@@ -2279,8 +2279,8 @@ do
 		ach:SetRewardText(loc:Get('AR_CHAMPION_NAARU'))	
 		
 	ach = featsOfStrength:CreateAchievement('AN_HAND_ADAL', 'AD_HAND_ADAL', 0, '-inv_mace_25', true, 530)
-		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {10445}))
-        ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {10985}))
+		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {10445}, nil, 5300))
+        ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {10985}, nil, 5301))
 		ach:SetRewardText(loc:Get('AR_HAND_ADAL'))
 
     ach = featsOfStrength:CreateAchievement('AN_KRUUL', 'AD_KRUUL', 0, '-spell_shadow_demonictactics', true, 575)
