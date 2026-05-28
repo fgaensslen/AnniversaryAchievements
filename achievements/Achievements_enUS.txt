@@ -630,3 +630,9 @@ ID; Name; Description
 630 ; Veteran Nanny ; Acquire Egbert's Egg, Sleepy Willy, and Elekk Training Collar on one character. ; -inv_misc_toy_01
 631 ; Hero of Outland ; Earn the raid achievements listed below. ; achievement_dungeon_outland_dungeon_hero
 632 ; Great Hero of Outland ; Earn the raid and dungeon achievements listed below. ; spell_holy_proclaimchampion_02
+633 ; The Flame Keeper ; Complete the Midsummer achievements listed below. ; -inv_summerfest_symbol_high
+634 ; King of the Fire Festival ; Complete the quest, "A Thief's Reward", by stealing the flames from your enemy's capital cities. ; -inv_helmet_08
+635 ; Extinguishing Kalimdor ; Desecrate the Horde's bonfires in Kalimdor. ; -spell_fire_masterofelements
+636 ; Extinguishing Outland ; Desecrate the Horde's bonfires in Outland. ; -spell_fire_masterofelements
+637 ; Extinguishing Eastern Kingdoms ; Desecrate the Horde's bonfires in Eastern Kingdoms. ; -spell_fire_masterofelements
+638 ; Desecration of the Horde ; Complete the Extinguishing Eastern Kingdoms, Kalimdor and Outland achievements. ; -spell_fire_masterofelements

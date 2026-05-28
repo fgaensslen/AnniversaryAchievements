@@ -630,3 +630,9 @@ ID; Name; Description; Icon
 630 ; Tierhüterveteran ; Erhaltet das Ei des Kolumbus, den schläfrigen Willy und das Elekkhalsband mit einem Charakter. ; -inv_misc_toy_01
 631 ; Held der Scherbenwelt ; Schließt die unten aufgelisteten Schlachtzugserfolge ab. ; achievement_dungeon_outland_dungeon_hero
 632 ; Großartiger Held der Scherbenwelt ; Schließt die unten aufgelisteten Dungeon- und Schlachtzugserfolge ab. ; spell_holy_proclaimchampion_02
+633 ; Der Flammenbewahrer ; Schließt die unten aufgelisteten Sonnenwenderfolge ab. ; -inv_summerfest_symbol_high
+634 ; König des Feuerfestivals ; Schließt die Quest 'Der Lohn des Diebes' ab, indem Ihr die Flammen aus den Hauptstädten Eures Gegners stehlt. ; -inv_helmet_08
+635 ; Löschen Kalimdors ; Entweiht die Freudenfeuer der Horde in Kalimdor. ; -spell_fire_masterofelements
+636 ; Löschen der Scherbenwelt ; Entweiht die Freudefeuer der Horde in der Scherbenwelt. ; -spell_fire_masterofelements
+637 ; Löschen der östlichen Königreiche ; Entweiht die Freudenfeuer der Horde in den östlichen Königreichen. ; -spell_fire_masterofelements
+638 ; Die Entweihung der Horde ; Schließt die Erfolge Löschen der östlichen Königreiche, Kalimdors und der Scherbenwelt ab. ; -spell_fire_masterofelements
