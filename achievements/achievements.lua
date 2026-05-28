@@ -59,6 +59,7 @@ local lunar = tab:CreateCategory('CATEGORY_LUNAR', worldevents.id, true)
 local valentines = tab:CreateCategory('CATEGORY_VALENTINES', worldevents.id, true)
 local noblegarden = tab:CreateCategory('CATEGORY_NOBLEGARDEN', worldevents.id, true)
 local children = tab:CreateCategory('CATEGORY_CHILDREN', worldevents.id, true)
+local midsummer = tab:CreateCategory('CATEGORY_MIDSUMMER', worldevents.id, true)
 local hallowsend = tab:CreateCategory('CATEGORY_HALLOWSEND', worldevents.id, true)
 local winterveil = tab:CreateCategory('CATEGORY_WINTERVEIL', worldevents.id, true)
 
@@ -1879,6 +1880,25 @@ do
         ach = children:CreateAchievement('AN_CHILDREN_PET', 'AD_CHILDREN_PET', 10, '-ability_hunter_pet_turtle', true, 629)
             ach:AddCriteria(criterias:Create(nil, TYPE.OR, subCriterias, nil, 6290))
         childrenSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6280))
+
+    --MIDSUMMER
+    local midsummerSummary
+
+    if UnitFactionGroup('player') == 'Horde' then
+	    midsummerSummary = worldevents:CreateAchievement('AN_MIDSUMMER', 'AD_MIDSUMMER', 20, '-inv_summerfest_symbol_low', true, 633)
+        midsummerSummary:SetRewardText(loc:Get('AR_MIDSUMMER'))
+
+        ach = midsummer:CreateAchievement('AN_MIDSUMMER_QUEST1', 'AD_MIDSUMMER_QUEST1', 10, '-inv_helmet_08', true, 634)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9365}, nil, 6340))
+        midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6330))
+    else
+	    midsummerSummary = worldevents:CreateAchievement('AN_MIDSUMMER', 'AD_MIDSUMMER', 20, '-inv_summerfest_symbol_high', true, 633)
+        midsummerSummary:SetRewardText(loc:Get('AR_MIDSUMMER'))
+
+        ach = midsummer:CreateAchievement('AN_MIDSUMMER_QUEST1', 'AD_MIDSUMMER_QUEST1', 10, '-inv_helmet_08', true, 634)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9339}, nil, 6340))
+        midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6330))
+    end
 end
 
 -- REPUTATION --

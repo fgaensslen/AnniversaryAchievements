@@ -103,6 +103,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_LUNAR = 'Lunar Festival',
     CATEGORY_NOBLEGARDEN = 'Noblegarden',
     CATEGORY_CHILDREN = 'Children\'s Week',
+    CATEGORY_MIDSUMMER = 'Midsummer',
     CATEGORY_FEATS_OF_STRENGTH = 'Feats of Strength',
 	
 	AN_DRUID_T1 = 'Cenarion Raiment',
@@ -1156,6 +1157,14 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     
     AN_CHILDREN_PET = 'Aw, Isn\'t It Cute?',
     AD_CHILDREN_PET = 'Obtain one of the Children\'s Week reward pets.',
+
+    --MIDSUMMER
+    AN_MIDSUMMER = 'The Flame Keeper',
+    AD_MIDSUMMER = 'Complete the Midsummer achievements listed below.',
+    AR_MIDSUMMER = 'Flame Keeper',
+
+    AN_MIDSUMMER_QUEST1 = 'King of the Fire Festival',
+    AD_MIDSUMMER_QUEST1 = 'Complete the quest, "A Thief\'s Reward", by stealing the flames from your enemy\'s capital cities.',
 
 	--TBC
     AN_QUESTS_HELLFIRE_PENINSULA = 'To Hellfire and Back',

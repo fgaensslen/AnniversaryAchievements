@@ -103,6 +103,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_LUNAR = 'Mondfest',
     CATEGORY_NOBLEGARDEN = 'Nobelgarten',
     CATEGORY_CHILDREN = 'Kinderwoche',
+    CATEGORY_MIDSUMMER = 'Sonnenwende',
     CATEGORY_FEATS_OF_STRENGTH = 'Heldentaten',
 	
 	AN_DRUID_T1 = 'Gewänder des Cenarius',
@@ -1156,6 +1157,14 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 
     AN_CHILDREN_PET = 'Och, ist das nicht süß?',
     AD_CHILDREN_PET = 'Erhaltet eines der Belohnungshaustiere der Kinderwoche.',
+
+    --MIDSUMMER
+    AN_MIDSUMMER = 'Der Flammenbewahrer',
+    AD_MIDSUMMER = 'Schließt die unten aufgelisteten Sonnenwenderfolge ab.',
+    AR_MIDSUMMER = 'Flammenbewahrer',
+
+    AN_MIDSUMMER_QUEST1 = 'König des Feuerfestivals',
+    AD_MIDSUMMER_QUEST1 = 'Schließt die Quest \'Der Lohn des Diebes\' ab, indem Ihr die Flammen aus den Hauptstädten Eures Gegners stehlt.',
 
 	--BURNING CRUSADE
     AN_QUESTS_HELLFIRE_PENINSULA = 'Durchs Höllenfeuer und zurück',
