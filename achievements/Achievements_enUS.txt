@@ -636,3 +636,8 @@ ID; Name; Description
 636 ; Extinguishing Outland ; Desecrate the Horde's bonfires in Outland. ; -spell_fire_masterofelements
 637 ; Extinguishing Eastern Kingdoms ; Desecrate the Horde's bonfires in Eastern Kingdoms. ; -spell_fire_masterofelements
 638 ; Desecration of the Horde ; Complete the Extinguishing Eastern Kingdoms, Kalimdor and Outland achievements. ; -spell_fire_masterofelements
+639 ; Flame Warden of Kalimdor ; Honor the flames of Kalimdor. ; -inv_summerfest_firespirit
+640 ; Flame Warden of Outland ; Honor the flames of Outland. ; -inv_summerfest_firespirit
+641 ; Flame Warden of Eastern Kingdoms ; Honor the flames of Eastern Kingdoms. ; -inv_summerfest_firespirit
+642 ; The Fires of Azeroth ; Complete the Flame Warden of Eastern Kingdoms, Kalimdor and Outland achievements. ; -inv_summerfest_firespirit
+643 ; Ice the Frost Lord ; Slay Ahune in the Slave Pens. ; -spell_frost_summonwaterelemental

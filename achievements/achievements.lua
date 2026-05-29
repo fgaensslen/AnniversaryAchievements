@@ -2058,11 +2058,11 @@ do
         ach:AddCriteria(criterias:Create(loc:Get('AC_CHILDREN_PETS3'), TYPE.OBTAIN_ITEM, {32616}, nil, 6302))
 
     --MIDSUMMER
-    local function addBonfires(faction, continent, icon, ids, achievementID)
-        local ach = midsummer:CreateAchievement('AN_MIDSUMMER_DESECRATION_' .. faction .. '_' .. continent, 'AD_MIDSUMMER_DESECRATION_' .. faction .. '_' .. continent, 10, icon, true, achievementID)
+    local function addBonfires(type, faction, continent, icon, ids, achievementID)
+        local ach = midsummer:CreateAchievement('AN_MIDSUMMER_' .. type .. '_' .. faction .. '_' .. continent, 'AD_MIDSUMMER_' .. type .. '_' .. faction .. '_' .. continent, 10, icon, true, achievementID)
 
 		for _, questID in ipairs(ids) do
-			local criteria = criterias:Create(loc:Get('AC_MIDSUMMER_DESECRATION_' .. faction .. '_' .. continent .. '_CRITERIA_'.. questID), TYPE.COMPLETE_QUEST, {questID}, nil, achievementID * questID)
+			local criteria = criterias:Create(loc:Get('AC_MIDSUMMER_' .. type .. '_' .. faction .. '_' .. continent .. '_CRITERIA_'.. questID), TYPE.COMPLETE_QUEST, {questID}, nil, achievementID * questID)
 				ach:AddCriteria(criteria)
 		end
 
@@ -2079,15 +2079,25 @@ do
             ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9365}, nil, 6340))
         midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6330))
         	
-	    local kalimdor = addBonfires('HORDE', 'KALIMDOR', '-spell_fire_masterofelements', {11744, 11734, 11738, 11740, 11746, 11760, 11753, 11762, 11741, 11763, 11735}, 635)  
-        local outland = addBonfires('HORDE', 'OUTLAND', '-spell_fire_masterofelements', {11736, 11750, 11759, 11752, 11754, 11758, 11747}, 636)
-        local easternKingdoms = addBonfires('HORDE', 'EASTERN_KINGDOMS', '-spell_fire_masterofelements', {11751, 11742, 11745, 11749, 11732, 11739, 11761, 11755, 11756, 11581, 11748, 11737, 11743, 11757}, 637)
+	    local kalimdor = addBonfires('DESECRATION', 'HORDE', 'KALIMDOR', '-spell_fire_masterofelements', {11744, 11734, 11738, 11740, 11746, 11760, 11753, 11762, 11741, 11763, 11735}, 635)  
+        local outland = addBonfires('DESECRATION', 'HORDE', 'OUTLAND', '-spell_fire_masterofelements', {11736, 11750, 11759, 11752, 11754, 11758, 11747}, 636)
+        local easternKingdoms = addBonfires('DESECRATION', 'HORDE', 'EASTERN_KINGDOMS', '-spell_fire_masterofelements', {11751, 11742, 11745, 11749, 11732, 11739, 11761, 11755, 11756, 11581, 11748, 11737, 11743, 11757}, 637)
 
         ach = midsummer:CreateAchievement('AN_MIDSUMMER_DESECRATION_HORDE', 'AD_MIDSUMMER_DESECRATION_HORDE', 10, '-spell_fire_masterofelements', true, 638)
-            ach:AddCriteria(criterias:Create(loc:Get('AC_MIDSUMMER_DESECRATION_HORDE_CRITERIA1'), TYPE.COMPLETE_ACHIEVEMENT, {kalimdor.id}, nil, 6380))
-            ach:AddCriteria(criterias:Create(loc:Get('AC_MIDSUMMER_DESECRATION_HORDE_CRITERIA2'), TYPE.COMPLETE_ACHIEVEMENT, {outland.id}, nil, 6381))
-            ach:AddCriteria(criterias:Create(loc:Get('AC_MIDSUMMER_DESECRATION_HORDE_CRITERIA3'), TYPE.COMPLETE_ACHIEVEMENT, {easternKingdoms.id}, nil, 6382))
+            ach:AddCriteria(criterias:Create(kalimdor.name, TYPE.COMPLETE_ACHIEVEMENT, {kalimdor.id}, nil, 6380))
+            ach:AddCriteria(criterias:Create(outland.name, TYPE.COMPLETE_ACHIEVEMENT, {outland.id}, nil, 6381))
+            ach:AddCriteria(criterias:Create(easternKingdoms.name, TYPE.COMPLETE_ACHIEVEMENT, {easternKingdoms.id}, nil, 6382))
         midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6331))
+
+        kalimdor = addBonfires('FLAME_KEEPER', 'HORDE', 'KALIMDOR', '-inv_summerfest_firespirit', {11841, 11845, 11846, 11847, 11849, 11852, 11859, 11839, 11836, 11856, 11861, 11838}, 639)  
+        outland = addBonfires('FLAME_KEEPER', 'HORDE', 'OUTLAND', '-inv_summerfest_firespirit', {11851, 11835, 11855, 11858, 11854, 11863, 11843}, 640)
+        easternKingdoms = addBonfires('FLAME_KEEPER', 'HORDE', 'EASTERN_KINGDOMS', '-inv_summerfest_firespirit', {11844, 11840, 11584, 11837, 11860, 11850, 11862, 11853, 11848, 11857, 11842}, 641)
+
+        ach = midsummer:CreateAchievement('AN_MIDSUMMER_FLAME_KEEPER_HORDE', 'AD_MIDSUMMER_FLAME_KEEPER_HORDE', 10, '-inv_summerfest_firespirit', true, 642)
+            ach:AddCriteria(criterias:Create(kalimdor.name, TYPE.COMPLETE_ACHIEVEMENT, {kalimdor.id}, nil, 6420))
+            ach:AddCriteria(criterias:Create(outland.name, TYPE.COMPLETE_ACHIEVEMENT, {outland.id}, nil, 6421))
+            ach:AddCriteria(criterias:Create(easternKingdoms.name, TYPE.COMPLETE_ACHIEVEMENT, {easternKingdoms.id}, nil, 6422))
+        midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6332))
 
     else
 	    midsummerSummary = worldevents:CreateAchievement('AN_MIDSUMMER', 'AD_MIDSUMMER', 20, '-inv_summerfest_symbol_high', true, 633)
@@ -2097,23 +2107,30 @@ do
             ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9339}, nil, 6340))
         midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6330))
 
-        local kalimdor = addBonfires('ALLIANCE', 'KALIMDOR', '-spell_fire_masterofelements', {11803, 11785, 11765, 11769, 11773, 11777, 11800, 11780, 11802, 11783, 11770, 11771}, 635) 
-        local outland = addBonfires('ALLIANCE', 'OUTLAND', '-spell_fire_masterofelements', {11767, 11799, 11782, 11775, 11787, 11778, 11779}, 636)
-        local easternKingdoms = addBonfires('ALLIANCE', 'EASTERN_KINGDOMS', '-spell_fire_masterofelements', {11766, 11772, 11774, 11776, 11768, 11781, 11764, 11755, 11801, 11784, 11786}, 637)
+        local kalimdor = addBonfires('DESECRATION', 'ALLIANCE', 'KALIMDOR', '-spell_fire_masterofelements', {11803, 11785, 11765, 11769, 11773, 11777, 11800, 11780, 11802, 11783, 11770, 11771}, 635) 
+        local outland = addBonfires('DESECRATION', 'ALLIANCE', 'OUTLAND', '-spell_fire_masterofelements', {11767, 11799, 11782, 11775, 11787, 11778, 11779}, 636)
+        local easternKingdoms = addBonfires('DESECRATION', 'ALLIANCE', 'EASTERN_KINGDOMS', '-spell_fire_masterofelements', {11766, 11772, 11774, 11776, 11768, 11781, 11764, 11755, 11801, 11784, 11786}, 637)
 
         ach = midsummer:CreateAchievement('AN_MIDSUMMER_DESECRATION_ALLIANCE', 'AD_MIDSUMMER_DESECRATION_ALLIANCE', 10, '-spell_fire_masterofelements', true, 638)
-            ach:AddCriteria(criterias:Create(loc:Get('AC_MIDSUMMER_DESECRATION_ALLIANCE_CRITERIA1'), TYPE.COMPLETE_ACHIEVEMENT, {kalimdor.id}, nil, 6380))
-            ach:AddCriteria(criterias:Create(loc:Get('AC_MIDSUMMER_DESECRATION_ALLIANCE_CRITERIA2'), TYPE.COMPLETE_ACHIEVEMENT, {outland.id}, nil, 6381))
-            ach:AddCriteria(criterias:Create(loc:Get('AC_MIDSUMMER_DESECRATION_ALLIANCE_CRITERIA3'), TYPE.COMPLETE_ACHIEVEMENT, {easternKingdoms.id}, nil, 6382))
+            ach:AddCriteria(criterias:Create(kalimdor.name, TYPE.COMPLETE_ACHIEVEMENT, {kalimdor.id}, nil, 6380))
+            ach:AddCriteria(criterias:Create(outland.name, TYPE.COMPLETE_ACHIEVEMENT, {outland.id}, nil, 6381))
+            ach:AddCriteria(criterias:Create(easternKingdoms.name, TYPE.COMPLETE_ACHIEVEMENT, {easternKingdoms.id}, nil, 6382))
         midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6331))
+
+        kalimdor = addBonfires('FLAME_KEEPER', 'ALLIANCE', 'KALIMDOR', '-inv_summerfest_firespirit', {11833, 11805, 11809, 11812, 11817, 11824, 11806, 11834, 11831, 11815, 11811}, 639)  
+        outland = addBonfires('FLAME_KEEPER', 'ALLIANCE', 'OUTLAND', '-inv_summerfest_firespirit', {11807, 11830, 11823, 11829, 11818, 11821, 11825}, 640)
+        easternKingdoms = addBonfires('FLAME_KEEPER', 'ALLIANCE', 'EASTERN_KINGDOMS', '-inv_summerfest_firespirit', {11816, 11810, 11813, 11822, 11832, 11826, 11583, 11827, 11808, 11819, 11814, 11820, 11804, 11828}, 641)
+
+        ach = midsummer:CreateAchievement('AN_MIDSUMMER_FLAME_KEEPER_ALLIANCE', 'AD_MIDSUMMER_FLAME_KEEPER_ALLIANCE', 10, '-inv_summerfest_firespirit', true, 642)
+            ach:AddCriteria(criterias:Create(kalimdor.name, TYPE.COMPLETE_ACHIEVEMENT, {kalimdor.id}, nil, 6420))
+            ach:AddCriteria(criterias:Create(outland.name, TYPE.COMPLETE_ACHIEVEMENT, {outland.id}, nil, 6421))
+            ach:AddCriteria(criterias:Create(easternKingdoms.name, TYPE.COMPLETE_ACHIEVEMENT, {easternKingdoms.id}, nil, 6422))
+        midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6332))
     end
 
-    --[[
-    ach = midsummer:CreateAchievement('AN_MIDSUMMER_AHUNE', 'AD_MIDSUMMER_AHUNE', 10, '-spell_frost_summonwaterelemental', true, 635)
-        ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {25740}, nil, 6350))
-    midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6331))
-    ]]--
-    
+    ach = midsummer:CreateAchievement('AN_MIDSUMMER_AHUNE', 'AD_MIDSUMMER_AHUNE', 10, '-spell_frost_summonwaterelemental', true, 643)
+        ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {25740}, nil, 6430))
+    midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6333))    
 end
 
 -- REPUTATION --
@@ -2364,7 +2381,7 @@ do
 end
 
 --print(db:GetAllAchievements())
-
+--[[
     local list = {}
 
     for id, ach in pairs(db.achievements or {}) do
@@ -2379,6 +2396,6 @@ end
         local ach = entry.ach
         print(entry.id, ";", ach.name, ";", ach.description, ";", ach.icon)
     end
-
+]]
 
 CA_CompletionManager:PostLoad(CA_Database:GetTab(CA_Database.TAB_ID_PLAYER):GetCategories())

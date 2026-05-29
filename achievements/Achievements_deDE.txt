@@ -636,3 +636,8 @@ ID; Name; Description; Icon
 636 ; Löschen der Scherbenwelt ; Entweiht die Freudefeuer der Horde in der Scherbenwelt. ; -spell_fire_masterofelements
 637 ; Löschen der östlichen Königreiche ; Entweiht die Freudenfeuer der Horde in den östlichen Königreichen. ; -spell_fire_masterofelements
 638 ; Die Entweihung der Horde ; Schließt die Erfolge Löschen der östlichen Königreiche, Kalimdors und der Scherbenwelt ab. ; -spell_fire_masterofelements
+639 ; Flammenwächter Kalimdors ; Ehrt die Flammen Kalimdors. ; -inv_summerfest_firespirit
+640 ; Flammenwächter der Scherbenwelt ; Ehrt die Flammen der Scherbenwelt. ; -inv_summerfest_firespirit
+641 ; Flammenwächter der östlichen Königreiche ; Ehrt die Flammen der östlichen Königreiche. ; -inv_summerfest_firespirit
+642 ; Die Feuer von Azeroth ; Schließt die Flammenwächtererfolge in den östlichen Königreichen, in Kalimdor und der Scherbenwelt ab. ; -inv_summerfest_firespirit
+643 ; Legt den Frostfürsten auf Eis ; Tötet Ahune in den Sklavenunterkünften. ; -spell_frost_summonwaterelemental
