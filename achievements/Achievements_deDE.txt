@@ -641,3 +641,4 @@ ID; Name; Description; Icon
 641 ; Flammenwächter der östlichen Königreiche ; Ehrt die Flammen der östlichen Königreiche. ; -inv_summerfest_firespirit
 642 ; Die Feuer von Azeroth ; Schließt die Flammenwächtererfolge in den östlichen Königreichen, in Kalimdor und der Scherbenwelt ab. ; -inv_summerfest_firespirit
 643 ; Legt den Frostfürsten auf Eis ; Tötet Ahune in den Sklavenunterkünften. ; -spell_frost_summonwaterelemental
+644 ; Was für eine lange, seltsame Reise... ; Schließt die unten aufgelisteten Weltereignis-Erfolge ab. ; achievement_bg_masterofallbgs

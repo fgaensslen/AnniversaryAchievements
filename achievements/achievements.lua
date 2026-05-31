@@ -2131,6 +2131,19 @@ do
     ach = midsummer:CreateAchievement('AN_MIDSUMMER_AHUNE', 'AD_MIDSUMMER_AHUNE', 10, '-spell_frost_summonwaterelemental', true, 643)
         ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {25740}, nil, 6430))
     midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6333))    
+
+    --BREWFEST
+    
+
+    --WHAT A LONG, STRANGE TRIP IT'S BEEN
+    local longTrip = worldevents:CreateAchievement('AC_WORLDEVENTS_TRIP', 'AD_WORLDEVENTS_TRIP', 50, 'achievement_bg_masterofallbgs', true, 644)
+        longTrip:AddCriteria(criterias:Create(hallowsendSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { hallowsendSummary.id }, nil, 6440))
+        longTrip:AddCriteria(criterias:Create(winterveilSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { winterveilSummary.id }, nil, 6441))
+        longTrip:AddCriteria(criterias:Create(lunarSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { lunarSummary.id }, nil, 6442))
+        longTrip:AddCriteria(criterias:Create(childrenSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { childrenSummary.id }, nil, 6443))
+        --longTrip:AddCriteria(criterias:Create(childrenSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { childrenSummary.id }, nil, 6444))
+        longTrip:AddCriteria(criterias:Create(midsummerSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { midsummerSummary.id }, nil, 6445))
+        longTrip:AddCriteria(criterias:Create(valentinesSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { valentinesSummary.id }, nil, 6446))
 end
 
 -- REPUTATION --

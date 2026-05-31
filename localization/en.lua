@@ -1353,6 +1353,12 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_MIDSUMMER_FLAME_KEEPER_ALLIANCE_EASTERN_KINGDOMS_CRITERIA_11804 = 'Arathi Highlands',
     AC_MIDSUMMER_FLAME_KEEPER_ALLIANCE_EASTERN_KINGDOMS_CRITERIA_11828 = 'Wetlands',
 
+    --BREWFEST
+
+    --LONG TRIP
+    AC_WORLDEVENTS_TRIP = 'What A Long, Strange Trip It\'s Been',
+    AD_WORLDEVENTS_TRIP = 'Complete the world events achievements listed below.',
+
 	--TBC
     AN_DOLCE = 'My Storage is "Gigantique"',
     AD_DOLCE = 'Equip Haris Pilton\'s "Gigantique" Bag.',

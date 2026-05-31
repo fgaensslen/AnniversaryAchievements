@@ -1353,6 +1353,12 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_MIDSUMMER_FLAME_KEEPER_ALLIANCE_EASTERN_KINGDOMS_CRITERIA_11804 = 'Arathihochland',
     AC_MIDSUMMER_FLAME_KEEPER_ALLIANCE_EASTERN_KINGDOMS_CRITERIA_11828 = 'Sumpfland',
 
+    --BREWFEST
+
+    --LONG TRIP
+    AC_WORLDEVENTS_TRIP = 'Was für eine lange, seltsame Reise...',
+    AD_WORLDEVENTS_TRIP = 'Schließt die unten aufgelisteten Weltereignis-Erfolge ab.',
+
 	--BURNING CRUSADE
     AN_DOLCE = 'Meine Tasche ist von "Dolche & Giganta"',
     AD_DOLCE = 'Legt Haris Piltons \'Dolche & Giganta\'-Tasche an.',

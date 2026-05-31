@@ -641,3 +641,4 @@ ID; Name; Description
 641 ; Flame Warden of Eastern Kingdoms ; Honor the flames of Eastern Kingdoms. ; -inv_summerfest_firespirit
 642 ; The Fires of Azeroth ; Complete the Flame Warden of Eastern Kingdoms, Kalimdor and Outland achievements. ; -inv_summerfest_firespirit
 643 ; Ice the Frost Lord ; Slay Ahune in the Slave Pens. ; -spell_frost_summonwaterelemental
+644 ; What A Long, Strange Trip It's Been ; Complete the world events achievements listed below. ; -achievement_bg_masterofallbgs
