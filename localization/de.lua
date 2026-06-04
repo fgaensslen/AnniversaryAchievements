@@ -98,13 +98,14 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_PROFESSIONS = 'Berufe',
     CATEGORY_REPUTATION = 'Ruf',
 	CATEGORY_EVENTS = 'Weltereignisse',
-	CATEGORY_HALLOWSEND = 'Schlotternächte',
-    CATEGORY_WINTERVEIL = 'Winterhauch',
     CATEGORY_VALENTINES = 'Liebe liegt in der Luft',
     CATEGORY_LUNAR = 'Mondfest',
     CATEGORY_NOBLEGARDEN = 'Nobelgarten',
     CATEGORY_CHILDREN = 'Kinderwoche',
     CATEGORY_MIDSUMMER = 'Sonnenwende',
+    CATEGORY_BREWFEST = 'Braufest',
+    CATEGORY_HALLOWSEND = 'Schlotternächte',
+    CATEGORY_WINTERVEIL = 'Winterhauch',
     CATEGORY_FEATS_OF_STRENGTH = 'Heldentaten',
 	
 	AN_DRUID_T1 = 'Gewänder des Cenarius',
@@ -1354,6 +1355,24 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_MIDSUMMER_FLAME_KEEPER_ALLIANCE_EASTERN_KINGDOMS_CRITERIA_11828 = 'Sumpfland',
 
     --BREWFEST
+    AN_BREWFEST = 'Braumeister',
+    AD_BREWFEST = 'Schließt die unten aufgelisteten Braufesterfolge ab.',
+    AR_BREWFEST = 'Braumeister',
+
+    AN_BREWFEST_WOLPERTINGER = 'Lass die Finger von meinem Wolpertinger!',
+    AD_BREWFEST_WOLPERTINGER = 'Erhaltet ein Wolpertinger-Haustier.',
+
+    AN_BREWFEST_COREN_DIREBREW = 'Düsterbräufest',
+    AD_BREWFEST_COREN_DIREBREW = 'Tötet Coren Düsterbräu.',
+
+    AN_BREWFEST_QUEST1 = 'Nieder mit den Dunkeleisenzwergen',
+    AD_BREWFEST_QUEST1 = 'Verteidigt das Braufestlager vor dem Angriff der Dunkeleisenzwerge und schließt die Quest \'Dieses eine Mal, als ich betrunken war...\', ab.',
+
+    AN_BREWFEST_BEER_CLUB = 'Bier des Monats',
+    AD_BREWFEST_BEER_CLUB = 'Tretet dem \'Bier des Monats e.V.\' bei.',
+
+    AN_BREWFEST_MOUNT = 'Hab\' ein Fass, jetzt will ich reisen',
+    AD_BREWFEST_MOUNT = 'Erhaltet ein Braufestreittier.',
 
     --LONG TRIP
     AC_WORLDEVENTS_TRIP = 'Was für eine lange, seltsame Reise...',

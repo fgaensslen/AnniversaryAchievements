@@ -641,4 +641,10 @@ ID; Name; Description
 641 ; Flame Warden of Eastern Kingdoms ; Honor the flames of Eastern Kingdoms. ; -inv_summerfest_firespirit
 642 ; The Fires of Azeroth ; Complete the Flame Warden of Eastern Kingdoms, Kalimdor and Outland achievements. ; -inv_summerfest_firespirit
 643 ; Ice the Frost Lord ; Slay Ahune in the Slave Pens. ; -spell_frost_summonwaterelemental
-644 ; What A Long, Strange Trip It's Been ; Complete the world events achievements listed below. ; -achievement_bg_masterofallbgs
+644 ; Brewmaster ; Complete the Brewfest achievements listed below. ; achievement_worldevent_brewmaster
+645 ; Does Your Wolpertinger Linger? ; Obtain a Wolpertinger pet. ; -inv_drink_13
+646 ; Direbrewfest ; Kill Coren Direbrew. ; -inv_misc_head_dwarf_01
+647 ; Down With the Dark Iron ; Defend the Brewfest camp from the Dark Iron attack and complete the quest, "This One Time, When I Was Drunk..." ; -inv_ore_mithril_01
+648 ; Have Keg, Will Travel ; Obtain a Brewfest mount. ; -inv_cask_01
+649 ; Brew of the Month ; Join the Brew of the Month club. ; -inv_misc_beer_02
+650 ; What A Long, Strange Trip It's Been ; Complete the world events achievements listed below. ; achievement_bg_masterofallbgs

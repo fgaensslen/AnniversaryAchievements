@@ -61,6 +61,7 @@ local valentines = tab:CreateCategory('CATEGORY_VALENTINES', worldevents.id, tru
 local noblegarden = tab:CreateCategory('CATEGORY_NOBLEGARDEN', worldevents.id, true)
 local children = tab:CreateCategory('CATEGORY_CHILDREN', worldevents.id, true)
 local midsummer = tab:CreateCategory('CATEGORY_MIDSUMMER', worldevents.id, true)
+local brewfest = tab:CreateCategory('CATEGORY_BREWFEST', worldevents.id, true)
 local hallowsend = tab:CreateCategory('CATEGORY_HALLOWSEND', worldevents.id, true)
 local winterveil = tab:CreateCategory('CATEGORY_WINTERVEIL', worldevents.id, true)
 
@@ -2133,17 +2134,52 @@ do
     midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6333))    
 
     --BREWFEST
-    
+    local brewfestSummary = worldevents:CreateAchievement('AN_BREWFEST', 'AD_BREWFEST', 10, 'achievement_worldevent_brewmaster', true, 644)
+        brewfestSummary:SetRewardText(loc:Get('AR_BREWFEST'))
+
+    ach = brewfest:CreateAchievement('AN_BREWFEST_WOLPERTINGER', 'AD_BREWFEST_WOLPERTINGER', 10, '-inv_drink_13', true, 645)
+        ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {32233}, nil, 6450))
+    brewfestSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6440))
+
+    ach = brewfest:CreateAchievement('AN_BREWFEST_COREN_DIREBREW', 'AD_BREWFEST_COREN_DIREBREW', 10, '-inv_misc_head_dwarf_01', true, 646)
+        ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {23872}, nil, 6460))
+    brewfestSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6441))
+
+    if UnitFactionGroup('player') == 'Horde' then
+        ach = brewfest:CreateAchievement('AN_BREWFEST_QUEST1', 'AD_BREWFEST_QUEST1', 10, '-inv_ore_mithril_01', true, 647)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {12192}, nil, 6470))
+        brewfestSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6442))
+
+        ach = brewfest:CreateAchievement('AN_BREWFEST_MOUNT', 'AD_BREWFEST_MOUNT', 10, '-inv_cask_01', true, 648)
+            ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {37828}, nil, 6480))
+        brewfestSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6443))
+
+        ach = brewfest:CreateAchievement('AN_BREWFEST_BEER_CLUB', 'AD_BREWFEST_BEER_CLUB', 10, '-inv_misc_beer_02', true, 649)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {12421}, nil, 6490))
+        brewfestSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6444))
+    else
+        ach = brewfest:CreateAchievement('AN_BREWFEST_QUEST1', 'AD_BREWFEST_QUEST1', 10, '-inv_ore_mithril_01', true, 647)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {12020}, nil, 6470))
+        brewfestSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6442))
+
+        ach = brewfest:CreateAchievement('AN_BREWFEST_MOUNT', 'AD_BREWFEST_MOUNT', 10, '-inv_cask_01', true, 648)
+            ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {33977}, nil, 6480))
+        brewfestSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6443))
+
+        ach = brewfest:CreateAchievement('AN_BREWFEST_BEER_CLUB', 'AD_BREWFEST_BEER_CLUB', 10, '-inv_misc_beer_02', true, 649)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {12420}, nil, 6490))
+        brewfestSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6444))
+    end
 
     --WHAT A LONG, STRANGE TRIP IT'S BEEN
-    local longTrip = worldevents:CreateAchievement('AC_WORLDEVENTS_TRIP', 'AD_WORLDEVENTS_TRIP', 50, 'achievement_bg_masterofallbgs', true, 644)
-        longTrip:AddCriteria(criterias:Create(hallowsendSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { hallowsendSummary.id }, nil, 6440))
-        longTrip:AddCriteria(criterias:Create(winterveilSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { winterveilSummary.id }, nil, 6441))
-        longTrip:AddCriteria(criterias:Create(lunarSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { lunarSummary.id }, nil, 6442))
-        longTrip:AddCriteria(criterias:Create(childrenSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { childrenSummary.id }, nil, 6443))
-        --longTrip:AddCriteria(criterias:Create(childrenSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { childrenSummary.id }, nil, 6444))
-        longTrip:AddCriteria(criterias:Create(midsummerSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { midsummerSummary.id }, nil, 6445))
-        longTrip:AddCriteria(criterias:Create(valentinesSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { valentinesSummary.id }, nil, 6446))
+    local longTrip = worldevents:CreateAchievement('AC_WORLDEVENTS_TRIP', 'AD_WORLDEVENTS_TRIP', 50, 'achievement_bg_masterofallbgs', true, 650)
+        longTrip:AddCriteria(criterias:Create(hallowsendSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { hallowsendSummary.id }, nil, 6550))
+        longTrip:AddCriteria(criterias:Create(winterveilSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { winterveilSummary.id }, nil, 6551))
+        longTrip:AddCriteria(criterias:Create(lunarSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { lunarSummary.id }, nil, 6552))
+        longTrip:AddCriteria(criterias:Create(childrenSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { childrenSummary.id }, nil, 6553))
+        longTrip:AddCriteria(criterias:Create(brewfestSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { brewfestSummary.id }, nil, 6554))
+        longTrip:AddCriteria(criterias:Create(midsummerSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { midsummerSummary.id }, nil, 6555))
+        longTrip:AddCriteria(criterias:Create(valentinesSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { valentinesSummary.id }, nil, 6556))
 end
 
 -- REPUTATION --

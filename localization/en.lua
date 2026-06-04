@@ -98,13 +98,14 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     CATEGORY_PROFESSIONS = 'Professions',
     CATEGORY_REPUTATION = 'Reputation',
 	CATEGORY_EVENTS = 'World Events',
-	CATEGORY_HALLOWSEND = 'Hallow\'s End',
-    CATEGORY_WINTERVEIL = 'Winter Veil',
     CATEGORY_VALENTINES = 'Love is in the Air',
     CATEGORY_LUNAR = 'Lunar Festival',
     CATEGORY_NOBLEGARDEN = 'Noblegarden',
     CATEGORY_CHILDREN = 'Children\'s Week',
     CATEGORY_MIDSUMMER = 'Midsummer',
+    CATEGORY_BREWFEST = 'Brewfest',
+    CATEGORY_HALLOWSEND = 'Hallow\'s End',
+    CATEGORY_WINTERVEIL = 'Winter Veil',
     CATEGORY_FEATS_OF_STRENGTH = 'Feats of Strength',
 	
 	AN_DRUID_T1 = 'Cenarion Raiment',
@@ -1354,6 +1355,24 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_MIDSUMMER_FLAME_KEEPER_ALLIANCE_EASTERN_KINGDOMS_CRITERIA_11828 = 'Wetlands',
 
     --BREWFEST
+    AN_BREWFEST = 'Brewmaster',
+    AD_BREWFEST = 'Complete the Brewfest achievements listed below.',
+    AR_BREWFEST = 'Brewmaster',
+
+    AN_BREWFEST_WOLPERTINGER = 'Does Your Wolpertinger Linger?',
+    AD_BREWFEST_WOLPERTINGER = 'Obtain a Wolpertinger pet.',
+
+    AN_BREWFEST_COREN_DIREBREW = 'Direbrewfest',
+    AD_BREWFEST_COREN_DIREBREW = 'Kill Coren Direbrew.',
+
+    AN_BREWFEST_QUEST1 = 'Down With the Dark Iron',
+    AD_BREWFEST_QUEST1 = 'Defend the Brewfest camp from the Dark Iron attack and complete the quest, "This One Time, When I Was Drunk..."',
+
+    AN_BREWFEST_BEER_CLUB = 'Brew of the Month',
+    AD_BREWFEST_BEER_CLUB = 'Join the Brew of the Month club.',
+
+    AN_BREWFEST_MOUNT = 'Have Keg, Will Travel',
+    AD_BREWFEST_MOUNT = 'Obtain a Brewfest mount.',
 
     --LONG TRIP
     AC_WORLDEVENTS_TRIP = 'What A Long, Strange Trip It\'s Been',

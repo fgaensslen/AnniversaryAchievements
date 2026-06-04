@@ -641,4 +641,10 @@ ID; Name; Description; Icon
 641 ; Flammenwächter der östlichen Königreiche ; Ehrt die Flammen der östlichen Königreiche. ; -inv_summerfest_firespirit
 642 ; Die Feuer von Azeroth ; Schließt die Flammenwächtererfolge in den östlichen Königreichen, in Kalimdor und der Scherbenwelt ab. ; -inv_summerfest_firespirit
 643 ; Legt den Frostfürsten auf Eis ; Tötet Ahune in den Sklavenunterkünften. ; -spell_frost_summonwaterelemental
-644 ; Was für eine lange, seltsame Reise... ; Schließt die unten aufgelisteten Weltereignis-Erfolge ab. ; achievement_bg_masterofallbgs
+644 ; Braumeister ; Schließt die unten aufgelisteten Braufesterfolge ab. ; achievement_worldevent_brewmaster
+645 ; Lass die Finger von meinem Wolpertinger! ; Erhaltet ein Wolpertinger-Haustier. ; -inv_drink_13
+646 ; Düsterbräufest ; Tötet Coren Düsterbräu. ; -inv_misc_head_dwarf_01
+647 ; Nieder mit den Dunkeleisenzwergen ; Verteidigt das Braufestlager vor dem Angriff der Dunkeleisenzwerge und schließt die Quest 'Dieses eine Mal, als ich betrunken war...', ab. ; -inv_ore_mithril_01
+648 ; Hab' ein Fass, jetzt will ich reisen ; Erhaltet ein Braufestreittier. ; -inv_cask_01
+649 ; Bier des Monats ; Tretet dem 'Bier des Monats e.V.' bei. ; -inv_misc_beer_02
+650 ; Was für eine lange, seltsame Reise... ; Schließt die unten aufgelisteten Weltereignis-Erfolge ab. ; achievement_bg_masterofallbgs
