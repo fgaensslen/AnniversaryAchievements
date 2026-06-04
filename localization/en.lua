@@ -1166,6 +1166,10 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_MIDSUMMER_QUEST1 = 'King of the Fire Festival',
     AD_MIDSUMMER_QUEST1 = 'Complete the quest, "A Thief\'s Reward", by stealing the flames from your enemy\'s capital cities.',
 
+    --LONG TRIP
+    AC_WORLDEVENTS_TRIP = 'What A Long, Strange Trip It\'s Been',
+    AD_WORLDEVENTS_TRIP = 'Complete the world events achievements listed below.',
+
 	--TBC
     AN_QUESTS_HELLFIRE_PENINSULA = 'To Hellfire and Back',
     AD_QUESTS_HELLFIRE_PENINSULA = 'Complete the Hellfire Peninsula storylines listed below.',

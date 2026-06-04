@@ -1166,6 +1166,10 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_MIDSUMMER_QUEST1 = 'König des Feuerfestivals',
     AD_MIDSUMMER_QUEST1 = 'Schließt die Quest \'Der Lohn des Diebes\' ab, indem Ihr die Flammen aus den Hauptstädten Eures Gegners stehlt.',
 
+    --LONG TRIP
+    AC_WORLDEVENTS_TRIP = 'Was für eine lange, seltsame Reise...',
+    AD_WORLDEVENTS_TRIP = 'Schließt die unten aufgelisteten Weltereignis-Erfolge ab.',
+
 	--BURNING CRUSADE
     AN_QUESTS_HELLFIRE_PENINSULA = 'Durchs Höllenfeuer und zurück',
     AD_QUESTS_HELLFIRE_PENINSULA = 'Schließt die folgenden Geschichtsstränge auf der Höllenfeuerhalbinsel ab.',
