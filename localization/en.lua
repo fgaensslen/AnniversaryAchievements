@@ -246,7 +246,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	QUEST_656 = 'Summoning the Princess',
 	QUEST_793 = 'Broken Alliances',
 	QUEST_717 = 'Tremors of the Earth',
-	
+
 	EASTERN_PLAGUELANDS_1 = 'Eastern Plaguelands',
 	EASTERN_PLAGUELANDS_2 = 'Eastern Plaguelands',
 	QUEST_5942 = 'Hidden Treasures',
@@ -398,7 +398,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AD_NAXXRAMAS_PLAGUE = 'Defeat the bosses of The Plague Quarter of Naxxramas.',
 	AC_NAXXRAMAS_PLAGUE1 = 'Noth the Plaguebringer',
 	AC_NAXXRAMAS_PLAGUE2 = 'Heigan the Unclean',
-	AC_NAXXRAMAS_PLAGUE3 = 'Loatheb',	
+	AC_NAXXRAMAS_PLAGUE3 = 'Loatheb',
 	AN_NAXXRAMAS_MILITARY = 'The Military Quarter',
 	AD_NAXXRAMAS_MILITARY = 'Defeat the bosses of The Military Quarter of Naxxramas.',
 	AC_NAXXRAMAS_MILITARY1 = 'Instructor Razuvious',
@@ -1399,7 +1399,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	TBC_QUEST_10937 = 'Drill the Drillmaster',
 	TBC_QUEST_9383 = 'Temple of Telhamat',
 	TBC_QUEST_10630 = 'Green, But Not Orcs',
-	
+
 	AN_QUESTS_ZANGARMASH = 'Mysteries of the Marsh',
 	AD_QUESTS_ZANGARMASH = 'Complete the Zangarmarsh storylines listed below.',
 	TBC_QUEST_9772 = 'Swamprat Post',
@@ -1412,7 +1412,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	TBC_QUEST_9732 = 'Draining the Marsh',
 	TBC_QUEST_9788 = 'Saving the Sporeloks',
 	TBC_QUEST_9726 = 'A Trip With the Sporelings',
-	
+
 	AN_QUESTS_TERROKAR = 'Terror of Terokkar',
 	AD_QUESTS_TERROKAR = 'Complete the Terokkar Forest storylines listed below.',
 	TBC_QUEST_10879 = 'The Skettis Offensive',
@@ -1421,7 +1421,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	TBC_QUEST_9951 = 'The Warden\'s Secret',
 	TBC_QUEST_10042 = 'Allerian Stronghold',
 	TBC_QUEST_10043 = 'Stonebreaker Hold',
-	
+
 	AN_QUESTS_NAGRAND = 'Nagrand Slam',
 	AD_QUESTS_NAGRAND = 'Complete the Nagrand storylines listed below.',
 	TBC_QUEST_10172 = 'Birth of a Warchief',
@@ -1436,7 +1436,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	TBC_QUEST_9933 = 'Lantresor of the Blade',
 	TBC_QUEST_9873 = 'The Murkblood',
 	TBC_QUEST_10011 = 'Threats to Nagrand',
-	
+
 	AN_QUESTS_BLADES_EDGE_MTNS = 'On the Blade\'s Edge',
 	AD_QUESTS_BLADES_EDGE_MTNS = 'Complete the Blade\'s Edge Mountains storylines listed below..',
 	TBC_QUEST_10504 = 'Sylvanaar',
@@ -1446,7 +1446,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	TBC_QUEST_10742 = 'Reunion',
 	TBC_QUEST_10867 = 'The Mok\'Nathal',
 	TBC_QUEST_10748 = 'Ruuan Weald',
-	
+
 	AN_QUESTS_NETHERSTORM = 'Into the Nether',
 	AD_QUESTS_NETHERSTORM = 'Complete the Netherstorm storylines listed below.',
 	TBC_QUEST_10409 = 'Socrethar',
@@ -1455,7 +1455,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	TBC_QUEST_10439 = 'Destroying the All-Devouring',
 	TBC_QUEST_10221 = 'Building the X-52 Nether-Rocket',
 	TBC_QUEST_10276 = 'The Consortium',
-	
+
 	AN_QUESTS_SHADOWMOON = 'Shadow of the Betrayer',
 	AD_QUESTS_SHADOWMOON = 'Complete the Shadowmoon Valley storylines listed below.',
 	TBC_QUEST_10744 = 'News of Victory',
@@ -1466,7 +1466,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	TBC_QUEST_10588 = 'The Cipher of Damnation',
 	TBC_QUEST_10679 = 'Anti-Demon Weapons',
 	TBC_QUEST_10808 = 'The Dark Conclave',
-	
+
 	AN_HEMET_QUESTS_NAGRAND = 'Hills Like White Elekk',
 	AD_HEMET_QUESTS_NAGRAND = 'Complete all of Hemet Nesingwary quests in Nagrand up to and including The Ultimate Bloodsport.',
 
@@ -1533,7 +1533,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AN_OUTLAND_HERO = 'Hero of Outland',
 	AD_OUTLAND_HERO = 'Earn the raid achievements listed below.',
 	AR_OUTLAND_HERO = 'Hero of Outland',
-	
+
 	AN_OUTLAND_GREAT_HERO = 'Great Hero of Outland',
 	AD_OUTLAND_GREAT_HERO = 'Earn the raid and dungeon achievements listed below.',
 	AR_OUTLAND_GREAT_HERO = 'Great Hero of Outland',
