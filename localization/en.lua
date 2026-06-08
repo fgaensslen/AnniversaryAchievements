@@ -111,7 +111,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AN_HUNTER_T1 = 'Giantstalker Armor',
 	AN_PALADIN_T1 = 'Lawbringer Armor',
 	AN_WARRIOR_T1 = 'Battlegear of Might',
-	AN_SHAMAN_T1 = 'Earthfury Raiment',
+	AN_SHAMAN_T1 = 'Earthfury',
 	
 	AN_DRUID_T2 = 'Stormrage Raiment',
 	AN_WARLOCK_T2 = 'Nemesis Raiment',
@@ -334,7 +334,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AC_BLACKROCK_DEPTHS3 = 'General Angerforge',
     AC_BLACKROCK_DEPTHS4 = 'Golem Lord Argelmach',
     AC_BLACKROCK_DEPTHS5 = 'Lord Incendius',
-    AC_BLACKROCK_DEPTHS6 = 'Water Stilgiss',
+    AC_BLACKROCK_DEPTHS6 = 'Warder Stilgiss',
     AC_BLACKROCK_DEPTHS7 = 'Bael\'Gar',
     AN_BLACKROCK_PARTY = 'Party in the Guzzler',
     AD_BLACKROCK_PARTY = 'Defeat all listed opponents in the Grim Guzzler.',
