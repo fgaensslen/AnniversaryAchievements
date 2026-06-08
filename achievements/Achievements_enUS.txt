@@ -585,7 +585,7 @@ ID; Name; Description
 585 ; Mercilessly Dedicated ; Win 100 ranked arena matches at level 70. ; -achievement_featsofstrength_gladiator_01
 586 ; Vengefully Dedicated ; Win 200 ranked arena matches at level 70. ; -achievement_featsofstrength_gladiator_02
 587 ; Brutally Dedicated ; Win 300 ranked arena matches at level 70. ; -achievement_featsofstrength_gladiator_03
-588 ; World Wide Winner ; Win a ranked arena match in Blade\'s Edge, Nagrand and the Ruins of Lordaeron at level 70. ; -ability_hunter_pathfinding
+588 ; World Wide Winner ; Win a ranked arena match in Blade's Edge, Nagrand and the Ruins of Lordaeron at level 70. ; -ability_hunter_pathfinding
 589 ; Hot Streak ; Win ten ranked matches in a row at level 70. ; -spell_fire_fire
 590 ; Just the Two of Us: 1550 ; Earn a 1550 personal rating in the 2v2 bracket of the arena at level 70. ; achievement_arena_2v2_1
 591 ; Just the Two of Us: 1750 ; Earn a 1750 personal rating in the 2v2 bracket of the arena at level 70. ; achievement_arena_2v2_4
@@ -608,3 +608,43 @@ ID; Name; Description
 608 ; Sweet Tooth ; Sample the Love is in the Air candies listed below. ; -inv_valentineschocolate02
 609 ; Lovely Luck Is On Your Side ; Open a Lovely Dress Box and receive a Lovely Black Dress. ; -inv_chest_cloth_50
 610 ; Perma-Peddle ; Obtain a permanent Peddlefeet pet by procuring a Truesilver Shafted Arrow. ; -inv_ammo_arrow_02
+611 ; To Honor One's Elders ; Complete the Lunar Festival achievements listed below. ; achievement_worldevent_lunar
+612 ; A Coin of Ancestry ; Receive a Coin of Ancestry. ; -inv_misc_elvencoins
+613 ; 5 Coins of Ancestry ; Receive 5 Coins of Ancestry. ; -inv_misc_elvencoins
+614 ; 10 Coins of Ancestry ; Receive 10 Coins of Ancestry. ; -inv_misc_elvencoins
+615 ; 25 Coins of Ancestry ; Receive 25 Coins of Ancestry. ; -inv_misc_elvencoins
+616 ; 50 Coins of Ancestry ; Receive 50 Coins of Ancestry. ; -inv_misc_elvencoins
+617 ; Elune's Blessing ; Complete the Elune's Blessing quest by defeating Omen. ; spell_holy_aspiration
+618 ; Lunar Festival Finery ; Purchase a festive pant suit or festive dress with Coins of Ancestry. ; -inv_chest_cloth_59
+619 ; Elders of the Dungeons ; Honor the Elders which are located inside the dungeons. ; -spell_holy_symbolofhope
+620 ; Elders of the Alliance ; Honor the Elders which are located in the Alliance capital cities. ; -spell_holy_symbolofhope
+621 ; Elders of Eastern Kingdoms ; Honor the Elders which are located in Eastern Kingdoms ; -spell_holy_symbolofhope
+622 ; Elders of Kalimdor ; Honor the Elders which are located in Kalimdor. ; -spell_holy_symbolofhope
+623 ; Fiery Warhorse's Reins ; Obtain the Fiery Warhorse's Reins from Attumen the Huntsman in Karazhan. ; -ability_mount_dreadsteed
+624 ; The 2 Ring ; Obtain The 2 Ring from a Bag of Fishing Treasures. ; -inv_jewelry_ring_34
+625 ; Sunday's Finest ; Discover the White Tuxedo Shirt and Black Tuxedo Pants by opening Brightly Colored Eggs during the Noblegarden celebration. ; -inv_shirt_08
+626 ; Dressed for the Occasion ; Discover an Elegant Dress by opening Brightly Colored Eggs during the Noblegarden celebration. ; -inv_chest_cloth_04
+627 ; My Storage is "Gigantique" ; Equip Haris Pilton's "Gigantique" Bag. ; -inv_misc_bag_27
+628 ; For The Children ; Complete the Children's Week achievements listed below. ; -inv_misc_toy_04
+629 ; Aw, Isn't It Cute? ; Obtain one of the Children's Week reward pets. ; -ability_hunter_pet_turtle
+630 ; Veteran Nanny ; Acquire Egbert's Egg, Sleepy Willy, and Elekk Training Collar on one character. ; -inv_misc_toy_01
+631 ; Hero of Outland ; Earn the raid achievements listed below. ; achievement_dungeon_outland_dungeon_hero
+632 ; Great Hero of Outland ; Earn the raid and dungeon achievements listed below. ; spell_holy_proclaimchampion_02
+633 ; The Flame Keeper ; Complete the Midsummer achievements listed below. ; -inv_summerfest_symbol_high
+634 ; King of the Fire Festival ; Complete the quest, "A Thief's Reward", by stealing the flames from your enemy's capital cities. ; -inv_helmet_08
+635 ; Extinguishing Kalimdor ; Desecrate the Horde's bonfires in Kalimdor. ; -spell_fire_masterofelements
+636 ; Extinguishing Outland ; Desecrate the Horde's bonfires in Outland. ; -spell_fire_masterofelements
+637 ; Extinguishing Eastern Kingdoms ; Desecrate the Horde's bonfires in Eastern Kingdoms. ; -spell_fire_masterofelements
+638 ; Desecration of the Horde ; Complete the Extinguishing Eastern Kingdoms, Kalimdor and Outland achievements. ; -spell_fire_masterofelements
+639 ; Flame Warden of Kalimdor ; Honor the flames of Kalimdor. ; -inv_summerfest_firespirit
+640 ; Flame Warden of Outland ; Honor the flames of Outland. ; -inv_summerfest_firespirit
+641 ; Flame Warden of Eastern Kingdoms ; Honor the flames of Eastern Kingdoms. ; -inv_summerfest_firespirit
+642 ; The Fires of Azeroth ; Complete the Flame Warden of Eastern Kingdoms, Kalimdor and Outland achievements. ; -inv_summerfest_firespirit
+643 ; Ice the Frost Lord ; Slay Ahune in the Slave Pens. ; -spell_frost_summonwaterelemental
+644 ; Brewmaster ; Complete the Brewfest achievements listed below. ; achievement_worldevent_brewmaster
+645 ; Does Your Wolpertinger Linger? ; Obtain a Wolpertinger pet. ; -inv_drink_13
+646 ; Direbrewfest ; Kill Coren Direbrew. ; -inv_misc_head_dwarf_01
+647 ; Down With the Dark Iron ; Defend the Brewfest camp from the Dark Iron attack and complete the quest, "This One Time, When I Was Drunk..." ; -inv_ore_mithril_01
+648 ; Have Keg, Will Travel ; Obtain a Brewfest mount. ; -inv_cask_01
+649 ; Brew of the Month ; Join the Brew of the Month club. ; -inv_misc_beer_02
+650 ; What A Long, Strange Trip It's Been ; Complete the world events achievements listed below. ; achievement_bg_masterofallbgs

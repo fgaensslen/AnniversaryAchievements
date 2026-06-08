@@ -8,40 +8,47 @@ function GetAchievementLink(achievementID)
     local completion = cmanager:GetLocal()
     local finished = 0
     local month, day, year = 0, 0, 0
-    local criterias = 0
+    
+    -- Split into two 32-bit integers to avoid overflow (supports up to 64 criteria)
+    local criterias1, criterias2 = 0, 0
+    
     if completion:IsAchievementCompleted(ach.id) then
         finished = 1
         local time = completion:GetAchievementCompletionTime(ach.id)
         month, day, year = tonumber(date('%m', time)), tonumber(date('%d', time)), tonumber(date('%y', time))
     end
+    
     local index = 0
     for _, criteria in pairs(ach:GetCriterias()) do
         if completion:IsCriteriaCompleted(ach.id, criteria.id) then
-            criterias = bit.bor(criterias, bit.lshift(1, index))
+            if index < 31 then
+                criterias1 = bit.bor(criterias1, bit.lshift(1, index))
+            else
+                criterias2 = bit.bor(criterias2, bit.lshift(1, index - 31))
+            end
         end
         index = index + 1
-    end
-    return string.format('[AnniversaryAchievement:%d:%s:%d:%d:%d:%d:%d]', achievementID, UnitGUID('player'), finished, month, day, year, criterias)
 end
 
-local function strstartsWith(str, prefix)
-    return str:sub(1, #prefix) == prefix
+    -- New link format adds a second criteria block
+    return string.format('[AnniversaryAchievement:%d:%s:%d:%d:%d:%d:%d:%d]', achievementID, UnitGUID('player'), finished, month, day, year, criterias1, criterias2)
 end
 
 local function FormatAnniversaryAchievementLinks(msg)
     local newMsg, remaining, done = '', msg, false
 
     repeat
-        local start, finish, data = remaining:find('%[AnniversaryAchievement:(%d+:[^%]]+:%d:%d+:%d+:%d+:%d+)%]')
+        -- Updated pattern to look for the extra :%d at the end
+        local start, finish, data = remaining:find('%[AnniversaryAchievement:(%d+:[^%]]+:%d:%d+:%d+:%d+:%d+:%d+)%]')
         if data then
             local link = ''
-            local aid, guid, finished, month, day, year, criterias = strsplit(':', data)
-            if criterias then
+            local aid, guid, finished, month, day, year, c1, c2 = strsplit(':', data)
+            if c1 then
                 local ach = db:GetAchievement(tonumber(aid))
                 if ach then
                     link = string.format(
-                        '|cffffff00|Hgarrmission:clach:%d#%s#%d#%d#%d#%d#%d|h[%s]|h|r',
-                        aid, guid, finished, month, day, year, criterias, ach.name
+                        '|cffffff00|Hgarrmission:clach:%d#%s#%d#%d#%d#%d#%d#%d|h[%s]|h|r',
+                        aid, guid, finished, month, day, year, c1, c2, ach.name
                     )
                 end
             end
@@ -84,10 +91,19 @@ local shownAchievementID = 0
 hooksecurefunc('SetItemRef', function(link)
     local linkType, addon, params = strsplit(':', link)
     if linkType ~= 'garrmission' or addon ~= 'clach' then return end
-    local aid, guid, finished, month, day, year, criterias = strsplit('#', params)
-    aid, finished, month, day, year, criterias = tonumber(aid), tonumber(finished), tonumber(month), tonumber(day), tonumber(year), tonumber(criterias)
+    
+    local aid, guid, finished, month, day, year, c1, c2 = strsplit('#', params)
+    aid = tonumber(aid)
+    finished = tonumber(finished)
+    month = tonumber(month)
+    day = tonumber(day)
+    year = tonumber(year)
+    c1 = tonumber(c1)
+    c2 = tonumber(c2) or 0 -- Default to 0 for older links
+
     local ach = db:GetAchievement(aid)
     if ach == nil then return end
+    
     if IsShiftKeyDown() then
         local editbox = GetCurrentKeyBoardFocus()
         if editbox then
@@ -99,6 +115,7 @@ hooksecurefunc('SetItemRef', function(link)
             ItemRefTooltip:Hide()
             return
         end
+        
         local lines = {
             {1, '|cffffffff' .. ach.name},
             {1, ' '}
@@ -113,34 +130,37 @@ hooksecurefunc('SetItemRef', function(link)
         end
         lines[#lines + 1] = {1, ' '}
 
+        -- Description wrapping logic
         local words = SexyLib:Util():Explode(ach.description, ' ')
         local sublines, subline = {}, ''
         for _, word in pairs(words) do
             if strlen(subline) + 1 + strlen(word) <= 100 then
-                if subline == '' then
-                    subline = word
-                else
-                    subline = subline .. ' ' .. word
-                end
+                subline = (subline == '') and word or (subline .. ' ' .. word)
             else
                 sublines[#sublines + 1] = subline
                 subline = word
             end
         end
         if subline ~= '' then sublines[#sublines + 1] = subline end
-        for _, subline in pairs(sublines) do
-            lines[#lines + 1] = {1, subline}
-        end
+        for _, sl in pairs(sublines) do lines[#lines + 1] = {1, sl} end
         
+        -- Criteria logic updated for split bitfields
         local clist, index = {}, 0
         for _, criteria in pairs(ach:GetCriterias()) do
             if criteria.name and not criteria.quantity then
+                local completed = false
+                if index < 31 then
                 local bt = bit.lshift(1, index)
-                local completed = bit.band(criterias, bt) == bt
+                    completed = bit.band(c1, bt) == bt
+                else
+                    local bt = bit.lshift(1, index - 31)
+                    completed = bit.band(c2, bt) == bt
+                end
                 clist[#clist + 1] = {criteria.name, completed}
             end
             index = index + 1
         end
+
         local size = #clist
         if size > 0 then
             lines[#lines + 1] = {1, ' '}

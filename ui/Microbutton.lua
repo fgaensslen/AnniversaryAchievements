@@ -42,23 +42,53 @@ SexyLib:Util():AfterLogin(function()
     CA_InitializeMicrobutton()
     AchievementMicroButton:SetFrameLevel(QuestLogMicroButton:GetFrameLevel() + 1)
 
-    local helpPoint, helpRelativeTo, helpRelativePoint, helpX, helpY
-
-    if HelpMicroButton then
-        helpPoint, helpRelativeTo, helpRelativePoint, helpX, helpY = HelpMicroButton:GetPoint()
-    end
-
+    -- 1. Completely disable the Help Button as requested
     if HelpMicroButton then
         HelpMicroButton:Hide()
         HelpMicroButton:UnregisterAllEvents()
         HelpMicroButton:SetParent(nil)
     end
 
-    if SocialsMicroButton and helpPoint then
-        SocialsMicroButton:ClearAllPoints()
-        SocialsMicroButton:SetPoint(helpPoint, helpRelativeTo, helpRelativePoint, helpX, helpY)
+    local function ReanchorMicroButtons()
+        if HelpMicroButton then HelpMicroButton:Hide() end
+
+        local buttons = {
+            CharacterMicroButton,
+            SpellbookMicroButton,
+            TalentMicroButton,
+            QuestLogMicroButton,
+            AchievementMicroButton,
+            SocialsMicroButton,
+            GuildMicroButton,
+            WorldMapMicroButton,
+            MainMenuMicroButton
+        }
+
+        local prevButton = nil
+        
+        for _, btn in ipairs(buttons) do
+            if btn and btn:IsShown() and btn:GetAlpha() > 0 then
+                btn:ClearAllPoints()
+                if not prevButton then
+                    -- EDIT MODE FIX: 
+                    -- Instead of hard-coding coordinates, we anchor the first button 
+                    -- to the top-left of its own parent container at 0,0.
+                    -- This lets the Edit Mode "box" move freely.
+                    btn:SetPoint("BOTTOMLEFT", btn:GetParent(), "BOTTOMLEFT", 0, 0)
+                else
+                    -- Maintain the tight classic spacing
+                    btn:SetPoint("LEFT", prevButton, "RIGHT", -3, 0)
+                end
+                prevButton = btn
+            end
+        end
     end
 
+    -- Hook the update function so when Socials is toggled, the bar reorganizes
+    hooksecurefunc("UpdateMicroButtons", ReanchorMicroButtons)
+    
+    -- Run once immediately to set the initial layout
+    ReanchorMicroButtons()
 end)
 
 function CA_ShouldUseMicrobutton()

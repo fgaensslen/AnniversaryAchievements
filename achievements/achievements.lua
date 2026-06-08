@@ -56,9 +56,14 @@ local vanillaReputation = tab:CreateCategory('CATEGORY_VANILLA', reputation.id, 
 local tbcReputations = tab:CreateCategory('CATEGORY_TBC', reputation.id, true)
 
 local worldevents = tab:CreateCategory('CATEGORY_EVENTS', nil, true)
+local lunar = tab:CreateCategory('CATEGORY_LUNAR', worldevents.id, true)
+local valentines = tab:CreateCategory('CATEGORY_VALENTINES', worldevents.id, true)
+local noblegarden = tab:CreateCategory('CATEGORY_NOBLEGARDEN', worldevents.id, true)
+local children = tab:CreateCategory('CATEGORY_CHILDREN', worldevents.id, true)
+local midsummer = tab:CreateCategory('CATEGORY_MIDSUMMER', worldevents.id, true)
+local brewfest = tab:CreateCategory('CATEGORY_BREWFEST', worldevents.id, true)
 local hallowsend = tab:CreateCategory('CATEGORY_HALLOWSEND', worldevents.id, true)
 local winterveil = tab:CreateCategory('CATEGORY_WINTERVEIL', worldevents.id, true)
-local valentines = tab:CreateCategory('CATEGORY_VALENTINES', worldevents.id, true)
 
 local featsOfStrength = tab:CreateCategory('CATEGORY_FEATS_OF_STRENGTH', nil, true)
 
@@ -67,13 +72,14 @@ do
     for i = 1, 7 do
         local lvl = i * 10
         ach = general:CreateAchievement(loc:Get('AN_LVL', lvl), loc:Get('AD_LVL', lvl), 10, 'level_' .. lvl)
-        ach:AddCriteria(criterias:Create(nil, TYPE.REACH_LEVEL, {lvl}))
+            ach:AddCriteria(criterias:Create(nil, TYPE.REACH_LEVEL, {lvl}))
+
         if previous then previous:SetNext(ach) end
         previous = ach
     end
 	
 	ach = general:CreateAchievement('AN_BANK', 'AD_BANK', 10, '-inv_box_01', true)
-	ach:AddCriteria(criterias:Create('AC_BANK', TYPE.BANK_SLOTS, nil, 7))
+	    ach:AddCriteria(criterias:Create('AC_BANK', TYPE.BANK_SLOTS, nil, 7))
 
     previous = nil
     for i, count in pairs({100, 1000, 5000, 10000, 25000, 50000, 100000}) do
@@ -192,7 +198,9 @@ do
 	elseif englishClass == 'SHAMAN' then
 		add('SHAMAN_T3', 'AD_SET', '-inv_helmet_15', {22466, 22467, 22464, 22465, 22468, 22470, 22469, 22471, 23065})
 	end
-	
+
+    ach = general:CreateAchievement('AN_DOLCE', 'AD_DOLCE', 10, '-inv_misc_bag_27', true, 627)
+        ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {38082}, nil, 6270))
 end
 
 -- QUESTS --
@@ -238,10 +246,10 @@ do
 	
 	-- KEYs
     if UnitFactionGroup('player') == 'Horde' then
-		ach = quests:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 10, '-inv_misc_key_11', true)
+		ach = questsEasternKingdoms:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 10, '-inv_misc_key_11', true)
 	    ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {5511}))
     else
-		ach = quests:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 10, '-inv_misc_key_11', true)
+		ach = questsEasternKingdoms:CreateAchievement('AN_SKELETON_KEY', 'AD_SKELETON_KEY', 10, '-inv_misc_key_11', true)
 	    ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {5505}))
     end	
 
@@ -399,11 +407,18 @@ do
 	ach = outlandQuests:CreateAchievement('AN_HEMET_QUESTS_NAGRAND', 'AD_HEMET_QUESTS_NAGRAND', 10, '-ability_mount_ridingelekk', true, 526)
 		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9852}))
 
-    --ATTUNEMENT    
-	L:Achievement(outlandQuests, 10, '-inv_misc_key_02')
-        :NameDesc('AN_ATTUNE_SHATTERED_HALLS', 'AD_ATTUNE_SHATTERED_HALLS', true)
-        :Criteria(TYPE.OBTAIN_ITEM, {28395}):Build()
-        :Build()
+    --ATTUNEMENT  
+    if UnitFactionGroup('player') == 'Horde' then  
+        L:Achievement(outlandQuests, 10, '-inv_misc_key_02')
+            :NameDesc('AN_ATTUNE_SHATTERED_HALLS', 'AD_ATTUNE_SHATTERED_HALLS', true)
+            :Criteria(TYPE.COMPLETE_QUEST, {10758}):Build()
+            :Build()
+    else
+        L:Achievement(outlandQuests, 10, '-inv_misc_key_02')
+            :NameDesc('AN_ATTUNE_SHATTERED_HALLS', 'AD_ATTUNE_SHATTERED_HALLS', true)
+            :Criteria(TYPE.COMPLETE_QUEST, {10764}):Build()
+            :Build()
+    end
 		
 	L:Achievement(outlandQuests, 10, '-inv_datacrystal03')
         :NameDesc('AN_ATTUNE_ARCATRAZ', 'AD_ATTUNE_ARCATRAZ', true)
@@ -417,7 +432,7 @@ do
 		
 	L:Achievement(outlandQuests, 10, '-inv_misc_urn_01')
         :NameDesc('AN_ATTUNE_NIGHT_BANE', 'AD_ATTUNE_NIGHT_BANE', true)
-        :Criteria(TYPE.OBTAIN_ITEM, {24140}):Build()
+        :Criteria(TYPE.COMPLETE_QUEST, {9644}):Build()
         :Build()
 		
 	L:Achievement(outlandQuests, 10, '-inv_trinket_naxxramas01')
@@ -434,10 +449,10 @@ do
         :NameDesc('AN_ATTUNE_HYJAL', 'AD_ATTUNE_HYJAL', true)
         :Criteria(TYPE.COMPLETE_QUEST, {10445}):Build()
         :Build()
-		
+
 	L:Achievement(outlandQuests, 10, '-inv_jewelry_amulet_04')
         :NameDesc('AN_ATTUNE_BLACK_TEMPLE', 'AD_ATTUNE_BLACK_TEMPLE', true)
-        :Criteria(TYPE.OR, {L:Criteria(TYPE.OBTAIN_ITEM, {32649}):Build(), L:Criteria(TYPE.OBTAIN_ITEM, {32757}):Build()}):Build()
+        :Criteria(TYPE.OR, {L:Criteria(TYPE.COMPLETE_QUEST, {10985}):Build(), L:Criteria(TYPE.COMPLETE_QUEST, {10985}):Build()}):Build()
         :Build()    
 end
 
@@ -569,36 +584,53 @@ do
     local pvpIcon
     local previous = nil
 
-    local factionLetter
-    if UnitFactionGroup('player') == 'Horde' then
-        factionLetter = 'H'
-    else
-        factionLetter = 'A'
-    end
+    local factionLetter = (UnitFactionGroup('player') == 'Horde') and 'H' or 'A'
+    local pvpAchievements = {} -- Temporary table to store references for this session
 
+    -- 1. Generate all 14 and immediately disable them
     for i = 1, 14 do
-        pvpIcon = 'pvp_rank_'
-
+        local pvpIcon = 'pvp_rank_'
         local ach = featsOfStrength:CreateAchievement(
             'AN_PVP_RANK_' .. factionLetter .. i,
-            'AD_PVP_RANK', -- description set dynamically
+            'AD_PVP_RANK', 
             0,
             pvpIcon .. i,
             true
         )
 
-        -- Build description from the achievement title
         local title = ach.name
-        local desc = string.format(loc:Get('AD_PVP_RANK'), title)
-        ach.description = desc
-
+        ach.description = string.format(loc:Get('AD_PVP_RANK'), title)
         ach:AddCriteria(criterias:Create(nil, TYPE.REACH_PVP_RANK, { i }))
 
-        if previous then
-            previous:SetNext(ach)
-        end
-        previous = ach
+        -- Mark as unavailable so it doesn't show in the UI list
+        ach:SetUnavailable()
+        
+        -- Store reference to enable it later
+        pvpAchievements[i] = ach
     end
+
+    -- 2. Define the Refresh Function
+    local function RefreshPvpAchievement()
+        local rank = UnitPVPRank("player")
+        local highestRank = rank - 4 -- Your TBC offset logic
+
+        if highestRank > 0 and highestRank <= 14 then
+            -- Hide all first to be safe
+            for _, ach in pairs(pvpAchievements) do ach.unavailable = true end
+            
+            -- Show the current one
+            local currentAch = pvpAchievements[highestRank]
+            if currentAch then
+                currentAch.unavailable = false
+                for _, criteria in pairs(currentAch.criterias) do
+                    criteria.deactivated = false
+                end
+            end
+        end
+    end
+
+    --Necessary to delay the initial check until the player data is loaded
+    C_Timer.After(1, RefreshPvpAchievement)
 
     local previous = pvp:CreateAchievement('AN_PVP_FIRST_KILL', 'AD_PVP_FIRST_KILL', 10, 'achievement_pvp_p_01', true)
     previous:AddCriteria(criterias:CreateL('AC_PVP_FIRST_KILL', TYPE.KILL_PLAYERS, nil, 1))
@@ -1439,7 +1471,21 @@ do
 	local p5 = L:Achievement(pve, 10, '-inv_helmet_92')
         :NameDesc('AN_TBC_PHASE_5', 'AD_TBC_PHASE_5', true)
 		:Criteria(TYPE.COMPLETE_ACHIEVEMENT, {sunwell.id}):Name(sunwell.name):Build()
-        :Build() 		
+        :Build()    
+
+    local outlandHero = pve:CreateAchievement('AN_OUTLAND_HERO', 'AD_OUTLAND_HERO', 10, 'achievement_dungeon_outland_dungeon_hero', true, 631)
+        outlandHero:AddCriteria(criterias:CreateL('AN_YOUNG_HERO', TYPE.COMPLETE_ACHIEVEMENT, {p1.id}, nil, 6310))
+        outlandHero:AddCriteria(criterias:CreateL('AN_YOUNG_HERO', TYPE.COMPLETE_ACHIEVEMENT, {p2.id}, nil, 6311))
+        outlandHero:AddCriteria(criterias:CreateL('AN_YOUNG_HERO', TYPE.COMPLETE_ACHIEVEMENT, {p3.id}, nil, 6312))
+        outlandHero:AddCriteria(criterias:CreateL('AN_YOUNG_HERO', TYPE.COMPLETE_ACHIEVEMENT, {p4.id}, nil, 6313))
+        outlandHero:AddCriteria(criterias:CreateL('AN_YOUNG_HERO', TYPE.COMPLETE_ACHIEVEMENT, {p5.id}, nil, 6314))
+        outlandHero:SetRewardText(loc:Get('AR_OUTLAND_HERO'))
+
+    local outlandGreatHero = pve:CreateAchievement('AN_OUTLAND_GREAT_HERO', 'AD_OUTLAND_GREAT_HERO', 10, 'spell_holy_proclaimchampion_02', true, 632)
+        outlandGreatHero:AddCriteria(criterias:CreateL('AN_GREAT_HERO', TYPE.COMPLETE_ACHIEVEMENT, {builderNormalTBC.id}, nil, 6320))
+        outlandGreatHero:AddCriteria(criterias:CreateL('AN_GREAT_HERO', TYPE.COMPLETE_ACHIEVEMENT, {builderHeroicTBC.id}, nil, 6321))
+        outlandGreatHero:AddCriteria(criterias:CreateL('AN_GREAT_HERO', TYPE.COMPLETE_ACHIEVEMENT, {outlandHero.id}, nil, 6322))
+        outlandGreatHero:SetRewardText(loc:Get('AR_OUTLAND_GREAT_HERO'))
 end
 
 -- PROFESSIONS --
@@ -1670,6 +1716,9 @@ do
         accomplishedfisher:AddCriteria(criterias:CreateL('AN_FISHING_OUTLAND_MASTER', TYPE.COMPLETE_ACHIEVEMENT, {435}))
         accomplishedfisher:AddCriteria(criterias:CreateL('AN_BOOTY_BAY_CONTEST', TYPE.COMPLETE_ACHIEVEMENT, {444}))
         accomplishedfisher:AddCriteria(criterias:CreateL('AN_FISHING_DIPLOMAT', TYPE.COMPLETE_ACHIEVEMENT, {fishing_diplomat.id}))
+
+    local second_ring = fishing:CreateAchievement('AN_SECOND_RING', 'AD_SECOND_RING', 10, '-inv_jewelry_ring_34', true, 624)
+        second_ring:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {34837}))
 
 	--COOKING
     previous = nil
@@ -1915,6 +1964,222 @@ do
     ach = valentines:CreateAchievement('AN_VALENTINES_PIDO', 'AD_VALENTINES_PIDO', 10, '-inv_ammo_arrow_02', true, 610)
         ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {22235}))
     valentinesSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+
+    --LUNAR FESTIVAL
+    local lunarSummary = worldevents:CreateAchievement('AN_LUNAR', 'AD_LUNAR', 10, 'achievement_worldevent_lunar', true, 611)
+        lunarSummary:SetRewardText(loc:Get('AR_LUNAR'))
+
+    local previous = lunar:CreateAchievement('AN_LUNAR_COIN', 'AD_LUNAR_COIN', 10, '-inv_misc_elvencoins', true, 612)
+        previous:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {21100}))
+
+    local coinID = 613
+    for i, count in pairs({5, 10, 25, 50}) do	
+        ach = lunar:CreateAchievement(loc:Get('AN_LUNAR_COINS', count), loc:Get('AD_LUNAR_COINS', count), 10, '-inv_misc_elvencoins', false, coinID)
+        ach:AddCriteria(criterias:Create(loc:Get('AD_LUNAR_COINS', count), TYPE.OBTAIN_ITEM, {21100}, count))
+        previous:SetNext(ach)
+        previous = ach
+
+        coinID = coinID + 1
+    end
+	previous = nil
+
+    lunarSummary:AddCriteria(criterias:Create(loc:Get('AN_LUNAR_COINS', 50), TYPE.COMPLETE_ACHIEVEMENT, {616}))
+
+    ach = lunar:CreateAchievement('AN_LUNAR_QUEST', 'AD_LUNAR_QUEST', 10, 'spell_holy_aspiration', true, 617)
+        ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {8868}))
+    lunarSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+
+	local clothItems = {
+        21157, 21538, 21539, 21544, 21543, 21541
+	}
+    subCriterias = {}
+    for _, itemID in ipairs(clothItems) do
+		table.insert(subCriterias, criterias:Create(nil, TYPE.OBTAIN_ITEM, { itemID }))
+	end
+    ach = lunar:CreateAchievement('AN_LUNAR_CLOTHES', 'AD_LUNAR_CLOTHES', 10, '-inv_chest_cloth_59', true, 618)
+        ach:AddCriteria(criterias:Create(nil, TYPE.OR, subCriterias))
+    lunarSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}))
+
+    --ELDERS
+	local function addLunarElders(name, ids, achievementID)
+        local ach = lunar:CreateAchievement('AN_LUNAR_ELDERS_' .. name, 'AD_LUNAR_ELDERS_' .. name, 10, '-spell_holy_symbolofhope', true, achievementID)
+
+		for _, questID in ipairs(ids) do
+			local criteria = criterias:Create(loc:Get('AC_LUNAR_ELDERS_' .. name .. '_' .. questID), TYPE.COMPLETE_QUEST, {questID})
+				ach:AddCriteria(criteria)
+		end
+
+        return ach
+	end
+	
+	local lunarElders = addLunarElders('DUNGEONS', {8727, 8619, 8635, 8713, 8644, 8676}, 619)
+    lunarSummary:AddCriteria(criterias:Create(lunarElders.name, TYPE.COMPLETE_ACHIEVEMENT, {lunarElders.id}))
+
+    if UnitFactionGroup('player') == 'Horde' then
+	    lunarElders = addLunarElders('HORDE', {8678, 8648, 8677}, 620)
+        lunarSummary:AddCriteria(criterias:Create(lunarElders.name, TYPE.COMPLETE_ACHIEVEMENT, {lunarElders.id}))
+    else
+	    lunarElders = addLunarElders('ALLIANCE', {8718, 8866, 8646}, 620)
+        lunarSummary:AddCriteria(criterias:Create(lunarElders.name, TYPE.COMPLETE_ACHIEVEMENT, {lunarElders.id}))
+    end
+
+    lunarElders = addLunarElders('EASTERN_KINGDOMS', {8636, 8651, 8652, 8674, 8716, 8643, 8675, 8649, 8650, 8642, 8645, 8722, 8647, 8653, 8714, 8688, 8683}, 621)
+    lunarSummary:AddCriteria(criterias:Create(lunarElders.name, TYPE.COMPLETE_ACHIEVEMENT, {lunarElders.id}))
+
+    lunarElders = addLunarElders('KALIMDOR', {8673, 8723, 8684, 8726, 8725, 8715, 8681, 8680, 8720, 8670, 8672, 8686, 8654, 8671, 8724, 8685, 8721, 8717, 8719, 8682, 8679}, 622)
+    lunarSummary:AddCriteria(criterias:Create(lunarElders.name, TYPE.COMPLETE_ACHIEVEMENT, {lunarElders.id}))
+
+    --NOBLEGARDEN
+    ach = noblegarden:CreateAchievement('AN_NOBLEGARDEN_CLOTHES', 'AD_NOBLEGARDEN_CLOTHES', 10, '-inv_shirt_08', true, 625)
+        ach:AddCriteria(criterias:Create(loc:Get('AC_NOBLEGARDEN_CLOTHES_CRITERIA1'), TYPE.OBTAIN_ITEM, {6833}))
+        ach:AddCriteria(criterias:Create(loc:Get('AC_NOBLEGARDEN_CLOTHES_CRITERIA2'), TYPE.OBTAIN_ITEM, {6835}))
+    
+    ach = noblegarden:CreateAchievement('AN_NOBLEGARDEN_DRESS', 'AD_NOBLEGARDEN_DRESS', 10, '-inv_chest_cloth_04', true, 626)
+        ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {19028}))  
+
+    --CHILDRENS WEEK
+    local childrenSummary = worldevents:CreateAchievement('AN_CHILDREN', 'AD_CHILDREN', 10, '-inv_misc_toy_04', true, 628)
+        childrenSummary:SetRewardText(loc:Get('AR_CHILDREN'))
+    
+    local petItems = {
+        23007, 23015, 23002
+	}
+    subCriterias = {}
+    for _, itemID in ipairs(petItems) do
+		table.insert(subCriterias, criterias:Create(nil, TYPE.OBTAIN_ITEM, { itemID }))
+	end    
+
+    ach = children:CreateAchievement('AN_CHILDREN_PET', 'AD_CHILDREN_PET', 10, '-ability_hunter_pet_turtle', true, 629)
+        ach:AddCriteria(criterias:Create(nil, TYPE.OR, subCriterias, nil, 6290))
+    childrenSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6280))
+
+    ach = children:CreateAchievement('AN_CHILDREN_PETS', 'AD_CHILDREN_PETS', 10, '-inv_misc_toy_01', true, 630)
+        ach:AddCriteria(criterias:Create(loc:Get('AC_CHILDREN_PETS1'), TYPE.OBTAIN_ITEM, {32622}, nil, 6300))
+        ach:AddCriteria(criterias:Create(loc:Get('AC_CHILDREN_PETS2'), TYPE.OBTAIN_ITEM, {32617}, nil, 6301))
+        ach:AddCriteria(criterias:Create(loc:Get('AC_CHILDREN_PETS3'), TYPE.OBTAIN_ITEM, {32616}, nil, 6302))
+
+    --MIDSUMMER
+    local function addBonfires(type, faction, continent, icon, ids, achievementID)
+        local ach = midsummer:CreateAchievement('AN_MIDSUMMER_' .. type .. '_' .. faction .. '_' .. continent, 'AD_MIDSUMMER_' .. type .. '_' .. faction .. '_' .. continent, 10, icon, true, achievementID)
+
+		for _, questID in ipairs(ids) do
+			local criteria = criterias:Create(loc:Get('AC_MIDSUMMER_' .. type .. '_' .. faction .. '_' .. continent .. '_CRITERIA_'.. questID), TYPE.COMPLETE_QUEST, {questID}, nil, achievementID * questID)
+				ach:AddCriteria(criteria)
+		end
+
+        return ach
+	end
+
+    local midsummerSummary
+
+    if UnitFactionGroup('player') == 'Horde' then
+	    midsummerSummary = worldevents:CreateAchievement('AN_MIDSUMMER', 'AD_MIDSUMMER', 20, '-inv_summerfest_symbol_low', true, 633)
+        midsummerSummary:SetRewardText(loc:Get('AR_MIDSUMMER'))
+
+        ach = midsummer:CreateAchievement('AN_MIDSUMMER_QUEST1', 'AD_MIDSUMMER_QUEST1', 10, '-inv_helmet_08', true, 634)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9365}, nil, 6340))
+        midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6330))
+        	
+	    local kalimdor = addBonfires('DESECRATION', 'HORDE', 'KALIMDOR', '-spell_fire_masterofelements', {11744, 11734, 11738, 11740, 11746, 11760, 11753, 11762, 11741, 11763, 11735}, 635)  
+        local outland = addBonfires('DESECRATION', 'HORDE', 'OUTLAND', '-spell_fire_masterofelements', {11736, 11750, 11759, 11752, 11754, 11758, 11747}, 636)
+        local easternKingdoms = addBonfires('DESECRATION', 'HORDE', 'EASTERN_KINGDOMS', '-spell_fire_masterofelements', {11751, 11742, 11745, 11749, 11732, 11739, 11761, 11755, 11756, 11581, 11748, 11737, 11743, 11757}, 637)
+
+        ach = midsummer:CreateAchievement('AN_MIDSUMMER_DESECRATION_HORDE', 'AD_MIDSUMMER_DESECRATION_HORDE', 10, '-spell_fire_masterofelements', true, 638)
+            ach:AddCriteria(criterias:Create(kalimdor.name, TYPE.COMPLETE_ACHIEVEMENT, {kalimdor.id}, nil, 6380))
+            ach:AddCriteria(criterias:Create(outland.name, TYPE.COMPLETE_ACHIEVEMENT, {outland.id}, nil, 6381))
+            ach:AddCriteria(criterias:Create(easternKingdoms.name, TYPE.COMPLETE_ACHIEVEMENT, {easternKingdoms.id}, nil, 6382))
+        midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6331))
+
+        kalimdor = addBonfires('FLAME_KEEPER', 'HORDE', 'KALIMDOR', '-inv_summerfest_firespirit', {11841, 11845, 11846, 11847, 11849, 11852, 11859, 11839, 11836, 11856, 11861, 11838}, 639)  
+        outland = addBonfires('FLAME_KEEPER', 'HORDE', 'OUTLAND', '-inv_summerfest_firespirit', {11851, 11835, 11855, 11858, 11854, 11863, 11843}, 640)
+        easternKingdoms = addBonfires('FLAME_KEEPER', 'HORDE', 'EASTERN_KINGDOMS', '-inv_summerfest_firespirit', {11844, 11840, 11584, 11837, 11860, 11850, 11862, 11853, 11848, 11857, 11842}, 641)
+
+        ach = midsummer:CreateAchievement('AN_MIDSUMMER_FLAME_KEEPER_HORDE', 'AD_MIDSUMMER_FLAME_KEEPER_HORDE', 10, '-inv_summerfest_firespirit', true, 642)
+            ach:AddCriteria(criterias:Create(kalimdor.name, TYPE.COMPLETE_ACHIEVEMENT, {kalimdor.id}, nil, 6420))
+            ach:AddCriteria(criterias:Create(outland.name, TYPE.COMPLETE_ACHIEVEMENT, {outland.id}, nil, 6421))
+            ach:AddCriteria(criterias:Create(easternKingdoms.name, TYPE.COMPLETE_ACHIEVEMENT, {easternKingdoms.id}, nil, 6422))
+        midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6332))
+
+    else
+	    midsummerSummary = worldevents:CreateAchievement('AN_MIDSUMMER', 'AD_MIDSUMMER', 20, '-inv_summerfest_symbol_high', true, 633)
+        midsummerSummary:SetRewardText(loc:Get('AR_MIDSUMMER'))
+
+        ach = midsummer:CreateAchievement('AN_MIDSUMMER_QUEST1', 'AD_MIDSUMMER_QUEST1', 10, '-inv_helmet_08', true, 634)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9339}, nil, 6340))
+        midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6330))
+
+        local kalimdor = addBonfires('DESECRATION', 'ALLIANCE', 'KALIMDOR', '-spell_fire_masterofelements', {11803, 11785, 11765, 11769, 11773, 11777, 11800, 11780, 11802, 11783, 11770, 11771}, 635) 
+        local outland = addBonfires('DESECRATION', 'ALLIANCE', 'OUTLAND', '-spell_fire_masterofelements', {11767, 11799, 11782, 11775, 11787, 11778, 11779}, 636)
+        local easternKingdoms = addBonfires('DESECRATION', 'ALLIANCE', 'EASTERN_KINGDOMS', '-spell_fire_masterofelements', {11766, 11772, 11774, 11776, 11768, 11781, 11764, 11755, 11801, 11784, 11786}, 637)
+
+        ach = midsummer:CreateAchievement('AN_MIDSUMMER_DESECRATION_ALLIANCE', 'AD_MIDSUMMER_DESECRATION_ALLIANCE', 10, '-spell_fire_masterofelements', true, 638)
+            ach:AddCriteria(criterias:Create(kalimdor.name, TYPE.COMPLETE_ACHIEVEMENT, {kalimdor.id}, nil, 6380))
+            ach:AddCriteria(criterias:Create(outland.name, TYPE.COMPLETE_ACHIEVEMENT, {outland.id}, nil, 6381))
+            ach:AddCriteria(criterias:Create(easternKingdoms.name, TYPE.COMPLETE_ACHIEVEMENT, {easternKingdoms.id}, nil, 6382))
+        midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6331))
+
+        kalimdor = addBonfires('FLAME_KEEPER', 'ALLIANCE', 'KALIMDOR', '-inv_summerfest_firespirit', {11833, 11805, 11809, 11812, 11817, 11824, 11806, 11834, 11831, 11815, 11811}, 639)  
+        outland = addBonfires('FLAME_KEEPER', 'ALLIANCE', 'OUTLAND', '-inv_summerfest_firespirit', {11807, 11830, 11823, 11829, 11818, 11821, 11825}, 640)
+        easternKingdoms = addBonfires('FLAME_KEEPER', 'ALLIANCE', 'EASTERN_KINGDOMS', '-inv_summerfest_firespirit', {11816, 11810, 11813, 11822, 11832, 11826, 11583, 11827, 11808, 11819, 11814, 11820, 11804, 11828}, 641)
+
+        ach = midsummer:CreateAchievement('AN_MIDSUMMER_FLAME_KEEPER_ALLIANCE', 'AD_MIDSUMMER_FLAME_KEEPER_ALLIANCE', 10, '-inv_summerfest_firespirit', true, 642)
+            ach:AddCriteria(criterias:Create(kalimdor.name, TYPE.COMPLETE_ACHIEVEMENT, {kalimdor.id}, nil, 6420))
+            ach:AddCriteria(criterias:Create(outland.name, TYPE.COMPLETE_ACHIEVEMENT, {outland.id}, nil, 6421))
+            ach:AddCriteria(criterias:Create(easternKingdoms.name, TYPE.COMPLETE_ACHIEVEMENT, {easternKingdoms.id}, nil, 6422))
+        midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6332))
+    end
+
+    ach = midsummer:CreateAchievement('AN_MIDSUMMER_AHUNE', 'AD_MIDSUMMER_AHUNE', 10, '-spell_frost_summonwaterelemental', true, 643)
+        ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {25740}, nil, 6430))
+    midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6333))    
+
+    --BREWFEST
+    local brewfestSummary = worldevents:CreateAchievement('AN_BREWFEST', 'AD_BREWFEST', 10, 'achievement_worldevent_brewmaster', true, 644)
+        brewfestSummary:SetRewardText(loc:Get('AR_BREWFEST'))
+
+    ach = brewfest:CreateAchievement('AN_BREWFEST_WOLPERTINGER', 'AD_BREWFEST_WOLPERTINGER', 10, '-inv_drink_13', true, 645)
+        ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {32233}, nil, 6450))
+    brewfestSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6440))
+
+    ach = brewfest:CreateAchievement('AN_BREWFEST_COREN_DIREBREW', 'AD_BREWFEST_COREN_DIREBREW', 10, '-inv_misc_head_dwarf_01', true, 646)
+        ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {23872}, nil, 6460))
+    brewfestSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6441))
+
+    if UnitFactionGroup('player') == 'Horde' then
+        ach = brewfest:CreateAchievement('AN_BREWFEST_QUEST1', 'AD_BREWFEST_QUEST1', 10, '-inv_ore_mithril_01', true, 647)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {12192}, nil, 6470))
+        brewfestSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6442))
+
+        ach = brewfest:CreateAchievement('AN_BREWFEST_MOUNT', 'AD_BREWFEST_MOUNT', 10, '-inv_cask_01', true, 648)
+            ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {37828}, nil, 6480))
+        brewfestSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6443))
+
+        ach = brewfest:CreateAchievement('AN_BREWFEST_BEER_CLUB', 'AD_BREWFEST_BEER_CLUB', 10, '-inv_misc_beer_02', true, 649)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {12421}, nil, 6490))
+        brewfestSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6444))
+    else
+        ach = brewfest:CreateAchievement('AN_BREWFEST_QUEST1', 'AD_BREWFEST_QUEST1', 10, '-inv_ore_mithril_01', true, 647)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {12020}, nil, 6470))
+        brewfestSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6442))
+
+        ach = brewfest:CreateAchievement('AN_BREWFEST_MOUNT', 'AD_BREWFEST_MOUNT', 10, '-inv_cask_01', true, 648)
+            ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {33977}, nil, 6480))
+        brewfestSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6443))
+
+        ach = brewfest:CreateAchievement('AN_BREWFEST_BEER_CLUB', 'AD_BREWFEST_BEER_CLUB', 10, '-inv_misc_beer_02', true, 649)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {12420}, nil, 6490))
+        brewfestSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6444))
+    end
+
+    --WHAT A LONG, STRANGE TRIP IT'S BEEN
+    local longTrip = worldevents:CreateAchievement('AC_WORLDEVENTS_TRIP', 'AD_WORLDEVENTS_TRIP', 50, 'achievement_bg_masterofallbgs', true, 650)
+        longTrip:AddCriteria(criterias:Create(hallowsendSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { hallowsendSummary.id }, nil, 6550))
+        longTrip:AddCriteria(criterias:Create(winterveilSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { winterveilSummary.id }, nil, 6551))
+        longTrip:AddCriteria(criterias:Create(lunarSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { lunarSummary.id }, nil, 6552))
+        longTrip:AddCriteria(criterias:Create(childrenSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { childrenSummary.id }, nil, 6553))
+        longTrip:AddCriteria(criterias:Create(brewfestSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { brewfestSummary.id }, nil, 6554))
+        longTrip:AddCriteria(criterias:Create(midsummerSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { midsummerSummary.id }, nil, 6555))
+        longTrip:AddCriteria(criterias:Create(valentinesSummary.name, TYPE.COMPLETE_ACHIEVEMENT, { valentinesSummary.id }, nil, 6556))
 end
 
 -- REPUTATION --
@@ -2096,8 +2361,13 @@ do
 	ach = featsOfStrength:CreateAchievement('AN_PALADIN_MOUNT', 'AD_PALADIN_MOUNT', 0, '-ability_mount_charger', true, 525)
 		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {7647}))
 
-    ach = featsOfStrength:CreateAchievement('AN_ARGENT_DAWN_TABARD', 'AD_ARGENT_DAWN_TABARD', 0, '-inv_shirt_guildtabard_01', true, 561)
-		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {22999}))
+    if UnitFactionGroup('player') == 'Horde' then
+        ach = featsOfStrength:CreateAchievement('AN_ARGENT_DAWN_TABARD', 'AD_ARGENT_DAWN_TABARD', 0, '-inv_shirt_guildtabard_01', true, 561)
+		    ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9343}))
+    else
+        ach = featsOfStrength:CreateAchievement('AN_ARGENT_DAWN_TABARD', 'AD_ARGENT_DAWN_TABARD', 0, '-inv_shirt_guildtabard_01', true, 561)
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9341}))
+    end
 
     --TBC
     L:Achievement(featsOfStrength, 0, '-inv_shirt_guildtabard_01')
@@ -2148,11 +2418,15 @@ do
 		ach:SetRewardText(loc:Get('AR_CHAMPION_NAARU'))	
 		
 	ach = featsOfStrength:CreateAchievement('AN_HAND_ADAL', 'AD_HAND_ADAL', 0, '-inv_mace_25', true, 530)
-		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {10445}))
+		ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {10445}, nil, 5300))
+        ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {10985}, nil, 5301))
 		ach:SetRewardText(loc:Get('AR_HAND_ADAL'))
 
     ach = featsOfStrength:CreateAchievement('AN_KRUUL', 'AD_KRUUL', 0, '-spell_shadow_demonictactics', true, 575)
 		ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {18338}))
+
+    ach = featsOfStrength:CreateAchievement('AN_ATTUMEN_MOUNT', 'AD_ATTUMEN_MOUNT', 0, '-ability_mount_dreadsteed', true, 623)
+		ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {30480}))
 end
 
 --print(db:GetAllAchievements())
@@ -2171,6 +2445,6 @@ end
         local ach = entry.ach
         print(entry.id, ";", ach.name, ";", ach.description, ";", ach.icon)
     end
---]]
+]]
 
 CA_CompletionManager:PostLoad(CA_Database:GetTab(CA_Database.TAB_ID_PLAYER):GetCategories())
