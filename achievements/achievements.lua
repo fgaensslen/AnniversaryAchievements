@@ -345,6 +345,16 @@ do
     end
  
     local hellfireHorde = create('hellfire_peninsula', {10388, 10389, 10876, 10258, 9406, 9370, 10351})
+        -- Add the forgotten quest criteria, but only for horde
+        local forgottenCriteria = CA_Criterias:Create(
+            loc:Get('TBC_QUEST_10630'), 
+            CA_Criterias.TYPE.COMPLETE_QUEST, 
+            {10630}, 
+            nil, 
+            67000
+        )
+
+        hellfireHorde:AddCriteria(forgottenCriteria)
 		hellfireHorde:SetHordeOnly()
 	
     local hellfireAlliance = create('hellfire_peninsula', {10397, 10400, 9545, 10935, 10937, 9383, 10630, 10351})
@@ -373,7 +383,16 @@ do
     local nether = create('netherstorm', {{10409, 10507}, 10240, 10249, 10439, 10221, 10276})
     
     local shadow = create('shadowmoon', {{10744, 10745}, 11052, {10645, 10639}, {10651, 10692}, 10588, 10679, 10808})
-    
+        forgottenCriteria = CA_Criterias:Create(
+                loc:Get('TBC_QUEST_11041'), 
+                CA_Criterias.TYPE.COMPLETE_QUEST, 
+                {11041}, 
+                nil, 
+                78000
+            )
+
+        shadow:AddCriteria(forgottenCriteria)
+
     local function create(questIDs)
         local builder = L:Achievement(quests, 10, 'outland')
 			:NameDesc('AN_WISDOM_KEEPER_OUTLAND', 'AD_WISDOM_KEEPER_OUTLAND', true)
