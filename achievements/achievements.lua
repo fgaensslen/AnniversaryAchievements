@@ -1889,14 +1889,14 @@ do
         midsummerSummary:SetRewardText(loc:Get('AR_MIDSUMMER'))
 
         ach = midsummer:CreateAchievement('AN_MIDSUMMER_QUEST1', 'AD_MIDSUMMER_QUEST1', 10, '-inv_helmet_08', true, 634)
-            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9365}, nil, 6340))
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9339}, nil, 6340))
         midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6330))
     else
 	    midsummerSummary = worldevents:CreateAchievement('AN_MIDSUMMER', 'AD_MIDSUMMER', 20, '-inv_summerfest_symbol_high', true, 633)
         midsummerSummary:SetRewardText(loc:Get('AR_MIDSUMMER'))
 
         ach = midsummer:CreateAchievement('AN_MIDSUMMER_QUEST1', 'AD_MIDSUMMER_QUEST1', 10, '-inv_helmet_08', true, 634)
-            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9339}, nil, 6340))
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9365}, nil, 6340))
         midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6330))
     end   
 

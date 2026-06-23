@@ -2,7 +2,7 @@
 ## Title: Anniversary Achievements
 ## Notes: Achievements for WoW Classic
 ## Author: Florian Gaensslen
-## Version: 1.4.5
+## Version: 1.4.6
 ## SavedVariables: CA_Settings
 ## SavedVariablesPerCharacter: CA_LocalData, CA_Flags
 
