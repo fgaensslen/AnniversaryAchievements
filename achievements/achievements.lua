@@ -2096,7 +2096,7 @@ do
         midsummerSummary:SetRewardText(loc:Get('AR_MIDSUMMER'))
 
         ach = midsummer:CreateAchievement('AN_MIDSUMMER_QUEST1', 'AD_MIDSUMMER_QUEST1', 10, '-inv_helmet_08', true, 634)
-            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9365}, nil, 6340))
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9339}, nil, 6340))
         midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6330))
         	
 	    local kalimdor = addBonfires('DESECRATION', 'HORDE', 'KALIMDOR', '-spell_fire_masterofelements', {11744, 11734, 11738, 11740, 11746, 11760, 11753, 11762, 11741, 11763, 11735}, 635)  
@@ -2124,7 +2124,7 @@ do
         midsummerSummary:SetRewardText(loc:Get('AR_MIDSUMMER'))
 
         ach = midsummer:CreateAchievement('AN_MIDSUMMER_QUEST1', 'AD_MIDSUMMER_QUEST1', 10, '-inv_helmet_08', true, 634)
-            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9339}, nil, 6340))
+            ach:AddCriteria(criterias:Create(nil, TYPE.COMPLETE_QUEST, {9365}, nil, 6340))
         midsummerSummary:AddCriteria(criterias:Create(ach.name, TYPE.COMPLETE_ACHIEVEMENT, {ach.id}, nil, 6330))
 
         local kalimdor = addBonfires('DESECRATION', 'ALLIANCE', 'KALIMDOR', '-spell_fire_masterofelements', {11803, 11785, 11765, 11769, 11773, 11777, 11800, 11780, 11802, 11783, 11770, 11771}, 635) 
