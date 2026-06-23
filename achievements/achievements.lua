@@ -2129,7 +2129,7 @@ do
 
         local kalimdor = addBonfires('DESECRATION', 'ALLIANCE', 'KALIMDOR', '-spell_fire_masterofelements', {11803, 11785, 11765, 11769, 11773, 11777, 11800, 11780, 11802, 11783, 11770, 11771}, 635) 
         local outland = addBonfires('DESECRATION', 'ALLIANCE', 'OUTLAND', '-spell_fire_masterofelements', {11767, 11799, 11782, 11775, 11787, 11778, 11779}, 636)
-        local easternKingdoms = addBonfires('DESECRATION', 'ALLIANCE', 'EASTERN_KINGDOMS', '-spell_fire_masterofelements', {11766, 11772, 11774, 11776, 11768, 11781, 11764, 11755, 11801, 11784, 11786}, 637)
+        local easternKingdoms = addBonfires('DESECRATION', 'ALLIANCE', 'EASTERN_KINGDOMS', '-spell_fire_masterofelements', {11766, 11772, 11774, 11776, 11768, 11781, 11764, 11580, 11801, 11784, 11786}, 637)
 
         ach = midsummer:CreateAchievement('AN_MIDSUMMER_DESECRATION_ALLIANCE', 'AD_MIDSUMMER_DESECRATION_ALLIANCE', 10, '-spell_fire_masterofelements', true, 638)
             ach:AddCriteria(criterias:Create(kalimdor.name, TYPE.COMPLETE_ACHIEVEMENT, {kalimdor.id}, nil, 6380))
