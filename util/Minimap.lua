@@ -1,13 +1,6 @@
 SexyLib:Util():AfterLogin(function()
 
     ----------------------------------------------------------------
-    -- Disable minimap icon if micro button is enabled
-    ----------------------------------------------------------------
-    if CA_ShouldUseMicrobutton() then
-        return
-    end
-
-    ----------------------------------------------------------------
     -- Libraries
     ----------------------------------------------------------------
     local LDB = LibStub("LibDataBroker-1.1")
@@ -22,20 +15,12 @@ SexyLib:Util():AfterLogin(function()
         icon = "Interface\\Icons\\Achievement_General",
 
         OnClick = function(_, button)
-            if button == "RightButton" then
-                Settings.OpenToCategory("Anniversary Achievements")
-            else
-                AchievementFrame_ToggleAchievementFrame()
-            end
+            AchievementFrame_ToggleAchievementFrame()
         end,
 
         OnTooltipShow = function(tooltip)
             tooltip:AddLine(
                 "Anniversary Achievements",
-                1, 1, 1
-            )
-            tooltip:AddLine(
-                SexyLib:Localization("Anniversary Achievements"):Get("ICON_DESCRIPTION"),
                 1, 1, 1
             )
         end,

@@ -1,30 +1,42 @@
+-- Global object setup for the Achievement button
+if not AchievementMicroButton then
+    -- Create a generic, vanilla button to stay completely clear of secure templates
+    local btn = CreateFrame("Button", "AchievementMicroButton", UIParent)
+    
+    -- Manually assign the classic textures
+    btn:SetNormalTexture("Interface\\Buttons\\UI-MicroButton-Achievement-Up")
+    btn:SetPushedTexture("Interface\\Buttons\\UI-MicroButton-Achievement-Down")
+    
+    -- Fix texture coordinates so they aren't vertically squished/stretched
+    local normal = btn:GetNormalTexture()
+    if normal then normal:SetTexCoord(0, 1, 0, 0.8) end
+    local pushed = btn:GetPushedTexture()
+    if pushed then pushed:SetTexCoord(0, 1, 0, 0.8) end
+end
+
+-- Helper function to safely check if the frame is fully loaded and shown
+local function IsAchievementFrameVisible()
+    return _G["AchievementFrame"] and _G["AchievementFrame"]:IsShown()
+end
+
 function CA_InitializeMicrobutton()
     BINDING_NAME_CLASSIC_ACHIEVEMENT = 'Anniversary Achievements'
     
-    local microButtons = {}
-    for _, value in pairs(MICRO_BUTTONS) do
-        microButtons[#microButtons + 1] = value
-        if value == 'QuestLogMicroButton' then
-            microButtons[#microButtons + 1] = 'AchievementMicroButton'
-        end
-    end
-    
-    MICRO_BUTTONS = microButtons
-
-    hooksecurefunc("UpdateMicroButtons", function()
-        if AchievementFrame and AchievementFrame:IsShown() then
+    -- Function to accurately set the texture state based on the current UI state
+    local function RefreshButtonVisualState()
+        if IsAchievementFrameVisible() then
             AchievementMicroButton:SetButtonState('PUSHED', true)
         else
-            AchievementMicroButton:SetButtonState('NORMAL')
+            AchievementMicroButton:SetButtonState('NORMAL', false)
         end
-    end)
+    end
+
+    -- Secure tracking of frame states
+    hooksecurefunc("UpdateMicroButtons", RefreshButtonVisualState)
     
     AchievementMicroButton:SetScript('OnClick', function(self, button)
-        if button == 'RightButton' then
-            Settings.OpenToCategory("Anniversary Achievements")
-        else
-            AchievementFrame_ToggleAchievementFrame()
-        end
+        AchievementFrame_ToggleAchievementFrame()
+        RefreshButtonVisualState()
     end)
 end
 
@@ -89,6 +101,15 @@ SexyLib:Util():AfterLogin(function()
     
     -- Run once immediately to set the initial layout
     ReanchorMicroButtons()
+
+    -- Match sizes to Blizzard's active layout specs
+    local w, h = MainMenuMicroButton:GetSize()
+    AchievementMicroButton:SetSize(w, h)
+    AchievementMicroButton:SetFrameLevel(MainMenuMicroButton:GetFrameLevel() + 2)
+    AchievementMicroButton:ClearAllPoints()
+    AchievementMicroButton:SetPoint("LEFT", MainMenuMicroButton, "RIGHT", -3, 0)
+    AchievementMicroButton:Show()
+    AchievementMicroButton:SetAlpha(1)
 end)
 
 function CA_ShouldUseMicrobutton()
