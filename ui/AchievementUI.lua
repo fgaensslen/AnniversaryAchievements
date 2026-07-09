@@ -1,5 +1,42 @@
 
-UIPanelWindows["AchievementFrame"] = { area = "doublewide", pushable = 0, xoffset = 80, whileDead = 1 };
+-- WoW 2.5.6 ships Blizzard_AchievementUI / AchievementFrame globals.
+-- Do not register this addon under Blizzard's AchievementFrame UIPanel key.
+UIPanelWindows["AnniversaryAchievementsFrame"] = { area = "doublewide", pushable = 0, xoffset = 80, whileDead = 1 };
+
+local ANNIVERSARY_ACHIEVEMENTS_FRAME_NAME = "AnniversaryAchievementsFrame";
+-- Local compatibility name for the addon's own Lua code.
+-- This deliberately does NOT recreate _G.AchievementFrame.
+local AchievementFrame;
+
+function AnniversaryAchievements_GetAchievementFrame()
+	return AchievementFrame or _G[ANNIVERSARY_ACHIEVEMENTS_FRAME_NAME];
+end
+
+function AnniversaryAchievements_RefreshFrameAliases()
+	-- The XML root frame was renamed to AnniversaryAchievementsFrame.
+	-- $parent child globals therefore also use that prefix. Most of the original
+	-- addon code, and external hooks, still expect AchievementFrame* child names.
+	-- Recreate ONLY child aliases. Never recreate the root _G.AchievementFrame.
+	local newPrefix = ANNIVERSARY_ACHIEVEMENTS_FRAME_NAME;
+	local oldPrefix = "AchievementFrame";
+	local newPrefixLen = #newPrefix;
+	for name, object in pairs(_G) do
+		if type(name) == "string" and name ~= newPrefix and name:sub(1, newPrefixLen) == newPrefix then
+			rawset(_G, oldPrefix .. name:sub(newPrefixLen + 1), object);
+		end
+	end
+end
+
+local function AnniversaryAchievements_SetAchievementFrame(frame)
+	AchievementFrame = frame or _G[ANNIVERSARY_ACHIEVEMENTS_FRAME_NAME];
+	if rawget(_G, "AchievementFrame") == AchievementFrame then
+		rawset(_G, "AchievementFrame", nil);
+	end
+	if UIPanelWindows and UIPanelWindows["AchievementFrame"] ~= nil then
+		UIPanelWindows["AchievementFrame"] = nil;
+	end
+	AnniversaryAchievements_RefreshFrameAliases();
+end
 
 -- 1 for character achievements only
 -- 2 for also guild achievements
@@ -757,6 +794,7 @@ function AchievementFrame_DisplayComparison (unit)
 end
 
 function AchievementFrame_OnLoad (self)
+	AnniversaryAchievements_SetAchievementFrame(self);
 	PanelTemplates_SetNumTabs(self, tabs);
 	self.selectedTab = 1;
 	PanelTemplates_UpdateTabs(self);
@@ -767,6 +805,7 @@ function AchievementFrame_OnLoad (self)
 	self.searchResults.scrollFrame.update = AchievementFrame_UpdateFullSearchResults;
 	self.searchResults.scrollFrame.scrollBar.doNotHide = true;
 	HybridScrollFrame_CreateButtons(self.searchResults.scrollFrame, "AchievementFullSearchResultsButton", 0, 0);
+	AnniversaryAchievements_RefreshFrameAliases();
 end
 
 function AchievementFrame_OnShow (self)
@@ -774,6 +813,7 @@ function AchievementFrame_OnShow (self)
 	AchievementFrameHeaderPoints:SetText(BreakUpLargeNumbers(GetTotalAchievementPoints()));
 	if ( not AchievementFrame.wasShown ) then
 		AchievementFrame.wasShown = true;
+		AnniversaryAchievements_RefreshFrameAliases();
 		AchievementCategoryButton_OnClick(AchievementFrameCategoriesContainerButton1);
 	end
 	UpdateMicroButtons();
@@ -1000,6 +1040,7 @@ function AchievementFrameCategories_OnCustomEvent(self, event, ...)
 end
 
 function AchievementFrameCategories_OnLoad (self)
+	if AnniversaryAchievements_RefreshFrameAliases then AnniversaryAchievements_RefreshFrameAliases(); end
 	self.buttons = {};
 	self:RegisterEvent("ADDON_LOADED");
 	self:SetScript("OnEvent", AchievementFrameCategories_OnEvent);
@@ -1049,6 +1090,7 @@ function AchievementFrameCategories_OnEvent (self, event, ...)
 		AchievementFrameCategoriesContainerScrollBarBG:Show();
 		AchievementFrameCategoriesContainer.update = AchievementFrameCategories_Update;
 		HybridScrollFrame_CreateButtons(AchievementFrameCategoriesContainer, "AchievementCategoryTemplate", 0, 0, "TOP", "TOP", 0, 0, "TOP", "BOTTOM");
+		AnniversaryAchievements_RefreshFrameAliases();
 		AchievementFrameCategories_Update();
 		self:UnregisterEvent(event)
 	end
@@ -1401,6 +1443,7 @@ end
 -- [[ AchievementFrameAchievements ]] --
 
 function AchievementFrameAchievements_OnLoad (self)
+	if AnniversaryAchievements_RefreshFrameAliases then AnniversaryAchievements_RefreshFrameAliases(); end
 	AchievementFrameAchievementsContainerScrollBar.Show =
 		function (self)
 			AchievementFrameAchievements:SetWidth(504);
@@ -1423,6 +1466,7 @@ function AchievementFrameAchievements_OnLoad (self)
 	AchievementFrameAchievementsContainerScrollBarBG:Show();
 	AchievementFrameAchievementsContainer.update = AchievementFrameAchievements_Update;
 	HybridScrollFrame_CreateButtons(AchievementFrameAchievementsContainer, "AchievementTemplate", 0, -2);
+	AnniversaryAchievements_RefreshFrameAliases();
 end
 
 function AchievementFrameAchievements_OnEvent (self, event, ...)
@@ -1504,6 +1548,7 @@ function AchievementFrameAchievements_OnEvent (self, event, ...)
 end
 
 function AchievementFrameAchievementsBackdrop_OnLoad (self)
+	if AnniversaryAchievements_RefreshFrameAliases then AnniversaryAchievements_RefreshFrameAliases(); end
 	self:SetFrameLevel(self:GetFrameLevel()+1);
 end
 
@@ -2360,6 +2405,7 @@ AchievementFrameFilters = { {text=ACHIEVEMENTFRAME_FILTER_ALL, func= Achievement
 {text=ACHIEVEMENTFRAME_FILTER_INCOMPLETE, func=AchievementFrame_GetCategoryNumAchievements_Incomplete} };
 
 function AchievementFrameFilterDropDown_OnLoad (self)
+	if AnniversaryAchievements_RefreshFrameAliases then AnniversaryAchievements_RefreshFrameAliases(); end
 	self.relativeTo = "AchievementFrameFilterDropDown"
 	self.xOffset = -14;
 	self.yOffset = 10;
@@ -2669,6 +2715,7 @@ function AchievementFrameStats_OnEvent (self, event, ...)
 end
 
 function AchievementFrameStats_OnLoad (self)
+	if AnniversaryAchievements_RefreshFrameAliases then AnniversaryAchievements_RefreshFrameAliases(); end
 	AchievementFrameStatsContainerScrollBar.Show =
 		function (self)
 			AchievementFrameStats:SetWidth(504);
@@ -2691,6 +2738,7 @@ function AchievementFrameStats_OnLoad (self)
 	AchievementFrameStatsContainerScrollBarBG:Show();
 	AchievementFrameStatsContainer.update = AchievementFrameStats_Update;
 	HybridScrollFrame_CreateButtons(AchievementFrameStatsContainer, "StatTemplate");
+	AnniversaryAchievements_RefreshFrameAliases();
 end
 
 
@@ -3078,6 +3126,7 @@ function AchievementFrameSummaryCategoriesStatusBar_Update()
 end
 
 function AchievementFrameSummaryAchievement_OnLoad(self)
+	if AnniversaryAchievements_RefreshFrameAliases then AnniversaryAchievements_RefreshFrameAliases(); end
 	AchievementComparisonPlayerButton_OnLoad(self);
 	AchievementFrameSummaryAchievements.buttons = AchievementFrameSummaryAchievements.buttons or {};
 	tinsert(AchievementFrameSummaryAchievements.buttons, self);
@@ -3143,6 +3192,7 @@ function AchievementFrameSummaryCategoryButton_OnClick (self)
 end
 
 function AchievementFrameSummaryCategory_OnLoad (self)
+	if AnniversaryAchievements_RefreshFrameAliases then AnniversaryAchievements_RefreshFrameAliases(); end
 	self:SetMinMaxValues(0, 100);
 	self:SetValue(0);
 end
@@ -3484,6 +3534,7 @@ function AchievementFrame_SelectStatisticByAchievementID(achievementID, isCompar
 end
 
 function AchievementFrameComparison_OnLoad (self)
+	if AnniversaryAchievements_RefreshFrameAliases then AnniversaryAchievements_RefreshFrameAliases(); end
 	AchievementFrameComparisonContainer_OnLoad(self);
 	AchievementFrameComparisonStatsContainer_OnLoad(self);
 	RegisterCustomEvent("ACHIEVEMENT_EARNED");
@@ -3494,6 +3545,7 @@ function AchievementFrameComparison_OnLoad (self)
 end
 
 function AchievementFrameComparisonContainer_OnLoad (parent)
+	if AnniversaryAchievements_RefreshFrameAliases then AnniversaryAchievements_RefreshFrameAliases(); end
 	AchievementFrameComparisonContainerScrollBar.Show =
 		function (self)
 			AchievementFrameComparison:SetWidth(626);
@@ -3519,9 +3571,11 @@ function AchievementFrameComparisonContainer_OnLoad (parent)
 	AchievementFrameComparisonContainerScrollBarBG:Show();
 	AchievementFrameComparisonContainer.update = AchievementFrameComparison_Update;
 	HybridScrollFrame_CreateButtons(AchievementFrameComparisonContainer, "ComparisonTemplate", 0, -2);
+	AnniversaryAchievements_RefreshFrameAliases();
 end
 
 function AchievementFrameComparisonStatsContainer_OnLoad (parent)
+	if AnniversaryAchievements_RefreshFrameAliases then AnniversaryAchievements_RefreshFrameAliases(); end
 	AchievementFrameComparisonStatsContainerScrollBar.Show =
 		function (self)
 			AchievementFrameComparison:SetWidth(626);
@@ -3543,6 +3597,7 @@ function AchievementFrameComparisonStatsContainer_OnLoad (parent)
 	AchievementFrameComparisonStatsContainerScrollBarBG:Show();
 	AchievementFrameComparisonStatsContainer.update = AchievementFrameComparison_UpdateStats;
 	HybridScrollFrame_CreateButtons(AchievementFrameComparisonStatsContainer, "ComparisonStatTemplate", 0, -2);
+	AnniversaryAchievements_RefreshFrameAliases();
 end
 
 function AchievementFrameComparison_OnShow ()
@@ -3787,6 +3842,7 @@ function AchievementFrameComparison_UpdateStats ()
 end
 
 function AchievementFrameComparisonStat_OnLoad (self)
+	if AnniversaryAchievements_RefreshFrameAliases then AnniversaryAchievements_RefreshFrameAliases(); end
 	self.value:SetVertexColor(1, 0.97, 0.6);
 	self.friendValue:SetVertexColor(1, 0.97, 0.6);
 end
@@ -4423,6 +4479,7 @@ function AchievementFrameSearchBox_OnTextChanged(self)
 end
 
 function AchievementFrameSearchBox_OnLoad(self)
+	if AnniversaryAchievements_RefreshFrameAliases then AnniversaryAchievements_RefreshFrameAliases(); end
 	SearchBoxTemplate_OnLoad(self);
 	self.HasStickyFocus = function()
 		local ancestry = self:GetParent().searchPreviewContainer;
@@ -4591,7 +4648,7 @@ function AchievementSearchPreviewButton_OnShow(self)
 end
 
 function AchievementSearchPreviewButton_OnLoad(self)
-	local searchPreviewContainer = AchievementFrame.searchPreviewContainer;
+	local searchPreviewContainer = AnniversaryAchievementsFrame.searchPreviewContainer;
 	local searchPreviews = searchPreviewContainer.searchPreviews;
 	for index = 1, ACHIEVEMENT_FRAME_NUM_SEARCH_PREVIEWS do
 		if ( searchPreviews[index] == self ) then

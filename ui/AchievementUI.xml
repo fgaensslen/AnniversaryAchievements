@@ -412,7 +412,7 @@
 			</Layer>
 		</Layers>
 	</Frame>
-	<Frame name="MiniAchievementTemplate" virtual="true" parent="AchievementFrame">
+	<Frame name="MiniAchievementTemplate" virtual="true" parent="AnniversaryAchievementsFrame">
 		<Size x="42" y="42"/>
 		<Anchors>
 			<Anchor point="CENTER"/>
@@ -1435,7 +1435,7 @@
 		</Layers>
 		<Scripts>
 			<OnLoad>
-				AchievementStatButton_OnLoad(self, AchievementFrameStats);
+				AchievementStatButton_OnLoad(self, AnniversaryAchievementsFrameStats);
 			</OnLoad>
 			<OnClick>
 				AchievementStatButton_OnClick(self, button, down);
@@ -1567,7 +1567,7 @@
 		</Scripts>
 	</Button>
 
-	<Frame name="AchievementFrame" toplevel="true" parent="UIParent" frameStrata="MEDIUM" hidden="true" enableMouse="true" inherits="BackdropTemplate">
+	<Frame name="AnniversaryAchievementsFrame" toplevel="true" parent="UIParent" frameStrata="MEDIUM" hidden="true" enableMouse="true" inherits="BackdropTemplate">
 		<Size x="768" y="500"/>
 		<KeyValues>
 			<KeyValue key="backdropInfo" value="BACKDROP_ACHIEVEMENTS_0_64" type="global"/>
@@ -1707,7 +1707,7 @@
 			<Frame name="$parentHeader" enableMouse="true">
 				<Size x="726" y="106"/>
 				<Anchors>
-					<Anchor point="BOTTOMLEFT" relativeTo="AchievementFrame" relativePoint="TOPLEFT" x="26" y="-38"/>
+					<Anchor point="BOTTOMLEFT" relativeTo="AnniversaryAchievementsFrame" relativePoint="TOPLEFT" x="26" y="-38"/>
 				</Anchors>
 				<Layers>
 					<Layer level="BACKGROUND">
@@ -1730,14 +1730,14 @@
 						<Texture name="$parentPointBorder" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Header">
 							<Size x="133" y="39"/>
 							<Anchors>
-								<Anchor point="BOTTOM" relativeTo="AchievementFrameHeader" relativePoint="BOTTOM" x="20" y="16"/>
+								<Anchor point="BOTTOM" relativeTo="AnniversaryAchievementsFrameHeader" relativePoint="BOTTOM" x="20" y="16"/>
 							</Anchors>
 							<TexCoords left="0.419921875" right="0.6796875" top="0.4140625" bottom="0.56640625"/>
 						</Texture>
 						<FontString name="$parentTitle" inherits="GameFontNormal" text="ACHIEVEMENT_TITLE">
 							<Size x="200" y="12"/>
 							<Anchors>
-								<Anchor point="TOP" relativeTo="AchievementFrameHeaderPointBorder" relativePoint="TOP" x="0" y="7"/>
+								<Anchor point="TOP" relativeTo="AnniversaryAchievementsFrameHeaderPointBorder" relativePoint="TOP" x="0" y="7"/>
 							</Anchors>
 						</FontString>
 						<Texture name="$parentLeftDDLInset" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-RightDDLInset" hidden="true">
@@ -1757,7 +1757,7 @@
 						<FontString name="$parentPoints" inherits="GameFontHighlight">
 							<Size x="0" y="12"/>
 							<Anchors>
-								<Anchor point="TOP" relativeTo="AchievementFrameHeaderPointBorder" relativePoint="TOP" x="0" y="-13"/>
+								<Anchor point="TOP" relativeTo="AnniversaryAchievementsFrameHeaderPointBorder" relativePoint="TOP" x="0" y="-13"/>
 							</Anchors>
 						</FontString>
 						<Texture name="$parentShield" file="Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-TinyShield">
@@ -1839,8 +1839,8 @@
 					<OnLoad function="AchievementFrameAchievements_OnLoad"/>
 					<OnEvent function="AchievementFrameAchievements_OnEvent"/>
 					<OnHide>
-						AchievementFrameFilterDropDown:Hide();
-						AchievementFrameHeaderLeftDDLInset:Hide();
+						AnniversaryAchievementsFrameFilterDropDown:Hide();
+						AnniversaryAchievementsFrameHeaderLeftDDLInset:Hide();
 					</OnHide>
 					<OnShow function="AchievementFrameAchievements_OnShow"/>
 				</Scripts>
@@ -2269,7 +2269,7 @@
 						<Frames>
 							<Slider name="$parentScrollBar" inherits="HybridScrollBarTemplate">
 								<Anchors>
-									<Anchor point="TOPLEFT" relativeTo="AchievementFrameComparisonSummary" relativePoint="TOPRIGHT" x="7" y="-16"/>
+									<Anchor point="TOPLEFT" relativeTo="AnniversaryAchievementsFrameComparisonSummary" relativePoint="TOPRIGHT" x="7" y="-16"/>
 									<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="1" y="12"/>
 								</Anchors>
 							</Slider>
@@ -2348,12 +2348,12 @@
 			</Frame>
 			<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
 				<Anchors>
-					<Anchor point="TOPRIGHT" relativeTo="AchievementFrame" relativePoint="TOPRIGHT" x="3" y="4"/>
+					<Anchor point="TOPRIGHT" relativeTo="AnniversaryAchievementsFrame" relativePoint="TOPRIGHT" x="3" y="4"/>
 				</Anchors>
 				<Scripts>
 					<OnShow>
-						if ( AchievementFrameComparisonHeader:IsShown() ) then
-							self:SetFrameLevel(AchievementFrameComparisonHeader:GetFrameLevel() + 1);
+						if ( AnniversaryAchievementsFrameComparisonHeader:IsShown() ) then
+							self:SetFrameLevel(AnniversaryAchievementsFrameComparisonHeader:GetFrameLevel() + 1);
 						end
 					</OnShow>
 				</Scripts>
