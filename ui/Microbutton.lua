@@ -110,6 +110,17 @@ SexyLib:Util():AfterLogin(function()
     AchievementMicroButton:SetPoint("LEFT", MainMenuMicroButton, "RIGHT", -3, 0)
     AchievementMicroButton:Show()
     AchievementMicroButton:SetAlpha(1)
+
+    -- Ensure the microbutton's alpha matches Blizzard's active microbar state
+    -- This keeps it from appearing too transparent/bright when other addons
+    -- or Blizzard adjust micro button alphas.
+    if MainMenuMicroButton then
+        hooksecurefunc("UpdateMicroButtons", function()
+            if AchievementMicroButton and MainMenuMicroButton then
+                AchievementMicroButton:SetAlpha(MainMenuMicroButton:GetAlpha() or 1)
+            end
+        end)
+    end
 end)
 
 function CA_ShouldUseMicrobutton()
