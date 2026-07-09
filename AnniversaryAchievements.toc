@@ -15,9 +15,11 @@ libs\libs.xml
 
 localization/en.lua
 localization/de.lua
+localization/es.lua
 
 localization/AreaTableLocale_enUS.lua
 localization/AreaTableLocale_deDE.lua
+localization/AreaTableLocale_esES.lua
 
 util/Settings.lua
 
