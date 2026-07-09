@@ -31,6 +31,37 @@ local options = {
             order = 1
         },
 
+        enableMicrobutton = {
+            name = loc:Get('OPTION_MICROBUTTON'),
+            desc = loc:Get('OPTION_MICROBUTTON_DESC'),
+            type = 'toggle',
+            width = 2,
+            set = function(info, val)
+                if CA_IsMicrobuttonForcedOff() then
+                    return
+                end
+                CA_Settings.microbutton = val
+                CA_UpdateReloadState()
+            end,
+            get = function(info)
+                return CA_ShouldUseMicrobutton()
+            end,
+            disabled = function()
+                return CA_IsMicrobuttonForcedOff()
+            end,
+            order = 2
+        },
+
+        microbuttonDisabledNote = {
+            type = "description",
+            name = "|cffff2020" .. loc:Get('OPTION_DISABLED') .. "|r",
+            width = "full",
+            hidden = function()
+                return not CA_IsMicrobuttonForcedOff()
+            end,
+            order = 2.1
+        },
+
         enableTracker = {
             name = loc:Get('OPTION_TRACKER'),
             desc = loc:Get('OPTION_TRACKER_DESC'),
@@ -127,9 +158,11 @@ SexyLib:Util():AfterLogin(function()
         CA_Settings = {}
     end
     if CA_Settings.sharing == nil then CA_Settings.sharing = false end
+    if CA_Settings.microbutton == nil then CA_Settings.microbutton = true end
     if CA_Settings.trackerToggle == nil then CA_Settings.trackerToggle = true end
 
     -- Snapshot originals
+    CA_OriginalSettings.microbutton   = CA_Settings.microbutton
     CA_OriginalSettings.trackerToggle = CA_Settings.trackerToggle
 
     CA_ReloadRequired = false
@@ -160,6 +193,13 @@ end)
 
 function CA_IsSharingAchievementsInChat()
     return CA_Settings.sharing and bit.band(CA_Flags, 1) == 1
+end
+
+function CA_IsMicrobuttonEnabled()
+    if CA_Settings.microbutton == nil then
+        CA_Settings.microbutton = true
+    end
+    return CA_Settings.microbutton
 end
 
 function CA_IsTrackerEnabled()

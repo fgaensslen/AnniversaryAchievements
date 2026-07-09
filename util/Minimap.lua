@@ -1,6 +1,13 @@
 SexyLib:Util():AfterLogin(function()
 
     ----------------------------------------------------------------
+    -- Disable minimap icon if micro button is enabled
+    ----------------------------------------------------------------
+    if CA_ShouldUseMicrobutton() then
+        return
+    end
+
+    ----------------------------------------------------------------
     -- Libraries
     ----------------------------------------------------------------
     local LDB = LibStub("LibDataBroker-1.1")

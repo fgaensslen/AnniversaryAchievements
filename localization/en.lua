@@ -3,6 +3,8 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     achievement_earned = '&aAchievement earned by %s on %d.%d.%d',
     achievement_in_progress = '&aAchievement in progress by %s',
 
+    ICON_DESCRIPTION = '&7Left mouse button: &eopen/hide achievements window\n&7Right mouse button: &eopen Anniversary Achievements settings',
+
     OPTION_SHARING = 'Share achievements',
     OPTION_SHARING_DESC = 'Share new achievements in the chat. Visible only for you.',
     OPTION_MICROBUTTON = 'Micromenu button',
