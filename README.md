@@ -6,7 +6,7 @@ It integrates perfectly with the Standard UI and uses the same graphics and soun
 
 ### Download
 
-- WoW TBC: Version 2.2.4
+- WoW TBC: Version 2.3.2
 - WoW Classic: Version 1.4.6. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
 
 ### Achievements
@@ -20,8 +20,9 @@ A full list can be found [here](https://fgaensslen.github.io/AnniversaryAchieve
 
 - English
 - German
+- Spanish (EU) - thanks to milotic03
 
-For both languages, almost all achievements use original Blizzard texts and icons.
+All languages use original Blizzard texts and icons.
 
 Using another WoW client language may cause some achievements not to work properly.
 
