@@ -20,7 +20,7 @@ A full list can be found [here](https://fgaensslen.github.io/AnniversaryAchieve
 
 - English
 - German
-- Spanish (EU) - thanks to milotic03
+- Spanish (EU) & (MX) - thanks to milotic03
 
 All languages use original Blizzard texts and icons.
 

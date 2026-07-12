@@ -1,7 +1,7 @@
 ## Interface: 20506
 ## Title: Anniversary Achievements
 ## Author: BearCraftStudios
-## Version: v2.3.2
+## Version: v2.3.3
 ## IconTexture: Interface/AddOns/AnniversaryAchievements/logo.tga
 ## Notes: Achievements for WoW TBC Anniversary
 ## Category: Achievements
@@ -16,10 +16,12 @@ libs\libs.xml
 localization/en.lua
 localization/de.lua
 localization/es.lua
+localization/mx.lua
 
 localization/AreaTableLocale_enUS.lua
 localization/AreaTableLocale_deDE.lua
 localization/AreaTableLocale_esES.lua
+localization/AreaTableLocale_esMX.lua
 
 util/Settings.lua
 

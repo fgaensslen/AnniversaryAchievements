@@ -13,7 +13,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	OPTION_RESET_ACHIEVEMENTS_DESC = 'Restablecer todos los logros de este personaje. ¡Esto no se puede deshacer!',
 	OPTION_TRACKER = 'Rastrear objetivos',
 	OPTION_TRACKER_DESC = 'Habilitar o deshabilitar el rastreador de logros y misiones.',
-	OPTION_RELOAD = "Los cambios requieren una recarga de la interfaz",
+	OPTION_RELOAD = 'Los cambios requieren una recarga de la interfaz',
 	OPTION_DISABLED = 'Opción deshabilitada debido a addons de IU cargados',
 
 	GOT_ACHIEVEMENT_MESSAGE_MALE = 'Has conseguido el logro %s!',
