@@ -209,7 +209,11 @@
 		</Frames>
 		<Scripts>
 			<OnLoad>
-				AchievementFrameSummaryCategory_OnLoad(self);
+				if AnniversaryAchievements_RefreshFrameAliases then
+					AnniversaryAchievements_RefreshFrameAliases();
+				end
+				self:SetMinMaxValues(0, 100);
+				self:SetValue(0);
 			</OnLoad>
 			<OnShow>
 				AchievementFrameSummaryCategory_OnShow(self);
