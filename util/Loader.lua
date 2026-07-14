@@ -1,10 +1,12 @@
-local db = CA_Database
-local criterias = CA_Criterias
+local _, ns = ...
+
+local db = ns.Database
+local criterias = ns.Criterias
 local loc = SexyLib:Localization('Anniversary Achievements')
 
 local delays = {}
 
-CA_Loader = {
+local loader = {
     ForTab = function(self, tab, offset)
         local offsetter
         if offset == nil then
@@ -182,3 +184,5 @@ CA_Loader = {
         }
     end
 }
+
+ns.Loader = loader

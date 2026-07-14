@@ -1,21 +1,72 @@
-local db = CA_Database
-local cmanager = CA_CompletionManager
+local _, ns = ...
+
+local db = ns.Database
+local cmanager = ns.CompletionManager
 local loc = SexyLib:Localization('Anniversary Achievements')
 
 function SwitchAchievementSearchTab(index)
     db:SetSelectedTab(index)
 end
 
+local function CategoryHasVisibleAchievements(tab, categoryID, visited)
+    visited = visited or {}
+    if visited[categoryID] then return false end
+    visited[categoryID] = true
+
+    local category = tab and tab:GetCategory(categoryID)
+    if not category or not category:IsAvailable() then return false end
+    for _, achievement in pairs(category:GetAchievements()) do
+        if achievement:IsAvailable() then return true end
+    end
+    for childID, child in pairs(tab:GetCategories()) do
+        if child.parentID == categoryID and CategoryHasVisibleAchievements(tab, childID, visited) then
+            return true
+        end
+    end
+    return false
+end
+
 local function GetCategoryList_(id)
     local result = {}
-    for cid, _ in pairs(db:GetTab(id):GetCategories()) do
-        result[#result + 1] = cid
+    local tab = db:GetTab(id)
+    if not tab then return result end
+    local hideEmpty = id ~= db.TAB_ID_PLAYER and id ~= db.TAB_ID_GUILD and id ~= db.TAB_ID_STATS
+    for cid, category in pairs(tab:GetCategories()) do
+        local validName = category and type(category.name) == "string" and category.name ~= ""
+        local explicitlyRegistered = not hideEmpty or category.apiRegistered == true
+        if explicitlyRegistered and validName and (not hideEmpty or CategoryHasVisibleAchievements(tab, cid)) then
+            result[#result + 1] = cid
+        end
     end
-    table.sort(result)
+    table.sort(result, function(leftID, rightID)
+        local left = db:GetCategory(leftID)
+        local right = db:GetCategory(rightID)
+        local leftOrder = left and tonumber(left.apiOrder) or 100
+        local rightOrder = right and tonumber(right.apiOrder) or 100
+        if leftOrder ~= rightOrder then return leftOrder < rightOrder end
+        return leftID < rightID
+    end)
     return result
 end
 
+local function GetUIScopeTab()
+    if type(db.GetUIScopeTab) ~= "function" then return nil end
+    return db:GetUIScopeTab()
+end
+
+local function IsObjectInUIScope(object)
+    local scoped = GetUIScopeTab()
+    return not scoped or (object and object.tabID == scoped.id)
+end
+
 function GetCategoryList()
+    local scoped = GetUIScopeTab()
+    if scoped then return GetCategoryList_(scoped.id) end
+
+    local selected = db:GetSelectedTab()
+    if selected and selected.id ~= db.TAB_ID_GUILD and selected.id ~= db.TAB_ID_STATS then
+        return GetCategoryList_(selected.id)
+    end
     return GetCategoryList_(db.TAB_ID_PLAYER)
 end
 
@@ -25,6 +76,17 @@ end
 
 function GetStatisticsCategoryList()
     return GetCategoryList_(db.TAB_ID_STATS)
+end
+
+local function GetAggregateTab(inGuildView)
+    local scoped = GetUIScopeTab()
+    if scoped then return scoped end
+
+    local selected = db:GetSelectedTab()
+    if selected and selected.id ~= db.TAB_ID_PLAYER and selected.id ~= db.TAB_ID_GUILD and selected.id ~= db.TAB_ID_STATS then
+        return selected
+    end
+    return db:GetTabSpecial(inGuildView)
 end
 
 local function IsAchievementVisible(achievement, includeAll)
@@ -50,7 +112,7 @@ function GetCategoryNumAchievements(categoryID, includeAll, completion)
 
     local category = db:GetCategory(categoryID)
     local completion = completion or cmanager:GetLocal()
-    if category then
+    if category and IsObjectInUIScope(category) then
         for aid, achievement in pairs(category:GetAchievements()) do
             if IsAchievementVisible(achievement, includeAll) then
                 total = total + 1
@@ -69,7 +131,7 @@ end
 -- title, parentCategoryID, flags = GetCategoryInfo(categoryID)
 function GetCategoryInfo(categoryID)
     local category = db:GetCategory(categoryID)
-    if category then return category.name, category.parentID, 0 end
+    if category and IsObjectInUIScope(category) then return category.name, category.parentID, 0 end
     return '', -1, 0
 end
 
@@ -129,13 +191,16 @@ function GetAchievementInfo(id, index)
     else
         ach = db:GetAchievement(id)
     end
+    if ach and not IsObjectInUIScope(ach) then ach = nil end
     if ach then
         local completion = cmanager:GetLocal()
         local icon = ach.icon
-        if strsub(icon, 1, 1) == '-' then
-            icon = [[Interface\ICONS\]] .. strsub(icon, 2, strlen(icon))
-        else
-            icon = [[Interface\AddOns\AnniversaryAchievements\textures\icons\]] .. icon
+        if type(icon) == "string" then
+            if strsub(icon, 1, 1) == '-' then
+                icon = [[Interface\ICONS\]] .. strsub(icon, 2, strlen(icon))
+            elseif not string.find(icon, "[\\/]") then
+                icon = [[Interface\AddOns\AnniversaryAchievements\textures\icons\]] .. icon
+            end
         end
         local completed, earnedBy = false, nil
         local month, day, year
@@ -169,7 +234,7 @@ end
 function GetNumCompletedAchievements(inGuildView)
     local total, completed = 0, 0
     local completion = cmanager:GetLocal()
-    local tab = db:GetTabSpecial(inGuildView)
+    local tab = GetAggregateTab(inGuildView)
     if tab then
         for _, category in pairs(tab:GetCategories()) do
             local t, c = GetCategoryNumAchievements(category.id, true, completion)
@@ -188,17 +253,19 @@ end
 function GetTotalAchievementPoints(inGuildView)
     local points = 0
     local completion = cmanager:GetLocal()
-    local tab = db:GetTabSpecial(inGuildView)
+    local tab = GetAggregateTab(inGuildView)
     for _, category in pairs(tab:GetCategories()) do
         for _, achievement in pairs(category:GetAchievements()) do
-            if completion:IsAchievementCompleted(achievement.id) then points = points + achievement.points end
+            if achievement:IsAvailable() and completion:IsAchievementCompleted(achievement.id) then
+                points = points + achievement.points
+            end
         end
     end
     return points
 end
 
 function GetAchievementCategory(achievementID)
-    local tab = db:GetSelectedTab()
+    local tab = GetUIScopeTab() or db:GetSelectedTab()
     for cid, category in pairs(tab:GetCategories()) do
         for id, achievement in pairs(category:GetAchievements()) do
             if id == achievementID then return cid end
@@ -211,11 +278,11 @@ end
 function GetLatestCompletedAchievements(inGuildView)
     local result = {}
     local completion = cmanager:GetLocal()
-    local tab = db:GetTabSpecial(inGuildView)
+    local tab = GetAggregateTab(inGuildView)
     if tab then
         for _, category in pairs(tab:GetCategories()) do
             for _, achievement in pairs(category:GetAchievements()) do
-                if completion:IsAchievementCompleted(achievement.id) then
+                if achievement:IsAvailable() and completion:IsAchievementCompleted(achievement.id) then
                     result[#result + 1] = achievement
                 end
             end
@@ -251,6 +318,10 @@ function SetFocusedAchievement(achievementID)
 
 end
 
+local function IsCriteriaIncluded(c, countHidden)
+    return c and c.name and (countHidden or c.hidden ~= true)
+end
+
 local function _GetAchievementCriteria(aid, c)
     if not c or not c.name then
         return '', 0, false, 0, 0, '', 0, 0, '', 0, false, 0, 0
@@ -274,31 +345,41 @@ end
 -- criteriaString, criteriaType, completed, quantity, reqQuantity, 
 --  charName, flags, assetID, quantityString, criteriaID, eligible = 
 --    GetAchievementCriteriaInfo(achievementID, criteriaIndex [, countHidden])
-function GetAchievementCriteriaInfo(achievementID, criteriaIndex)
+function GetAchievementCriteriaInfo(achievementID, criteriaIndex, countHidden)
     local achievement = db:GetAchievement(achievementID)
     if achievement then
-        local criterias = achievement:GetCriteriasSorted()
-        if criteriaIndex <= #criterias then
-            return _GetAchievementCriteria(achievementID, criterias[criteriaIndex])
+        local visibleIndex = 0
+        for _, criteria in ipairs(achievement:GetCriteriasSorted()) do
+            if IsCriteriaIncluded(criteria, countHidden) then
+                visibleIndex = visibleIndex + 1
+                if visibleIndex == criteriaIndex then
+                    return _GetAchievementCriteria(achievementID, criteria)
+                end
+            end
         end
     end
     return _GetAchievementCriteria()
 end
 
-function GetAchievementCriteriaInfoByID(achievementID, criteriaID)
+function GetAchievementCriteriaInfoByID(achievementID, criteriaID, countHidden)
     local achievement = db:GetAchievement(achievementID)
     if achievement then
-        return _GetAchievementCriteria(achievementID, achievement:GetCriteria(criteriaID))
+        local criteria = achievement:GetCriteria(criteriaID)
+        if IsCriteriaIncluded(criteria, countHidden) then
+            return _GetAchievementCriteria(achievementID, criteria)
+        end
     end
     return _GetAchievementCriteria()
 end
 
-function GetAchievementNumCriteria(achievementID)
+function GetAchievementNumCriteria(achievementID, countHidden)
     local total = 0
     local achievement = db:GetAchievement(achievementID)
     if achievement then
         for _, criteria in pairs(achievement:GetCriterias()) do
-            if criteria.name then total = total + 1 end
+            if IsCriteriaIncluded(criteria, countHidden) then
+                total = total + 1
+            end
         end
     end
     return total
@@ -335,7 +416,9 @@ function GetComparisonAchievementPoints()
     local tab = db:GetTab(db.TAB_ID_PLAYER)
     for _, category in pairs(tab:GetCategories()) do
         for _, achievement in pairs(category:GetAchievements()) do
-            if completion:IsAchievementCompleted(achievement.id) then points = points + achievement.points end
+            if achievement:IsAvailable() and completion:IsAchievementCompleted(achievement.id) then
+                points = points + achievement.points
+            end
         end
     end
     return points
@@ -350,7 +433,8 @@ local lastSearchResult = {}
 function SetAchievementSearchString(text)
     text = string.lower(text)
     lastSearchResult = {}
-    for _, category in pairs(db:GetSelectedTab():GetCategories()) do
+    local tab = GetUIScopeTab() or db:GetSelectedTab()
+    for _, category in pairs(tab:GetCategories()) do
         for _, ach in pairs(category:GetAchievements()) do
             if string.find(string.lower(ach.name), text) and IsAchievementVisible(ach) then lastSearchResult[#lastSearchResult + 1] = ach end
         end

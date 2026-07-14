@@ -1,33 +1,45 @@
-CA_CompletionManager = {}
+local _, ns = ...
 
-local struct = CA_CompletionManager
+local state = ns.State
+local eventBus = ns.EventBus
+local events = ns.Events
+
+local struct = {}
+ns.CompletionManager = struct
 local mapping = {}
-local metaMapping = {} -- NEW: subAchievementID -> { metaAchievementIDs }
+local metaMapping = {} -- subAchievementID -> { metaAchievementIDs }
+local externalProvider
 
-local achievementSoundQueued = false
+local function UsesExternalProvider(usesLocalData, achievementID)
+    return usesLocalData
+        and externalProvider
+        and type(externalProvider.IsManagedAchievement) == "function"
+        and externalProvider:IsManagedAchievement(achievementID)
+end
 
-local requiresUpdate = false
-C_Timer.NewTicker(1, function()
-    if not requiresUpdate then return end
-    requiresUpdate = false
-    AchievementFrame_ForceUpdate()
-end)
-
-local function Completion(data)
+local function Completion(data, usesLocalData)
     return {
         getData = function(self)
-            if data == nil then
-                if not CA_LocalData then CA_LocalData = {} end
-                return CA_LocalData
+            if usesLocalData then
+                return state:GetLocalData()
+            end
+            if type(data) ~= "table" then
+                data = {}
             end
             return data
         end,
         AddAchievement = function(self, id)
+            if UsesExternalProvider(usesLocalData, id) then
+                return externalProvider:GetAchievement(id, true)
+            end
             if self:getData()[id] then error('achievement completion ' .. id .. ' is already present') end
             self:getData()[id] = {false, 0, {}}
             return self:getData()[id]
         end,
         AddCriteria = function(self, achievementID, criteriaID)
+            if UsesExternalProvider(usesLocalData, achievementID) then
+                return externalProvider:GetCriteria(achievementID, criteriaID, true)
+            end
             local achievement = self:GetAchievement(achievementID)
             if not achievement then
                 achievement = self:AddAchievement(achievementID)
@@ -39,6 +51,9 @@ local function Completion(data)
             return achievement[3][criteriaID]
         end,
         GetAchievement = function(self, id, createIfNotPresent)
+            if UsesExternalProvider(usesLocalData, id) then
+                return externalProvider:GetAchievement(id, createIfNotPresent == true)
+            end
             local result = self:getData()[id]
             if not result and createIfNotPresent then
                 result = self:AddAchievement(id)
@@ -46,6 +61,9 @@ local function Completion(data)
             return result
         end,
         GetCriteria = function(self, achievementID, criteriaID, createIfNotPresent)
+            if UsesExternalProvider(usesLocalData, achievementID) then
+                return externalProvider:GetCriteria(achievementID, criteriaID, createIfNotPresent == true)
+            end
             local achievement = self:GetAchievement(achievementID)
             local criteria = nil
             if achievement then
@@ -68,16 +86,16 @@ local function Completion(data)
         end,
         IsCriteriaCompleted = function(self, achievementID, criteriaID, realCriteria)
             local criteria = self:GetCriteria(achievementID, criteriaID)
-            realCriteria = realCriteria or CA_Criterias:GetCriteriaByID(criteriaID)
+            realCriteria = realCriteria or ns.Criterias:GetCriteriaByID(criteriaID)
 
-            if realCriteria and realCriteria.type == CA_Criterias.TYPE.OR and realCriteria.data then
+            if realCriteria and realCriteria.type == ns.Criterias.TYPE.OR and realCriteria.data then
                 for _, sub in ipairs(realCriteria.data) do
                     if self:IsCriteriaCompleted(achievementID, sub.id) then
                         return true
                     end
                 end
                 return false
-            elseif realCriteria and realCriteria.type == CA_Criterias.TYPE.COMPLETE_ACHIEVEMENT then
+            elseif realCriteria and realCriteria.type == ns.Criterias.TYPE.COMPLETE_ACHIEVEMENT then
                 return self:IsAchievementCompleted(realCriteria.data[1])
             end
 
@@ -99,7 +117,7 @@ local function Completion(data)
             for _, criteria in pairs(achievementData:GetCriterias()) do
                 local completed
 
-                if criteria.type == CA_Criterias.TYPE.COMPLETE_ACHIEVEMENT then
+                if criteria.type == ns.Criterias.TYPE.COMPLETE_ACHIEVEMENT then
                     completed = self:IsAchievementCompleted(criteria.data[1])
                 else
                     completed = self:IsCriteriaCompleted(achievementData.id, criteria.id, criteria)
@@ -124,24 +142,25 @@ local function Completion(data)
             return criteria[2] or 0
         end,
         CompleteAchievement = function(self, id)
-			local achievement = self:GetAchievement(id, true)
-			achievement[1] = true
-			achievement[2] = GetServerTime()
+            local achievement = self:GetAchievement(id, true)
+            if achievement[1] then return false end
 
-			local metas = metaMapping[id]
-			if metas then
-				for _, metaID in ipairs(metas) do
-					self:checkAndComplete(metaID)
-				end
-				requiresUpdate = true
-			end
+            achievement[1] = true
+            achievement[2] = GetServerTime()
 
-			CA_Criterias:Trigger(CA_Criterias.TYPE.COMPLETE_ACHIEVEMENT, {id}, 1)
-		end,
+            local metas = metaMapping[id]
+            if metas then
+                for _, metaID in ipairs(metas) do
+                    self:checkAndComplete(metaID)
+                end
+            end
+
+            return true
+        end,
         completeAchievementGracefully = function(self, achievement, forcefully)
             local previousID = achievement:GetPreviousID()
             if previousID and not self:IsAchievementCompleted(previousID) then
-                local previous = CA_Database:GetAchievement(previousID)
+                local previous = ns.Database:GetAchievement(previousID)
                 if previous then self:completeAchievementGracefully(previous, true) end
             end
 
@@ -156,12 +175,9 @@ local function Completion(data)
                 end
             end
 
-            self:CompleteAchievement(achievement.id)
-            AchievementFrameAchievements_Update()
-            AchievementAlertSystem:AddAlert(achievement.id)
-            QueueAchievementSound()
-			
-            CA_ShareAchievement(achievement.id)
+            if self:CompleteAchievement(achievement.id) then
+                eventBus:Publish(events.ACHIEVEMENT_COMPLETED, achievement.id)
+            end
         end,
         CompleteCriteria = function(self, achievementID, criteriaID, withQuantity)
             if self:IsAchievementCompleted(achievementID) then return false end
@@ -171,62 +187,93 @@ local function Completion(data)
             return true
         end,
 		SetCriteriaProgression = function(self, achievementID, criteriaID, value, requiredQuantity)
-			if self:IsAchievementCompleted(achievementID) then return false end
+			if self:IsAchievementCompleted(achievementID) then return false, false end
 			local criteria = self:GetCriteria(achievementID, criteriaID, true)
-			criteria[2] = min(value, requiredQuantity)
-			if criteria[2] >= requiredQuantity then
-				return self:CompleteCriteria(achievementID, criteriaID)
+            local previousProgress = criteria[2] or 0
+            local newProgress = min(value, requiredQuantity)
+            local progressChanged = newProgress ~= previousProgress
+
+            if progressChanged then
+                criteria[2] = newProgress
+            end
+
+			if newProgress >= requiredQuantity then
+				local criteriaCompleted = self:CompleteCriteria(achievementID, criteriaID)
+                return criteriaCompleted, progressChanged or criteriaCompleted
 			end
-			return false
+			return false, progressChanged
         end,
         IncrementCriteriaProgression = function(self, achievementID, criteriaID, requiredQuantity, count)
-            if self:IsAchievementCompleted(achievementID) then return false end
+            if self:IsAchievementCompleted(achievementID) then return false, false end
             count = count or 0
             local criteria = self:GetCriteria(achievementID, criteriaID, true)
-            criteria[2] = criteria[2] or 0
-            if criteria[2] == requiredQuantity then return false end
-            criteria[2] = min(criteria[2] + count, requiredQuantity)
-            if criteria[2] == requiredQuantity then
-                return self:CompleteCriteria(achievementID, criteriaID)
+            local previousProgress = criteria[2] or 0
+            local newProgress = min(previousProgress + count, requiredQuantity)
+            local progressChanged = newProgress ~= previousProgress
+
+            if not progressChanged then return false, false end
+
+            criteria[2] = newProgress
+            if newProgress >= requiredQuantity then
+                local criteriaCompleted = self:CompleteCriteria(achievementID, criteriaID)
+                return criteriaCompleted, true
             end
-            return false
+            return false, true
         end,
         checkAndComplete = function(self, achievementID)
             if self:IsAchievementCompleted(achievementID) then return end
-            local achievement = CA_Database:GetAchievement(achievementID)
+            local achievement = ns.Database:GetAchievement(achievementID)
             if self:isAchievementCompleted(achievement) then
                 self:completeAchievementGracefully(achievement)
             end
         end,
         CompleteCriteriaGlobally = function(self, criteriaID)
             local achievementIDs = mapping[criteriaID]
-            if not achievementIDs then return end
+            if not achievementIDs then return false end
+            local anyProgressChanged = false
+
             for _, achievementID in pairs(achievementIDs) do
                 if self:CompleteCriteria(achievementID, criteriaID) then
-                    requiresUpdate = true
+                    anyProgressChanged = true
                     self:checkAndComplete(achievementID)
                 end
             end
+
+            return anyProgressChanged
         end,
         SetCriteriaProgressionGlobally = function(self, criteriaID, requiredQuantity, count)
             local achievementIDs = mapping[criteriaID]
-            if not achievementIDs then return end
+            if not achievementIDs then return false end
+            local anyProgressChanged = false
+
             for _, achievementID in pairs(achievementIDs) do
-                if self:SetCriteriaProgression(achievementID, criteriaID, count, requiredQuantity) then
-                    requiresUpdate = true
+                local criteriaCompleted, progressChanged = self:SetCriteriaProgression(achievementID, criteriaID, count, requiredQuantity)
+                if progressChanged then
+                    anyProgressChanged = true
+                end
+                if criteriaCompleted then
                     self:checkAndComplete(achievementID)
                 end
             end
+
+            return anyProgressChanged
         end,
         IncrementCriteriaProgressionGlobally = function(self, criteriaID, requiredQuantity, count)
             local achievementIDs = mapping[criteriaID]
-            if not achievementIDs then return end
+            if not achievementIDs then return false end
+            local anyProgressChanged = false
+
             for _, achievementID in pairs(achievementIDs) do
-                if self:IncrementCriteriaProgression(achievementID, criteriaID, requiredQuantity, count) then
+                local criteriaCompleted, progressChanged = self:IncrementCriteriaProgression(achievementID, criteriaID, requiredQuantity, count)
+                if progressChanged then
+                    anyProgressChanged = true
+                end
+                if criteriaCompleted then
                     self:checkAndComplete(achievementID)
                 end
             end
-            requiresUpdate = true
+
+            return anyProgressChanged
         end,
         ReCheckAchievements = function(self)
             for id, data in pairs(self:getData()) do
@@ -238,7 +285,7 @@ local function Completion(data)
         TakeIncompleteAchievements = function(self)
             for id, data in pairs(self:getData()) do
                 if data[1] then
-                    local ach = CA_Database:GetAchievement(id)
+                    local ach = ns.Database:GetAchievement(id)
                     if self:isAchievementCompleted(ach) then
                         -- ok
                     else
@@ -257,9 +304,9 @@ local function Completion(data)
             for _, pair in pairs(copies) do
                 local to = pair[1]
                 local from = pair[2]
-                local cidFrom = CA_Database:GetAchievement(from):GetCriteriasSorted()[1].id
+                local cidFrom = ns.Database:GetAchievement(from):GetCriteriasSorted()[1].id
                 if data[from] and data[from][3] and data[from][3][cidFrom] and data[from][3][cidFrom][2] then
-                    local cidTo = CA_Database:GetAchievement(to):GetCriteriasSorted()[1].id
+                    local cidTo = ns.Database:GetAchievement(to):GetCriteriasSorted()[1].id
                     if not data[to] or not data[to][3] or not data[to][3][cidTo] or data[to][3][cidTo][2] < data[from][3][cidFrom][2] then
                         data[to] = {false, 0, {[cidTo] = {false, data[from][3][cidFrom][2]}}}
                     end
@@ -267,45 +314,26 @@ local function Completion(data)
             end
         end,
         Reset = function(self)
-            CA_LocalData = {}
-            data = CA_LocalData
+            if usesLocalData then
+                state:ResetLocalData()
+                eventBus:Publish(events.LOCAL_DATA_RESET)
+            else
+                data = {}
+            end
 
             CA_FirstLogin = true
         end
     }
 end
 
---[[
-    Function: QueueAchievementSound
-    Description:
-        Queues and plays a custom achievement sound from the addon’s "sounds" folder.
-        Designed to handle scenarios where multiple achievements are earned in quick succession,
-        this function avoids overlapping sound playback by introducing a delay between plays.
+struct.localCompletion = Completion(nil, true)
 
-    Behavior:
-        - Adds sound requests to a queue when triggered.
-        - Uses C_Timer to space out playback, ensuring each sound plays clearly.
-        - Prevents the audio clutter caused by multiple simultaneous achievement sounds.
-
-    Configuration:
-        - SOUND_DELAY: Time in seconds between each queued sound playback.
-        - SOUND_PATH: Path to the custom sound file within the addon folder.
-
-    Usage:
-        Replace direct PlaySoundFile() calls with QueueAchievementSound()
-        when triggering achievement sounds.
-]]--
-function QueueAchievementSound()
-    if not achievementSoundQueued then
-        achievementSoundQueued = true
-        C_Timer.After(0.1, function()
-            PlaySoundFile("Interface\\AddOns\\AnniversaryAchievements\\sounds\\AchievementEarned.ogg", "Master")
-            achievementSoundQueued = false
-        end)
+function struct:SetExternalProvider(provider)
+    if provider ~= nil and type(provider) ~= "table" then
+        error("external completion provider must be a table or nil")
     end
+    externalProvider = provider
 end
-
-struct.localCompletion = Completion(CA_LocalData)
 
 function struct:GetLocal()
     return struct.localCompletion
@@ -316,18 +344,18 @@ function struct:GetTarget()
 end
 
 function struct:SetTarget(data)
-    struct.targetCompletion = Completion(data)
+    struct.targetCompletion = Completion(data, false)
 end
 
 function struct:PostLoad(categories)
     local function processCriteria(achievementID, criteria)
-        if criteria.type == CA_Criterias.TYPE.OR then
+        if criteria.type == ns.Criterias.TYPE.OR then
             -- ✅ FIX: Loop through all subcriteria instead of hardcoding two
             for _, subCriteria in ipairs(criteria.data) do
                 processCriteria(achievementID, subCriteria)
             end
 
-		elseif criteria.type == CA_Criterias.TYPE.COMPLETE_ACHIEVEMENT then
+		elseif criteria.type == ns.Criterias.TYPE.COMPLETE_ACHIEVEMENT then
 			-- This is a meta requirement: sub-achievement must be completed
 			local subID = criteria.data[1]  -- the achievement ID being referenced
 			metaMapping[subID] = metaMapping[subID] or {}

@@ -1,44 +1,74 @@
-## Interface: 20506
+## Interface: 11508, 20506
+## Notes: Achievements for WoW Classic Era and TBC Anniversary
 ## Title: Anniversary Achievements
 ## Author: BearCraftStudios
-## Version: v2.3.3
+## Version: v2.3.38
 ## IconTexture: Interface/AddOns/AnniversaryAchievements/logo.tga
-## Notes: Achievements for WoW TBC Anniversary
 ## Category: Achievements
 ## Category-deDE: Erfolge
-## SavedVariables: CA_Settings
-## SavedVariablesPerCharacter: CA_LocalData, CA_Flags
+## SavedVariables: CA_Settings, CA_SchemaVersion
+## SavedVariablesPerCharacter: CA_LocalData, CA_Flags, CA_LocalSchemaVersion
 
 #@no-lib-strip@
 libs\libs.xml
 #@end-no-lib-strip@
+
+util/ClientFlavor.lua
 
 localization/en.lua
 localization/de.lua
 localization/es.lua
 localization/mx.lua
 
+# Translation files retained but disabled until manual review is complete:
+# localization/fr.lua
+# localization/ko.lua
+# localization/pt.lua
+# localization/ru.lua
+# localization/cn.lua
+# localization/tw.lua
+
 localization/AreaTableLocale_enUS.lua
 localization/AreaTableLocale_deDE.lua
 localization/AreaTableLocale_esES.lua
 localization/AreaTableLocale_esMX.lua
 
+# Matching AreaTable translation files retained but disabled as well:
+# localization/AreaTableLocale_frFR.lua
+# localization/AreaTableLocale_koKR.lua
+# localization/AreaTableLocale_ptBR.lua
+# localization/AreaTableLocale_ruRU.lua
+# localization/AreaTableLocale_zhCN.lua
+# localization/AreaTableLocale_zhTW.lua
+
+util/TitleData.lua
+
+api/SavedVariables.lua
+api/State.lua
 util/Settings.lua
 
+api/EventBus.lua
 api/Completion.lua
 api/Achievements.lua
 api/Criterias.lua
+api/Progression.lua
+api/PublicAPI.lua
 util/KillingTracker.lua
 util/Triggers.lua
 util/ChatLink.lua
+util/Presentation.lua
 
 util/Loader.lua
+achievements/Achievements_Classic.lua
 achievements/DailyQuests_TBC.lua
-achievements/achievements.lua
+achievements/Achievements_TBC.lua
+
+util/Titles.lua
 
 ui/ApiMocks.lua
 ui/Backdrop.lua
 ui/AchievementUI.lua
 ui/AchievementUI.xml
+ui/Extensions.lua
 ui/Microbutton.lua
 util/Minimap.lua

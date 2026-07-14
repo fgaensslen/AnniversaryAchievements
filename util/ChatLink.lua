@@ -1,5 +1,7 @@
-local db = CA_Database
-local cmanager = CA_CompletionManager
+local _, ns = ...
+
+local db = ns.Database
+local cmanager = ns.CompletionManager
 local loc = SexyLib:Localization('Anniversary Achievements')
 
 function GetAchievementLink(achievementID)
@@ -185,8 +187,13 @@ hooksecurefunc('SetItemRef', function(link)
     end
 end)
 
-function CA_ShareAchievement(achievementID)
-    if not CA_IsSharingAchievementsInChat() then return end
+local function PrintToSelf(msg)
+    msg = FormatAnniversaryAchievementLinks(msg)
+    DEFAULT_CHAT_FRAME:AddMessage("|cffffff00" .. msg .. "|r")
+end
+
+local function ShareAchievement(achievementID)
+    if not ns.IsSharingAchievementsInChat() then return end
 
     local ach = db:GetAchievement(achievementID)
     if not ach then return end
@@ -208,7 +215,4 @@ function CA_ShareAchievement(achievementID)
     PrintToSelf(message)
 end
 
-function PrintToSelf(msg)
-    msg = FormatAnniversaryAchievementLinks(msg)
-    DEFAULT_CHAT_FRAME:AddMessage("|cffffff00" .. msg .. "|r")
-end
+ns.ShareAchievement = ShareAchievement

@@ -6,7 +6,7 @@ It integrates perfectly with the Standard UI and uses the same graphics and soun
 
 ### Download
 
-- WoW TBC: Version 2.3.2
+- WoW TBC: Version 2.2.4
 - WoW Classic: Version 1.4.6. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
 
 ### Achievements
@@ -18,13 +18,23 @@ A full list can be found [here](https://fgaensslen.github.io/AnniversaryAchieve
 
 ### Supported Languages
 
-- English
-- German
-- Spanish (EU) & (MX) - thanks to milotic03
+Currently enabled:
 
-All languages use original Blizzard texts and icons.
+- English (enUS)
+- German (deDE)
+- Spanish (esES)
+- Latin American Spanish (esMX)
 
-Using another WoW client language may cause some achievements not to work properly.
+Translation files are included but temporarily disabled pending manual completion:
+
+- French (frFR)
+- Korean (koKR)
+- Brazilian Portuguese (ptBR)
+- Russian (ruRU)
+- Simplified Chinese (zhCN)
+- Traditional Chinese (zhTW)
+
+The disabled locale files remain in `localization/` for manual editing. Entries that still use the German fallback are marked at the end of the line with `--#--#--`. Their matching AreaTable files are retained but disabled in the TOC as well.
 
 ### Supported User Interfaces
 

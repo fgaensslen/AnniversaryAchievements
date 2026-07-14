@@ -1,6 +1,7 @@
-CA_Database = {}
+local _, ns = ...
 
-local struct = CA_Database
+local struct = {}
+ns.Database = struct
 local loc = SexyLib:Localization('Anniversary Achievements')
 
 struct.tabs = {}
@@ -14,8 +15,23 @@ struct.TAB_ID_STATS = 3
 struct.CTYPE_KILL_NPC = 1
 
 struct.selectedTab = struct.TAB_ID_PLAYER
+struct.uiScopeTab = nil
 
 local lastAchievementID, lastCategoryID = 0, 0
+
+-- Flavor catalogs use stable forced IDs. Keep the implicit counters at the
+-- historical post-definition values so extension code that creates internal
+-- definitions without force IDs behaves exactly as before.
+function struct:SetDefinitionIDCounters(achievementID, categoryID)
+    achievementID = tonumber(achievementID)
+    categoryID = tonumber(categoryID)
+    if achievementID and achievementID >= lastAchievementID then
+        lastAchievementID = math.floor(achievementID)
+    end
+    if categoryID and categoryID >= lastCategoryID then
+        lastCategoryID = math.floor(categoryID)
+    end
+end
 
 local function Achievement(name, description, points, icon, localize, forceID)
     local id
@@ -24,6 +40,9 @@ local function Achievement(name, description, points, icon, localize, forceID)
     else
         lastAchievementID = lastAchievementID + 1
         id = lastAchievementID
+    end
+    if struct.achievements[id] then
+        error('achievement with id ' .. id .. ' already exists')
     end
     if localize then
         name = loc:Get(name)
@@ -67,6 +86,28 @@ local function Achievement(name, description, points, icon, localize, forceID)
         GetRewardText = function(self)
             return self.rewardText or nil
         end,
+        SetTitleReward = function(self, definition)
+            if type(definition) ~= "table" or type(definition.key) ~= "string" or definition.key == "" then
+                self.titleReward = nil
+                return self
+            end
+            self.titleReward = {
+                key = definition.key,
+                label = definition.label or self.rewardText or self.name,
+                format = definition.format or "%s",
+                femaleFormat = definition.femaleFormat or definition.format or "%s",
+                nativeMask = tonumber(definition.nativeMask),
+                nativeMaskFemale = tonumber(definition.nativeMaskFemale),
+                sourceModuleID = definition.sourceModuleID,
+            }
+            return self
+        end,
+        GetTitleReward = function(self)
+            return self.titleReward or nil
+        end,
+        IsTitleReward = function(self)
+            return self.titleReward ~= nil
+        end,
         SetHordeOnly = function(self)
             self.faction = true
             if not self:IsFactionValid() then self:deactivateCriterias() end
@@ -85,6 +126,13 @@ local function Achievement(name, description, points, icon, localize, forceID)
         IsAnyCompletable = function(self)
             return self.anyCompletable or false
         end,
+        SetHideCriteriaUI = function(self, hidden)
+            self.hideCriteriaUI = hidden ~= false
+            return self
+        end,
+        IsCriteriaUIHidden = function(self)
+            return self.hideCriteriaUI == true
+        end,
         IsFactionValid = function(self)
             return self.faction == nil or self.faction == (UnitFactionGroup('player') == 'Horde')
         end,
@@ -102,12 +150,16 @@ local function Achievement(name, description, points, icon, localize, forceID)
 end
 
 local function Category(name, parentID, localize, forceID)
+    local localizationKey = localize and name or nil
     local id
     if forceID then
         id = forceID
     else
         lastCategoryID = lastCategoryID + 1
         id = lastCategoryID
+    end
+    if struct.categories[id] then
+        error('category with id ' .. id .. ' already exists')
     end
     if localize then name = loc:Get(name) end
     local result = {
@@ -118,6 +170,8 @@ local function Category(name, parentID, localize, forceID)
 		unavailable = false,
         CreateAchievement = function(self, ...)
             local result = Achievement(...)
+            result.categoryID = self.id
+            result.tabID = self.tabID
             self.achievements[result.id] = result
             return result
         end,
@@ -139,6 +193,10 @@ local function Category(name, parentID, localize, forceID)
             return not self.unavailable
         end
     }
+    if localizationKey == 'CATEGORY_FEATS_OF_STRENGTH' then
+        result.isFeatsOfStrength = true
+        struct.FEATS_OF_STRENGTH_CATEGORY_ID = id
+    end
     struct.categories[id] = result
     return result
 end
@@ -150,6 +208,7 @@ local function Tab(id)
         categories = {},
         CreateCategory = function(self, ...)
             local result = Category(...)
+            result.tabID = self.id
             self.categories[result.id] = result
             return result
         end,
@@ -200,12 +259,51 @@ Tab(struct.TAB_ID_PLAYER)
 Tab(struct.TAB_ID_GUILD)
 Tab(struct.TAB_ID_STATS)
 
+-- Public API achievement pages use the same database-backed tab model as the
+-- native player page. IDs are allocated and owned by PublicAPI.lua.
+function struct:CreateTab(id)
+    id = tonumber(id)
+    if not id or id % 1 ~= 0 then error('tab id must be an integer') end
+    id = math.floor(id)
+    Tab(id)
+    return struct.tabs[id]
+end
+
 function struct:GetTab(id)
     return struct.tabs[id]
 end
 
+function struct:GetAllTabs()
+    return struct.tabs
+end
+
 function struct:GetSelectedTab()
     return struct:GetTab(struct.selectedTab)
+end
+
+-- The achievement UI can temporarily lock all aggregate/category queries to a
+-- specific API achievement tab. This scope is separate from selectedTab so
+-- search or native tab helpers cannot accidentally route the visible page back
+-- to the player database while the custom page is open.
+function struct:SetUIScopeTab(id)
+    if id == nil then
+        struct.uiScopeTab = nil
+        return
+    end
+    id = tonumber(id)
+    if not id or id % 1 ~= 0 or not struct:GetTab(id) then
+        error('UI scope tab id must reference an existing tab')
+    end
+    struct.uiScopeTab = math.floor(id)
+end
+
+function struct:ClearUIScopeTab()
+    struct.uiScopeTab = nil
+end
+
+function struct:GetUIScopeTab()
+    if struct.uiScopeTab == nil then return nil end
+    return struct:GetTab(struct.uiScopeTab)
 end
 
 function struct:GetTabSpecial(isGuildOrPlayerTab)

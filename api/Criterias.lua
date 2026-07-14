@@ -1,6 +1,7 @@
-CA_Criterias = {}
+local _, ns = ...
 
-local struct = CA_Criterias
+local struct = {}
+ns.Criterias = struct
 local loc = SexyLib:Localization('Anniversary Achievements')
 
 struct.TYPE = {
@@ -74,7 +75,7 @@ struct.dataLengths = {
     [struct.TYPE.ATIESH] = 0,
     [struct.TYPE.REACH_PVP_RANK] = 1, -- pvp rank index
     [struct.TYPE.NOT_WORKING] = 0,
-    [struct.TYPE.REACH_PROFESSION_LEVEL] = 2, -- profession index from ClassicAchievementsProfessions or ClassicAchievementsSkills, skill level
+    [struct.TYPE.REACH_PROFESSION_LEVEL] = 2, -- profession index from the addon namespace profession or skill tables, skill level
     [struct.TYPE.REACH_MAIN_PROFESSION_LEVEL] = 1, -- skill level
     [struct.TYPE.REACH_SECONDARY_PROFESSION_LEVEL] = 1, -- skill level
     [struct.TYPE.CRAFT_ITEM] = 1, -- itemID
@@ -91,8 +92,8 @@ struct.dataLengths = {
     [struct.TYPE.BATTLEFIELD_WINS] = 1, -- mapID
     [struct.TYPE.GEAR_QUALITY] = 2, -- first argument is slot id, second one is from Enum.ItemQuality
     [struct.TYPE.FISH_AN_ITEM] = 1, -- itemID
-    [struct.TYPE.LEARN_PROFESSION_RECIPE] = 2, -- profession index from ClassicAchievementsProfessions, itemID
-    [struct.TYPE.LEARN_PROFESSION_RECIPES] = 1, -- profession index from ClassicAchievementsProfessions
+    [struct.TYPE.LEARN_PROFESSION_RECIPE] = 2, -- profession index from the addon namespace profession table, itemID
+    [struct.TYPE.LEARN_PROFESSION_RECIPES] = 1, -- profession index from the addon namespace profession table
     [struct.TYPE.DUELS] = 0,
     [struct.TYPE.BATTLEFIELD_MAX_LEVEL_PARTICIPATION] = 0,
     [struct.TYPE.EMOTE] = 2, -- emotion string id (like LOVE), target creature ID
@@ -145,8 +146,16 @@ struct.GEAR_SLOT = {
     'WEAPON'
 }
 
-local completion = CA_CompletionManager:GetLocal()
 local lastID = 0
+
+-- See Database:SetDefinitionIDCounters. Generated flavor catalogs create
+-- criteria with their established IDs and then restore the historic counter.
+function struct:SetDefinitionIDCounter(criteriaID)
+    criteriaID = tonumber(criteriaID)
+    if criteriaID and criteriaID >= lastID then
+        lastID = math.floor(criteriaID)
+    end
+end
 
 function struct:CreateL(localizationKey, ...)
     return struct:Create(loc:Get(localizationKey), ...)
@@ -189,6 +198,13 @@ function struct:Create(name, type, data, quantity, forceID)
         SetQuantityFormatter = function(self, formatter)
             self.quantityFormat = formatter
             return self
+        end,
+        SetHidden = function(self, hidden)
+            self.hidden = hidden ~= false
+            return self
+        end,
+        IsHidden = function(self)
+            return self.hidden == true
         end
     }
     if struct.criteriasByID[id] then
@@ -209,37 +225,48 @@ function struct:Create(name, type, data, quantity, forceID)
     return result
 end
 
-function struct:Trigger(type, data, count, const)
+function struct:GetTriggeredCriterias(type, data)
     local length = struct.dataLengths[type]
-    if not length then return end
+    if not length then return nil end
+
     local criterias = struct.criterias[type]
-    if not criterias then return end
-    if length > 0 and not data then return end
-    for i = 1, length do
-        if not data[i] then return end
-        criterias = criterias[data[i]]
-        if not criterias then return end
-    end
-    count = count or 1
+    if not criterias then return nil end
+    if length > 0 and not data then return nil end
 
-    for _, criteria in pairs(criterias) do
-        if not criteria.deactivated then
-            if criteria.quantity then
-                if const then
-                    completion:SetCriteriaProgressionGlobally(criteria.id, criteria.quantity, count)
-                else
-                    completion:IncrementCriteriaProgressionGlobally(criteria.id, criteria.quantity, count)
-                end
-            else
-                completion:CompleteCriteriaGlobally(criteria.id)
-            end
-
-        end
+    for index = 1, length do
+        if not data[index] then return nil end
+        criterias = criterias[data[index]]
+        if not criterias then return nil end
     end
+
+    return criterias
 end
 
 function struct:GetCriteriaByID(criteriaID)
     return struct.criteriasByID[criteriaID]
+end
+
+function struct:RegisterType(typeID, dataLength)
+    typeID = tonumber(typeID)
+    dataLength = tonumber(dataLength)
+    if not typeID or typeID <= 0 or typeID % 1 ~= 0 then
+        error("criteria type id must be a positive integer")
+    end
+    if not dataLength or dataLength < 0 or dataLength % 1 ~= 0 then
+        error("criteria type data length must be a non-negative integer")
+    end
+    typeID = math.floor(typeID)
+    dataLength = math.floor(dataLength)
+    if struct.dataLengths[typeID] ~= nil or struct.criterias[typeID] ~= nil then
+        error("Duplicate criteria type ID: " .. typeID)
+    end
+    struct.dataLengths[typeID] = dataLength
+    struct.criterias[typeID] = {}
+    return typeID
+end
+
+function struct:GetDataLength(typeID)
+    return struct.dataLengths[typeID]
 end
 
 function struct:skip()
