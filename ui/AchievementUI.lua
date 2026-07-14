@@ -1124,6 +1124,7 @@ function AchievementFrameBaseTab_OnClick (id)
 		AchievementFrameGuildEmblemRight:Hide();
 	end
 
+	AchievementFrameCategories_ExpandSelection(achievementFunctions.selectedCategory);
 	AchievementFrameCategories_Update();
 
 	if ( not isSummary ) then
@@ -1156,6 +1157,7 @@ function AchievementFrameComparisonTab_OnClick (id)
 	end
 	AchievementFrameCategoriesBG:SetTexCoord(0, 0.5, 0, 1);
 	AchievementFrameCategories_GetCategoryList(ACHIEVEMENTUI_CATEGORIES);
+	AchievementFrameCategories_ExpandSelection(achievementFunctions.selectedCategory);
 	AchievementFrameCategories_Update();
 	AchievementFrame_UpdateTabs(id);
 
@@ -1272,6 +1274,42 @@ function AchievementFrameCategories_OnShow (self)
 	AchievementFrameCategories_Update();
 end
 
+-- Reopen the category branch that owns the selected category after the
+-- category list has been rebuilt (for example after switching achievement
+-- tabs). A selected top-level category is itself the branch root; a selected
+-- subcategory opens its numeric parent. This is deliberately not called from
+-- every Update so clicking an already selected top-level category can still
+-- collapse it until the next tab/navigation restore.
+function AchievementFrameCategories_ExpandSelection(categoryID)
+	if ( not categoryID or categoryID == "summary" or categoryID == ACHIEVEMENT_COMPARISON_SUMMARY_ID or categoryID == ACHIEVEMENT_COMPARISON_STATS_SUMMARY_ID ) then
+		return;
+	end
+
+	local branchRootID;
+	for _, category in next, ACHIEVEMENTUI_CATEGORIES do
+		if ( category.id == categoryID ) then
+			if ( type(category.parent) == "number" ) then
+				branchRootID = category.parent;
+			elseif ( category.parent == true ) then
+				branchRootID = category.id;
+			end
+			break;
+		end
+	end
+
+	if ( not branchRootID ) then
+		return;
+	end
+
+	for _, category in next, ACHIEVEMENTUI_CATEGORIES do
+		if ( category.parent == true ) then
+			category.collapsed = category.id ~= branchRootID;
+		elseif ( type(category.parent) == "number" ) then
+			category.hidden = category.parent ~= branchRootID;
+		end
+	end
+end
+
 function AchievementFrameCategories_GetCategoryList (categories)
 	local cats = achievementFunctions.categoryAccessor();
 
@@ -1356,13 +1394,16 @@ function AchievementFrameCategories_Update ()
 		if ( element ) then
 			AchievementFrameCategories_DisplayButton(buttons[i], element);
 			if ( selection and element.id == selection ) then
+				buttons[i].isSelected = true;
 				buttons[i]:LockHighlight();
 			else
+				buttons[i].isSelected = nil;
 				buttons[i]:UnlockHighlight();
 			end
 			buttons[i]:Show();
 		else
 			buttons[i].element = nil;
+			buttons[i].isSelected = nil;
 			buttons[i]:Hide();
 		end
 	end
@@ -3412,24 +3453,7 @@ function AchievementFrame_SelectAchievement(id, forceSelect, isComparison)
 
 	AchievementFrameCategories_ClearSelection();
 
-	local categoryIndex, parent, hidden = 0;
-	for i, entry in next, ACHIEVEMENTUI_CATEGORIES do
-		if ( entry.id == category ) then
-			parent = entry.parent;
-		end
-	end
-
-	for i, entry in next, ACHIEVEMENTUI_CATEGORIES do
-		if ( entry.id == parent ) then
-			entry.collapsed = false;
-		elseif ( entry.parent == parent ) then
-			entry.hidden = false;
-		elseif ( entry.parent == true ) then
-			entry.collapsed = true;
-		elseif ( entry.parent ) then
-			entry.hidden = true;
-		end
-	end
+	AchievementFrameCategories_ExpandSelection(category);
 
 	achievementFunctions.selectedCategory = category;
 	AchievementFrameCategoriesContainerScrollBar:SetValue(0);
@@ -3589,26 +3613,7 @@ function AchievementFrame_SelectStatisticByAchievementID(achievementID, isCompar
 
 	local category = GetAchievementCategory(achievementID);
 
-	local categoryIndex, parent, hidden = 0;
-
-	local categoryIndex, parent, hidden = 0;
-	for i, entry in next, ACHIEVEMENTUI_CATEGORIES do
-		if ( entry.id == category ) then
-			parent = entry.parent;
-		end
-	end
-
-	for i, entry in next, ACHIEVEMENTUI_CATEGORIES do
-		if ( entry.id == parent ) then
-			entry.collapsed = false;
-		elseif ( entry.parent == parent ) then
-			entry.hidden = false;
-		elseif ( entry.parent == true ) then
-			entry.collapsed = true;
-		elseif ( entry.parent ) then
-			entry.hidden = true;
-		end
-	end
+	AchievementFrameCategories_ExpandSelection(category);
 
 	achievementFunctions.selectedCategory = category;
 	AchievementFrameCategories_Update();

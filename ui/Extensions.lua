@@ -999,6 +999,9 @@ local function RefreshNativeBaseTabContent(id)
     ResetAchievementContentState(root)
     ResetNativeCategoryButtonPool()
     AchievementFrameCategories_GetCategoryList(ACHIEVEMENTUI_CATEGORIES)
+    if AchievementFrameCategories_ExpandSelection then
+        AchievementFrameCategories_ExpandSelection(achievementFunctions and achievementFunctions.selectedCategory)
+    end
     AchievementFrameCategories_Update()
 
     if id == 1 or id == 2 then
@@ -1172,6 +1175,9 @@ local function ActivateAchievementTab(entry, buttonID)
     end
     if not valid then selected = "summary" end
     achievementFunctions.selectedCategory = selected
+    if AchievementFrameCategories_ExpandSelection then
+        AchievementFrameCategories_ExpandSelection(selected)
+    end
 
     AchievementFrameCategories_Update()
     RefreshActivatedAchievementContent(entry, selected)
@@ -1448,6 +1454,9 @@ local function RefreshDatabaseUI(rebuildCategories)
             AchievementFrameCategories_GetCategoryList(ACHIEVEMENTUI_CATEGORIES)
             if activeTabEntry and activeTabEntry.kind == "achievements" then
                 SanitizeAchievementTabCategoryList(activeTabEntry)
+            end
+            if AchievementFrameCategories_ExpandSelection then
+                AchievementFrameCategories_ExpandSelection(achievementFunctions and achievementFunctions.selectedCategory)
             end
         end
         AchievementFrameCategories_Update()
