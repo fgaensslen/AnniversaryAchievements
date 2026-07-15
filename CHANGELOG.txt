@@ -52,3 +52,4 @@ Details siehe Ordner CHANGELOGS
 2.3.44 – Berufsscan auf registrierte Fertigkeitsschwellen optimiert
 2.3.45 – Verzögerte Vollscans ereignisübergreifend gebündelt
 2.3.46 – Rufscan auf registrierte Rufschwellen begrenzt
+2.3.47 – Explorations-Fallback begrenzt und Kartenkunst-Preload nachgeführt

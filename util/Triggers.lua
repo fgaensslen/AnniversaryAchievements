@@ -620,8 +620,10 @@ local function updateGear()
 end
 
 local EXPLORATION_SAMPLE_FRACTIONS = {0.5, 0.25, 0.75, 0.125, 0.375, 0.625, 0.875}
-local EXPLORATION_CALLS_PER_BATCH = 200
-local EXPLORATION_FALLBACK_STEP = 0.02
+local EXPLORATION_OVERLAY_CALLS_PER_BATCH = 200
+local EXPLORATION_FALLBACK_CALLS_PER_BATCH = 80
+local EXPLORATION_FALLBACK_GRID_MAX = 24 -- 25 x 25 = 625 positions per map
+local EXPLORATION_MAP_ART_RETRY_LIMIT = 3
 local updatingExploredAreas = false
 local explorationScanState = nil
 
@@ -631,19 +633,47 @@ local function clampMapCoordinate(value)
     return value
 end
 
+-- The registry contains native and Public-API criteria. Snapshot the currently
+-- registered exploration targets when the manual scan starts so returned area
+-- IDs without any consumer never enter the progression path.
+local function getRegisteredExplorationAreaIDs()
+    local result = {}
+    local count = 0
+    local registry = criterias.criterias[TYPE.EXPLORE_AREA]
+    if type(registry) ~= 'table' then return result, count end
+
+    for areaID, matches in pairs(registry) do
+        if type(areaID) == 'number' and type(matches) == 'table' and #matches > 0 then
+            result[areaID] = true
+            count = count + 1
+        end
+    end
+    return result, count
+end
+
 local function getMapArtDimensions(mapID)
     if not C_Map.GetMapArtLayers then return nil, nil end
 
     local layers = C_Map.GetMapArtLayers(mapID)
-    local layer = layers and layers[1]
-    if not layer then return nil, nil end
+    if type(layers) ~= 'table' then return nil, nil end
 
-    local width = tonumber(layer.layerWidth)
-    local height = tonumber(layer.layerHeight)
-    if not width or width <= 0 or not height or height <= 0 then
-        return nil, nil
+    -- Do not assume the first returned layer is usable. Some clients can expose
+    -- an incomplete first entry while a later art layer already has dimensions.
+    -- Choose the lowest valid numeric layer deterministically.
+    local selectedIndex, selectedWidth, selectedHeight
+    for index, layer in pairs(layers) do
+        if type(index) == 'number' and type(layer) == 'table' then
+            local width = tonumber(layer.layerWidth)
+            local height = tonumber(layer.layerHeight)
+            if width and width > 0 and height and height > 0
+                and (not selectedIndex or index < selectedIndex) then
+                selectedIndex = index
+                selectedWidth = width
+                selectedHeight = height
+            end
+        end
     end
-    return width, height
+    return selectedWidth, selectedHeight
 end
 
 local function getExplorationOverlayRect(overlay, mapWidth, mapHeight)
@@ -666,13 +696,58 @@ local function getExplorationOverlayRect(overlay, mapWidth, mapHeight)
     return left, top, right, bottom
 end
 
+local function buildExplorationOverlayRects(overlays, mapWidth, mapHeight)
+    local rects = {}
+    local seen = {}
+    for index = 1, #overlays do
+        local left, top, right, bottom = getExplorationOverlayRect(overlays[index], mapWidth, mapHeight)
+        if left then
+            local key = floor(left * 100000 + 0.5) .. ':'
+                .. floor(top * 100000 + 0.5) .. ':'
+                .. floor(right * 100000 + 0.5) .. ':'
+                .. floor(bottom * 100000 + 0.5)
+            if not seen[key] then
+                seen[key] = true
+                rects[#rects + 1] = {left, top, right, bottom}
+            end
+        end
+    end
+    return rects
+end
+
+local function createOverlayMapState(mapID, overlays, mapWidth, mapHeight)
+    local rects = buildExplorationOverlayRects(overlays, mapWidth, mapHeight)
+    if #rects == 0 then return nil end
+
+    return {
+        mode = 'overlays',
+        mapID = mapID,
+        overlayRects = rects,
+        overlayIndex = 1,
+        sampleX = 1,
+        sampleY = 1,
+        sampledPositions = {}
+    }
+end
+
+local function createFallbackMapState(mapID)
+    return {
+        mode = 'fallback',
+        mapID = mapID,
+        gridX = 0,
+        gridY = 0,
+        gridMax = EXPLORATION_FALLBACK_GRID_MAX
+    }
+end
+
 local function triggerExploredAreaIDs(state, mapID, x, y)
     local areaIDs = C_MapExplorationInfo.GetExploredAreaIDsAtPosition(mapID, CreateVector2D(x, y))
-    if not areaIDs then return end
+    if type(areaIDs) ~= 'table' then return end
 
     for _, areaID in ipairs(areaIDs) do
-        if areaID and not state.triggeredAreaIDs[areaID] then
-            state.triggeredAreaIDs[areaID] = true
+        if state.pendingAreaIDs[areaID] then
+            state.pendingAreaIDs[areaID] = nil
+            state.remainingAreaIDs = state.remainingAreaIDs - 1
             trigger(TYPE.EXPLORE_AREA, {areaID}, 1, true)
         end
     end
@@ -686,38 +761,24 @@ local function advanceOverlaySample(mapState)
         if mapState.sampleX > #EXPLORATION_SAMPLE_FRACTIONS then
             mapState.sampleX = 1
             mapState.overlayIndex = mapState.overlayIndex + 1
-            mapState.overlayRect = nil
         end
     end
 end
 
 local function processOverlaySample(state, mapState)
-    while mapState.overlayIndex <= #mapState.overlays do
-        if not mapState.overlayRect then
-            local left, top, right, bottom = getExplorationOverlayRect(
-                mapState.overlays[mapState.overlayIndex], mapState.mapWidth, mapState.mapHeight
-            )
-            if left then
-                mapState.overlayRect = {left, top, right, bottom}
-            else
-                mapState.overlayIndex = mapState.overlayIndex + 1
-            end
-        end
+    while mapState.overlayIndex <= #mapState.overlayRects do
+        local rect = mapState.overlayRects[mapState.overlayIndex]
+        local xFraction = EXPLORATION_SAMPLE_FRACTIONS[mapState.sampleX]
+        local yFraction = EXPLORATION_SAMPLE_FRACTIONS[mapState.sampleY]
+        local x = rect[1] + (rect[3] - rect[1]) * xFraction
+        local y = rect[2] + (rect[4] - rect[2]) * yFraction
+        local sampleKey = floor(x * 100000 + 0.5) .. ':' .. floor(y * 100000 + 0.5)
 
-        if mapState.overlayRect then
-            local rect = mapState.overlayRect
-            local xFraction = EXPLORATION_SAMPLE_FRACTIONS[mapState.sampleX]
-            local yFraction = EXPLORATION_SAMPLE_FRACTIONS[mapState.sampleY]
-            local x = rect[1] + (rect[3] - rect[1]) * xFraction
-            local y = rect[2] + (rect[4] - rect[2]) * yFraction
-            local sampleKey = floor(x * 100000 + 0.5) .. ':' .. floor(y * 100000 + 0.5)
-
-            advanceOverlaySample(mapState)
-            if not mapState.sampledPositions[sampleKey] then
-                mapState.sampledPositions[sampleKey] = true
-                triggerExploredAreaIDs(state, mapState.mapID, x, y)
-                return true, false
-            end
+        advanceOverlaySample(mapState)
+        if not mapState.sampledPositions[sampleKey] then
+            mapState.sampledPositions[sampleKey] = true
+            triggerExploredAreaIDs(state, mapState.mapID, x, y)
+            return true, false
         end
     end
 
@@ -725,8 +786,8 @@ local function processOverlaySample(state, mapState)
 end
 
 local function processFallbackSample(state, mapState)
-    local x = mapState.gridX * EXPLORATION_FALLBACK_STEP
-    local y = mapState.gridY * EXPLORATION_FALLBACK_STEP
+    local x = mapState.gridX / mapState.gridMax
+    local y = mapState.gridY / mapState.gridMax
 
     mapState.gridY = mapState.gridY + 1
     if mapState.gridY > mapState.gridMax then
@@ -734,7 +795,7 @@ local function processFallbackSample(state, mapState)
         mapState.gridX = mapState.gridX + 1
     end
 
-    triggerExploredAreaIDs(state, mapState.mapID, clampMapCoordinate(x), clampMapCoordinate(y))
+    triggerExploredAreaIDs(state, mapState.mapID, x, y)
     return true, mapState.gridX > mapState.gridMax
 end
 
@@ -749,48 +810,50 @@ local function prepareNextExplorationMap(state)
 
             if C_MapExplorationInfo.GetExploredMapTextures then
                 local overlays = C_MapExplorationInfo.GetExploredMapTextures(mapID)
-                if overlays and #overlays > 0 then
+                if type(overlays) == 'table' and #overlays > 0 then
                     local mapWidth, mapHeight = getMapArtDimensions(mapID)
                     if mapWidth and mapHeight then
+                        state.currentMap = createOverlayMapState(mapID, overlays, mapWidth, mapHeight)
+                            or createFallbackMapState(mapID)
+                    else
+                        -- Map preloading may publish art metadata only on a later
+                        -- frame. Retry before entering the compatibility raster.
                         state.currentMap = {
-                            mode = 'overlays',
+                            mode = 'await_art',
                             mapID = mapID,
                             overlays = overlays,
-                            mapWidth = mapWidth,
-                            mapHeight = mapHeight,
-                            overlayIndex = 1,
-                            sampleX = 1,
-                            sampleY = 1,
-                            sampledPositions = {}
+                            retryCount = 0
                         }
-                        return true
                     end
-
-                    local gridMax = floor(1 / EXPLORATION_FALLBACK_STEP + 0.5)
-                    state.currentMap = {
-                        mode = 'fallback',
-                        mapID = mapID,
-                        gridX = 0,
-                        gridY = 0,
-                        gridMax = gridMax
-                    }
                     return true
                 end
+                -- An available overlay API with no explored textures means this
+                -- map contributes no retroactive exploration progress.
             else
-                local gridMax = floor(1 / EXPLORATION_FALLBACK_STEP + 0.5)
-                state.currentMap = {
-                    mode = 'fallback',
-                    mapID = mapID,
-                    gridX = 0,
-                    gridY = 0,
-                    gridMax = gridMax
-                }
+                state.currentMap = createFallbackMapState(mapID)
                 return true
             end
         end
     end
 
     return false
+end
+
+local function resolveAwaitingMapArt(state, mapState)
+    local mapWidth, mapHeight = getMapArtDimensions(mapState.mapID)
+    if mapWidth and mapHeight then
+        state.currentMap = createOverlayMapState(mapState.mapID, mapState.overlays, mapWidth, mapHeight)
+            or createFallbackMapState(mapState.mapID)
+        return false
+    end
+
+    mapState.retryCount = mapState.retryCount + 1
+    if mapState.retryCount >= EXPLORATION_MAP_ART_RETRY_LIMIT then
+        state.currentMap = createFallbackMapState(mapState.mapID)
+        return false
+    end
+
+    return true
 end
 
 local function finishExplorationScan()
@@ -802,23 +865,43 @@ end
 local function processExplorationScan()
     local state = explorationScanState
     if not state then return end
+    if state.remainingAreaIDs <= 0 then
+        finishExplorationScan()
+        return
+    end
 
     local calls = 0
-    while calls < EXPLORATION_CALLS_PER_BATCH do
+    while true do
         if not state.currentMap and not prepareNextExplorationMap(state) then
             finishExplorationScan()
             return
         end
 
-        local didCall, mapFinished
-        if state.currentMap.mode == 'overlays' then
-            didCall, mapFinished = processOverlaySample(state, state.currentMap)
+        if state.currentMap.mode == 'await_art' then
+            if resolveAwaitingMapArt(state, state.currentMap) then
+                C_Timer.After(0, processExplorationScan)
+                return
+            end
         else
-            didCall, mapFinished = processFallbackSample(state, state.currentMap)
-        end
+            local callLimit = state.currentMap.mode == 'fallback'
+                and EXPLORATION_FALLBACK_CALLS_PER_BATCH
+                or EXPLORATION_OVERLAY_CALLS_PER_BATCH
+            if calls >= callLimit then break end
 
-        if didCall then calls = calls + 1 end
-        if mapFinished then state.currentMap = nil end
+            local didCall, mapFinished
+            if state.currentMap.mode == 'overlays' then
+                didCall, mapFinished = processOverlaySample(state, state.currentMap)
+            else
+                didCall, mapFinished = processFallbackSample(state, state.currentMap)
+            end
+
+            if didCall then calls = calls + 1 end
+            if state.remainingAreaIDs <= 0 then
+                finishExplorationScan()
+                return
+            end
+            if mapFinished then state.currentMap = nil end
+        end
     end
 
     C_Timer.After(0, processExplorationScan)
@@ -838,12 +921,22 @@ local function UpdateExploredAreas()
         end
     end
 
+    local pendingAreaIDs, remainingAreaIDs = getRegisteredExplorationAreaIDs()
     explorationScanState = {
         mapIDs = mapIDs,
         mapIndex = 0,
         currentMap = nil,
-        triggeredAreaIDs = {}
+        pendingAreaIDs = pendingAreaIDs,
+        remainingAreaIDs = remainingAreaIDs
     }
+
+    if remainingAreaIDs == 0
+        or not C_MapExplorationInfo
+        or not C_MapExplorationInfo.GetExploredAreaIDsAtPosition then
+        finishExplorationScan()
+        return
+    end
+
     C_Timer.After(0, processExplorationScan)
 end
 
