@@ -1,9 +1,3 @@
-- Achievements_Classic.lua und Achievements_TBC.lua bleiben nach Client-Flavor getrennt und verwenden ausschließlich die bereits vorhandenen Lokalisierungsschlüssel, Formatvorlagen und dynamischen Argumente des ursprünglichen Achievement-Katalogs.
-- Es wurden keine neuen Achievement-Katalogtexte oder generierten Achievement-Lokalisierungseinträge angelegt. Itemnamen und Gebietsnamen werden weiterhin dynamisch über Item-ID beziehungsweise AreaTable-ID aufgelöst.
-- TitleData.lua enthält ausschließlich stabile Titelkennungen, Lokalisierungsschlüssel und native Titelmasken; Microbutton.lua bezieht alle sichtbaren Hinweise aus den vorhandenen Sprachdateien.
-- Zusätzlich wurden frFR, koKR, ptBR, ruRU, zhCN und zhTW samt AreaTable-Lokalisierungen eingebunden. Die Zuordnung erfolgt primär über Blizzard-IDs und strukturierte Achievement-/Kriterienbeziehungen. Nicht zweifelsfrei lokalisierbare Texte bleiben deutsch und sind in den sechs neuen Sprachdateien am Zeilenende mit --#--#-- markiert.
-- frFR, koKR, ptBR, ruRU, zhCN und zhTW sind bis zum Abschluss der manuellen Übersetzung in der TOC deaktiviert. Sämtliche Sprach- und AreaTable-Dateien bleiben vollständig im Paket erhalten; deutsche Rückfallzeilen behalten ihre Markierung --#--#--.
-- Generated Classic and TBC achievement catalogs reformatted as readable Lua source.
 Details siehe Ordner CHANGELOGS
 
 2.3.1 Hotfix – Gruppen- und Raid-Kills korrekt erkannt
@@ -53,3 +47,4 @@ Details siehe Ordner CHANGELOGS
 2.3.45 – Verzögerte Vollscans ereignisübergreifend gebündelt
 2.3.46 – Rufscan auf registrierte Rufschwellen begrenzt
 2.3.47 – Explorations-Fallback begrenzt und Kartenkunst-Preload nachgeführt
+2.3.48 – Erfolge: Einzigartig/Extrem selten + Titel "Der/Die Unfassbare"

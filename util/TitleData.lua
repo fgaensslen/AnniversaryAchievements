@@ -31,6 +31,7 @@ end
 -- Labels and grammatical display formats live exclusively in localization/*.lua.
 local BUILTIN = {
     explorer = Entry("explorer", "TITLE_BUILTIN_EXPLORER", 47),
+    the_elusive = Entry("the_elusive", "TITLE_BUILTIN_THE_ELUSIVE", nil),
     battlemaster = Entry("battlemaster", "TITLE_BUILTIN_BATTLEMASTER", 210),
     defender_of_azeroth = Entry("defender_of_azeroth", "TITLE_BUILTIN_DEFENDER_OF_AZEROTH", nil),
     hero_of_azeroth = Entry("hero_of_azeroth", "TITLE_BUILTIN_HERO_OF_AZEROTH", nil),

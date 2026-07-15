@@ -20,7 +20,7 @@ ns.IsTrackerEnabled = IsTrackerEnabled
 
 local MAIN_ADDON_FOLDER = "AnniversaryAchievements"
 local MAIN_ADDON_NAME = "Anniversary Achievements"
-local MAIN_ADDON_VERSION = "v2.3.47"
+local MAIN_ADDON_VERSION = "v2.3.48"
 local MAIN_ADDON_AUTHOR = "BearCraftStudios"
 
 local function GetMainAddonMetadata(field, fallback)

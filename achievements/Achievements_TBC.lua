@@ -8,7 +8,7 @@ local loc = SexyLib:Localization("Anniversary Achievements")
 local catalog = assert(ns.AchievementCatalog, loc:Get("CATALOG_LOAD_ERROR"))
 
 local tbcDelta = {
-    ["achievementCounter"] = 515,
+    ["achievementCounter"] = 517,
     ["achievementDefinitions"] = {
         [7] = {
             ["anyCompletable"] = false,
@@ -17024,7 +17024,7 @@ local tbcDelta = {
         },
     },
     ["categoryPatches"] = {},
-    ["criteriaCounter"] = 2068,
+    ["criteriaCounter"] = 2840,
     ["removeAchievements"] = {
         [1] = 149,
         [2] = 150,
