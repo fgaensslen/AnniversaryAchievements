@@ -236,10 +236,6 @@
 235; Towers Keeper; Defend 2 towers in one single battle for Alterac Valley and stay until it is over.; -Inv_Shield_05
 236; Towers Keeper; Defend 3 towers in one single battle for Alterac Valley and stay until it is over.; -Inv_Shield_05
 237; Towers Keeper; Defend 4 towers in one single battle for Alterac Valley and stay until it is over.; -Inv_Shield_05
-238; Frozen Miner; Assault a mine in one single battle for Alterac Valley and stay until it is over.; -Inv_Pick_01
-239; Frozen Pikeman; Assault 2 mines in one single battle for Alterac Valley and stay until it is over.; -Inv_Pick_01
-240; Frozen Pikeman; Assault 3 mines in one single battle for Alterac Valley and stay until it is over.; -Inv_Pick_01
-241; Frozen Pikeman; Assault 4 mines in one single battle for Alterac Valley and stay until it is over.; -Inv_Pick_01
 242; The Alterac Blitz; Win Alterac Valley in 6 minutes.; achievement_bg_winav_underxminutes
 243; Military Honor; Get 10 honorable kills in one single battle for Warsong Gulch and stay until it is over.; -Ability_Rogue_Eviscerate
 244; Military Honor; Get 25 honorable kills in one single battle for Warsong Gulch and stay until it is over.; -Ability_Rogue_Eviscerate

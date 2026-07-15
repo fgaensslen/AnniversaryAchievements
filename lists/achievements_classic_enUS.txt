@@ -1,0 +1,428 @@
+﻿ID; Name; Description; Icon
+1; Level 10; Reach level 10.; level_10
+2; Level 20; Reach level 20.; level_20
+3; Level 30; Reach level 30.; level_30
+4; Level 40; Reach level 40.; level_40
+5; Level 50; Reach level 50.; level_50
+6; Level 60; Reach level 60.; level_60
+8; Safe Deposit; Buy 7 additional bank slots.; -inv_box_01
+9; Killer; Kill 100 monsters.; -inv_misc_monsterclaw_02
+10; Destroyer; Kill 1000 monsters.; -inv_misc_monsterclaw_02
+11; Crusher; Kill 5000 monsters.; -inv_misc_monsterclaw_02
+12; Headhunter; Kill 10000 monsters.; -inv_misc_monsterclaw_02
+13; Thunderstorm of the monsters; Kill 25000 monsters.; -inv_misc_monsterclaw_02
+14; Thunderstorm of all living things; Kill 50000 monsters.; -inv_misc_monsterclaw_02
+15; Omnipresent Death; Kill 100000 monsters.; -inv_misc_monsterclaw_02
+16; Did Somebody Order a Knuckle Sandwich?; Raise your unarmed skill to 350.; -ability_warrior_secondwind
+17; Not so ordinary anymore; Equip yourself with items of uncommon or higher quality.; -Inv_Enchant_EssenceNetherSmall
+18; Superior; Equip a superior item in every slot; -Spell_Frost_WizardMark
+19; Epic; Equip an epic item in every slot; -Inv_Enchant_ShardNexusLarge
+24; Battlegear of Might; Collect all items of the mentioned set.; -inv_helmet_09
+25; Battlegear of Wrath; Collect all items of the mentioned set.; -inv_helmet_71
+26; Dreadnaught's Battlegear; Collect all items of the mentioned set.; -inv_helmet_58
+27; 50 Quests Completed; Complete 50 quests.; achievement_quests_completed_01
+28; 100 Quests Completed; Complete 100 quests.; achievement_quests_completed_02
+29; 250 Quests Completed; Complete 250 quests.; achievement_quests_completed_03
+30; 500 Quests Completed; Complete 500 quests.; achievement_quests_completed_04
+31; 750 Quests Completed; Complete 750 quests.; achievement_quests_completed_05
+32; 1000 Quests Completed; Complete 1000 quests.; achievement_quests_completed_06
+33; 1500 Quests Completed; Complete 1500 quests.; achievement_quests_completed_07
+34; 2000 Quests Completed; Complete 2000 quests.; achievement_quests_completed_08
+35; Glittering Reward; Make 5 gold from quest rewards.; -Inv_Misc_Coin_05
+36; Collector of minted Coins; Make 10 gold from quest rewards.; -Inv_Misc_Coin_06
+37; Breadwinner; Make 25 gold from quest rewards.; -Inv_Misc_Coin_03
+38; Well-deserved Gold; Make 50 gold from quest rewards.; -Inv_Misc_Coin_04
+39; Earned with Sweat and Blood; Make 100 gold from quest rewards.; -Inv_Misc_Coin_01
+40; Golden Printer; Make 250 gold from quest rewards.; -Inv_Misc_Coin_02
+41; I'm Mint Myself; Make 500 gold from quest rewards.; -Inv_Misc_Coin_02
+42; The Key to Scholomance; Obtain the Skeleton Key.; -inv_misc_key_11
+43; Loremaster of Kalimdor; Complete the Kalimdor quest achievements in  listed below.; kalimdor
+44; Loremaster of Durotar; Complete the quest "Securing the Lines" in Durotar.; durotar
+45; Loremaster of The Barrens; Complete the following quests in The Barrens.; barrens
+46; Loremaster of Stonetalon Mountains; Complete the quest "Gerenzo Wrenchwhistle" in Stonetalon Mountains.; stonetalon
+47; Loremaster of Desolace; Complete the quest "Book of the Ancients" in Desolace.; desolace
+48; Loremaster of Thousand Needles; Complete the quest "Safety First" in Thousand Needles.; thousand_needles
+49; Loremaster of Dustwallow marsh; Complete the quest "Jarl Needes a Blade" in Dustwallow marsh.; dustwallow
+50; Loremaster of Felwood; Complete the following quests in Felwood.; felwood
+51; Loremaster of Tanaris; Complete the following quests in Tanaris.; tanaris
+52; Loremaster of Un'Goro Crater; Complete the following quests in Un'Goro Crater.; ungoro
+53; Loremaster of Azshara; Complete the quest "Azsharite" in Azshara.; azshara
+54; Loremaster of Winterspring; Complete the following quests in Winterspring.; winterspring
+55; Loremaster of Silithus; Complete the following quests in Silithus.; silithus
+56; Loremaster of Eastern Kingdoms; Complete the Eastern Kingdoms quest achievements in listed below.; eastern_kingdoms
+57; Loremaster of Arathi Highlands; Complete the quest "Breaking the Keystone" in Arathi Highlands.; arathi
+58; Loremaster of Stranglethorn Vale; Complete the following quests in Stranglethorn Vale.; stranglethorn_valley
+59; Loremaster of Badlands; Complete the following quests in Badlands.; badlands
+60; Loremaster of Searing Gorge; Complete the quest "Trinkets..." in Searing Gorge.; searing_gorge
+61; Loremaster of Blasted Lands; Complete the quest "You Are Rakh'likh, Demon" in Blasted Lands.; blasted_lands
+62; Loremaster of Western Plaguelands; Complete the following quests in Western Plaguelands.; western_plaguelands
+63; Loremaster of Eastern Plaguelands; Complete the following quests in Eastern Plaguelands.; eastern_plaguelands
+64; Loremaster of Blackrock Mountain; Complete the quest "Return to Bodley" in Blackrock Mountain.; black_rock
+65; Loremaster of Azeroth; Complete the quest achievements listed below.; -Inv_Misc_Book_09
+66; The Green Hills of Stranglethorn; Complete all of Hemet Nesingwary quests in Stranglethorn Vale up to and including The Green Hills of Stranglethorn and Big Game Hunter.; -ability_mount_whitetiger
+91; World Explorer; Explore Eastern Kingdoms, Kalimdor and Outland.; inv_misc_map02
+92; Explore Kalimdor; Explore the regions of Kalimdor.; kalimdor
+93; Explore Ashenvale; Explore Ashenvale, revealing the covered areas of the world map.; ashenvale
+94; Explore Azshara; Explore Azshara, revealing the covered areas of the world map.; azshara
+95; Explore Darkshore; Explore Darkshore, revealing the covered areas of the world map.; darkshore
+96; Explore Desolace; Explore Desolace, revealing the covered areas of the world map.; desolace
+97; Explore Durotar; Explore Durotar, revealing the covered areas of the world map.; durotar
+98; Explore Dustwallow Marsh; Explore Dustwallow Marsh, revealing the covered areas of the world map.; dustwallow
+99; Explore Felwood; Explore Felwood, revealing the covered areas of the world map.; felwood
+100; Explore Feralas; Explore Feralas, revealing the covered areas of the world map.; feralas
+101; Explore Mulgore; Explore Mulgore, revealing the covered areas of the world map.; mulgore
+102; Explore Silithus; Explore Silithus, revealing the covered areas of the world map.; silithus
+103; Explore Stonetalon Mountains; Explore Stonetalon Mountains, revealing the covered areas of the world map.; stonetalon
+104; Explore Tanaris; Explore Tanaris, revealing the covered areas of the world map.; tanaris
+105; Explore Teldrassil; Explore Teldrassil, revealing the covered areas of the world map.; teldrassil
+106; Explore The Barrens; Explore The Barrens, revealing the covered areas of the world map.; barrens
+107; Explore Thousand Needles; Explore Thousand Needles, revealing the covered areas of the world map.; thousand_needles
+108; Explore Un'Goro Crater; Explore Un'Goro Crater, revealing the covered areas of the world map.; ungoro
+109; Explore Winterspring; Explore Winterspring, revealing the covered areas of the world map.; winterspring
+112; Explore Eastern Kingdoms; Explore the regions of Eastern Kingdoms.; eastern_kingdoms
+113; Explore Alterac Mountains; Explore Alterac Mountains, revealing the covered areas of the world map.; alterac_mountains
+114; Explore Arathi Highlands; Explore Arathi Highlands, revealing the covered areas of the world map.; arathi
+115; Explore Badlands; Explore Badlands, revealing the covered areas of the world map.; badlands
+116; Explore Blasted Lands; Explore Blasted Lands, revealing the covered areas of the world map.; blasted_lands
+117; Explore Burning Steppes; Explore Burning Steppes, revealing the covered areas of the world map.; burning_steppes
+118; Explore Deadwind Pass; Explore Deadwind Pass, revealing the covered areas of the world map.; deadwind_pass
+119; Explore Dun Morogh; Explore Dun Morogh, revealing the covered areas of the world map.; dun_morogh
+120; Explore Duskwood; Explore Duskwood, revealing the covered areas of the world map.; duskwood
+121; Explore Eastern Plaguelands; Explore Eastern Plaguelands, revealing the covered areas of the world map.; eastern_plaguelands
+122; Explore Elwynn Forest; Explore Elwynn Forest, revealing the covered areas of the world map.; elwynn_forest
+123; Explore Hillsbrad Foothills; Explore Hillsbrad Foothills, revealing the covered areas of the world map.; hillsbrad
+124; Explore Loch Modan; Explore Loch Modan, revealing the covered areas of the world map.; loch_modan
+125; Explore Redridge Mountains; Explore Redridge Mountains, revealing the covered areas of the world map.; redridge_mountains
+126; Explore Searing Gorge; Explore Searing Gorge, revealing the covered areas of the world map.; searing_gorge
+127; Explore Silverpine Forest; Explore Silverpine Forest, revealing the covered areas of the world map.; silverpine_forest
+128; Explore Stranglethorn Vale; Explore Stranglethorn Vale, revealing the covered areas of the world map.; stranglethorn_valley
+129; Explore Swamp of Sorrows; Explore Swamp of Sorrows, revealing the covered areas of the world map.; swamp_of_sorrows
+130; Explore The Hinterlands; Explore The Hinterlands, revealing the covered areas of the world map.; hinterlands
+131; Explore Tirisfal Glades; Explore Tirisfal Glades, revealing the covered areas of the world map.; tirisfal_glades
+132; Explore Western Plaguelands; Explore Western Plaguelands, revealing the covered areas of the world map.; western_plaguelands
+133; Explore Westfall; Explore Westfall, revealing the covered areas of the world map.; westfall
+134; Explore Wetlands; Explore Wetlands, revealing the covered areas of the world map.; wetlands
+138; To All The Squirrels I've Loved Before; Show the critters of Azeroth how much you /love them.; inv_jewelcrafting_crimsonhare
+149; Private; Earned the title, "Private".; pvp_rank_1
+150; Corporal; Earned the title, "Corporal".; pvp_rank_2
+151; Sergeant; Earned the title, "Sergeant".; pvp_rank_3
+152; Master Sergeant; Earned the title, "Master Sergeant".; pvp_rank_4
+153; Sergeant Major; Earned the title, "Sergeant Major".; pvp_rank_5
+154; Knight; Earned the title, "Knight".; pvp_rank_6
+155; Knight-Lieutenant; Earned the title, "Knight-Lieutenant".; pvp_rank_7
+156; Knight-Captain; Earned the title, "Knight-Captain".; pvp_rank_8
+157; Knight-Champion; Earned the title, "Knight-Champion".; pvp_rank_9
+158; Lieutenant Commander; Earned the title, "Lieutenant Commander".; pvp_rank_10
+159; Commander; Earned the title, "Commander".; pvp_rank_11
+160; Marshal; Earned the title, "Marshal".; pvp_rank_12
+161; Field Marshal; Earned the title, "Field Marshal".; pvp_rank_13
+162; Grand Marshal; Earned the title, "Grand Marshal".; pvp_rank_14
+163; An Honorable Kill; Achieve an honorable kill.; achievement_pvp_p_01
+164; 10 Honorable Kills; Get 10 honorable kills.; achievement_pvp_p_02
+165; 100 Honorable Kills; Get 100 honorable kills.; achievement_pvp_p_03
+166; 250 Honorable Kills; Get 250 honorable kills.; achievement_pvp_p_04
+167; 500 Honorable Kills; Get 500 honorable kills.; achievement_pvp_p_05
+168; 1000 Honorable Kills; Get 1000 honorable kills.; achievement_pvp_p_06
+169; 2500 Honorable Kills; Get 2500 honorable kills.; achievement_pvp_p_07
+170; 5000 Honorable Kills; Get 5000 honorable kills.; achievement_pvp_p_08
+171; 10000 Honorable Kills; Get 10000 honorable kills.; achievement_pvp_p_09
+172; 25000 Honorable Kills; Get 25000 honorable kills.; achievement_pvp_p_10
+173; 50000 Honorable Kills; Get 50000 honorable kills.; achievement_pvp_p_11
+174; 100000 Honorable Kills; Get 100000 honorable kills.; achievement_pvp_p_12
+175; 250000 Honorable Kills; Get 250000 honorable kills.; achievement_pvp_p_13
+176; 500000 Honorable Kills; Get 500000 honorable kills.; achievement_pvp_p_14
+177; The Defiler; Gain exalted reputation with The Forsaken Defilers.; spell_shadow_psychichorrors
+178; Hero of the Frostwolf Clan; Gain exalted reputation with the Frostwolf Clan.; -Inv_Jewelry_FrostwolfTrinket_05
+179; Warsong Outrider; Gain exalted reputation with the Warsong Outriders.; -ability_warrior_warcry
+180; The Conqueror; Raise your reputation values in Warsong Gulch, Arathi Basin and Alterac Valley to Exalted.; -inv_misc_tabardpvp_04
+181; Knight of Arathor; Gain exalted reputation with The League of Arathor.; -ability_warrior_rallyingcry
+182; Hero of the Stormpike Guard; Gain exalted reputation with the Stormpike Guard.; -Inv_Jewelry_Stormpiketrinket_05
+183; Silverwing Sentinel; Gain exalted reputation with the Silverwing Sentinels.; -Ability_Racial_Shadowmeld
+184; The Justicar; Raise your reputation values in Warsong Gulch, Arathi Basin and Alterac Valley to Exalted.; -inv_misc_tabardpvp_03
+185; Storming Stormwind; Kill Highlord Bolvar Fordragon.; achievement_leader_king_varian_wrynn
+186; Death to the King!; Kill King Magni Bronzebeard.; achievement_leader_king_magni_bronzebeard
+187; Immortal No More; Kill High Priestess Tyrande Whisperwind.; achievement_leader_tyrande_whisperwind
+189; For the Horde!; Slay the leaders of the Alliance.; -inv_bannerpvp_01
+190; Death to the Warchief!; Kill Thrall.; Achievement_Leader_ Thrall
+191; Downing the Dark Lady; Kill Lady Sylvanas Windrunner.; Achievement_leader_sylvanas
+192; Bleeding Bloodhoof; Kill Cairne Bloodhoof.; Achievement_Leader_Cairne Bloodhoof
+194; For The Alliance!; Slay the leaders of the Horde.; -inv_bannerpvp_02
+195; Know Thy Enemy; Get an honorable, killing blow on five different races.; -Ability_Gouge
+196; Know Thy Enemy; Get an honorable, killing blow on five different races.; -Ability_Gouge
+197; That Takes Class; Get an honorable, killing blow on one of each class.; -Ability_Cheapshot
+198; Victory in the Alterac Valley; Win the battle for Alterac Valley.; achievement_bg_winav
+199; Alterac Valley Veteran; Win 5 battles for Alterac Valley.; achievement_bg_winav
+200; Alterac Valley Veteran; Win 10 battles for Alterac Valley.; achievement_bg_winav
+201; Alterac Valley Veteran; Win 25 battles for Alterac Valley.; achievement_bg_winav
+202; Alterac Valley Veteran; Win 50 battles for Alterac Valley.; achievement_bg_winav
+203; Warsong Gulch Victory; Win Warsong Gulch.; achievement_bg_winwsg
+204; Warsong Gulch Veteran; Complete 5 victories in Warsong Gulch.; achievement_bg_winwsg
+205; Warsong Gulch Veteran; Complete 10 victories in Warsong Gulch.; achievement_bg_winwsg
+206; Warsong Gulch Veteran; Complete 25 victories in Warsong Gulch.; achievement_bg_winwsg
+207; Warsong Gulch Veteran; Complete 50 victories in Warsong Gulch.; achievement_bg_winwsg
+208; Arathi Basin Victory; Win Arathi Basin.; achievement_bg_winab
+209; Arathi Basin Veteran; Complete 5 victories in Arathi Basin.; achievement_bg_winab
+210; Arathi Basin Veteran; Complete 10 victories in Arathi Basin.; achievement_bg_winab
+211; Arathi Basin Veteran; Complete 25 victories in Arathi Basin.; achievement_bg_winab
+212; Arathi Basin Veteran; Complete 50 victories in Arathi Basin.; achievement_bg_winab
+218; Valley Meat Grinder; Make 5 killing blows in one single battle for Alterac Valley and stay until it is over.; -Spell_Shadow_Summonimp
+219; Valley Meat Grinder; Make 10 killing blows in one single battle for Alterac Valley and stay until it is over.; -Spell_Shadow_Summonimp
+220; Valley Meat Grinder; Make 25 killing blows in one single battle for Alterac Valley and stay until it is over.; -Spell_Shadow_Summonimp
+221; Valley Meat Grinder; Make 40 killing blows in one single battle for Alterac Valley and stay until it is over.; -Spell_Shadow_Summonimp
+222; Undertaker; Assault a graveyard in one single battle for Alterac Valley and stay until it is over.; -Spell_Holy_Divinespirit
+223; There are never enough Coffins; Assault 2 graveyards in one single battle for Alterac Valley and stay until it is over.; -Spell_Holy_Divinespirit
+224; There are never enough Coffins; Assault 3 graveyards in one single battle for Alterac Valley and stay until it is over.; -Spell_Holy_Divinespirit
+225; There are never enough Coffins; Assault 4 graveyards in one single battle for Alterac Valley and stay until it is over.; -Spell_Holy_Divinespirit
+226; Guardian of the Deceased; Defend a graveyard in one single battle for Alterac Valley and stay until it is over.; -Spell_Holy_Prayerofspirit
+227; Guardian of all Dead; Defend 2 graveyards in one single battle for Alterac Valley and stay until it is over.; -Spell_Holy_Prayerofspirit
+228; Guardian of all Dead; Defend 3 graveyards in one single battle for Alterac Valley and stay until it is over.; -Spell_Holy_Prayerofspirit
+229; Guardian of all Dead; Defend 4 graveyards in one single battle for Alterac Valley and stay until it is over.; -Spell_Holy_Prayerofspirit
+230; Now it's mine!; Assault a tower in one single battle for Alterac Valley and stay until it is over.; -Ability_Thunderbolt
+231; Now it's all mine!; Assault 2 towers in one single battle for Alterac Valley and stay to it is over.; -Ability_Thunderbolt
+232; Now it's all mine!; Assault 3 towers in one single battle for Alterac Valley and stay to it is over.; -Ability_Thunderbolt
+233; Now it's all mine!; Assault 4 towers in one single battle for Alterac Valley and stay to it is over.; -Ability_Thunderbolt
+234; Tower Keeper; Defend a tower in one single battle for Alterac Valley and stay until it is over.; -Inv_Shield_05
+235; Towers Keeper; Defend 2 towers in one single battle for Alterac Valley and stay until it is over.; -Inv_Shield_05
+236; Towers Keeper; Defend 3 towers in one single battle for Alterac Valley and stay until it is over.; -Inv_Shield_05
+237; Towers Keeper; Defend 4 towers in one single battle for Alterac Valley and stay until it is over.; -Inv_Shield_05
+242; The Alterac Blitz; Win Alterac Valley in 6 minutes.; achievement_bg_winav_underxminutes
+243; Military Honor; Get 10 honorable kills in one single battle for Warsong Gulch and stay until it is over.; -Ability_Rogue_Eviscerate
+244; Military Honor; Get 25 honorable kills in one single battle for Warsong Gulch and stay until it is over.; -Ability_Rogue_Eviscerate
+245; Military Honor; Get 50 honorable kills in one single battle for Warsong Gulch and stay until it is over.; -Ability_Rogue_Eviscerate
+246; Military Honor; Get 75 honorable kills in one single battle for Warsong Gulch and stay until it is over.; -Ability_Rogue_Eviscerate
+247; Capture the Flag; Personally carry and capture the flag in one single battle for Warsong Gulch and stay until it is over.; -Inv_Banner_03
+248; Great Flag Bearer; Personally carry and capture 2 flags in one single battle for Warsong Gulch and stay until it is over.; -Inv_Banner_03
+249; Great Flag Bearer; Personally carry and capture 3 flags in one single battle for Warsong Gulch and stay until it is over.; -Inv_Banner_03
+250; Don't touch!; Return a flag as a defender in one single battle for Warsong Gulch and stay until it is over.; -Spell_Nature_Reincarnation
+251; Don't touch anything!; Return 2 flags as a defender in one single battle for Warsong Gulch and stay until it is over.; -Spell_Nature_Reincarnation
+252; Don't touch anything!; Return 3 flags as a defender in one single battle for Warsong Gulch and stay until it is over.; -Spell_Nature_Reincarnation
+253; Warsong Expedience; Win Warsong Gulch in under 7 minutes.; achievement_bg_winwsg_underxminutes
+254; Conquistador; Assault a flag in one single battle for Arathi Basin and stay until it is over.; -Ability_Eyeoftheowl
+255; Proving Grounds; Assault 2 flags in one single battle for Arathi Basin and stay until it is over.; -Ability_Eyeoftheowl
+256; Proving Grounds; Assault 3 flags in one single battle for Arathi Basin and stay until it is over.; -Ability_Eyeoftheowl
+257; Proving Grounds; Assault 4 flags in one single battle for Arathi Basin and stay until it is over.; -Ability_Eyeoftheowl
+258; Guardian; Defend a flag in one single battle for Arathi Basin and stay until it is over.; -Inv_Shield_06
+259; Sentry; Defend 2 flags in one single battle for Arathi Basin and stay until it is over.; -Inv_Shield_06
+260; Sentry; Defend 3 flags in one single battle for Arathi Basin and stay until it is over.; -Inv_Shield_06
+261; Sentry; Defend 4 flags in one single battle for Arathi Basin and stay until it is over.; -Inv_Shield_06
+262; Cats first, then everything else; Pat (/pat) the designated pets in Arathi Basin.; -ability_hunter_catlikereflexes
+263; Let's Get This Done; Win Arathi Basin in 6 minutes.; achievement_bg_winab_underxminutes
+264; Tower Defense; Defend 50 towers in Alterac Valley.; achievement_bg_defendxtowers_av
+265; Alterac Grave Robber; Take 50 graveyards in Alterac Valley.; achievement_bg_xkills_avgraveyard
+266; Flags Capturer; Personally carry and capture 50 flags in Warsong Gulch.; achievement_bg_captureflag_wsg
+267; Persistent Defender; Return 50 flags as a defender in Warsong Gulch.; achievement_bg_interruptx_flagcapture_attempts
+268; Me and the Cappin' Makin' it Happen; Take 50 flags in Arathi Basin.; achievement_bg_takexflags_ab
+269; To The Rescue!; Come to the defense of a base in Arathi Basin 50 times by recapping the flag.; ability_warrior_victoryrush
+270; Frostwolf Howler; Obtain a Frostwolf Howler.; -inv_jewelry_frostwolftrinket_01
+271; Stormpike Battle Charger; Obtain a Stormpike Battle Charger.; -inv_jewelry_stormpiketrinket_01
+279; Master of Alterac Valley; Complete the Alterac Valley achievements listed below.; -inv_jewelry_necklace_21
+280; Master of Warsong Gulch; Complete the Warsong Gulch achievements listed below.; -inv_misc_rune_07
+281; Master of Arathi Basin; Complete the Arathi Basin achievements listed below.; -inv_jewelry_amulet_07
+283; Battlemaster; Complete the battleground achievements listed below.; achievement_pvp_a_15
+284; Call to Arms!; Complete 10 battlegrounds.; -Inv_Musket_02
+285; Call to Arms!; Complete 25 battlegrounds.; -Inv_Musket_02
+286; Call to Arms!; Complete 50 battlegrounds.; -Inv_Musket_02
+287; Deathbringer; Make 100 killing blows on any battleground.; -Spell_Shadow_Unholyfrenzy
+288; Deathbringer; Make 250 killing blows on any battleground.; -Spell_Shadow_Unholyfrenzy
+289; Deathbringer; Make 500 killing blows on any battleground.; -Spell_Shadow_Unholyfrenzy
+290; Deathbringer; Make 750 killing blows on any battleground.; -Spell_Shadow_Unholyfrenzy
+291; Deathbringer; Make 1000 killing blows on any battleground.; -Spell_Shadow_Unholyfrenzy
+292; Honor Aggregator; Get 100 honorable kills on any battleground.; -Ability_Warrior_Innerrage
+293; Honor Aggregator; Get 250 honorable kills on any battleground.; -Ability_Warrior_Innerrage
+294; Honor Aggregator; Get 500 honorable kills on any battleground.; -Ability_Warrior_Innerrage
+295; Honor Aggregator; Get 750 honorable kills on any battleground.; -Ability_Warrior_Innerrage
+296; Honor Aggregator; Get 1000 honorable kills on any battleground.; -Ability_Warrior_Innerrage
+297; Gurubashi Arena Master; Loot the Arena Master trinket from the Gurubashi Arena.; -Inv_Misc_ArmorKit_14
+298; Gurubashi Arena Grand Master; Complete Short John Mithril's quest to obtain the Arena Grand Master trinket.; -Inv_Misc_ArmorKit_04
+299; Duel-icious; Win a duel against another player.; -ability_dualwieldspecialization
+300; Duelist; Win in 10 duels.; -ability_dualwieldspecialization
+301; Skilled Duelist; Win in 25 duels.; -ability_dualwieldspecialization
+302; Master Duelist; Win in 100 duels.; -ability_dualwieldspecialization
+303; Ragefire Chasm; Defeat Taragaman the Hungerer.; -spell_shadow_summonfelguard
+304; Wailing Caverns; Defeat Mutanus the Devourer.; achievement_boss_mutanus_the_devourer
+305; Deadmines; Defeat Edwin VanCleef.; achievement_boss_edwinvancleef
+306; Shadowfang Keep; Defeat Archmage Arugal.; achievement_boss_archmagearugal
+307; Blackfathom Deeps; Defeat Aku'mai.; achievement_boss_bazil_akumai
+308; Stormwind Stockade; Defeat Bazil Thredd.; achievement_boss_bazil_thredd
+309; Gnomeregan; Defeat Mekgineer Thermaplugg.; gnomeregan
+310; Razorfen Kraul; Defeat Charlga Razorflank.; achievement_boss_charlgarazorflank
+311; Scarlet Monastery; Defeat the Scarlet Crusade within the Scarlet Monastery.; -inv_helmet_52
+312; Razorfen Downs; Defeat Amnennar the Coldbringer.; achievement_boss_amnennar_the_coldbringer
+313; Uldaman; Defeat Archaedas.; achievement_boss_archaedas
+314; Zul'Farrak; Defeat Chief Ukorz Sandscalp.; achievement_boss_chiefukorzsandscalp
+315; Maraudon; Defeat Princess Theradras.; achievement_boss_princesstheradras
+316; Sunken Temple; Defeat Shade of Eranikus.; achievement_boss_shadeoferanikus
+317; Blackrock Depths; Defeat Emperor Dagran Thaurissan.; achievement_boss_emperordagranthaurissan
+318; Clearing the Depths; Defeat the following bosses in Blackrock Depths.; -Spell_Fire_Lavaspawn
+319; Party in the Guzzler; Defeat all listed opponents in the Grim Guzzler.; -inv_drink_05
+320; The Best Defense Is an Attack; Loot the Stone of the Earth from the body of the defeated Panzor the Invincible in Blackrock Depths.; -Inv_Sword_47
+321; Master of Blackrock Depths; Earn following achievements related to Blackrock Depths.; -Inv_Misc_AhnQirajTrinket_03
+322; Lower Blackrock Spire; Defeat Overlord Wyrmthalak.; achievement_boss_overlord_wyrmthalak
+323; Upper Blackrock Spire; Defeat General Drakkisath.; achievement_boss_generaldrakkisath
+324; Invader of the Blackrock Spire; Earn the following achievements related to Blackrock Spire.; -Inv_Sword_48
+325; King of Dire Maul; Defeat each wing of Dire Maul.; -Ability_Warrior_DecisiveStrike
+326; Stratholme; Defeat the evil masterminds inhabiting Stratholme.; spell_deathknight_armyofthedead
+327; Scholomance; Defeat the leaders of Scholomance.; -Spell_Holy_Senseundead
+328; Young Defender of Azeroth; Earn the low-level dungeon achievements listed below.; -spell_holy_revivechampion
+329; Defender of Azeroth; Earn the dungeon achievements listed below.; achievement_dungeon_classicraider
+330; Onyxia's Lair; Defeat Onyxia.; achievement_boss_onyxia
+331; Ruins of Ahn'Qiraj; Defeat Ossirian the Unscarred.; achievement_boss_ossiriantheunscarred
+332; Zul'Gurub; Defeat Hakkar.; achievement_boss_hakkar
+333; Molten Core; Defeat Ragnaros.; achievement_boss_ragnaros
+334; Blackwing Lair; Defeat Nefarian.; achievement_boss_nefarion
+335; Temple of Ahn'Qiraj; Defeat C'Thun.; achievement_boss_cthun
+336; The Arachnid Quarter; Defeat the bosses of The Arachnid Quarter of Naxxramas.; -Inv_Trinket_Naxxramas04
+337; The Plague Quarter; Defeat the bosses of The Plague Quarter of Naxxramas.; -inv_misc_cauldron_nature
+338; The Military Quarter; Defeat the bosses of The Military Quarter of Naxxramas.; spell_deathknight_classicon
+339; The Construct Quarter; Defeat the bosses of The Construct Quarter of Naxxramas.; ability_rogue_deviouspoisons
+340; Kel'Thuzad's Defeat; Defeat Kel'Thuzad in Naxxramas.; -inv_trinket_naxxramas06
+341; The Fall of Naxxramas; Earn the following Naxxramas related achievements.; achievement_dungeon_naxxramas_normal
+342; Young Hero of Azeroth; Earn the raid achievements listed below.; achievement_dungeon_gloryofthehero
+343; Lord of the Blackrock; Earn the following achievements related to the Blackrock dungeons and raids.; achievement_dungeon_classicdungeonmaster
+344; Hero of Azeroth; Earn the raid achievements listed below.; achievement_dungeon_heroic_gloryoftheraider
+345; Great Hero of Azeroth; Earn the raid and dungeon achievements listed below.; achievement_dungeon_gloryoftheraider
+346; The Secret of the Blue Dragon; Defeat Azuregos.; achievement_boss_cyanigosa
+347; Demons shall not pass; Defeat Lord Kazzak.; ability_warlock_demonicempowerment
+348; No place for girls in a Nightmare; Defeat Ysondre.; achievement_boss_valithradreamwalker
+349; Child of the Emerald Nightmare; Defeat Lethon.; achievement_boss_aeonus_01
+350; Emeriss, Traitor to Life; Defeat Emeriss.; achievement_boss_malygos_01
+351; Nightmarish Taerar; Defeat Taerar.; achievement_boss_eregos
+352; Emerald Keeper; Defeat all Dragons of the Emerald Nightmare.; inv_misc_shadowegg
+353; Leeeeeeeeeeeeeroy!; Kill 50 rookery whelps within 15 seconds.; ability_mount_drake_red
+354; Double Breathing; Kill Ebonroc and Flamegor within 45 seconds.; ability_mount_drake_twilight
+355; The Crypt Lord; Slay Anub'Rekhan, leaving both Crypt Guards alive.; achievement_boss_anubarak
+356; Momma Said Knock You Out; Slay Grand Widow Faerlina, leaving all the worshipers and followers of Naxxramas alive.; -spell_shadow_curseofmannoroth
+357; Arachnophobia; Kill Maexxna in Naxxramas within 20 minutes of Anub'Rekhan's death in 25-player mode.; achievement_halloween_spider_01
+358; And They Would All Go Down Together; Defeat the 4 Horsemen in Naxxramas, ensuring that they all die within 15 seconds of each other.; spell_deathknight_summondeathcharger
+359; We won't succumb to the ice; Defeat Sapphiron in Naxxramas without anyone in the raid dying.; -spell_frost_icestorm
+414; Professional Apprentice; Raise the skill of any main profession to 75.; -Inv_Misc_Note_01
+415; Professional Journeyman; Raise the skill of any main profession to 150.; -Inv_Misc_Note_01
+416; Professional Expert; Raise the skill of any main profession to 225.; -Inv_Misc_Note_01
+417; Professional Artisan; Raise the skill of any main profession to 300.; -Inv_Misc_Note_01
+419; Handyman; Raise the skill of two main professions to 300 at the same time.; -ability_repair
+421; Apprentice in First Aid; Raise the skill of first aid to 75.; -spell_holy_sealofsacrifice
+422; Journeyman in First Aid; Raise the skill of first aid to 150.; -spell_holy_sealofsacrifice
+423; Expert in First Aid; Raise the skill of first aid to 225.; -spell_holy_sealofsacrifice
+424; Artisan in First Aid; Raise the skill of first aid to 300.; -spell_holy_sealofsacrifice
+425; Apprentice Fisherman; Raise the skill of fishing to 75.; -trade_fishing
+426; Journeyman Fisherman; Raise the skill of fishing to 150.; -trade_fishing
+427; Expert Fisherman; Raise the skill of fishing to 225.; -trade_fishing
+428; Artisan Fisherman; Raise the skill of fishing to 300.; -trade_fishing
+429; Apprentice Cook; Raise the skill of cooking to 75.; -inv_misc_food_15
+430; Journeyman Cook; Raise the skill of cooking to 150.; -inv_misc_food_15
+431; Expert Cook; Raise the skill of cooking to 225.; -inv_misc_food_15
+432; Artisan Cook; Raise the skill of cooking to 300.; -inv_misc_food_15
+433; Skills to Pay the Bills; Become a Artisan in fishing, first aid and cooking.; -Inv_Misc_Note_02
+438; Genius in Every Craft; Complete the profession achievements listed below.; -Spell_Magic_GreaterBlessingOfKings
+440; Stocking Up; Craft 100 Heavy Runecloth Bandages.; -Inv_Misc_Bandage_12
+441; Stocking Up; Craft 500 Heavy Runecloth Bandages.; -Inv_Misc_Bandage_12
+444; I choose the best for Fishing; Win the Booty Bay fishing contest and choose the Arcanite Fishing Pole or the Hook of the Master Angler as your reward.; -inv_misc_fish_21
+445; Real Fish Lover; Fish up one of the rare fish during the Booty Bay fishing contest.; -inv_misc_fish_10
+446; Fish Collection; Catch the following fishes in Azeroth.; -inv_misc_fish_08
+447; Water from Water; Fish up an Essence of Water.; -Spell_Nature_Acid_01
+448; Captain’s Choice; Fish up the following types of rum.; -Inv_Drink_04
+449; Gift of Mordor; Fish up The 1 Ring.; -Inv_Jewelry_Ring_03
+450; Harbinger of a Sad End; Fish up Old Teamster's Skull.; -Inv_Misc_Bone_DwarfSkull_01
+451; Great Snapper Catcher; Fish Snappers of the following sizes.; -inv_misc_fish_32
+452; Thunderstorm of Perches; Fish Groupers of the following sizes.; -inv_misc_fish_06
+453; Salmon Lover; Fish Salmons of the following sizes.; -inv_misc_fish_02
+454; Lobster Hunter; Fish Lobsters of the following sizes.; -Inv_Misc_Fish_14
+455; Azeroth's Greatest Angler; Complete the following fishing achievements listed below.; -Inv_FishingPole_01
+457; Lunch Lady; Learn 5 cooking recipes.; -inv_misc_food_66
+458; Short Order Cook; Learn 10 cooking recipes.; -inv_misc_food_65
+459; Chef de Partie; Learn 25 cooking recipes.; -inv_misc_food_60
+460; Sous Chef; Learn 50 cooking recipes.; -inv_misc_food_13
+461; Chef de Cuisine; Learn 75 cooking recipes.; -inv_misc_food_92_lobster
+462; Soup Specialist; Cook Nightfin Soup 100 times.; -Inv_Drink_17
+463; Tuber Master; Cook Runn Tum Tuber Surprise 100 times.; -Inv_Misc_Food_63
+464; Catch of the Day; Cook Grilled Squid 100 times.; -Inv_Misc_Fish_13
+465; Grandma's Dumplings; Cook Smoked Desert Dumplings 100 times.; -Inv_Misc_Food_64
+466; Large Festive Feast; Complete the cooking achievements listed below.; -Inv_Misc_Food_49
+468; Somebody Likes Me; Raise a reputation to Exalted.; achievement_reputation_01
+469; 5 Exalted Reputations; Raise 5 reputations to Exalted.; achievement_reputation_02
+470; 10 Exalted Reputations; Raise 10 reputations to Exalted.; achievement_reputation_03
+471; 15 Exalted Reputations; Raise 15 reputations to Exalted.; achievement_reputation_04
+472; 20 Exalted Reputations; Raise 20 reputations to Exalted.; achievement_reputation_05
+473; 25 Exalted Reputations; Raise 25 reputations to Exalted.; achievement_reputation_06
+474; 30 Exalted Reputations; Raise 30 reputations to Exalted.; achievement_reputation_07
+475; Ambassador of the Horde; Earn exalted reputation with 5 home cities.; achievement_pvp_o_h
+476; Ambassador of the Alliance; Earn exalted reputation with 5 home cities.; achievement_pvp_o_a
+477; Hydraxian Waterlords; Earn exalted status with the Hydraxian Waterlords.; -spell_frost_summonwaterelemental_2
+478; Hero of the Zandalar Tribe; Earn exalted status with the Zandalar Tribe.; -inv_bijou_green
+479; Brood of Nozdormu; Earn exalted status with the Brood of Nozdormu.; -Inv_Misc_Head_Dragon_Bronze
+480; The Argent Dawn; Earn exalted status with the Argent Dawn.; -inv_jewelry_talisman_07
+481; They Love Me In That Tunnel; Earn exalted status with Timbermaw Hold.; achievement_reputation_timbermaw
+482; Darkmoon Faire; Reach Exalted with the faction of Darkmoon Faire.; -Inv_Misc_MissileLarge_Red
+483; Thorium Brotherhood; Earn exalted status with the Thorium Brotherhood.; -inv_enchant_dustsoul
+484; Agent of the Shen'dralar; Earn exalted status with Shen'dralar.; -inv_misc_book_11
+500; Sulfuras, Hand of Ragnaros; Wielder of Sulfuras, Hand of Ragnaros.; -Inv_Hammer_Unique_Sulfuras
+501; Thunderfury, Blessed Blade of the Windseeker; Wielder of Thunderfury, Blessed Blade of the Windseeker.; -Inv_Sword_39
+502; Scarab Lord; Opened the gates of Ahn'Qiraj.; silithus
+503; Why? Because It's Red; Obtain a Red Qiraji Resonating Crystal.; -Inv_Misc_QirajiCrystal_02
+504; Atiesh, Greatstaff of the Guardian; Wielder of Atiesh, Greatstaff of the Guardian.; -Inv_Staff_Medivh
+505; Swift Zulian Tiger; Obtain the Swift Zulian Tiger from High Priest Thekal in Zul'Gurub.; -ability_mount_jungletiger
+506; Swift Razzashi Raptor; Obtain the Swift Razzashi Raptor from Bloodlord Mandokir in Zul'Gurub.; -ability_mount_raptor
+507; Deathcharger's Reins; Obtain the Deathcharger's Reins from Rivendare in Stratholme.; -ability_mount_undeadhorse
+508; Winterspring Frostsaber; Obtain a Winterspring Frostsaber.; -ability_mount_pinktiger
+516; 25 Fish; Fish up 25 items.; inv_misc_fish_50
+517; 50 Fish; Fish up 50 items.; inv_misc_fish_50
+518; 100 Fish; Fish up 100 items.; inv_misc_fish_50
+519; 250 Fish; Fish up 250 items.; inv_misc_fish_50
+520; 500 Fish; Fish up 500 items.; inv_misc_fish_50
+521; 1000 Fish; Fish up 1000 items.; inv_misc_fish_50
+523; Avast Ye, Admiral!; Obtain the Bloodsail Admiral's Hat... and try to get some fresh air every now and then.; -inv_helmet_66
+524; Dreadsteed of Xoroth; Completed the Dreadsteed of Xoroth warlock quest.; -ability_mount_dreadsteed
+525; Charger; Completed the paladin quest to obtain a Charger.; -ability_mount_charger
+531; Hallowed Be Thy Name; Complete the Hallow's End achievements listed below.; achievement_halloween_witch_01
+532; Rotten Hallow; Ruin Hallow's End for the Horde by completing Sergeant Hartman's quests which involve crashing the wickerman festival and cleaning up the stinkbombs from Southshore.; achievement_halloween_rottenegg_01
+533; Hallow's End Treats for Jesper!; Collect the the requested treats for Jesper.; -inv_misc_food_26
+534; Trick or Treat!; Receive a Treat Bag from an innkeeper.; -inv_misc_food_30
+535; Pumpkinmania; Obtain a Pumpkin Bag during Hallow's End.; -inv_misc_food_59
+536; Invocation of the Wickerman; Receive the buff "Invocation of the Wickerman" during Hallow's End.; -inv_waepon_bow_zulgrub_d_02
+537; The Mask Task; Obtain a Flimsy Mask during Hallow's End.; -inv_mask_06
+538; A Mask for All Occasions; Collect the 16 unique Flimsy Masks listed below.; -inv_mask_04
+539; The Masquerade; Get transformed by the Hallowed Wands listed below.; achievement_halloween_ghost_01
+540; Defeat Sapphiron.; Defeat Sapphiron in Naxxramas.; -inv_misc_head_dragon_blue
+541; Merrymaker; Complete the Winter Veil achievements listed below.; achievement_worldevent_merrymaker
+542; On Metzen!; Save Metzen the Reindeer.; achievement_worldevent_reindeer
+543; Simply Abominable; Complete the quest to retrieve Smokywood Pastures' stolen treats and receive a Smokywood Pastures' Thank You.; -inv_helmet_68
+544; The Winter Veil Gourmet; During the Feast of Winter Veil, use your culinary expertise to produce a Gingerbread Cookie and Egg Nog.; -inv_misc_food_62
+545; He Knows If You've Been Naughty; Open one of the presents underneath the Winter Veil tree once they are available.; -inv_holiday_christmas_present_01
+546; Scrooge; Throw a snowball at King Magni Bronzebeard during the Feast of Winter Veil.; -inv_ammo_snowball
+552; The Fishing Diplomat; Fish something up in Orgrimmar and Stormwind.; -inv_helmet_44
+561; Tabard of the Argent Dawn; Obtained a Tabard of the Argent Dawn from the Scourge Invasion event.; -inv_shirt_guildtabard_01
+562; The Safety Dance; Defeat Heigan the Unclean in Naxxramas without anyone in the raid dying.; -ability_rogue_quickrecovery
+563; Make Quick Werk Of Him; Defeat Patchwerk in Naxxramas in 3 minutes or less.; -spell_shadow_abominationexplosion
+565; Just Can't Get Enough; Defeat Kel'Thuzad in Naxxramas while killing at least 18 abominations in his chamber.; spell_deathknight_plaguestrike
+566; With a Little Helper from My Friends; Earn 50 honorable kills as a Little Helper from the Winter Wondervolt machine.; achievement_worldevent_littlehelper
+576; Cenarion Circle; Earn exalted status with the Cenarion Circle.; ability_druid_manatree
+577; To the Looter Go the Spoils; Loot the Autographed Picture of Tigule in Alterac Valley.; -inv_scroll_10
+578; We Had It All Along *cough*; Win Arathi Basin by 10 points (2000 to 1990).; -spell_shadow_improvedvampiricembrace
+579; Arathi Basin Perfection; Win Arathi Basin with a score of 2000 to 0.; achievement_bg_abshutout
+605; Fool For Love; Complete the Love is in the Air achievements listed below.; achievement_worldevent_valentine
+606; My Love is Like a Red, Red Rose; Obtain a Bouquet of Red Roses during the Love is in the Air celebration.; -inv_rosebouquet01
+607; Dangerous Love; Assist the Steamwheedle Cartel in stopping the sinister Crown Chemical Co. plot.; -spell_brokenheart
+608; Sweet Tooth; Sample the Love is in the Air candies listed below.; -inv_valentineschocolate02
+609; Lovely Luck Is On Your Side; Open a Lovely Dress Box and receive a Lovely Black Dress.; -inv_chest_cloth_50
+610; Perma-Peddle; Obtain a permanent Peddlefeet pet by procuring a Truesilver Shafted Arrow.; -inv_ammo_arrow_02
+611; To Honor One's Elders; Complete the Lunar Festival achievements listed below.; achievement_worldevent_lunar
+612; A Coin of Ancestry; Receive a Coin of Ancestry.; -inv_misc_elvencoins
+613; 5 Coins of Ancestry; Receive 5 Coins of Ancestry.; -inv_misc_elvencoins
+614; 10 Coins of Ancestry; Receive 10 Coins of Ancestry.; -inv_misc_elvencoins
+615; 25 Coins of Ancestry; Receive 25 Coins of Ancestry.; -inv_misc_elvencoins
+616; 50 Coins of Ancestry; Receive 50 Coins of Ancestry.; -inv_misc_elvencoins
+617; Elune's Blessing; Complete the Elune's Blessing quest by defeating Omen.; spell_holy_aspiration
+618; Lunar Festival Finery; Purchase a festive pant suit or festive dress with Coins of Ancestry.; -inv_chest_cloth_59
+619; Elders of the Dungeons; Honor the Elders which are located inside the dungeons.; -spell_holy_symbolofhope
+620; Elders of the Alliance; Honor the Elders which are located in the Alliance capital cities.; -spell_holy_symbolofhope
+621; Elders of Eastern Kingdoms; Honor the Elders which are located in Eastern Kingdoms; -spell_holy_symbolofhope
+622; Elders of Kalimdor; Honor the Elders which are located in Kalimdor.; -spell_holy_symbolofhope
+625; Sunday's Finest; Discover the White Tuxedo Shirt and Black Tuxedo Pants by opening Brightly Colored Eggs during the Noblegarden celebration.; -inv_shirt_08
+626; Dressed for the Occasion; Discover an Elegant Dress by opening Brightly Colored Eggs during the Noblegarden celebration.; -inv_chest_cloth_04
+628; For The Children; Complete the Children's Week achievements listed below.; -inv_misc_toy_04
+629; Aw, Isn't It Cute?; Obtain one of the Children's Week reward pets.; -ability_hunter_pet_turtle
+633; The Flame Keeper; Complete the Midsummer achievements listed below.; -inv_summerfest_symbol_high
+634; King of the Fire Festival; Complete the quest, "A Thief's Reward", by stealing the flames from your enemy's capital cities.; -inv_helmet_08
+650; What A Long, Strange Trip It's Been; Complete the world events achievements listed below.; achievement_bg_masterofallbgs
+651; One of a Kind; Kill a rare elite creature in Kalimdor or Eastern Kingdoms.; -INV_Misc_MonsterClaw_02
+652; Extremely Rare; Kill all the rare elite creatures in Kalimdor and Eastern Kingdoms listed below.; -Spell_Shadow_DeathScream

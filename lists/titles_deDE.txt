@@ -1,0 +1,27 @@
+﻿Titel; Freischaltende Achievement-ID
+Der Entdecker / Die Entdeckerin; 91
+Der Unfassbare / Die Unfassbare; 652
+Kampfmeister / Kampfmeisterin; 283
+Verteidiger / Verteidigerin von Azeroth; 329
+Held / Heldin von Azeroth; 344
+Großartiger Held / Großartige Heldin von Azeroth; 345
+Smaragdgrüner Wächter / Smaragdgrüne Wächterin; 352
+Jenkins; 353
+Größter Angler / Größte Anglerin von Azeroth; 455
+Chefkoch / Chefköchin; 461
+Der Ehrfurchtgebietende / Die Ehrfurchtgebietende; 474
+Blutsegeladmiral; 523
+Nachtschrecken; 531
+Winterhauchengel; 541
+Liebesgott / Liebesgöttin; 605
+Ältester / Älteste; 611
+Patron / Matrone; 628
+Flammenbewahrer / Flammenbewahrerin; 633
+Meister / Meisterin der Lehren; Allianz 81 / Horde 82
+Bezwinger / Bezwingerin des Schwarzen Tempels; 408
+Eroberer / Eroberin der Scherbenwelt; 515
+Champion der Naaru; 529
+Hand von A'dal; 530
+Held / Heldin der Scherbenwelt; 631
+Großartiger Held / Großartige Heldin der Scherbenwelt; 632
+Braumeister / Braumeisterin; 644

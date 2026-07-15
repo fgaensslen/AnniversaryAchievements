@@ -1,4 +1,4 @@
-Details siehe Ordner CHANGELOGS
+Details siehe Ordner changelogs
 
 2.3.1 Hotfix – Gruppen- und Raid-Kills korrekt erkannt
 2.3.2 – Erstschadenszuordnung korrigiert
@@ -48,3 +48,4 @@ Details siehe Ordner CHANGELOGS
 2.3.46 – Rufscan auf registrierte Rufschwellen begrenzt
 2.3.47 – Explorations-Fallback begrenzt und Kartenkunst-Preload nachgeführt
 2.3.48 – Erfolge: Einzigartig/Extrem selten + Titel "Der/Die Unfassbare"
+2.3.49 – Erfolg TBC: Ob nah, ob fern, Tiere hab ich gern

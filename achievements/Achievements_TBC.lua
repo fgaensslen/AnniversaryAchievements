@@ -8,7 +8,7 @@ local loc = SexyLib:Localization("Anniversary Achievements")
 local catalog = assert(ns.AchievementCatalog, loc:Get("CATALOG_LOAD_ERROR"))
 
 local tbcDelta = {
-    ["achievementCounter"] = 517,
+    ["achievementCounter"] = 518,
     ["achievementDefinitions"] = {
         [7] = {
             ["anyCompletable"] = false,
@@ -12297,6 +12297,97 @@ local tbcDelta = {
                 },
             },
         },
+        [653] = {
+            ["anyCompletable"] = false,
+            ["categoryID"] = 1,
+            ["criteria"] = {
+                [1] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = "LOVE",
+                        [2] = 22480,
+                    },
+                    ["id"] = 6531,
+                    ["name"] = "NPC_22480",
+                    ["type"] = 33,
+                },
+                [2] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = "LOVE",
+                        [2] = 22306,
+                    },
+                    ["id"] = 6532,
+                    ["name"] = "NPC_22306",
+                    ["type"] = 33,
+                },
+                [3] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = "LOVE",
+                        [2] = 22842,
+                    },
+                    ["id"] = 6533,
+                    ["name"] = "NPC_22842",
+                    ["type"] = 33,
+                },
+                [4] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = "LOVE",
+                        [2] = 22843,
+                    },
+                    ["id"] = 6534,
+                    ["name"] = "NPC_22843",
+                    ["type"] = 33,
+                },
+                [5] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = "LOVE",
+                        [2] = 19665,
+                    },
+                    ["id"] = 6535,
+                    ["name"] = "NPC_19665",
+                    ["type"] = 33,
+                },
+                [6] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = "LOVE",
+                        [2] = 19154,
+                    },
+                    ["id"] = 6536,
+                    ["name"] = "NPC_19154",
+                    ["type"] = 33,
+                },
+                [7] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = "LOVE",
+                        [2] = 19482,
+                    },
+                    ["id"] = 6537,
+                    ["name"] = "NPC_19482",
+                    ["type"] = 33,
+                },
+                [8] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = "LOVE",
+                        [2] = 20411,
+                    },
+                    ["id"] = 6538,
+                    ["name"] = "NPC_20411",
+                    ["type"] = 33,
+                },
+            },
+            ["description"] = "AD_LOVE_TBC",
+            ["icon"] = "inv_jewelcrafting_crimsonhare",
+            ["id"] = 653,
+            ["name"] = "AN_LOVE_TBC",
+            ["points"] = 10,
+        },
     },
     ["achievementPatches"] = {
         [6] = {
@@ -17024,7 +17115,7 @@ local tbcDelta = {
         },
     },
     ["categoryPatches"] = {},
-    ["criteriaCounter"] = 2840,
+    ["criteriaCounter"] = 2848,
     ["removeAchievements"] = {
         [1] = 149,
         [2] = 150,

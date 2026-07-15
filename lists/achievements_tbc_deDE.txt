@@ -236,10 +236,6 @@
 235; Turmverteidiger; Verteidigt 2 Türme während einer einzigen Schlacht im Alteractal und bleibt bis zu deren Ende.; -Inv_Shield_05
 236; Turmverteidiger; Verteidigt 3 Türme während einer einzigen Schlacht im Alteractal und bleibt bis zu deren Ende.; -Inv_Shield_05
 237; Turmverteidiger; Verteidigt 4 Türme während einer einzigen Schlacht im Alteractal und bleibt bis zu deren Ende.; -Inv_Shield_05
-238; Gefrorener Bergmann; Nehmt eine Mine während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende.; -Inv_Pick_01
-239; Gefrorener Pikenier; Nehmt 2 Minen während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende.; -Inv_Pick_01
-240; Gefrorener Pikenier; Nehmt 3 Minen während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende.; -Inv_Pick_01
-241; Gefrorener Pikenier; Nehmt 4 Minen während einer einzigen Schlacht im Alteractal ein und bleibt bis zu deren Ende.; -Inv_Pick_01
 242; Der Alteracblitz; Gewinnt im Alteractal innerhalb von 6 Minuten.; -achievement_bg_winav_underxminutes
 243; Militärische Auszeichnung; Erreicht 10 ehrenhafte Siege während einer einzigen Schlacht in der Warsongschlucht und bleibt bis zu deren Ende.; -Ability_Rogue_Eviscerate
 244; Militärische Auszeichnung; Erreicht 25 ehrenhafte Siege während einer einzigen Schlacht in der Warsongschlucht und bleibt bis zu deren Ende.; -Ability_Rogue_Eviscerate
