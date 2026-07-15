@@ -792,11 +792,12 @@ local function GetCreatureIDFromGUID(guid)
     return killingTracker:GetCreatureID(guid)
 end
 killingTracker:AddHandler(function(targetID) return true end, function(targetID)
-    if targetID == KT_ABOMINATION_ID then
-        -- Count the Monstrosities during the current Kel'Thuzad attempt, but do
-        -- not award the criterion before Kel'Thuzad himself has died.
+    local isKTAbomination = targetID == KT_ABOMINATION_ID
+    if isKTAbomination then
+        -- Count the Monstrosities during the current Kel'Thuzad attempt, but
+        -- keep processing the normal kill paths. In particular, every kill
+        -- must still increment the general KILL_ANY_NPC achievements.
         ktAbomKills = ktAbomKills + 1
-        return
     end
 
     -- 1. SINGLE NPC (exact ID)
@@ -806,7 +807,11 @@ killingTracker:AddHandler(function(targetID) return true end, function(targetID)
     trigger(TYPE.KILL_ANY_NPC, nil, 1)
 
     -- 3. MULTIPLE NPCS OF SPECIFIC IDs (list-type achievements)
-    trigger(TYPE.KILL_NPCS, {targetID}, 1)
+    -- The Kel'Thuzad Monstrosity criterion is intentionally delayed until the
+    -- boss dies, otherwise achievement 565 could complete before the encounter.
+    if not isKTAbomination then
+        trigger(TYPE.KILL_NPCS, {targetID}, 1)
+    end
 
     -- 4. HEROIC kills
     local difficultyID = GetDungeonDifficultyID()
