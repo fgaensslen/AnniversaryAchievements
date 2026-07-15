@@ -1,6 +1,6 @@
 local _, ns = ...
 
--- Generated flavor catalog for AnniversaryAchievements v2.3.38.
+-- Generated flavor catalog for AnniversaryAchievements v2.3.39.
 -- This file contains only definitions used by this client flavor. Stable IDs
 -- keep Classic v1.4.6 and all existing TBC SavedVariables fully compatible.
 
@@ -20692,7 +20692,7 @@ local achievementDefinitions = {
         ["id"] = 352,
         ["name"] = "AN_WB_EMERALD_DRAGONS",
         ["points"] = 20,
-        ["rewardText"] = "AR_WB_EMERALD_DRAGONS",
+        ["rewardText"] = "TITLE_BUILTIN_EMERALD_KEEPER_LABEL",
     },
     [353] = {
         ["anyCompletable"] = false,
@@ -22180,7 +22180,7 @@ local achievementDefinitions = {
         ["id"] = 455,
         ["name"] = "AN_FISHING_BIG_SIZE",
         ["points"] = 10,
-        ["rewardText"] = "AR_FISHING_BIG_SIZE",
+        ["rewardText"] = "TITLE_BUILTIN_AZEROTHS_GREATEST_ANGLER_LABEL",
     },
     [457] = {
         ["anyCompletable"] = false,
@@ -25138,7 +25138,7 @@ local achievementDefinitions = {
         ["id"] = 605,
         ["name"] = "AN_VALENTINES",
         ["points"] = 10,
-        ["rewardText"] = "AR_VALENTINES",
+        ["rewardText"] = "TITLE_BUILTIN_THE_LOVE_FOOL_LABEL",
     },
     [606] = {
         ["anyCompletable"] = false,
@@ -25411,7 +25411,7 @@ local achievementDefinitions = {
                 ["id"] = 611,
                 ["name"] = "AN_LUNAR",
                 ["points"] = 10,
-                ["rewardText"] = "AR_LUNAR",
+                ["rewardText"] = "TITLE_BUILTIN_ELDER_LABEL",
             },
             [2] = {
                 ["anyCompletable"] = false,
@@ -25491,7 +25491,7 @@ local achievementDefinitions = {
                 ["id"] = 611,
                 ["name"] = "AN_LUNAR",
                 ["points"] = 10,
-                ["rewardText"] = "AR_LUNAR",
+                ["rewardText"] = "TITLE_BUILTIN_ELDER_LABEL",
             },
         },
     },
@@ -26446,7 +26446,7 @@ local achievementDefinitions = {
                 ["id"] = 633,
                 ["name"] = "AN_MIDSUMMER",
                 ["points"] = 20,
-                ["rewardText"] = "AR_MIDSUMMER",
+                ["rewardText"] = "TITLE_BUILTIN_FLAME_KEEPER_LABEL",
             },
             [2] = {
                 ["anyCompletable"] = false,
@@ -26467,7 +26467,7 @@ local achievementDefinitions = {
                 ["id"] = 633,
                 ["name"] = "AN_MIDSUMMER",
                 ["points"] = 20,
-                ["rewardText"] = "AR_MIDSUMMER",
+                ["rewardText"] = "TITLE_BUILTIN_FLAME_KEEPER_LABEL",
             },
         },
     },

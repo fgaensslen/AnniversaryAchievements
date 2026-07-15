@@ -317,7 +317,6 @@ local L = {
     AD_WISDOM_KEEPER_EASTERN_KINGDOMS = 'Complete the Eastern Kingdoms quest achievements in listed below.',
     AN_WISDOM_KEEPER_OUTLAND = 'Loremaster of Outland',
     AD_WISDOM_KEEPER_OUTLAND = 'Complete the Outland quest achievements listed below.',
-    AR_WISDOM_KEEPER = 'The Loremaster',
 
     AN_RAGEFIRE_CHASM = 'Ragefire Chasm',
     AD_RAGEFIRE_CHASM = 'Defeat Taragaman the Hungerer.',
@@ -849,7 +848,6 @@ local L = {
     AC_FISHING_LOBSTER = '%d Pound Lobster',
     AN_FISHING_BIG_SIZE = 'Azeroth\'s Greatest Angler',
     AD_FISHING_BIG_SIZE = 'Complete the following fishing achievements listed below.',
-    AR_FISHING_BIG_SIZE = 'Azeroth\'s Greatest Angler',
 	
 	AN_FISHING_COUNT = '%d Fish',
 	AC_FISHING_COUNT = 'Fish up %d items.',
@@ -898,7 +896,6 @@ local L = {
     AD_WB_TAERAR = 'Defeat Taerar.',
     AN_WB_EMERALD_DRAGONS = 'Emerald Keeper',
     AD_WB_EMERALD_DRAGONS = 'Defeat all Dragons of the Emerald Nightmare.',
-    AR_WB_EMERALD_DRAGONS = 'Emerald Keeper',
 
     AN_DUEL = 'Duel-icious',
     AD_DUEL = 'Win a duel against another player.',
@@ -1069,7 +1066,6 @@ local L = {
     --VALENTINES
     AN_VALENTINES = 'Fool For Love',
 	AD_VALENTINES = 'Complete the Love is in the Air achievements listed below.',
-	AR_VALENTINES = 'The Love Fool',
 
     AN_VALENTINES_ROSES = 'My Love is Like a Red, Red Rose',
     AD_VALENTINES_ROSES = 'Obtain a Bouquet of Red Roses during the Love is in the Air celebration.',
@@ -1093,7 +1089,6 @@ local L = {
     --LUNAR
     AN_LUNAR = 'To Honor One\'s Elders',
 	AD_LUNAR = 'Complete the Lunar Festival achievements listed below.',
-	AR_LUNAR = 'Elder',
 
     AN_LUNAR_COIN = 'A Coin of Ancestry',
     AD_LUNAR_COIN = 'Receive a Coin of Ancestry.',
@@ -1198,7 +1193,6 @@ local L = {
     --MIDSUMMER
     AN_MIDSUMMER = 'The Flame Keeper',
     AD_MIDSUMMER = 'Complete the Midsummer achievements listed below.',
-    AR_MIDSUMMER = 'Flame Keeper',
 
     AN_MIDSUMMER_QUEST1 = 'King of the Fire Festival',
     AD_MIDSUMMER_QUEST1 = 'Complete the quest, "A Thief\'s Reward", by stealing the flames from your enemy\'s capital cities.',
@@ -1890,7 +1884,6 @@ local L = {
 	AR_CHAMPION_NAARU = 'Champion of the Naaru',
 	AN_HAND_ADAL = 'Hand of  A\'dal',
 	AD_HAND_ADAL = 'Earned the title, "Hand of A\'dal".',
-	AR_HAND_ADAL = 'Hand of  A\'dal',
 
     AN_P3_FIRST_WEEK = 'Conqueror of the Outland',
     AD_P3_FIRST_WEEK = 'Defeat Archimonde and Illidan Stormrage in their respective raids within the first week of the release of Phase Three.',

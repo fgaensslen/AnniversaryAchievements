@@ -320,7 +320,6 @@ local L = {
     AD_WISDOM_KEEPER_EASTERN_KINGDOMS = 'Accomplir les hauts faits de quêtes listés ci-dessous.',
     AN_WISDOM_KEEPER_OUTLAND = 'Maître des traditions de l\'Outreterre',
     AD_WISDOM_KEEPER_OUTLAND = 'Accomplir les hauts faits relatifs aux quêtes de l\'Outreterre listés ci-dessous.',
-    AR_WISDOM_KEEPER = 'Récompenses : titre',
 
     AN_RAGEFIRE_CHASM = 'Gouffre de Ragefeu',
     AD_RAGEFIRE_CHASM = 'Vaincre Taragaman l\'Affameur.',
@@ -852,7 +851,6 @@ local L = {
     AC_FISHING_LOBSTER = '%d-pfündiger Hummer', --#--#--
     AN_FISHING_BIG_SIZE = 'Der größte Angler von Azeroth', --#--#--
     AD_FISHING_BIG_SIZE = 'Schließt die unten aufgelisteten Angel-Erfolge ab.', --#--#--
-    AR_FISHING_BIG_SIZE = 'Der größte Angler von Azeroth', --#--#--
 	
 	AN_FISHING_COUNT = '%dpoissons',
 	AC_FISHING_COUNT = 'Angelt %d Gegenstände oder Fische.', --#--#--
@@ -901,7 +899,6 @@ local L = {
     AD_WB_TAERAR = 'Bezwingt Taerar.', --#--#--
     AN_WB_EMERALD_DRAGONS = 'Smaragdgrüner Wächter', --#--#--
     AD_WB_EMERALD_DRAGONS = 'Bezwingt alle Drachen des Smaragdgrünen Albtraums.', --#--#--
-    AR_WB_EMERALD_DRAGONS = 'Smaragdgrüner Wächter', --#--#--
 
     AN_DUEL = 'Duel-icieux',
     AD_DUEL = 'Gagner un duel contre un autre personnage.',
@@ -1072,7 +1069,6 @@ local L = {
     --VALENTINES
     AN_VALENTINES = 'Liebestoll', --#--#--
 	AD_VALENTINES = 'Schließt die unten aufgelisteten Erfolge von \'Liebe liegt in der Luft\' ab.', --#--#--
-	AR_VALENTINES = 'Liebesgott', --#--#--
 
     AN_VALENTINES_ROSES = 'Sag\'s mit Rosen', --#--#--
     AD_VALENTINES_ROSES = 'Erhaltet während der \'Liebe liegt in der Luft\'-Feierlichkeiten einen roten Rosenstrauß.', --#--#--
@@ -1096,7 +1092,6 @@ local L = {
     --LUNAR
     AN_LUNAR = 'Honorer ses Anciens',
 	AD_LUNAR = 'Accomplir les hauts faits de la fête lunaire listés ci-dessous.',
-	AR_LUNAR = 'Titre : ancien',
 
     AN_LUNAR_COIN = 'Une pièce des ancêtres',
     AD_LUNAR_COIN = 'Recevoir une pièce des ancêtres.',
@@ -1201,7 +1196,6 @@ local L = {
     --MIDSUMMER
     AN_MIDSUMMER = 'Le garde-flammes',
     AD_MIDSUMMER = 'Accomplir les hauts faits du Solstice listés ci-dessous.',
-    AR_MIDSUMMER = 'Flammenbewahrer', --#--#--
 
     AN_MIDSUMMER_QUEST1 = 'Le roi de la fête du Feu',
     AD_MIDSUMMER_QUEST1 = 'Achever la quête « La récompense d\'un voleur » en volant les flammes des capitales ennemies.',
@@ -1893,7 +1887,6 @@ local L = {
 	AR_CHAMPION_NAARU = 'Champion des naaru',
 	AN_HAND_ADAL = 'Main d\'A\'dal',
 	AD_HAND_ADAL = 'Avoir obtenu le titre de main d\'A\'dal.',
-	AR_HAND_ADAL = 'Main d\'A\'dal',
 
     AN_P3_FIRST_WEEK = 'Eroberer der Scherbenwelt', --#--#--
     AD_P3_FIRST_WEEK = 'Bezwingt Archimonde und Illidan Sturmgrimm in der ersten Woche von Phase 3.', --#--#--

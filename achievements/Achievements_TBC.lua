@@ -1222,7 +1222,7 @@ local tbcDelta = {
             ["id"] = 81,
             ["name"] = "AN_WISDOM_KEEPER",
             ["points"] = 30,
-            ["rewardText"] = "AR_WISDOM_KEEPER",
+            ["rewardText"] = "TITLE_BUILTIN_THE_LOREMASTER_LABEL",
         },
         [82] = {
             ["anyCompletable"] = false,
@@ -1253,7 +1253,7 @@ local tbcDelta = {
             ["id"] = 82,
             ["name"] = "AN_WISDOM_KEEPER",
             ["points"] = 30,
-            ["rewardText"] = "AR_WISDOM_KEEPER",
+            ["rewardText"] = "TITLE_BUILTIN_THE_LOREMASTER_LABEL",
         },
         [83] = {
             ["selectors"] = {
@@ -8404,7 +8404,7 @@ local tbcDelta = {
             ["id"] = 530,
             ["name"] = "AN_HAND_ADAL",
             ["points"] = 0,
-            ["rewardText"] = "AR_HAND_ADAL",
+            ["rewardText"] = "TITLE_BUILTIN_HAND_OF_ADAL_LABEL",
         },
         [547] = {
             ["anyCompletable"] = false,

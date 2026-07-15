@@ -320,7 +320,6 @@ local L = {
     AD_WISDOM_KEEPER_EASTERN_KINGDOMS = 'Выполните указанные ниже задания.',
     AN_WISDOM_KEEPER_OUTLAND = 'Хранитель мудрости Запределья',
     AD_WISDOM_KEEPER_OUTLAND = 'Добейтесь указанных ниже достижений в Запределье.',
-    AR_WISDOM_KEEPER = 'Награда: звание',
 
     AN_RAGEFIRE_CHASM = 'Огненная Пропасть',
     AD_RAGEFIRE_CHASM = 'Победите Баззалана.',
@@ -852,7 +851,6 @@ local L = {
     AC_FISHING_LOBSTER = '%d-pfündiger Hummer', --#--#--
     AN_FISHING_BIG_SIZE = 'Der größte Angler von Azeroth', --#--#--
     AD_FISHING_BIG_SIZE = 'Schließt die unten aufgelisteten Angel-Erfolge ab.', --#--#--
-    AR_FISHING_BIG_SIZE = 'Der größte Angler von Azeroth', --#--#--
 	
 	AN_FISHING_COUNT = '%dрыбок',
 	AC_FISHING_COUNT = 'Angelt %d Gegenstände oder Fische.', --#--#--
@@ -901,7 +899,6 @@ local L = {
     AD_WB_TAERAR = 'Bezwingt Taerar.', --#--#--
     AN_WB_EMERALD_DRAGONS = 'Smaragdgrüner Wächter', --#--#--
     AD_WB_EMERALD_DRAGONS = 'Bezwingt alle Drachen des Smaragdgrünen Albtraums.', --#--#--
-    AR_WB_EMERALD_DRAGONS = 'Smaragdgrüner Wächter', --#--#--
 
     AN_DUEL = 'Дуэлянт',
     AD_DUEL = 'Победите другого игрока в дуэли.',
@@ -1072,7 +1069,6 @@ local L = {
     --VALENTINES
     AN_VALENTINES = 'Liebestoll', --#--#--
 	AD_VALENTINES = 'Schließt die unten aufgelisteten Erfolge von \'Liebe liegt in der Luft\' ab.', --#--#--
-	AR_VALENTINES = 'Liebesgott', --#--#--
 
     AN_VALENTINES_ROSES = 'Sag\'s mit Rosen', --#--#--
     AD_VALENTINES_ROSES = 'Erhaltet während der \'Liebe liegt in der Luft\'-Feierlichkeiten einen roten Rosenstrauß.', --#--#--
@@ -1096,7 +1092,6 @@ local L = {
     --LUNAR
     AN_LUNAR = 'Почтение к предкам',
 	AD_LUNAR = 'Добейтесь достижений Лунного фестиваля, указанных ниже.',
-	AR_LUNAR = 'Наградное звание: Премудрый',
 
     AN_LUNAR_COIN = 'Монета наследия',
     AD_LUNAR_COIN = 'Получите монету наследия.',
@@ -1201,7 +1196,6 @@ local L = {
     --MIDSUMMER
     AN_MIDSUMMER = 'Хранитель огня',
     AD_MIDSUMMER = 'Добейтесь указанных ниже достижений на празднике Огненного солнцеворота.',
-    AR_MIDSUMMER = 'Flammenbewahrer', --#--#--
 
     AN_MIDSUMMER_QUEST1 = 'Король Огненного Солнцеворота',
     AD_MIDSUMMER_QUEST1 = 'Выполните задание "Награда вора", похитив огни из вражеских столиц.',
@@ -1893,7 +1887,6 @@ local L = {
 	AR_CHAMPION_NAARU = 'Защитник наару',
 	AN_HAND_ADAL = 'Длань А\'дала',
 	AD_HAND_ADAL = 'Заслужите звание "Длань А\'дала".',
-	AR_HAND_ADAL = 'Длань А\'дала',
 
     AN_P3_FIRST_WEEK = 'Eroberer der Scherbenwelt', --#--#--
     AD_P3_FIRST_WEEK = 'Bezwingt Archimonde und Illidan Sturmgrimm in der ersten Woche von Phase 3.', --#--#--

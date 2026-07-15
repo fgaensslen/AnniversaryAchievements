@@ -320,7 +320,6 @@ local L = {
     AD_WISDOM_KEEPER_EASTERN_KINGDOMS = 'Obter as conquistas de missões listadas abaixo.',
     AN_WISDOM_KEEPER_OUTLAND = 'Historiador de Terralém',
     AD_WISDOM_KEEPER_OUTLAND = 'Obter as conquistas das missões de Terralém listadas abaixo.',
-    AR_WISDOM_KEEPER = 'Recompensa: Título',
 
     AN_RAGEFIRE_CHASM = 'Cavernas Ígneas',
     AD_RAGEFIRE_CHASM = 'Derrotar Taragaman, o Famélico.',
@@ -852,7 +851,6 @@ local L = {
     AC_FISHING_LOBSTER = '%d-pfündiger Hummer', --#--#--
     AN_FISHING_BIG_SIZE = 'Der größte Angler von Azeroth', --#--#--
     AD_FISHING_BIG_SIZE = 'Schließt die unten aufgelisteten Angel-Erfolge ab.', --#--#--
-    AR_FISHING_BIG_SIZE = 'Der größte Angler von Azeroth', --#--#--
 	
 	AN_FISHING_COUNT = '%dpeixes',
 	AC_FISHING_COUNT = 'Angelt %d Gegenstände oder Fische.', --#--#--
@@ -901,7 +899,6 @@ local L = {
     AD_WB_TAERAR = 'Bezwingt Taerar.', --#--#--
     AN_WB_EMERALD_DRAGONS = 'Smaragdgrüner Wächter', --#--#--
     AD_WB_EMERALD_DRAGONS = 'Bezwingt alle Drachen des Smaragdgrünen Albtraums.', --#--#--
-    AR_WB_EMERALD_DRAGONS = 'Smaragdgrüner Wächter', --#--#--
 
     AN_DUEL = 'Duelicioso',
     AD_DUEL = 'Vencer um duelo contra outro jogador.',
@@ -1072,7 +1069,6 @@ local L = {
     --VALENTINES
     AN_VALENTINES = 'Liebestoll', --#--#--
 	AD_VALENTINES = 'Schließt die unten aufgelisteten Erfolge von \'Liebe liegt in der Luft\' ab.', --#--#--
-	AR_VALENTINES = 'Liebesgott', --#--#--
 
     AN_VALENTINES_ROSES = 'Sag\'s mit Rosen', --#--#--
     AD_VALENTINES_ROSES = 'Erhaltet während der \'Liebe liegt in der Luft\'-Feierlichkeiten einen roten Rosenstrauß.', --#--#--
@@ -1096,7 +1092,6 @@ local L = {
     --LUNAR
     AN_LUNAR = 'Respeito aos mais velhos',
 	AD_LUNAR = 'Obter as conquistas do Festival da Lua listadas abaixo.',
-	AR_LUNAR = 'Título: Ancião',
 
     AN_LUNAR_COIN = 'Moeda dos Ancestrais',
     AD_LUNAR_COIN = 'Receber uma Moeda dos Ancestrais.',
@@ -1201,7 +1196,6 @@ local L = {
     --MIDSUMMER
     AN_MIDSUMMER = 'Protetor da Chama',
     AD_MIDSUMMER = 'Obter as conquistas do Solstício listadas abaixo.',
-    AR_MIDSUMMER = 'Flammenbewahrer', --#--#--
 
     AN_MIDSUMMER_QUEST1 = 'Rei do Festival do Fogo',
     AD_MIDSUMMER_QUEST1 = 'Cumprir a missão "A recompensa de um ladrão", em que você tem que roubar as chamas das capitais da facção inimiga.',
@@ -1893,7 +1887,6 @@ local L = {
 	AR_CHAMPION_NAARU = 'Campeão dos Naarus',
 	AN_HAND_ADAL = 'Mão de A\'dal',
 	AD_HAND_ADAL = 'Conquistou o título "A Mão de A\'dal".',
-	AR_HAND_ADAL = 'Mão de A\'dal',
 
     AN_P3_FIRST_WEEK = 'Eroberer der Scherbenwelt', --#--#--
     AD_P3_FIRST_WEEK = 'Bezwingt Archimonde und Illidan Sturmgrimm in der ersten Woche von Phase 3.', --#--#--

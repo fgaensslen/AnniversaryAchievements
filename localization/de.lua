@@ -317,7 +317,6 @@ local L = {
     AD_WISDOM_KEEPER_EASTERN_KINGDOMS = 'Schließt die unten aufgelisteten Questerfolge in den östlichen Königreichen ab.',
     AN_WISDOM_KEEPER_OUTLAND = 'Meister der Lehren der Scherbenwelt',
     AD_WISDOM_KEEPER_OUTLAND = 'Schließt die unten aufgelisteten Scherbenwelt-Questerfolge ab.',
-    AR_WISDOM_KEEPER = 'Meister der Lehren',
 
     AN_RAGEFIRE_CHASM = 'Flammenschlund',
     AD_RAGEFIRE_CHASM = 'Bezwingt Taragaman den Hungerleider.',
@@ -849,7 +848,6 @@ local L = {
     AC_FISHING_LOBSTER = '%d-pfündiger Hummer',
     AN_FISHING_BIG_SIZE = 'Der größte Angler von Azeroth',
     AD_FISHING_BIG_SIZE = 'Schließt die unten aufgelisteten Angel-Erfolge ab.',
-    AR_FISHING_BIG_SIZE = 'Der größte Angler von Azeroth',
 	
 	AN_FISHING_COUNT = '%d Fische',
 	AC_FISHING_COUNT = 'Angelt %d Gegenstände oder Fische.',
@@ -898,7 +896,6 @@ local L = {
     AD_WB_TAERAR = 'Bezwingt Taerar.',
     AN_WB_EMERALD_DRAGONS = 'Smaragdgrüner Wächter',
     AD_WB_EMERALD_DRAGONS = 'Bezwingt alle Drachen des Smaragdgrünen Albtraums.',
-    AR_WB_EMERALD_DRAGONS = 'Smaragdgrüner Wächter',
 
     AN_DUEL = 'Duell-ikat',
     AD_DUEL = 'Gewinnt ein Duell gegen einen anderen Spieler.',
@@ -1069,7 +1066,6 @@ local L = {
     --VALENTINES
     AN_VALENTINES = 'Liebestoll',
 	AD_VALENTINES = 'Schließt die unten aufgelisteten Erfolge von \'Liebe liegt in der Luft\' ab.',
-	AR_VALENTINES = 'Liebesgott',
 
     AN_VALENTINES_ROSES = 'Sag\'s mit Rosen',
     AD_VALENTINES_ROSES = 'Erhaltet während der \'Liebe liegt in der Luft\'-Feierlichkeiten einen roten Rosenstrauß.',
@@ -1093,7 +1089,6 @@ local L = {
     --LUNAR
     AN_LUNAR = 'Respekt vor den Urahnen',
 	AD_LUNAR = 'Schließt die unten aufgelisteten Mondfesterfolge ab.',
-	AR_LUNAR = 'Ältester',
 
     AN_LUNAR_COIN = 'Eine Münze der Urahnen',
     AD_LUNAR_COIN = 'Findet eine Münze der Urahnen.',
@@ -1198,7 +1193,6 @@ local L = {
     --MIDSUMMER
     AN_MIDSUMMER = 'Der Flammenbewahrer',
     AD_MIDSUMMER = 'Schließt die unten aufgelisteten Sonnenwenderfolge ab.',
-    AR_MIDSUMMER = 'Flammenbewahrer',
 
     AN_MIDSUMMER_QUEST1 = 'König des Feuerfestivals',
     AD_MIDSUMMER_QUEST1 = 'Schließt die Quest \'Der Lohn des Diebes\' ab, indem Ihr die Flammen aus den Hauptstädten Eures Gegners stehlt.',
@@ -1890,7 +1884,6 @@ local L = {
 	AR_CHAMPION_NAARU = 'Champion der Naaru',
 	AN_HAND_ADAL = 'Hand von A\'dal',
 	AD_HAND_ADAL = 'Den Titel "Hand von A\'dal" erhalten.',
-	AR_HAND_ADAL = 'Hand von A\'dal',
 
     AN_P3_FIRST_WEEK = 'Eroberer der Scherbenwelt',
     AD_P3_FIRST_WEEK = 'Bezwingt Archimonde und Illidan Sturmgrimm in der ersten Woche von Phase 3.',

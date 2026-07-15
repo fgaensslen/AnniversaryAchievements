@@ -310,7 +310,6 @@ local L = {
 	AD_WISDOM_KEEPER_EASTERN_KINGDOMS = 'Completa los logros de misiones listados a continuación.',
 	AN_WISDOM_KEEPER_OUTLAND = 'Maestro cultural de Terrallende',
 	AD_WISDOM_KEEPER_OUTLAND = 'Completa los logros de misiones listados a continuación.',
-	AR_WISDOM_KEEPER = 'El maestro cultural',
 
 	AN_RAGEFIRE_CHASM = 'Sima Ígnea',
 	AD_RAGEFIRE_CHASM = 'Derrota a Taragaman el Hambriento.',
@@ -842,7 +841,6 @@ local L = {
 	AC_FISHING_LOBSTER = 'Langosta de %d kilos',
 	AN_FISHING_BIG_SIZE = 'El mejor pescador de Azeroth',
 	AD_FISHING_BIG_SIZE = 'Completa los siguientes logros de pesca que se enumeran a continuación.',
-	AR_FISHING_BIG_SIZE = 'El mejor pescador de Azeroth',
 	
 	AN_FISHING_COUNT = '%d Peces',
 	AC_FISHING_COUNT = 'Pescaste %d objetos.',
@@ -891,7 +889,6 @@ local L = {
 	AD_WB_TAERAR = 'Derrota a Taerar.',
 	AN_WB_EMERALD_DRAGONS = 'Guardián esmeralda',
 	AD_WB_EMERALD_DRAGONS = 'Derrota a todos los Dragones de la Pesadilla Esmeralda.',
-	AR_WB_EMERALD_DRAGONS = 'Guardián esmeralda',
 
 	AN_DUEL = 'Duelicioso',
 	AD_DUEL = 'Gana un duelo contra otro jugador.',
@@ -1062,7 +1059,6 @@ local L = {
 	--VALENTINES
 	AN_VALENTINES = 'Loco de amor',
 	AD_VALENTINES = 'Completa los logros de Amor en el aire listados a continuación.',
-	AR_VALENTINES = 'el Loco de amor',
 
 	AN_VALENTINES_ROSES = 'Mi amor es como una rosa roja',
 	AD_VALENTINES_ROSES = 'Consigue un ramo de rosas rojas o un ramo de rosas de ébano durante la celebración del Amor en el aire.',
@@ -1086,7 +1082,6 @@ local L = {
    --LUNAR
 	AN_LUNAR = 'Honrar a los ancestros personales',
 	AD_LUNAR = 'Completa los logros del Festival Lunar listados a continuación.',
-	AR_LUNAR = 'Ancestro',
 
 	AN_LUNAR_COIN = 'Una moneda de linaje',
 	AD_LUNAR_COIN = 'Recibe una moneda de linaje.',
@@ -1191,7 +1186,6 @@ local L = {
 	--MIDSUMMER
 	AN_MIDSUMMER = 'El vigilante de las llamas',
 	AD_MIDSUMMER = 'Completa los logros del Solsticio listados a continuación.',
-	AR_MIDSUMMER = 'Vigilante de las llamas',
 
 	AN_MIDSUMMER_QUEST1 = 'Rey del Festival de Fuego',
 	AD_MIDSUMMER_QUEST1 = 'Completa la misión "Una recompensa de ladrón" robando las llamas de las capitales de tus enemigos.',
@@ -1883,7 +1877,6 @@ local L = {
 	AR_CHAMPION_NAARU = 'Campeón de los naaru',
 	AN_HAND_ADAL = 'Mano de A\'dal',
 	AD_HAND_ADAL = 'Recibido el título "Mano de A\'dal".',
-	AR_HAND_ADAL = 'Mano de A\'dal',
 
 	AN_P3_FIRST_WEEK = 'Conquistador de Terrallende',
 	AD_P3_FIRST_WEEK = 'Derrota a Archimonde e Illidan Tempestira en sus respectivas bandas durante la primera semana del lanzamiento de la Fase Tres.',

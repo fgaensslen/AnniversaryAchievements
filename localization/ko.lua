@@ -320,7 +320,6 @@ local L = {
     AD_WISDOM_KEEPER_EASTERN_KINGDOMS = '아래 나열된 퀘스트 업적 완료',
     AN_WISDOM_KEEPER_OUTLAND = '아웃랜드의 현자',
     AD_WISDOM_KEEPER_OUTLAND = '아래 나열된 아웃랜드 퀘스트 업적 완료',
-    AR_WISDOM_KEEPER = '보상: 칭호',
 
     AN_RAGEFIRE_CHASM = '성난불길 협곡',
     AD_RAGEFIRE_CHASM = '욕망의 타라가만 처치',
@@ -852,7 +851,6 @@ local L = {
     AC_FISHING_LOBSTER = '%d-pfündiger Hummer', --#--#--
     AN_FISHING_BIG_SIZE = 'Der größte Angler von Azeroth', --#--#--
     AD_FISHING_BIG_SIZE = 'Schließt die unten aufgelisteten Angel-Erfolge ab.', --#--#--
-    AR_FISHING_BIG_SIZE = 'Der größte Angler von Azeroth', --#--#--
 	
 	AN_FISHING_COUNT = '%d개 낚기',
 	AC_FISHING_COUNT = 'Angelt %d Gegenstände oder Fische.', --#--#--
@@ -901,7 +899,6 @@ local L = {
     AD_WB_TAERAR = 'Bezwingt Taerar.', --#--#--
     AN_WB_EMERALD_DRAGONS = 'Smaragdgrüner Wächter', --#--#--
     AD_WB_EMERALD_DRAGONS = 'Bezwingt alle Drachen des Smaragdgrünen Albtraums.', --#--#--
-    AR_WB_EMERALD_DRAGONS = 'Smaragdgrüner Wächter', --#--#--
 
     AN_DUEL = '결투의 제왕',
     AD_DUEL = '다른 사람과의 결투에서 승리',
@@ -1072,7 +1069,6 @@ local L = {
     --VALENTINES
     AN_VALENTINES = 'Liebestoll', --#--#--
 	AD_VALENTINES = 'Schließt die unten aufgelisteten Erfolge von \'Liebe liegt in der Luft\' ab.', --#--#--
-	AR_VALENTINES = 'Liebesgott', --#--#--
 
     AN_VALENTINES_ROSES = 'Sag\'s mit Rosen', --#--#--
     AD_VALENTINES_ROSES = 'Erhaltet während der \'Liebe liegt in der Luft\'-Feierlichkeiten einen roten Rosenstrauß.', --#--#--
@@ -1096,7 +1092,6 @@ local L = {
     --LUNAR
     AN_LUNAR = '장로 섬기기',
 	AD_LUNAR = '아래 나열된 달의 축제 업적 완료',
-	AR_LUNAR = '칭호: 장로',
 
     AN_LUNAR_COIN = '선조의 주화',
     AD_LUNAR_COIN = '선조의 주화 획득',
@@ -1201,7 +1196,6 @@ local L = {
     --MIDSUMMER
     AN_MIDSUMMER = '불꽃지기',
     AD_MIDSUMMER = '아래 나열된 한여름 축제 업적 완료',
-    AR_MIDSUMMER = 'Flammenbewahrer', --#--#--
 
     AN_MIDSUMMER_QUEST1 = '불꽃 축제의 제왕',
     AD_MIDSUMMER_QUEST1 = '적 진영 수도에서 불꽃을 훔쳐 "도적의 보상" 퀘스트 완료',
@@ -1893,7 +1887,6 @@ local L = {
 	AR_CHAMPION_NAARU = '나루의 용사',
 	AN_HAND_ADAL = '아달의 수호자',
 	AD_HAND_ADAL = '"아달의 수호자" 칭호 획득',
-	AR_HAND_ADAL = '아달의 수호자',
 
     AN_P3_FIRST_WEEK = 'Eroberer der Scherbenwelt', --#--#--
     AD_P3_FIRST_WEEK = 'Bezwingt Archimonde und Illidan Sturmgrimm in der ersten Woche von Phase 3.', --#--#--

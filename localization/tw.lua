@@ -320,7 +320,6 @@ local L = {
     AD_WISDOM_KEEPER_EASTERN_KINGDOMS = '完成下列的任務成就。',
     AN_WISDOM_KEEPER_OUTLAND = '外域博學大師',
     AD_WISDOM_KEEPER_OUTLAND = '完成下列的外域任務成就。',
-    AR_WISDOM_KEEPER = '頭銜獎勵',
 
     AN_RAGEFIRE_CHASM = '怒焰裂谷',
     AD_RAGEFIRE_CHASM = '擊敗『飢餓者』塔拉加曼。',
@@ -852,7 +851,6 @@ local L = {
     AC_FISHING_LOBSTER = '%d-pfündiger Hummer', --#--#--
     AN_FISHING_BIG_SIZE = 'Der größte Angler von Azeroth', --#--#--
     AD_FISHING_BIG_SIZE = 'Schließt die unten aufgelisteten Angel-Erfolge ab.', --#--#--
-    AR_FISHING_BIG_SIZE = 'Der größte Angler von Azeroth', --#--#--
 	
 	AN_FISHING_COUNT = '%d隻魚',
 	AC_FISHING_COUNT = 'Angelt %d Gegenstände oder Fische.', --#--#--
@@ -901,7 +899,6 @@ local L = {
     AD_WB_TAERAR = 'Bezwingt Taerar.', --#--#--
     AN_WB_EMERALD_DRAGONS = 'Smaragdgrüner Wächter', --#--#--
     AD_WB_EMERALD_DRAGONS = 'Bezwingt alle Drachen des Smaragdgrünen Albtraums.', --#--#--
-    AR_WB_EMERALD_DRAGONS = 'Smaragdgrüner Wächter', --#--#--
 
     AN_DUEL = '嗜殺',
     AD_DUEL = '與另一名玩家決鬥獲勝。',
@@ -1072,7 +1069,6 @@ local L = {
     --VALENTINES
     AN_VALENTINES = 'Liebestoll', --#--#--
 	AD_VALENTINES = 'Schließt die unten aufgelisteten Erfolge von \'Liebe liegt in der Luft\' ab.', --#--#--
-	AR_VALENTINES = 'Liebesgott', --#--#--
 
     AN_VALENTINES_ROSES = 'Sag\'s mit Rosen', --#--#--
     AD_VALENTINES_ROSES = 'Erhaltet während der \'Liebe liegt in der Luft\'-Feierlichkeiten einen roten Rosenstrauß.', --#--#--
@@ -1096,7 +1092,6 @@ local L = {
     --LUNAR
     AN_LUNAR = '榮耀長者',
 	AD_LUNAR = '完成下列的新年節慶成就。',
-	AR_LUNAR = '頭銜獎勵:長者',
 
     AN_LUNAR_COIN = '一枚先祖硬幣',
     AD_LUNAR_COIN = '獲得一枚先祖硬幣。',
@@ -1201,7 +1196,6 @@ local L = {
     --MIDSUMMER
     AN_MIDSUMMER = '火焰守護者',
     AD_MIDSUMMER = '完成下列的仲夏節成就。',
-    AR_MIDSUMMER = 'Flammenbewahrer', --#--#--
 
     AN_MIDSUMMER_QUEST1 = '火焰節慶之王',
     AD_MIDSUMMER_QUEST1 = '從敵人的主城偷取火焰，完成了「小偷的獎勵」任務。',
@@ -1893,7 +1887,6 @@ local L = {
 	AR_CHAMPION_NAARU = '那魯的勇士',
 	AN_HAND_ADAL = '阿達歐之手',
 	AD_HAND_ADAL = '取得「阿達歐之手」頭銜。',
-	AR_HAND_ADAL = '阿達歐之手',
 
     AN_P3_FIRST_WEEK = 'Eroberer der Scherbenwelt', --#--#--
     AD_P3_FIRST_WEEK = 'Bezwingt Archimonde und Illidan Sturmgrimm in der ersten Woche von Phase 3.', --#--#--
