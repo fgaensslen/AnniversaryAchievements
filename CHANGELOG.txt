@@ -45,3 +45,4 @@ Details siehe Ordner CHANGELOGS
 2.3.37 – Vollständige eigene Erfolgsseiten über Public API 1.4 ermöglicht
 2.3.38 - Mikro-/Minimap-Button-Load erst nach vollständiger Initialisierung
 2.3.39 – Titelbelohnungen auf zentrale Titeldefinitionen umgestellt
+2.3.40 – Arena-Erfolge 580–603 vollständig korrigiert

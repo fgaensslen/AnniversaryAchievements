@@ -42,6 +42,9 @@ local function EnsureArenaCharacterData(charKey)
 
     charData.HotStreak = tonumber(charData.HotStreak) or 0
     charData.HotterStreak = tonumber(charData.HotterStreak) or 0
+    if type(charData.LastArenaMatchToken) ~= "string" then
+        charData.LastArenaMatchToken = nil
+    end
     return charData
 end
 
@@ -1029,6 +1032,271 @@ killingTracker:AddHandler({11677, 13086, 13088}, function(targetID)
     alteracValleyMineCaptures = alteracValleyMineCaptures + 1
 end)
 
+-- Rated-arena achievements -------------------------------------------------
+-- The instance ID returned by GetInstanceInfo() identifies the arena map, not
+-- an individual match. Match completion is therefore deduplicated with a
+-- composite token derived from map, winner and the estimated match start time.
+local ARENA_TITLE_CRITERIA = {
+    { labelKey = "AN_ARENA_TITLE1", criteriaKey = "GLADIATOR_TITLE" },
+    { labelKey = "AN_ARENA_TITLE2", criteriaKey = "DUELIST_TITLE" },
+    { labelKey = "AN_ARENA_TITLE3", criteriaKey = "RIVAL_TITLE" },
+    { labelKey = "AN_ARENA_TITLE4", criteriaKey = "CHALLENGER_TITLE" },
+}
+
+local arenaSessionSerial = 0
+local arenaResultProcessed = false
+
+local function BeginArenaSession()
+    arenaSessionSerial = arenaSessionSerial + 1
+    arenaResultProcessed = false
+end
+
+local function ScanKnownArenaTitles()
+    if not isTBCAnniversary then return end
+    if type(GetNumTitles) ~= "function"
+        or type(IsTitleKnown) ~= "function"
+        or type(GetTitleName) ~= "function" then
+        return
+    end
+
+    local ok, titleCount = pcall(GetNumTitles)
+    titleCount = ok and tonumber(titleCount) or 0
+    if titleCount <= 0 then return end
+
+    local completed = {}
+    local completedCount = 0
+
+    for titleMask = 1, titleCount do
+        local knownOK, known = pcall(IsTitleKnown, titleMask)
+        if knownOK and known then
+            local nameOK, titleName = pcall(GetTitleName, titleMask)
+            if nameOK and type(titleName) == "string" and titleName ~= "" then
+                for _, definition in ipairs(ARENA_TITLE_CRITERIA) do
+                    if not completed[definition.criteriaKey] then
+                        local label = loc:Get(definition.labelKey)
+                        if type(label) == "string" and label ~= ""
+                            and string.find(titleName, label, 1, true) then
+                            trigger(TYPE.SPECIAL, { definition.criteriaKey }, 1, true)
+                            completed[definition.criteriaKey] = true
+                            completedCount = completedCount + 1
+                        end
+                    end
+                end
+            end
+        end
+
+        if completedCount == #ARENA_TITLE_CRITERIA then
+            break
+        end
+    end
+end
+
+local function SyncArenaRatings()
+    if not isTBCAnniversary or UnitLevel("player") ~= 70 then return end
+    if type(GetArenaTeam) ~= "function" then return end
+
+    for index = 1, 3 do
+        local _, teamSize, _, _, _, _, _, _, _, _, personalRating = GetArenaTeam(index)
+        teamSize = tonumber(teamSize)
+        personalRating = tonumber(personalRating)
+        if (teamSize == 2 or teamSize == 3 or teamSize == 5)
+            and personalRating and personalRating > 0 then
+            trigger(TYPE.ARENA_RATING, { teamSize }, personalRating, true)
+        end
+    end
+end
+
+local function GetPersonalArenaRating(teamSize)
+    if type(GetArenaTeam) ~= "function" then return nil end
+    teamSize = tonumber(teamSize)
+    if teamSize ~= 2 and teamSize ~= 3 and teamSize ~= 5 then return nil end
+
+    for index = 1, 3 do
+        local _, currentSize, _, _, _, _, _, _, _, _, personalRating = GetArenaTeam(index)
+        if tonumber(currentSize) == teamSize then
+            return tonumber(personalRating)
+        end
+    end
+
+    return nil
+end
+
+local function ShortPlayerName(name)
+    if type(name) ~= "string" or name == "" then return nil end
+    return name:match("^([^%-]+)") or name
+end
+
+local function ReadArenaScoreboard(playerName)
+    local rows = {}
+    local playerRow
+    local shortPlayerName = ShortPlayerName(playerName)
+    local scoreCount = tonumber(GetNumBattlefieldScores()) or 0
+
+    for index = 1, scoreCount do
+        local scoreName, _, _, deaths, _, team = GetBattlefieldScore(index)
+        if type(scoreName) == "string" and team ~= nil then
+            local row = {
+                name = scoreName,
+                deaths = tonumber(deaths),
+                team = team,
+            }
+            rows[#rows + 1] = row
+
+            if ShortPlayerName(scoreName) == shortPlayerName then
+                playerRow = row
+            end
+        end
+    end
+
+    return rows, playerRow
+end
+
+local function InferArenaBracket(rows, playerTeam)
+    local teamMembers = 0
+    local opponents = 0
+
+    for _, row in ipairs(rows) do
+        if row.team == playerTeam then
+            teamMembers = teamMembers + 1
+        else
+            opponents = opponents + 1
+        end
+    end
+
+    if teamMembers == opponents
+        and (teamMembers == 2 or teamMembers == 3 or teamMembers == 5) then
+        return teamMembers
+    end
+
+    return nil
+end
+
+local function IsLastManStanding(rows, playerRow, bracket)
+    if bracket ~= 5 or not playerRow or playerRow.deaths ~= 0 then return false end
+
+    local teamMembers = 0
+    local opponents = 0
+    local survivingTeamMembers = 0
+
+    for _, row in ipairs(rows) do
+        if row.team == playerRow.team then
+            teamMembers = teamMembers + 1
+            if row.deaths == 0 then
+                survivingTeamMembers = survivingTeamMembers + 1
+            end
+        else
+            opponents = opponents + 1
+        end
+    end
+
+    return teamMembers == 5 and opponents == 5 and survivingTeamMembers == 1
+end
+
+local function BuildArenaMatchToken(instanceID, winner)
+    local runtimeMilliseconds = 0
+    if type(GetBattlefieldInstanceRunTime) == "function" then
+        runtimeMilliseconds = tonumber(GetBattlefieldInstanceRunTime()) or 0
+    end
+
+    local matchIdentity
+    if runtimeMilliseconds > 0 then
+        local estimatedStart = time() - math.floor(runtimeMilliseconds / 1000)
+        -- A five-second bucket absorbs one-second rounding differences between
+        -- repeated score updates while remaining unique between real matches.
+        matchIdentity = math.floor((estimatedStart + 2) / 5) * 5
+    else
+        -- Fallback for clients that temporarily report no runtime. The session
+        -- serial is reset only when PLAYER_ENTERING_WORLD starts a new visit.
+        matchIdentity = "session-" .. tostring(arenaSessionSerial)
+    end
+
+    return table.concat({ tostring(instanceID), tostring(winner), tostring(matchIdentity) }, ":")
+end
+
+checkRatedArenaWin = function()
+    if not isTBCAnniversary or arenaResultProcessed then return end
+    if type(IsActiveBattlefieldArena) ~= "function"
+        or type(GetArenaTeam) ~= "function"
+        or type(GetBattlefieldWinner) ~= "function" then
+        return
+    end
+    if UnitLevel("player") ~= 70 then return end
+
+    local isArena, isRated = IsActiveBattlefieldArena()
+    if not isArena then return end
+
+    local _, instanceType, _, _, _, _, _, instanceID = GetInstanceInfo()
+    if instanceType ~= "arena" or not instanceID then return end
+
+    local winner = GetBattlefieldWinner()
+    if winner == nil then return end
+
+    -- Skirmishes must neither grant rated achievements nor break rated streaks.
+    if not isRated then
+        arenaResultProcessed = true
+        return
+    end
+
+    local playerName = UnitName("player")
+    local realmName = GetRealmName()
+    if not playerName or not realmName then return end
+
+    local rows, playerRow = ReadArenaScoreboard(playerName)
+    if not playerRow then return end
+
+    -- Wait for a complete, symmetric scoreboard before finalizing the match.
+    -- UPDATE_BATTLEFIELD_SCORE can fire while rows are still being populated.
+    local bracket = InferArenaBracket(rows, playerRow.team)
+    if not bracket then return end
+
+    local charKey = playerName .. "-" .. realmName
+    local charData = EnsureArenaCharacterData(charKey)
+    local matchToken = BuildArenaMatchToken(instanceID, winner)
+
+    arenaResultProcessed = true
+    if charData.LastArenaMatchToken == matchToken then
+        return
+    end
+    charData.LastArenaMatchToken = matchToken
+
+    -- Ratings can change after wins and losses. Synchronize immediately and
+    -- once more after the client has had time to publish ARENA_TEAM_UPDATE.
+    SyncArenaRatings()
+    if C_Timer and type(C_Timer.After) == "function" then
+        C_Timer.After(1, SyncArenaRatings)
+    end
+
+    local playerWon = playerRow.team == winner
+    if not playerWon then
+        charData.HotStreak = 0
+        charData.HotterStreak = 0
+        return
+    end
+
+    trigger(TYPE.ARENA_MAP, { instanceID })
+    trigger(TYPE.ARENA_WIN)
+
+    if IsLastManStanding(rows, playerRow, bracket) then
+        trigger(TYPE.ARENA_5V5_SURVIVOR)
+    end
+
+    charData.HotStreak = charData.HotStreak + 1
+
+    local personalRating = GetPersonalArenaRating(bracket)
+    if personalRating and personalRating > 1800 then
+        charData.HotterStreak = charData.HotterStreak + 1
+        if charData.HotterStreak >= 10 then
+            trigger(TYPE.ARENA_HOTTER_STREAK)
+        end
+    else
+        charData.HotterStreak = 0
+    end
+
+    if charData.HotStreak >= 10 then
+        trigger(TYPE.ARENA_HOT_STREAK)
+    end
+end
+
 local events = {
     COMBAT_LOG_EVENT_UNFILTERED = function()
         -- CombatLogGetCurrentEventInfo() is intentionally called exactly once
@@ -1237,6 +1505,7 @@ local events = {
     PLAYER_ENTERING_WORLD = function()
         canGetBattlegroundsAchievement = true
         alteracValleyMineCaptures = 0
+        BeginArenaSession()
     end,
 	-- Scan after the cooking window has populated its recipe list.
 	TRADE_SKILL_SHOW = function()
@@ -1281,148 +1550,28 @@ local events = {
         -- Reset KT abominations on wipe / combat end        
         ResetKT()        
     end,
-    UNIT_NAME_UPDATE = function()
+    UNIT_NAME_UPDATE = function(unit)
+        if unit and unit ~= "player" then return end
+        ScanKnownArenaTitles()
+    end,
+    ARENA_TEAM_UPDATE = function()
         if not isTBCAnniversary then return end
-        local current = GetCurrentTitle()
-        if not current or current == 0 then return end
-
-        local titleName = GetTitleName(current)
- 
-        if not titleName then return end
-
-        if titleName:find(loc:Get('AN_ARENA_TITLE1')) then
-            trigger(TYPE.SPECIAL, { 'GLADIATOR_TITLE' }, 1, true)
-        elseif titleName:find(loc:Get('AN_ARENA_TITLE2')) then
-            trigger(TYPE.SPECIAL, { 'CHALLENGER_TITLE' }, 1, true)
-        elseif titleName:find(loc:Get('AN_ARENA_TITLE3')) then
-            trigger(TYPE.SPECIAL, { 'RIVAL_TITLE' }, 1, true)
-        elseif titleName:find(loc:Get('AN_ARENA_TITLE4')) then
-            trigger(TYPE.SPECIAL, { 'DUELIST_TITLE' }, 1, true)
+        if C_Timer and type(C_Timer.After) == "function" then
+            C_Timer.After(0, SyncArenaRatings)
+        else
+            SyncArenaRatings()
         end
-        
     end
 }
-
--- Necessary to avoid multiple triggers for the same arena match
-local lastArenaMatchID = 0
-
-checkRatedArenaWin = function()
-
-    if not isTBCAnniversary then return end
-    if type(IsActiveBattlefieldArena) ~= "function" or type(GetArenaTeam) ~= "function" then return end
-	if UnitLevel("player") ~= 70 then return end
-
-    -- 1. Get Character Key
-    local name = UnitName("player")
-    local realm = GetRealmName()
-    if not name or not realm then return end -- Safety for loading screens
-    local charKey = name .. "-" .. realm
-    
-    -- Ensure that the exact current character key has valid arena streak data.
-    local charData = EnsureArenaCharacterData(charKey)
-    
-    local isArena, isRated = IsActiveBattlefieldArena()
-    if not isArena then return end
-
-    local _, instanceType, _, _, _, _, _, instanceID = GetInstanceInfo()
-    if instanceType ~= "arena" or not instanceID or instanceID == lastArenaMatchID then return end
-    
-    local winner = GetBattlefieldWinner()
-
-    --nobody won
-    if winner == nil then return end 
-
-    local playerWon = false
-    local playerTeam = -1
-    local playerName = name
-
-    -- Single loop to gather all necessary data
-    for i = 1, GetNumBattlefieldScores() do
-        local name, _, _, _, _, team = GetBattlefieldScore(i)
-        if name == playerName then
-            playerTeam = team
-            playerWon = (team == winner)
-            break
-        end
-    end
-
-    lastArenaMatchID = instanceID
-    
-    -- Reset streak in charData if the player lost
-    if not playerWon then
-        charData.HotStreak = 0
-        charData.HotterStreak = 0
-        return 
-    end
-
-    if isRated then
-        -- 1. Standard Win Triggers
-        trigger(TYPE.ARENA_MAP, { instanceID })
-        trigger(TYPE.ARENA_WIN)
-
-        -- Last Man Standing (5v5)
-        if not UnitIsDeadOrGhost("player") then
-            local is5v5 = false
-            for i = 1, 3 do
-                local _, tSize = GetArenaTeam(i)
-                if tSize == 5 then is5v5 = true break end
-            end
-
-            if is5v5 and GetNumBattlefieldScores() == 10 then
-                local teammatesAlive = 0
-                for i = 1, GetNumBattlefieldScores() do
-                    local sName, _, _, _, _, team = GetBattlefieldScore(i)
-                    if sName and team == playerTeam and sName ~= playerName and not UnitIsDeadOrGhost(sName) then
-                        teammatesAlive = teammatesAlive + 1
-                    end
-                end
-                if teammatesAlive == 0 then 
-                    trigger(TYPE.ARENA_5V5_SURVIVOR) 
-                end
-            end
-        end
-
-        charData.HotStreak = charData.HotStreak + 1   		
-		
-        local qualifiesForHotter = false
-        for index = 1, 3 do
-            local _, tSize, _, _, _, _, _, _, _, _, pRating = GetArenaTeam(index)
-            if tSize and pRating and pRating > 0 then
-                -- if it does not trigger use event: ARENA_TEAM_UPDATE
-                trigger(TYPE.ARENA_RATING, { tSize }, pRating, true)
-
-                -- Check if this specific win happened while player is > 1800
-                if pRating >= 1800 then
-                    qualifiesForHotter = true
-                end
-                
-            end
-        end
-
-        -- Handle the Hotter Streak counter
-        if qualifiesForHotter then
-            charData.HotterStreak = charData.HotterStreak + 1
-            if charData.HotterStreak >= 10 then
-                trigger(TYPE.ARENA_HOTTER_STREAK)
-            end
-        else
-            -- If you win a game below 1800, the "Hotter" streak is broken
-            charData.HotterStreak = 0 
-        end
-
-        -- Standard Hot Streak (just 10 wins in a row, any rating)
-        if charData.HotStreak >= 10 then
-            trigger(TYPE.ARENA_HOT_STREAK)
-        end
-    end
-end
 
 local eventsHandler = CreateFrame('FRAME', 'ClassicAchievementsEventHandlingFrame')
 eventsHandler:SetScript('OnEvent', function(self, event, ...)
     events[event](...)
 end)
 for eventName in pairs(events) do
-    if eventName == "UNIT_AURA" then
+    if eventName == "ARENA_TEAM_UPDATE" and not isTBCAnniversary then
+        -- TBC-only event; do not attempt to register it on Classic Era.
+    elseif eventName == "UNIT_AURA" then
         eventsHandler:RegisterUnitEvent(eventName, "player")
     else
         eventsHandler:RegisterEvent(eventName)
@@ -1446,6 +1595,11 @@ local function PerformInitialCheck()
     updateItemsInInventory()
     updateGear()
 	CheckDungeonQuests()
+
+    if isTBCAnniversary then
+        ScanKnownArenaTitles()
+        SyncArenaRatings()
+    end
 
     progression:ReCheckAchievements()
 end
