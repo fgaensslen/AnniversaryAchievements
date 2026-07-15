@@ -324,19 +324,63 @@ local function checkUnexploredAreas()
     triggerExplorationAtPlayerPosition()
 end
 
+-- Return only threshold values that currently have registered criteria.
+-- The shared registry contains native and Public-API criteria, so extension-
+-- defined thresholds are included automatically without a separate scan path.
+local function GetRegisteredThresholds(criteriaType, leadingValue)
+    local registry = criterias.criterias[criteriaType]
+    if leadingValue ~= nil then
+        registry = registry and registry[leadingValue]
+    end
+    if not registry then return nil end
+
+    local thresholds = {}
+    for threshold, matches in pairs(registry) do
+        if type(threshold) == "number" and type(matches) == "table" and #matches > 0 then
+            thresholds[#thresholds + 1] = threshold
+        end
+    end
+    if #thresholds == 0 then return nil end
+
+    table.sort(thresholds)
+    return thresholds
+end
+
 local function updateReputations()
+    local aggregateThresholds = GetRegisteredThresholds(TYPE.REACH_ANY_REPUTATION)
+    local specificRegistry = criterias.criterias[TYPE.REACH_REPUTATION]
+    if not aggregateThresholds and (not specificRegistry or not next(specificRegistry)) then return end
+
     local totals = {}
     for factionIndex = 1, GetNumFactions() do
         local name, description, standingId, bottomValue, topValue, earnedValue, atWarWith, canToggleAtWar, isHeader, isCollapsed, hasRep, isWatched, isChild, factionID = GetFactionInfo(factionIndex)
-        if not isHeader then
-            for level = 1, standingId do
-                trigger(TYPE.REACH_REPUTATION, {factionID, level}, 1, true)
-                totals[level] = (totals[level] or 0) + 1
+        if not isHeader and type(standingId) == "number" then
+            if factionID and specificRegistry and specificRegistry[factionID] then
+                local thresholds = GetRegisteredThresholds(TYPE.REACH_REPUTATION, factionID)
+                if thresholds then
+                    for thresholdIndex = 1, #thresholds do
+                        local threshold = thresholds[thresholdIndex]
+                        if threshold > standingId then break end
+                        trigger(TYPE.REACH_REPUTATION, {factionID, threshold}, 1, true)
+                    end
+                end
+            end
+
+            if aggregateThresholds then
+                for thresholdIndex = 1, #aggregateThresholds do
+                    local threshold = aggregateThresholds[thresholdIndex]
+                    if threshold > standingId then break end
+                    totals[threshold] = (totals[threshold] or 0) + 1
+                end
             end
         end
     end
-    for standingId, total in pairs(totals) do
-        trigger(TYPE.REACH_ANY_REPUTATION, {standingId}, total, true)
+
+    if aggregateThresholds then
+        for thresholdIndex = 1, #aggregateThresholds do
+            local threshold = aggregateThresholds[thresholdIndex]
+            trigger(TYPE.REACH_ANY_REPUTATION, {threshold}, totals[threshold] or 0, true)
+        end
     end
 end
 
@@ -371,28 +415,6 @@ end
 
 ns.Professions = professions
 ns.Skills = skills
-
--- Return only threshold values that currently have registered criteria.
--- The registry contains native and Public-API criteria, so extension-defined
--- profession thresholds are included automatically without a separate scan.
-local function GetRegisteredThresholds(criteriaType, leadingValue)
-    local registry = criterias.criterias[criteriaType]
-    if leadingValue ~= nil then
-        registry = registry and registry[leadingValue]
-    end
-    if not registry then return nil end
-
-    local thresholds = {}
-    for threshold, matches in pairs(registry) do
-        if type(threshold) == "number" and type(matches) == "table" and #matches > 0 then
-            thresholds[#thresholds + 1] = threshold
-        end
-    end
-    if #thresholds == 0 then return nil end
-
-    table.sort(thresholds)
-    return thresholds
-end
 
 local function TriggerProfessionThresholds(professionID, points)
     local thresholds = GetRegisteredThresholds(TYPE.REACH_PROFESSION_LEVEL, professionID)

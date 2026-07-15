@@ -51,3 +51,4 @@ Details siehe Ordner CHANGELOGS
 2.3.43 – Datenredundanzen bereinigt und Fischsammlung verifiziert
 2.3.44 – Berufsscan auf registrierte Fertigkeitsschwellen optimiert
 2.3.45 – Verzögerte Vollscans ereignisübergreifend gebündelt
+2.3.46 – Rufscan auf registrierte Rufschwellen begrenzt
