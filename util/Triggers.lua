@@ -58,6 +58,47 @@ local function trigger(...)
     progression:Trigger(...)
 end
 
+-- Full-state scans are deliberately delayed because several legacy client
+-- events fire before the affected API state has settled. Keep one shared timer
+-- and one pending entry per scan type so event bursts read the final state once
+-- instead of scheduling identical bag, reputation, profession, bank, or gear
+-- scans for every individual event.
+local delayedFullScanQueue = {}
+local delayedFullScanPending = {}
+local delayedFullScanTimerScheduled = false
+
+local function RunDelayedFullScans()
+    local queue = delayedFullScanQueue
+    local pending = delayedFullScanPending
+
+    delayedFullScanQueue = {}
+    delayedFullScanPending = {}
+    delayedFullScanTimerScheduled = false
+
+    local errorHandler = type(geterrorhandler) == "function" and geterrorhandler() or nil
+    for index = 1, #queue do
+        local scan = pending[queue[index]]
+        if scan then
+            if errorHandler then
+                xpcall(scan, errorHandler)
+            else
+                scan()
+            end
+        end
+    end
+end
+
+local function ScheduleDelayedFullScan(scanKey, scan)
+    if delayedFullScanPending[scanKey] then return end
+
+    delayedFullScanPending[scanKey] = scan
+    delayedFullScanQueue[#delayedFullScanQueue + 1] = scanKey
+
+    if delayedFullScanTimerScheduled then return end
+    delayedFullScanTimerScheduled = true
+    C_Timer.After(1, RunDelayedFullScans)
+end
+
 local function getItemIdFromLink(link)
     return tonumber(link:match("\124Hitem:(%d+):"))
 end
@@ -413,14 +454,8 @@ local function updateProfessions()
     TriggerProfessionGroupThresholds(secondary, TYPE.REACH_SECONDARY_PROFESSION_LEVEL)
 end
 
-local professionUpdateScheduled = false
 local function ScheduleProfessionUpdate()
-    if professionUpdateScheduled then return end
-    professionUpdateScheduled = true
-    C_Timer.After(1, function()
-        professionUpdateScheduled = false
-        updateProfessions()
-    end)
+    ScheduleDelayedFullScan("professions", updateProfessions)
 end
 
 local highestKnownCookingRecipeCount
@@ -1441,13 +1476,13 @@ local events = {
         end)
     end,
     PLAYERBANKBAGSLOTS_CHANGED = function()
-        C_Timer.After(1, updateBankSlots)
+        ScheduleDelayedFullScan("bankSlots", updateBankSlots)
     end,
 	BANKFRAME_OPENED = function()
 		updateBankSlots()
 	end,
     UPDATE_FACTION = function()
-        C_Timer.After(1, updateReputations)
+        ScheduleDelayedFullScan("reputations", updateReputations)
     end,
     SKILL_LINES_CHANGED = function()
         ScheduleProfessionUpdate()
@@ -1457,7 +1492,7 @@ local events = {
         if not playerName then playerName = initiator end
         if not playerName or playerName ~= UnitName('player') then return end
 
-        C_Timer.After(1, updateItemsInInventory)
+        ScheduleDelayedFullScan("inventory", updateItemsInInventory)
 
         local item, quantity = msg:match(ITEM_CREATION_PATTERN_MULTIPLE)
         if not item then
@@ -1579,7 +1614,7 @@ local events = {
 		checkUnexploredAreas()
 	end,
     PLAYER_EQUIPMENT_CHANGED = function()
-        C_Timer.After(1, updateGear)
+        ScheduleDelayedFullScan("gear", updateGear)
     end,
     PLAYER_ENTERING_WORLD = function()
         canGetBattlegroundsAchievement = true

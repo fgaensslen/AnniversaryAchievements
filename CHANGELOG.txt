@@ -50,3 +50,4 @@ Details siehe Ordner CHANGELOGS
 2.3.42 – Kel'Thuzad-Monstrositäten zählen korrekt für Gesamt-Tötungszähler
 2.3.43 – Datenredundanzen bereinigt und Fischsammlung verifiziert
 2.3.44 – Berufsscan auf registrierte Fertigkeitsschwellen optimiert
+2.3.45 – Verzögerte Vollscans ereignisübergreifend gebündelt

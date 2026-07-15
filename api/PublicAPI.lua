@@ -1654,7 +1654,7 @@ function api:GetAddonVersion()
     if type(GetAddOnMetadata) == "function" then
         return GetAddOnMetadata(addonName or "AnniversaryAchievements", "Version")
     end
-    return "v2.3.44"
+    return "v2.3.45"
 end
 
 function api:GetClientFlavor()

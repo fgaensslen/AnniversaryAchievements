@@ -1,6 +1,6 @@
 local _, ns = ...
 
--- Generated flavor catalog for AnniversaryAchievements v2.3.44.
+-- Generated flavor catalog for AnniversaryAchievements v2.3.45.
 -- This file contains only definitions used by this client flavor. Stable IDs
 -- keep Classic v1.4.6 and all existing TBC SavedVariables fully compatible.
 
