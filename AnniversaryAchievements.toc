@@ -2,7 +2,7 @@
 ## Notes: Achievements for WoW Classic Era and TBC Anniversary
 ## Title: Anniversary Achievements
 ## Author: BearCraftStudios
-## Version: v2.3.42
+## Version: v2.3.43
 ## IconTexture: Interface/AddOns/AnniversaryAchievements/logo.tga
 ## Category: Achievements
 ## Category-deDE: Erfolge

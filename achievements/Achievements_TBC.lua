@@ -1455,15 +1455,6 @@ local tbcDelta = {
                             ["name"] = "",
                             ["type"] = 3,
                         },
-                        [2] = {
-                            ["coinFormatter"] = false,
-                            ["data"] = {
-                                [1] = 10985,
-                            },
-                            ["id"] = 294,
-                            ["name"] = "",
-                            ["type"] = 3,
-                        },
                     },
                     ["id"] = 295,
                     ["name"] = "",
@@ -7435,16 +7426,6 @@ local tbcDelta = {
                     ["name"] = "",
                     ["type"] = 12,
                 },
-                [2] = {
-                    ["coinFormatter"] = false,
-                    ["data"] = {
-                        [1] = 1,
-                        [2] = 375,
-                    },
-                    ["id"] = 1649,
-                    ["name"] = "",
-                    ["type"] = 12,
-                },
             },
             ["description"] = "AD_FIRST_AID_OUTLAND_MASTER",
             ["icon"] = "-spell_holy_sealofsacrifice",
@@ -7467,16 +7448,6 @@ local tbcDelta = {
                     ["name"] = "",
                     ["type"] = 12,
                 },
-                [2] = {
-                    ["coinFormatter"] = false,
-                    ["data"] = {
-                        [1] = 2,
-                        [2] = 375,
-                    },
-                    ["id"] = 1651,
-                    ["name"] = "",
-                    ["type"] = 12,
-                },
             },
             ["description"] = "AD_FISHING_OUTLAND_MASTER",
             ["icon"] = "-trade_fishing",
@@ -7496,16 +7467,6 @@ local tbcDelta = {
                         [2] = 375,
                     },
                     ["id"] = 1652,
-                    ["name"] = "",
-                    ["type"] = 12,
-                },
-                [2] = {
-                    ["coinFormatter"] = false,
-                    ["data"] = {
-                        [1] = 3,
-                        [2] = 375,
-                    },
-                    ["id"] = 1653,
                     ["name"] = "",
                     ["type"] = 12,
                 },
@@ -15348,9 +15309,6 @@ local tbcDelta = {
                 [1] = {
                     ["id"] = 1633,
                 },
-                [2] = {
-                    ["id"] = 1634,
-                },
             },
             ["nextID"] = 434,
         },
@@ -15380,9 +15338,6 @@ local tbcDelta = {
                 [1] = {
                     ["id"] = 1638,
                 },
-                [2] = {
-                    ["id"] = 1639,
-                },
             },
             ["nextID"] = 435,
         },
@@ -15411,9 +15366,6 @@ local tbcDelta = {
             ["criteria"] = {
                 [1] = {
                     ["id"] = 1643,
-                },
-                [2] = {
-                    ["id"] = 1644,
                 },
             },
             ["nextID"] = 436,

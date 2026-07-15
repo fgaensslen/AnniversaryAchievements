@@ -1,6 +1,6 @@
 local _, ns = ...
 
--- Generated flavor catalog for AnniversaryAchievements v2.3.42.
+-- Generated flavor catalog for AnniversaryAchievements v2.3.43.
 -- This file contains only definitions used by this client flavor. Stable IDs
 -- keep Classic v1.4.6 and all existing TBC SavedVariables fully compatible.
 
@@ -21032,16 +21032,6 @@ local achievementDefinitions = {
                 ["name"] = "",
                 ["type"] = 12,
             },
-            [2] = {
-                ["coinFormatter"] = false,
-                ["data"] = {
-                    [1] = 1,
-                    [2] = 300,
-                },
-                ["id"] = 1623,
-                ["name"] = "",
-                ["type"] = 12,
-            },
         },
         ["description"] = "AD_FIRST_AID_MASTER",
         ["icon"] = "-spell_holy_sealofsacrifice",
@@ -21132,16 +21122,6 @@ local achievementDefinitions = {
                 ["name"] = "",
                 ["type"] = 12,
             },
-            [2] = {
-                ["coinFormatter"] = false,
-                ["data"] = {
-                    [1] = 2,
-                    [2] = 300,
-                },
-                ["id"] = 1628,
-                ["name"] = "",
-                ["type"] = 12,
-            },
         },
         ["description"] = "AD_FISHING_MASTER",
         ["icon"] = "-trade_fishing",
@@ -21229,16 +21209,6 @@ local achievementDefinitions = {
                     [2] = 300,
                 },
                 ["id"] = 1632,
-                ["name"] = "",
-                ["type"] = 12,
-            },
-            [2] = {
-                ["coinFormatter"] = false,
-                ["data"] = {
-                    [1] = 3,
-                    [2] = 300,
-                },
-                ["id"] = 1633,
                 ["name"] = "",
                 ["type"] = 12,
             },
