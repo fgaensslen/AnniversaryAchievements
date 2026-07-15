@@ -3,6 +3,7 @@ local _, ns = ...
 local progression = ns.Progression
 local state = ns.State
 local database = ns.Database
+local criterias = ns.Criterias
 local areaTableLocale = ns.AreaTableLocale
 
 -- Build the localized area-name index once while the addon loads. Most names
@@ -330,15 +331,55 @@ end
 ns.Professions = professions
 ns.Skills = skills
 
-local function triggerProfessions(array, type)
-    local size = #array
-    if size == 0 then return end
-    if size == 1 then trigger(type, array, 1, true) end
-    table.sort(array, function(a, b) return a < b end)
-    for lvl = 1, array[1] do trigger(type, {lvl}, size, true) end
-    for i = 2, size do
-        if array[i - 1] ~= array[i] then
-            for lvl = 1, array[i] do trigger(type, {lvl}, size - i + 1, true) end
+-- Return only threshold values that currently have registered criteria.
+-- The registry contains native and Public-API criteria, so extension-defined
+-- profession thresholds are included automatically without a separate scan.
+local function GetRegisteredThresholds(criteriaType, leadingValue)
+    local registry = criterias.criterias[criteriaType]
+    if leadingValue ~= nil then
+        registry = registry and registry[leadingValue]
+    end
+    if not registry then return nil end
+
+    local thresholds = {}
+    for threshold, matches in pairs(registry) do
+        if type(threshold) == "number" and type(matches) == "table" and #matches > 0 then
+            thresholds[#thresholds + 1] = threshold
+        end
+    end
+    if #thresholds == 0 then return nil end
+
+    table.sort(thresholds)
+    return thresholds
+end
+
+local function TriggerProfessionThresholds(professionID, points)
+    local thresholds = GetRegisteredThresholds(TYPE.REACH_PROFESSION_LEVEL, professionID)
+    if not thresholds then return end
+
+    for index = 1, #thresholds do
+        local threshold = thresholds[index]
+        if threshold > points then break end
+        trigger(TYPE.REACH_PROFESSION_LEVEL, {professionID, threshold}, 1, true)
+    end
+end
+
+local function TriggerProfessionGroupThresholds(levels, criteriaType)
+    if #levels == 0 then return end
+
+    local thresholds = GetRegisteredThresholds(criteriaType)
+    if not thresholds then return end
+
+    for thresholdIndex = 1, #thresholds do
+        local threshold = thresholds[thresholdIndex]
+        local reached = 0
+        for levelIndex = 1, #levels do
+            if levels[levelIndex] >= threshold then
+                reached = reached + 1
+            end
+        end
+        if reached > 0 then
+            trigger(criteriaType, {threshold}, reached, true)
         end
     end
 end
@@ -349,9 +390,9 @@ local function updateProfessions()
         local skillName, isHeader, _, points, tempPoints = GetSkillLineInfo(i)
         if not isHeader then
             points = min(375, points - tempPoints)
-            for idx, data in pairs(professions) do
+            for _, data in pairs(professions) do
                 if data[3] == skillName then
-                    for ps = 1, points do trigger(TYPE.REACH_PROFESSION_LEVEL, {data[1], ps}, 1, true) end
+                    TriggerProfessionThresholds(data[1], points)
                     if data[2] then
                         main[#main + 1] = points
                     else
@@ -360,16 +401,26 @@ local function updateProfessions()
                     break
                 end
             end
-            for idx, data in pairs(skills) do
+            for _, data in pairs(skills) do
                 if data[2] == skillName then
-                    for ps = 1, points do trigger(TYPE.REACH_PROFESSION_LEVEL, {data[1], ps}, 1, true) end
+                    TriggerProfessionThresholds(data[1], points)
                     break
                 end
             end
         end
     end
-    triggerProfessions(main, TYPE.REACH_MAIN_PROFESSION_LEVEL)
-    triggerProfessions(secondary, TYPE.REACH_SECONDARY_PROFESSION_LEVEL)
+    TriggerProfessionGroupThresholds(main, TYPE.REACH_MAIN_PROFESSION_LEVEL)
+    TriggerProfessionGroupThresholds(secondary, TYPE.REACH_SECONDARY_PROFESSION_LEVEL)
+end
+
+local professionUpdateScheduled = false
+local function ScheduleProfessionUpdate()
+    if professionUpdateScheduled then return end
+    professionUpdateScheduled = true
+    C_Timer.After(1, function()
+        professionUpdateScheduled = false
+        updateProfessions()
+    end)
 end
 
 local highestKnownCookingRecipeCount
@@ -1399,7 +1450,7 @@ local events = {
         C_Timer.After(1, updateReputations)
     end,
     SKILL_LINES_CHANGED = function()
-        C_Timer.After(1, updateProfessions)
+        ScheduleProfessionUpdate()
     end,
     CHAT_MSG_LOOT = function(msg, initiator, langName, channelName, playerName, flags)
         if flags == 'GM' or flags == 'DEV' then return end
