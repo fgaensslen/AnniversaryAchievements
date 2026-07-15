@@ -2,7 +2,7 @@
 ## Notes: Achievements for WoW Classic Era and TBC Anniversary
 ## Title: Anniversary Achievements
 ## Author: BearCraftStudios
-## Version: v2.3.40
+## Version: v2.3.41
 ## IconTexture: Interface/AddOns/AnniversaryAchievements/logo.tga
 ## Category: Achievements
 ## Category-deDE: Erfolge
@@ -14,6 +14,7 @@ libs\libs.xml
 #@end-no-lib-strip@
 
 util/ClientFlavor.lua
+util/ReleaseSchedule.lua
 
 localization/en.lua
 localization/de.lua

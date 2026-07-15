@@ -215,7 +215,12 @@ local function CheckDungeonQuests()
 	
 	for questID, criteriaInfo in pairs(bossQuestMap) do
         if C_QuestLog.IsQuestFlaggedCompleted(questID) then
-            progression:Trigger(criteriaInfo.type, criteriaInfo.data)
+            -- Every KILL_NPC criterion has a registry data length of one.
+            -- Completed quests that represent multiple bosses must therefore
+            -- replay one trigger per NPC instead of passing the complete list.
+            for _, npcID in ipairs(criteriaInfo.data) do
+                progression:Trigger(criteriaInfo.type, {npcID})
+            end
         end
     end
 	
@@ -769,7 +774,13 @@ local alteracID, warsongID, arathiID, bgEyeID = 1459, 1460, 1461, 1956
 
 -- Kel'Thuzad Abomination Achievement
 local KT_ABOMINATION_ID = 16428
+local KELTHUZAD_ID = 15990
 local ktAbomKills = 0
+
+local PHASE_3_FIRST_WEEK_BOSSES = {
+    [17968] = true, -- Archimonde
+    [22917] = true, -- Illidan Stormrage
+}
 
 local function ResetKT()
     ktAbomKills = 0
@@ -781,34 +792,45 @@ local function GetCreatureIDFromGUID(guid)
     return killingTracker:GetCreatureID(guid)
 end
 killingTracker:AddHandler(function(targetID) return true end, function(targetID)
-
-    if targetID ~= KT_ABOMINATION_ID then
-        -- 1. SINGLE NPC (exact ID)
-        trigger(TYPE.KILL_NPC, {targetID}, 1)
-
-        -- 2. ANY NPC (generic kill)
-        trigger(TYPE.KILL_ANY_NPC, nil, 1)
-
-        -- 3. MULTIPLE NPCS OF SPECIFIC IDs (list-type achievements)
-        trigger(TYPE.KILL_NPCS, {targetID}, 1)
-
-        -- 4. HEROIC kills
-        local difficultyID = GetDungeonDifficultyID()
-        local _, _, isHeroic = GetDifficultyInfo(difficultyID)
-        if isHeroic then
-            trigger(TYPE.KILL_NPC_HEROIC, {targetID}, 1)
-        end
-
-        -- 5. P3 first week
-        if time() < 1643871600 then
-            trigger(TYPE.P3_FIRST_WEEK, {targetID}, 1)
-        end
-    else
+    if targetID == KT_ABOMINATION_ID then
+        -- Count the Monstrosities during the current Kel'Thuzad attempt, but do
+        -- not award the criterion before Kel'Thuzad himself has died.
         ktAbomKills = ktAbomKills + 1
+        return
+    end
 
+    -- 1. SINGLE NPC (exact ID)
+    trigger(TYPE.KILL_NPC, {targetID}, 1)
+
+    -- 2. ANY NPC (generic kill)
+    trigger(TYPE.KILL_ANY_NPC, nil, 1)
+
+    -- 3. MULTIPLE NPCS OF SPECIFIC IDs (list-type achievements)
+    trigger(TYPE.KILL_NPCS, {targetID}, 1)
+
+    -- 4. HEROIC kills
+    local difficultyID = GetDungeonDifficultyID()
+    local _, _, isHeroic = GetDifficultyInfo(difficultyID)
+    if isHeroic then
+        trigger(TYPE.KILL_NPC_HEROIC, {targetID}, 1)
+    end
+
+    -- 5. Phase 3 first week. The release window is based on server time and a
+    -- central confirmed schedule, never on a character-specific quest flag.
+    if isTBCAnniversary
+        and PHASE_3_FIRST_WEEK_BOSSES[targetID]
+        and ns.ReleaseSchedule:IsWithinFirstWeek("TBC_PHASE_3")
+    then
+        trigger(TYPE.P3_FIRST_WEEK, {targetID}, 1)
+    end
+
+    -- Achievement 565 is granted only with the Kel'Thuzad kill from the same
+    -- combat attempt. PLAYER_REGEN_ENABLED clears the counter after a wipe.
+    if targetID == KELTHUZAD_ID then
         if ktAbomKills >= 18 then
             trigger(TYPE.KILL_NPCS, {KT_ABOMINATION_ID}, 1)
         end
+        ResetKT()
     end
 end)
 
@@ -852,8 +874,9 @@ killingTracker:AddHandler({16062, 16063, 16064, 16065}, function(targetID)
     if #timings == 4 then
         table.sort(timings, function(a, b) return a < b end)
 
-        -- Timed achievement
-        if timings[2] - timings[1] <= 15 and timings[3] - timings[2] <= 15 and timings[4] - timings[3] <= 15 then
+        -- Timed achievement: all four deaths must fit into one shared
+        -- 15-second window, not three independent 15-second intervals.
+        if timings[4] - timings[1] <= 15 then
             trigger(TYPE.SPECIAL, {4}, 1, true)
         end
 
