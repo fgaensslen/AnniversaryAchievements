@@ -1,8 +1,8 @@
-## Interface: 11508
+## Interface: 11509
 ## Title: Anniversary Achievements
 ## Notes: Achievements for WoW Classic
 ## Author: Florian Gaensslen
-## Version: 1.4.6
+## Version: 1.4.7
 ## SavedVariables: CA_Settings
 ## SavedVariablesPerCharacter: CA_LocalData, CA_Flags
 
@@ -32,6 +32,5 @@ ui/ApiMocks.lua
 ui/Backdrop.lua
 ui/AchievementUI.lua
 ui/AchievementUI.xml
-ui/Microbutton.xml
 ui/Microbutton.lua
 util/Minimap.lua
