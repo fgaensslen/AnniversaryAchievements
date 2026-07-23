@@ -1,3 +1,6 @@
+local _, ns = ...
+if not (ns and ns.IsTBCAnniversary) then return end
+
 if GetLocale() ~= 'ruRU' then return end
 
 -- Blizzard translations are taken from AchievementsData Classic/TBC.

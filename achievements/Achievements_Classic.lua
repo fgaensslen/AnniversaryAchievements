@@ -1,6 +1,6 @@
 local _, ns = ...
 
--- Generated flavor catalog for AnniversaryAchievements v2.3.49.
+-- Generated flavor catalog for AnniversaryAchievements v2.3.51.
 -- This file contains only definitions used by this client flavor. Stable IDs
 -- keep Classic v1.4.6 and all existing TBC SavedVariables fully compatible.
 
@@ -12,7 +12,7 @@ local factionKey = UnitFactionGroup("player") == "Horde" and "H" or "A"
 local _, classKey = UnitClass("player")
 local selector = factionKey .. ":" .. tostring(classKey or "WARRIOR")
 
-local areaTableLocale = ns.AreaTableLocale
+local areaTableLocale = ns.AreaTableLocale or _G.AreaTableLocale or {}
 
 local separator = "."
 
@@ -24456,31 +24456,13 @@ local achievementDefinitions = {
                     [9] = {
                         ["coinFormatter"] = false,
                         ["data"] = {
-                            [1] = 34000,
-                        },
-                        ["id"] = 1829,
-                        ["name"] = "",
-                        ["type"] = 5,
-                    },
-                    [10] = {
-                        ["coinFormatter"] = false,
-                        ["data"] = {
-                            [1] = 34002,
-                        },
-                        ["id"] = 1830,
-                        ["name"] = "",
-                        ["type"] = 5,
-                    },
-                    [11] = {
-                        ["coinFormatter"] = false,
-                        ["data"] = {
                             [1] = 20392,
                         },
                         ["id"] = 1831,
                         ["name"] = "",
                         ["type"] = 5,
                     },
-                    [12] = {
+                    [10] = {
                         ["coinFormatter"] = false,
                         ["data"] = {
                             [1] = 20569,
@@ -24489,7 +24471,7 @@ local achievementDefinitions = {
                         ["name"] = "",
                         ["type"] = 5,
                     },
-                    [13] = {
+                    [11] = {
                         ["coinFormatter"] = false,
                         ["data"] = {
                             [1] = 20571,
@@ -24498,7 +24480,7 @@ local achievementDefinitions = {
                         ["name"] = "",
                         ["type"] = 5,
                     },
-                    [14] = {
+                    [12] = {
                         ["coinFormatter"] = false,
                         ["data"] = {
                             [1] = 20574,
@@ -24507,7 +24489,7 @@ local achievementDefinitions = {
                         ["name"] = "",
                         ["type"] = 5,
                     },
-                    [15] = {
+                    [13] = {
                         ["coinFormatter"] = false,
                         ["data"] = {
                             [1] = 20565,
@@ -24516,7 +24498,7 @@ local achievementDefinitions = {
                         ["name"] = "",
                         ["type"] = 5,
                     },
-                    [16] = {
+                    [14] = {
                         ["coinFormatter"] = false,
                         ["data"] = {
                             [1] = 20563,
@@ -24525,7 +24507,7 @@ local achievementDefinitions = {
                         ["name"] = "",
                         ["type"] = 5,
                     },
-                    [17] = {
+                    [15] = {
                         ["coinFormatter"] = false,
                         ["data"] = {
                             [1] = 20567,
@@ -24534,30 +24516,12 @@ local achievementDefinitions = {
                         ["name"] = "",
                         ["type"] = 5,
                     },
-                    [18] = {
+                    [16] = {
                         ["coinFormatter"] = false,
                         ["data"] = {
                             [1] = 20562,
                         },
                         ["id"] = 1838,
-                        ["name"] = "",
-                        ["type"] = 5,
-                    },
-                    [19] = {
-                        ["coinFormatter"] = false,
-                        ["data"] = {
-                            [1] = 34001,
-                        },
-                        ["id"] = 1839,
-                        ["name"] = "",
-                        ["type"] = 5,
-                    },
-                    [20] = {
-                        ["coinFormatter"] = false,
-                        ["data"] = {
-                            [1] = 34003,
-                        },
-                        ["id"] = 1840,
                         ["name"] = "",
                         ["type"] = 5,
                     },
@@ -24669,28 +24633,6 @@ local achievementDefinitions = {
             [9] = {
                 ["coinFormatter"] = false,
                 ["data"] = {
-                    [1] = 34000,
-                },
-                ["id"] = 1850,
-                ["name"] = {
-                    ["itemID"] = 34000,
-                },
-                ["type"] = 5,
-            },
-            [10] = {
-                ["coinFormatter"] = false,
-                ["data"] = {
-                    [1] = 34002,
-                },
-                ["id"] = 1851,
-                ["name"] = {
-                    ["itemID"] = 34002,
-                },
-                ["type"] = 5,
-            },
-            [11] = {
-                ["coinFormatter"] = false,
-                ["data"] = {
                     [1] = 20392,
                 },
                 ["id"] = 1852,
@@ -24699,7 +24641,7 @@ local achievementDefinitions = {
                 },
                 ["type"] = 5,
             },
-            [12] = {
+            [10] = {
                 ["coinFormatter"] = false,
                 ["data"] = {
                     [1] = 20569,
@@ -24710,7 +24652,7 @@ local achievementDefinitions = {
                 },
                 ["type"] = 5,
             },
-            [13] = {
+            [11] = {
                 ["coinFormatter"] = false,
                 ["data"] = {
                     [1] = 20571,
@@ -24721,7 +24663,7 @@ local achievementDefinitions = {
                 },
                 ["type"] = 5,
             },
-            [14] = {
+            [12] = {
                 ["coinFormatter"] = false,
                 ["data"] = {
                     [1] = 20574,
@@ -24732,7 +24674,7 @@ local achievementDefinitions = {
                 },
                 ["type"] = 5,
             },
-            [15] = {
+            [13] = {
                 ["coinFormatter"] = false,
                 ["data"] = {
                     [1] = 20565,
@@ -24743,7 +24685,7 @@ local achievementDefinitions = {
                 },
                 ["type"] = 5,
             },
-            [16] = {
+            [14] = {
                 ["coinFormatter"] = false,
                 ["data"] = {
                     [1] = 20563,
@@ -24754,7 +24696,7 @@ local achievementDefinitions = {
                 },
                 ["type"] = 5,
             },
-            [17] = {
+            [15] = {
                 ["coinFormatter"] = false,
                 ["data"] = {
                     [1] = 20567,
@@ -24765,7 +24707,7 @@ local achievementDefinitions = {
                 },
                 ["type"] = 5,
             },
-            [18] = {
+            [16] = {
                 ["coinFormatter"] = false,
                 ["data"] = {
                     [1] = 20562,
@@ -24773,28 +24715,6 @@ local achievementDefinitions = {
                 ["id"] = 1859,
                 ["name"] = {
                     ["itemID"] = 20562,
-                },
-                ["type"] = 5,
-            },
-            [19] = {
-                ["coinFormatter"] = false,
-                ["data"] = {
-                    [1] = 34001,
-                },
-                ["id"] = 1860,
-                ["name"] = {
-                    ["itemID"] = 34001,
-                },
-                ["type"] = 5,
-            },
-            [20] = {
-                ["coinFormatter"] = false,
-                ["data"] = {
-                    [1] = 34003,
-                },
-                ["id"] = 1861,
-                ["name"] = {
-                    ["itemID"] = 34003,
                 },
                 ["type"] = 5,
             },

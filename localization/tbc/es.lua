@@ -1,3 +1,6 @@
+local _, ns = ...
+if not (ns and ns.IsTBCAnniversary) then return end
+
 if GetLocale() ~= 'esES' then return end
 local L = {
 	achievement_earned = '&aLogro obtenido por %s el %d.%d.%d',

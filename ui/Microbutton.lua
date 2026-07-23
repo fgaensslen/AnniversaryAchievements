@@ -399,6 +399,54 @@ local function AnchorRightOf(frame, previous)
     frame:SetPoint("BOTTOMLEFT", previous, "BOTTOMRIGHT", SPACING, 0)
 end
 
+local function ReanchorSharedSocialGuildSlot(button)
+    local slot = SocialsMicroButton or GuildMicroButton
+    if not slot then return button end
+
+    -- Classic Era and TBC use SocialsMicroButton as the physical slot while
+    -- GuildMicroButton is overlaid on that slot. SocialsMicroButton may be
+    -- hidden when the guild variant is active, so its anchor must be moved
+    -- regardless of visibility.
+    if SocialsMicroButton then
+        AnchorRightOf(SocialsMicroButton, button)
+        slot = SocialsMicroButton
+    else
+        AnchorRightOf(GuildMicroButton, button)
+        slot = GuildMicroButton
+    end
+
+    if GuildMicroButton and SocialsMicroButton and GuildMicroButton ~= SocialsMicroButton then
+        if type(GuildMicroButton.ClearAllPoints) == "function" then
+            GuildMicroButton:ClearAllPoints()
+        end
+        if type(GuildMicroButton.SetAllPoints) == "function" then
+            GuildMicroButton:SetAllPoints(SocialsMicroButton)
+        elseif type(GuildMicroButton.SetPoint) == "function" then
+            GuildMicroButton:SetPoint("BOTTOMLEFT", SocialsMicroButton, "BOTTOMLEFT", 0, 0)
+        end
+    end
+
+    return slot
+end
+
+local function ReanchorVisibleButtonsAfter(button)
+    if not button then return button end
+
+    local previous = ReanchorSharedSocialGuildSlot(button)
+
+    if WorldMapMicroButton then
+        AnchorRightOf(WorldMapMicroButton, previous)
+        previous = WorldMapMicroButton
+    end
+
+    if MainMenuMicroButton then
+        AnchorRightOf(MainMenuMicroButton, previous)
+        previous = MainMenuMicroButton
+    end
+
+    return previous
+end
+
 local function HideHelpButton()
     if HelpMicroButton and type(HelpMicroButton.Hide) == "function" then
         HelpMicroButton:Hide()
@@ -457,23 +505,7 @@ local function ReanchorEnabledLayout()
     button:Show()
     RefreshButtonState(button)
 
-    -- TBC Anniversary can expose SocialsMicroButton and GuildMicroButton as
-    -- separate, mutually exclusive frames. Anchor both directly to the new
-    -- slot so whichever Blizzard shows is shifted by exactly one position.
-    if SocialsMicroButton then
-        AnchorRightOf(SocialsMicroButton, button)
-    end
-    if GuildMicroButton and GuildMicroButton ~= SocialsMicroButton then
-        AnchorRightOf(GuildMicroButton, button)
-    end
-
-    local afterSocial = GuildMicroButton or SocialsMicroButton or button
-    if WorldMapMicroButton then
-        AnchorRightOf(WorldMapMicroButton, afterSocial)
-    end
-    if MainMenuMicroButton then
-        AnchorRightOf(MainMenuMicroButton, WorldMapMicroButton or afterSocial)
-    end
+    ReanchorVisibleButtonsAfter(button)
 
     HideHelpButton()
 end

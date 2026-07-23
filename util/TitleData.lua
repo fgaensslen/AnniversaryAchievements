@@ -28,7 +28,7 @@ local function Entry(key, localizationKey, nativeMask, nativeMaskFemale)
 end
 
 -- The catalog contains only stable identifiers and native title masks.
--- Labels and grammatical display formats live exclusively in localization/*.lua.
+-- Labels and grammatical display formats live exclusively in the active localization/classic or localization/tbc files.
 local BUILTIN = {
     explorer = Entry("explorer", "TITLE_BUILTIN_EXPLORER", 47),
     the_elusive = Entry("the_elusive", "TITLE_BUILTIN_THE_ELUSIVE", nil),

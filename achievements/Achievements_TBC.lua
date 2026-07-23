@@ -1,7 +1,7 @@
 local _, ns = ...
 
--- A single TOC must list this file for both clients. Classic exits before the
--- TBC delta table is created or any TBC achievement is registered.
+-- Shared code lists this file in both client-specific TOCs. Classic exits before
+-- the TBC delta table is created or any TBC achievement is registered.
 if not ns.IsTBCAnniversary then return end
 
 local loc = SexyLib:Localization("Anniversary Achievements")
@@ -12388,6 +12388,238 @@ local tbcDelta = {
             ["name"] = "AN_LOVE_TBC",
             ["points"] = 10,
         },
+        [538] = {
+            ["anyCompletable"] = false,
+            ["categoryID"] = 33,
+            ["criteria"] = {
+                [1] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 20570,
+                    },
+                    ["id"] = 1853,
+                    ["name"] = {
+                        ["itemID"] = 20570,
+                    },
+                    ["type"] = 5,
+                },
+                [2] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 20561,
+                    },
+                    ["id"] = 1854,
+                    ["name"] = {
+                        ["itemID"] = 20561,
+                    },
+                    ["type"] = 5,
+                },
+                [3] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 20391,
+                    },
+                    ["id"] = 1855,
+                    ["name"] = {
+                        ["itemID"] = 20391,
+                    },
+                    ["type"] = 5,
+                },
+                [4] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 20566,
+                    },
+                    ["id"] = 1856,
+                    ["name"] = {
+                        ["itemID"] = 20566,
+                    },
+                    ["type"] = 5,
+                },
+                [5] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 20564,
+                    },
+                    ["id"] = 1857,
+                    ["name"] = {
+                        ["itemID"] = 20564,
+                    },
+                    ["type"] = 5,
+                },
+                [6] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 20572,
+                    },
+                    ["id"] = 1858,
+                    ["name"] = {
+                        ["itemID"] = 20572,
+                    },
+                    ["type"] = 5,
+                },
+                [7] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 20568,
+                    },
+                    ["id"] = 1859,
+                    ["name"] = {
+                        ["itemID"] = 20568,
+                    },
+                    ["type"] = 5,
+                },
+                [8] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 20573,
+                    },
+                    ["id"] = 1860,
+                    ["name"] = {
+                        ["itemID"] = 20573,
+                    },
+                    ["type"] = 5,
+                },
+                [9] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 34000,
+                    },
+                    ["id"] = 1861,
+                    ["name"] = {
+                        ["itemID"] = 34000,
+                    },
+                    ["type"] = 5,
+                },
+                [10] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 34002,
+                    },
+                    ["id"] = 1862,
+                    ["name"] = {
+                        ["itemID"] = 34002,
+                    },
+                    ["type"] = 5,
+                },
+                [11] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 20392,
+                    },
+                    ["id"] = 1863,
+                    ["name"] = {
+                        ["itemID"] = 20392,
+                    },
+                    ["type"] = 5,
+                },
+                [12] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 20569,
+                    },
+                    ["id"] = 1864,
+                    ["name"] = {
+                        ["itemID"] = 20569,
+                    },
+                    ["type"] = 5,
+                },
+                [13] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 20571,
+                    },
+                    ["id"] = 1865,
+                    ["name"] = {
+                        ["itemID"] = 20571,
+                    },
+                    ["type"] = 5,
+                },
+                [14] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 20574,
+                    },
+                    ["id"] = 1866,
+                    ["name"] = {
+                        ["itemID"] = 20574,
+                    },
+                    ["type"] = 5,
+                },
+                [15] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 20565,
+                    },
+                    ["id"] = 1867,
+                    ["name"] = {
+                        ["itemID"] = 20565,
+                    },
+                    ["type"] = 5,
+                },
+                [16] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 20563,
+                    },
+                    ["id"] = 1868,
+                    ["name"] = {
+                        ["itemID"] = 20563,
+                    },
+                    ["type"] = 5,
+                },
+                [17] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 20567,
+                    },
+                    ["id"] = 1869,
+                    ["name"] = {
+                        ["itemID"] = 20567,
+                    },
+                    ["type"] = 5,
+                },
+                [18] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 20562,
+                    },
+                    ["id"] = 1870,
+                    ["name"] = {
+                        ["itemID"] = 20562,
+                    },
+                    ["type"] = 5,
+                },
+                [19] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 34001,
+                    },
+                    ["id"] = 1871,
+                    ["name"] = {
+                        ["itemID"] = 34001,
+                    },
+                    ["type"] = 5,
+                },
+                [20] = {
+                    ["coinFormatter"] = false,
+                    ["data"] = {
+                        [1] = 34003,
+                    },
+                    ["id"] = 1872,
+                    ["name"] = {
+                        ["itemID"] = 34003,
+                    },
+                    ["type"] = 5,
+                },
+            },
+            ["description"] = "AD_HALLOWSEND_MASKS",
+            ["icon"] = "-inv_mask_04",
+            ["id"] = 538,
+            ["name"] = "AN_HALLOWSEND_MASKS",
+            ["points"] = 10,
+            ["previousID"] = 537,
+        },
     },
     ["achievementPatches"] = {
         [6] = {
@@ -16232,134 +16464,191 @@ local tbcDelta = {
                 [1] = {
                     ["data"] = {
                         [1] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 20570,
+                            },
                             ["id"] = 1832,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [2] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 20561,
+                            },
                             ["id"] = 1833,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [3] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 20391,
+                            },
                             ["id"] = 1834,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [4] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 20566,
+                            },
                             ["id"] = 1835,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [5] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 20564,
+                            },
                             ["id"] = 1836,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [6] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 20572,
+                            },
                             ["id"] = 1837,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [7] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 20568,
+                            },
                             ["id"] = 1838,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [8] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 20573,
+                            },
                             ["id"] = 1839,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [9] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 34000,
+                            },
                             ["id"] = 1840,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [10] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 34002,
+                            },
                             ["id"] = 1841,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [11] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 20392,
+                            },
                             ["id"] = 1842,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [12] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 20569,
+                            },
                             ["id"] = 1843,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [13] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 20571,
+                            },
                             ["id"] = 1844,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [14] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 20574,
+                            },
                             ["id"] = 1845,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [15] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 20565,
+                            },
                             ["id"] = 1846,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [16] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 20563,
+                            },
                             ["id"] = 1847,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [17] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 20567,
+                            },
                             ["id"] = 1848,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [18] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 20562,
+                            },
                             ["id"] = 1849,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [19] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 34001,
+                            },
                             ["id"] = 1850,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                         [20] = {
+                            ["coinFormatter"] = false,
+                            ["data"] = {
+                                [1] = 34003,
+                            },
                             ["id"] = 1851,
+                            ["name"] = "",
+                            ["type"] = 5,
                         },
                     },
                     ["id"] = 1852,
                 },
             },
         },
-        [538] = {
-            ["criteria"] = {
-                [1] = {
-                    ["id"] = 1853,
-                },
-                [2] = {
-                    ["id"] = 1854,
-                },
-                [3] = {
-                    ["id"] = 1855,
-                },
-                [4] = {
-                    ["id"] = 1856,
-                },
-                [5] = {
-                    ["id"] = 1857,
-                },
-                [6] = {
-                    ["id"] = 1858,
-                },
-                [7] = {
-                    ["id"] = 1859,
-                },
-                [8] = {
-                    ["id"] = 1860,
-                },
-                [9] = {
-                    ["id"] = 1861,
-                },
-                [10] = {
-                    ["id"] = 1862,
-                },
-                [11] = {
-                    ["id"] = 1863,
-                },
-                [12] = {
-                    ["id"] = 1864,
-                },
-                [13] = {
-                    ["id"] = 1865,
-                },
-                [14] = {
-                    ["id"] = 1866,
-                },
-                [15] = {
-                    ["id"] = 1867,
-                },
-                [16] = {
-                    ["id"] = 1868,
-                },
-                [17] = {
-                    ["id"] = 1869,
-                },
-                [18] = {
-                    ["id"] = 1870,
-                },
-                [19] = {
-                    ["id"] = 1871,
-                },
-                [20] = {
-                    ["id"] = 1872,
-                },
-            },
-        },
+
         [539] = {
             ["criteria"] = {
                 [1] = {
@@ -17131,6 +17420,9 @@ local tbcDelta = {
         [12] = 160,
         [13] = 161,
         [14] = 162,
+        -- ID 538 has a client-specific full definition above. Remove the
+        -- shared Classic variant before the TBC definition is installed.
+        [15] = 538,
     },
 }
 

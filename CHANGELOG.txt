@@ -49,3 +49,5 @@ Details siehe Ordner changelogs
 2.3.47 – Explorations-Fallback begrenzt und Kartenkunst-Preload nachgeführt
 2.3.48 – Erfolge: Einzigartig/Extrem selten + Titel "Der/Die Unfassbare"
 2.3.49 – Erfolg TBC: Ob nah, ob fern, Tiere hab ich gern
+2.3.50 – Gemeinsamen Kontakte-/Gildenslot sowie Weltkarte und Optionen korrekt verschoben
+2.3.51 – Classic-/TBC-Lokalisierungen in getrennte Ordner und clientabhängige TOCs aufgeteilt; unsuffigierten Fallback durch harte Clientprüfungen abgesichert.

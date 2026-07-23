@@ -1,4 +1,5 @@
 local _, ns = ...
+if not (ns and ns.IsTBCAnniversary) then return end
 
 -- Generated from Blizzard AchievementsData Classic/TBC.
 if GetLocale() ~= 'koKR' then return end

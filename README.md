@@ -18,14 +18,20 @@ A full list can be found [here](https://fgaensslen.github.io/AnniversaryAchieve
 
 ### Supported Languages
 
-Currently enabled:
+Classic Era (Interface 11509) loads only `localization/classic/`:
+
+- English (enUS, fallback)
+- German (deDE)
+
+TBC Anniversary (Interface 20506) loads only `localization/tbc/`.
+Currently enabled there:
 
 - English (enUS)
 - German (deDE)
 - Spanish (esES)
 - Latin American Spanish (esMX)
 
-Translation files are included but temporarily disabled pending manual completion:
+TBC translation files retained but temporarily disabled pending manual completion:
 
 - French (frFR)
 - Korean (koKR)
@@ -34,7 +40,7 @@ Translation files are included but temporarily disabled pending manual completio
 - Simplified Chinese (zhCN)
 - Traditional Chinese (zhTW)
 
-The disabled locale files remain in `localization/` for manual editing. Entries that still use the German fallback are marked at the end of the line with `--#--#--`. Their matching AreaTable files are retained but disabled in the TOC as well.
+The WoW client normally selects `AnniversaryAchievements-Classic.toc` or `AnniversaryAchievements-BCC.toc` before loading Lua files. The unsuffixed `AnniversaryAchievements.toc` is a functional fallback: it lists both enabled locale packages, while hard `ClientFlavor` guards at the beginning of every locale file ensure that Classic Era initializes only `localization/classic/` and TBC Anniversary initializes only `localization/tbc/`. Disabled TBC locale files remain in `localization/tbc/` for manual editing; their matching AreaTable files are retained but disabled as well.
 
 ### Supported User Interfaces
 
