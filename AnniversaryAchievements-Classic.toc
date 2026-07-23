@@ -1,0 +1,56 @@
+## Interface: 11509
+## Notes: Achievements for WoW Classic Era and TBC Anniversary
+## Title: Anniversary Achievements
+## Author: BearCraftStudios
+## Version: v2.3.51
+## IconTexture: Interface/AddOns/AnniversaryAchievements/logo.tga
+## Category: Achievements
+## Category-deDE: Erfolge
+## SavedVariables: CA_Settings, CA_SchemaVersion
+## SavedVariablesPerCharacter: CA_LocalData, CA_Flags, CA_LocalSchemaVersion
+# Client-specific TOC selected by the Classic Era client.
+
+#@no-lib-strip@
+libs\libs.xml
+#@end-no-lib-strip@
+
+util/ClientFlavor.lua
+util/ReleaseSchedule.lua
+
+# Classic Era 1.15.9: only the currently available English/German package.
+localization/classic/en.lua
+localization/classic/de.lua
+localization/classic/AreaTableLocale_enUS.lua
+localization/classic/AreaTableLocale_deDE.lua
+
+util/TitleData.lua
+
+api/SavedVariables.lua
+api/State.lua
+util/Settings.lua
+
+api/EventBus.lua
+api/Completion.lua
+api/Achievements.lua
+api/Criterias.lua
+api/Progression.lua
+api/PublicAPI.lua
+util/KillingTracker.lua
+util/Triggers.lua
+util/ChatLink.lua
+util/Presentation.lua
+
+util/Loader.lua
+achievements/Achievements_Classic.lua
+achievements/DailyQuests_TBC.lua
+achievements/Achievements_TBC.lua
+
+util/Titles.lua
+
+ui/ApiMocks.lua
+ui/Backdrop.lua
+ui/AchievementUI.lua
+ui/AchievementUI.xml
+ui/Extensions.lua
+ui/Microbutton.lua
+util/Minimap.lua

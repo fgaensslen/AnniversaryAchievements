@@ -1,57 +1,67 @@
-SexyLib:Util():AfterLogin(function()
+local _, ns = ...
+local state = ns.State
 
-    ----------------------------------------------------------------
-    -- Disable minimap icon if micro button is enabled
-    ----------------------------------------------------------------
-    if CA_ShouldUseMicrobutton() then
-        return
+local ICON_NAME = "AnniversaryAchievements"
+local iconLibrary
+local registered = false
+
+local function SetVisible(visible)
+    local settings = state:GetSettings()
+    settings.minimap = settings.minimap or {}
+    settings.minimap.hide = not visible
+
+    if not registered or not iconLibrary then return end
+    if visible then
+        iconLibrary:Show(ICON_NAME)
+    else
+        iconLibrary:Hide(ICON_NAME)
     end
+end
 
-    ----------------------------------------------------------------
-    -- Libraries
-    ----------------------------------------------------------------
+ns.SetMinimapButtonVisible = SetVisible
+
+SexyLib:Util():AfterLogin(function()
     local LDB = LibStub("LibDataBroker-1.1")
-    local LDBIcon = LibStub("LibDBIcon-1.0")
+    iconLibrary = LibStub("LibDBIcon-1.0")
 
-    ----------------------------------------------------------------
-    -- Create LDB launcher
-    ----------------------------------------------------------------
-    local launcher = LDB:NewDataObject("AnniversaryAchievements", {
+    local launcher = LDB:NewDataObject(ICON_NAME, {
         type = "launcher",
-
         icon = "Interface\\Icons\\Achievement_General",
+        OnClick = function(_, mouseButton)
+            if mouseButton == "RightButton" then
+                if type(ns.OpenAddonOptions) == "function" then
+                    ns.OpenAddonOptions()
+                end
+                return
+            end
 
-        OnClick = function(_, button)
-            AchievementFrame_ToggleAchievementFrame()
+            if type(AchievementFrame_ToggleAchievementFrame) == "function" then
+                AchievementFrame_ToggleAchievementFrame()
+            end
         end,
-
         OnTooltipShow = function(tooltip)
-            tooltip:AddLine(
-                "Anniversary Achievements",
-                1, 1, 1
-            )
+            if type(ns.PopulateNavigationButtonTooltip) == "function" then
+                ns.PopulateNavigationButtonTooltip(tooltip)
+            else
+                tooltip:AddLine("Anniversary Achievements", 1, 1, 1)
+            end
         end,
     })
 
-    CA_Settings.minimap = CA_Settings.minimap or {}
-    CA_Settings.minimap.hide = CA_Settings.minimap.hide or false
+    local settings = state:GetSettings()
+    settings.minimap = settings.minimap or {}
 
-    ----------------------------------------------------------------
-    -- Register minimap icon
-    ----------------------------------------------------------------
-    LDBIcon:Register(
-        "AnniversaryAchievements",
-        launcher,
-        CA_Settings.minimap
-    )
+    -- Register the launcher while hidden. The selected navigation button is
+    -- exposed only after the main addon and all public-API extension batches
+    -- have committed their startup registrations.
+    settings.minimap.hide = true
+    iconLibrary:Register(ICON_NAME, launcher, settings.minimap)
+    registered = true
+    SetVisible(false)
 
-    ----------------------------------------------------------------
-    -- Sync visibility if settings change later
-    ----------------------------------------------------------------
-    if CA_Settings.minimap.hide then
-        LDBIcon:Hide("AnniversaryAchievements")
-    else
-        LDBIcon:Show("AnniversaryAchievements")
+    if type(ns.WhenAddonAndExtensionsReady) == "function" then
+        ns.WhenAddonAndExtensionsReady(function()
+            SetVisible(state:GetSettings().microbutton == false)
+        end)
     end
-
 end)

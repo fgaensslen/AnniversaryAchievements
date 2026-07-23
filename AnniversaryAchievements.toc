@@ -1,44 +1,88 @@
-## Interface: 20506
+## Interface: 11509, 20506
+## Notes: Achievements for WoW Classic Era and TBC Anniversary
 ## Title: Anniversary Achievements
 ## Author: BearCraftStudios
-## Version: v2.3.3
+## Version: v2.3.51
 ## IconTexture: Interface/AddOns/AnniversaryAchievements/logo.tga
-## Notes: Achievements for WoW TBC Anniversary
 ## Category: Achievements
 ## Category-deDE: Erfolge
-## SavedVariables: CA_Settings
-## SavedVariablesPerCharacter: CA_LocalData, CA_Flags
+## SavedVariables: CA_Settings, CA_SchemaVersion
+## SavedVariablesPerCharacter: CA_LocalData, CA_Flags, CA_LocalSchemaVersion
+# Fallback TOC; client guards select the matching locale package if no suffixed TOC is used.
 
 #@no-lib-strip@
 libs\libs.xml
 #@end-no-lib-strip@
 
-localization/en.lua
-localization/de.lua
-localization/es.lua
-localization/mx.lua
+util/ClientFlavor.lua
+util/ReleaseSchedule.lua
 
-localization/AreaTableLocale_enUS.lua
-localization/AreaTableLocale_deDE.lua
-localization/AreaTableLocale_esES.lua
-localization/AreaTableLocale_esMX.lua
 
+# Unsuffixed fallback TOC: both locale packages are listed because a TOC file
+# cannot conditionally branch its file list. Every locale file has a hard
+# ClientFlavor guard, so only the matching package initializes at runtime.
+
+# Classic Era 1.15.9 package (English/German only).
+localization/classic/en.lua
+localization/classic/de.lua
+localization/classic/AreaTableLocale_enUS.lua
+localization/classic/AreaTableLocale_deDE.lua
+
+# TBC Anniversary 2.5.6 enabled package.
+localization/tbc/en.lua
+localization/tbc/de.lua
+localization/tbc/es.lua
+localization/tbc/mx.lua
+
+# Translation files retained but disabled until manual review is complete:
+# localization/tbc/fr.lua
+# localization/tbc/ko.lua
+# localization/tbc/pt.lua
+# localization/tbc/ru.lua
+# localization/tbc/cn.lua
+# localization/tbc/tw.lua
+
+localization/tbc/AreaTableLocale_enUS.lua
+localization/tbc/AreaTableLocale_deDE.lua
+localization/tbc/AreaTableLocale_esES.lua
+localization/tbc/AreaTableLocale_esMX.lua
+
+# Matching AreaTable translation files retained but disabled as well:
+# localization/tbc/AreaTableLocale_frFR.lua
+# localization/tbc/AreaTableLocale_koKR.lua
+# localization/tbc/AreaTableLocale_ptBR.lua
+# localization/tbc/AreaTableLocale_ruRU.lua
+# localization/tbc/AreaTableLocale_zhCN.lua
+# localization/tbc/AreaTableLocale_zhTW.lua
+
+util/TitleData.lua
+
+api/SavedVariables.lua
+api/State.lua
 util/Settings.lua
 
+api/EventBus.lua
 api/Completion.lua
 api/Achievements.lua
 api/Criterias.lua
+api/Progression.lua
+api/PublicAPI.lua
 util/KillingTracker.lua
 util/Triggers.lua
 util/ChatLink.lua
+util/Presentation.lua
 
 util/Loader.lua
+achievements/Achievements_Classic.lua
 achievements/DailyQuests_TBC.lua
-achievements/achievements.lua
+achievements/Achievements_TBC.lua
+
+util/Titles.lua
 
 ui/ApiMocks.lua
 ui/Backdrop.lua
 ui/AchievementUI.lua
 ui/AchievementUI.xml
+ui/Extensions.lua
 ui/Microbutton.lua
 util/Minimap.lua

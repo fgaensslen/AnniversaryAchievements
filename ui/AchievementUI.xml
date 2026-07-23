@@ -209,7 +209,11 @@
 		</Frames>
 		<Scripts>
 			<OnLoad>
-				AchievementFrameSummaryCategory_OnLoad(self);
+				if AnniversaryAchievements_RefreshFrameAliases then
+					AnniversaryAchievements_RefreshFrameAliases();
+				end
+				self:SetMinMaxValues(0, 100);
+				self:SetValue(0);
 			</OnLoad>
 			<OnShow>
 				AchievementFrameSummaryCategory_OnShow(self);
@@ -245,7 +249,7 @@
 			<OnEnter>
 				GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 				local id = self:GetParent().id;
-				if (trackedAchievements[id]) then
+				if (AnniversaryAchievements_IsAchievementTracked(id)) then
 					GameTooltip:SetText(UNTRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
 				else
 					GameTooltip:SetText(TRACK_ACHIEVEMENT_TOOLTIP, nil, nil, nil, nil, true);
@@ -256,7 +260,7 @@
 			</OnLeave>
 			<OnShow>
 				local id = self:GetParent().id;
-				self:SetChecked(trackedAchievements[id] and true or false);
+				self:SetChecked(AnniversaryAchievements_IsAchievementTracked(id));
 			</OnShow>
 		</Scripts>
 		<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>

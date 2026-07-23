@@ -1,3 +1,5 @@
+local _, ns = ...
+local state = ns.State
 
 -- WoW 2.5.6 ships Blizzard_AchievementUI / AchievementFrame globals.
 -- Do not register this addon under Blizzard's AchievementFrame UIPanel key.
@@ -63,9 +65,7 @@ ACHIEVEMENTUI_CRITERIACHECKWIDTH = 20;
 local ACHIEVEMENTUI_FONTHEIGHT;						-- set in AchievementButton_OnLoad
 local ACHIEVEMENTUI_MAX_LINES_COLLAPSED = 3;		-- can show 3 lines of text when achievement is collapsed
 
-ACHIEVEMENTUI_DEFAULTSUMMARYACHIEVEMENTS = {1, 2, 3, 4, 5};
 ACHIEVEMENTUI_SUMMARYCATEGORIES = {1, 2, 6, 10, 16, 19, 23, 26};
-ACHIEVEMENTUI_DEFAULTGUILDSUMMARYACHIEVEMENTS = {5362, 4860, 4989, 4947};
 ACHIEVEMENTUI_GUILDSUMMARYCATEGORIES = {15088, 15077, 15078, 15079, 15080, 15089};
 
 ACHIEVEMENT_CATEGORY_NORMAL_R = 0;
@@ -100,6 +100,14 @@ local CRITERIA_TYPE_COMPLETE_ACHIEVEMENT = 20
 
 local FEAT_OF_STRENGTH_ID = 99;
 local GUILD_FEAT_OF_STRENGTH_ID = 15099;
+
+local function AnniversaryAchievements_IsFeatsOfStrengthCategory(categoryID)
+	if ( categoryID == FEAT_OF_STRENGTH_ID or categoryID == GUILD_FEAT_OF_STRENGTH_ID ) then
+		return true;
+	end
+	local category = ns.Database and ns.Database:GetCategory(categoryID);
+	return category and category.isFeatsOfStrength == true or false;
+end
 local GUILD_CATEGORY_ID = 15076;
 local IN_GUILD_VIEW;
 local TEXTURES_OFFSET = 0;		-- 0.5 when in guild view
@@ -114,17 +122,27 @@ local achievementFunctions;
 
 -- [[ TRACKER ]] --
 
--- initialize per-character storage
-CA_LocalData = CA_LocalData or {}
-CA_Settings = CA_Settings or {}
-CA_LocalData.trackedAchievements = CA_LocalData.trackedAchievements or {}
-CA_LocalData.trackedOrder = CA_LocalData.trackedOrder or {}
-CA_Settings.trackerPosition = CA_Settings.trackerPosition or nil
-CA_Settings.trackerHidden = CA_Settings.trackerHidden or false
+-- initialize schema-validated storage
+local trackerLocalData = state:GetLocalData()
+state:GetSettings()
 
--- local references for convenience
-trackedAchievements = CA_LocalData.trackedAchievements
-trackedOrder = CA_LocalData.trackedOrder
+-- Keep tracker state file-local and rebind it whenever the character
+-- SavedVariables tables are replaced. XML scripts query the state through the
+-- narrow accessor below instead of depending on addon-owned globals.
+local trackedAchievements = {}
+local trackedOrder = {}
+
+local function RebindTrackedAchievementState(localData)
+    localData = localData or state:GetLocalData()
+    trackedAchievements = localData.trackedAchievements
+    trackedOrder = localData.trackedOrder
+end
+
+function AnniversaryAchievements_IsAchievementTracked(achievementID)
+    return trackedAchievements[achievementID] and true or false
+end
+
+RebindTrackedAchievementState(trackerLocalData)
 
 local titleColor_normal = "|cFFC4A300"
 local titleColor_hover = "|cFFFFD500"
@@ -135,463 +153,632 @@ local textColor_finished = "|cFFFFFFFF"
 local textColorCompleted_hover = "|cFFFFFFFF"
 local textWidth = 250
 local trackerHidden = false
+local trackerRefreshQueued = false
 
--- Disable Blizzard Quest Tracker
-local blizzTrackerDisabled
-local function DisableBlizzardQuestTracker()
-    if blizzTrackerDisabled then return end
-    if QuestWatchFrame then
-		QuestWatchFrame:ClearAllPoints()
-        QuestWatchFrame:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", -1000, -1000)
-        QuestWatchFrame:SetAlpha(0)
-        blizzTrackerDisabled = true
+-- Temporarily suppress the Blizzard quest tracker while the combined tracker is active.
+-- Every property touched by the addon is captured before the first change and restored
+-- when the option is disabled again.
+local blizzTrackerDisabled = false
+local blizzTrackerSnapshot
+local blizzTrackerUpdateHooked = false
+
+local function CaptureFramePoints(frame)
+    local points = {}
+    local numPoints = frame.GetNumPoints and frame:GetNumPoints() or 0
+    for index = 1, numPoints do
+        local point, relativeTo, relativePoint, xOffset, yOffset = frame:GetPoint(index)
+        points[#points + 1] = {
+            point = point,
+            relativeTo = relativeTo,
+            relativePoint = relativePoint,
+            xOffset = xOffset,
+            yOffset = yOffset,
+        }
+    end
+    return points
+end
+
+local function RestoreFramePoints(frame, points)
+    if not frame.ClearAllPoints or not frame.SetPoint then return end
+
+    frame:ClearAllPoints()
+    for _, anchor in ipairs(points or {}) do
+        frame:SetPoint(
+            anchor.point,
+            anchor.relativeTo,
+            anchor.relativePoint,
+            anchor.xOffset,
+            anchor.yOffset
+        )
     end
 end
 
-function Anniversary_ShowTrackedAchievementProgress()	
+local function CaptureBlizzardQuestTrackerState(frame)
+    local mouseEnabled
+    if frame.IsMouseEnabled then
+        local ok, value = pcall(frame.IsMouseEnabled, frame)
+        if ok then mouseEnabled = value and true or false end
+    end
 
-	-- allow user to disable the entire tracker
+    local parentCaptured = frame.GetParent ~= nil
+
+    return {
+        parentCaptured = parentCaptured,
+        parent = parentCaptured and frame:GetParent() or nil,
+        points = CaptureFramePoints(frame),
+        alpha = frame.GetAlpha and frame:GetAlpha() or 1,
+        scale = frame.GetScale and frame:GetScale() or 1,
+        shown = frame.IsShown and frame:IsShown() or false,
+        mouseEnabled = mouseEnabled,
+    }
+end
+
+local function ApplyBlizzardQuestTrackerSuppression()
+    local frame = QuestWatchFrame
+    if not frame then return false end
+
+    if not blizzTrackerSnapshot then
+        blizzTrackerSnapshot = CaptureBlizzardQuestTrackerState(frame)
+    end
+
+    -- Do not move or reparent the Blizzard frame. Keeping its original layout intact
+    -- makes the suppression lossless and lets Blizzard continue updating quest data.
+    if frame.SetAlpha then frame:SetAlpha(0) end
+    if frame.EnableMouse then frame:EnableMouse(false) end
+    if frame.Hide then frame:Hide() end
+
+    blizzTrackerDisabled = true
+    return true
+end
+
+local function EnsureBlizzardQuestTrackerUpdateHook()
+    if blizzTrackerUpdateHooked then return end
+    if type(hooksecurefunc) ~= "function" or type(QuestWatch_Update) ~= "function" then return end
+
+    hooksecurefunc("QuestWatch_Update", function()
+        if blizzTrackerDisabled then
+            ApplyBlizzardQuestTrackerSuppression()
+        end
+    end)
+    blizzTrackerUpdateHooked = true
+end
+
+local function DisableBlizzardQuestTracker()
+    EnsureBlizzardQuestTrackerUpdateHook()
+    ApplyBlizzardQuestTrackerSuppression()
+end
+
+local function RestoreBlizzardQuestTracker()
+    if not blizzTrackerDisabled and not blizzTrackerSnapshot then return end
+
+    -- Clear the flag before calling Blizzard update functions so the secure hook does
+    -- not suppress the frame again during restoration.
+    blizzTrackerDisabled = false
+
+    local frame = QuestWatchFrame
+    local snapshot = blizzTrackerSnapshot
+    blizzTrackerSnapshot = nil
+
+    if not frame or not snapshot then return end
+
+    if snapshot.parentCaptured and frame.SetParent and frame:GetParent() ~= snapshot.parent then
+        frame:SetParent(snapshot.parent)
+    end
+    if frame.SetScale then frame:SetScale(snapshot.scale or 1) end
+    RestoreFramePoints(frame, snapshot.points)
+    if frame.SetAlpha then frame:SetAlpha(snapshot.alpha or 1) end
+    if snapshot.mouseEnabled ~= nil and frame.EnableMouse then
+        frame:EnableMouse(snapshot.mouseEnabled)
+    end
+
+    -- Restore the exact previous visibility first as a safe fallback. Blizzard then
+    -- receives a normal update so the visibility reflects the current watched quests.
+    if snapshot.shown then
+        frame:Show()
+    else
+        frame:Hide()
+    end
+
+    if type(QuestWatch_Update) == "function" then
+        pcall(QuestWatch_Update)
+    end
+
+    -- QuestWatch_Update may alter layout details. Reapply only the properties that
+    -- belonged to the captured frame state while preserving Blizzard's current
+    -- visibility decision.
+    local currentlyShown = frame:IsShown()
+    if snapshot.parentCaptured and frame.SetParent and frame:GetParent() ~= snapshot.parent then
+        frame:SetParent(snapshot.parent)
+    end
+    if frame.SetScale then frame:SetScale(snapshot.scale or 1) end
+    RestoreFramePoints(frame, snapshot.points)
+    if frame.SetAlpha then frame:SetAlpha(snapshot.alpha or 1) end
+    if snapshot.mouseEnabled ~= nil and frame.EnableMouse then
+        frame:EnableMouse(snapshot.mouseEnabled)
+    end
+    if currentlyShown then
+        frame:Show()
+    else
+        frame:Hide()
+    end
+end
+
+local function SaveTrackedAchievements()
+    CA_LocalData.trackedAchievements = trackedAchievements
+    CA_LocalData.trackedOrder = trackedOrder
+end
+
+local function IsAchievementAvailableForCurrentClient(achievementID)
+    local database = ns.Database
+    local achievement = database and database:GetAchievement(achievementID)
+    return achievement and achievement:IsAvailable() or false
+end
+
+local function RemoveTrackedAchievement(achievementID)
+    if not achievementID or not trackedAchievements[achievementID] then return false end
+
+    trackedAchievements[achievementID] = nil
+    for index = #(trackedOrder or {}), 1, -1 do
+        if trackedOrder[index] == achievementID then
+            table.remove(trackedOrder, index)
+        end
+    end
+
+    SaveTrackedAchievements()
+    return true
+end
+
+local function RemoveTrackedQuest(row)
+    local questIndex = row.watchSlot and GetQuestIndexForWatch(row.watchSlot) or nil
+
+    if (not questIndex or questIndex <= 0) and row.questID then
+        local numEntries = GetNumQuestLogEntries()
+        for index = 1, numEntries do
+            local _, _, _, isHeader, _, _, _, questID = GetQuestLogTitle(index)
+            if not isHeader and questID == row.questID then
+                questIndex = index
+                break
+            end
+        end
+    end
+
+    if row.questID and type(QUEST_WATCH_LIST) == "table" then
+        for index = #QUEST_WATCH_LIST, 1, -1 do
+            local entry = QUEST_WATCH_LIST[index]
+            if type(entry) == "table" and entry.id == row.questID then
+                tremove(QUEST_WATCH_LIST, index)
+            end
+        end
+    end
+
+    if questIndex and questIndex > 0 then
+        RemoveQuestWatch(questIndex)
+    end
+
+    if QuestLog_Update then QuestLog_Update() end
+    if QuestWatch_Update then QuestWatch_Update() end
+end
+
+local function SetTrackerRowHoverState(row, highlighted)
+    row.isHighlighted = highlighted and true or false
+    for index = 1, row.activeTextCount or 0 do
+        local entry = row.textEntries[index]
+        if entry and entry.fs then
+            entry.fs:SetText(highlighted and entry.highlight or entry.normal)
+        end
+    end
+end
+
+local function CreateTrackerRow(parent)
+    local row = CreateFrame("Frame", nil, parent)
+    row:SetWidth(textWidth)
+    row:EnableMouse(true)
+    row.fontStrings = {}
+    row.textEntries = {}
+    row.activeTextCount = 0
+
+    row:SetScript("OnEnter", function(self)
+        SetTrackerRowHoverState(self, true)
+    end)
+
+    row:SetScript("OnLeave", function(self)
+        SetTrackerRowHoverState(self, false)
+    end)
+
+    row:SetScript("OnMouseDown", function(self, button)
+        if button ~= "LeftButton" then return end
+
+        if self.kind == "achievement" then
+            local achievementID = self.achievementID
+            if not achievementID then return end
+
+            if IsShiftKeyDown() then
+                if RemoveTrackedAchievement(achievementID) then
+                    Anniversary_ShowTrackedAchievementProgress()
+                    AchievementFrameAchievements_ForceUpdate()
+                end
+            else
+                if not AchievementFrame then
+                    AchievementFrame_LoadUI()
+                end
+                ShowUIPanel(AchievementFrame)
+                AchievementFrame_SelectAchievement(achievementID)
+            end
+        elseif self.kind == "quest" then
+            if IsShiftKeyDown() then
+                RemoveTrackedQuest(self)
+                Anniversary_ShowTrackedAchievementProgress()
+            else
+                Anniversary_OpenQuestDetails(self.questID, GetQuestIndexForWatch(self.watchSlot))
+            end
+        end
+    end)
+
+    return row
+end
+
+local function AcquireTrackerRow(frame, kind, previousAnchor)
+    frame.activeLineCount = (frame.activeLineCount or 0) + 1
+    local index = frame.activeLineCount
+    local row = frame.lines[index]
+
+    if not row then
+        row = CreateTrackerRow(frame.content)
+        frame.lines[index] = row
+    end
+
+    row.kind = kind
+    row.achievementID = nil
+    row.watchSlot = nil
+    row.questID = nil
+    row.activeTextCount = 0
+    row:ClearAllPoints()
+    row:SetPoint("TOPLEFT", previousAnchor, "BOTTOMLEFT", 0, -10)
+    row:Show()
+
+    for textIndex = 1, #row.fontStrings do
+        row.fontStrings[textIndex]:Hide()
+        row.textEntries[textIndex] = nil
+    end
+
+    return row
+end
+
+local function AddTrackerRowText(row, normalText, highlightText)
+    local index = row.activeTextCount + 1
+    local fontString = row.fontStrings[index]
+
+    if not fontString then
+        fontString = row:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+        fontString:SetShadowOffset(1, -1)
+        fontString:SetJustifyH("LEFT")
+        fontString:SetWidth(textWidth)
+        fontString:SetWordWrap(true)
+        row.fontStrings[index] = fontString
+    end
+
+    fontString:ClearAllPoints()
+    if index == 1 then
+        fontString:SetPoint("TOPLEFT", row, "TOPLEFT", 0, 0)
+    else
+        fontString:SetPoint("TOPLEFT", row.fontStrings[index - 1], "BOTTOMLEFT", 0, 0)
+    end
+
+    fontString:SetText(row.isHighlighted and highlightText or normalText)
+    fontString:Show()
+
+    row.activeTextCount = index
+    row.textEntries[index] = {
+        fs = fontString,
+        normal = normalText,
+        highlight = highlightText,
+    }
+
+    return fontString
+end
+
+local function FinishTrackerRow(row)
+    local totalHeight = 0
+    for index = 1, row.activeTextCount do
+        totalHeight = totalHeight + (row.fontStrings[index]:GetStringHeight() or 0)
+    end
+    row:SetHeight(totalHeight > 0 and totalHeight or 20)
+end
+
+local function HideUnusedTrackerRows(frame)
+    for index = (frame.activeLineCount or 0) + 1, #frame.lines do
+        local row = frame.lines[index]
+        row:Hide()
+        row.kind = nil
+        row.achievementID = nil
+        row.watchSlot = nil
+        row.questID = nil
+    end
+end
+
+local function EnsureTrackedDisplay()
+    if AnniversaryTrackedDisplay then return AnniversaryTrackedDisplay end
+
+    local frame = CreateFrame("Frame", "AnniversaryTrackedDisplay", UIParent, "BackdropTemplate")
+    frame:SetSize(1, 1)
+
+    if CA_Settings.trackerPosition then
+        local pos = CA_Settings.trackerPosition
+        frame:SetPoint(pos.point, UIParent, pos.relativePoint, pos.x, pos.y)
+    else
+        frame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+    end
+
+    frame:SetMovable(true)
+    frame.content = CreateFrame("Frame", nil, frame)
+    frame.content:SetPoint("TOPLEFT", 10, -30)
+    frame.content:SetPoint("BOTTOMRIGHT", -10, 10)
+    frame.lines = {}
+    frame.activeLineCount = 0
+
+    frame.header = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    frame.header:SetShadowOffset(1, -1)
+
+    local toggleButton = CreateFrame("Button", nil, frame)
+    toggleButton:SetSize(25, 25)
+    toggleButton:SetPoint("RIGHT", frame, "RIGHT", textWidth, 0)
+    toggleButton:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight")
+    toggleButton:SetScript("OnClick", function()
+        trackerHidden = not trackerHidden
+        CA_Settings.trackerHidden = trackerHidden
+        Anniversary_ShowTrackedAchievementProgress()
+        PlaySound(trackerHidden and 822 or 821)
+    end)
+    toggleButton:SetScript("OnLeave", function()
+        GameTooltip:Hide()
+    end)
+    frame.toggleTrackerButton = toggleButton
+
+    local dragHandle = CreateFrame("Frame", nil, frame)
+    dragHandle:EnableMouse(true)
+    dragHandle:RegisterForDrag("LeftButton")
+    dragHandle:SetFrameLevel((frame:GetFrameLevel() or 0) + 50)
+    dragHandle:SetScript("OnDragStart", function()
+        frame:StartMoving()
+    end)
+    dragHandle:SetScript("OnDragStop", function()
+        frame:StopMovingOrSizing()
+        local point, _, relativePoint, xOffset, yOffset = frame:GetPoint()
+        CA_Settings.trackerPosition = {
+            point = point,
+            relativePoint = relativePoint,
+            x = xOffset,
+            y = yOffset,
+        }
+    end)
+    frame.dragHandle = dragHandle
+
+    frame.PositionDragHandle = function()
+        dragHandle:ClearAllPoints()
+        dragHandle:SetPoint("TOPLEFT", frame.header, "TOPLEFT", -6, 6)
+        dragHandle:SetPoint("BOTTOMRIGHT", frame.toggleTrackerButton, "LEFT", -4, -6)
+        dragHandle:SetHitRectInsets(-6, -6, -6, -6)
+    end
+
+    AnniversaryTrackedDisplay = frame
+    return frame
+end
+
+local function PruneCompletedTrackedAchievements()
+    local changed = false
+
+    for index = #(trackedOrder or {}), 1, -1 do
+        local achievementID = trackedOrder[index]
+        if not trackedAchievements[achievementID] then
+            table.remove(trackedOrder, index)
+            changed = true
+        elseif IsAchievementAvailableForCurrentClient(achievementID) then
+            local _, _, _, completed = GetAchievementInfo(achievementID)
+            if completed then
+                trackedAchievements[achievementID] = nil
+                table.remove(trackedOrder, index)
+                changed = true
+            end
+        end
+    end
+
+    if changed then
+        SaveTrackedAchievements()
+    end
+end
+
+local function CountTrackedAchievements()
+    local count = 0
+    for _, achievementID in ipairs(trackedOrder or {}) do
+        if trackedAchievements[achievementID]
+            and IsAchievementAvailableForCurrentClient(achievementID) then
+            count = count + 1
+        end
+    end
+    return count
+end
+
+function Anniversary_ShowTrackedAchievementProgress()
     if CA_Settings.trackerToggle == false then
         if AnniversaryTrackedDisplay then
             AnniversaryTrackedDisplay:Hide()
         end
+        RestoreBlizzardQuestTracker()
         return
     end
 
-	DisableBlizzardQuestTracker()
+    DisableBlizzardQuestTracker()
 
-	if CA_Settings.trackerHidden == nil then
-    	CA_Settings.trackerHidden = false -- default expanded
-	end
-	trackerHidden = CA_Settings.trackerHidden
-
-	if AnniversaryTrackedDisplay and AnniversaryTrackedDisplay.content then
-		if trackerHidden then
-			AnniversaryTrackedDisplay.content:Hide()
-		else
-			AnniversaryTrackedDisplay.content:Show()
-		end
-	end
-
-	-- Create the main frame if it doesn't exist
-    if not AnniversaryTrackedDisplay then
-        AnniversaryTrackedDisplay = CreateFrame("Frame", "AnniversaryTrackedDisplay", UIParent, "BackdropTemplate")
-        AnniversaryTrackedDisplay:SetSize(1, 1)
-
-        -- Load position per character
-        if CA_Settings.trackerPosition then
-            local pos = CA_Settings.trackerPosition
-            AnniversaryTrackedDisplay:ClearAllPoints()
-            AnniversaryTrackedDisplay:SetPoint(pos.point, UIParent, pos.relativePoint, pos.x, pos.y)
-        else
-            AnniversaryTrackedDisplay:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
-        end
-
-        AnniversaryTrackedDisplay:SetMovable(true)
-        AnniversaryTrackedDisplay.content = CreateFrame("Frame", nil, AnniversaryTrackedDisplay)
-        AnniversaryTrackedDisplay.content:SetPoint("TOPLEFT", 10, -30)
-        AnniversaryTrackedDisplay.content:SetPoint("BOTTOMRIGHT", -10, 10)
-        AnniversaryTrackedDisplay.lines = {}
+    if CA_Settings.trackerHidden == nil then
+        CA_Settings.trackerHidden = false
     end
+    trackerHidden = CA_Settings.trackerHidden
 
-    local f = AnniversaryTrackedDisplay
-    for _, line in ipairs(f.lines) do
-        line:Hide()
-		line:SetParent(nil) -- free it
-    end
-    f.lines = {}
+    local frame = EnsureTrackedDisplay()
+    frame:Show()
+    frame.activeLineCount = 0
 
-    -- count tracked
-    local trackedCount = 0
-    for _ in pairs(trackedAchievements) do
-        trackedCount = trackedCount + 1
-    end
+    PruneCompletedTrackedAchievements()
 
-    -- count tracked quests
+    local trackedCount = CountTrackedAchievements()
     local numQuests = GetNumQuestWatches()
 
     if trackedCount == 0 and numQuests == 0 then
-		if f.header then f.header:Hide() end
-    	if f.toggleTrackerButton then f.toggleTrackerButton:Hide() end
-        f.content:Hide()
+        frame.header:Hide()
+        frame.toggleTrackerButton:Hide()
+        frame.content:Hide()
+        HideUnusedTrackerRows(frame)
         return
     end
 
-    f.content:Show()
+    frame.header:Show()
+    frame.toggleTrackerButton:Show()
+    frame.header:SetText(titleColor_hover .. OBJECTIVES_TRACKER_LABEL .. " (" .. (trackedCount + numQuests) .. ")|r")
 
-	-- Objectives Header
-	if not f.header then
-		local header = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-		header:SetShadowOffset(1, -1)
-		f.header = header
-	else
-		f.header:Show()
-	end
-
-	-- update header text
-	f.header:SetText(titleColor_hover .. OBJECTIVES_TRACKER_LABEL .. " (" .. (trackedCount+numQuests) .. ")|r")
-
-	-- reposition based on toggle state
-	f.header:ClearAllPoints()
-	if trackerHidden then
-		-- collapsed: move header near button
-		f.header:SetPoint("RIGHT", f.toggleTrackerButton, "LEFT", -10, 0)
-	else
-		-- expanded: normal spot on the left
-		f.header:SetPoint("LEFT", f.content, "LEFT", 0, 10)
-	end
-
-	local prev = f.header
-
-	--Toggle Button
-	if not f.toggleTrackerButton then
-		local btn = CreateFrame("Button", nil, f.content)
-		btn:SetSize(25, 25)
-		btn:SetPoint("RIGHT", f, "RIGHT", textWidth, 0)
-		if trackerHidden then
-			btn:SetNormalTexture("Interface\\Buttons\\UI-Panel-ExpandButton-Up")
-			btn:SetPushedTexture("Interface\\Buttons\\UI-Panel-ExpandButton-Down")
-		else
-			btn:SetNormalTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Up")
-			btn:SetPushedTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Down")
-		end
-		btn:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight")
-		btn:SetScript("OnClick", function()
-			trackerHidden = not trackerHidden
-			CA_Settings.trackerHidden = trackerHidden  -- save state
-
-			if f.PositionDragHandle then f.PositionDragHandle() end
-
-			if trackerHidden then
-				AnniversaryTrackedDisplay.content:Hide()
-				btn:SetNormalTexture("Interface\\Buttons\\UI-Panel-ExpandButton-Up")
-				btn:SetPushedTexture("Interface\\Buttons\\UI-Panel-ExpandButton-Down")
-				PlaySound(822)
-			else
-				AnniversaryTrackedDisplay.content:Show()
-				btn:SetNormalTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Up")
-    			btn:SetPushedTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Down")
-				PlaySound(821)
-			end
-			Anniversary_ShowTrackedAchievementProgress()
-		end)
-		btn:SetScript("OnLeave", function(self)
-			GameTooltip:Hide()
-		end)
-		f.toggleTrackerButton = btn
-	else
-		f.toggleTrackerButton:Show()
-	end
-
-	if trackerHidden then
-    	return
-	end
-
-	-- Create one persistent draggable area that spans from the header to the toggle button.
-	if not f.dragHandle then
-		local handle = CreateFrame("Frame", nil, f)
-		handle:EnableMouse(true)
-		handle:RegisterForDrag("LeftButton")
-		handle:SetFrameLevel((f:GetFrameLevel() or 0) + 50)
-
-		handle:SetScript("OnDragStart", function() f:StartMoving() end)
-		handle:SetScript("OnDragStop", function()
-			f:StopMovingOrSizing()
-			local point, _, relativePoint, xOfs, yOfs = f:GetPoint()
-			CA_Settings.trackerPosition = {point = point, relativePoint = relativePoint, x = xOfs, y = yOfs}
-		end)
-
-		-- function to (re)position the drag handle based on the header and toggle button
-		local function PositionDragHandle()
-			local leftAnchor = f.header or header or f.content
-			local rightAnchor = f.toggleTrackerButton or f.header or f.content
-
-			handle:ClearAllPoints()
-			handle:SetPoint("TOPLEFT", leftAnchor, "TOPLEFT", -6, 6)
-			handle:SetPoint("BOTTOMRIGHT", rightAnchor, "LEFT", -4, -6)
-			handle:SetHitRectInsets(-6, -6, -6, -6)
-		end
-
-		f.dragHandle = handle
-		f.PositionDragHandle = PositionDragHandle
-
-		pcall(f.PositionDragHandle)
-	end
-
-    -- loop in preserved order
-    for _, id in ipairs(trackedOrder) do
-         local _, name, _, completed, _, _, _, description = GetAchievementInfo(id)
-
-		-- if achievement is complete -> untrack immediately
-		if completed then
-			trackedAchievements[id] = nil
-			for i = #trackedOrder, 1, -1 do
-				if trackedOrder[i] == id then
-					table.remove(trackedOrder, i)
-					break
-				end
-			end
-			CA_LocalData.trackedAchievements = trackedAchievements
-			CA_LocalData.trackedOrder = trackedOrder
-		else			
-			-- Create a frame wrapper for mouse interaction
-			local hoverFrame_Achievements = CreateFrame("Frame", nil, f.content)
-			hoverFrame_Achievements:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
-			hoverFrame_Achievements:SetWidth(textWidth)
-			hoverFrame_Achievements:EnableMouse(true)
-			
-			-- collect all fontstrings for this block
-			hoverFrame_Achievements.texts = {}
-
-			-- achievement title
-			local title = hoverFrame_Achievements:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-			title:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
-			title:SetText(titleColor_normal .. name .. "|r") -- gold
-			title:SetShadowOffset(1, -1)
-
-			table.insert(hoverFrame_Achievements.texts, {
-				fs = title,
-				normal = titleColor_normal .. name .. "|r",
-				highlight = titleColor_hover .. name .. "|r"
-				})
-			prev = title
-
-			-- Criteria
-			local numCriteria = GetAchievementNumCriteria(id)
-			if numCriteria > 0 then
-				for i = 1, numCriteria do
-					local desc, _, critCompleted, qty, reqQty = GetAchievementCriteriaInfo(id, i)
-					local criteriaNumber = (qty == 0 and reqQty == nil) and "" or qty .. "/" .. reqQty
-					
-					--To get correct text for cooking achievements we use the description text directly from the achievement instead of the criteria lines
-					if description and description ~= "" and reqQty and reqQty > 0 then
-						desc = description
-					end
-
-					-- Skip completed criteria
-					if not critCompleted then
-						local criteriaLine = hoverFrame_Achievements:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-						criteriaLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
-						criteriaLine:SetText(textColor_normal .. "- " .. criteriaNumber .. " " .. desc)
-						criteriaLine:SetShadowOffset(1, -1)
-						criteriaLine:SetJustifyH("LEFT")
-						criteriaLine:SetWidth(textWidth)
-						criteriaLine:SetWordWrap(true)
-						
-						table.insert(hoverFrame_Achievements.texts, {
-							fs = criteriaLine,
-							normal = textColor_normal .. "- " .. criteriaNumber .. " " .. desc,
-							highlight = textColor_hover .. "- " .. criteriaNumber .. " " .. desc
-							})
-						prev = criteriaLine
-					end
-				end
-			else
-				-- Fallback: description
-				local descLine = hoverFrame_Achievements:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-				descLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
-				descLine:SetText(textColor_normal .. "- " .. description)
-				descLine:SetShadowOffset(1, -1)
-				descLine:SetJustifyH("LEFT")
-				descLine:SetWidth(textWidth)
-				descLine:SetWordWrap(true)
-
-				table.insert(hoverFrame_Achievements.texts, {
-					fs = descLine,
-					normal = textColor_normal .. "- " .. description,
-					highlight = textColor_hover .. "- " .. description
-					})
-				prev = descLine
-			end
-			
-			-- Resize hoverFrame_Achievements dynamically (so hover covers all lines)
-			local totalHeight = 0
-			for _, t in ipairs(hoverFrame_Achievements.texts) do
-				totalHeight = totalHeight + t.fs:GetStringHeight()
-			end
-			hoverFrame_Achievements:SetHeight(totalHeight > 0 and totalHeight or 20)
-			
-			-- Hover effect applies to all stored texts
-			hoverFrame_Achievements:SetScript("OnEnter", function()
-				for _, t in ipairs(hoverFrame_Achievements.texts) do
-					t.fs:SetText(t.highlight)
-				end
-			end)
-
-			hoverFrame_Achievements:SetScript("OnLeave", function()
-				for _, t in ipairs(hoverFrame_Achievements.texts) do
-					t.fs:SetText(t.normal)
-				end
-			end)
-			
-			hoverFrame_Achievements:SetScript("OnMouseDown", function(_, button)
-				if button == "LeftButton" then
-					if IsShiftKeyDown() then -- Shift-click to untrack		 	
-						trackedAchievements[id] = nil
-						for i, v in ipairs(trackedOrder) do
-							if v == id then
-								table.remove(trackedOrder, i)
-								break
-							end
-						end
-						CA_LocalData.trackedAchievements = trackedAchievements
-						CA_LocalData.trackedOrder = trackedOrder
-						Anniversary_ShowTrackedAchievementProgress()
-						AchievementFrameAchievements_ForceUpdate()
-					else
-						if not AchievementFrame then
-							AchievementFrame_LoadUI()
-						end
-						ShowUIPanel(AchievementFrame)
-
-						AchievementFrame_SelectAchievement(id)
-					end
-				end
-			end)
-			
-			table.insert(f.lines, hoverFrame_Achievements)
-			prev = hoverFrame_Achievements
-		end
+    if trackerHidden then
+        frame.content:Hide()
+        frame.toggleTrackerButton:SetNormalTexture("Interface\\Buttons\\UI-Panel-ExpandButton-Up")
+        frame.toggleTrackerButton:SetPushedTexture("Interface\\Buttons\\UI-Panel-ExpandButton-Down")
+        frame.header:ClearAllPoints()
+        frame.header:SetPoint("RIGHT", frame.toggleTrackerButton, "LEFT", -10, 0)
+        HideUnusedTrackerRows(frame)
+        pcall(frame.PositionDragHandle)
+        return
     end
 
-	--QUEST TRACKER
-    for i = 1, numQuests do
-		local watchSlot = i
-        local hoverFrame_Quests = CreateFrame("Frame", nil, f.content)
-        hoverFrame_Quests:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
-        hoverFrame_Quests:SetWidth(textWidth)
-        hoverFrame_Quests:EnableMouse(true)
-		
-		-- collect all fontstrings for this block
-        hoverFrame_Quests.texts = {}
+    frame.content:Show()
+    frame.toggleTrackerButton:SetNormalTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Up")
+    frame.toggleTrackerButton:SetPushedTexture("Interface\\Buttons\\UI-Panel-CollapseButton-Down")
+    frame.header:ClearAllPoints()
+    frame.header:SetPoint("LEFT", frame.content, "LEFT", 0, 10)
 
+    local previousAnchor = frame.header
+
+    for _, achievementID in ipairs(trackedOrder or {}) do
+        if trackedAchievements[achievementID]
+            and IsAchievementAvailableForCurrentClient(achievementID) then
+            local _, name, _, completed, _, _, _, description = GetAchievementInfo(achievementID)
+            if not completed and name then
+                local row = AcquireTrackerRow(frame, "achievement", previousAnchor)
+                row.achievementID = achievementID
+
+                AddTrackerRowText(
+                    row,
+                    titleColor_normal .. name .. "|r",
+                    titleColor_hover .. name .. "|r"
+                )
+
+                local numCriteria = GetAchievementNumCriteria(achievementID)
+                if numCriteria > 0 then
+                    for criteriaIndex = 1, numCriteria do
+                        local criteriaDescription, _, criteriaCompleted, quantity, requiredQuantity = GetAchievementCriteriaInfo(achievementID, criteriaIndex)
+                        local criteriaNumber = (quantity == 0 and requiredQuantity == nil) and "" or tostring(quantity or 0) .. "/" .. tostring(requiredQuantity or 0)
+
+                        if description and description ~= "" and requiredQuantity and requiredQuantity > 0 then
+                            criteriaDescription = description
+                        end
+
+                        if not criteriaCompleted and criteriaDescription then
+                            local prefix = criteriaNumber ~= "" and (criteriaNumber .. " ") or ""
+                            AddTrackerRowText(
+                                row,
+                                textColor_normal .. "- " .. prefix .. criteriaDescription,
+                                textColor_hover .. "- " .. prefix .. criteriaDescription
+                            )
+                        end
+                    end
+                elseif description and description ~= "" then
+                    AddTrackerRowText(
+                        row,
+                        textColor_normal .. "- " .. description,
+                        textColor_hover .. "- " .. description
+                    )
+                end
+
+                FinishTrackerRow(row)
+                previousAnchor = row
+            end
+        end
+    end
+
+    for watchSlot = 1, numQuests do
         local questIndex = GetQuestIndexForWatch(watchSlot)
         if questIndex then
-            local title, level, _, _, _, _, _, questID = GetQuestLogTitle(questIndex)
-			hoverFrame_Quests.watchSlot = watchSlot
-        	hoverFrame_Quests.questID   = questID
-            local objectives = GetNumQuestLeaderBoards(questIndex)
-            local questLine = hoverFrame_Quests:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-            questLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
-            
-			questLine:SetShadowOffset(1, -1)
-			questLine:SetJustifyH("LEFT")
-			questLine:SetWidth(textWidth)
-			questLine:SetWordWrap(true)
-			
+            local title, _, _, _, _, _, _, questID = GetQuestLogTitle(questIndex)
+            if title then
+                local row = AcquireTrackerRow(frame, "quest", previousAnchor)
+                row.watchSlot = watchSlot
+                row.questID = questID
 
-            prev = questLine
+                local objectives = GetNumQuestLeaderBoards(questIndex)
+                local questFinished = true
+                local objectiveTexts = {}
 
-			local questFinished = true  -- assume finished until proven otherwise
-            for obj = 1, objectives do
-                local desc, type, finished = GetQuestLogLeaderBoard(obj, questIndex)
-                if desc then					
-					-- If any objective is not finished → the quest isn't finished
-					if not finished then
-						questFinished = false
-					end
-
-                    local objLine = hoverFrame_Quests:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-                    objLine:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, 0)
-        			local color = finished and textColor_finished or textColor_normal
-        			objLine:SetText(color .. "- " .. desc)
-                    objLine:SetShadowOffset(1, -1)
-					objLine:SetJustifyH("LEFT")
-					objLine:SetWidth(textWidth)
-					objLine:SetWordWrap(true)
-
-					table.insert(hoverFrame_Quests.texts, {
-						fs = objLine,
-                        normal = color .. "- " .. desc,
-                        highlight = textColorCompleted_hover .. "- " .. desc
-					})
-                    prev = objLine
+                for objectiveIndex = 1, objectives do
+                    local objectiveDescription, _, finished = GetQuestLogLeaderBoard(objectiveIndex, questIndex)
+                    if objectiveDescription then
+                        if not finished then
+                            questFinished = false
+                        end
+                        objectiveTexts[#objectiveTexts + 1] = {
+                            text = objectiveDescription,
+                            finished = finished,
+                        }
+                    end
                 end
+
+                local questTitleColor = questFinished and titleColor_hover or titleColor_normal
+                local questTitleHighlight = questFinished and titleColorCompleted_hover or titleColor_hover
+                AddTrackerRowText(
+                    row,
+                    questTitleColor .. title .. "|r",
+                    questTitleHighlight .. title .. "|r"
+                )
+
+                for _, objective in ipairs(objectiveTexts) do
+                    local objectiveColor = objective.finished and textColor_finished or textColor_normal
+                    AddTrackerRowText(
+                        row,
+                        objectiveColor .. "- " .. objective.text,
+                        textColorCompleted_hover .. "- " .. objective.text
+                    )
+                end
+
+                FinishTrackerRow(row)
+                previousAnchor = row
             end
-
-			local titleColor = questFinished and titleColor_hover or titleColor_normal
-			local titleColorHoverFinished = questFinished and titleColorCompleted_hover or titleColor_hover
-
-			questLine:SetText(titleColor .. title .. "|r")
-
-			table.insert(hoverFrame_Quests.texts, {
-				fs = questLine,
-				normal = titleColor .. title .. "|r",
-				highlight = titleColorHoverFinished .. title .. "|r"
-			})
         end
-
-		-- Resize hoverFrame_Quests dynamically (so hover covers all lines)
-		local totalHeight = 0
-		for _, t in ipairs(hoverFrame_Quests.texts) do
-			totalHeight = totalHeight + t.fs:GetStringHeight()
-		end
-		hoverFrame_Quests:SetHeight(totalHeight > 0 and totalHeight or 20)
-		
-		-- Hover effect applies to all stored texts
-        hoverFrame_Quests:SetScript("OnEnter", function()
-            for _, t in ipairs(hoverFrame_Quests.texts) do
-                t.fs:SetText(t.highlight)
-            end
-        end)
-
-        hoverFrame_Quests:SetScript("OnLeave", function()
-            for _, t in ipairs(hoverFrame_Quests.texts) do
-                t.fs:SetText(t.normal)
-            end
-        end)
-        
-		hoverFrame_Quests:SetScript("OnMouseDown", function(self, button)
-			if button ~= "LeftButton" then return end
-
-			if IsShiftKeyDown() then
-				-- Re-resolve a live quest log index from the current watch slot
-				local idx = self.watchSlot and GetQuestIndexForWatch(self.watchSlot) or nil
-
-				-- Fallback: find by questID if needed
-				if (not idx or idx <= 0) and self.questID then
-					local num = GetNumQuestLogEntries()
-					for j = 1, num do
-						local _, _, _, isHeader, _, _, _, qid = GetQuestLogTitle(j)
-						if not isHeader and qid == self.questID then
-							idx = j
-							break
-						end
-					end
-				end
-
-				-- **Critical**: purge the internal QUEST_WATCH_LIST entry by questID (like ModernQuestWatch)
-				if self.questID and type(QUEST_WATCH_LIST) == "table" then
-					for n = #QUEST_WATCH_LIST, 1, -1 do
-						local row = QUEST_WATCH_LIST[n]
-						if type(row) == "table" and row.id == self.questID then
-							tremove(QUEST_WATCH_LIST, n)
-						end
-					end
-				end
-
-				-- Now remove the watch using the live index
-				if idx and idx > 0 then
-					RemoveQuestWatch(idx)
-				end
-
-				if QuestLog_Update   then QuestLog_Update() end
-				if QuestWatch_Update then QuestWatch_Update() end
-
-				Anniversary_ShowTrackedAchievementProgress()
-			else
-				Anniversary_OpenQuestDetails(self.questID, GetQuestIndexForWatch(self.watchSlot))
-			end
-		end)
-		
-		table.insert(f.lines, hoverFrame_Quests)
-        prev = hoverFrame_Quests
     end
 
-	if AnniversaryTrackedDisplay and AnniversaryTrackedDisplay.PositionDragHandle then
-		pcall(AnniversaryTrackedDisplay.PositionDragHandle)
-	end
+    HideUnusedTrackerRows(frame)
+    pcall(frame.PositionDragHandle)
 end
+
+local function QueueTrackedAchievementRefresh()
+    if trackerRefreshQueued then return end
+    trackerRefreshQueued = true
+
+    C_Timer.After(0, function()
+        trackerRefreshQueued = false
+        Anniversary_ShowTrackedAchievementProgress()
+    end)
+end
+
+local function ApplyTrackerMode(enabled)
+    CA_Settings.trackerToggle = enabled and true or false
+
+    if CA_Settings.trackerToggle then
+        DisableBlizzardQuestTracker()
+        QueueTrackedAchievementRefresh()
+    else
+        if AnniversaryTrackedDisplay then
+            AnniversaryTrackedDisplay:Hide()
+        end
+        RestoreBlizzardQuestTracker()
+    end
+end
+
+ns.ApplyTrackerMode = ApplyTrackerMode
 
 -- Robust Classic opener for the exact quest
 function Anniversary_OpenQuestDetails(questID, questLogIndex)
@@ -653,30 +840,19 @@ function Anniversary_OpenQuestDetails(questID, questLogIndex)
 end
 
 function Anniversary_ToggleAchievementTracking(self)
-    -- play sound when an achievement is (un)tracked
     if self:GetChecked() then
         PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
     else
         PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF)
     end
 
-    -- resolve achievement ID
     local id = tonumber(self:GetParent().id) or self.id or select(1, GetAchievementInfo(self:GetParent().index))
     if not id then return end
 
     if trackedAchievements[id] then
-        -- remove from trackedAchievements + trackedOrder
-        trackedAchievements[id] = nil
-        for i, v in ipairs(trackedOrder or {}) do
-            if v == id then
-                table.remove(trackedOrder, i)
-                break
-            end
-        end
+        RemoveTrackedAchievement(id)
     else
-        -- enforce max limit
-        local count = 0
-        for _ in pairs(trackedAchievements) do count = count + 1 end
+        local count = CountTrackedAchievements()
         if count >= MAX_TRACKED_ACHIEVEMENTS then
             UIErrorsFrame:AddMessage(
                 string.format(ACHIEVEMENT_WATCH_TOO_MANY, MAX_TRACKED_ACHIEVEMENTS),
@@ -686,19 +862,15 @@ function Anniversary_ToggleAchievementTracking(self)
             return
         end
 
-        -- avoid duplicates in trackedOrder
-        for _, v in ipairs(trackedOrder or {}) do
-            if v == id then return end
+        for _, trackedID in ipairs(trackedOrder or {}) do
+            if trackedID == id then return end
         end
 
         trackedAchievements[id] = true
         trackedOrder = trackedOrder or {}
         table.insert(trackedOrder, id)
+        SaveTrackedAchievements()
     end
-
-    -- save per-character
-    CA_LocalData.trackedAchievements = trackedAchievements
-    CA_LocalData.trackedOrder = trackedOrder
 
     Anniversary_ShowTrackedAchievementProgress()
     AchievementFrameAchievements_ForceUpdate()
@@ -710,30 +882,30 @@ trackerFrame:RegisterEvent("ACHIEVEMENT_EARNED")
 trackerFrame:RegisterEvent("QUEST_LOG_UPDATE")
 trackerFrame:RegisterEvent("QUEST_WATCH_UPDATE")
 
-trackerFrame:SetScript("OnEvent", function(self, event, ...)	
-
-    if event == "PLAYER_ENTERING_WORLD" then			
-		-- ensure per-character storage exists
-        CA_LocalData = CA_LocalData or {}
-        CA_LocalData.trackedAchievements = CA_LocalData.trackedAchievements or {}
-        CA_LocalData.trackedOrder = CA_LocalData.trackedOrder or {}
-        CA_Settings.trackerPosition = CA_Settings.trackerPosition or nil
-
-        -- local references for convenience
-        trackedAchievements = CA_LocalData.trackedAchievements
-        trackedOrder = CA_LocalData.trackedOrder
-
-        -- start a short ticker to update progress (optional)
-        if not self.ticker then
-            self.ticker = C_Timer.NewTicker(1, function()
-                Anniversary_ShowTrackedAchievementProgress()
-            end)
-        end
-		
-    elseif event == "QUEST_LOG_UPDATE" or event == "QUEST_WATCH_UPDATE" then		
-        Anniversary_ShowTrackedAchievementProgress()
+trackerFrame:SetScript("OnEvent", function(_, event)
+    if event == "PLAYER_ENTERING_WORLD" then
+        local localData = state:GetLocalData()
+        local settings = state:GetSettings()
+        RebindTrackedAchievementState(localData)
+        ApplyTrackerMode(settings.trackerToggle ~= false)
+        return
     end
+
+    QueueTrackedAchievementRefresh()
 end)
+
+if ns.EventBus and ns.Events then
+    ns.EventBus:Subscribe(ns.Events.PROGRESS_CHANGED, QueueTrackedAchievementRefresh)
+    ns.EventBus:Subscribe(ns.Events.ACHIEVEMENT_COMPLETED, QueueTrackedAchievementRefresh)
+    ns.EventBus:Subscribe(ns.Events.LOCAL_DATA_RESET, function()
+        RebindTrackedAchievementState()
+        QueueTrackedAchievementRefresh()
+        if type(AchievementFrameAchievements_ForceUpdate) == "function" then
+            AchievementFrameAchievements_ForceUpdate()
+        end
+    end)
+end
+
 
 -- [[ AchievementFrame ]] --
 
@@ -778,7 +950,7 @@ function AchievementFrame_DisplayComparison (unit)
 	local name = UnitName(unit)
 	if not name then return end
 	GetAndProcessRemoteAchievementsCompletion(name, function(sender, completion)
-		CA_CompletionManager:SetTarget(completion)
+		ns.CompletionManager:SetTarget(completion)
 
 		AchievementFrame.wasShown = nil;
 		AchievementFrameTab_OnClick = AchievementFrameComparisonTab_OnClick;
@@ -952,6 +1124,7 @@ function AchievementFrameBaseTab_OnClick (id)
 		AchievementFrameGuildEmblemRight:Hide();
 	end
 
+	AchievementFrameCategories_ExpandSelection(achievementFunctions.selectedCategory);
 	AchievementFrameCategories_Update();
 
 	if ( not isSummary ) then
@@ -984,6 +1157,7 @@ function AchievementFrameComparisonTab_OnClick (id)
 	end
 	AchievementFrameCategoriesBG:SetTexCoord(0, 0.5, 0, 1);
 	AchievementFrameCategories_GetCategoryList(ACHIEVEMENTUI_CATEGORIES);
+	AchievementFrameCategories_ExpandSelection(achievementFunctions.selectedCategory);
 	AchievementFrameCategories_Update();
 	AchievementFrame_UpdateTabs(id);
 
@@ -1100,6 +1274,42 @@ function AchievementFrameCategories_OnShow (self)
 	AchievementFrameCategories_Update();
 end
 
+-- Reopen the category branch that owns the selected category after the
+-- category list has been rebuilt (for example after switching achievement
+-- tabs). A selected top-level category is itself the branch root; a selected
+-- subcategory opens its numeric parent. This is deliberately not called from
+-- every Update so clicking an already selected top-level category can still
+-- collapse it until the next tab/navigation restore.
+function AchievementFrameCategories_ExpandSelection(categoryID)
+	if ( not categoryID or categoryID == "summary" or categoryID == ACHIEVEMENT_COMPARISON_SUMMARY_ID or categoryID == ACHIEVEMENT_COMPARISON_STATS_SUMMARY_ID ) then
+		return;
+	end
+
+	local branchRootID;
+	for _, category in next, ACHIEVEMENTUI_CATEGORIES do
+		if ( category.id == categoryID ) then
+			if ( type(category.parent) == "number" ) then
+				branchRootID = category.parent;
+			elseif ( category.parent == true ) then
+				branchRootID = category.id;
+			end
+			break;
+		end
+	end
+
+	if ( not branchRootID ) then
+		return;
+	end
+
+	for _, category in next, ACHIEVEMENTUI_CATEGORIES do
+		if ( category.parent == true ) then
+			category.collapsed = category.id ~= branchRootID;
+		elseif ( type(category.parent) == "number" ) then
+			category.hidden = category.parent ~= branchRootID;
+		end
+	end
+end
+
 function AchievementFrameCategories_GetCategoryList (categories)
 	local cats = achievementFunctions.categoryAccessor();
 
@@ -1184,13 +1394,16 @@ function AchievementFrameCategories_Update ()
 		if ( element ) then
 			AchievementFrameCategories_DisplayButton(buttons[i], element);
 			if ( selection and element.id == selection ) then
+				buttons[i].isSelected = true;
 				buttons[i]:LockHighlight();
 			else
+				buttons[i].isSelected = nil;
 				buttons[i]:UnlockHighlight();
 			end
 			buttons[i]:Show();
 		else
 			buttons[i].element = nil;
+			buttons[i].isSelected = nil;
 			buttons[i]:Hide();
 		end
 	end
@@ -1240,12 +1453,9 @@ function AchievementFrameCategories_DisplayButton (button, element)
 
 	-- For the tooltip
 	button.name = categoryName;
-	if ( id == FEAT_OF_STRENGTH_ID ) then
-		-- This is the feat of strength category since it's sorted to the end of the list
+	if ( AnniversaryAchievements_IsFeatsOfStrengthCategory(id) ) then
+		-- Native and API-defined Feats of Strength use the same category behavior.
 		button.text = FEAT_OF_STRENGTH_DESCRIPTION;
-		button.showTooltipFunc = AchievementFrameCategory_FeatOfStrengthTooltip;
-	elseif ( id == GUILD_FEAT_OF_STRENGTH_ID ) then
-		button.text = GUILD_FEAT_OF_STRENGTH_DESCRIPTION;
 		button.showTooltipFunc = AchievementFrameCategory_FeatOfStrengthTooltip;
 	elseif ( AchievementFrame.selectedTab == 1 or AchievementFrame.selectedTab == 2 ) then
 		button.text = nil;
@@ -1352,7 +1562,7 @@ function AchievementFrameCategories_SelectButton (button)
 			AchievementFrame_ShowSubFrame(AchievementFrameStats);
 		elseif ( achievementFunctions == ACHIEVEMENT_FUNCTIONS or achievementFunctions == GUILD_ACHIEVEMENT_FUNCTIONS ) then
 			AchievementFrame_ShowSubFrame(AchievementFrameAchievements);
-			if ( id == FEAT_OF_STRENGTH_ID or id == GUILD_FEAT_OF_STRENGTH_ID ) then
+			if AnniversaryAchievements_IsFeatsOfStrengthCategory(id) then
 				AchievementFrameFilterDropDown:Hide();
 				AchievementFrameHeaderLeftDDLInset:Hide();
 			else
@@ -1381,7 +1591,7 @@ function AchievementFrameAchievements_OnShow()
 	if ( AchievementFrameAchievements.guildView ~= IN_GUILD_VIEW ) then
 		AchievementFrameAchievements_ToggleView();
 	end
-	if ( achievementFunctions.selectedCategory == FEAT_OF_STRENGTH_ID or achievementFunctions.selectedCategory == GUILD_FEAT_OF_STRENGTH_ID ) then
+	if AnniversaryAchievements_IsFeatsOfStrengthCategory(achievementFunctions.selectedCategory) then
 		AchievementFrameFilterDropDown:Hide();
 		AchievementFrameHeaderLeftDDLInset:Hide();
 	else
@@ -1751,13 +1961,17 @@ function AchievementButton_UpdatePlusMinusTexture (button)
 		return; -- This happens when we create buttons
 	end
 
+	local achievement = ns.Database and ns.Database:GetAchievement(id);
+	local hideCriteriaUI = achievement and achievement:IsCriteriaUIHidden();
 	local display = false;
-	if ( GetAchievementNumCriteria(id) ~= 0 ) then
-		display = true;
-	elseif ( button.completed and GetPreviousAchievement(id) ) then
-		display = true;
-	elseif ( not button.completed and GetAchievementGuildRep(id) ) then
-		display = true;
+	if ( not hideCriteriaUI ) then
+		if ( GetAchievementNumCriteria(id) ~= 0 ) then
+			display = true;
+		elseif ( button.completed and GetPreviousAchievement(id) ) then
+			display = true;
+		elseif ( not button.completed and GetAchievementGuildRep(id) ) then
+			display = true;
+		end
 	end
 
 	if ( display ) then
@@ -2995,7 +3209,6 @@ function AchievementFrameSummary_UpdateAchievements(...)
 	local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy;
 	local buttons = AchievementFrameSummaryAchievements.buttons;
 	local button, anchorTo, achievementID;
-	local defaultAchievementCount = 1;
 
 	for i=1, ACHIEVEMENTUI_MAX_SUMMARY_ACHIEVEMENTS do
 		if ( buttons ) then
@@ -3069,46 +3282,14 @@ function AchievementFrameSummary_UpdateAchievements(...)
 			button.tooltipTitle = nil;
 			button:Show();
 		else
-			local tAchievements;
-			if ( IN_GUILD_VIEW ) then
-				tAchievements = ACHIEVEMENTUI_DEFAULTGUILDSUMMARYACHIEVEMENTS;
-			else
-				tAchievements = ACHIEVEMENTUI_DEFAULTSUMMARYACHIEVEMENTS;
-			end
-			for i=defaultAchievementCount, ACHIEVEMENTUI_MAX_SUMMARY_ACHIEVEMENTS do
-				achievementID = tAchievements[defaultAchievementCount];
-				if ( not achievementID ) then
-					break;
-				end
-				id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuild, wasEarnedByMe, earnedBy = GetAchievementInfo(achievementID);
-				if ( completed ) then
-					defaultAchievementCount = defaultAchievementCount+1;
-				else
-					button.label:SetText(name);
-					button.description:SetText(description);
-					AchievementShield_SetPoints(points, button.shield.points, GameFontNormal, GameFontNormalSmall);
-					if ( points > 0 ) then
-						button.shield.icon:SetTexture([[Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Shields]]);
-					else
-						button.shield.icon:SetTexture([[Interface\AddOns\AnniversaryAchievements\textures\UI-Achievement-Shields-NoPoints]]);
-					end
-					button.shield.wasEarnedByMe = not (completed and not wasEarnedByMe);
-					button.shield.earnedBy = earnedBy;
-					button.icon.texture:SetTexture(icon);
-					button.id = id;
-					if ( month ) then
-						button.dateCompleted:SetText(FormatShortDate(day, month, year));
-					else
-						button.dateCompleted:SetText("");
-					end
-					button:Show();
-					defaultAchievementCount = defaultAchievementCount+1;
-					button:Desaturate();
-					button.tooltipTitle = SUMMARY_ACHIEVEMENT_INCOMPLETE;
-					button.tooltip = SUMMARY_ACHIEVEMENT_INCOMPLETE_TEXT;
-					break;
-				end
-			end
+			-- "Neueste Erfolge" contains completed achievements only. Empty
+			-- slots stay hidden instead of being filled with incomplete defaults.
+			button.id = nil;
+			button.accountWide = nil;
+			button.tooltipTitle = nil;
+			button.tooltip = nil;
+			button.dateCompleted:SetText("");
+			button:Hide();
 		end
 	end
 	if ( numAchievements == 0 ) then
@@ -3272,24 +3453,7 @@ function AchievementFrame_SelectAchievement(id, forceSelect, isComparison)
 
 	AchievementFrameCategories_ClearSelection();
 
-	local categoryIndex, parent, hidden = 0;
-	for i, entry in next, ACHIEVEMENTUI_CATEGORIES do
-		if ( entry.id == category ) then
-			parent = entry.parent;
-		end
-	end
-
-	for i, entry in next, ACHIEVEMENTUI_CATEGORIES do
-		if ( entry.id == parent ) then
-			entry.collapsed = false;
-		elseif ( entry.parent == parent ) then
-			entry.hidden = false;
-		elseif ( entry.parent == true ) then
-			entry.collapsed = true;
-		elseif ( entry.parent ) then
-			entry.hidden = true;
-		end
-	end
+	AchievementFrameCategories_ExpandSelection(category);
 
 	achievementFunctions.selectedCategory = category;
 	AchievementFrameCategoriesContainerScrollBar:SetValue(0);
@@ -3449,26 +3613,7 @@ function AchievementFrame_SelectStatisticByAchievementID(achievementID, isCompar
 
 	local category = GetAchievementCategory(achievementID);
 
-	local categoryIndex, parent, hidden = 0;
-
-	local categoryIndex, parent, hidden = 0;
-	for i, entry in next, ACHIEVEMENTUI_CATEGORIES do
-		if ( entry.id == category ) then
-			parent = entry.parent;
-		end
-	end
-
-	for i, entry in next, ACHIEVEMENTUI_CATEGORIES do
-		if ( entry.id == parent ) then
-			entry.collapsed = false;
-		elseif ( entry.parent == parent ) then
-			entry.hidden = false;
-		elseif ( entry.parent == true ) then
-			entry.collapsed = true;
-		elseif ( entry.parent ) then
-			entry.hidden = true;
-		end
-	end
+	AchievementFrameCategories_ExpandSelection(category);
 
 	achievementFunctions.selectedCategory = category;
 	AchievementFrameCategories_Update();

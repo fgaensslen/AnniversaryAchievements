@@ -1,4 +1,11 @@
-DAILY_QUESTS_TBC = {
+local _, ns = ...
+
+if not ns.IsTBCAnniversary then
+    ns.DailyQuestsTBC = {}
+    return
+end
+
+ns.DailyQuestsTBC = {
     -- Fishing
     [11665] = true,
     [11666] = true,

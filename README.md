@@ -6,7 +6,7 @@ It integrates perfectly with the Standard UI and uses the same graphics and soun
 
 ### Download
 
-- WoW TBC: Version 2.3.2
+- WoW TBC: Version 2.2.4
 - WoW Classic: Version 1.4.6. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
 
 ### Achievements
@@ -18,13 +18,29 @@ A full list can be found [here](https://fgaensslen.github.io/AnniversaryAchieve
 
 ### Supported Languages
 
-- English
-- German
-- Spanish (EU) & (MX) - thanks to milotic03
+Classic Era (Interface 11509) loads only `localization/classic/`:
 
-All languages use original Blizzard texts and icons.
+- English (enUS, fallback)
+- German (deDE)
 
-Using another WoW client language may cause some achievements not to work properly.
+TBC Anniversary (Interface 20506) loads only `localization/tbc/`.
+Currently enabled there:
+
+- English (enUS)
+- German (deDE)
+- Spanish (esES)
+- Latin American Spanish (esMX)
+
+TBC translation files retained but temporarily disabled pending manual completion:
+
+- French (frFR)
+- Korean (koKR)
+- Brazilian Portuguese (ptBR)
+- Russian (ruRU)
+- Simplified Chinese (zhCN)
+- Traditional Chinese (zhTW)
+
+The WoW client normally selects `AnniversaryAchievements-Classic.toc` or `AnniversaryAchievements-BCC.toc` before loading Lua files. The unsuffixed `AnniversaryAchievements.toc` is a functional fallback: it lists both enabled locale packages, while hard `ClientFlavor` guards at the beginning of every locale file ensure that Classic Era initializes only `localization/classic/` and TBC Anniversary initializes only `localization/tbc/`. Disabled TBC locale files remain in `localization/tbc/` for manual editing; their matching AreaTable files are retained but disabled as well.
 
 ### Supported User Interfaces
 
