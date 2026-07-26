@@ -1,7 +1,7 @@
 ## Interface: 20506
 ## Title: Anniversary Achievements
 ## Author: BearCraftStudios
-## Version: v2.3.3
+## Version: v2.3.4
 ## IconTexture: Interface/AddOns/AnniversaryAchievements/logo.tga
 ## Notes: Achievements for WoW TBC Anniversary
 ## Category: Achievements
