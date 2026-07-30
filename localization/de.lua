@@ -348,7 +348,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AN_BLACKROCK_DEPTHS_FULL = 'Meister der Schwarzfelstiefen',
 	AD_BLACKROCK_DEPTHS_FULL = 'Schließt die unten aufgelisteten Erfolge in den Schwarzfelstiefen ab.',
 	AN_ARMOR_SWORD = 'Angriff ist die bessere Verteidigung',
-	AD_ARMOR_SWORD = 'Plündert den Stein der Erde von Panzor den Unbesiegbaren in den Schwarzfelstiefen.',
+	AD_ARMOR_SWORD = 'Bezwingt Panzor den Unbesiegbaren in den Schwarzfelstiefen.',
 	
 	AN_BLACKROCK_SPIRE_BOTTOM = 'Untere Schwarzfelsspitze',
 	AD_BLACKROCK_SPIRE_BOTTOM = 'Bezwingt Oberanführer Wyrmthalak.',

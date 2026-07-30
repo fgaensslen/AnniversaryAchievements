@@ -318,7 +318,7 @@ ID; Name; Description; Icon
 317 ; Blackrocktiefen ; Bezwingt Imperator Dagran Thaurissan. ; -Achievement_boss_emperordagranthaurissan
 318 ; Die Tiefen säubern ; Tötet die folgenden Bosse in den Blackrocktiefen. ; -Spell_Fire_Lavaspawn
 319 ; Party in den Tiefen ; Bezwingt die folgenden Gegner im Grimmigen Säufer ; -inv_drink_05
-320 ; Angriff ist die bessere Verteidigung ; Plündert den Stein der Erde von Panzor den Unbesiegbaren in den Blackrocktiefen. ; -Inv_Sword_47
+320 ; Angriff ist die bessere Verteidigung ; Bezwingt Panzor den Unbesiegbaren in den Blackrocktiefen. ; -Inv_Sword_47
 321 ; Blackrocktiefen ; Schließt die unten aufgelisteten Erfolge in den Blackrocktiefen ab. ; -Inv_Misc_AhnQirajTrinket_03
 322 ; Untere Blackrockspitze ; Bezwingt Oberanführer Wyrmthalak. ; -Achievement_boss_overlord_wyrmthalak
 323 ; Obere Blackrockspitze  ; Bezwingt General Drakkisath. ; -achievement_boss_generaldrakkisath

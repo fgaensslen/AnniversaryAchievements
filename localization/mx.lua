@@ -348,7 +348,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AN_BLACKROCK_DEPTHS_FULL = 'Maestro de las Profundidades de Roca Negra',
 	AD_BLACKROCK_DEPTHS_FULL = 'Consigue los siguientes logros relacionados con Profundidades de Roca Negra.',
 	AN_ARMOR_SWORD = 'La mejor defensa es un ataque',
-	AD_ARMOR_SWORD = 'Despoja la Piedra de la Tierra del cuerpo del derrotado Panzor el Invencible en las Profundidades de Roca Negra.',
+	AD_ARMOR_SWORD = 'Derrota Panzor el Invencible en las Profundidades de Roca Negra.',
 	
 	AN_BLACKROCK_SPIRE_BOTTOM = 'Cumbre de Roca Negra inferior',
 	AD_BLACKROCK_SPIRE_BOTTOM = 'Derrota al señor supremo Vermiothalak.',

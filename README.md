@@ -6,7 +6,7 @@ It integrates perfectly with the Standard UI and uses the same graphics and soun
 
 ### Download
 
-- WoW TBC: Version 2.3.4
+- WoW TBC: Version 2.3.3
 - WoW Classic: Version 1.4.7. It works on all Classic Servers (Era, Hardcore, Season of Discovery)
 
 ### Achievements

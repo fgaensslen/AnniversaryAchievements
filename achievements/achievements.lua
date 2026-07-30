@@ -1125,7 +1125,7 @@ do
 	local id2 = create('BLACKROCK_DEPTHS', '-Spell_Fire_Lavaspawn', {9018, 9319, 9033, 8983, 9017, 9041, 9016}, 10).id
 	local id3 = create('BLACKROCK_PARTY', '-inv_drink_05', {9543, 9499, 9537, 9502}, 10).id
 	ach = instances:CreateAchievement('AN_ARMOR_SWORD', 'AD_ARMOR_SWORD', 10, '-Inv_Sword_47', true)
-	ach:AddCriteria(criterias:Create(nil, TYPE.OBTAIN_ITEM, {11786}))
+	ach:AddCriteria(criterias:Create(nil, TYPE.KILL_NPC, {8923}))
 	local id4 = ach.id
 	ach = instances:CreateAchievement('AN_BLACKROCK_DEPTHS_FULL', 'AD_BLACKROCK_DEPTHS_FULL', 10, '-Inv_Misc_AhnQirajTrinket_03', true)
 	ach:AddCriteria(criterias:CreateL('AN_BLACKROCK_DEPTHS', TYPE.COMPLETE_ACHIEVEMENT, {id2}))

@@ -348,7 +348,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
 	AN_BLACKROCK_DEPTHS_FULL = 'Master of Blackrock Depths',
 	AD_BLACKROCK_DEPTHS_FULL = 'Earn following achievements related to Blackrock Depths.',
 	AN_ARMOR_SWORD = 'The Best Defense Is an Attack',
-	AD_ARMOR_SWORD = 'Loot the Stone of the Earth from the body of the defeated Panzor the Invincible in Blackrock Depths.',
+	AD_ARMOR_SWORD = 'Defeat Panzor the Invincible in Blackrock Depths.',
 	
 	AN_BLACKROCK_SPIRE_BOTTOM = 'Lower Blackrock Spire',
 	AD_BLACKROCK_SPIRE_BOTTOM = 'Defeat Overlord Wyrmthalak.',
