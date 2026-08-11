@@ -1,6 +1,6 @@
 local _, ns = ...
 
--- Generated flavor catalog for AnniversaryAchievements v2.3.51.
+-- Generated flavor catalog for AnniversaryAchievements v2.3.53.
 -- This file contains only definitions used by this client flavor. Stable IDs
 -- keep Classic v1.4.6 and all existing TBC SavedVariables fully compatible.
 
@@ -19996,11 +19996,11 @@ local achievementDefinitions = {
             [1] = {
                 ["coinFormatter"] = false,
                 ["data"] = {
-                    [1] = 11786,
+                    [1] = 8923,
                 },
                 ["id"] = 1407,
                 ["name"] = "",
-                ["type"] = 5,
+                ["type"] = 1,
             },
         },
         ["description"] = "AD_ARMOR_SWORD",

@@ -50,4 +50,22 @@ Details siehe Ordner changelogs
 2.3.48 – Erfolge: Einzigartig/Extrem selten + Titel "Der/Die Unfassbare"
 2.3.49 – Erfolg TBC: Ob nah, ob fern, Tiere hab ich gern
 2.3.50 – Gemeinsamen Kontakte-/Gildenslot sowie Weltkarte und Optionen korrekt verschoben
-2.3.51 – Classic-/TBC-Lokalisierungen in getrennte Ordner und clientabhängige TOCs aufgeteilt; unsuffigierten Fallback durch harte Clientprüfungen abgesichert.
+2.3.51 – Classic-/TBC-Lokalisierungen in getrennte Ordner und clientabhängige TOCs aufgeteilt; unsuffigierten Fallback durch harte Clientprüfungen abgesichert
+
+- Hotfix innerhalb v2.3.51: Die Classic-AreaTable-Dateien spiegeln die legacy-globale `AreaTableLocale`-Tabelle nun zusätzlich nach `ns.AreaTableLocale`. Dadurch kann `Achievements_Classic.lua` Gebietsnamen auflösen, ohne beim ersten `areaID`-Text mit einem nil-Zugriff abzubrechen; der Classic-Katalog wird wieder vollständig registriert.
+
+- Hotfix innerhalb v2.3.51: Erfolg 538 „Eine Maske für jede Gelegenheit“ ist nach Client getrennt. Classic registriert die eigene Definition nur mit den 16 Classic-Masken; TBC ersetzt sie vor der Registrierung durch eine vollständige 20-Masken-Definition einschließlich der Blutelfen-/Draenei-Masken 34000–34003. Auch Erfolg 537 behält diese vier zusätzlichen Masken ausschließlich im TBC-Delta.
+
+2.3.52 – TBC: Erfolg 320 „Angriff ist die bessere Verteidigung“ auf direkten Panzor-Kill korrigiert
+
+- TBC: Das Kriterium von Erfolg 320 verwendet nun KILL_NPC für Panzor den Unbesiegbaren (NPC 8923) statt OBTAIN_ITEM für „Stein der Erde“ (Item 11786). Die vorhandene TBC-Kriterien-ID 1418 bleibt unverändert.
+- Die Beschreibungen in den aktiv geladenen TBC-Lokalisierungen deDE, enUS, esES und esMX sowie den TBC-Kataloglisten wurden an das Kill-Kriterium angepasst.
+- Die spanischen TBC-AreaTable-Dateien wurden gegen den Upstream-Fix vom 26.07.2026 geprüft; Locale-Sperren und Tabelleninhalt waren in v2.3.51 fixes #19 bereits vollständig enthalten und bleiben unverändert.
+- Die Classic-Erfolgsdefinition und Classic-Lokalisierungen wurden für diesen TBC-Abgleich funktional nicht verändert.
+
+2.3.53 – Classic: Erfolg 320 ebenfalls auf direkten Panzor-Kill korrigiert
+
+- Classic: Das Kriterium von Erfolg 320 „Angriff ist die bessere Verteidigung“ verwendet nun KILL_NPC für Panzor den Unbesiegbaren (NPC 8923) statt OBTAIN_ITEM für „Stein der Erde“ (Item 11786). Die vorhandene Classic-Kriterien-ID 1407 bleibt unverändert.
+- Die Classic-Lokalisierungen deDE und enUS wurden an das Kill-Kriterium angepasst; die Classic-Kataloglisten enthielten die korrigierte Kill-Beschreibung bereits.
+- Der 1.15.9-AchievementFrame-Kompatibilitätsfix des Original-Addons ist in der bestehenden gemeinsamen UI bereits enthalten und wurde nicht erneut ersetzt.
+- Kategorie-IDs sowie die bestehende Microbutton-, Minimap- und Settings-Logik bleiben unverändert. In Settings wurde ausschließlich die Versionskonstante auf v2.3.53 angehoben.

@@ -347,7 +347,7 @@ SexyLib:InitLocalization('Anniversary Achievements', {
     AN_BLACKROCK_DEPTHS_FULL = 'Meister der Blackrocktiefen',
     AD_BLACKROCK_DEPTHS_FULL = 'Schließt die unten aufgelisteten Erfolge in den Blackrocktiefen ab.',
     AN_ARMOR_SWORD = 'Angriff ist die bessere Verteidigung',
-    AD_ARMOR_SWORD = 'Plündert den Stein der Erde von Panzor den Unbesiegbaren in den Blackrocktiefen.',
+    AD_ARMOR_SWORD = 'Bezwingt Panzor den Unbesiegbaren in den Blackrocktiefen.',
 	
     AN_BLACKROCK_SPIRE_BOTTOM = 'Untere Blackrockspitze',
     AD_BLACKROCK_SPIRE_BOTTOM = 'Bezwingt Oberanführer Wyrmthalak.',

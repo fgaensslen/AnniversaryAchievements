@@ -318,7 +318,7 @@
 317; Blackrock Depths; Defeat Emperor Dagran Thaurissan.; achievement_boss_emperordagranthaurissan
 318; Clearing the Depths; Defeat the following bosses in Blackrock Depths.; -Spell_Fire_Lavaspawn
 319; Party in the Guzzler; Defeat all listed opponents in the Grim Guzzler.; -inv_drink_05
-320; The Best Defense Is an Attack; Loot the Stone of the Earth from the body of the defeated Panzor the Invincible in Blackrock Depths.; -Inv_Sword_47
+320; The Best Defense Is an Attack; Defeat Panzor the Invincible in Blackrock Depths.; -Inv_Sword_47
 321; Blackrock Depths; Earn following achievements related to Blackrock Depths.; -Inv_Misc_AhnQirajTrinket_03
 322; Lower Blackrock Spire; Defeat Overlord Wyrmthalak.; achievement_boss_overlord_wyrmthalak
 323; Upper Blackrock Spire; Defeat General Drakkisath.; achievement_boss_generaldrakkisath
