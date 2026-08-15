@@ -1,11 +1,14 @@
 ## Interface: 20506
 ## Title: Anniversary Achievements
+## Title-ptBR: Conquistas de Aniversário
 ## Author: BearCraftStudios
 ## Version: v2.3.4
 ## IconTexture: Interface/AddOns/AnniversaryAchievements/logo.tga
 ## Notes: Achievements for WoW TBC Anniversary
+## Notes-ptBR: Conquistas para o WoW TBC Anniversary
 ## Category: Achievements
 ## Category-deDE: Erfolge
+## Category-ptBR: Conquistas
 ## SavedVariables: CA_Settings
 ## SavedVariablesPerCharacter: CA_LocalData, CA_Flags
 
@@ -17,12 +20,13 @@ localization/en.lua
 localization/de.lua
 localization/es.lua
 localization/mx.lua
+localization/pt.lua
 
 localization/AreaTableLocale_enUS.lua
 localization/AreaTableLocale_deDE.lua
 localization/AreaTableLocale_esES.lua
 localization/AreaTableLocale_esMX.lua
-
+localization/AreaTableLocale_ptBR.lua
 util/Settings.lua
 
 api/Completion.lua
