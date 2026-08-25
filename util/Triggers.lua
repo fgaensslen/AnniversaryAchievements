@@ -455,7 +455,7 @@ killingTracker:AddHandler(function(targetID) return true end, function(targetID)
         end
 
         -- 5. P3 first week
-        if time() < 1643871600 then
+        if time() < 1788307200 then
             trigger(TYPE.P3_FIRST_WEEK, {targetID}, 1)
         end
     else

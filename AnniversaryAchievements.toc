@@ -2,7 +2,7 @@
 ## Title: Anniversary Achievements
 ## Title-ptBR: Conquistas de Aniversário
 ## Author: BearCraftStudios
-## Version: v2.3.4
+## Version: v2.3.5
 ## IconTexture: Interface/AddOns/AnniversaryAchievements/logo.tga
 ## Notes: Achievements for WoW TBC Anniversary
 ## Notes-ptBR: Conquistas para o WoW TBC Anniversary
